@@ -1374,9 +1374,12 @@ config FUTEX
 config HAVE_FUTEX_CMPXCHG
 	bool
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	depends on FUTEX
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	help
 	  Architectures should select this if futex_atomic_cmpxchg_inatomic()
 	  is implemented and always working. This removes a couple of runtime

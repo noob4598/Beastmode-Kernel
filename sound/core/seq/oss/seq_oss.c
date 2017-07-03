@@ -151,10 +151,15 @@ odev_release(struct inode *inode, struct file *file)
 		return 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	snd_seq_oss_drain_write(dp);
 
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	snd_seq_oss_drain_write(dp);
+
+>>>>>>> 2617302... source
 	mutex_lock(&register_mutex);
 	snd_seq_oss_release(dp);
 	mutex_unlock(&register_mutex);

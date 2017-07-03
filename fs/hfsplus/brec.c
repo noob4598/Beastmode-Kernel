@@ -132,6 +132,9 @@ skip:
 	hfs_bnode_dump(node);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	if (new_node) {
 		/* update parent key if we inserted a key
 		 * at the start of the first node
@@ -139,6 +142,7 @@ skip:
 		if (!rec && new_node != node)
 			hfs_brec_update_parent(fd);
 
+<<<<<<< HEAD
 =======
 	/*
 	 * update parent key if we inserted a key
@@ -151,6 +155,8 @@ skip:
 
 	if (new_node) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		hfs_bnode_put(fd->bnode);
 		if (!new_node->parent) {
 			hfs_btree_inc_height(tree);
@@ -182,11 +188,17 @@ skip:
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!rec)
 		hfs_brec_update_parent(fd);
 
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (!rec)
+		hfs_brec_update_parent(fd);
+
+>>>>>>> 2617302... source
 	return 0;
 }
 
@@ -387,10 +399,13 @@ again:
 		return PTR_ERR(parent);
 	__hfs_brec_find(parent, fd, hfs_find_rec_by_key);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (fd->record < 0)
 		return -ENOENT;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	hfs_bnode_dump(parent);
 	rec = fd->record;
 

@@ -35,9 +35,12 @@
  * @no_suspend_delay : Flag used to make system go to suspend
  * immediately or not
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
  * @obs: Flag to enable out of band sleep feature support
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
  */
 struct msm_serial_hs_platform_data {
 	int wakeup_irq;  /* wakeup irq */
@@ -54,11 +57,14 @@ struct msm_serial_hs_platform_data {
 	unsigned bam_rx_ep_pipe_index;
 	bool no_suspend_delay;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #if defined(CONFIG_SERIAL_MSM_HS_LENTIS)
 	bool obs;
 #endif
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 };
 
 /* return true when tx is empty */
@@ -69,15 +75,22 @@ struct uart_port *msm_hs_get_uart_port(int port_index);
 void msm_hs_set_mctrl(struct uart_port *uport,
 				    unsigned int mctrl);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 #if !defined(CONFIG_SERIAL_MSM_HS_LENTIS)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+
+>>>>>>> 2617302... source
 struct uart_port * msm_hs_get_port_by_id(int num);
 int msm_hs_get_clock_state(struct uart_port *uport);
 int msm_hs_get_clock_count(struct uart_port *uport);
 #endif
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #endif
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source

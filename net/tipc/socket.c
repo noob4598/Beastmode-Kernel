@@ -1529,9 +1529,12 @@ static int accept(struct socket *sock, struct socket *new_sock, int flags)
 	if (res)
 		goto exit;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	security_sk_clone(sock->sk, new_sock->sk);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	new_sk = new_sock->sk;
 	new_tsock = tipc_sk(new_sk);

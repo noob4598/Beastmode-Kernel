@@ -2810,10 +2810,14 @@ static void load_tuning_file(struct device *dev, char *filename)
 	if (IS_ERR(filp)) {
 		printk(KERN_ERR "%s File open failed\n", __func__);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return;
 =======
 		goto err;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		return;
+>>>>>>> 2617302... source
 	}
 
 	l = filp->f_path.dentry->d_inode->i_size;
@@ -2824,10 +2828,14 @@ static void load_tuning_file(struct device *dev, char *filename)
 		pr_info("Can't not alloc memory for tuning file load\n");
 		filp_close(filp, current->files);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return;
 =======
 		goto err;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		return;
+>>>>>>> 2617302... source
 	}
 	pos = 0;
 	memset(dp, 0, l);
@@ -2841,10 +2849,14 @@ static void load_tuning_file(struct device *dev, char *filename)
 		kfree(dp);
 		filp_close(filp, current->files);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return;
 =======
 		goto err;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		return;
+>>>>>>> 2617302... source
 	}
 
 	filp_close(filp, current->files);
@@ -2855,12 +2867,15 @@ static void load_tuning_file(struct device *dev, char *filename)
 
 	kfree(dp);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 	return;
 err:
 	set_fs(fs);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 }
 
 static ssize_t tuning_show(struct device *dev,
@@ -4176,10 +4191,14 @@ void mdss_mdp_underrun_dump_info(void)
 				pipe->flags, pipe->src_fmt->format, pipe->src_fmt->bpp,
 				pipe->ndx);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("pipe addr : %p\n", pipe);
 =======
 		pr_err("pipe addr : %pK\n", pipe);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		pr_err("pipe addr : %p\n", pipe);
+>>>>>>> 2617302... source
 		pcount--;
 		if (!pcount) break;
 	}

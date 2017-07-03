@@ -214,9 +214,12 @@ SECTIONS
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	. = ALIGN(256);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	.got : AT(ADDR(.got) - LOAD_OFFSET) {
 		__toc_start = .;
 #ifndef CONFIG_RELOCATABLE

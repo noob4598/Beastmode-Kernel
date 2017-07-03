@@ -570,6 +570,7 @@ static int soc_compr_set_params_fe(struct snd_compr_stream *cstream,
 			} else {
 				be_list[j++] = be;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 				if (j == DPCM_MAX_BE_USERS) {
 					dev_dbg(fe->dev,
@@ -577,6 +578,8 @@ static int soc_compr_set_params_fe(struct snd_compr_stream *cstream,
 					break;
 				}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 			}
 		}
 		for (i = 0; i < j; i++) {

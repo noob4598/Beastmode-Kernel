@@ -20,11 +20,14 @@ EXPORT_SYMBOL(cpu_dcache_clean_area);
 #ifdef CONFIG_MMU
 EXPORT_SYMBOL(cpu_set_pte_ext);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #ifdef CONFIG_TIMA_RKP_L2_TABLES
 EXPORT_SYMBOL(cpu_tima_set_pte_ext);
 #endif
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 #endif
 #else
 EXPORT_SYMBOL(processor);

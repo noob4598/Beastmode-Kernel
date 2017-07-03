@@ -886,6 +886,7 @@ cifs_mand_lock(const unsigned int xid, struct cifsFileInfo *cfile, __u64 offset,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 static bool
 cifs_dir_needs_close(struct cifsFileInfo *cfile)
@@ -903,6 +904,8 @@ cifs_can_echo(struct TCP_Server_Info *server)
 }
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 struct smb_version_operations smb1_operations = {
 	.send_cancel = send_nt_cancel,
 	.compare_fids = cifs_compare_fids,
@@ -936,9 +939,12 @@ struct smb_version_operations smb1_operations = {
 	.qfs_tcon = cifs_qfs_tcon,
 	.is_path_accessible = cifs_is_path_accessible,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	.can_echo = cifs_can_echo,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	.query_path_info = cifs_query_path_info,
 	.query_file_info = cifs_query_file_info,
 	.get_srv_inum = cifs_get_srv_inum,
@@ -971,9 +977,12 @@ struct smb_version_operations smb1_operations = {
 	.mand_unlock_range = cifs_unlock_range,
 	.push_mand_locks = cifs_push_mandatory_locks,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	.dir_needs_close = cifs_dir_needs_close,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 #ifdef CONFIG_CIFS_XATTR
 	.query_all_EAs = CIFSSMBQAllEAs,
 	.set_EA = CIFSSMBSetEA,

@@ -323,6 +323,7 @@ void **radix_tree_next_chunk(struct radix_tree_root *root,
 
 /**
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
  * radix_tree_iter_retry - retry this chunk of the iteration
  * @iter:	iterator state
@@ -341,16 +342,22 @@ void **radix_tree_iter_retry(struct radix_tree_iter *iter)
 
 /**
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
  * radix_tree_chunk_size - get current chunk size
  *
  * @iter:	pointer to radix tree iterator
  * Returns:	current chunk size
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static __always_inline unsigned
 =======
 static __always_inline long
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+static __always_inline unsigned
+>>>>>>> 2617302... source
 radix_tree_chunk_size(struct radix_tree_iter *iter)
 {
 	return iter->next_index - iter->index;
@@ -385,6 +392,7 @@ radix_tree_next_slot(void **slot, struct radix_tree_iter *iter, unsigned flags)
 		}
 	} else {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		unsigned size = radix_tree_chunk_size(iter) - 1;
 
 		while (size--) {
@@ -393,6 +401,11 @@ radix_tree_next_slot(void **slot, struct radix_tree_iter *iter, unsigned flags)
 
 		while (--size > 0) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		unsigned size = radix_tree_chunk_size(iter) - 1;
+
+		while (size--) {
+>>>>>>> 2617302... source
 			slot++;
 			iter->index++;
 			if (likely(*slot))

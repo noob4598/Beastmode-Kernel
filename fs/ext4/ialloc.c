@@ -798,12 +798,15 @@ got:
 
 		block_bitmap_bh = ext4_read_block_bitmap(sb, group);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		if (!block_bitmap_bh) {
 			err = -EIO;
 			goto out;
 		}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		BUFFER_TRACE(block_bitmap_bh, "get block bitmap access");
 		err = ext4_journal_get_write_access(handle, block_bitmap_bh);
 		if (err) {
@@ -1035,11 +1038,15 @@ struct inode *ext4_orphan_get(struct super_block *sb, unsigned long ino)
 
 	/*
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	 * If the orphans has i_nlinks > 0 then it should be able to be
 	 * truncated, otherwise it won't be removed from the orphan list
 	 * during processing and an infinite loop will result.
 	 */
 	if (inode->i_nlink && !ext4_can_truncate(inode))
+<<<<<<< HEAD
 =======
 	 * If the orphans has i_nlinks > 0 then it should be able to
 	 * be truncated, otherwise it won't be removed from the orphan
@@ -1049,6 +1056,8 @@ struct inode *ext4_orphan_get(struct super_block *sb, unsigned long ino)
 	if ((inode->i_nlink && !ext4_can_truncate(inode)) ||
 	    is_bad_inode(inode))
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		goto bad_orphan;
 
 	if (NEXT_ORPHAN(inode) > max_ino)

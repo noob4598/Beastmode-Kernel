@@ -66,10 +66,14 @@ Optional Properties:
 			   and when coming back out of resume
 - qcom,bus-control:	   Boolean. Enables an independent bus vote from the gpu frequency
 <<<<<<< HEAD
+<<<<<<< HEAD
 - qcom,idle-timeout:	   This property represents the time in microseconds for idle timeout.
 =======
 - qcom,idle-timeout:	   This property represents the time in milliseconds for idle timeout.
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+- qcom,idle-timeout:	   This property represents the time in microseconds for idle timeout.
+>>>>>>> 2617302... source
 - qcom,chipid:		   If it exists this property is used to replace
 			   the chip identification read from the GPU hardware.
 			   This is used to override faulty hardware readings.

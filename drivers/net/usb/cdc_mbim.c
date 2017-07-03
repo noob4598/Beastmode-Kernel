@@ -121,6 +121,7 @@ static void cdc_mbim_unbind(struct usbnet *dev, struct usb_interface *intf)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 /* verify that the ethernet protocol is IPv4 or IPv6 */
 static bool is_ip_proto(__be16 proto)
@@ -133,6 +134,8 @@ static bool is_ip_proto(__be16 proto)
 	return false;
 }
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 static struct sk_buff *cdc_mbim_tx_fixup(struct usbnet *dev, struct sk_buff *skb, gfp_t flags)
 {
@@ -142,9 +145,12 @@ static struct sk_buff *cdc_mbim_tx_fixup(struct usbnet *dev, struct sk_buff *skb
 	__le32 sign = cpu_to_le32(USB_CDC_MBIM_NDP16_IPS_SIGN);
 	u16 tci = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	bool is_ip;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	u8 *c;
 
 	if (!ctx)
@@ -154,6 +160,7 @@ static struct sk_buff *cdc_mbim_tx_fixup(struct usbnet *dev, struct sk_buff *skb
 		if (skb->len <= ETH_HLEN)
 			goto error;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 		/* Some applications using e.g. packet sockets will
@@ -173,6 +180,8 @@ static struct sk_buff *cdc_mbim_tx_fixup(struct usbnet *dev, struct sk_buff *skb
 		}
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		/* mapping VLANs to MBIM sessions:
 		 *   no tag     => IPS session <0>
 		 *   1 - 255    => IPS session <vlanid>
@@ -180,6 +189,9 @@ static struct sk_buff *cdc_mbim_tx_fixup(struct usbnet *dev, struct sk_buff *skb
 		 *   512 - 4095 => unsupported, drop
 		 */
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		vlan_get_tag(skb, &tci);
 
 		switch (tci & 0x0f00) {
@@ -193,12 +205,15 @@ static struct sk_buff *cdc_mbim_tx_fixup(struct usbnet *dev, struct sk_buff *skb
 			default:
 				goto error;
 			}
+<<<<<<< HEAD
 =======
 		switch (tci & 0x0f00) {
 		case 0x0000: /* VLAN ID 0 - 255 */
 			if (!is_ip)
 				goto error;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 			c = (u8 *)&sign;
 			c[3] = tci;
 			break;
@@ -213,9 +228,13 @@ static struct sk_buff *cdc_mbim_tx_fixup(struct usbnet *dev, struct sk_buff *skb
 			goto error;
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 		skb_pull(skb, ETH_HLEN);
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		skb_pull(skb, ETH_HLEN);
+>>>>>>> 2617302... source
 	}
 
 	spin_lock_bh(&ctx->mtx);

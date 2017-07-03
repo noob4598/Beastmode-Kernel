@@ -8,10 +8,14 @@ targets := vmlinux vmlinux.bin vmlinux.bin.gz vmlinux.bin.bz2 vmlinux.bin.lzma v
 
 KBUILD_CFLAGS := -m$(BITS) -D__KERNEL__ $(LINUX_INCLUDE) -O2
 <<<<<<< HEAD
+<<<<<<< HEAD
 KBUILD_CFLAGS += -fno-strict-aliasing -fPIC
 =======
 KBUILD_CFLAGS += -fno-strict-aliasing $(call cc-option, -fPIE, -fPIC)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+KBUILD_CFLAGS += -fno-strict-aliasing -fPIC
+>>>>>>> 2617302... source
 KBUILD_CFLAGS += -DDISABLE_BRANCH_PROFILING
 cflags-$(CONFIG_X86_32) := -march=i386
 cflags-$(CONFIG_X86_64) := -mcmodel=small
@@ -24,6 +28,7 @@ KBUILD_AFLAGS  := $(KBUILD_CFLAGS) -D__ASSEMBLY__
 GCOV_PROFILE := n
 
 LDFLAGS := -m elf_$(UTS_MACHINE)
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 ifeq ($(CONFIG_RELOCATABLE),y)
@@ -39,6 +44,8 @@ LDFLAGS += $(shell $(LD) --help 2>&1 | grep -q "\-z noreloc-overflow" \
 endif
 endif
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 LDFLAGS_vmlinux := -T
 
 hostprogs-y	:= mkpiggy

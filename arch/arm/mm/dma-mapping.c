@@ -476,6 +476,7 @@ void __init dma_contiguous_remap(void)
 
 		/*
 <<<<<<< HEAD
+<<<<<<< HEAD
 		 * Clear previous low-memory mapping
 =======
 		 * Clear previous low-memory mapping to ensure that the
@@ -486,17 +487,23 @@ void __init dma_contiguous_remap(void)
 		 * (even though they may be rare) can not cause any problems,
 		 * and ensures that this code is architecturally compliant.
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		 * Clear previous low-memory mapping
+>>>>>>> 2617302... source
 		 */
 		for (addr = __phys_to_virt(start); addr < __phys_to_virt(end);
 		     addr += PMD_SIZE)
 			pmd_clear(pmd_off_k(addr));
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		flush_tlb_kernel_range(__phys_to_virt(start),
 				       __phys_to_virt(end));
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		iotable_init(&map, 1);
 	}
 }
@@ -584,9 +591,12 @@ static void *__alloc_from_pool(size_t size, struct page **ret_page)
 		bitmap_set(pool->bitmap, pageno, count);
 		ptr = pool->vaddr + PAGE_SIZE * pageno;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		memset(ptr, 0, size);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		*ret_page = pool->pages[pageno];
 	} else {
 		pr_err_once("ERROR: %u KiB atomic DMA coherent pool is too small!\n"
@@ -1538,16 +1548,20 @@ static int arm_iommu_mmap_attrs(struct device *dev, struct vm_area_struct *vma,
 	unsigned long usize = vma->vm_end - vma->vm_start;
 	struct page **pages = __iommu_get_pages(cpu_addr, attrs);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	unsigned long nr_pages = PAGE_ALIGN(size) >> PAGE_SHIFT;
 	unsigned long off = vma->vm_pgoff;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	vma->vm_page_prot = __get_dma_pgprot(attrs, vma->vm_page_prot);
 
 	if (!pages)
 		return -ENXIO;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 	if (off >= nr_pages || (usize >> PAGE_SHIFT) > nr_pages - off)
@@ -1556,6 +1570,8 @@ static int arm_iommu_mmap_attrs(struct device *dev, struct vm_area_struct *vma,
 	pages += off;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	do {
 		int ret = vm_insert_page(vma, uaddr, *pages++);
 		if (ret) {

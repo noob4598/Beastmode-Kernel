@@ -687,6 +687,9 @@ static int size_fifo(struct uart_8250_port *up)
 static unsigned int autoconfig_read_divisor_id(struct uart_8250_port *p)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	unsigned char old_dll, old_dlm, old_lcr;
 	unsigned int id;
 
@@ -703,6 +706,7 @@ static unsigned int autoconfig_read_divisor_id(struct uart_8250_port *p)
 
 	serial_out(p, UART_DLL, old_dll);
 	serial_out(p, UART_DLM, old_dlm);
+<<<<<<< HEAD
 =======
 	unsigned char old_lcr;
 	unsigned int id, old_dl;
@@ -715,6 +719,8 @@ static unsigned int autoconfig_read_divisor_id(struct uart_8250_port *p)
 	serial_dl_write(p, old_dl);
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	serial_out(p, UART_LCR, old_lcr);
 
 	return id;
@@ -1534,10 +1540,14 @@ int serial8250_handle_irq(struct uart_port *port, unsigned int iir)
 	}
 	serial8250_modem_status(up);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (status & UART_LSR_THRE)
 =======
 	if (!up->dma && (status & UART_LSR_THRE))
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (status & UART_LSR_THRE)
+>>>>>>> 2617302... source
 		serial8250_tx_chars(up);
 
 	spin_unlock_irqrestore(&port->lock, flags);

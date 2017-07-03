@@ -964,12 +964,15 @@ static int cx24116_send_diseqc_msg(struct dvb_frontend *fe,
 	int i, ret;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/* Validate length */
 	if (d->msg_len > sizeof(d->msg))
                 return -EINVAL;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	/* Dump DiSEqC message */
 	if (debug) {
 		printk(KERN_INFO "cx24116: %s(", __func__);
@@ -982,12 +985,18 @@ static int cx24116_send_diseqc_msg(struct dvb_frontend *fe,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	/* Validate length */
 	if (d->msg_len > (CX24116_ARGLEN - CX24116_DISEQC_MSGOFS))
 		return -EINVAL;
 
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	/* DiSEqC message */
 	for (i = 0; i < d->msg_len; i++)
 		state->dsec_cmd.args[CX24116_DISEQC_MSGOFS + i] = d->msg[i];

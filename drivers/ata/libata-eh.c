@@ -605,10 +605,14 @@ void ata_scsi_error(struct Scsi_Host *host)
 
 	/* finish or retry handled scmd's and clean up */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	WARN_ON(host->host_failed || !list_empty(&eh_work_q));
 =======
 	WARN_ON(!list_empty(&eh_work_q));
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	WARN_ON(host->host_failed || !list_empty(&eh_work_q));
+>>>>>>> 2617302... source
 
 	DPRINTK("EXIT\n");
 }
@@ -3486,11 +3490,14 @@ static int ata_eh_set_lpm(struct ata_link *link, enum ata_lpm_policy policy,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	link->last_lpm_change = jiffies;
 	link->flags |= ATA_LFLAG_CHANGED;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	return 0;
 
 fail:

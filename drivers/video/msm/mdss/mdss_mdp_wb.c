@@ -95,10 +95,14 @@ struct mdss_mdp_data *mdss_mdp_wb_debug_buffer(struct msm_fb_data_type *mfd)
 				 ION_HEAP(ION_SF_HEAP_ID), 0);
 		if (IS_ERR_OR_NULL(ihdl)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			pr_err("unable to alloc fbmem from ion (%p)\n", ihdl);
 =======
 			pr_err("unable to alloc fbmem from ion (%pK)\n", ihdl);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			pr_err("unable to alloc fbmem from ion (%p)\n", ihdl);
+>>>>>>> 2617302... source
 			return NULL;
 		}
 
@@ -126,10 +130,14 @@ struct mdss_mdp_data *mdss_mdp_wb_debug_buffer(struct msm_fb_data_type *mfd)
 		}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_debug("ihdl=%p virt=%p phys=0x%pa iova=0x%pa size=%u\n",
 =======
 		pr_debug("ihdl=%pK virt=%pK phys=0x%pa iova=0x%pa size=%u\n",
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		pr_debug("ihdl=%p virt=%p phys=0x%pa iova=0x%pa size=%u\n",
+>>>>>>> 2617302... source
 			 ihdl, videomemory, &mdss_wb_mem, &img->addr, img_size);
 	}
 	return &mdss_wb_buffer;
@@ -444,10 +452,14 @@ static struct mdss_mdp_wb_data *get_user_node(struct msm_fb_data_type *mfd,
 			if ((node->buf_data.p[0].srcp_ihdl == ihdl) &&
 				    (node->buf_info.offset == data->offset)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 				pr_debug("found fd=%d hdl=%p off=%x addr=%pa\n",
 =======
 				pr_debug("found fd=%d hdl=%pK off=%x addr=%pa\n",
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+				pr_debug("found fd=%d hdl=%p off=%x addr=%pa\n",
+>>>>>>> 2617302... source
 						data->memory_id, ihdl,
 						data->offset,
 						&node->buf_data.p[0].addr);
@@ -515,10 +527,14 @@ static void mdss_mdp_wb_free_node(struct mdss_mdp_wb_data *node)
 		buf = &node->buf_data.p[0];
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_debug("free user mem_id=%d ihdl=%p, offset=%u addr=0x%pa\n",
 =======
 		pr_debug("free user mem_id=%d ihdl=%pK, offset=%u addr=0x%pa\n",
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		pr_debug("free user mem_id=%d ihdl=%p, offset=%u addr=0x%pa\n",
+>>>>>>> 2617302... source
 				node->buf_info.memory_id,
 				buf->srcp_ihdl,
 				node->buf_info.offset,

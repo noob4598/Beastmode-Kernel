@@ -460,11 +460,17 @@ static void xennet_make_frags(struct sk_buff *skb, struct net_device *dev,
 		offset = frag->page_offset;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		/* Data must not cross a page boundary. */
 		BUG_ON(len + offset > PAGE_SIZE<<compound_order(page));
 
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		/* Data must not cross a page boundary. */
+		BUG_ON(len + offset > PAGE_SIZE<<compound_order(page));
+
+>>>>>>> 2617302... source
 		/* Skip unused frames from start of page */
 		page += offset >> PAGE_SHIFT;
 		offset &= ~PAGE_MASK;
@@ -473,10 +479,15 @@ static void xennet_make_frags(struct sk_buff *skb, struct net_device *dev,
 			unsigned long bytes;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 			BUG_ON(offset >= PAGE_SIZE);
 
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			BUG_ON(offset >= PAGE_SIZE);
+
+>>>>>>> 2617302... source
 			bytes = PAGE_SIZE - offset;
 			if (bytes > len)
 				bytes = len;

@@ -584,10 +584,14 @@ static inline int needs_ilk_vtd_wa(void)
 	 * was loaded first.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if ((gpu_devid == PCI_DEVICE_ID_INTEL_IRONLAKE_M_HB ||
 =======
 	if ((gpu_devid == PCI_DEVICE_ID_INTEL_IRONLAKE_D_IG ||
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if ((gpu_devid == PCI_DEVICE_ID_INTEL_IRONLAKE_M_HB ||
+>>>>>>> 2617302... source
 	     gpu_devid == PCI_DEVICE_ID_INTEL_IRONLAKE_M_IG) &&
 	     intel_iommu_gfx_mapped)
 		return 1;

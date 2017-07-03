@@ -84,9 +84,12 @@ build_path_from_dentry(struct dentry *direntry)
 	int namelen;
 	int dfsplen;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	int pplen = 0;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	char *full_path;
 	char dirsep;
 	struct cifs_sb_info *cifs_sb = CIFS_SB(direntry->d_sb);
@@ -99,6 +102,7 @@ build_path_from_dentry(struct dentry *direntry)
 	else
 		dfsplen = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 cifs_bp_rename_retry:
 	namelen = dfsplen;
 =======
@@ -109,6 +113,10 @@ cifs_bp_rename_retry:
 cifs_bp_rename_retry:
 	namelen = dfsplen + pplen;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+cifs_bp_rename_retry:
+	namelen = dfsplen;
+>>>>>>> 2617302... source
 	seq = read_seqbegin(&rename_lock);
 	rcu_read_lock();
 	for (temp = direntry; !IS_ROOT(temp);) {
@@ -150,10 +158,14 @@ cifs_bp_rename_retry:
 	}
 	rcu_read_unlock();
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (namelen != dfsplen || read_seqretry(&rename_lock, seq)) {
 =======
 	if (namelen != dfsplen + pplen || read_seqretry(&rename_lock, seq)) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (namelen != dfsplen || read_seqretry(&rename_lock, seq)) {
+>>>>>>> 2617302... source
 		cifs_dbg(FYI, "did not end path lookup where expected. namelen=%ddfsplen=%d\n",
 			 namelen, dfsplen);
 		/* presumably this is only possible if racing with a rename
@@ -170,6 +182,7 @@ cifs_bp_rename_retry:
 	/* BB test paths to Windows with '/' in the midst of prepath */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (pplen) {
 		int i;
@@ -183,6 +196,8 @@ cifs_bp_rename_retry:
 	}
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	if (dfsplen) {
 		strncpy(full_path, tcon->treeName, dfsplen);
 		if (cifs_sb->mnt_cifs_flags & CIFS_MOUNT_POSIX_PATHS) {
@@ -259,6 +274,7 @@ cifs_do_create(struct inode *inode, struct dentry *direntry, unsigned int xid,
 			}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 			if (S_ISDIR(newinode->i_mode)) {
 				CIFSSMBClose(xid, tcon, fid->netfid);
@@ -268,6 +284,8 @@ cifs_do_create(struct inode *inode, struct dentry *direntry, unsigned int xid,
 			}
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 			if (!S_ISREG(newinode->i_mode)) {
 				/*
 				 * The server may allow us to open things like
@@ -433,10 +451,14 @@ cifs_create_set_dentry:
 		cifs_dbg(FYI, "Create worked, get_inode_info failed rc = %d\n",
 			 rc);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		if (server->ops->close)
 			server->ops->close(xid, tcon, fid);
 		goto out;
 	}
+<<<<<<< HEAD
 =======
 		goto out_err;
 	}
@@ -447,6 +469,8 @@ cifs_create_set_dentry:
 	}
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	d_drop(direntry);
 	d_add(direntry, newinode);
 
@@ -454,6 +478,7 @@ out:
 	kfree(buf);
 	kfree(full_path);
 	return rc;
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 
@@ -464,6 +489,8 @@ out_err:
 		iput(newinode);
 	goto out;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 }
 
 int

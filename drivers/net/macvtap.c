@@ -626,10 +626,13 @@ static int macvtap_skb_to_vnet_hdr(const struct sk_buff *skb,
 		vnet_hdr->flags = VIRTIO_NET_HDR_F_NEEDS_CSUM;
 		vnet_hdr->csum_start = skb_checksum_start_offset(skb);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		if (vlan_tx_tag_present(skb))
 			vnet_hdr->csum_start += VLAN_HLEN;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		vnet_hdr->csum_offset = skb->csum_offset;
 	} else if (skb->ip_summed == CHECKSUM_UNNECESSARY) {
 		vnet_hdr->flags = VIRTIO_NET_HDR_F_DATA_VALID;
@@ -662,21 +665,28 @@ static unsigned long iov_pages(const struct iovec *iv, int offset,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 /* Neighbour code has some assumptions on HH_DATA_MOD alignment */
 #define MACVTAP_RESERVE HH_DATA_OFF(ETH_HLEN)
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 /* Get packet from user space buffer */
 static ssize_t macvtap_get_user(struct macvtap_queue *q, struct msghdr *m,
 				const struct iovec *iv, unsigned long total_len,
 				size_t count, int noblock)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int good_linear = SKB_MAX_HEAD(NET_IP_ALIGN);
 =======
 	int good_linear = SKB_MAX_HEAD(MACVTAP_RESERVE);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	int good_linear = SKB_MAX_HEAD(NET_IP_ALIGN);
+>>>>>>> 2617302... source
 	struct sk_buff *skb;
 	struct macvlan_dev *vlan;
 	unsigned long len = total_len;
@@ -689,10 +699,14 @@ static ssize_t macvtap_get_user(struct macvtap_queue *q, struct msghdr *m,
 
 	if (q->flags & IFF_VNET_HDR) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		vnet_hdr_len = q->vnet_hdr_sz;
 =======
 		vnet_hdr_len = ACCESS_ONCE(q->vnet_hdr_sz);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		vnet_hdr_len = q->vnet_hdr_sz;
+>>>>>>> 2617302... source
 
 		err = -EINVAL;
 		if (len < vnet_hdr_len)
@@ -740,10 +754,14 @@ static ssize_t macvtap_get_user(struct macvtap_queue *q, struct msghdr *m,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	skb = macvtap_alloc_skb(&q->sk, NET_IP_ALIGN, copylen,
 =======
 	skb = macvtap_alloc_skb(&q->sk, MACVTAP_RESERVE, copylen,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	skb = macvtap_alloc_skb(&q->sk, NET_IP_ALIGN, copylen,
+>>>>>>> 2617302... source
 				linear, noblock, &err);
 	if (!skb)
 		goto err;
@@ -828,10 +846,14 @@ static ssize_t macvtap_put_user(struct macvtap_queue *q,
 	if (q->flags & IFF_VNET_HDR) {
 		struct virtio_net_hdr vnet_hdr;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		vnet_hdr_len = q->vnet_hdr_sz;
 =======
 		vnet_hdr_len = ACCESS_ONCE(q->vnet_hdr_sz);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		vnet_hdr_len = q->vnet_hdr_sz;
+>>>>>>> 2617302... source
 		if ((len -= vnet_hdr_len) < 0)
 			return -EINVAL;
 

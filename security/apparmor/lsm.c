@@ -760,24 +760,34 @@ __setup("apparmor=", apparmor_enabled_setup);
 static int param_set_aalockpolicy(const char *val, const struct kernel_param *kp)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	if (!capable(CAP_MAC_ADMIN))
 		return -EPERM;
 	if (aa_g_lock_policy)
 		return -EACCES;
+<<<<<<< HEAD
 =======
 	if (!policy_admin_capable())
 		return -EPERM;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	return param_set_bool(val, kp);
 }
 
 static int param_get_aalockpolicy(char *buffer, const struct kernel_param *kp)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!capable(CAP_MAC_ADMIN))
 =======
 	if (!policy_view_capable())
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (!capable(CAP_MAC_ADMIN))
+>>>>>>> 2617302... source
 		return -EPERM;
 	return param_get_bool(buffer, kp);
 }
@@ -785,10 +795,14 @@ static int param_get_aalockpolicy(char *buffer, const struct kernel_param *kp)
 static int param_set_aabool(const char *val, const struct kernel_param *kp)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!capable(CAP_MAC_ADMIN))
 =======
 	if (!policy_admin_capable())
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (!capable(CAP_MAC_ADMIN))
+>>>>>>> 2617302... source
 		return -EPERM;
 	return param_set_bool(val, kp);
 }
@@ -796,10 +810,14 @@ static int param_set_aabool(const char *val, const struct kernel_param *kp)
 static int param_get_aabool(char *buffer, const struct kernel_param *kp)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!capable(CAP_MAC_ADMIN))
 =======
 	if (!policy_view_capable())
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (!capable(CAP_MAC_ADMIN))
+>>>>>>> 2617302... source
 		return -EPERM;
 	return param_get_bool(buffer, kp);
 }
@@ -807,10 +825,14 @@ static int param_get_aabool(char *buffer, const struct kernel_param *kp)
 static int param_set_aauint(const char *val, const struct kernel_param *kp)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!capable(CAP_MAC_ADMIN))
 =======
 	if (!policy_admin_capable())
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (!capable(CAP_MAC_ADMIN))
+>>>>>>> 2617302... source
 		return -EPERM;
 	return param_set_uint(val, kp);
 }
@@ -818,10 +840,14 @@ static int param_set_aauint(const char *val, const struct kernel_param *kp)
 static int param_get_aauint(char *buffer, const struct kernel_param *kp)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!capable(CAP_MAC_ADMIN))
 =======
 	if (!policy_view_capable())
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (!capable(CAP_MAC_ADMIN))
+>>>>>>> 2617302... source
 		return -EPERM;
 	return param_get_uint(buffer, kp);
 }
@@ -829,10 +855,14 @@ static int param_get_aauint(char *buffer, const struct kernel_param *kp)
 static int param_get_audit(char *buffer, struct kernel_param *kp)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!capable(CAP_MAC_ADMIN))
 =======
 	if (!policy_view_capable())
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (!capable(CAP_MAC_ADMIN))
+>>>>>>> 2617302... source
 		return -EPERM;
 
 	if (!apparmor_enabled)
@@ -845,10 +875,14 @@ static int param_set_audit(const char *val, struct kernel_param *kp)
 {
 	int i;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!capable(CAP_MAC_ADMIN))
 =======
 	if (!policy_admin_capable())
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (!capable(CAP_MAC_ADMIN))
+>>>>>>> 2617302... source
 		return -EPERM;
 
 	if (!apparmor_enabled)
@@ -870,10 +904,14 @@ static int param_set_audit(const char *val, struct kernel_param *kp)
 static int param_get_mode(char *buffer, struct kernel_param *kp)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!capable(CAP_MAC_ADMIN))
 =======
 	if (!policy_admin_capable())
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (!capable(CAP_MAC_ADMIN))
+>>>>>>> 2617302... source
 		return -EPERM;
 
 	if (!apparmor_enabled)
@@ -886,10 +924,14 @@ static int param_set_mode(const char *val, struct kernel_param *kp)
 {
 	int i;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!capable(CAP_MAC_ADMIN))
 =======
 	if (!policy_admin_capable())
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (!capable(CAP_MAC_ADMIN))
+>>>>>>> 2617302... source
 		return -EPERM;
 
 	if (!apparmor_enabled)

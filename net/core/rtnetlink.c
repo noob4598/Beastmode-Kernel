@@ -715,11 +715,15 @@ static inline int rtnl_vfinfo_size(const struct net_device *dev,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static size_t rtnl_port_size(const struct net_device *dev)
 =======
 static size_t rtnl_port_size(const struct net_device *dev,
 			     u32 ext_filter_mask)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+static size_t rtnl_port_size(const struct net_device *dev)
+>>>>>>> 2617302... source
 {
 	size_t port_size = nla_total_size(4)		/* PORT_VF */
 		+ nla_total_size(PORT_PROFILE_MAX)	/* PORT_PROFILE */
@@ -736,11 +740,15 @@ static size_t rtnl_port_size(const struct net_device *dev,
 		+ port_size;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!dev->netdev_ops->ndo_get_vf_port || !dev->dev.parent)
 =======
 	if (!dev->netdev_ops->ndo_get_vf_port || !dev->dev.parent ||
 	    !(ext_filter_mask & RTEXT_FILTER_VF))
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (!dev->netdev_ops->ndo_get_vf_port || !dev->dev.parent)
+>>>>>>> 2617302... source
 		return 0;
 	if (dev_num_vf(dev->dev.parent))
 		return port_self_size + vf_ports_size +
@@ -776,10 +784,14 @@ static noinline size_t if_nlmsg_size(const struct net_device *dev,
 			        & RTEXT_FILTER_VF ? 4 : 0) /* IFLA_NUM_VF */
 	       + rtnl_vfinfo_size(dev, ext_filter_mask) /* IFLA_VFINFO_LIST */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	       + rtnl_port_size(dev) /* IFLA_VF_PORTS + IFLA_PORT_SELF */
 =======
 	       + rtnl_port_size(dev, ext_filter_mask) /* IFLA_VF_PORTS + IFLA_PORT_SELF */
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	       + rtnl_port_size(dev) /* IFLA_VF_PORTS + IFLA_PORT_SELF */
+>>>>>>> 2617302... source
 	       + rtnl_link_get_size(dev) /* IFLA_LINKINFO */
 	       + rtnl_link_get_af_size(dev); /* IFLA_AF_SPEC */
 }
@@ -841,11 +853,15 @@ static int rtnl_port_self_fill(struct sk_buff *skb, struct net_device *dev)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 static int rtnl_port_fill(struct sk_buff *skb, struct net_device *dev)
 {
 	int err;
 
 	if (!dev->netdev_ops->ndo_get_vf_port || !dev->dev.parent)
+<<<<<<< HEAD
 =======
 static int rtnl_port_fill(struct sk_buff *skb, struct net_device *dev,
 			  u32 ext_filter_mask)
@@ -855,6 +871,8 @@ static int rtnl_port_fill(struct sk_buff *skb, struct net_device *dev,
 	if (!dev->netdev_ops->ndo_get_vf_port || !dev->dev.parent ||
 	    !(ext_filter_mask & RTEXT_FILTER_VF))
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		return 0;
 
 	err = rtnl_port_self_fill(skb, dev);
@@ -920,6 +938,9 @@ static int rtnl_fill_ifinfo(struct sk_buff *skb, struct net_device *dev,
 
 	if (1) {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		struct rtnl_link_ifmap map = {
 			.mem_start   = dev->mem_start,
 			.mem_end     = dev->mem_end,
@@ -928,6 +949,7 @@ static int rtnl_fill_ifinfo(struct sk_buff *skb, struct net_device *dev,
 			.dma         = dev->dma,
 			.port        = dev->if_port,
 		};
+<<<<<<< HEAD
 =======
 		struct rtnl_link_ifmap map;
 
@@ -940,6 +962,8 @@ static int rtnl_fill_ifinfo(struct sk_buff *skb, struct net_device *dev,
 		map.port        = dev->if_port;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		if (nla_put(skb, IFLA_MAP, sizeof(map), &map))
 			goto nla_put_failure;
 	}
@@ -1023,10 +1047,14 @@ static int rtnl_fill_ifinfo(struct sk_buff *skb, struct net_device *dev,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (rtnl_port_fill(skb, dev))
 =======
 	if (rtnl_port_fill(skb, dev, ext_filter_mask))
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (rtnl_port_fill(skb, dev))
+>>>>>>> 2617302... source
 		goto nla_put_failure;
 
 	if (dev->rtnl_link_ops) {
@@ -1081,10 +1109,13 @@ static int rtnl_dump_ifinfo(struct sk_buff *skb, struct netlink_callback *cb)
 	struct nlattr *tb[IFLA_MAX+1];
 	u32 ext_filter_mask = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	int err;
 	int hdrlen;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	s_h = cb->args[0];
 	s_idx = cb->args[1];
@@ -1092,6 +1123,7 @@ static int rtnl_dump_ifinfo(struct sk_buff *skb, struct netlink_callback *cb)
 	rcu_read_lock();
 	cb->seq = net->dev_base_seq;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (nlmsg_parse(cb->nlh, sizeof(struct ifinfomsg), tb, IFLA_MAX,
 			ifla_policy) >= 0) {
@@ -1108,6 +1140,10 @@ static int rtnl_dump_ifinfo(struct sk_buff *skb, struct netlink_callback *cb)
 
 	if (nlmsg_parse(cb->nlh, hdrlen, tb, IFLA_MAX, ifla_policy) >= 0) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (nlmsg_parse(cb->nlh, sizeof(struct ifinfomsg), tb, IFLA_MAX,
+			ifla_policy) >= 0) {
+>>>>>>> 2617302... source
 
 		if (tb[IFLA_EXT_MASK])
 			ext_filter_mask = nla_get_u32(tb[IFLA_EXT_MASK]);
@@ -1120,11 +1156,15 @@ static int rtnl_dump_ifinfo(struct sk_buff *skb, struct netlink_callback *cb)
 			if (idx < s_idx)
 				goto cont;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 			if (rtnl_fill_ifinfo(skb, dev, RTM_NEWLINK,
 					     NETLINK_CB(cb->skb).portid,
 					     cb->nlh->nlmsg_seq, 0,
 					     NLM_F_MULTI,
 					     ext_filter_mask) <= 0)
+<<<<<<< HEAD
 =======
 			err = rtnl_fill_ifinfo(skb, dev, RTM_NEWLINK,
 					       NETLINK_CB(cb->skb).portid,
@@ -1138,6 +1178,8 @@ static int rtnl_dump_ifinfo(struct sk_buff *skb, struct netlink_callback *cb)
 
 			if (err <= 0)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 				goto out;
 
 			nl_dump_check_consistent(cb, nlmsg_hdr(skb));
@@ -1192,6 +1234,9 @@ static const struct nla_policy ifla_vfinfo_policy[IFLA_VF_INFO_MAX+1] = {
 
 static const struct nla_policy ifla_vf_policy[IFLA_VF_MAX+1] = {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	[IFLA_VF_MAC]		= { .type = NLA_BINARY,
 				    .len = sizeof(struct ifla_vf_mac) },
 	[IFLA_VF_VLAN]		= { .type = NLA_BINARY,
@@ -1200,12 +1245,15 @@ static const struct nla_policy ifla_vf_policy[IFLA_VF_MAX+1] = {
 				    .len = sizeof(struct ifla_vf_tx_rate) },
 	[IFLA_VF_SPOOFCHK]	= { .type = NLA_BINARY,
 				    .len = sizeof(struct ifla_vf_spoofchk) },
+<<<<<<< HEAD
 =======
 	[IFLA_VF_MAC]		= { .len = sizeof(struct ifla_vf_mac) },
 	[IFLA_VF_VLAN]		= { .len = sizeof(struct ifla_vf_vlan) },
 	[IFLA_VF_TX_RATE]	= { .len = sizeof(struct ifla_vf_tx_rate) },
 	[IFLA_VF_SPOOFCHK]	= { .len = sizeof(struct ifla_vf_spoofchk) },
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 };
 
 static const struct nla_policy ifla_port_policy[IFLA_PORT_MAX+1] = {
@@ -1378,11 +1426,15 @@ static int do_setlink(const struct sk_buff *skb,
 			goto errout;
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (!netlink_net_capable(skb, CAP_NET_ADMIN)) {
 =======
 		if (!netlink_ns_capable(skb, net->user_ns, CAP_NET_ADMIN)) {
 			put_net(net);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		if (!netlink_net_capable(skb, CAP_NET_ADMIN)) {
+>>>>>>> 2617302... source
 			err = -EPERM;
 			goto errout;
 		}
@@ -1677,9 +1729,13 @@ static int rtnl_dellink(struct sk_buff *skb, struct nlmsghdr *nlh)
 	ops->dellink(dev, &list_kill);
 	unregister_netdevice_many(&list_kill);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	list_del(&list_kill);
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	list_del(&list_kill);
+>>>>>>> 2617302... source
 	return 0;
 }
 
@@ -1924,6 +1980,7 @@ replay:
 
 		err = rtnl_configure_link(dev, ifm);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (err < 0)
 			unregister_netdevice(dev);
 =======
@@ -1938,6 +1995,10 @@ replay:
 			}
 		}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		if (err < 0)
+			unregister_netdevice(dev);
+>>>>>>> 2617302... source
 out:
 		put_net(dest_net);
 		return err;
@@ -2000,6 +2061,7 @@ static u16 rtnl_calcit(struct sk_buff *skb, struct nlmsghdr *nlh)
 	u32 ext_filter_mask = 0;
 	u16 min_ifinfo_dump_size = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	if (nlmsg_parse(nlh, sizeof(struct ifinfomsg), tb, IFLA_MAX,
 			ifla_policy) >= 0) {
@@ -2012,6 +2074,11 @@ static u16 rtnl_calcit(struct sk_buff *skb, struct nlmsghdr *nlh)
 
 	if (nlmsg_parse(nlh, hdrlen, tb, IFLA_MAX, ifla_policy) >= 0) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+
+	if (nlmsg_parse(nlh, sizeof(struct ifinfomsg), tb, IFLA_MAX,
+			ifla_policy) >= 0) {
+>>>>>>> 2617302... source
 		if (tb[IFLA_EXT_MASK])
 			ext_filter_mask = nla_get_u32(tb[IFLA_EXT_MASK]);
 	}
@@ -2565,22 +2632,29 @@ static int rtnl_bridge_notify(struct net_device *dev, u16 flags)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (!skb->len)
 		goto errout;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	rtnl_notify(skb, net, 0, RTNLGRP_LINK, NULL, GFP_ATOMIC);
 	return 0;
 errout:
 	WARN_ON(err == -EMSGSIZE);
 	kfree_skb(skb);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	rtnl_set_sk_err(net, RTNLGRP_LINK, err);
 =======
 	if (err)
 		rtnl_set_sk_err(net, RTNLGRP_LINK, err);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	rtnl_set_sk_err(net, RTNLGRP_LINK, err);
+>>>>>>> 2617302... source
 	return err;
 }
 

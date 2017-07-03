@@ -61,6 +61,9 @@ struct ieee80211_local;
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
  * Some APs experience problems when working with U-APSD. Decrease the
  * probability of that happening by using legacy mode for all ACs but VO.
  * The AP that caused us trouble was a Cisco 4410N. It ignores our
@@ -68,6 +71,7 @@ struct ieee80211_local;
  */
 #define IEEE80211_DEFAULT_UAPSD_QUEUES \
 	IEEE80211_WMM_IE_STA_QOSINFO_AC_VO
+<<<<<<< HEAD
 =======
  * Some APs experience problems when working with U-APSD. Decreasing the
  * probability of that happening by using legacy mode for all ACs but VO isn't
@@ -88,6 +92,8 @@ struct ieee80211_local;
  */
 #define IEEE80211_DEFAULT_UAPSD_QUEUES 0
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 #define IEEE80211_DEFAULT_MAX_SP_LEN		\
 	IEEE80211_WMM_IE_STA_QOSINFO_SP_ALL
@@ -333,9 +339,12 @@ struct ieee80211_roc_work {
 	bool started, abort, hw_begun, notified;
 	bool to_be_freed;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	bool on_channel;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	unsigned long hw_start_time;
 
@@ -1296,9 +1305,12 @@ void ieee80211_mgd_stop(struct ieee80211_sub_if_data *sdata);
 void ieee80211_mgd_conn_tx_status(struct ieee80211_sub_if_data *sdata,
 				  __le16 fc, bool acked);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 void ieee80211_mgd_quiesce(struct ieee80211_sub_if_data *sdata);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 void ieee80211_sta_restart(struct ieee80211_sub_if_data *sdata);
 
 /* IBSS code */

@@ -51,10 +51,14 @@ find_acceptable_alias(struct dentry *result,
 	inode = result->d_inode;
 	spin_lock(&inode->i_lock);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	hlist_for_each_entry(dentry, &inode->i_dentry, d_alias) {
 =======
 	hlist_for_each_entry(dentry, &inode->i_dentry, d_u.d_alias) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	hlist_for_each_entry(dentry, &inode->i_dentry, d_alias) {
+>>>>>>> 2617302... source
 		dget(dentry);
 		spin_unlock(&inode->i_lock);
 		if (toput)
@@ -217,9 +221,12 @@ reconnect_path(struct vfsmount *mnt, struct dentry *target_dir, char *nbuf)
 
 struct getdents_callback {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct dir_context ctx;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	char *name;		/* name that was found. It already points to a
 				   buffer NAME_MAX+1 is size */
 	unsigned long ino;	/* the inum we are looking for */
@@ -263,6 +270,7 @@ static int get_name(const struct path *path, char *name, struct dentry *child)
 	int error;
 	struct file *file;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct getdents_callback buffer;
 =======
 	struct getdents_callback buffer = {
@@ -271,6 +279,9 @@ static int get_name(const struct path *path, char *name, struct dentry *child)
 		.ino = child->d_inode->i_ino
 	};
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	struct getdents_callback buffer;
+>>>>>>> 2617302... source
 
 	error = -ENOTDIR;
 	if (!dir || !S_ISDIR(dir->i_mode))
@@ -288,26 +299,36 @@ static int get_name(const struct path *path, char *name, struct dentry *child)
 
 	error = -EINVAL;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	if (!file->f_op->readdir)
 		goto out_close;
 
 	buffer.name = name;
 	buffer.ino = child->d_inode->i_ino;
 	buffer.found = 0;
+<<<<<<< HEAD
 =======
 	if (!file->f_op->readdir && !file->f_op->iterate)
 		goto out_close;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	buffer.sequence = 0;
 	while (1) {
 		int old_seq = buffer.sequence;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		error = vfs_readdir(file, filldir_one, &buffer);
 =======
 		error = iterate_dir(file, &buffer.ctx);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		error = vfs_readdir(file, filldir_one, &buffer);
+>>>>>>> 2617302... source
 		if (buffer.found) {
 			error = 0;
 			break;

@@ -7,6 +7,9 @@
 #include <net/ip6_fib.h>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 void ipv6_select_ident(struct frag_hdr *fhdr, struct rt6_info *rt)
 {
 	static atomic_t ipv6_fragmentation_id;
@@ -35,27 +38,39 @@ void ipv6_select_ident(struct frag_hdr *fhdr, struct rt6_info *rt)
 	fhdr->identification = htonl(new);
 }
 EXPORT_SYMBOL(ipv6_select_ident);
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 int ip6_find_1stfragopt(struct sk_buff *skb, u8 **nexthdr)
 {
 	u16 offset = sizeof(struct ipv6hdr);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct ipv6_opt_hdr *exthdr =
 				(struct ipv6_opt_hdr *)(ipv6_hdr(skb) + 1);
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	struct ipv6_opt_hdr *exthdr =
+				(struct ipv6_opt_hdr *)(ipv6_hdr(skb) + 1);
+>>>>>>> 2617302... source
 	unsigned int packet_len = skb->tail - skb->network_header;
 	int found_rhdr = 0;
 	*nexthdr = &ipv6_hdr(skb)->nexthdr;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	while (offset + 1 <= packet_len) {
 =======
 	while (offset <= packet_len) {
 		struct ipv6_opt_hdr *exthdr;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	while (offset + 1 <= packet_len) {
+>>>>>>> 2617302... source
 
 		switch (**nexthdr) {
 
@@ -77,6 +92,9 @@ int ip6_find_1stfragopt(struct sk_buff *skb, u8 **nexthdr)
 		}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		offset += ipv6_optlen(exthdr);
 		*nexthdr = &exthdr->nexthdr;
 		exthdr = (struct ipv6_opt_hdr *)(skb_network_header(skb) +
@@ -84,6 +102,7 @@ int ip6_find_1stfragopt(struct sk_buff *skb, u8 **nexthdr)
 	}
 
 	return offset;
+<<<<<<< HEAD
 =======
 		if (offset + sizeof(struct ipv6_opt_hdr) > packet_len)
 			return -EINVAL;
@@ -96,5 +115,7 @@ int ip6_find_1stfragopt(struct sk_buff *skb, u8 **nexthdr)
 
 	return -EINVAL;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 }
 EXPORT_SYMBOL(ip6_find_1stfragopt);

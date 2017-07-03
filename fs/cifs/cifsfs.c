@@ -566,11 +566,14 @@ cifs_get_root(struct smb_vol *vol, struct super_block *sb)
 	char sep;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (cifs_sb->mnt_cifs_flags & CIFS_MOUNT_USE_PREFIX_PATH)
 		return dget(sb->s_root);
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	full_path = cifs_build_path_to_root(vol, cifs_sb,
 					    cifs_sb_master_tcon(cifs_sb));
 	if (full_path == NULL)
@@ -651,10 +654,14 @@ cifs_do_mount(struct file_system_type *fs_type,
 	if (cifs_sb->mountdata == NULL) {
 		root = ERR_PTR(-ENOMEM);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		goto out_cifs_sb;
 	}
 
 	cifs_setup_cifs_sb(volume_info, cifs_sb);
+<<<<<<< HEAD
 =======
 		goto out_free;
 	}
@@ -665,6 +672,8 @@ cifs_do_mount(struct file_system_type *fs_type,
 		goto out_free;
 	}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	rc = cifs_mount(cifs_sb, volume_info);
 	if (rc) {
@@ -673,10 +682,14 @@ cifs_do_mount(struct file_system_type *fs_type,
 				 rc);
 		root = ERR_PTR(rc);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		goto out_mountdata;
 =======
 		goto out_free;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		goto out_mountdata;
+>>>>>>> 2617302... source
 	}
 
 	mnt_data.vol = volume_info;
@@ -720,6 +733,7 @@ out:
 	return root;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 out_mountdata:
 	kfree(cifs_sb->mountdata);
 out_cifs_sb:
@@ -728,6 +742,11 @@ out_free:
 	kfree(cifs_sb->prepath);
 	kfree(cifs_sb->mountdata);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+out_mountdata:
+	kfree(cifs_sb->mountdata);
+out_cifs_sb:
+>>>>>>> 2617302... source
 	kfree(cifs_sb);
 out_nls:
 	unload_nls(volume_info->local_nls);

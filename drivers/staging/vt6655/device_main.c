@@ -2435,9 +2435,12 @@ static  irqreturn_t  device_intr(int irq,  void *dev_instance) {
 	unsigned char byData = 0;
 	int             ii = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	unsigned long flags;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 //    unsigned char byRSSI;
 
 	MACvReadISR(pDevice->PortOffset, &pDevice->dwIsr);
@@ -2464,11 +2467,15 @@ static  irqreturn_t  device_intr(int irq,  void *dev_instance) {
 	handled = 1;
 	MACvIntDisable(pDevice->PortOffset);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	spin_lock_irq(&pDevice->lock);
 =======
 
 	spin_lock_irqsave(&pDevice->lock, flags);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	spin_lock_irq(&pDevice->lock);
+>>>>>>> 2617302... source
 
 	//Make sure current page is 0
 	VNSvInPortB(pDevice->PortOffset + MAC_REG_PAGE1SEL, &byOrgPageSel);
@@ -2710,11 +2717,15 @@ static  irqreturn_t  device_intr(int irq,  void *dev_instance) {
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	spin_unlock_irq(&pDevice->lock);
 =======
 	spin_unlock_irqrestore(&pDevice->lock, flags);
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	spin_unlock_irq(&pDevice->lock);
+>>>>>>> 2617302... source
 	MACvIntEnable(pDevice->PortOffset, IMR_MASK_VALUE);
 
 	return IRQ_RETVAL(handled);

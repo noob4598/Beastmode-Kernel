@@ -238,10 +238,14 @@ struct sock *cookie_v6_check(struct sock *sk, struct sk_buff *skb)
 		fl6.flowi6_proto = IPPROTO_TCP;
 		fl6.daddr = ireq6->rmt_addr;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		final_p = fl6_update_dst(&fl6, np->opt, &final);
 =======
 		final_p = fl6_update_dst(&fl6, rcu_dereference(np->opt), &final);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		final_p = fl6_update_dst(&fl6, np->opt, &final);
+>>>>>>> 2617302... source
 		fl6.saddr = ireq6->loc_addr;
 		fl6.flowi6_oif = sk->sk_bound_dev_if;
 		fl6.flowi6_mark = ireq->ir_mark;

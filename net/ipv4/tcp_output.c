@@ -226,11 +226,15 @@ void tcp_select_initial_window(int __space, __u32 mss,
 		 * See RFC1323 for an explanation of the limit to 14
 		 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		space = max_t(u32, sysctl_tcp_rmem[2], sysctl_rmem_max);
 =======
 		space = max_t(u32, space, sysctl_tcp_rmem[2]);
 		space = max_t(u32, space, sysctl_rmem_max);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		space = max_t(u32, sysctl_tcp_rmem[2], sysctl_rmem_max);
+>>>>>>> 2617302... source
 		space = min_t(u32, space, *window_clamp);
 		while (space > 65535 && (*rcv_wscale) < 14) {
 			space >>= 1;
@@ -783,10 +787,14 @@ void tcp_release_cb(struct sock *sk)
 	}
 	if (flags & (1UL << TCP_MTU_REDUCED_DEFERRED)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		sk->sk_prot->mtu_reduced(sk);
 =======
 		inet_csk(sk)->icsk_af_ops->mtu_reduced(sk);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		sk->sk_prot->mtu_reduced(sk);
+>>>>>>> 2617302... source
 		__sock_put(sk);
 	}
 }
@@ -1764,12 +1772,16 @@ static int tcp_mtu_probe(struct sock *sk)
 	tcp_for_write_queue_from_safe(skb, next, sk) {
 		copy = min_t(int, skb->len, probe_size - len);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		if (nskb->ip_summed)
 			skb_copy_bits(skb, 0, skb_put(nskb, copy), copy);
 		else
 			nskb->csum = skb_copy_and_csum_bits(skb, 0,
 							    skb_put(nskb, copy),
 							    copy, nskb->csum);
+<<<<<<< HEAD
 =======
 		if (nskb->ip_summed) {
 			skb_copy_bits(skb, 0, skb_put(nskb, copy), copy);
@@ -1780,6 +1792,8 @@ static int tcp_mtu_probe(struct sock *sk)
 			nskb->csum = csum_block_add(nskb->csum, csum, len);
 		}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 		if (skb->len <= copy) {
 			/* We've eaten all the data from this skb.
@@ -1885,10 +1899,14 @@ static bool tcp_write_xmit(struct sock *sk, unsigned int mss_now, int nonagle,
 			break;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (tso_segs == 1) {
 =======
 		if (tso_segs == 1 || !sk->sk_gso_max_segs) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		if (tso_segs == 1) {
+>>>>>>> 2617302... source
 			if (unlikely(!tcp_nagle_test(tp, skb, mss_now,
 						     (tcp_skb_is_last(sk, skb) ?
 						      nonagle : TCP_NAGLE_PUSH))))
@@ -1926,10 +1944,14 @@ static bool tcp_write_xmit(struct sock *sk, unsigned int mss_now, int nonagle,
 
 		limit = mss_now;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (tso_segs > 1 && !tcp_urg_mode(tp))
 =======
 		if (tso_segs > 1 && sk->sk_gso_max_segs && !tcp_urg_mode(tp))
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		if (tso_segs > 1 && !tcp_urg_mode(tp))
+>>>>>>> 2617302... source
 			limit = tcp_mss_split_point(sk, skb, mss_now,
 						    min_t(unsigned int,
 							  cwnd_quota,
@@ -2067,12 +2089,18 @@ void tcp_send_loss_probe(struct sock *sk)
 		goto rearm_timer;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* Probe with zero data doesn't trigger fast recovery. */
 	if (skb->len > 0)
 		err = __tcp_retransmit_skb(sk, skb);
 =======
 	err = __tcp_retransmit_skb(sk, skb);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	/* Probe with zero data doesn't trigger fast recovery. */
+	if (skb->len > 0)
+		err = __tcp_retransmit_skb(sk, skb);
+>>>>>>> 2617302... source
 
 	/* Record snd_nxt for loss detection. */
 	if (likely(!err))
@@ -2188,6 +2216,7 @@ u32 __tcp_select_window(struct sock *sk)
 	int window;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (mss > full_space)
 		mss = full_space;
 
@@ -2198,6 +2227,11 @@ u32 __tcp_select_window(struct sock *sk)
 			return 0;
 	}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (mss > full_space)
+		mss = full_space;
+
+>>>>>>> 2617302... source
 	if (free_space < (full_space >> 1)) {
 		icsk->icsk_ack.quick = 0;
 
@@ -2371,11 +2405,15 @@ int __tcp_retransmit_skb(struct sock *sk, struct sk_buff *skb)
 	 */
 	if (atomic_read(&sk->sk_wmem_alloc) >
 <<<<<<< HEAD
+<<<<<<< HEAD
 	    min(sk->sk_wmem_queued + (sk->sk_wmem_queued >> 2), sk->sk_sndbuf))
 =======
 	    min_t(u32, sk->sk_wmem_queued + (sk->sk_wmem_queued >> 2),
 		  sk->sk_sndbuf))
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	    min(sk->sk_wmem_queued + (sk->sk_wmem_queued >> 2), sk->sk_sndbuf))
+>>>>>>> 2617302... source
 		return -EAGAIN;
 
 	if (before(TCP_SKB_CB(skb)->seq, tp->snd_una)) {
@@ -2476,15 +2514,21 @@ int tcp_retransmit_skb(struct sock *sk, struct sk_buff *skb)
 			tp->retrans_stamp = TCP_SKB_CB(skb)->when;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		tp->undo_retrans += tcp_skb_pcount(skb);
 
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		tp->undo_retrans += tcp_skb_pcount(skb);
+
+>>>>>>> 2617302... source
 		/* snd_nxt is stored to detect loss of retransmitted segment,
 		 * see tcp_input.c tcp_sacktag_write_queue().
 		 */
 		TCP_SKB_CB(skb)->ack_seq = tp->snd_nxt;
 	}
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 
@@ -2492,6 +2536,8 @@ int tcp_retransmit_skb(struct sock *sk, struct sk_buff *skb)
 		tp->undo_retrans = 0;
 	tp->undo_retrans += tcp_skb_pcount(skb);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	return err;
 }
 
@@ -2629,6 +2675,9 @@ begin_fwd:
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 /* Send a fin.  The caller locks the socket for us.  This cannot be
  * allowed to fail queueing a FIN frame under any circumstances.
  */
@@ -2660,6 +2709,7 @@ void tcp_send_fin(struct sock *sk)
 
 		/* Reserve space for headers and prepare control bits. */
 		skb_reserve(skb, MAX_TCP_HEADER);
+<<<<<<< HEAD
 =======
 /* We allow to exceed memory limits for FIN packets to expedite
  * connection tear down and (memory) recovery.
@@ -2715,16 +2765,22 @@ coalesce:
 		skb_reserve(skb, MAX_TCP_HEADER);
 		sk_forced_wmem_schedule(sk, skb->truesize);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		/* FIN eats a sequence byte, write_seq advanced by tcp_queue_skb(). */
 		tcp_init_nondata_skb(skb, tp->write_seq,
 				     TCPHDR_ACK | TCPHDR_FIN);
 		tcp_queue_skb(sk, skb);
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	__tcp_push_pending_frames(sk, mss_now, TCP_NAGLE_OFF);
 =======
 	__tcp_push_pending_frames(sk, tcp_current_mss(sk), TCP_NAGLE_OFF);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	__tcp_push_pending_frames(sk, mss_now, TCP_NAGLE_OFF);
+>>>>>>> 2617302... source
 }
 
 /* We get here when a process closes a file descriptor (either due to
@@ -2894,10 +2950,13 @@ struct sk_buff *tcp_make_synack(struct sock *sk, struct dst_entry *dst,
 #endif
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/* Do not fool tcpdump (if any), clean our debris */
 	skb->tstamp.tv64 = 0;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	return skb;
 }
 EXPORT_SYMBOL(tcp_make_synack);
@@ -2998,6 +3057,7 @@ static int tcp_send_syn_data(struct sock *sk, struct sk_buff *syn)
 	struct tcp_sock *tp = tcp_sk(sk);
 	struct tcp_fastopen_request *fo = tp->fastopen_req;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int syn_loss = 0, space, i, err = 0, iovlen = fo->data->msg_iovlen;
 	struct sk_buff *syn_data = NULL, *data;
 	unsigned long last_syn_loss = 0;
@@ -3006,6 +3066,11 @@ static int tcp_send_syn_data(struct sock *sk, struct sk_buff *syn)
 	unsigned long last_syn_loss = 0;
 	struct sk_buff *syn_data;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	int syn_loss = 0, space, i, err = 0, iovlen = fo->data->msg_iovlen;
+	struct sk_buff *syn_data = NULL, *data;
+	unsigned long last_syn_loss = 0;
+>>>>>>> 2617302... source
 
 	tp->rx_opt.mss_clamp = tp->advmss;  /* If MSS is not cached */
 	tcp_fastopen_cache_get(sk, &tp->rx_opt.mss_clamp, &fo->cookie,
@@ -3037,6 +3102,9 @@ static int tcp_send_syn_data(struct sock *sk, struct sk_buff *syn)
 	space = min_t(size_t, space, SKB_MAX_HEAD(MAX_TCP_HEADER));
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	syn_data = skb_copy_expand(syn, MAX_TCP_HEADER, space,
 				   sk->sk_allocation);
 	if (syn_data == NULL)
@@ -3068,6 +3136,7 @@ static int tcp_send_syn_data(struct sock *sk, struct sk_buff *syn)
 	fo->copied = data->len;
 
 	if (tcp_transmit_skb(sk, syn_data, 0, sk->sk_allocation) == 0) {
+<<<<<<< HEAD
 =======
 	syn_data = sk_stream_alloc_skb(sk, space, sk->sk_allocation);
 	if (!syn_data)
@@ -3099,14 +3168,20 @@ static int tcp_send_syn_data(struct sock *sk, struct sk_buff *syn)
 	TCP_SKB_CB(syn_data)->tcp_flags = TCPHDR_ACK | TCPHDR_PSH;
 	if (!err) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		tp->syn_data = (fo->copied > 0);
 		NET_INC_STATS(sock_net(sk), LINUX_MIB_TCPFASTOPENACTIVE);
 		goto done;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	syn_data = NULL;
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	syn_data = NULL;
+>>>>>>> 2617302... source
 
 fallback:
 	/* Send a regular SYN with Fast Open cookie request option */
@@ -3116,9 +3191,13 @@ fallback:
 	if (err)
 		tp->syn_fastopen = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	kfree_skb(syn_data);
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	kfree_skb(syn_data);
+>>>>>>> 2617302... source
 done:
 	fo->cookie.len = -1;  /* Exclude Fast Open option for SYN retries */
 	return err;
@@ -3139,6 +3218,9 @@ int tcp_connect(struct sock *sk)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	buff = alloc_skb_fclone(MAX_TCP_HEADER + 15, sk->sk_allocation);
 	if (unlikely(buff == NULL))
 		return -ENOBUFS;
@@ -3146,12 +3228,15 @@ int tcp_connect(struct sock *sk)
 	/* Reserve space for headers. */
 	skb_reserve(buff, MAX_TCP_HEADER);
 
+<<<<<<< HEAD
 =======
 	buff = sk_stream_alloc_skb(sk, 0, sk->sk_allocation);
 	if (unlikely(!buff))
 		return -ENOBUFS;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	tcp_init_nondata_skb(buff, tp->write_seq++, TCPHDR_SYN);
 	tp->retrans_stamp = TCP_SKB_CB(buff)->when = tcp_time_stamp;
 	tcp_connect_queue_skb(sk, buff);

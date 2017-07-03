@@ -41,11 +41,16 @@ static ssize_t show_##name(struct device *dev,			\
 		struct device_attribute *attr, char *buf)	\
 {								\
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned int cpu = dev->id;				\
 	return sprintf(buf, "%d\n", topology_##name(cpu));	\
 =======
 	return sprintf(buf, "%d\n", topology_##name(dev->id));	\
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	unsigned int cpu = dev->id;				\
+	return sprintf(buf, "%d\n", topology_##name(cpu));	\
+>>>>>>> 2617302... source
 }
 
 #if defined(topology_thread_cpumask) || defined(topology_core_cpumask) || \

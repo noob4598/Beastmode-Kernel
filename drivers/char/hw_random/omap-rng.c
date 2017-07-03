@@ -128,6 +128,7 @@ static int omap_rng_probe(struct platform_device *pdev)
 
 	pm_runtime_enable(&pdev->dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pm_runtime_get_sync(&pdev->dev);
 =======
 	ret = pm_runtime_get_sync(&pdev->dev);
@@ -137,6 +138,9 @@ static int omap_rng_probe(struct platform_device *pdev)
 		goto err_ioremap;
 	}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	pm_runtime_get_sync(&pdev->dev);
+>>>>>>> 2617302... source
 
 	ret = hwrng_register(&omap_rng_ops);
 	if (ret)
@@ -192,6 +196,7 @@ static int omap_rng_resume(struct device *dev)
 {
 	struct omap_rng_private_data *priv = dev_get_drvdata(dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	pm_runtime_get_sync(dev);
 =======
@@ -205,6 +210,10 @@ static int omap_rng_resume(struct device *dev)
 	}
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+
+	pm_runtime_get_sync(dev);
+>>>>>>> 2617302... source
 	omap_rng_write_reg(priv, RNG_MASK_REG, 0x1);
 
 	return 0;

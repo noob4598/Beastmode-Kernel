@@ -1256,16 +1256,23 @@ void ath_tx_aggr_sleep(struct ieee80211_sta *sta, struct ath_softc *sc,
 	     tidno < IEEE80211_NUM_TIDS; tidno++, tid++) {
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (!tid->sched)
 			continue;
 
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		if (!tid->sched)
+			continue;
+
+>>>>>>> 2617302... source
 		ac = tid->ac;
 		txq = ac->txq;
 
 		ath_txq_lock(sc, txq);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 		if (!tid->sched) {
@@ -1274,6 +1281,8 @@ void ath_tx_aggr_sleep(struct ieee80211_sta *sta, struct ath_softc *sc,
 		}
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		buffered = !skb_queue_empty(&tid->buf_q);
 
 		tid->sched = false;

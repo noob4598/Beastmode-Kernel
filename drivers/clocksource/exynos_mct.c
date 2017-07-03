@@ -95,12 +95,17 @@ static void exynos4_mct_write(unsigned int value, unsigned long offset)
 
 	if (likely(offset >= EXYNOS4_MCT_L_BASE(0))) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		stat_addr = (offset & ~EXYNOS4_MCT_L_MASK) + MCT_L_WSTAT_OFFSET;
 		switch (offset & EXYNOS4_MCT_L_MASK) {
 =======
 		stat_addr = (offset & EXYNOS4_MCT_L_MASK) + MCT_L_WSTAT_OFFSET;
 		switch (offset & ~EXYNOS4_MCT_L_MASK) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		stat_addr = (offset & ~EXYNOS4_MCT_L_MASK) + MCT_L_WSTAT_OFFSET;
+		switch (offset & EXYNOS4_MCT_L_MASK) {
+>>>>>>> 2617302... source
 		case MCT_L_TCON_OFFSET:
 			mask = 1 << 3;		/* L_TCON write status */
 			break;
@@ -435,10 +440,15 @@ static int __cpuinit exynos4_local_timer_setup(struct clock_event_device *evt)
 	evt->features = CLOCK_EVT_FEAT_PERIODIC | CLOCK_EVT_FEAT_ONESHOT;
 	evt->rating = 450;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	clockevents_config_and_register(evt, clk_rate / (TICK_BASE_CNT + 1),
 					0xf, 0x7fffffff);
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	clockevents_config_and_register(evt, clk_rate / (TICK_BASE_CNT + 1),
+					0xf, 0x7fffffff);
+>>>>>>> 2617302... source
 
 	exynos4_mct_write(TICK_BASE_CNT, mevt->base + MCT_L_TCNTB_OFFSET);
 
@@ -457,10 +467,13 @@ static int __cpuinit exynos4_local_timer_setup(struct clock_event_device *evt)
 		enable_percpu_irq(mct_irqs[MCT_L0_IRQ], 0);
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	clockevents_config_and_register(evt, clk_rate / (TICK_BASE_CNT + 1),
 					0xf, 0x7fffffff);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	return 0;
 }

@@ -19,6 +19,7 @@
 #include <linux/init.h>
 #include <linux/console.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 #include <asm/sizes.h>
 =======
@@ -27,6 +28,10 @@
 #include <asm/sizes.h>
 #include <asm/pgtable.h>
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+
+#include <asm/sizes.h>
+>>>>>>> 2617302... source
 #include <mach/hardware.h>
 
 /* Platform_data reserved for unifb registers. */

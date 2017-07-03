@@ -35,9 +35,12 @@ struct events_stats {
 	u32 nr_unknown_id;
 	u32 nr_unprocessable_samples;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	u32 nr_unordered_events;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 };
 
 enum hist_column {

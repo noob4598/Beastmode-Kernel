@@ -100,10 +100,14 @@ void mdss_dsi_ctrl_init(struct mdss_dsi_ctrl_pdata *ctrl)
 		pr_err("%s: mdss_register_irq failed.\n", __func__);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_debug("%s: ndx=%d base=%p\n", __func__, ctrl->ndx, ctrl->ctrl_base);
 =======
 	pr_debug("%s: ndx=%d base=%pK\n", __func__, ctrl->ndx, ctrl->ctrl_base);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	pr_debug("%s: ndx=%d base=%p\n", __func__, ctrl->ndx, ctrl->ctrl_base);
+>>>>>>> 2617302... source
 
 	init_completion(&ctrl->dma_comp);
 	init_completion(&ctrl->mdp_comp);
@@ -339,12 +343,17 @@ void mdss_dsi_host_init(struct mdss_panel_data *pdata)
 	if (mdss_dsi_sync_wait_enable(ctrl_pdata))
 		if (pdata->panel_info.pdest == DISPLAY_1) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			pr_info("%s: Broadcast mode enabled.\n",
 				 __func__);
 =======
 			//pr_info("%s: Broadcast mode enabled.\n",
 			//	 __func__);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			pr_info("%s: Broadcast mode enabled.\n",
+				 __func__);
+>>>>>>> 2617302... source
 			left_ctrl_pdata = ctrl_pdata;
 		}
 
@@ -1170,6 +1179,9 @@ static int mdss_dsi_cmd_dma_tx(struct mdss_dsi_ctrl_pdata *ctrl,
 		pr_err("mdp clk rate=%ld\n", mdss_mdp_get_clk_rate(MDSS_CLK_MDP_SRC));
 		MDSS_XLOG_TOUT_HANDLER("mdp", "dsi0", "dsi1", "panic");
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 #if defined (CONFIG_FB_MSM_MDSS_DSI_DBG)
 				dumpreg();
 				mdp5_dump_regs();
@@ -1178,8 +1190,11 @@ static int mdss_dsi_cmd_dma_tx(struct mdss_dsi_ctrl_pdata *ctrl,
 				pr_err("mdp clk rate=%ld\n", mdss_mdp_get_clk_rate(MDSS_CLK_MDP_SRC));
 				panic("tx timeout");
 #endif
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	}
 	else
 		ret = tp->len;
@@ -1438,6 +1453,9 @@ need_lock:
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 #if 0
 void dumpreg(void)
 {
@@ -1533,8 +1551,11 @@ void mdss_dsi_debug_check_te(struct mdss_panel_data *pdata)
 	pr_info(" ============ finish waiting for TE ============\n");
 }
 #endif
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 static void dsi_send_events(struct mdss_dsi_ctrl_pdata *ctrl, u32 events)
 {
 	struct dsi_event_q *evq;

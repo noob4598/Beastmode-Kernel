@@ -415,16 +415,22 @@ i2c_davinci_xfer_msg(struct i2c_adapter *adap, struct i2c_msg *msg, int stop)
 		if (msg->flags & I2C_M_IGNORE_NAK)
 			return msg->len;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		if (stop) {
 			w = davinci_i2c_read_reg(dev, DAVINCI_I2C_MDR_REG);
 			w |= DAVINCI_I2C_MDR_STP;
 			davinci_i2c_write_reg(dev, DAVINCI_I2C_MDR_REG, w);
 		}
+<<<<<<< HEAD
 =======
 		w = davinci_i2c_read_reg(dev, DAVINCI_I2C_MDR_REG);
 		w |= DAVINCI_I2C_MDR_STP;
 		davinci_i2c_write_reg(dev, DAVINCI_I2C_MDR_REG, w);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		return -EREMOTEIO;
 	}
 	return -EIO;

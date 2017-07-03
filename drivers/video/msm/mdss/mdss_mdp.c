@@ -65,11 +65,17 @@
 
 struct mdss_data_type *mdss_res;
 <<<<<<< HEAD
+<<<<<<< HEAD
 #if defined (CONFIG_FB_MSM_MDSS_DSI_DBG)
 void xlog(const char *name, u32 data0, u32 data1, u32 data2, u32 data3, u32 data4, u32 data5);
 #endif
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+#if defined (CONFIG_FB_MSM_MDSS_DSI_DBG)
+void xlog(const char *name, u32 data0, u32 data1, u32 data2, u32 data3, u32 data4, u32 data5);
+#endif
+>>>>>>> 2617302... source
 static int mdss_fb_mem_get_iommu_domain(void)
 {
 	return mdss_get_iommu_domain(MDSS_IOMMU_DOMAIN_UNSECURE);
@@ -223,11 +229,17 @@ static inline int mdss_irq_dispatch(u32 hw_ndx, int irq, void *ptr)
 	spin_lock(&mdss_lock);
 	hw = mdss_irq_handlers[hw_ndx];
 <<<<<<< HEAD
+<<<<<<< HEAD
 #if defined (CONFIG_FB_MSM_MDSS_DSI_DBG)
 //	xlog(__func__, (u32)hw, hw_ndx, 0, 0, 0, 0xeeee);
 #endif
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+#if defined (CONFIG_FB_MSM_MDSS_DSI_DBG)
+//	xlog(__func__, (u32)hw, hw_ndx, 0, 0, 0, 0xeeee);
+#endif
+>>>>>>> 2617302... source
 	spin_unlock(&mdss_lock);
 
 	if (hw)
@@ -241,11 +253,17 @@ static irqreturn_t mdss_irq_handler(int irq, void *ptr)
 	struct mdss_data_type *mdata = ptr;
 	u32 intr = readl_relaxed(mdata->mdss_base + MDSS_REG_HW_INTR_STATUS);
 <<<<<<< HEAD
+<<<<<<< HEAD
 #if defined (CONFIG_FB_MSM_MDSS_DSI_DBG)
 //	xlog(__func__,  intr, (u32) mdata, 0, 0, 0, 0xffff);
 #endif
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+#if defined (CONFIG_FB_MSM_MDSS_DSI_DBG)
+//	xlog(__func__,  intr, (u32) mdata, 0, 0, 0, 0xffff);
+#endif
+>>>>>>> 2617302... source
 
 	if (!mdata)
 		return IRQ_NONE;
@@ -290,10 +308,14 @@ int mdss_register_irq(struct mdss_hw *hw)
 		mdss_irq_handlers[hw->hw_ndx] = hw;
 	else
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("panel %d's irq at %p is already registered\n",
 =======
 		pr_err("panel %d's irq at %pK is already registered\n",
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		pr_err("panel %d's irq at %p is already registered\n",
+>>>>>>> 2617302... source
 			hw->hw_ndx, hw->irq_handler);
 	spin_unlock_irqrestore(&mdss_lock, irq_flags);
 
@@ -321,21 +343,33 @@ void mdss_enable_irq(struct mdss_hw *hw)
 
 	spin_lock_irqsave(&mdss_lock, irq_flags);
 <<<<<<< HEAD
+<<<<<<< HEAD
 #if 0 //defined (CONFIG_FB_MSM_MDSS_DSI_DBG)
 	xlog(__func__, hw->hw_ndx, ndx_bit,mdss_res->irq_mask, mdss_res->irq_ena, mdss_res->irq, 0xB);
 #endif
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+#if 0 //defined (CONFIG_FB_MSM_MDSS_DSI_DBG)
+	xlog(__func__, hw->hw_ndx, ndx_bit,mdss_res->irq_mask, mdss_res->irq_ena, mdss_res->irq, 0xB);
+#endif
+>>>>>>> 2617302... source
 
 	if (mdss_res->irq_mask & ndx_bit) {
 		pr_debug("MDSS HW ndx=%d is already set, mask=%x\n",
 				hw->hw_ndx, mdss_res->irq_mask);
+<<<<<<< HEAD
 <<<<<<< HEAD
 #if 0 //defined (CONFIG_FB_MSM_MDSS_DSI_DBG)
 		xlog(__func__, 0, 0, 0, 0, 0, 0xFF);
 #endif
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+#if 0 //defined (CONFIG_FB_MSM_MDSS_DSI_DBG)
+		xlog(__func__, 0, 0, 0, 0, 0, 0xFF);
+#endif
+>>>>>>> 2617302... source
 	} else {
 		mdss_res->irq_mask |= ndx_bit;
 		if (!mdss_res->irq_ena) {
@@ -344,11 +378,17 @@ void mdss_enable_irq(struct mdss_hw *hw)
 		}
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 #if 0 //defined (CONFIG_FB_MSM_MDSS_DSI_DBG)
 	xlog(__func__, hw->hw_ndx, ndx_bit,mdss_res->irq_mask, mdss_res->irq_ena, mdss_res->irq, 0xE);
 #endif
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+#if 0 //defined (CONFIG_FB_MSM_MDSS_DSI_DBG)
+	xlog(__func__, hw->hw_ndx, ndx_bit,mdss_res->irq_mask, mdss_res->irq_ena, mdss_res->irq, 0xE);
+#endif
+>>>>>>> 2617302... source
 	spin_unlock_irqrestore(&mdss_lock, irq_flags);
 }
 EXPORT_SYMBOL(mdss_enable_irq);
@@ -385,11 +425,17 @@ void mdss_disable_irq(struct mdss_hw *hw)
 
 	spin_lock_irqsave(&mdss_lock, irq_flags);
 <<<<<<< HEAD
+<<<<<<< HEAD
 #if defined (CONFIG_FB_MSM_MDSS_DSI_DBG)
 	xlog(__func__, hw->hw_ndx, ndx_bit,mdss_res->irq_mask, mdss_res->irq_ena, mdss_res->irq, 0xB);
 #endif
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+#if defined (CONFIG_FB_MSM_MDSS_DSI_DBG)
+	xlog(__func__, hw->hw_ndx, ndx_bit,mdss_res->irq_mask, mdss_res->irq_ena, mdss_res->irq, 0xB);
+#endif
+>>>>>>> 2617302... source
 	if (!(mdss_res->irq_mask & ndx_bit)) {
 		pr_warn("MDSS HW ndx=%d is NOT set, mask=%x, hist mask=%x\n",
 			hw->hw_ndx, mdss_res->mdp_irq_mask,
@@ -402,11 +448,17 @@ void mdss_disable_irq(struct mdss_hw *hw)
 		}
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 #if defined (CONFIG_FB_MSM_MDSS_DSI_DBG)
 	xlog(__func__, hw->hw_ndx, ndx_bit,mdss_res->irq_mask, mdss_res->irq_ena, mdss_res->irq, 0xE);
 #endif
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+#if defined (CONFIG_FB_MSM_MDSS_DSI_DBG)
+	xlog(__func__, hw->hw_ndx, ndx_bit,mdss_res->irq_mask, mdss_res->irq_ena, mdss_res->irq, 0xE);
+#endif
+>>>>>>> 2617302... source
 	spin_unlock_irqrestore(&mdss_lock, irq_flags);
 }
 EXPORT_SYMBOL(mdss_disable_irq);
@@ -426,11 +478,17 @@ void mdss_disable_irq_nosync(struct mdss_hw *hw)
 
 	spin_lock(&mdss_lock);
 <<<<<<< HEAD
+<<<<<<< HEAD
 #if 0 //defined (CONFIG_FB_MSM_MDSS_DSI_DBG)
 	xlog(__func__, hw->hw_ndx, ndx_bit,mdss_res->irq_mask, mdss_res->irq_ena, mdss_res->irq, 0xB);
 #endif
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+#if 0 //defined (CONFIG_FB_MSM_MDSS_DSI_DBG)
+	xlog(__func__, hw->hw_ndx, ndx_bit,mdss_res->irq_mask, mdss_res->irq_ena, mdss_res->irq, 0xB);
+#endif
+>>>>>>> 2617302... source
 
 	if (!(mdss_res->irq_mask & ndx_bit)) {
 		pr_warn("MDSS HW ndx=%d is NOT set, mask=%x, hist mask=%x\n",
@@ -444,11 +502,17 @@ void mdss_disable_irq_nosync(struct mdss_hw *hw)
 		}
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 #if 0 //defined (CONFIG_FB_MSM_MDSS_DSI_DBG)
 	xlog(__func__, hw->hw_ndx, ndx_bit,mdss_res->irq_mask, mdss_res->irq_ena, mdss_res->irq, 0xE);
 #endif
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+#if 0 //defined (CONFIG_FB_MSM_MDSS_DSI_DBG)
+	xlog(__func__, hw->hw_ndx, ndx_bit,mdss_res->irq_mask, mdss_res->irq_ena, mdss_res->irq, 0xE);
+#endif
+>>>>>>> 2617302... source
 	spin_unlock(&mdss_lock);
 }
 EXPORT_SYMBOL(mdss_disable_irq_nosync);
@@ -579,6 +643,9 @@ void mdss_mdp_irq_clear(struct mdss_data_type *mdata,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 #if defined (CONFIG_FB_MSM_MDSS_DSI_DBG)
 int mdss_mdp_debug_bus(void)
 {
@@ -596,8 +663,11 @@ int mdss_mdp_debug_bus(void)
 }
 EXPORT_SYMBOL(mdss_mdp_debug_bus);
 #endif
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 int mdss_mdp_irq_enable(u32 intr_type, u32 intf_num)
 {
 	u32 irq;
@@ -609,11 +679,17 @@ int mdss_mdp_irq_enable(u32 intr_type, u32 intf_num)
 
 	spin_lock_irqsave(&mdp_lock, irq_flags);
 <<<<<<< HEAD
+<<<<<<< HEAD
 #if defined (CONFIG_FB_MSM_MDSS_DSI_DBG)
 	xlog(__func__,mdss_res->mdp_irq_mask, irq, intr_type, intf_num, 0, 0);
 #endif
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+#if defined (CONFIG_FB_MSM_MDSS_DSI_DBG)
+	xlog(__func__,mdss_res->mdp_irq_mask, irq, intr_type, intf_num, 0, 0);
+#endif
+>>>>>>> 2617302... source
 	if (mdata->mdp_irq_mask & irq) {
 		pr_warn("MDSS MDP IRQ-0x%x is already set, mask=%x\n",
 				irq, mdata->mdp_irq_mask);
@@ -668,11 +744,17 @@ void mdss_mdp_irq_disable(u32 intr_type, u32 intf_num)
 
 	spin_lock_irqsave(&mdp_lock, irq_flags);
 <<<<<<< HEAD
+<<<<<<< HEAD
 #if defined (CONFIG_FB_MSM_MDSS_DSI_DBG)
 	xlog(__func__,mdss_res->mdp_irq_mask, irq, intr_type, intf_num, 0, 0);
 #endif
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+#if defined (CONFIG_FB_MSM_MDSS_DSI_DBG)
+	xlog(__func__,mdss_res->mdp_irq_mask, irq, intr_type, intf_num, 0, 0);
+#endif
+>>>>>>> 2617302... source
 	if (!(mdata->mdp_irq_mask & irq)) {
 		pr_warn("MDSS MDP IRQ-%x is NOT set, mask=%x\n",
 				irq, mdata->mdp_irq_mask);
@@ -1008,10 +1090,14 @@ static int mdss_mdp_irq_clk_setup(struct mdss_data_type *mdata)
 	pr_debug("max mdp clk rate=%d\n", mdata->max_mdp_clk_rate);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = request_irq(mdata->irq, mdss_irq_handler,
 =======
 	ret = devm_request_irq(&mdata->pdev->dev, mdata->irq, mdss_irq_handler,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	ret = request_irq(mdata->irq, mdss_irq_handler,
+>>>>>>> 2617302... source
 			 IRQF_DISABLED,	"MDSS", mdata);
 	if (ret) {
 		pr_err("mdp request_irq() failed!\n");
@@ -1353,10 +1439,14 @@ static u32 mdss_mdp_res_init(struct mdss_data_type *mdata)
 	mdata->iclient = msm_ion_client_create(-1, mdata->pdev->name);
 	if (IS_ERR_OR_NULL(mdata->iclient)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("msm_ion_client_create() return error (%p)\n",
 =======
 		pr_err("msm_ion_client_create() return error (%pK)\n",
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		pr_err("msm_ion_client_create() return error (%p)\n",
+>>>>>>> 2617302... source
 				mdata->iclient);
 		mdata->iclient = NULL;
 	}
@@ -1847,6 +1937,7 @@ static int mdss_mdp_probe(struct platform_device *pdev)
 		goto probe_done;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_info("MDSS HW Base phy_Address=0x%x virt=0x%x\n",
 		(int) (unsigned long) res->start,
 		(int) (unsigned long) mdata->mdss_base);
@@ -1854,6 +1945,11 @@ static int mdss_mdp_probe(struct platform_device *pdev)
 	pr_info("MDSS HW Base phy_Address=0x%lx virt=%pK\n",
 		(unsigned long) res->start, mdata->mdss_base);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	pr_info("MDSS HW Base phy_Address=0x%x virt=0x%x\n",
+		(int) (unsigned long) res->start,
+		(int) (unsigned long) mdata->mdss_base);
+>>>>>>> 2617302... source
 
 	res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "vbif_phys");
 	if (!res) {
@@ -1870,6 +1966,7 @@ static int mdss_mdp_probe(struct platform_device *pdev)
 		goto probe_done;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_info("MDSS VBIF HW Base phy_Address=0x%x virt=0x%x\n",
 		(int) (unsigned long) res->start,
 		(int) (unsigned long) mdata->vbif_base);
@@ -1877,6 +1974,11 @@ static int mdss_mdp_probe(struct platform_device *pdev)
 	pr_info("MDSS VBIF HW Base phy_Address=0x%lx virt=%pK\n",
 		(unsigned long) res->start, mdata->vbif_base);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	pr_info("MDSS VBIF HW Base phy_Address=0x%x virt=0x%x\n",
+		(int) (unsigned long) res->start,
+		(int) (unsigned long) mdata->vbif_base);
+>>>>>>> 2617302... source
 
 	res = platform_get_resource(pdev, IORESOURCE_IRQ, 0);
 	if (!res) {

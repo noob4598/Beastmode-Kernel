@@ -31,9 +31,13 @@
 #include <linux/aio.h>
 #include "logger.h"
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include "logger_interface.h"
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+#include "logger_interface.h"
+>>>>>>> 2617302... source
 
 #include <asm/ioctls.h>
 #ifdef CONFIG_SEC_DEBUG
@@ -437,14 +441,20 @@ static void do_write_log(struct logger_log *log, const void *buf, size_t count)
 	size_t len;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	// if logger mode is disabled, terminate instantly
 	if (logger_mode == 0)
 	{
 			return;
 	} 
 
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	len = min(count, log->size - log->w_off);
 	memcpy(log->buffer + log->w_off, buf, len);
 
@@ -469,14 +479,20 @@ static ssize_t do_write_log_from_user(struct logger_log *log,
 	size_t len;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	// if logger mode is disabled, terminate instantly
 	if (logger_mode == 0)
 	{
 			return 0;
 	} 
 
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	len = min(count, log->size - log->w_off);
 	if (len && copy_from_user(log->buffer + log->w_off, buf, len))
 		return -EFAULT;
@@ -526,10 +542,14 @@ static ssize_t logger_aio_write(struct kiocb *iocb, const struct iovec *iov,
 {
 	struct logger_log *log = file_get_log(iocb->ki_filp);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	size_t orig = log->w_off;
 =======
 	size_t orig;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	size_t orig = log->w_off;
+>>>>>>> 2617302... source
 	struct logger_entry header;
 	struct timespec now;
 	ssize_t ret = 0;
@@ -551,10 +571,13 @@ static ssize_t logger_aio_write(struct kiocb *iocb, const struct iovec *iov,
 	mutex_lock(&log->mutex);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	orig = log->w_off;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	/*
 	 * Fix up any readers, pulling them forward to the first readable
 	 * entry after (what will be) the new write offset. We do this now

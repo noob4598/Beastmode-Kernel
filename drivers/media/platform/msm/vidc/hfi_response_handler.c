@@ -1,8 +1,12 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* Copyright (c) 2012-2014, The Linux Foundation. All rights reserved.
 =======
 /* Copyright (c) 2012-2016, The Linux Foundation. All rights reserved.
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+/* Copyright (c) 2012-2014, The Linux Foundation. All rights reserved.
+>>>>>>> 2617302... source
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -102,10 +106,14 @@ static int validate_session_pkt(struct list_head *sessions,
 	}
 	if (invalid)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dprintk(VIDC_WARN, "Invalid session from FW: %p\n", sess);
 =======
 		dprintk(VIDC_WARN, "Invalid session from FW: %pK\n", sess);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		dprintk(VIDC_WARN, "Invalid session from FW: %p\n", sess);
+>>>>>>> 2617302... source
 	return invalid;
 }
 
@@ -710,10 +718,14 @@ static void hfi_process_sess_get_prop_profile_level(
 	if (!prop) {
 		dprintk(VIDC_ERR,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			"hal_process_sess_get_profile_level: bad_prop: %p\n",
 =======
 			"hal_process_sess_get_profile_level: bad_prop: %pK\n",
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			"hal_process_sess_get_profile_level: bad_prop: %p\n",
+>>>>>>> 2617302... source
 			prop);
 		return;
 	}
@@ -745,10 +757,14 @@ static void hfi_process_sess_get_prop_buf_req(
 	if (!prop) {
 		dprintk(VIDC_ERR,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			"hal_process_sess_get_prop_buf_req: bad_prop: %p\n",
 =======
 			"hal_process_sess_get_prop_buf_req: bad_prop: %pK\n",
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			"hal_process_sess_get_prop_buf_req: bad_prop: %p\n",
+>>>>>>> 2617302... source
 			prop);
 		return;
 	}
@@ -938,10 +954,14 @@ static void hfi_process_session_init_done(
 		if (sess_close) {
 			dprintk(VIDC_WARN,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				"Sess init failed: 0x%x, 0x%p\n",
 =======
 				"Sess init failed: 0x%x, 0x%pK\n",
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+				"Sess init failed: 0x%x, 0x%p\n",
+>>>>>>> 2617302... source
 				sess_close->session_id, sess_close);
 		}
 	}
@@ -1096,10 +1116,14 @@ static void hfi_process_session_ftb_done(
 			pkt->extra_data_buffer;
 		data_done.output_done.buffer_type = HAL_BUFFER_OUTPUT;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dprintk(VIDC_DBG, "FBD: Received buf: %p, of len: %d\n",
 =======
 		dprintk(VIDC_DBG, "FBD: Received buf: %pK, of len: %d\n",
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		dprintk(VIDC_DBG, "FBD: Received buf: %p, of len: %d\n",
+>>>>>>> 2617302... source
 				   pkt->packet_buffer, pkt->filled_len);
 	} else if (is_decoder == 1) {
 		struct hfi_msg_session_fbd_uncompressed_plane0_packet *pkt =
@@ -1333,10 +1357,14 @@ static void hfi_process_session_get_seq_hdr_done(
 	data_done.output_done.packet_buffer1 = pkt->sequence_header;
 	data_done.output_done.filled_len1 = pkt->header_len;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dprintk(VIDC_INFO, "seq_hdr: %p, Length: %d\n",
 =======
 	dprintk(VIDC_INFO, "seq_hdr: %pK, Length: %d\n",
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	dprintk(VIDC_INFO, "seq_hdr: %p, Length: %d\n",
+>>>>>>> 2617302... source
 		   pkt->sequence_header, pkt->header_len);
 	callback(SESSION_GET_SEQ_HDR_DONE, &data_done);
 }

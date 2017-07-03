@@ -79,12 +79,16 @@ static void devm_usb_phy_release(struct device *dev, void *res)
 static int devm_usb_phy_match(struct device *dev, void *res, void *match_data)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return res == match_data;
 =======
 	struct usb_phy **phy = res;
 
 	return *phy == match_data;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	return res == match_data;
+>>>>>>> 2617302... source
 }
 
 /**

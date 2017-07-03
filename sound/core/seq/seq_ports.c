@@ -176,12 +176,18 @@ struct snd_seq_client_port *snd_seq_create_port(struct snd_seq_client *client,
 
 /* */
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 enum group_type {
 	SRC_LIST, DEST_LIST
 };
 
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 static int subscribe_port(struct snd_seq_client *client,
 			  struct snd_seq_client_port *port,
 			  struct snd_seq_port_subs_info *grp,
@@ -209,6 +215,7 @@ static struct snd_seq_client_port *get_client_port(struct snd_seq_addr *addr,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 static void delete_and_unsubscribe_port(struct snd_seq_client *client,
 					struct snd_seq_client_port *port,
@@ -225,6 +232,8 @@ get_subscriber(struct list_head *p, bool is_src)
 }
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 /*
  * remove all subscribers on the list
  * this is called from port_delete, for each src and dest list.
@@ -233,10 +242,14 @@ static void clear_subscriber_list(struct snd_seq_client *client,
 				  struct snd_seq_client_port *port,
 				  struct snd_seq_port_subs_info *grp,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				  int grptype)
 =======
 				  int is_src)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+				  int grptype)
+>>>>>>> 2617302... source
 {
 	struct list_head *p, *n;
 
@@ -246,6 +259,9 @@ static void clear_subscriber_list(struct snd_seq_client *client,
 		struct snd_seq_client_port *aport;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		if (grptype == SRC_LIST) {
 			subs = list_entry(p, struct snd_seq_subscribers, src_list);
 			aport = get_client_port(&subs->info.dest, &c);
@@ -255,6 +271,7 @@ static void clear_subscriber_list(struct snd_seq_client *client,
 		}
 		list_del(p);
 		unsubscribe_port(client, port, grp, &subs->info, 0);
+<<<<<<< HEAD
 =======
 		subs = get_subscriber(p, is_src);
 		if (is_src)
@@ -264,6 +281,8 @@ static void clear_subscriber_list(struct snd_seq_client *client,
 		delete_and_unsubscribe_port(client, port, subs, is_src, false);
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		if (!aport) {
 			/* looks like the connected port is being deleted.
 			 * we decrease the counter, and when both ports are deleted
@@ -272,6 +291,9 @@ static void clear_subscriber_list(struct snd_seq_client *client,
 			if (atomic_dec_and_test(&subs->ref_count))
 				kfree(subs);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		} else {
 			/* ok we got the connected port */
 			struct snd_seq_port_subs_info *agrp;
@@ -287,6 +309,7 @@ static void clear_subscriber_list(struct snd_seq_client *client,
 			snd_seq_port_unlock(aport);
 			snd_seq_client_unlock(c);
 		}
+<<<<<<< HEAD
 =======
 			continue;
 		}
@@ -297,6 +320,8 @@ static void clear_subscriber_list(struct snd_seq_client *client,
 		snd_seq_port_unlock(aport);
 		snd_seq_client_unlock(c);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	}
 }
 
@@ -310,12 +335,17 @@ static int port_delete(struct snd_seq_client *client,
 
 	/* clear subscribers info */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	clear_subscriber_list(client, port, &port->c_src, SRC_LIST);
 	clear_subscriber_list(client, port, &port->c_dest, DEST_LIST);
 =======
 	clear_subscriber_list(client, port, &port->c_src, true);
 	clear_subscriber_list(client, port, &port->c_dest, false);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	clear_subscriber_list(client, port, &port->c_src, SRC_LIST);
+	clear_subscriber_list(client, port, &port->c_dest, DEST_LIST);
+>>>>>>> 2617302... source
 
 	if (port->private_free)
 		port->private_free(port->private_data);
@@ -535,6 +565,9 @@ static int match_subs_info(struct snd_seq_port_subscribe *r,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 
 /* connect two ports */
 int snd_seq_port_connect(struct snd_seq_client *connector,
@@ -576,6 +609,7 @@ int snd_seq_port_connect(struct snd_seq_client *connector,
 		}
 		list_for_each_entry(s, &dest->list_head, dest_list) {
 			if (match_subs_info(info, &s->info))
+<<<<<<< HEAD
 =======
 static int check_and_subscribe_port(struct snd_seq_client *client,
 				    struct snd_seq_client_port *port,
@@ -601,11 +635,16 @@ static int check_and_subscribe_port(struct snd_seq_client *client,
 			s = get_subscriber(p, is_src);
 			if (match_subs_info(&subs->info, &s->info))
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 				goto __error;
 		}
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	if ((err = subscribe_port(src_client, src_port, src, info,
 				  connector->number != src_client->number)) < 0)
 		goto __error;
@@ -640,6 +679,7 @@ static int check_and_subscribe_port(struct snd_seq_client *client,
 }
 
 
+<<<<<<< HEAD
 =======
 	err = subscribe_port(client, port, grp, &subs->info, ack);
 	if (err < 0) {
@@ -732,6 +772,8 @@ int snd_seq_port_connect(struct snd_seq_client *connector,
 }
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 /* remove the connection */
 int snd_seq_port_disconnect(struct snd_seq_client *connector,
 			    struct snd_seq_client *src_client,
@@ -742,6 +784,9 @@ int snd_seq_port_disconnect(struct snd_seq_client *connector,
 {
 	struct snd_seq_port_subs_info *src = &src_port->c_src;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	struct snd_seq_port_subs_info *dest = &dest_port->c_dest;
 	struct snd_seq_subscribers *subs;
 	int err = -ENOENT;
@@ -765,6 +810,7 @@ int snd_seq_port_disconnect(struct snd_seq_client *connector,
 			unsubscribe_port(dest_client, dest_port, dest, info,
 					 connector->number != dest_client->number);
 			kfree(subs);
+<<<<<<< HEAD
 =======
 	struct snd_seq_subscribers *subs;
 	int err = -ENOENT;
@@ -775,15 +821,21 @@ int snd_seq_port_disconnect(struct snd_seq_client *connector,
 		if (match_subs_info(info, &subs->info)) {
 			atomic_dec(&subs->ref_count); /* mark as not ready */
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 			err = 0;
 			break;
 		}
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 
 	up_write(&dest->list_mutex);
 	up_write(&src->list_mutex);
 	return err;
+<<<<<<< HEAD
 =======
 	up_write(&src->list_mutex);
 	if (err < 0)
@@ -796,6 +848,8 @@ int snd_seq_port_disconnect(struct snd_seq_client *connector,
 	kfree(subs);
 	return 0;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 }
 
 

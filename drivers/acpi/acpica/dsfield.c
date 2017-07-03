@@ -361,9 +361,12 @@ acpi_ds_get_field_names(struct acpi_create_field_info *info,
 			info->resource_buffer = NULL;
 			info->connection_node = NULL;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 			info->pin_number_index = 0;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 			/*
 			 * A Connection() is either an actual resource descriptor (buffer)
@@ -442,9 +445,12 @@ acpi_ds_get_field_names(struct acpi_create_field_info *info,
 
 			info->field_bit_position += info->field_bit_length;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 			info->pin_number_index++;	/* Index relative to previous Connection() */
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 			break;
 
 		default:

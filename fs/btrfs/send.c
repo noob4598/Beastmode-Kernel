@@ -1339,6 +1339,7 @@ static int read_symlink(struct send_ctx *sctx,
 	if (ret < 0)
 		goto out;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	BUG_ON(ret);
 =======
 	if (ret) {
@@ -1357,6 +1358,9 @@ static int read_symlink(struct send_ctx *sctx,
 		goto out;
 	}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	BUG_ON(ret);
+>>>>>>> 2617302... source
 
 	ei = btrfs_item_ptr(path->nodes[0], path->slots[0],
 			struct btrfs_file_extent_item);
@@ -1569,12 +1573,15 @@ static int lookup_dir_item_inode(struct btrfs_root *root,
 	}
 	btrfs_dir_item_key_to_cpu(path->nodes[0], di, &key);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (key.type == BTRFS_ROOT_ITEM_KEY) {
 		ret = -ENOENT;
 		goto out;
 	}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	*found_inode = key.objectid;
 	*found_type = btrfs_dir_type(path->nodes[0], di);
 

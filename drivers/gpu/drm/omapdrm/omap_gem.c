@@ -807,10 +807,14 @@ int omap_gem_get_paddr(struct drm_gem_object *obj,
 			omap_obj->block = block;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 			DBG("got paddr: %08x", omap_obj->paddr);
 =======
 			DBG("got paddr: %pad", &omap_obj->paddr);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			DBG("got paddr: %08x", omap_obj->paddr);
+>>>>>>> 2617302... source
 		}
 
 		omap_obj->paddr_cnt++;
@@ -1009,6 +1013,7 @@ void omap_gem_describe(struct drm_gem_object *obj, struct seq_file *m)
 		off = (uint64_t)obj->map_list.hash.key;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	seq_printf(m, "%08x: %2d (%2d) %08llx %08Zx (%2d) %p %4d",
 			omap_obj->flags, obj->name, obj->refcount.refcount.counter,
 			off, omap_obj->paddr, omap_obj->paddr_cnt,
@@ -1017,6 +1022,11 @@ void omap_gem_describe(struct drm_gem_object *obj, struct seq_file *m)
 			omap_obj->flags, obj->name, obj->refcount.refcount.counter,
 			off, &omap_obj->paddr, omap_obj->paddr_cnt,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	seq_printf(m, "%08x: %2d (%2d) %08llx %08Zx (%2d) %p %4d",
+			omap_obj->flags, obj->name, obj->refcount.refcount.counter,
+			off, omap_obj->paddr, omap_obj->paddr_cnt,
+>>>>>>> 2617302... source
 			omap_obj->vaddr, omap_obj->roll);
 
 	if (omap_obj->flags & OMAP_BO_TILED) {
@@ -1500,12 +1510,17 @@ void omap_gem_init(struct drm_device *dev)
 			entry->block = block;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 			DBG("%d:%d: %dx%d: paddr=%08x stride=%d", i, j, w, h,
 					entry->paddr,
 =======
 			DBG("%d:%d: %dx%d: paddr=%pad stride=%d", i, j, w, h,
 					&entry->paddr,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			DBG("%d:%d: %dx%d: paddr=%08x stride=%d", i, j, w, h,
+					entry->paddr,
+>>>>>>> 2617302... source
 					usergart[i].stride_pfn << PAGE_SHIFT);
 		}
 	}

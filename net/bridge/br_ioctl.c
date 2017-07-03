@@ -22,29 +22,40 @@
 #include "br_private.h"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* called with RTNL */
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+/* called with RTNL */
+>>>>>>> 2617302... source
 static int get_bridge_ifindices(struct net *net, int *indices, int num)
 {
 	struct net_device *dev;
 	int i = 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	for_each_netdev(net, dev) {
 =======
 	rcu_read_lock();
 	for_each_netdev_rcu(net, dev) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	for_each_netdev(net, dev) {
+>>>>>>> 2617302... source
 		if (i >= num)
 			break;
 		if (dev->priv_flags & IFF_EBRIDGE)
 			indices[i++] = dev->ifindex;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	rcu_read_unlock();
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	return i;
 }
@@ -260,12 +271,18 @@ static int old_dev_ioctl(struct net_device *dev, struct ifreq *rq, int cmd)
 			return -EPERM;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		spin_lock_bh(&br->lock);
 		br_stp_set_bridge_priority(br, args[1]);
 		spin_unlock_bh(&br->lock);
 =======
 		br_stp_set_bridge_priority(br, args[1]);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		spin_lock_bh(&br->lock);
+		br_stp_set_bridge_priority(br, args[1]);
+		spin_unlock_bh(&br->lock);
+>>>>>>> 2617302... source
 		return 0;
 
 	case BRCTL_SET_PORT_PRIORITY:

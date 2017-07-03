@@ -309,12 +309,16 @@ static void	usa26_indat_callback(struct urb *urb)
 			/* no errors on individual bytes, only
 			   possible overrun err */
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 			if (data[0] & RXERROR_OVERRUN)
 				err = TTY_OVERRUN;
 			else
 				err = 0;
 			for (i = 1; i < urb->actual_length ; ++i)
 				tty_insert_flip_char(&port->port, data[i], err);
+<<<<<<< HEAD
 =======
 			if (data[0] & RXERROR_OVERRUN) {
 				tty_insert_flip_char(&port->port, 0,
@@ -324,11 +328,16 @@ static void	usa26_indat_callback(struct urb *urb)
 				tty_insert_flip_char(&port->port, data[i],
 								TTY_NORMAL);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		} else {
 			/* some bytes had errors, every byte has status */
 			dev_dbg(&port->dev, "%s - RX error!!!!\n", __func__);
 			for (i = 0; i + 1 < urb->actual_length; i += 2) {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 				int stat = data[i], flag = 0;
 				if (stat & RXERROR_OVERRUN)
 					flag |= TTY_OVERRUN;
@@ -337,6 +346,7 @@ static void	usa26_indat_callback(struct urb *urb)
 				if (stat & RXERROR_PARITY)
 					flag |= TTY_PARITY;
 				/* XXX should handle break (0x10) */
+<<<<<<< HEAD
 =======
 				int stat = data[i];
 				int flag = TTY_NORMAL;
@@ -352,6 +362,8 @@ static void	usa26_indat_callback(struct urb *urb)
 					flag = TTY_FRAME;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 				tty_insert_flip_char(&port->port, data[i+1],
 						flag);
 			}
@@ -439,10 +451,13 @@ static void	usa26_instat_callback(struct urb *urb)
 	port = serial->port[msg->port];
 	p_priv = usb_get_serial_port_data(port);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (!p_priv)
 		goto resubmit;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	/* Update handshaking pin state information */
 	old_dcd_state = p_priv->dcd_state;
@@ -454,10 +469,14 @@ static void	usa26_instat_callback(struct urb *urb)
 	if (old_dcd_state != p_priv->dcd_state)
 		tty_port_tty_hangup(&port->port, true);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 resubmit:
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+
+>>>>>>> 2617302... source
 	/* Resubmit urb so we continue receiving */
 	err = usb_submit_urb(urb, GFP_ATOMIC);
 	if (err != 0)
@@ -573,10 +592,13 @@ static void	usa28_instat_callback(struct urb *urb)
 	port = serial->port[msg->port];
 	p_priv = usb_get_serial_port_data(port);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (!p_priv)
 		goto resubmit;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	/* Update handshaking pin state information */
 	old_dcd_state = p_priv->dcd_state;
@@ -588,10 +610,14 @@ static void	usa28_instat_callback(struct urb *urb)
 	if (old_dcd_state != p_priv->dcd_state && old_dcd_state)
 		tty_port_tty_hangup(&port->port, true);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 resubmit:
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+
+>>>>>>> 2617302... source
 		/* Resubmit urb so we continue receiving */
 	err = usb_submit_urb(urb, GFP_ATOMIC);
 	if (err != 0)
@@ -669,10 +695,13 @@ static void	usa49_instat_callback(struct urb *urb)
 	port = serial->port[msg->portNumber];
 	p_priv = usb_get_serial_port_data(port);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (!p_priv)
 		goto resubmit;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	/* Update handshaking pin state information */
 	old_dcd_state = p_priv->dcd_state;
@@ -684,10 +713,14 @@ static void	usa49_instat_callback(struct urb *urb)
 	if (old_dcd_state != p_priv->dcd_state && old_dcd_state)
 		tty_port_tty_hangup(&port->port, true);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 resubmit:
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+
+>>>>>>> 2617302... source
 	/* Resubmit urb so we continue receiving */
 	err = usb_submit_urb(urb, GFP_ATOMIC);
 	if (err != 0)
@@ -726,6 +759,9 @@ static void	usa49_indat_callback(struct urb *urb)
 			/* some bytes had errors, every byte has status */
 			for (i = 0; i + 1 < urb->actual_length; i += 2) {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 				int stat = data[i], flag = 0;
 				if (stat & RXERROR_OVERRUN)
 					flag |= TTY_OVERRUN;
@@ -734,6 +770,7 @@ static void	usa49_indat_callback(struct urb *urb)
 				if (stat & RXERROR_PARITY)
 					flag |= TTY_PARITY;
 				/* XXX should handle break (0x10) */
+<<<<<<< HEAD
 =======
 				int stat = data[i];
 				int flag = TTY_NORMAL;
@@ -749,6 +786,8 @@ static void	usa49_indat_callback(struct urb *urb)
 					flag = TTY_FRAME;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 				tty_insert_flip_char(&port->port, data[i+1],
 						flag);
 			}
@@ -806,6 +845,9 @@ static void usa49wg_indat_callback(struct urb *urb)
 			for (x = 0; x + 1 < len &&
 				    i + 1 < urb->actual_length; x += 2) {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 				int stat = data[i], flag = 0;
 
 				if (stat & RXERROR_OVERRUN)
@@ -815,6 +857,7 @@ static void usa49wg_indat_callback(struct urb *urb)
 				if (stat & RXERROR_PARITY)
 					flag |= TTY_PARITY;
 				/* XXX should handle break (0x10) */
+<<<<<<< HEAD
 =======
 				int stat = data[i];
 				int flag = TTY_NORMAL;
@@ -830,6 +873,8 @@ static void usa49wg_indat_callback(struct urb *urb)
 					flag = TTY_FRAME;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 				tty_insert_flip_char(&port->port, data[i+1],
 						     flag);
 				i += 2;
@@ -882,6 +927,9 @@ static void usa90_indat_callback(struct urb *urb)
 				/* no errors on individual bytes, only
 				   possible overrun err*/
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 				if (data[0] & RXERROR_OVERRUN)
 					err = TTY_OVERRUN;
 				else
@@ -889,6 +937,7 @@ static void usa90_indat_callback(struct urb *urb)
 				for (i = 1; i < urb->actual_length ; ++i)
 					tty_insert_flip_char(&port->port,
 							data[i], err);
+<<<<<<< HEAD
 =======
 				if (data[0] & RXERROR_OVERRUN) {
 					tty_insert_flip_char(&port->port, 0,
@@ -898,11 +947,16 @@ static void usa90_indat_callback(struct urb *urb)
 					tty_insert_flip_char(&port->port,
 							data[i], TTY_NORMAL);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 			}  else {
 			/* some bytes had errors, every byte has status */
 				dev_dbg(&port->dev, "%s - RX error!!!!\n", __func__);
 				for (i = 0; i + 1 < urb->actual_length; i += 2) {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 					int stat = data[i], flag = 0;
 					if (stat & RXERROR_OVERRUN)
 						flag |= TTY_OVERRUN;
@@ -911,6 +965,7 @@ static void usa90_indat_callback(struct urb *urb)
 					if (stat & RXERROR_PARITY)
 						flag |= TTY_PARITY;
 					/* XXX should handle break (0x10) */
+<<<<<<< HEAD
 =======
 					int stat = data[i];
 					int flag = TTY_NORMAL;
@@ -927,6 +982,8 @@ static void usa90_indat_callback(struct urb *urb)
 						flag = TTY_FRAME;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 					tty_insert_flip_char(&port->port,
 							data[i+1], flag);
 				}
@@ -970,10 +1027,13 @@ static void	usa90_instat_callback(struct urb *urb)
 	port = serial->port[0];
 	p_priv = usb_get_serial_port_data(port);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (!p_priv)
 		goto resubmit;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	/* Update handshaking pin state information */
 	old_dcd_state = p_priv->dcd_state;
@@ -985,10 +1045,14 @@ static void	usa90_instat_callback(struct urb *urb)
 	if (old_dcd_state != p_priv->dcd_state && old_dcd_state)
 		tty_port_tty_hangup(&port->port, true);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 resubmit:
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+
+>>>>>>> 2617302... source
 	/* Resubmit urb so we continue receiving */
 	err = usb_submit_urb(urb, GFP_ATOMIC);
 	if (err != 0)
@@ -1050,10 +1114,13 @@ static void	usa67_instat_callback(struct urb *urb)
 	port = serial->port[msg->port];
 	p_priv = usb_get_serial_port_data(port);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (!p_priv)
 		goto resubmit;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	/* Update handshaking pin state information */
 	old_dcd_state = p_priv->dcd_state;
@@ -1063,10 +1130,14 @@ static void	usa67_instat_callback(struct urb *urb)
 	if (old_dcd_state != p_priv->dcd_state && old_dcd_state)
 		tty_port_tty_hangup(&port->port, true);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 resubmit:
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+
+>>>>>>> 2617302... source
 	/* Resubmit urb so we continue receiving */
 	err = usb_submit_urb(urb, GFP_ATOMIC);
 	if (err != 0)
@@ -2492,12 +2563,15 @@ static void keyspan_release(struct usb_serial *serial)
 	s_priv = usb_get_serial_data(serial);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/* Make sure to unlink the URBs submitted in attach. */
 	usb_kill_urb(s_priv->instat_urb);
 	usb_kill_urb(s_priv->indat_urb);
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	usb_free_urb(s_priv->instat_urb);
 	usb_free_urb(s_priv->indat_urb);
 	usb_free_urb(s_priv->glocont_urb);

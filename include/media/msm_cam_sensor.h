@@ -12,11 +12,15 @@
 
 #define I2C_SEQ_REG_SETTING_MAX   5
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define I2C_SEQ_REG_DATA_MAX      20
 =======
 #define I2C_SEQ_REG_DATA_MAX      20	/* Do NOT raise, or SEGV! */
 #define I2C_REG_DATA_MAX          (8*1024)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+#define I2C_SEQ_REG_DATA_MAX      20
+>>>>>>> 2617302... source
 #define MAX_CID                   16
 
 #define MSM_SENSOR_MCLK_8HZ   8000000
@@ -608,10 +612,14 @@ struct msm_eeprom_cfg_data {
 	uint16_t is_supported;
 	union {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		char eeprom_name[MAX_SENSOR_NAME];
 =======
 		char eeprom_name[MAX_EEPROM_NAME];
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		char eeprom_name[MAX_SENSOR_NAME];
+>>>>>>> 2617302... source
 		struct eeprom_get_t get_data;
 		struct eeprom_read_t read_data;
 		struct eeprom_write_t write_data;

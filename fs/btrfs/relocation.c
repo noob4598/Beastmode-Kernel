@@ -968,6 +968,7 @@ again:
 					list_add_tail(&edge->list[UPPER],
 						      &list);
 <<<<<<< HEAD
+<<<<<<< HEAD
 				} else
 					INIT_LIST_HEAD(&edge->list[UPPER]);
 =======
@@ -977,6 +978,10 @@ again:
 					INIT_LIST_HEAD(&edge->list[UPPER]);
 				}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+				} else
+					INIT_LIST_HEAD(&edge->list[UPPER]);
+>>>>>>> 2617302... source
 			} else {
 				upper = rb_entry(rb_node, struct backref_node,
 						 rb_node);

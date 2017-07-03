@@ -145,10 +145,13 @@ EXPORT_PER_CPU_SYMBOL_GPL(gdt_page);
 static int __init x86_xsave_setup(char *s)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (strlen(s))
 		return 0;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	setup_clear_cpu_cap(X86_FEATURE_XSAVE);
 	setup_clear_cpu_cap(X86_FEATURE_XSAVEOPT);
 	setup_clear_cpu_cap(X86_FEATURE_AVX);
@@ -284,15 +287,21 @@ __setup("nosmap", setup_disable_smap);
 static __always_inline void setup_smap(struct cpuinfo_x86 *c)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	unsigned long eflags;
 
 	/* This should have been cleared long ago */
 	raw_local_save_flags(eflags);
+<<<<<<< HEAD
 =======
 	unsigned long eflags = native_save_fl();
 
 	/* This should have been cleared long ago */
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	BUG_ON(eflags & X86_EFLAGS_AC);
 
 	if (cpu_has(c, X86_FEATURE_SMAP)) {
@@ -1077,10 +1086,14 @@ static __init int setup_disablecpuid(char *arg)
 	int bit;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (get_option(&arg, &bit) && bit < NCAPINTS*32)
 =======
 	if (get_option(&arg, &bit) && bit >= 0 && bit < NCAPINTS * 32)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (get_option(&arg, &bit) && bit < NCAPINTS*32)
+>>>>>>> 2617302... source
 		setup_clear_cpu_cap(bit);
 	else
 		return 0;
@@ -1150,10 +1163,14 @@ void syscall_init(void)
 	wrmsrl(MSR_SYSCALL_MASK,
 	       X86_EFLAGS_TF|X86_EFLAGS_DF|X86_EFLAGS_IF|
 <<<<<<< HEAD
+<<<<<<< HEAD
 	       X86_EFLAGS_IOPL|X86_EFLAGS_AC);
 =======
 	       X86_EFLAGS_IOPL|X86_EFLAGS_AC|X86_EFLAGS_NT);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	       X86_EFLAGS_IOPL|X86_EFLAGS_AC);
+>>>>>>> 2617302... source
 }
 
 /*

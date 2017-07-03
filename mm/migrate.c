@@ -31,9 +31,12 @@
 #include <linux/vmalloc.h>
 #include <linux/security.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <linux/backing-dev.h>
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 #include <linux/memcontrol.h>
 #include <linux/syscalls.h>
 #include <linux/hugetlb.h>
@@ -313,10 +316,14 @@ static inline bool buffer_migrate_lock_buffers(struct buffer_head *head,
  * 3 for pages with a mapping and PagePrivate/PagePrivate2 set.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 static int migrate_page_move_mapping(struct address_space *mapping,
 		struct page *newpage, struct page *page,
 		struct buffer_head *head, enum migrate_mode mode)
 {
+<<<<<<< HEAD
 =======
 int migrate_page_move_mapping(struct address_space *mapping,
 		struct page *newpage, struct page *page,
@@ -325,6 +332,8 @@ int migrate_page_move_mapping(struct address_space *mapping,
 	struct zone *oldzone, *newzone;
 	int dirty;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	int expected_count = 0;
 	void **pslot;
 
@@ -336,11 +345,14 @@ int migrate_page_move_mapping(struct address_space *mapping,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	oldzone = page_zone(page);
 	newzone = page_zone(newpage);
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	spin_lock_irq(&mapping->tree_lock);
 
 	pslot = radix_tree_lookup_slot(&mapping->page_tree,
@@ -382,6 +394,7 @@ int migrate_page_move_mapping(struct address_space *mapping,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/* Move dirty while page refs frozen and newpage not yet exposed */
 	dirty = PageDirty(page);
@@ -391,6 +404,8 @@ int migrate_page_move_mapping(struct address_space *mapping,
 	}
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	radix_tree_replace_slot(pslot, newpage);
 
 	/*
@@ -401,11 +416,14 @@ int migrate_page_move_mapping(struct address_space *mapping,
 	page_unfreeze_refs(page, expected_count - 1);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	spin_unlock(&mapping->tree_lock);
 	/* Leave irq disabled to prevent preemption while updating stats */
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	/*
 	 * If moved to a different zone then also account
 	 * the page for that zone. Other VM counters will be
@@ -417,6 +435,9 @@ int migrate_page_move_mapping(struct address_space *mapping,
 	 * are mapped to swap space.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	__dec_zone_page_state(page, NR_FILE_PAGES);
 	__inc_zone_page_state(newpage, NR_FILE_PAGES);
 	if (!PageSwapCache(page) && PageSwapBacked(page)) {
@@ -427,6 +448,7 @@ int migrate_page_move_mapping(struct address_space *mapping,
 
 	return MIGRATEPAGE_SUCCESS;
 }
+<<<<<<< HEAD
 =======
 	if (newzone != oldzone) {
 		__dec_zone_state(oldzone, NR_FILE_PAGES);
@@ -446,6 +468,8 @@ int migrate_page_move_mapping(struct address_space *mapping,
 }
 EXPORT_SYMBOL(migrate_page_move_mapping);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 /*
  * The expected number of remaining references is the same as that
@@ -517,6 +541,9 @@ void migrate_page_copy(struct page *newpage, struct page *page)
 		SetPageMappedToDisk(newpage);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	if (PageDirty(page)) {
 		clear_page_dirty_for_io(page);
 		/*
@@ -531,11 +558,14 @@ void migrate_page_copy(struct page *newpage, struct page *page)
 		else
 			__set_page_dirty_nobuffers(newpage);
  	}
+<<<<<<< HEAD
 =======
 	/* Move dirty on pages not done by migrate_page_move_mapping() */
 	if (PageDirty(page))
 		SetPageDirty(newpage);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	mlock_migrate_page(newpage, page);
 	ksm_migrate_page(newpage, page);
@@ -555,9 +585,12 @@ void migrate_page_copy(struct page *newpage, struct page *page)
 		end_page_writeback(newpage);
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 EXPORT_SYMBOL(migrate_page_copy);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 /************************************************************
  *                    Migration functions

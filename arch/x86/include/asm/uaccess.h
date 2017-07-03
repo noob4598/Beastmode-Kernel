@@ -382,10 +382,14 @@ do {									\
 		     "2:\n"						\
 		     _ASM_EXTABLE_EX(1b, 2b)				\
 <<<<<<< HEAD
+<<<<<<< HEAD
 		     : ltype(x) : "m" (__m(addr)))
 =======
 		     : ltype(x) : "m" (__m(addr)), "0" (0))
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		     : ltype(x) : "m" (__m(addr)))
+>>>>>>> 2617302... source
 
 #define __put_user_nocheck(x, ptr, size)			\
 ({								\

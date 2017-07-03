@@ -909,6 +909,7 @@ int __kprobes kprobe_fault_handler(struct pt_regs *regs, int trapnr)
 		 */
 		regs->ip = (unsigned long)cur->addr;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		regs->flags |= kcb->kprobe_old_flags;
 =======
 		/*
@@ -925,6 +926,9 @@ int __kprobes kprobe_fault_handler(struct pt_regs *regs, int trapnr)
 		regs->flags |= kcb->kprobe_old_flags;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		regs->flags |= kcb->kprobe_old_flags;
+>>>>>>> 2617302... source
 		if (kcb->kprobe_status == KPROBE_REENTER)
 			restore_previous_kprobe(kcb);
 		else
@@ -1034,6 +1038,7 @@ int __kprobes setjmp_pre_handler(struct kprobe *p, struct pt_regs *regs)
 	trace_hardirqs_off();
 	regs->ip = (unsigned long)(jp->entry);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 	/*
@@ -1045,6 +1050,8 @@ int __kprobes setjmp_pre_handler(struct kprobe *p, struct pt_regs *regs)
 	 */
 	pause_graph_tracing();
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	return 1;
 }
 
@@ -1071,6 +1078,9 @@ int __kprobes longjmp_break_handler(struct kprobe *p, struct pt_regs *regs)
 	u8 *addr = (u8 *) (regs->ip - 1);
 	struct jprobe *jp = container_of(p, struct jprobe, kp);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 
 	if ((addr > (u8 *) jprobe_return) &&
 	    (addr < (u8 *) jprobe_return_end)) {
@@ -1079,6 +1089,7 @@ int __kprobes longjmp_break_handler(struct kprobe *p, struct pt_regs *regs)
 			printk(KERN_ERR
 			       "current sp %p does not match saved sp %p\n",
 			       stack_addr(regs), kcb->jprobe_saved_sp);
+<<<<<<< HEAD
 =======
 	void *saved_sp = kcb->jprobe_saved_sp;
 
@@ -1090,6 +1101,8 @@ int __kprobes longjmp_break_handler(struct kprobe *p, struct pt_regs *regs)
 			       "current sp %p does not match saved sp %p\n",
 			       stack_addr(regs), saved_sp);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 			printk(KERN_ERR "Saved registers for jprobe %p\n", jp);
 			show_regs(saved_regs);
 			printk(KERN_ERR "Current registers\n");
@@ -1097,16 +1110,22 @@ int __kprobes longjmp_break_handler(struct kprobe *p, struct pt_regs *regs)
 			BUG();
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		*regs = kcb->jprobe_saved_regs;
 		memcpy((kprobe_opcode_t *)(kcb->jprobe_saved_sp),
 		       kcb->jprobes_stack,
 		       MIN_STACK_SIZE(kcb->jprobe_saved_sp));
+<<<<<<< HEAD
 =======
 		/* It's OK to start function graph tracing again */
 		unpause_graph_tracing();
 		*regs = kcb->jprobe_saved_regs;
 		memcpy(saved_sp, kcb->jprobes_stack, MIN_STACK_SIZE(saved_sp));
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		preempt_enable_no_resched();
 		return 1;
 	}

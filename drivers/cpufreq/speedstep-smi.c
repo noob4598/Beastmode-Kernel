@@ -189,9 +189,12 @@ static void speedstep_set_state(unsigned int state)
 
 	/* Disable IRQs */
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	preempt_disable();
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	local_irq_save(flags);
 
 	command = (smi_sig & 0xffffff00) | (smi_cmd & 0xff);
@@ -202,6 +205,7 @@ static void speedstep_set_state(unsigned int state)
 
 	do {
 		if (retry) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 			pr_debug("retry %u, previous result %u, waiting...\n",
 					retry, result);
@@ -221,6 +225,11 @@ static void speedstep_set_state(unsigned int state)
 			mdelay(retry * 50);
 			local_irq_disable();
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			pr_debug("retry %u, previous result %u, waiting...\n",
+					retry, result);
+			mdelay(retry * 50);
+>>>>>>> 2617302... source
 		}
 		retry++;
 		__asm__ __volatile__(
@@ -238,9 +247,12 @@ static void speedstep_set_state(unsigned int state)
 	/* enable IRQs */
 	local_irq_restore(flags);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	preempt_enable();
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	if (new_state == state)
 		pr_debug("change to %u MHz succeeded after %u tries "

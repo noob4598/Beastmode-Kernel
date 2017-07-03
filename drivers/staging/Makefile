@@ -31,10 +31,15 @@ obj-$(CONFIG_VME_BUS)		+= vme/
 obj-$(CONFIG_DX_SEP)            += sep/
 obj-$(CONFIG_IIO)		+= iio/
 <<<<<<< HEAD
+<<<<<<< HEAD
 obj-$(CONFIG_ZRAM)		+= zram/
 obj-$(CONFIG_ZSMALLOC)		+= zsmalloc/
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+obj-$(CONFIG_ZRAM)		+= zram/
+obj-$(CONFIG_ZSMALLOC)		+= zsmalloc/
+>>>>>>> 2617302... source
 obj-$(CONFIG_WLAGS49_H2)	+= wlags49_h2/
 obj-$(CONFIG_WLAGS49_H25)	+= wlags49_h25/
 obj-$(CONFIG_FB_SM7XX)		+= sm7xxfb/
@@ -66,6 +71,9 @@ obj-$(CONFIG_GOLDFISH)		+= goldfish/
 obj-$(CONFIG_USB_DWC2)		+= dwc2/
 obj-$(CONFIG_VNSWAP)		+= vnswap/
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 obj-$(CONFIG_QCA_CLD_WLAN)	+= qcacld-2.0/
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source

@@ -1625,9 +1625,12 @@ again:
 		 */
 		free_extent_state(cached_state);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		cached_state = NULL;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		if (!loops) {
 			unsigned long offset = (*start) & (PAGE_CACHE_SIZE - 1);
 			max_bytes = PAGE_CACHE_SIZE - offset;
@@ -2361,10 +2364,14 @@ int end_extent_writepage(struct page *page, int err, u64 start, u64 end)
 	int uptodate = (err == 0);
 	struct extent_io_tree *tree;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int ret;
 =======
 	int ret = 0;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	int ret;
+>>>>>>> 2617302... source
 
 	tree = &BTRFS_I(page->mapping->host)->io_tree;
 
@@ -2379,10 +2386,13 @@ int end_extent_writepage(struct page *page, int err, u64 start, u64 end)
 		ClearPageUptodate(page);
 		SetPageError(page);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		ret = ret < 0 ? ret : -EIO;
 		mapping_set_error(page->mapping, ret);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	}
 	return 0;
 }
@@ -4091,6 +4101,7 @@ int extent_fiemap(struct inode *inode, struct fiemap_extent_info *fieinfo,
 		ret = fiemap_fill_next_extent(fieinfo, em_start, disko,
 					      em_len, flags);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (ret)
 			goto out_free;
 =======
@@ -4100,6 +4111,10 @@ int extent_fiemap(struct inode *inode, struct fiemap_extent_info *fieinfo,
 			goto out_free;
 		}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		if (ret)
+			goto out_free;
+>>>>>>> 2617302... source
 	}
 out_free:
 	free_extent_map(em);
@@ -4677,6 +4692,7 @@ int read_extent_buffer_pages(struct extent_io_tree *tree,
 		}
 		locked_pages++;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	}
 	/*
@@ -4687,15 +4703,20 @@ int read_extent_buffer_pages(struct extent_io_tree *tree,
 	for (i = start_i; i < num_pages; i++) {
 		page = eb->pages[i];
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		if (!PageUptodate(page)) {
 			num_reads++;
 			all_uptodate = 0;
 		}
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	if (all_uptodate) {
 		if (start_i == 0)
 			set_bit(EXTENT_BUFFER_UPTODATE, &eb->bflags);

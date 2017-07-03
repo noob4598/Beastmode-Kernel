@@ -38,6 +38,9 @@ struct avtab_key {
 #define AVTAB_CHANGE		0x0040
 #define AVTAB_TYPE		(AVTAB_TRANSITION | AVTAB_MEMBER | AVTAB_CHANGE)
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 #define AVTAB_OPNUM_ALLOWED	0x0100
 #define AVTAB_OPNUM_AUDITALLOW	0x0200
 #define AVTAB_OPNUM_DONTAUDIT	0x0400
@@ -51,6 +54,7 @@ struct avtab_key {
 				AVTAB_OPTYPE_AUDITALLOW | \
 				AVTAB_OPTYPE_DONTAUDIT)
 #define AVTAB_OP		(AVTAB_OPNUM | AVTAB_OPTYPE)
+<<<<<<< HEAD
 =======
 /* extended permissions */
 #define AVTAB_XPERMS_ALLOWED	0x0100
@@ -60,11 +64,14 @@ struct avtab_key {
 				AVTAB_XPERMS_AUDITALLOW | \
 				AVTAB_XPERMS_DONTAUDIT)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 #define AVTAB_ENABLED_OLD   0x80000000 /* reserved for used in cond_avtab */
 #define AVTAB_ENABLED		0x8000 /* reserved for used in cond_avtab */
 	u16 specified;	/* what field is specified */
 };
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 struct avtab_operation {
 	u8 type;
@@ -89,16 +96,25 @@ struct avtab_extended_perms {
 	/* 256 bits of permissions */
 	struct extended_perms_data perms;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+struct avtab_operation {
+	u8 type;
+	struct operation_perm op;
+>>>>>>> 2617302... source
 };
 
 struct avtab_datum {
 	union {
 		u32 data; /* access vector or type value */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		struct avtab_operation *ops; /* ioctl operations */
 =======
 		struct avtab_extended_perms *xperms;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		struct avtab_operation *ops; /* ioctl operations */
+>>>>>>> 2617302... source
 	} u;
 };
 

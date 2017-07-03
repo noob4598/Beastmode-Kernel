@@ -69,11 +69,15 @@ static void scatterwalk_pagedone(struct scatter_walk *walk, int out,
 void scatterwalk_done(struct scatter_walk *walk, int out, int more)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!(scatterwalk_pagelen(walk) & (PAGE_SIZE - 1)) || !more)
 =======
 	if (!more || walk->offset >= walk->sg->offset + walk->sg->length ||
 	    !(walk->offset & (PAGE_SIZE - 1)))
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (!(scatterwalk_pagelen(walk) & (PAGE_SIZE - 1)) || !more)
+>>>>>>> 2617302... source
 		scatterwalk_pagedone(walk, out, more);
 }
 EXPORT_SYMBOL_GPL(scatterwalk_done);

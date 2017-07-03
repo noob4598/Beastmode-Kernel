@@ -12,10 +12,15 @@
 #include <linux/hardirq.h>
 #include <linux/irqflags.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/smp.h>
 #include <linux/percpu.h>
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+#include <linux/smp.h>
+#include <linux/percpu.h>
+>>>>>>> 2617302... source
 #include <linux/hrtimer.h>
 #include <linux/kref.h>
 #include <linux/workqueue.h>
@@ -243,6 +248,7 @@ static inline int check_wakeup_irqs(void) { return 0; }
 extern cpumask_var_t irq_default_affinity;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 extern int irq_set_affinity(unsigned int irq, const struct cpumask *cpumask);
 =======
 /* Internal implementation. Use the helpers below */
@@ -280,6 +286,9 @@ irq_force_affinity(unsigned int irq, const struct cpumask *cpumask)
 }
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+extern int irq_set_affinity(unsigned int irq, const struct cpumask *cpumask);
+>>>>>>> 2617302... source
 extern int irq_can_set_affinity(unsigned int irq);
 extern int irq_select_affinity(unsigned int irq);
 
@@ -316,6 +325,7 @@ static inline int irq_set_affinity(unsigned int irq, const struct cpumask *m)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 static inline int irq_force_affinity(unsigned int irq, const struct cpumask *cpumask)
 {
@@ -323,6 +333,8 @@ static inline int irq_force_affinity(unsigned int irq, const struct cpumask *cpu
 }
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 static inline int irq_can_set_affinity(unsigned int irq)
 {
 	return 0;
@@ -500,6 +512,9 @@ extern void raise_softirq_irqoff(unsigned int nr);
 extern void raise_softirq(unsigned int nr);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 /* This is the worklist that queues up per-cpu softirq work.
  *
  * send_remote_sendirq() adds work to these lists, and
@@ -509,8 +524,11 @@ extern void raise_softirq(unsigned int nr);
  */
 DECLARE_PER_CPU(struct list_head [NR_SOFTIRQS], softirq_work_list);
 
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 DECLARE_PER_CPU(struct task_struct *, ksoftirqd);
 
 static inline struct task_struct *this_cpu_ksoftirqd(void)
@@ -519,6 +537,9 @@ static inline struct task_struct *this_cpu_ksoftirqd(void)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 /* Try to send a softirq to a remote cpu.  If this cannot be done, the
  * work will be queued to the local cpu.
  */
@@ -530,8 +551,11 @@ extern void send_remote_softirq(struct call_single_data *cp, int cpu, int softir
 extern void __send_remote_softirq(struct call_single_data *cp, int cpu,
 				  int this_cpu, int softirq);
 
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 /* Tasklets --- multithreaded analogue of BHs.
 
    Main feature differing them of generic softirqs: tasklet

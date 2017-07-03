@@ -397,6 +397,7 @@ static void hidp_idle_timeout(unsigned long arg)
 	struct hidp_session *session = (struct hidp_session *) arg;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/* The HIDP user-space API only contains calls to add and remove
 	 * devices. There is no way to forward events of any kind. Therefore,
@@ -413,6 +414,8 @@ static void hidp_idle_timeout(unsigned long arg)
 	wake_up_interruptible(sk_sleep(session->ctrl_sock->sk));
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	hidp_session_terminate(session);
 }
 

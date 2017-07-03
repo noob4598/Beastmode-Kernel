@@ -36,9 +36,12 @@ enum pstore_type_id {
 	PSTORE_TYPE_CONSOLE	= 2,
 	PSTORE_TYPE_FTRACE	= 3,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	PSTORE_TYPE_ANNOTATE	= 4,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	PSTORE_TYPE_UNKNOWN	= 255
 };
 
@@ -74,9 +77,12 @@ struct pstore_info {
 extern int pstore_register(struct pstore_info *);
 extern bool pstore_cannot_block_path(enum kmsg_dump_reason reason);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 extern int pstore_annotate(const char *buf);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 #else
 static inline int
 pstore_register(struct pstore_info *psi)

@@ -1857,10 +1857,14 @@ static struct rfcomm_session *rfcomm_process_rx(struct rfcomm_session *s)
 	while ((skb = skb_dequeue(&sk->sk_receive_queue))) {
 		skb_orphan(skb);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		if (!skb_linearize(skb))
 			s = rfcomm_recv_frame(s, skb);
 		else
 			kfree_skb(skb);
+<<<<<<< HEAD
 =======
 		if (!skb_linearize(skb)) {
 			s = rfcomm_recv_frame(s, skb);
@@ -1870,6 +1874,8 @@ static struct rfcomm_session *rfcomm_process_rx(struct rfcomm_session *s)
 			kfree_skb(skb);
 		}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	}
 
 	if (s && (sk->sk_state == BT_CLOSED))

@@ -1112,6 +1112,9 @@ static int sgtl5000_set_power_regs(struct snd_soc_codec *codec)
 		ana_pwr |= SGTL5000_VDDC_CHRGPMP_POWERUP;
 	} else if (vddio >= 3100 && vdda >= 3100) {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		/*
 		 * if vddio and vddd > 3.1v,
 		 * charge pump should be clean before set ana_pwr
@@ -1119,9 +1122,12 @@ static int sgtl5000_set_power_regs(struct snd_soc_codec *codec)
 		snd_soc_update_bits(codec, SGTL5000_CHIP_ANA_POWER,
 				SGTL5000_VDDC_CHRGPMP_POWERUP, 0);
 
+<<<<<<< HEAD
 =======
 		ana_pwr &= ~SGTL5000_VDDC_CHRGPMP_POWERUP;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		/* VDDC use VDDIO rail */
 		lreg_ctrl |= SGTL5000_VDDC_ASSN_OVRD;
 		lreg_ctrl |= SGTL5000_VDDC_MAN_ASSN_VDDIO <<
@@ -1247,11 +1253,14 @@ static int sgtl5000_enable_regulators(struct snd_soc_codec *codec)
 	udelay(10);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/* Need 8 clocks before I2C accesses */
 	udelay(1);
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	/* read chip information */
 	reg = snd_soc_read(codec, SGTL5000_CHIP_ID);
 	if (((reg & SGTL5000_PARTID_MASK) >> SGTL5000_PARTID_SHIFT) !=
@@ -1328,11 +1337,16 @@ static int sgtl5000_probe(struct snd_soc_codec *codec)
 	/* enable small pop, introduce 400ms delay in turning off */
 	snd_soc_update_bits(codec, SGTL5000_CHIP_REF_CTRL,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				SGTL5000_SMALL_POP,
 				SGTL5000_SMALL_POP);
 =======
 				SGTL5000_SMALL_POP, 1);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+				SGTL5000_SMALL_POP,
+				SGTL5000_SMALL_POP);
+>>>>>>> 2617302... source
 
 	/* disable short cut detector */
 	snd_soc_write(codec, SGTL5000_CHIP_SHORT_CTRL, 0);

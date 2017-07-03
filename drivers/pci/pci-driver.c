@@ -1268,10 +1268,14 @@ static int pci_uevent(struct device *dev, struct kobj_uevent_env *env)
 		return -ENOMEM;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (add_uevent_var(env, "MODALIAS=pci:v%08Xd%08Xsv%08Xsd%08Xbc%02Xsc%02Xi%02x",
 =======
 	if (add_uevent_var(env, "MODALIAS=pci:v%08Xd%08Xsv%08Xsd%08Xbc%02Xsc%02Xi%02X",
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (add_uevent_var(env, "MODALIAS=pci:v%08Xd%08Xsv%08Xsd%08Xbc%02Xsc%02Xi%02x",
+>>>>>>> 2617302... source
 			   pdev->vendor, pdev->device,
 			   pdev->subsystem_vendor, pdev->subsystem_device,
 			   (u8)(pdev->class >> 16), (u8)(pdev->class >> 8),

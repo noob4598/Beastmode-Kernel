@@ -170,10 +170,14 @@ static ssize_t ili210x_calibrate(struct device *dev,
 	return count;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 static DEVICE_ATTR(calibrate, 0644, NULL, ili210x_calibrate);
 =======
 static DEVICE_ATTR(calibrate, S_IWUSR, NULL, ili210x_calibrate);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+static DEVICE_ATTR(calibrate, 0644, NULL, ili210x_calibrate);
+>>>>>>> 2617302... source
 
 static struct attribute *ili210x_attributes[] = {
 	&dev_attr_calibrate.attr,

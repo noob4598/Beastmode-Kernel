@@ -414,19 +414,27 @@ int sctp_packet_transmit(struct sctp_packet *packet)
 
 	/* Allocate the new skb.  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	nskb = alloc_skb(packet->size + LL_MAX_HEADER, GFP_ATOMIC);
 =======
 	nskb = alloc_skb(packet->size + MAX_HEADER, GFP_ATOMIC);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	nskb = alloc_skb(packet->size + LL_MAX_HEADER, GFP_ATOMIC);
+>>>>>>> 2617302... source
 	if (!nskb)
 		goto nomem;
 
 	/* Make sure the outbound skb has enough header room reserved. */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	skb_reserve(nskb, packet->overhead + LL_MAX_HEADER);
 =======
 	skb_reserve(nskb, packet->overhead + MAX_HEADER);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	skb_reserve(nskb, packet->overhead + LL_MAX_HEADER);
+>>>>>>> 2617302... source
 
 	/* Set the owning socket so that we know where to get the
 	 * destination IP address.
@@ -627,12 +635,16 @@ out:
 no_route:
 	kfree_skb(nskb);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	IP_INC_STATS_BH(sock_net(asoc->base.sk), IPSTATS_MIB_OUTNOROUTES);
 =======
 
 	if (asoc)
 		IP_INC_STATS(sock_net(asoc->base.sk), IPSTATS_MIB_OUTNOROUTES);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	IP_INC_STATS_BH(sock_net(asoc->base.sk), IPSTATS_MIB_OUTNOROUTES);
+>>>>>>> 2617302... source
 
 	/* FIXME: Returning the 'err' will effect all the associations
 	 * associated with a socket, although only one of the paths of the

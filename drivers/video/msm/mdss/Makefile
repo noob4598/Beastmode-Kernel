@@ -20,14 +20,20 @@ obj-$(CONFIG_DEBUG_FS) += mdss_debug.o mdss_debug_xlog.o
 endif
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 ifeq ($(CONFIG_FB_MSM_MDSS_DSI_DBG),y)
 ifeq ($(CONFIG_DEBUG_FS),y)
 obj-$(CONFIG_DEBUG_FS) += xlog.o
 endif
 endif
 
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 ifneq ($(CONFIG_ARCH_MSM8909),y)
 dsi-v2-objs = dsi_v2.o dsi_host_v2.o dsi_io_v2.o
 obj-$(CONFIG_FB_MSM_MDSS_MDP3) += dsi-v2.o
@@ -59,9 +65,13 @@ obj-$(CONFIG_COMPAT) += mdss_compat_utils.o
 
 ifeq ($(CONFIG_FB_MSM_MDSS_SAMSUNG),y)
 <<<<<<< HEAD
+<<<<<<< HEAD
 obj-$(CONFIG_FB_MSM_MDSS_FENCE_DBG) += xlog_fence.o
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+obj-$(CONFIG_FB_MSM_MDSS_FENCE_DBG) += xlog_fence.o
+>>>>>>> 2617302... source
 obj-y += samsung/
 endif
 
@@ -71,7 +81,12 @@ else
 obj-$(CONFIG_FB_MSM_MDSS_DSI_CTRL_STATUS) += mdss_dsi_status.o
 endif
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 obj-$(CONFIG_FB_MSM_MDSS_KCAL_CTRL) += mdss_mdp_kcal_ctrl.o
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+
+obj-$(CONFIG_FB_MSM_MDSS_KCAL_CTRL) += mdss_mdp_kcal_ctrl.o
+>>>>>>> 2617302... source

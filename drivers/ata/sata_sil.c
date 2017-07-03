@@ -632,11 +632,14 @@ static void sil_dev_config(struct ata_device *dev)
 	unsigned char model_num[ATA_ID_PROD_LEN + 1];
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/* This controller doesn't support trim */
 	dev->horkage |= ATA_HORKAGE_NOTRIM;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	ata_id_c_string(dev->id, model_num, ATA_ID_PROD, sizeof(model_num));
 
 	for (n = 0; sil_blacklist[n].product; n++)

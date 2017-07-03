@@ -188,9 +188,12 @@ enum {
 	ATA_LFLAG_NO_LPM	= (1 << 8), /* disable LPM on this link */
 	ATA_LFLAG_RST_ONCE	= (1 << 9), /* limit recovery to one reset */
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	ATA_LFLAG_CHANGED	= (1 << 10), /* LPM state changed on this link */
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	/* struct ata_port flags */
 	ATA_FLAG_SLAVE_POSS	= (1 << 0), /* host supports slave dev */
@@ -294,6 +297,7 @@ enum {
 	ATA_TMOUT_PMP_SRST_WAIT	= 5000,
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/* When the LPM policy is set to ATA_LPM_MAX_POWER, there might
 	 * be a spurious PHY event, so ignore the first PHY event that
@@ -302,6 +306,8 @@ enum {
 	ATA_TMOUT_SPURIOUS_PHY	= 10000,
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	/* ATA bus states */
 	BUS_UNKNOWN		= 0,
 	BUS_DMA			= 1,
@@ -416,9 +422,12 @@ enum {
 	ATA_HORKAGE_NOLPM	= (1 << 20),	/* don't use LPM */
 	ATA_HORKAGE_WD_BROKEN_LPM = (1 << 21),	/* some WDs have broken LPM */
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	ATA_HORKAGE_NOTRIM = (1 << 24),		/* don't use TRIM */
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	 /* DMA mask for user DMA control: User visible values; DO NOT
 	    renumber */
@@ -565,9 +574,12 @@ struct ata_host {
 	void __iomem * const	*iomap;
 	unsigned int		n_ports;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	unsigned int		n_tags;			/* nr of NCQ tags */
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	void			*private_data;
 	struct ata_port_operations *ops;
 	unsigned long		flags;
@@ -679,10 +691,14 @@ struct ata_device {
 		u16		id[ATA_ID_WORDS]; /* IDENTIFY xxx DEVICE data */
 		u32		gscr[SATA_PMP_GSCR_DWORDS]; /* PMP GSCR block */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	};
 =======
 	} ____cacheline_aligned;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	};
+>>>>>>> 2617302... source
 
 	/* DEVSLP Timing Variables from Identify Device Data Log */
 	u8			devslp_timing[ATA_LOG_DEVSLP_SIZE];
@@ -761,10 +777,13 @@ struct ata_link {
 
 	struct ata_device	device[ATA_MAX_DEVICES];
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 	unsigned long		last_lpm_change; /* when last LPM change happened */
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 };
 #define ATA_LINK_CLEAR_BEGIN		offsetof(struct ata_link, active_tag)
 #define ATA_LINK_CLEAR_END		offsetof(struct ata_link, device[0])
@@ -1115,9 +1134,12 @@ extern int ata_do_set_mode(struct ata_link *link, struct ata_device **r_failed_d
 extern void ata_scsi_port_error_handler(struct Scsi_Host *host, struct ata_port *ap);
 extern void ata_scsi_cmd_error_handler(struct Scsi_Host *host, struct ata_port *ap, struct list_head *eh_q);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 extern bool sata_lpm_ignore_phy_events(struct ata_link *link);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 extern int ata_cable_40wire(struct ata_port *ap);
 extern int ata_cable_80wire(struct ata_port *ap);

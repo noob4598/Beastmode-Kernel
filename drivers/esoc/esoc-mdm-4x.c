@@ -137,10 +137,13 @@ static const int required_gpios[] = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 struct mdm_ctrl *g_mdm = NULL;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 static void mdm_debug_gpio_show(struct mdm_ctrl *mdm)
 {
 	struct device *dev = mdm->dev;
@@ -664,6 +667,7 @@ static int mdm_get_status(u32 *status, struct esoc_clink *esoc)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 int mdm_get_modem_status(void)
 {
@@ -678,6 +682,8 @@ int mdm_get_modem_status(void)
 EXPORT_SYMBOL(mdm_get_modem_status);
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 /* Fail if any of the required gpios is absent. */
 static int mdm_dt_parse_gpios(struct mdm_ctrl *mdm)
 {
@@ -903,9 +909,12 @@ static int mdm9x25_setup_hw(struct mdm_ctrl *mdm,
 	mdm->esoc = esoc;
 	mdm->init = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	g_mdm = mdm;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	return 0;
 }
 
@@ -980,9 +989,12 @@ static int mdm9x35_setup_hw(struct mdm_ctrl *mdm,
 	mdm->esoc = esoc;
 	mdm->init = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	g_mdm = mdm;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	return 0;
 }
 

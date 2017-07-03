@@ -162,12 +162,15 @@ void mesh_sta_cleanup(struct sta_info *sta)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/* make sure no readers can access nexthop sta from here on */
 	mesh_path_flush_by_nexthop(sta);
 	synchronize_net();
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	if (changed)
 		ieee80211_mbss_info_change_notify(sdata, changed);
 }
@@ -349,10 +352,14 @@ int mesh_add_vendor_ies(struct ieee80211_sub_if_data *sdata,
 	offset = ieee80211_ie_split_vendor(ifmsh->ie, ifmsh->ie_len, 0);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (offset) {
 =======
 	if (offset < ifmsh->ie_len) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (offset) {
+>>>>>>> 2617302... source
 		len = ifmsh->ie_len - offset;
 		data = ifmsh->ie + offset;
 		if (skb_tailroom(skb) < len)

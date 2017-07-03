@@ -642,11 +642,14 @@ static int tracepoint_module_coming(struct module *mod)
 	int ret = 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (!mod->num_tracepoints)
 		return 0;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	/*
 	 * We skip modules that taint the kernel, especially those with different
 	 * module headers (for forced load), to make sure we don't cause a crash.
@@ -691,11 +694,14 @@ static int tracepoint_module_going(struct module *mod)
 	struct tp_module *pos;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (!mod->num_tracepoints)
 		return 0;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	mutex_lock(&tracepoints_mutex);
 	tracepoint_update_probe_range(mod->tracepoints_ptrs,
 		mod->tracepoints_ptrs + mod->num_tracepoints);

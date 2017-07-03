@@ -49,9 +49,12 @@
 #include <linux/notifier.h>
 #include <net/net_namespace.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <net/sock.h>
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 struct idletimer_tg_attr {
 	struct attribute attr;
@@ -78,9 +81,12 @@ struct idletimer_tg {
 	bool send_nl_msg;
 	bool active;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	uid_t uid;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 };
 
 static LIST_HEAD(idletimer_tg_list);
@@ -121,12 +127,16 @@ static bool check_for_delayed_trigger(struct idletimer_tg *timer,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 static void notify_netlink_uevent(const char *label, struct idletimer_tg *timer)
 {
 	char label_msg[NLMSG_MAX_SIZE];
 	char state_msg[NLMSG_MAX_SIZE];
 	char timestamp_msg[NLMSG_MAX_SIZE];
 	char *envp[] = { label_msg, state_msg, timestamp_msg, NULL };
+<<<<<<< HEAD
 =======
 static void notify_netlink_uevent(const char *iface, struct idletimer_tg *timer)
 {
@@ -136,11 +146,14 @@ static void notify_netlink_uevent(const char *iface, struct idletimer_tg *timer)
 	char uid_msg[NLMSG_MAX_SIZE];
 	char *envp[] = { iface_msg, state_msg, timestamp_msg, uid_msg, NULL };
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	int res;
 	struct timespec ts;
 	uint64_t time_ns;
 	bool state;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	res = snprintf(label_msg, NLMSG_MAX_SIZE, "LABEL=%s",
 		       label);
@@ -148,6 +161,10 @@ static void notify_netlink_uevent(const char *iface, struct idletimer_tg *timer)
 	res = snprintf(iface_msg, NLMSG_MAX_SIZE, "INTERFACE=%s",
 		       iface);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	res = snprintf(label_msg, NLMSG_MAX_SIZE, "LABEL=%s",
+		       label);
+>>>>>>> 2617302... source
 	if (NLMSG_MAX_SIZE <= res) {
 		pr_err("message too long (%d)", res);
 		return;
@@ -164,6 +181,7 @@ static void notify_netlink_uevent(const char *iface, struct idletimer_tg *timer)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (state) {
 		res = snprintf(uid_msg, NLMSG_MAX_SIZE, "UID=%u", timer->uid);
@@ -176,6 +194,8 @@ static void notify_netlink_uevent(const char *iface, struct idletimer_tg *timer)
 	}
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	time_ns = timespec_to_ns(&ts);
 	res = snprintf(timestamp_msg, NLMSG_MAX_SIZE, "TIME_NS=%llu", time_ns);
 	if (NLMSG_MAX_SIZE <= res) {
@@ -184,17 +204,23 @@ static void notify_netlink_uevent(const char *iface, struct idletimer_tg *timer)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	pr_debug("putting nlmsg: <%s> <%s>\n", label_msg, state_msg);
 	kobject_uevent_env(idletimer_tg_kobj, KOBJ_CHANGE, envp);
 	return;
 
 
+<<<<<<< HEAD
 =======
 	pr_debug("putting nlmsg: <%s> <%s> <%s> <%s>\n", iface_msg, state_msg,
 		 timestamp_msg, uid_msg);
 	kobject_uevent_env(idletimer_tg_kobj, KOBJ_CHANGE, envp);
 	return;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 }
 
 static
@@ -342,9 +368,12 @@ static int idletimer_tg_create(struct idletimer_tg_info *info)
 	info->timer->delayed_timer_trigger.tv_nsec = 0;
 	info->timer->work_pending = false;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	info->timer->uid = 0;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	get_monotonic_boottime(&info->timer->last_modified_timer);
 
 	info->timer->pm_nb.notifier_call = idletimer_resume;
@@ -369,11 +398,15 @@ out:
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void reset_timer(const struct idletimer_tg_info *info)
 =======
 static void reset_timer(const struct idletimer_tg_info *info,
 			struct sk_buff *skb)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+static void reset_timer(const struct idletimer_tg_info *info)
+>>>>>>> 2617302... source
 {
 	unsigned long now = jiffies;
 	struct idletimer_tg *timer = info->timer;
@@ -386,6 +419,7 @@ static void reset_timer(const struct idletimer_tg_info *info,
 	if (!timer_prev || time_before(timer->timer.expires, now)) {
 		pr_debug("Starting Checkentry timer (Expired, Jiffies): %lu, %lu\n",
 				timer->timer.expires, now);
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 
@@ -400,6 +434,8 @@ static void reset_timer(const struct idletimer_tg_info *info,
 		}
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		/* checks if there is a pending inactive notification*/
 		if (timer->work_pending)
 			timer->delayed_timer_trigger = timer->last_modified_timer;
@@ -420,22 +456,31 @@ static void reset_timer(const struct idletimer_tg_info *info,
  */
 static unsigned int idletimer_tg_target(struct sk_buff *skb,
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 					 const struct xt_action_param *par)
 {
 	const struct idletimer_tg_info *info = par->targinfo;
 	unsigned long now = jiffies;
 
+<<<<<<< HEAD
 =======
 		const struct xt_action_param *par)
 {
 	const struct idletimer_tg_info *info = par->targinfo;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	pr_debug("resetting timer %s, timeout period %u\n",
 		 info->label, info->timeout);
 
 	BUG_ON(!info->timer);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	info->timer->active = true;
 
 	if (time_before(info->timer->timer.expires, now)) {
@@ -446,10 +491,13 @@ static unsigned int idletimer_tg_target(struct sk_buff *skb,
 
 	/* TODO: Avoid modifying timers on each packet */
 	reset_timer(info);
+<<<<<<< HEAD
 =======
 	/* TODO: Avoid modifying timers on each packet */
 	reset_timer(info, skb);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	return XT_CONTINUE;
 }
 
@@ -458,9 +506,13 @@ static int idletimer_tg_checkentry(const struct xt_tgchk_param *par)
 	struct idletimer_tg_info *info = par->targinfo;
 	int ret;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+
+>>>>>>> 2617302... source
 	pr_debug("checkentry targinfo %s\n", info->label);
 
 	if (info->timeout == 0) {
@@ -481,10 +533,14 @@ static int idletimer_tg_checkentry(const struct xt_tgchk_param *par)
 	if (info->timer) {
 		info->timer->refcnt++;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		reset_timer(info);
 =======
 		reset_timer(info, NULL);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		reset_timer(info);
+>>>>>>> 2617302... source
 		pr_debug("increased refcnt of timer %s to %u\n",
 			 info->label, info->timer->refcnt);
 	} else {
@@ -496,12 +552,18 @@ static int idletimer_tg_checkentry(const struct xt_tgchk_param *par)
 		}
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	mutex_unlock(&list_mutex);
 
 =======
 	mutex_unlock(&list_mutex);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+
+	mutex_unlock(&list_mutex);
+
+>>>>>>> 2617302... source
 	return 0;
 }
 

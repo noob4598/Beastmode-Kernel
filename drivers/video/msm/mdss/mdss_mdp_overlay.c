@@ -687,10 +687,14 @@ int mdss_mdp_overlay_pipe_setup(struct msm_fb_data_type *mfd,
 
 		if (pipe == NULL) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			pr_err("error allocating pipe. flags=0x%x\n",
 =======
 			pr_err_ratelimited("error allocating pipe. flags=0x%x\n",
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			pr_err("error allocating pipe. flags=0x%x\n",
+>>>>>>> 2617302... source
 				req->flags);
 			return -ENODEV;
 		}
@@ -1308,11 +1312,17 @@ static int __overlay_queue_pipes(struct msm_fb_data_type *mfd)
 		if (ctl->play_cnt == 0||ctl->roi_changed) {
 			pipe->params_changed++;
 <<<<<<< HEAD
+<<<<<<< HEAD
 #if defined (CONFIG_FB_MSM_MDSS_DSI_DBG)
 			MDSS_XLOG(__func__,pipe->num, pipe->type, pipe->flags, 0, 0, 0);
 #endif
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+#if defined (CONFIG_FB_MSM_MDSS_DSI_DBG)
+			MDSS_XLOG(__func__,pipe->num, pipe->type, pipe->flags, 0, 0, 0);
+#endif
+>>>>>>> 2617302... source
 		}
 
 		if (pipe->back_buf.num_planes) {
@@ -2912,6 +2922,7 @@ static int __mdss_overlay_src_split_sort(struct msm_fb_data_type *mfd,
 
 	for (i = 0; i < num_ovs; i++) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (ovs[i].dst_rect.x < left_lm_w) {
 			if (left_lm_zo_cnt[ovs[i].z_order] == 2) {
 				pr_err("more than 2 ov @ stage%d on left lm\n",
@@ -2924,6 +2935,11 @@ static int __mdss_overlay_src_split_sort(struct msm_fb_data_type *mfd,
 			if (left_lm_zo_cnt[ovs[i].z_order] == 2) {
 				pr_err("more than 2 ov @ stage%u on left lm\n",
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		if (ovs[i].dst_rect.x < left_lm_w) {
+			if (left_lm_zo_cnt[ovs[i].z_order] == 2) {
+				pr_err("more than 2 ov @ stage%d on left lm\n",
+>>>>>>> 2617302... source
 					ovs[i].z_order);
 				return -EINVAL;
 			}
@@ -2931,10 +2947,14 @@ static int __mdss_overlay_src_split_sort(struct msm_fb_data_type *mfd,
 		} else {
 			if (right_lm_zo_cnt[ovs[i].z_order] == 2) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 				pr_err("more than 2 ov @ stage%d on right lm\n",
 =======
 				pr_err("more than 2 ov @ stage%u on right lm\n",
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+				pr_err("more than 2 ov @ stage%d on right lm\n",
+>>>>>>> 2617302... source
 					ovs[i].z_order);
 				return -EINVAL;
 			}

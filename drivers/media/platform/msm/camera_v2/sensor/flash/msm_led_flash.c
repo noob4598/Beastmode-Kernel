@@ -43,11 +43,14 @@ static long msm_led_flash_subdev_ioctl(struct v4l2_subdev *sd,
 	case VIDIOC_MSM_FLASH_LED_DATA_CFG:
 		return fctrl->func_tbl->flash_led_config(fctrl, argp);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	case MSM_SD_SHUTDOWN:
 		*(int *)argp = MSM_CAMERA_LED_RELEASE;
 		return fctrl->func_tbl->flash_led_config(fctrl, argp);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	default:
 		pr_err("invalid cmd %d\n", cmd);
 		return -ENOIOCTLCMD;

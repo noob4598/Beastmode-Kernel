@@ -109,10 +109,14 @@ static u32 *ipv6_cow_metrics(struct dst_entry *dst, unsigned long old)
 
 	if (!(rt->dst.flags & DST_HOST))
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return NULL;
 =======
 		return dst_cow_metrics_generic(dst, old);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		return NULL;
+>>>>>>> 2617302... source
 
 	peer = rt6_get_peer_create(rt);
 	if (peer) {
@@ -1142,17 +1146,23 @@ static void ip6_rt_update_pmtu(struct dst_entry *dst, struct sock *sk,
 
 		rt6->rt6i_flags |= RTF_MODIFIED;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		if (mtu < IPV6_MIN_MTU) {
 			u32 features = dst_metric(dst, RTAX_FEATURES);
 			mtu = IPV6_MIN_MTU;
 			features |= RTAX_FEATURE_ALLFRAG;
 			dst_metric_set(dst, RTAX_FEATURES, features);
 		}
+<<<<<<< HEAD
 =======
 		if (mtu < IPV6_MIN_MTU)
 			mtu = IPV6_MIN_MTU;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		dst_metric_set(dst, RTAX_MTU, mtu);
 		rt6_update_expires(rt6, net->ipv6.sysctl.ip6_rt_mtu_expires);
 	}
@@ -1243,10 +1253,14 @@ static unsigned int ip6_mtu(const struct dst_entry *dst)
 
 	if (mtu)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return mtu;
 =======
 		goto out;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		return mtu;
+>>>>>>> 2617302... source
 
 	mtu = IPV6_MIN_MTU;
 
@@ -1257,11 +1271,15 @@ static unsigned int ip6_mtu(const struct dst_entry *dst)
 	rcu_read_unlock();
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return mtu;
 =======
 out:
 	return min_t(unsigned int, mtu, IP6_MAX_MTU);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	return mtu;
+>>>>>>> 2617302... source
 }
 
 static struct dst_entry *icmp6_dst_gc_list;
@@ -1352,9 +1370,13 @@ static void icmp6_clean_all(int (*func)(struct rt6_info *rt, void *arg),
 static int ip6_dst_gc(struct dst_ops *ops)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned long now = jiffies;
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	unsigned long now = jiffies;
+>>>>>>> 2617302... source
 	struct net *net = container_of(ops, struct net, ipv6.ip6_dst_ops);
 	int rt_min_interval = net->ipv6.sysctl.ip6_rt_gc_min_interval;
 	int rt_max_size = net->ipv6.sysctl.ip6_rt_max_size;
@@ -1365,20 +1387,29 @@ static int ip6_dst_gc(struct dst_ops *ops)
 
 	entries = dst_entries_get_fast(ops);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (time_after(rt_last_gc + rt_min_interval, now) &&
 =======
 	if (time_after(rt_last_gc + rt_min_interval, jiffies) &&
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (time_after(rt_last_gc + rt_min_interval, now) &&
+>>>>>>> 2617302... source
 	    entries <= rt_max_size)
 		goto out;
 
 	net->ipv6.ip6_rt_gc_expire++;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	fib6_run_gc(net->ipv6.ip6_rt_gc_expire, net);
 	net->ipv6.ip6_rt_last_gc = now;
 =======
 	fib6_run_gc(net->ipv6.ip6_rt_gc_expire, net, entries > rt_max_size);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	fib6_run_gc(net->ipv6.ip6_rt_gc_expire, net);
+	net->ipv6.ip6_rt_last_gc = now;
+>>>>>>> 2617302... source
 	entries = dst_entries_get_slow(ops);
 	if (entries < ops->gc_thresh)
 		net->ipv6.ip6_rt_gc_expire = rt_gc_timeout>>1;
@@ -1707,10 +1738,13 @@ static int ip6_route_del(struct fib6_config *cfg)
 			if (cfg->fc_metric && cfg->fc_metric != rt->rt6i_metric)
 				continue;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 			if (cfg->fc_protocol && cfg->fc_protocol != rt->rt6i_protocol)
 				continue;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 			dst_hold(&rt->dst);
 			read_unlock_bh(&table->tb6_lock);
 
@@ -2563,12 +2597,16 @@ static int rt6_fill_node(struct net *net,
 #ifdef CONFIG_IPV6_MROUTE
 		if (ipv6_addr_is_multicast(&rt->rt6i_dst.addr)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			int err = ip6mr_get_route(net, skb, rtm, nowait);
 =======
 			int err = ip6mr_get_route(net, skb, rtm, nowait,
 						  portid);
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			int err = ip6mr_get_route(net, skb, rtm, nowait);
+>>>>>>> 2617302... source
 			if (err <= 0) {
 				if (!nowait) {
 					if (err == 0)
@@ -2885,10 +2923,14 @@ int ipv6_sysctl_rtcache_flush(ctl_table *ctl, int write,
 	delay = net->ipv6.sysctl.flush_delay;
 	proc_dointvec(ctl, write, buffer, lenp, ppos);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	fib6_run_gc(delay <= 0 ? ~0UL : (unsigned long)delay, net);
 =======
 	fib6_run_gc(delay <= 0 ? 0 : (unsigned long)delay, net, delay > 0);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	fib6_run_gc(delay <= 0 ? ~0UL : (unsigned long)delay, net);
+>>>>>>> 2617302... source
 	return 0;
 }
 

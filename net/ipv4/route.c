@@ -90,9 +90,12 @@
 #include <linux/times.h>
 #include <linux/slab.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <linux/jhash.h>
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 #include <net/dst.h>
 #include <net/net_namespace.h>
 #include <net/protocol.h>
@@ -469,6 +472,9 @@ static struct neighbour *ipv4_neigh_lookup(const struct dst_entry *dst,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 /*
  * Peer allocation may fail only in serious out-of-memory conditions.  However
  * we still can generate some output.
@@ -502,6 +508,7 @@ void __ip_select_ident(struct iphdr *iph, struct dst_entry *dst, int more)
 	}
 
 	ip_select_fb_ident(iph);
+<<<<<<< HEAD
 =======
 #define IP_IDENTS_SZ 2048u
 struct ip_ident_bucket {
@@ -551,6 +558,8 @@ void __ip_select_ident(struct iphdr *iph, int segs)
 	id = ip_idents_reserve(hash, segs);
 	iph->id = htons(id);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 }
 EXPORT_SYMBOL(__ip_select_ident);
 
@@ -754,6 +763,7 @@ static void __ip_do_redirect(struct rtable *rt, struct sk_buff *skb, struct flow
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	n = ipv4_neigh_lookup(&rt->dst, NULL, &new_gw);
 	if (n) {
 =======
@@ -762,6 +772,10 @@ static void __ip_do_redirect(struct rtable *rt, struct sk_buff *skb, struct flow
 		n = neigh_create(&arp_tbl, &new_gw, rt->dst.dev);
 	if (!IS_ERR(n)) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	n = ipv4_neigh_lookup(&rt->dst, NULL, &new_gw);
+	if (n) {
+>>>>>>> 2617302... source
 		if (!(n->nud_state & NUD_VALID)) {
 			neigh_event_send(n, NULL);
 		} else {
@@ -919,12 +933,15 @@ static int ip_error(struct sk_buff *skb)
 	int code;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/* IP on this device is disabled. */
 	if (!in_dev)
 		goto out;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	net = dev_net(rt->dst.dev);
 	if (!IN_DEV_FORWARD(in_dev)) {
 		switch (rt->dst.error) {
@@ -1062,6 +1079,9 @@ void ipv4_sk_update_pmtu(struct sk_buff *skb, struct sock *sk, u32 mtu)
 	struct flowi4 fl4;
 	struct rtable *rt;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	struct dst_entry *dst;
 	bool new = false;
 
@@ -1069,6 +1089,7 @@ void ipv4_sk_update_pmtu(struct sk_buff *skb, struct sock *sk, u32 mtu)
 	rt = (struct rtable *) __sk_dst_get(sk);
 
 	if (sock_owned_by_user(sk) || !rt) {
+<<<<<<< HEAD
 =======
 	struct dst_entry *odst = NULL;
 	bool new = false;
@@ -1078,6 +1099,8 @@ void ipv4_sk_update_pmtu(struct sk_buff *skb, struct sock *sk, u32 mtu)
 
 	if (sock_owned_by_user(sk) || !odst) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		__ipv4_sk_update_pmtu(skb, sk, mtu);
 		goto out;
 	}
@@ -1085,11 +1108,15 @@ void ipv4_sk_update_pmtu(struct sk_buff *skb, struct sock *sk, u32 mtu)
 	__build_flow_key(&fl4, sk, iph, 0, 0, 0, 0, 0);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!__sk_dst_check(sk, 0)) {
 =======
 	rt = (struct rtable *)odst;
 	if (odst->obsolete && odst->ops->check(odst, 0) == NULL) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (!__sk_dst_check(sk, 0)) {
+>>>>>>> 2617302... source
 		rt = ip_route_output_flow(sock_net(sk), &fl4, sk);
 		if (IS_ERR(rt))
 			goto out;
@@ -1100,11 +1127,16 @@ void ipv4_sk_update_pmtu(struct sk_buff *skb, struct sock *sk, u32 mtu)
 	__ip_rt_update_pmtu((struct rtable *) rt->dst.path, &fl4, mtu);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dst = dst_check(&rt->dst, 0);
 	if (!dst) {
 =======
 	if (!dst_check(&rt->dst, 0)) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	dst = dst_check(&rt->dst, 0);
+	if (!dst) {
+>>>>>>> 2617302... source
 		if (new)
 			dst_release(&rt->dst);
 
@@ -1117,10 +1149,14 @@ void ipv4_sk_update_pmtu(struct sk_buff *skb, struct sock *sk, u32 mtu)
 
 	if (new)
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		__sk_dst_set(sk, &rt->dst);
 
 out:
 	bh_unlock_sock(sk);
+<<<<<<< HEAD
 =======
 		sk_dst_set(sk, &rt->dst);
 
@@ -1128,6 +1164,8 @@ out:
 	bh_unlock_sock(sk);
 	dst_release(odst);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 }
 EXPORT_SYMBOL_GPL(ipv4_sk_update_pmtu);
 
@@ -1584,10 +1622,14 @@ static int __mkroute_input(struct sk_buff *skb,
 	unsigned int flags = 0;
 	bool do_cache;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u32 itag;
 =======
 	u32 itag = 0;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	u32 itag;
+>>>>>>> 2617302... source
 
 	/* get a working reference to the output device */
 	out_dev = __in_dev_get_rcu(FIB_RES_DEV(*res));
@@ -1611,10 +1653,14 @@ static int __mkroute_input(struct sk_buff *skb,
 	    (IN_DEV_SHARED_MEDIA(out_dev) ||
 	     inet_addr_onlink(out_dev, saddr, FIB_RES_GW(*res))))
 <<<<<<< HEAD
+<<<<<<< HEAD
         IPCB(skb)->flags |= IPSKB_DOREDIRECT;
 =======
 		IPCB(skb)->flags |= IPSKB_DOREDIRECT;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+        IPCB(skb)->flags |= IPSKB_DOREDIRECT;
+>>>>>>> 2617302... source
 
 	if (skb->protocol != htons(ETH_P_IP)) {
 		/* Not IP (i.e. ARP). Do not create route, if it is
@@ -1883,9 +1929,12 @@ int ip_route_input_noref(struct sk_buff *skb, __be32 daddr, __be32 saddr,
 	int res;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	tos &= IPTOS_RT_MASK;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	rcu_read_lock();
 
 	/* Multicast recognition logic is moved from route cache to here.
@@ -1976,6 +2025,7 @@ static struct rtable *__mkroute_output(const struct fib_result *res,
 		if (fi && res->prefixlen < 4)
 			fi = NULL;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	} else if ((type == RTN_LOCAL) && (orig_oif != 0) &&
 		   (orig_oif != dev_out->ifindex)) {
@@ -1990,6 +2040,8 @@ static struct rtable *__mkroute_output(const struct fib_result *res,
 		 */
 		fi = NULL;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	}
 
 	fnhe = NULL;
@@ -2375,12 +2427,17 @@ static int rt_fill_info(struct net *net,  __be32 dst, __be32 src,
 	if (rt->rt_flags & RTCF_NOTIFY)
 		r->rtm_flags |= RTM_F_NOTIFY;
 <<<<<<< HEAD
+<<<<<<< HEAD
     if (IPCB(skb)->flags & IPSKB_DOREDIRECT)
         r->rtm_flags |= RTCF_DOREDIRECT;
 =======
 	if (IPCB(skb)->flags & IPSKB_DOREDIRECT)
 		r->rtm_flags |= RTCF_DOREDIRECT;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+    if (IPCB(skb)->flags & IPSKB_DOREDIRECT)
+        r->rtm_flags |= RTCF_DOREDIRECT;
+>>>>>>> 2617302... source
 
 	if (nla_put_be32(skb, RTA_DST, dst))
 		goto nla_put_failure;
@@ -2439,11 +2496,15 @@ static int rt_fill_info(struct net *net,  __be32 dst, __be32 src,
 			int err = ipmr_get_route(net, skb,
 						 fl4->saddr, fl4->daddr,
 <<<<<<< HEAD
+<<<<<<< HEAD
 						 r, nowait);
 =======
 						 r, nowait, portid);
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+						 r, nowait);
+>>>>>>> 2617302... source
 			if (err <= 0) {
 				if (!nowait) {
 					if (err == 0)
@@ -2458,10 +2519,14 @@ static int rt_fill_info(struct net *net,  __be32 dst, __be32 src,
 		} else
 #endif
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (nla_put_u32(skb, RTA_IIF, rt->rt_iif))
 =======
 			if (nla_put_u32(skb, RTA_IIF, skb->dev->ifindex))
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			if (nla_put_u32(skb, RTA_IIF, rt->rt_iif))
+>>>>>>> 2617302... source
 				goto nla_put_failure;
 	}
 
@@ -2811,6 +2876,7 @@ int __init ip_rt_init(void)
 	int rc = 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	ip_idents = kmalloc(IP_IDENTS_SZ * sizeof(*ip_idents), GFP_KERNEL);
 	if (!ip_idents)
@@ -2819,6 +2885,8 @@ int __init ip_rt_init(void)
 	prandom_bytes(ip_idents, IP_IDENTS_SZ * sizeof(*ip_idents));
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 #ifdef CONFIG_IP_ROUTE_CLASSID
 	ip_rt_acct = __alloc_percpu(256 * sizeof(struct ip_rt_acct), __alignof__(struct ip_rt_acct));
 	if (!ip_rt_acct)

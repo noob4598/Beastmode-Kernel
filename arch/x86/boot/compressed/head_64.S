@@ -35,6 +35,7 @@
 #include <asm/asm-offsets.h>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 /*
  * Locally defined symbols should be marked hidden:
@@ -45,6 +46,8 @@
 	.hidden _egot
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	__HEAD
 	.code32
 ENTRY(startup_32)

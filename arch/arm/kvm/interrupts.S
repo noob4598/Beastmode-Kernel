@@ -160,6 +160,9 @@ __kvm_vcpu_return:
 	set_hstr vmexit
 	set_hdcr vmexit
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	set_hcptr vmexit, (HCPTR_TTA | HCPTR_TCP(10) | HCPTR_TCP(11))
 
 #ifdef CONFIG_VFPv3
@@ -167,11 +170,14 @@ __kvm_vcpu_return:
 	tst	r2, #(HCPTR_TCP(10) | HCPTR_TCP(11))
 	bne	after_vfp_restore
 
+<<<<<<< HEAD
 =======
 	set_hcptr vmexit, (HCPTR_TTA | HCPTR_TCP(10) | HCPTR_TCP(11)), after_vfp_restore
 
 #ifdef CONFIG_VFPv3
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	@ Switch VFP/NEON hardware state to the host's
 	add	r7, vcpu, #VCPU_VFP_GUEST
 	store_vfp_state r7
@@ -184,10 +190,13 @@ after_vfp_restore:
 	pop	{r2}
 	VFPFMXR FPEXC, r2
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #else
 after_vfp_restore:
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 #endif
 
 	@ Reset Hyp-role
@@ -470,10 +479,14 @@ switch_to_guest_vfp:
 
 	@ NEON/VFP used.  Turn on VFP access.
 <<<<<<< HEAD
+<<<<<<< HEAD
 	set_hcptr vmexit, (HCPTR_TCP(10) | HCPTR_TCP(11))
 =======
 	set_hcptr vmtrap, (HCPTR_TCP(10) | HCPTR_TCP(11))
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	set_hcptr vmexit, (HCPTR_TCP(10) | HCPTR_TCP(11))
+>>>>>>> 2617302... source
 
 	@ Switch VFP/NEON hardware state to the guest's
 	add	r7, r0, #VCPU_VFP_HOST

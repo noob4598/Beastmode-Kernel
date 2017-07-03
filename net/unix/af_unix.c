@@ -315,6 +315,7 @@ found:
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 /* Support code for asymmetrically connected dgram sockets
  *
@@ -429,6 +430,8 @@ static int unix_dgram_peer_wake_me(struct sock *sk, struct sock *other)
 }
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 static inline int unix_writable(struct sock *sk)
 {
 	return (atomic_read(&sk->sk_wmem_alloc) << 2) <= sk->sk_sndbuf;
@@ -534,10 +537,13 @@ static void unix_release_sock(struct sock *sk, int embrion)
 			sk_wake_async(skpair, SOCK_WAKE_WAITD, POLL_HUP);
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 		unix_dgram_peer_wake_disconnect(sk, skpair);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		sock_put(skpair); /* It may now die */
 		unix_peer(sk) = NULL;
 	}
@@ -772,9 +778,12 @@ static struct sock *unix_create1(struct net *net, struct socket *sock)
 	mutex_init(&u->readlock); /* single task reading lock */
 	init_waitqueue_head(&u->peer_wait);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	init_waitqueue_func_entry(&u->peer_wake, unix_dgram_peer_wake_relay);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	unix_insert_socket(unix_sockets_unbound(sk), sk);
 out:
 	if (sk == NULL)
@@ -988,9 +997,12 @@ static int unix_bind(struct socket *sock, struct sockaddr *uaddr, int addr_len)
 	struct unix_address *addr;
 	struct hlist_head *list;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct path path = { NULL, NULL };
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	err = -EINVAL;
 	if (sunaddr->sun_family != AF_UNIX)
@@ -1006,6 +1018,7 @@ static int unix_bind(struct socket *sock, struct sockaddr *uaddr, int addr_len)
 		goto out;
 	addr_len = err;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	err = mutex_lock_interruptible(&u->readlock);
 	if (err)
@@ -1026,6 +1039,11 @@ static int unix_bind(struct socket *sock, struct sockaddr *uaddr, int addr_len)
 	if (err)
 		goto out_put;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	err = mutex_lock_interruptible(&u->readlock);
+	if (err)
+		goto out;
+>>>>>>> 2617302... source
 
 	err = -EINVAL;
 	if (u->addr)
@@ -1043,6 +1061,9 @@ static int unix_bind(struct socket *sock, struct sockaddr *uaddr, int addr_len)
 
 	if (sun_path[0]) {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		struct path path;
 		umode_t mode = S_IFSOCK |
 		       (SOCK_INODE(sock)->i_mode & ~current_umask());
@@ -1053,8 +1074,11 @@ static int unix_bind(struct socket *sock, struct sockaddr *uaddr, int addr_len)
 			unix_release_addr(addr);
 			goto out_up;
 		}
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		addr->hash = UNIX_HASH_SIZE;
 		hash = path.dentry->d_inode->i_ino & (UNIX_HASH_SIZE-1);
 		spin_lock(&unix_table_lock);
@@ -1082,11 +1106,14 @@ out_unlock:
 out_up:
 	mutex_unlock(&u->readlock);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 out_put:
 	if (err)
 		path_put(&path);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 out:
 	return err;
 }
@@ -1173,10 +1200,13 @@ restart:
 		struct sock *old_peer = unix_peer(sk);
 		unix_peer(sk) = other;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		unix_dgram_peer_wake_disconnect_wakeup(sk, old_peer);
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		unix_state_double_unlock(sk, other);
 
 		if (other != old_peer)
@@ -1510,10 +1540,14 @@ static void unix_detach_fds(struct scm_cookie *scm, struct sk_buff *skb)
 
 	for (i = scm->fp->count-1; i >= 0; i--)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		unix_notinflight(scm->fp->fp[i]);
 =======
 		unix_notinflight(scm->fp->user, scm->fp->fp[i]);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		unix_notinflight(scm->fp->fp[i]);
+>>>>>>> 2617302... source
 }
 
 static void unix_destruct_scm(struct sk_buff *skb)
@@ -1530,6 +1564,7 @@ static void unix_destruct_scm(struct sk_buff *skb)
 	sock_wfree(skb);
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 /*
@@ -1548,6 +1583,8 @@ static inline bool too_many_unix_fds(struct task_struct *p)
 }
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 #define MAX_RECURSION_LEVEL 4
 
 static int unix_attach_fds(struct scm_cookie *scm, struct sk_buff *skb)
@@ -1557,11 +1594,14 @@ static int unix_attach_fds(struct scm_cookie *scm, struct sk_buff *skb)
 	int unix_sock_count = 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (too_many_unix_fds(current))
 		return -ETOOMANYREFS;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	for (i = scm->fp->count - 1; i >= 0; i--) {
 		struct sock *sk = unix_get_socket(scm->fp->fp[i]);
 
@@ -1584,14 +1624,20 @@ static int unix_attach_fds(struct scm_cookie *scm, struct sk_buff *skb)
 		return -ENOMEM;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	if (unix_sock_count) {
 		for (i = scm->fp->count - 1; i >= 0; i--)
 			unix_inflight(scm->fp->fp[i]);
 	}
+<<<<<<< HEAD
 =======
 	for (i = scm->fp->count - 1; i >= 0; i--)
 		unix_inflight(scm->fp->user, scm->fp->fp[i]);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	return max_level;
 }
 
@@ -1650,9 +1696,12 @@ static int unix_dgram_sendmsg(struct kiocb *kiocb, struct socket *sock,
 	int max_level;
 	int data_len = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	int sk_locked;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	if (NULL == siocb->scm)
 		siocb->scm = &tmp_scm;
@@ -1730,21 +1779,29 @@ restart:
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unix_state_lock(other);
 =======
 	sk_locked = 0;
 	unix_state_lock(other);
 restart_locked:
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	unix_state_lock(other);
+>>>>>>> 2617302... source
 	err = -EPERM;
 	if (!unix_may_send(sk, other))
 		goto out_unlock;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (sock_flag(other, SOCK_DEAD)) {
 =======
 	if (unlikely(sock_flag(other, SOCK_DEAD))) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (sock_flag(other, SOCK_DEAD)) {
+>>>>>>> 2617302... source
 		/*
 		 *	Check with 1003.1g - what should
 		 *	datagram error
@@ -1753,10 +1810,14 @@ restart_locked:
 		sock_put(other);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		err = 0;
 		unix_state_lock(sk);
 		if (unix_peer(sk) == other) {
 			unix_peer(sk) = NULL;
+<<<<<<< HEAD
 =======
 		if (!sk_locked)
 			unix_state_lock(sk);
@@ -1767,6 +1828,8 @@ restart_locked:
 			unix_dgram_peer_wake_disconnect_wakeup(sk, other);
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 			unix_state_unlock(sk);
 
 			unix_dgram_disconnected(sk, other);
@@ -1793,6 +1856,9 @@ restart_locked:
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	if (unix_peer(other) != sk && unix_recvq_full(other)) {
 		if (!timeo) {
 			err = -EAGAIN;
@@ -1808,6 +1874,7 @@ restart_locked:
 		goto restart;
 	}
 
+<<<<<<< HEAD
 =======
 	/* other == sk && unix_peer(other) != sk if
 	 * - unix_peer(sk) == NULL, destination address bound to sk
@@ -1847,6 +1914,8 @@ restart_locked:
 		unix_state_unlock(sk);
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	if (sock_flag(other, SOCK_RCVTSTAMP))
 		__net_timestamp(skb);
 	maybe_add_creds(skb, sock, other);
@@ -1861,10 +1930,13 @@ restart_locked:
 
 out_unlock:
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (sk_locked)
 		unix_state_unlock(sk);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	unix_state_unlock(other);
 out_free:
 	kfree_skb(skb);
@@ -2162,12 +2234,15 @@ static long unix_stream_data_wait(struct sock *sk, long timeo,
 		timeo = freezable_schedule_timeout(timeo);
 		unix_state_lock(sk);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 		if (sock_flag(sk, SOCK_DEAD))
 			break;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		clear_bit(SOCK_ASYNC_WAITDATA, &sk->sk_socket->flags);
 	}
 
@@ -2214,6 +2289,9 @@ static int unix_stream_recvmsg(struct kiocb *iocb, struct socket *sock,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	err = mutex_lock_interruptible(&u->readlock);
 	if (unlikely(err)) {
 		/* recvmsg() in non blocking mode is supposed to return -EAGAIN
@@ -2222,9 +2300,12 @@ static int unix_stream_recvmsg(struct kiocb *iocb, struct socket *sock,
 		err = noblock ? -EAGAIN : -ERESTARTSYS;
 		goto out;
 	}
+<<<<<<< HEAD
 =======
 	mutex_lock(&u->readlock);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	do {
 		int chunk;
@@ -2232,12 +2313,15 @@ static int unix_stream_recvmsg(struct kiocb *iocb, struct socket *sock,
 
 		unix_state_lock(sk);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		if (sock_flag(sk, SOCK_DEAD)) {
 			err = -ECONNRESET;
 			goto unlock;
 		}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		last = skb = skb_peek(&sk->sk_receive_queue);
 again:
 		if (skb == NULL) {
@@ -2264,19 +2348,27 @@ again:
 			timeo = unix_stream_data_wait(sk, timeo, last);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (signal_pending(current)
 			    ||  mutex_lock_interruptible(&u->readlock)) {
 =======
 			if (signal_pending(current)) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			if (signal_pending(current)
+			    ||  mutex_lock_interruptible(&u->readlock)) {
+>>>>>>> 2617302... source
 				err = sock_intr_errno(timeo);
 				goto out;
 			}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 			mutex_lock(&u->readlock);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 			continue;
  unlock:
 			unix_state_unlock(sk);
@@ -2345,6 +2437,7 @@ again:
 				siocb->scm->fp = scm_fp_dup(UNIXCB(skb).fp);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 			sk_peek_offset_fwd(sk, chunk);
 
 =======
@@ -2363,6 +2456,10 @@ again:
 				goto again;
 			unix_state_unlock(sk);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			sk_peek_offset_fwd(sk, chunk);
+
+>>>>>>> 2617302... source
 			break;
 		}
 	} while (size);
@@ -2547,6 +2644,9 @@ static unsigned int unix_dgram_poll(struct file *file, struct socket *sock,
 
 	writable = unix_writable(sk);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	other = unix_peer_get(sk);
 	if (other) {
 		if (unix_peer(other) != sk) {
@@ -2555,6 +2655,7 @@ static unsigned int unix_dgram_poll(struct file *file, struct socket *sock,
 				writable = 0;
 		}
 		sock_put(other);
+<<<<<<< HEAD
 =======
 	if (writable) {
 		unix_state_lock(sk);
@@ -2567,6 +2668,8 @@ static unsigned int unix_dgram_poll(struct file *file, struct socket *sock,
 
 		unix_state_unlock(sk);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	}
 
 	if (writable)

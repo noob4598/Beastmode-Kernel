@@ -265,6 +265,7 @@ void dasd_alias_disconnect_device_from_lcu(struct dasd_device *device)
 		cancel_work_sync(&lcu->suc_data.worker);
 		spin_lock_irqsave(&lcu->lock, flags);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (device == lcu->suc_data.device)
 			lcu->suc_data.device = NULL;
 =======
@@ -273,6 +274,10 @@ void dasd_alias_disconnect_device_from_lcu(struct dasd_device *device)
 			lcu->suc_data.device = NULL;
 		}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		if (device == lcu->suc_data.device)
+			lcu->suc_data.device = NULL;
+>>>>>>> 2617302... source
 	}
 	was_pending = 0;
 	if (device == lcu->ruac_data.device) {
@@ -280,6 +285,7 @@ void dasd_alias_disconnect_device_from_lcu(struct dasd_device *device)
 		was_pending = 1;
 		cancel_delayed_work_sync(&lcu->ruac_data.dwork);
 		spin_lock_irqsave(&lcu->lock, flags);
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if (device == lcu->ruac_data.device)
 			lcu->ruac_data.device = NULL;
@@ -289,6 +295,10 @@ void dasd_alias_disconnect_device_from_lcu(struct dasd_device *device)
 			lcu->ruac_data.device = NULL;
 		}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		if (device == lcu->ruac_data.device)
+			lcu->ruac_data.device = NULL;
+>>>>>>> 2617302... source
 	}
 	private->lcu = NULL;
 	spin_unlock_irqrestore(&lcu->lock, flags);
@@ -564,6 +574,7 @@ static void lcu_update_work(struct work_struct *work)
 		DBF_DEV_EVENT(DBF_WARNING, device, "could not update"
 			    " alias data in lcu (rc = %d), retry later", rc);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		schedule_delayed_work(&lcu->ruac_data.dwork, 30*HZ);
 	} else {
 =======
@@ -572,6 +583,10 @@ static void lcu_update_work(struct work_struct *work)
 	} else {
 		dasd_put_device(device);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		schedule_delayed_work(&lcu->ruac_data.dwork, 30*HZ);
+	} else {
+>>>>>>> 2617302... source
 		lcu->ruac_data.device = NULL;
 		lcu->flags &= ~UPDATE_PENDING;
 	}
@@ -615,6 +630,7 @@ static int _schedule_lcu_update(struct alias_lcu *lcu,
 	if (!usedev)
 		return -EINVAL;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	lcu->ruac_data.device = usedev;
 	schedule_delayed_work(&lcu->ruac_data.dwork, 0);
 =======
@@ -623,6 +639,10 @@ static int _schedule_lcu_update(struct alias_lcu *lcu,
 	if (!schedule_delayed_work(&lcu->ruac_data.dwork, 0))
 		dasd_put_device(usedev);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	lcu->ruac_data.device = usedev;
+	schedule_delayed_work(&lcu->ruac_data.dwork, 0);
+>>>>>>> 2617302... source
 	return 0;
 }
 
@@ -751,10 +771,14 @@ static int reset_summary_unit_check(struct alias_lcu *lcu,
 	ccw = cqr->cpaddr;
 	ccw->cmd_code = DASD_ECKD_CCW_RSCK;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ccw->flags = 0 ;
 =======
 	ccw->flags = CCW_FLAG_SLI;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	ccw->flags = 0 ;
+>>>>>>> 2617302... source
 	ccw->count = 16;
 	ccw->cda = (__u32)(addr_t) cqr->data;
 	((char *)cqr->data)[0] = reason;
@@ -959,9 +983,12 @@ static void summary_unit_check_handling_work(struct work_struct *work)
 	_schedule_lcu_update(lcu, device);
 	lcu->suc_data.device = NULL;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	dasd_put_device(device);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	spin_unlock_irqrestore(&lcu->lock, flags);
 }
 
@@ -1022,6 +1049,7 @@ void dasd_alias_handle_summary_unit_check(struct dasd_device *device,
 	lcu->suc_data.reason = reason;
 	lcu->suc_data.device = device;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	spin_unlock(&lcu->lock);
 	schedule_work(&lcu->suc_data.worker);
 =======
@@ -1030,4 +1058,8 @@ void dasd_alias_handle_summary_unit_check(struct dasd_device *device,
 	if (!schedule_work(&lcu->suc_data.worker))
 		dasd_put_device(device);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	spin_unlock(&lcu->lock);
+	schedule_work(&lcu->suc_data.worker);
+>>>>>>> 2617302... source
 };

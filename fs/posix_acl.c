@@ -159,6 +159,7 @@ posix_acl_equiv_mode(const struct posix_acl *acl, umode_t *mode_p)
 	int not_equiv = 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/*
 	 * A null ACL can always be presented as mode bits.
@@ -167,6 +168,8 @@ posix_acl_equiv_mode(const struct posix_acl *acl, umode_t *mode_p)
 		return 0;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	FOREACH_ACL_ENTRY(pa, acl, pe) {
 		switch (pa->e_tag) {
 			case ACL_USER_OBJ:
@@ -411,6 +414,7 @@ posix_acl_create(struct posix_acl **acl, gfp_t gfp, umode_t *mode_p)
 EXPORT_SYMBOL(posix_acl_create);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 /**
  * posix_acl_update_mode  -  update mode in set_acl
@@ -444,6 +448,8 @@ int posix_acl_update_mode(struct inode *inode, umode_t *mode_p,
 EXPORT_SYMBOL(posix_acl_update_mode);
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 int
 posix_acl_chmod(struct posix_acl **acl, gfp_t gfp, umode_t mode)
 {

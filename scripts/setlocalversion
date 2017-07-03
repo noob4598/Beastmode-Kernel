@@ -72,6 +72,9 @@ scm_version()
 			# "v2.6.30-rc5-302-g72357d5"), we pretty print it and
 			# include the hash of any new tag on top.
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 			if atag="`git describe 2>/dev/null`"; then
 				tag="`git describe --abbrev=0 2>/dev/null`"
 				commit="`echo "$atag" | awk -F- '{printf("-%05d-%s", $(NF-1),$(NF))}'`"
@@ -80,6 +83,7 @@ scm_version()
 			else
 				printf '%s%s' -g $head
 			fi
+<<<<<<< HEAD
 =======
 			#if atag="`git describe 2>/dev/null`"; then
 			#	tag="`git describe --abbrev=0 2>/dev/null`"
@@ -90,6 +94,8 @@ scm_version()
 				printf '%s%s' -g $head
 			#fi
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		fi
 
 		# Is this git on svn?

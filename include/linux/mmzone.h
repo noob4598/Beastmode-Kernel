@@ -378,6 +378,7 @@ struct zone {
 	unsigned long		compact_cached_migrate_pfn;
 #endif
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 #ifdef CONFIG_MEMORY_ISOLATION
@@ -390,6 +391,8 @@ struct zone {
 #endif
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 #ifdef CONFIG_MEMORY_HOTPLUG
 	/* see spanned/present_pages for more description */
 	seqlock_t		span_seqlock;

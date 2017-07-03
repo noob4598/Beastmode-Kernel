@@ -31,6 +31,7 @@
 /*** third-party PIDs (using FTDI_VID) ***/
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define FTDI_LUMEL_PD12_PID	0x6002
 
 =======
@@ -46,6 +47,10 @@
 #define CYBER_CORTEX_AV_PID	0x8698
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+#define FTDI_LUMEL_PD12_PID	0x6002
+
+>>>>>>> 2617302... source
 /*
  * Marvell OpenRD Base, Client
  * http://www.open-rd.org
@@ -57,10 +62,13 @@
 #define FTDI_CANDAPTER_PID 0x9F80 /* Product Id */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define FTDI_BM_ATOM_NANO_PID	0xa559	/* Basic Micro ATOM Nano USB2Serial */
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 /*
  * Texas Instruments XDS100v2 JTAG / BeagleBone A3
  * http://processors.wiki.ti.com/index.php/XDS100
@@ -160,12 +168,16 @@
  * Xsens Technologies BV products (http://www.xsens.com).
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 #define XSENS_CONVERTER_0_PID	0xD388
 #define XSENS_CONVERTER_1_PID	0xD389
 #define XSENS_CONVERTER_2_PID	0xD38A
 #define XSENS_CONVERTER_3_PID	0xD38B
 #define XSENS_CONVERTER_4_PID	0xD38C
 #define XSENS_CONVERTER_5_PID	0xD38D
+<<<<<<< HEAD
 =======
 #define XSENS_VID		0x2639
 #define XSENS_AWINDA_STATION_PID 0x0101
@@ -182,6 +194,8 @@
 #define XSENS_CONVERTER_4_PID	0xD38C	/* Xsens Wireless Receiver */
 #define XSENS_CONVERTER_5_PID	0xD38D	/* Xsens Awinda Station */
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 #define XSENS_CONVERTER_6_PID	0xD38E
 #define XSENS_CONVERTER_7_PID	0xD38F
 
@@ -575,6 +589,7 @@
 #define FTDI_TIAO_UMPA_PID	0x8a98	/* TIAO/DIYGADGET USB Multi-Protocol Adapter */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 /*
  * NovaTech product ids (FTDI_VID)
@@ -596,6 +611,8 @@
 #define FTDI_CUSTOMWARE_MINIPLEX3_PID	0xfd4b	/* MiniPlex-3 series */
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 /********************************/
 /** third-party VID/PID combos **/
@@ -636,6 +653,7 @@
 #define RATOC_VENDOR_ID		0x0584
 #define RATOC_PRODUCT_ID_USB60F	0xb020
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define RATOC_PRODUCT_ID_SCU18	0xb03a
 
@@ -645,6 +663,8 @@
 #define INFINEON_VID		0x058b
 #define INFINEON_TRIBOARD_PID	0x0028 /* DAS JTAG TriBoard TC1798 V1.0 */
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 /*
  * Acton Research Corp.
@@ -862,11 +882,15 @@
  */
 #define TESTO_VID			0x128D
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define TESTO_USB_INTERFACE_PID		0x0001
 =======
 #define TESTO_1_PID			0x0001
 #define TESTO_3_PID			0x0003
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+#define TESTO_USB_INTERFACE_PID		0x0001
+>>>>>>> 2617302... source
 
 /*
  * Mobility Electronics products.
@@ -894,6 +918,7 @@
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
  * NOVITUS printers
  */
@@ -902,6 +927,8 @@
 
 /*
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
  * RT Systems programming cables for various ham radios
  */
 #define RTSYSTEMS_VID		0x2100	/* Vendor ID */
@@ -976,12 +1003,17 @@
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  * The following are the values for the Matrix Orbital FTDI Range
  * Anything in this range will use an FT232RL.
 =======
  * Matrix Orbital Intelligent USB displays.
  * http://www.matrixorbital.com
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+ * The following are the values for the Matrix Orbital FTDI Range
+ * Anything in this range will use an FT232RL.
+>>>>>>> 2617302... source
  */
 #define MTXORB_VID			0x1B3D
 #define MTXORB_FTDI_RANGE_0100_PID	0x0100
@@ -1241,6 +1273,7 @@
 #define MTXORB_FTDI_RANGE_01FE_PID	0x01FE
 #define MTXORB_FTDI_RANGE_01FF_PID	0x01FF
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 
 =======
@@ -1278,6 +1311,10 @@
 #define MTXORB_FTDI_RANGE_931E_PID	0x931E
 #define MTXORB_FTDI_RANGE_931F_PID	0x931F
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+
+
+>>>>>>> 2617302... source
 
 /*
  * The Mobility Lab (TML)
@@ -1450,6 +1487,7 @@
  */
 #define FTDI_CRESSI_PID		0x87d0
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 /*
@@ -1494,3 +1532,5 @@
  */
 #define FTDI_EKEY_CONV_USB_PID		0xCB08	/* Converter USB */
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source

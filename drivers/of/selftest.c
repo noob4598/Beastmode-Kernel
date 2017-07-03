@@ -127,6 +127,7 @@ static void __init of_selftest_parse_phandle_with_args(void)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void __init of_selftest_property_match_string(void)
 {
 =======
@@ -134,6 +135,10 @@ static void __init of_selftest_property_string(void)
 {
 	const char *strings[4];
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+static void __init of_selftest_property_match_string(void)
+{
+>>>>>>> 2617302... source
 	struct device_node *np;
 	int rc;
 
@@ -152,6 +157,9 @@ static void __init of_selftest_property_string(void)
 	selftest(rc == 2, "third expected:0 got:%i\n", rc);
 	rc = of_property_match_string(np, "phandle-list-names", "fourth");
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	selftest(rc == -ENODATA, "unmatched string; rc=%i", rc);
 	rc = of_property_match_string(np, "missing-property", "blah");
 	selftest(rc == -EINVAL, "missing property; rc=%i", rc);
@@ -159,6 +167,7 @@ static void __init of_selftest_property_string(void)
 	selftest(rc == -ENODATA, "empty property; rc=%i", rc);
 	rc = of_property_match_string(np, "unterminated-string", "blah");
 	selftest(rc == -EILSEQ, "unterminated string; rc=%i", rc);
+<<<<<<< HEAD
 =======
 	selftest(rc == -ENODATA, "unmatched string; rc=%i\n", rc);
 	rc = of_property_match_string(np, "missing-property", "blah");
@@ -221,6 +230,8 @@ static void __init of_selftest_property_string(void)
 	rc = of_property_read_string_array(np, "phandle-list-names", strings, 1);
 	selftest(rc == 1 && strings[1] == NULL, "Overwrote end of string array; rc=%i, str='%s'\n", rc, strings[1]);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 }
 
 static int __init of_selftest(void)
@@ -237,10 +248,14 @@ static int __init of_selftest(void)
 	pr_info("start of selftest - you will see error messages\n");
 	of_selftest_parse_phandle_with_args();
 <<<<<<< HEAD
+<<<<<<< HEAD
 	of_selftest_property_match_string();
 =======
 	of_selftest_property_string();
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	of_selftest_property_match_string();
+>>>>>>> 2617302... source
 	pr_info("end of selftest - %s\n", selftest_passed ? "PASS" : "FAIL");
 	return 0;
 }

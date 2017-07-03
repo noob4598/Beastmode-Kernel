@@ -76,6 +76,9 @@ void check_irq_resend(struct irq_desc *desc, unsigned int irq)
 #ifdef CONFIG_HARDIRQS_SW_RESEND
 			/*
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 			 * If the interrupt has a parent irq and runs
 			 * in the thread context of the parent irq,
 			 * retrigger the parent.
@@ -83,6 +86,7 @@ void check_irq_resend(struct irq_desc *desc, unsigned int irq)
 			if (desc->parent_irq &&
 			    irq_settings_is_nested_thread(desc))
 				irq = desc->parent_irq;
+<<<<<<< HEAD
 =======
 			 * If the interrupt is running in the thread
 			 * context of the parent irq we need to be
@@ -100,6 +104,8 @@ void check_irq_resend(struct irq_desc *desc, unsigned int irq)
 				irq = desc->parent_irq;
 			}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 			/* Set it pending and activate the softirq: */
 			set_bit(irq, irqs_resend);
 			tasklet_schedule(&resend_tasklet);

@@ -394,11 +394,15 @@ static void __mv_xor_slot_cleanup(struct mv_xor_chan *mv_chan)
 	int busy = mv_chan_is_busy(mv_chan);
 	u32 current_desc = mv_chan_get_current_desc(mv_chan);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int seen_current = 0;
 =======
 	int current_cleaned = 0;
 	struct mv_xor_desc *hw_desc;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	int seen_current = 0;
+>>>>>>> 2617302... source
 
 	dev_dbg(mv_chan_to_devp(mv_chan), "%s %d\n", __func__, __LINE__);
 	dev_dbg(mv_chan_to_devp(mv_chan), "current_desc %x\n", current_desc);
@@ -411,6 +415,9 @@ static void __mv_xor_slot_cleanup(struct mv_xor_chan *mv_chan)
 	list_for_each_entry_safe(iter, _iter, &mv_chan->chain,
 					chain_node) {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		prefetch(_iter);
 		prefetch(&_iter->async_tx);
 
@@ -443,6 +450,7 @@ static void __mv_xor_slot_cleanup(struct mv_xor_chan *mv_chan)
 					chain_node);
 
 		mv_xor_start_new_chain(mv_chan, chain_head);
+<<<<<<< HEAD
 =======
 
 		/* clean finished descriptors */
@@ -496,6 +504,8 @@ static void __mv_xor_slot_cleanup(struct mv_xor_chan *mv_chan)
 			}
 		}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	}
 
 	if (cookie > 0)

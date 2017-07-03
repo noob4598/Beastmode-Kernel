@@ -2035,9 +2035,13 @@ void dlm_move_lockres_to_recovery_list(struct dlm_ctxt *dlm,
 			if (lock->convert_pending) {
 				/* move converting lock back to granted */
 <<<<<<< HEAD
+<<<<<<< HEAD
 				BUG_ON(i != DLM_CONVERTING_LIST);
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+				BUG_ON(i != DLM_CONVERTING_LIST);
+>>>>>>> 2617302... source
 				mlog(0, "node died with convert pending "
 				     "on %.*s. move back to granted list.\n",
 				     res->lockname.len, res->lockname.name);
@@ -2330,10 +2334,13 @@ static void dlm_do_local_recovery_cleanup(struct dlm_ctxt *dlm, u8 dead_node)
 					}
 				}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 				dlm_lockres_clear_refmap_bit(dlm, res,
 						dead_node);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 				spin_unlock(&res->spinlock);
 				continue;
 			}

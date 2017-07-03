@@ -3212,6 +3212,7 @@ int reiserfs_setattr(struct dentry *dentry, struct iattr *attr)
 		error = inode_newsize_ok(inode, attr->ia_size);
 		if (!error) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			truncate_setsize(inode, attr->ia_size);
 			reiserfs_vfs_truncate_file(inode);
 =======
@@ -3224,6 +3225,10 @@ int reiserfs_setattr(struct dentry *dentry, struct iattr *attr)
 			reiserfs_truncate_file(inode, 1);
 			mutex_unlock(&REISERFS_I(inode)->tailpack);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			truncate_setsize(inode, attr->ia_size);
+			reiserfs_vfs_truncate_file(inode);
+>>>>>>> 2617302... source
 		}
 	}
 

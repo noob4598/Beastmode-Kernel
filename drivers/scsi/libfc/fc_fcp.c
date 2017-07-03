@@ -1040,11 +1040,15 @@ restart:
 		spin_unlock_irqrestore(&si->scsi_queue_lock, flags);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		if (!fc_fcp_lock_pkt(fsp)) {
 			fc_fcp_cleanup_cmd(fsp, error);
 			fc_io_compl(fsp);
 			fc_fcp_unlock_pkt(fsp);
 		}
+<<<<<<< HEAD
 =======
 		spin_lock_bh(&fsp->scsi_pkt_lock);
 		if (!(fsp->state & FC_SRB_COMPL)) {
@@ -1067,6 +1071,8 @@ restart:
 		}
 		spin_unlock_bh(&fsp->scsi_pkt_lock);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 		fc_fcp_pkt_release(fsp);
 		spin_lock_irqsave(&si->scsi_queue_lock, flags);

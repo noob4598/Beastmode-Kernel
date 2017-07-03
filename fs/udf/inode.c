@@ -1271,6 +1271,7 @@ update_time:
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 /*
  * Maximum length of linked list formed by ICB hierarchy. The chosen number is
@@ -1280,6 +1281,8 @@ update_time:
 #define UDF_MAX_ICB_NESTING 1024
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 static void __udf_read_inode(struct inode *inode)
 {
 	struct buffer_head *bh = NULL;
@@ -1287,12 +1290,16 @@ static void __udf_read_inode(struct inode *inode)
 	uint16_t ident;
 	struct udf_inode_info *iinfo = UDF_I(inode);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 	unsigned int indirections = 0;
 
 reread:
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+
+>>>>>>> 2617302... source
 	/*
 	 * Set defaults, but the inode is still incomplete!
 	 * Note: get_new_inode() sets the following on a new inode:
@@ -1330,9 +1337,13 @@ reread:
 					&ident);
 		if (ident == TAG_IDENT_IE && ibh) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			struct buffer_head *nbh = NULL;
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			struct buffer_head *nbh = NULL;
+>>>>>>> 2617302... source
 			struct kernel_lb_addr loc;
 			struct indirectEntry *ie;
 
@@ -1340,6 +1351,9 @@ reread:
 			loc = lelb_to_cpu(ie->indirectICB.extLocation);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 			if (ie->indirectICB.extLength &&
 				(nbh = udf_read_ptagged(inode->i_sb, &loc, 0,
 							&ident))) {
@@ -1355,6 +1369,7 @@ reread:
 					return;
 				}
 				brelse(nbh);
+<<<<<<< HEAD
 =======
 			if (ie->indirectICB.extLength) {
 				brelse(bh);
@@ -1371,6 +1386,8 @@ reread:
 				}
 				goto reread;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 			}
 		}
 		brelse(ibh);
@@ -1525,6 +1542,7 @@ static void udf_fill_inode(struct inode *inode, struct buffer_head *bh)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/*
 	 * Sanity check length of allocation descriptors and extended attrs to
@@ -1537,6 +1555,8 @@ static void udf_fill_inode(struct inode *inode, struct buffer_head *bh)
 		return;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	switch (fe->icbTag.fileType) {
 	case ICBTAG_FILE_TYPE_DIRECTORY:
 		inode->i_op = &udf_dir_inode_operations;
@@ -2088,6 +2108,7 @@ void udf_write_aext(struct inode *inode, struct extent_position *epos,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 /*
  * Only 1 indirect extent in a row really makes sense but allow upto 16 in case
@@ -2096,18 +2117,24 @@ void udf_write_aext(struct inode *inode, struct extent_position *epos,
 #define UDF_MAX_INDIR_EXTS 16
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 int8_t udf_next_aext(struct inode *inode, struct extent_position *epos,
 		     struct kernel_lb_addr *eloc, uint32_t *elen, int inc)
 {
 	int8_t etype;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	unsigned int indirections = 0;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	while ((etype = udf_current_aext(inode, epos, eloc, elen, inc)) ==
 	       (EXT_NEXT_EXTENT_ALLOCDECS >> 30)) {
 		int block;
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 
@@ -2119,6 +2146,8 @@ int8_t udf_next_aext(struct inode *inode, struct extent_position *epos,
 		}
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		epos->block = *eloc;
 		epos->offset = sizeof(struct allocExtDesc);
 		brelse(epos->bh);

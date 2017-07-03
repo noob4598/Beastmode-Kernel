@@ -770,18 +770,25 @@ class_dir_create_and_add(struct class *class, struct kobject *parent_kobj)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 static DEFINE_MUTEX(gdp_mutex);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 static struct kobject *get_device_parent(struct device *dev,
 					 struct device *parent)
 {
 	if (dev->class) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		static DEFINE_MUTEX(gdp_mutex);
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		static DEFINE_MUTEX(gdp_mutex);
+>>>>>>> 2617302... source
 		struct kobject *kobj = NULL;
 		struct kobject *parent_kobj;
 		struct kobject *k;
@@ -839,6 +846,9 @@ static struct kobject *get_device_parent(struct device *dev,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 static void cleanup_glue_dir(struct device *dev, struct kobject *glue_dir)
 {
 	/* see if we live in a "glue" directory */
@@ -852,6 +862,7 @@ static void cleanup_glue_dir(struct device *dev, struct kobject *glue_dir)
 static void cleanup_device_parent(struct device *dev)
 {
 	cleanup_glue_dir(dev, dev->kobj.parent);
+<<<<<<< HEAD
 =======
 static inline bool live_in_glue_dir(struct kobject *kobj,
 				    struct device *dev)
@@ -882,6 +893,8 @@ static void cleanup_glue_dir(struct device *dev, struct kobject *glue_dir)
 	kobject_put(glue_dir);
 	mutex_unlock(&gdp_mutex);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 }
 
 static int device_add_class_symlinks(struct device *dev)
@@ -1048,9 +1061,12 @@ int device_add(struct device *dev)
 	struct class_interface *class_intf;
 	int error = -EINVAL;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct kobject *glue_dir = NULL;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	dev = get_device(dev);
 	if (!dev)
@@ -1096,6 +1112,7 @@ int device_add(struct device *dev)
 	/* we require the name to be set before, and pass NULL */
 	error = kobject_add(&dev->kobj, dev->kobj.parent, NULL);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (error)
 		goto Error;
 =======
@@ -1104,6 +1121,10 @@ int device_add(struct device *dev)
 		goto Error;
 	}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (error)
+		goto Error;
+>>>>>>> 2617302... source
 
 	/* notify platform of device entry */
 	if (platform_notify)
@@ -1187,11 +1208,15 @@ done:
  attrError:
 	kobject_uevent(&dev->kobj, KOBJ_REMOVE);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	kobject_del(&dev->kobj);
  Error:
 	cleanup_device_parent(dev);
 	if (parent)
 		put_device(parent);
+<<<<<<< HEAD
 =======
 	glue_dir = get_glue_dir(dev);
 	kobject_del(&dev->kobj);
@@ -1199,6 +1224,8 @@ done:
 	cleanup_glue_dir(dev, glue_dir);
 	put_device(parent);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 name_error:
 	kfree(dev->p);
 	dev->p = NULL;
@@ -1270,9 +1297,12 @@ void device_del(struct device *dev)
 {
 	struct device *parent = dev->parent;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct kobject *glue_dir = NULL;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	struct class_interface *class_intf;
 
 	/* Notify clients of device removal.  This call must come
@@ -1315,6 +1345,7 @@ void device_del(struct device *dev)
 		platform_notify_remove(dev);
 	kobject_uevent(&dev->kobj, KOBJ_REMOVE);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	cleanup_device_parent(dev);
 	kobject_del(&dev->kobj);
 =======
@@ -1322,6 +1353,10 @@ void device_del(struct device *dev)
 	kobject_del(&dev->kobj);
 	cleanup_glue_dir(dev, glue_dir);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	cleanup_device_parent(dev);
+	kobject_del(&dev->kobj);
+>>>>>>> 2617302... source
 	put_device(parent);
 }
 

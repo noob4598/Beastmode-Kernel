@@ -18,9 +18,12 @@
 #include <linux/xfrm.h>
 #include <linux/audit.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <linux/sock_diag.h>
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 #include "flask.h"
 #include "av_permissions.h"
@@ -81,6 +84,7 @@ static struct nlmsg_perm nlmsg_route_perms[] =
 static struct nlmsg_perm nlmsg_tcpdiag_perms[] =
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	{ TCPDIAG_GETSOCK,	NETLINK_TCPDIAG_SOCKET__NLMSG_READ },
 	{ DCCPDIAG_GETSOCK,	NETLINK_TCPDIAG_SOCKET__NLMSG_READ },
 =======
@@ -89,6 +93,10 @@ static struct nlmsg_perm nlmsg_tcpdiag_perms[] =
 	{ SOCK_DIAG_BY_FAMILY,		NETLINK_TCPDIAG_SOCKET__NLMSG_READ },
 	{ SOCK_DESTROY_BACKPORT,	NETLINK_TCPDIAG_SOCKET__NLMSG_WRITE },
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	{ TCPDIAG_GETSOCK,	NETLINK_TCPDIAG_SOCKET__NLMSG_READ },
+	{ DCCPDIAG_GETSOCK,	NETLINK_TCPDIAG_SOCKET__NLMSG_READ },
+>>>>>>> 2617302... source
 };
 
 static struct nlmsg_perm nlmsg_xfrm_perms[] =
@@ -110,6 +118,7 @@ static struct nlmsg_perm nlmsg_xfrm_perms[] =
 	{ XFRM_MSG_NEWAE,	NETLINK_XFRM_SOCKET__NLMSG_WRITE },
 	{ XFRM_MSG_GETAE,	NETLINK_XFRM_SOCKET__NLMSG_READ  },
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	{ XFRM_MSG_REPORT,	NETLINK_XFRM_SOCKET__NLMSG_READ  },
 	{ XFRM_MSG_MIGRATE,	NETLINK_XFRM_SOCKET__NLMSG_WRITE },
@@ -119,6 +128,8 @@ static struct nlmsg_perm nlmsg_xfrm_perms[] =
 	{ XFRM_MSG_GETSPDINFO,	NETLINK_XFRM_SOCKET__NLMSG_READ  },
 	{ XFRM_MSG_MAPPING,	NETLINK_XFRM_SOCKET__NLMSG_READ  },
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 };
 
 static struct nlmsg_perm nlmsg_audit_perms[] =

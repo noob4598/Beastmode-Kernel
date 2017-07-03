@@ -22,9 +22,12 @@
 
 #define MAX_CSIPHY 3
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define CSIPHY_NUM_CLK_MAX  16
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 enum msm_csiphy_state_t {
 	CSIPHY_POWER_UP,
@@ -47,10 +50,14 @@ struct csiphy_device {
 	enum msm_csiphy_state_t csiphy_state;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	struct clk *csiphy_clk[8];
 
 	int32_t ref_count;
 	uint16_t lane_mask[MAX_CSIPHY];
+<<<<<<< HEAD
 =======
 	struct clk *csiphy_clk[CSIPHY_NUM_CLK_MAX];
 
@@ -59,6 +66,8 @@ struct csiphy_device {
 	struct regulator *csi_vdd;
 	struct regulator *reg_ptr;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 };
 
 #define VIDIOC_MSM_CSIPHY_RELEASE \

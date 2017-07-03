@@ -275,6 +275,9 @@ static int ocfs2_set_acl(handle_t *handle,
 		name_index = OCFS2_XATTR_INDEX_POSIX_ACL_ACCESS;
 		if (acl) {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 			umode_t mode = inode->i_mode;
 			ret = posix_acl_equiv_mode(acl, &mode);
 			if (ret < 0)
@@ -289,6 +292,7 @@ static int ocfs2_set_acl(handle_t *handle,
 					return ret;
 
 			}
+<<<<<<< HEAD
 =======
 			umode_t mode;
 			ret = posix_acl_update_mode(inode, &mode, &acl);
@@ -299,6 +303,8 @@ static int ocfs2_set_acl(handle_t *handle,
 			if (ret)
 				return ret;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		}
 		break;
 	case ACL_TYPE_DEFAULT:

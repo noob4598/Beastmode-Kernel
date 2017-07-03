@@ -132,12 +132,16 @@ void __bitmap_shift_right(unsigned long *dst,
 		if (left && off + k == lim - 1)
 			lower &= mask;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dst[k] = upper << (BITS_PER_LONG - rem) | lower >> rem;
 =======
 		dst[k] = lower >> rem;
 		if (rem)
 			dst[k] |= upper << (BITS_PER_LONG - rem);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		dst[k] = upper << (BITS_PER_LONG - rem) | lower >> rem;
+>>>>>>> 2617302... source
 		if (left && k == lim - 1)
 			dst[k] &= mask;
 	}
@@ -179,12 +183,16 @@ void __bitmap_shift_left(unsigned long *dst,
 		if (left && k == lim - 1)
 			upper &= (1UL << left) - 1;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dst[k + off] = lower  >> (BITS_PER_LONG - rem) | upper << rem;
 =======
 		dst[k + off] = upper << rem;
 		if (rem)
 			dst[k + off] |= lower >> (BITS_PER_LONG - rem);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		dst[k + off] = lower  >> (BITS_PER_LONG - rem) | upper << rem;
+>>>>>>> 2617302... source
 		if (left && k + off == lim - 1)
 			dst[k + off] &= (1UL << left) - 1;
 	}
@@ -614,19 +622,27 @@ static int __bitmap_parselist(const char *buf, unsigned int buflen,
 	int c, old_c, totaldigits;
 	const char __user __force *ubuf = (const char __user __force *)buf;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int exp_digit, in_range;
 =======
 	int at_start, in_range;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	int exp_digit, in_range;
+>>>>>>> 2617302... source
 
 	totaldigits = c = 0;
 	bitmap_zero(maskp, nmaskbits);
 	do {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		exp_digit = 1;
 =======
 		at_start = 1;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		exp_digit = 1;
+>>>>>>> 2617302... source
 		in_range = 0;
 		a = b = 0;
 
@@ -656,17 +672,23 @@ static int __bitmap_parselist(const char *buf, unsigned int buflen,
 
 			if (c == '-') {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 				if (exp_digit || in_range)
 					return -EINVAL;
 				b = 0;
 				in_range = 1;
 				exp_digit = 1;
+<<<<<<< HEAD
 =======
 				if (at_start || in_range)
 					return -EINVAL;
 				b = 0;
 				in_range = 1;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 				continue;
 			}
 
@@ -677,16 +699,21 @@ static int __bitmap_parselist(const char *buf, unsigned int buflen,
 			if (!in_range)
 				a = b;
 <<<<<<< HEAD
+<<<<<<< HEAD
 			exp_digit = 0;
 =======
 			at_start = 0;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			exp_digit = 0;
+>>>>>>> 2617302... source
 			totaldigits++;
 		}
 		if (!(a <= b))
 			return -EINVAL;
 		if (b >= nmaskbits)
 			return -ERANGE;
+<<<<<<< HEAD
 <<<<<<< HEAD
 		while (a <= b) {
 			set_bit(a, maskp);
@@ -698,6 +725,11 @@ static int __bitmap_parselist(const char *buf, unsigned int buflen,
 				a++;
 			}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		while (a <= b) {
+			set_bit(a, maskp);
+			a++;
+>>>>>>> 2617302... source
 		}
 	} while (buflen && c == ',');
 	return 0;

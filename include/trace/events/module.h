@@ -79,10 +79,14 @@ DECLARE_EVENT_CLASS(module_refcnt,
 	TP_fast_assign(
 		__entry->ip	= ip;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		__entry->refcnt	= __this_cpu_read(mod->refptr->incs) + __this_cpu_read(mod->refptr->decs);
 =======
 		__entry->refcnt	= __this_cpu_read(mod->refptr->incs) - __this_cpu_read(mod->refptr->decs);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		__entry->refcnt	= __this_cpu_read(mod->refptr->incs) + __this_cpu_read(mod->refptr->decs);
+>>>>>>> 2617302... source
 		__assign_str(name, mod->name);
 	),
 

@@ -406,9 +406,12 @@ int mei_cl_disconnect(struct mei_cl *cl)
 			goto free;
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		cl->timer_count = MEI_CONNECT_TIMEOUT;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		mdelay(10); /* Wait for hardware disconnection ready */
 		list_add_tail(&cb->list, &dev->ctrl_rd_list.list);
 	} else {
@@ -516,9 +519,12 @@ int mei_cl_connect(struct mei_cl *cl, struct file *file)
 		list_add_tail(&cb->list, &dev->ctrl_rd_list.list);
 	} else {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		cl->state = MEI_FILE_INITIALIZING;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		list_add_tail(&cb->list, &dev->ctrl_wr_list.list);
 	}
 

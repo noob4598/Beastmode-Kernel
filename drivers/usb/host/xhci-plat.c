@@ -228,10 +228,13 @@ static int xhci_plat_remove(struct platform_device *dev)
 	pm_runtime_disable(&dev->dev);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	xhci->xhc_state |= XHCI_STATE_REMOVING;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	usb_remove_hcd(xhci->shared_hcd);
 	usb_put_hcd(xhci->shared_hcd);
 

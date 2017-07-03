@@ -182,10 +182,14 @@ static int wm8960_get_deemph(struct snd_kcontrol *kcontrol,
 	struct wm8960_priv *wm8960 = snd_soc_codec_get_drvdata(codec);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ucontrol->value.enumerated.item[0] = wm8960->deemph;
 =======
 	ucontrol->value.integer.value[0] = wm8960->deemph;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	ucontrol->value.enumerated.item[0] = wm8960->deemph;
+>>>>>>> 2617302... source
 	return 0;
 }
 
@@ -195,10 +199,14 @@ static int wm8960_put_deemph(struct snd_kcontrol *kcontrol,
 	struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
 	struct wm8960_priv *wm8960 = snd_soc_codec_get_drvdata(codec);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int deemph = ucontrol->value.enumerated.item[0];
 =======
 	int deemph = ucontrol->value.integer.value[0];
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	int deemph = ucontrol->value.enumerated.item[0];
+>>>>>>> 2617302... source
 
 	if (deemph > 1)
 		return -EINVAL;
@@ -251,10 +259,14 @@ SOC_ENUM("ADC Polarity", wm8960_enum[0]),
 SOC_SINGLE("ADC High Pass Filter Switch", WM8960_DACCTL1, 0, 1, 0),
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 SOC_ENUM("DAC Polarity", wm8960_enum[2]),
 =======
 SOC_ENUM("DAC Polarity", wm8960_enum[1]),
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+SOC_ENUM("DAC Polarity", wm8960_enum[2]),
+>>>>>>> 2617302... source
 SOC_SINGLE_BOOL_EXT("DAC Deemphasis Switch", 0,
 		    wm8960_get_deemph, wm8960_put_deemph),
 
@@ -405,10 +417,14 @@ static const struct snd_soc_dapm_route audio_paths[] = {
 	{ "Right Input Mixer", NULL, "RINPUT1", },  /* Really Boost Switch */
 	{ "Right Input Mixer", NULL, "RINPUT2" },
 <<<<<<< HEAD
+<<<<<<< HEAD
 	{ "Right Input Mixer", NULL, "LINPUT3" },
 =======
 	{ "Right Input Mixer", NULL, "RINPUT3" },
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	{ "Right Input Mixer", NULL, "LINPUT3" },
+>>>>>>> 2617302... source
 
 	{ "Left ADC", NULL, "Left Input Mixer" },
 	{ "Right ADC", NULL, "Right Input Mixer" },
@@ -572,10 +588,14 @@ static struct {
 	{ 24000, 2 },
 	{ 16000, 3 },
 <<<<<<< HEAD
+<<<<<<< HEAD
 	{ 11250, 4 },
 =======
 	{ 11025, 4 },
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	{ 11250, 4 },
+>>>>>>> 2617302... source
 	{ 12000, 4 },
 	{  8000, 5 },
 };

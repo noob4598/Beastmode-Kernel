@@ -334,6 +334,7 @@ out:
  */
 static void irqtime_account_process_tick(struct task_struct *p, int user_tick,
 <<<<<<< HEAD
+<<<<<<< HEAD
 						struct rq *rq)
 {
 	cputime_t one_jiffy_scaled = cputime_to_scaled(cputime_one_jiffy);
@@ -343,16 +344,25 @@ static void irqtime_account_process_tick(struct task_struct *p, int user_tick,
 	cputime_t scaled = cputime_to_scaled(cputime_one_jiffy);
 	u64 cputime = (__force u64) cputime_one_jiffy;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+						struct rq *rq)
+{
+	cputime_t one_jiffy_scaled = cputime_to_scaled(cputime_one_jiffy);
+>>>>>>> 2617302... source
 	u64 *cpustat = kcpustat_this_cpu->cpustat;
 
 	if (steal_account_process_tick())
 		return;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	if (irqtime_account_hi_update()) {
 		cpustat[CPUTIME_IRQ] += (__force u64) cputime_one_jiffy;
 	} else if (irqtime_account_si_update()) {
 		cpustat[CPUTIME_SOFTIRQ] += (__force u64) cputime_one_jiffy;
+<<<<<<< HEAD
 =======
 	cputime *= ticks;
 	scaled *= ticks;
@@ -362,6 +372,8 @@ static void irqtime_account_process_tick(struct task_struct *p, int user_tick,
 	} else if (irqtime_account_si_update()) {
 		cpustat[CPUTIME_SOFTIRQ] += cputime;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	} else if (this_cpu_ksoftirqd() == p) {
 		/*
 		 * ksoftirqd time do not get accounted in cpu_softirq_time.
@@ -369,6 +381,9 @@ static void irqtime_account_process_tick(struct task_struct *p, int user_tick,
 		 * Also, p->stime needs to be updated for ksoftirqd.
 		 */
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		__account_system_time(p, cputime_one_jiffy, one_jiffy_scaled,
 					CPUTIME_SOFTIRQ);
 	} else if (user_tick) {
@@ -380,6 +395,7 @@ static void irqtime_account_process_tick(struct task_struct *p, int user_tick,
 	} else {
 		__account_system_time(p, cputime_one_jiffy, one_jiffy_scaled,
 					CPUTIME_SYSTEM);
+<<<<<<< HEAD
 =======
 		__account_system_time(p, cputime, scaled, CPUTIME_SOFTIRQ);
 	} else if (user_tick) {
@@ -391,31 +407,43 @@ static void irqtime_account_process_tick(struct task_struct *p, int user_tick,
 	} else {
 		__account_system_time(p, cputime, scaled,	CPUTIME_SYSTEM);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	}
 }
 
 static void irqtime_account_idle_ticks(int ticks)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	int i;
 	struct rq *rq = this_rq();
 
 	for (i = 0; i < ticks; i++)
 		irqtime_account_process_tick(current, 0, rq);
+<<<<<<< HEAD
 =======
 	struct rq *rq = this_rq();
 
 	irqtime_account_process_tick(current, 0, rq, ticks);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 }
 #else /* CONFIG_IRQ_TIME_ACCOUNTING */
 static inline void irqtime_account_idle_ticks(int ticks) {}
 static inline void irqtime_account_process_tick(struct task_struct *p, int user_tick,
 <<<<<<< HEAD
+<<<<<<< HEAD
 						struct rq *rq) {}
 =======
 						struct rq *rq, int nr_ticks) {}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+						struct rq *rq) {}
+>>>>>>> 2617302... source
 #endif /* CONFIG_IRQ_TIME_ACCOUNTING */
 
 /*
@@ -511,10 +539,14 @@ void account_process_tick(struct task_struct *p, int user_tick)
 
 	if (sched_clock_irqtime) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		irqtime_account_process_tick(p, user_tick, rq);
 =======
 		irqtime_account_process_tick(p, user_tick, rq, 1);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		irqtime_account_process_tick(p, user_tick, rq);
+>>>>>>> 2617302... source
 		return;
 	}
 

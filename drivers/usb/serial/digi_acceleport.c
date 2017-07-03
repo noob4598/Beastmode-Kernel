@@ -1254,6 +1254,7 @@ static int digi_port_init(struct usb_serial_port *port, unsigned port_num)
 static int digi_startup(struct usb_serial *serial)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct digi_serial *serial_priv;
 	int ret;
 =======
@@ -1279,6 +1280,10 @@ static int digi_startup(struct usb_serial *serial)
 		}
 	}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	struct digi_serial *serial_priv;
+	int ret;
+>>>>>>> 2617302... source
 
 	serial_priv = kzalloc(sizeof(*serial_priv), GFP_KERNEL);
 	if (!serial_priv)
@@ -1495,20 +1500,27 @@ static int digi_read_oob_callback(struct urb *urb)
 	struct tty_struct *tty;
 	struct digi_port *priv = usb_get_serial_port_data(port);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	unsigned char *buf = urb->transfer_buffer;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	int opcode, line, status, val;
 	int i;
 	unsigned int rts;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	/* handle each oob command */
 	for (i = 0; i < urb->actual_length - 3;) {
 		opcode = ((unsigned char *)urb->transfer_buffer)[i++];
 		line = ((unsigned char *)urb->transfer_buffer)[i++];
 		status = ((unsigned char *)urb->transfer_buffer)[i++];
 		val = ((unsigned char *)urb->transfer_buffer)[i++];
+<<<<<<< HEAD
 =======
 	if (urb->actual_length < 4)
 		return -1;
@@ -1520,6 +1532,8 @@ static int digi_read_oob_callback(struct urb *urb)
 		status = buf[i + 2];
 		val = buf[i + 3];
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 		dev_dbg(&port->dev, "digi_read_oob_callback: opcode=%d, line=%d, status=%d, val=%d\n",
 			opcode, line, status, val);

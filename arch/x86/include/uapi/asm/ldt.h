@@ -29,6 +29,7 @@ struct user_desc {
 	unsigned int  useable:1;
 #ifdef __x86_64__
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/*
 	 * Because this bit is not present in 32-bit user code, user
@@ -38,6 +39,8 @@ struct user_desc {
 	 * actual value.
 	 */
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	unsigned int  lm:1;
 #endif
 };

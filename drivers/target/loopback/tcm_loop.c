@@ -180,10 +180,14 @@ static void tcm_loop_submission_work(struct work_struct *work)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	tl_nexus = tl_hba->tl_nexus;
 =======
 	tl_nexus = tl_tpg->tl_nexus;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	tl_nexus = tl_hba->tl_nexus;
+>>>>>>> 2617302... source
 	if (!tl_nexus) {
 		scmd_printk(KERN_ERR, sc, "TCM_Loop I_T Nexus"
 				" does not exist\n");
@@ -263,6 +267,7 @@ static int tcm_loop_device_reset(struct scsi_cmnd *sc)
 	tl_hba = *(struct tcm_loop_hba **)shost_priv(sc->device->host);
 	/*
 <<<<<<< HEAD
+<<<<<<< HEAD
 	 * Locate the tl_nexus and se_sess pointers
 	 */
 	tl_nexus = tl_hba->tl_nexus;
@@ -276,6 +281,11 @@ static int tcm_loop_device_reset(struct scsi_cmnd *sc)
 	 */
 	tl_nexus = tl_tpg->tl_nexus;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	 * Locate the tl_nexus and se_sess pointers
+	 */
+	tl_nexus = tl_hba->tl_nexus;
+>>>>>>> 2617302... source
 	if (!tl_nexus) {
 		pr_err("Unable to perform device reset without"
 				" active I_T Nexus\n");
@@ -283,13 +293,19 @@ static int tcm_loop_device_reset(struct scsi_cmnd *sc)
 	}
 	se_sess = tl_nexus->se_sess;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	/*
 	 * Locate the tl_tpg and se_tpg pointers from TargetID in sc->device->id
 	 */
 	tl_tpg = &tl_hba->tl_hba_tpgs[sc->device->id];
 	se_tpg = &tl_tpg->tl_se_tpg;
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	tl_cmd = kmem_cache_zalloc(tcm_loop_cmd_cache, GFP_KERNEL);
 	if (!tl_cmd) {
@@ -898,12 +914,17 @@ static int tcm_loop_make_nexus(
 	int ret = -ENOMEM;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (tl_tpg->tl_hba->tl_nexus) {
 		pr_debug("tl_tpg->tl_hba->tl_nexus already exists\n");
 =======
 	if (tl_tpg->tl_nexus) {
 		pr_debug("tl_tpg->tl_nexus already exists\n");
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (tl_tpg->tl_hba->tl_nexus) {
+		pr_debug("tl_tpg->tl_hba->tl_nexus already exists\n");
+>>>>>>> 2617302... source
 		return -EEXIST;
 	}
 	se_tpg = &tl_tpg->tl_se_tpg;
@@ -939,10 +960,14 @@ static int tcm_loop_make_nexus(
 	__transport_register_session(se_tpg, tl_nexus->se_sess->se_node_acl,
 			tl_nexus->se_sess, tl_nexus);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	tl_tpg->tl_hba->tl_nexus = tl_nexus;
 =======
 	tl_tpg->tl_nexus = tl_nexus;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	tl_tpg->tl_hba->tl_nexus = tl_nexus;
+>>>>>>> 2617302... source
 	pr_debug("TCM_Loop_ConfigFS: Established I_T Nexus to emulated"
 		" %s Initiator Port: %s\n", tcm_loop_dump_proto_id(tl_hba),
 		name);
@@ -959,6 +984,7 @@ static int tcm_loop_drop_nexus(
 	struct se_session *se_sess;
 	struct tcm_loop_nexus *tl_nexus;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct tcm_loop_hba *tl_hba = tpg->tl_hba;
 
 	tl_nexus = tpg->tl_hba->tl_nexus;
@@ -966,6 +992,11 @@ static int tcm_loop_drop_nexus(
 
 	tl_nexus = tpg->tl_nexus;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	struct tcm_loop_hba *tl_hba = tpg->tl_hba;
+
+	tl_nexus = tpg->tl_hba->tl_nexus;
+>>>>>>> 2617302... source
 	if (!tl_nexus)
 		return -ENODEV;
 
@@ -982,20 +1013,28 @@ static int tcm_loop_drop_nexus(
 
 	pr_debug("TCM_Loop_ConfigFS: Removing I_T Nexus to emulated"
 <<<<<<< HEAD
+<<<<<<< HEAD
 		" %s Initiator Port: %s\n", tcm_loop_dump_proto_id(tl_hba),
 =======
 		" %s Initiator Port: %s\n", tcm_loop_dump_proto_id(tpg->tl_hba),
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		" %s Initiator Port: %s\n", tcm_loop_dump_proto_id(tl_hba),
+>>>>>>> 2617302... source
 		tl_nexus->se_sess->se_node_acl->initiatorname);
 	/*
 	 * Release the SCSI I_T Nexus to the emulated SAS Target Port
 	 */
 	transport_deregister_session(tl_nexus->se_sess);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	tpg->tl_hba->tl_nexus = NULL;
 =======
 	tpg->tl_nexus = NULL;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	tpg->tl_hba->tl_nexus = NULL;
+>>>>>>> 2617302... source
 	kfree(tl_nexus);
 	return 0;
 }
@@ -1012,10 +1051,14 @@ static ssize_t tcm_loop_tpg_show_nexus(
 	ssize_t ret;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	tl_nexus = tl_tpg->tl_hba->tl_nexus;
 =======
 	tl_nexus = tl_tpg->tl_nexus;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	tl_nexus = tl_tpg->tl_hba->tl_nexus;
+>>>>>>> 2617302... source
 	if (!tl_nexus)
 		return -ENODEV;
 

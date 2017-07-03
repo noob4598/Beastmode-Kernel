@@ -274,26 +274,36 @@ pid_t vm_is_stack(struct task_struct *task,
 	if (in_group) {
 		struct task_struct *t;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		rcu_read_lock();
 		if (!pid_alive(task))
 			goto done;
 
 		t = task;
 		do {
+<<<<<<< HEAD
 =======
 
 		rcu_read_lock();
 		for_each_thread(task, t) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 			if (vm_is_stack_for_task(t, vma)) {
 				ret = t->pid;
 				goto done;
 			}
 <<<<<<< HEAD
+<<<<<<< HEAD
 		} while_each_thread(task, t);
 =======
 		}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		} while_each_thread(task, t);
+>>>>>>> 2617302... source
 done:
 		rcu_read_unlock();
 	}

@@ -3,10 +3,14 @@
  *
  * Copyright (C) 2007 Google Incorporated
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright (c) 2008-2015, The Linux Foundation. All rights reserved.
 =======
  * Copyright (c) 2008-2017, The Linux Foundation. All rights reserved.
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+ * Copyright (c) 2008-2015, The Linux Foundation. All rights reserved.
+>>>>>>> 2617302... source
  *
  * This software is licensed under the terms of the GNU General Public
  * License version 2, as published by the Free Software Foundation, and
@@ -1372,12 +1376,17 @@ static int mdss_fb_alloc_fb_ion_memory(struct msm_fb_data_type *mfd,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_info("alloc 0x%xB vaddr = %p (%pa iova) for fb%d\n", fb_size, vaddr,
 			&mfd->iova, mfd->index);
 =======
 	pr_debug("alloc 0x%zuB vaddr = %pK (%pa iova) for fb%d\n", fb_size,
 			vaddr, &mfd->iova, mfd->index);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	pr_info("alloc 0x%xB vaddr = %p (%pa iova) for fb%d\n", fb_size, vaddr,
+			&mfd->iova, mfd->index);
+>>>>>>> 2617302... source
 
 	mfd->fbi->screen_base = (char *) vaddr;
 	mfd->fbi->fix.smem_start = (unsigned int) mfd->iova;
@@ -1391,9 +1400,12 @@ static int mdss_fb_alloc_fb_ion_memory(struct msm_fb_data_type *mfd,
 fb_mmap_failed:
 	ion_free(mfd->fb_ion_client, mfd->fb_ion_handle);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	mfd->fb_ion_handle = NULL;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	return rc;
 }
 
@@ -1476,10 +1488,14 @@ static int mdss_fb_fbmem_ion_mmap(struct fb_info *info,
 			__mdss_fb_set_page_protection(vma, mfd);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 			pr_debug("vma=%p, addr=%x len=%ld",
 =======
 			pr_debug("vma=%pK, addr=%x len=%ld\n",
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			pr_debug("vma=%p, addr=%x len=%ld",
+>>>>>>> 2617302... source
 					vma, (unsigned int)addr, len);
 			pr_cont("vm_start=%x vm_end=%x vm_page_prot=%ld\n",
 					(unsigned int)vma->vm_start,
@@ -2084,13 +2100,19 @@ static void __mdss_fb_wait_for_fence_sub(struct msm_sync_pt_data *sync_pt_data,
 			pr_warn("%s: sync_fence_wait timed out! ",
 					sync_pt_data->fence_name);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 #if defined(CONFIG_FB_MSM_MDSS_FENCE_DBG)
 			pr_warn("%s: sync_fence_wait timed out! - timeline (%d,%d)\n",
 				sync_pt_data->fence_name, sync_pt_data->timeline_value, sync_pt_data->timeline->value);
 			xlog_fence_dump();
 #endif
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 			pr_cont("Waiting %ld more seconds\n",
 					WAIT_FENCE_FINAL_TIMEOUT/MSEC_PER_SEC);
 			ret = sync_fence_wait(fences[i],
@@ -2138,6 +2160,9 @@ void mdss_fb_signal_timeline(struct msm_sync_pt_data *sync_pt_data)
 		sw_sync_timeline_inc(sync_pt_data->timeline, 1);
 		sync_pt_data->timeline_value++;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 #if defined(CONFIG_FB_MSM_MDSS_FENCE_DBG)
 		xlog_fence((char*)__func__, sync_pt_data->fence_name, 0,
 			"timeline_val", sync_pt_data->timeline_value,
@@ -2159,6 +2184,7 @@ void mdss_fb_signal_timeline(struct msm_sync_pt_data *sync_pt_data)
 			sync_pt_data->fence_name, sync_pt_data->timeline_value,
 			atomic_read(&sync_pt_data->commit_cnt));
 #endif
+<<<<<<< HEAD
 =======
 		pr_debug("%s: buffer signaled! timeline val=%d remaining=%d\n",
 			sync_pt_data->fence_name, sync_pt_data->timeline_value,
@@ -2168,6 +2194,8 @@ void mdss_fb_signal_timeline(struct msm_sync_pt_data *sync_pt_data)
 			sync_pt_data->fence_name, sync_pt_data->timeline_value,
 			atomic_read(&sync_pt_data->commit_cnt));
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	}
 	mutex_unlock(&sync_pt_data->sync_mutex);
 }
@@ -2191,13 +2219,19 @@ static void mdss_fb_release_fences(struct msm_fb_data_type *mfd)
 		val = sync_pt_data->threshold +
 			atomic_read(&sync_pt_data->commit_cnt);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 #if defined(CONFIG_FB_MSM_MDSS_FENCE_DBG)
 		xlog_fence((char*)__func__, "Val", val,
 		"timeline_value", atomic_read(&sync_pt_data->commit_cnt),
 		NULL, 0, NULL, 0, NULL, 0, 0);
 #endif
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		sw_sync_timeline_inc(sync_pt_data->timeline, val);
 		sync_pt_data->timeline_value += val;
 		atomic_set(&sync_pt_data->commit_cnt, 0);
@@ -2258,12 +2292,18 @@ static int __mdss_fb_sync_buf_done_callback(struct notifier_block *p,
 	case MDP_NOTIFY_FRAME_DONE:
 		pr_debug("%s: frame done\n", sync_pt_data->fence_name);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 #if defined(CONFIG_FB_MSM_MDSS_FENCE_DBG)
 		xlog_fence((char*)__func__, "## Frame Done", 0,
 		NULL, 0, NULL, 0, NULL, 0, NULL, 0, 0);
 #endif
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		mdss_fb_signal_timeline(sync_pt_data);
 		break;
 	case MDP_NOTIFY_FRAME_CONFIG_DONE:
@@ -2370,14 +2410,20 @@ static int mdss_fb_pan_display_ex(struct fb_info *info,
 	mfd->msm_fb_backup.info = *info;
 	mfd->msm_fb_backup.disp_commit = *disp_commit;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 #if defined(CONFIG_FB_MSM_MDSS_FENCE_DBG)
 	if(atomic_read(&mfd->mdp_sync_pt_data.commit_cnt) > 1);
 		xlog_fence((char*)__func__, "## pan_disp_ex:commit",
 			atomic_read(&mfd->mdp_sync_pt_data.commit_cnt),
 			NULL, 0, NULL, 0, NULL, 0, NULL, 0, 0);
 #endif
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	atomic_inc(&mfd->mdp_sync_pt_data.commit_cnt);
 	atomic_inc(&mfd->commits_pending);
@@ -2540,10 +2586,14 @@ static int __mdss_fb_display_thread(void *data)
 	while (1) {
 		ATRACE_BEGIN(__func__);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		wait_event(mfd->commit_wait_q,
 				(atomic_read(&mfd->commits_pending) ||
 				 kthread_should_stop()));
 
+<<<<<<< HEAD
 =======
 		ret = wait_event_interruptible(mfd->commit_wait_q,
 				(atomic_read(&mfd->commits_pending) ||
@@ -2555,6 +2605,8 @@ static int __mdss_fb_display_thread(void *data)
 		}
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		if (kthread_should_stop())
 			break;
 
@@ -2924,6 +2976,9 @@ static int mdss_fb_handle_buf_sync_ioctl(struct msm_sync_pt_data *sync_pt_data,
 	val = sync_pt_data->timeline_value + sync_pt_data->threshold +
 			atomic_read(&sync_pt_data->commit_cnt);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 #if defined(CONFIG_FB_MSM_MDSS_FENCE_DBG)
 	if(atomic_read(&sync_pt_data->commit_cnt) > 1)
 		xlog_fence((char*)__func__, "## err1 - val", val,
@@ -2946,8 +3001,11 @@ static int mdss_fb_handle_buf_sync_ioctl(struct msm_sync_pt_data *sync_pt_data,
 				"commit", atomic_read(&sync_pt_data->commit_cnt),
 				NULL, 0, 0xCCC);
 #endif
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	/* Set release fence */
 	rel_fence = mdss_fb_sync_get_fence(sync_pt_data->timeline,
@@ -2969,10 +3027,15 @@ static int mdss_fb_handle_buf_sync_ioctl(struct msm_sync_pt_data *sync_pt_data,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	sync_fence_install(rel_fence, rel_fen_fd);
 
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	sync_fence_install(rel_fence, rel_fen_fd);
+
+>>>>>>> 2617302... source
 	ret = copy_to_user(buf_sync->rel_fen_fd, &rel_fen_fd, sizeof(int));
 	if (ret) {
 		pr_err("%s: copy_to_user failed\n", sync_pt_data->fence_name);
@@ -3010,10 +3073,15 @@ static int mdss_fb_handle_buf_sync_ioctl(struct msm_sync_pt_data *sync_pt_data,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	sync_fence_install(retire_fence, retire_fen_fd);
 
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	sync_fence_install(retire_fence, retire_fen_fd);
+
+>>>>>>> 2617302... source
 	ret = copy_to_user(buf_sync->retire_fen_fd, &retire_fen_fd,
 			sizeof(int));
 	if (ret) {
@@ -3025,6 +3093,7 @@ static int mdss_fb_handle_buf_sync_ioctl(struct msm_sync_pt_data *sync_pt_data,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 skip_retire_fence:
 =======
 	sync_fence_install(retire_fence, retire_fen_fd);
@@ -3033,6 +3102,9 @@ skip_retire_fence:
 	sync_fence_install(rel_fence, rel_fen_fd);
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+skip_retire_fence:
+>>>>>>> 2617302... source
 	mutex_unlock(&sync_pt_data->sync_mutex);
 
 	if (buf_sync->flags & MDP_BUF_SYNC_FLAG_WAIT)

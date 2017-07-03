@@ -101,10 +101,14 @@ ext4_file_dio_write(struct kiocb *iocb, const struct iovec *iov,
 	int unaligned_aio = 0;
 	ssize_t ret;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int overwrite = 0;
 =======
 	int *overwrite = iocb->private;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	int overwrite = 0;
+>>>>>>> 2617302... source
 	size_t length = iov_length(iov, nr_segs);
 
 	if (ext4_test_inode_flag(inode, EXT4_INODE_EXTENTS) &&
@@ -123,10 +127,15 @@ ext4_file_dio_write(struct kiocb *iocb, const struct iovec *iov,
 	blk_start_plug(&plug);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	iocb->private = &overwrite;
 
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	iocb->private = &overwrite;
+
+>>>>>>> 2617302... source
 	/* check whether we do a DIO overwrite or not */
 	if (ext4_should_dioread_nolock(inode) && !unaligned_aio &&
 	    !file->f_mapping->nrpages && pos + length <= i_size_read(inode)) {
@@ -151,10 +160,14 @@ ext4_file_dio_write(struct kiocb *iocb, const struct iovec *iov,
 		 */
 		if (err == len && (map.m_flags & EXT4_MAP_MAPPED))
 <<<<<<< HEAD
+<<<<<<< HEAD
 			overwrite = 1;
 =======
 			*overwrite = 1;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			overwrite = 1;
+>>>>>>> 2617302... source
 	}
 
 	ret = __generic_file_aio_write(iocb, iov, nr_segs, &iocb->ki_pos);
@@ -182,9 +195,12 @@ ext4_file_write(struct kiocb *iocb, const struct iovec *iov,
 	struct inode *inode = file_inode(iocb->ki_filp);
 	ssize_t ret;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	int overwrite = 0;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	/*
 	 * If we have encountered a bitmap-format file, the size limit
@@ -206,9 +222,12 @@ ext4_file_write(struct kiocb *iocb, const struct iovec *iov,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	iocb->private = &overwrite;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	if (unlikely(iocb->ki_filp->f_flags & O_DIRECT))
 		ret = ext4_file_dio_write(iocb, iov, nr_segs, pos);
 	else

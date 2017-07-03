@@ -132,9 +132,13 @@ unsigned int snd_seq_oss_poll(struct seq_oss_devinfo *dp, struct file *file, pol
 
 void snd_seq_oss_reset(struct seq_oss_devinfo *dp);
 <<<<<<< HEAD
+<<<<<<< HEAD
 void snd_seq_oss_drain_write(struct seq_oss_devinfo *dp);
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+void snd_seq_oss_drain_write(struct seq_oss_devinfo *dp);
+>>>>>>> 2617302... source
 
 /* */
 void snd_seq_oss_process_queue(struct seq_oss_devinfo *dp, abstime_t time);

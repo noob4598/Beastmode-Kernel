@@ -51,10 +51,14 @@
 extern int poweroff_charging;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 extern int system_rev;
 =======
 extern unsigned int system_rev;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+extern int system_rev;
+>>>>>>> 2617302... source
 
 extern struct otg_notify *get_otg_notify(void);
 
@@ -1930,13 +1934,19 @@ static int max77843_muic_handle_attach(struct max77843_muic_info *info,
 							max77843_muic_start_check_hv(info);
 							max77843_muic_set_hv(info);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 							if (info->cable_name == EXTCON_HV_PREPARE) {
 								pr_info("%s, cable_type is Prepare  [%d]\n",
 										__func__, info->cable_name);
 								return 0;
 							}
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 						}
 					}
 				}

@@ -117,10 +117,14 @@ int dump_task_regs(struct task_struct *t, elf_gregset_t *elfregs);
    that it will "exec", and that there is sufficient room for the brk.  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define ELF_ET_DYN_BASE	(2 * TASK_SIZE / 3)
 =======
 #define ELF_ET_DYN_BASE	(TASK_SIZE / 3 * 2)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+#define ELF_ET_DYN_BASE	(2 * TASK_SIZE / 3)
+>>>>>>> 2617302... source
 
 /* When the program starts, a1 contains a pointer to a function to be 
    registered with atexit, as per the SVR4 ABI.  A value of 0 means we 

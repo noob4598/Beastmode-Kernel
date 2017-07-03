@@ -85,6 +85,7 @@ static const struct dmi_system_id pci_crs_quirks[] __initconst = {
 		},
 	},
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/* https://bugs.launchpad.net/ubuntu/+source/alsa-driver/+bug/931368 */
 	/* https://bugs.launchpad.net/ubuntu/+source/alsa-driver/+bug/1033299 */
@@ -98,6 +99,8 @@ static const struct dmi_system_id pci_crs_quirks[] __initconst = {
 		},
 	},
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	/* Now for the blacklist.. */
 
@@ -122,6 +125,7 @@ static const struct dmi_system_id pci_crs_quirks[] __initconst = {
 		},
 	},
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/* https://bugzilla.kernel.org/show_bug.cgi?id=42606 */
 	{
@@ -134,6 +138,8 @@ static const struct dmi_system_id pci_crs_quirks[] __initconst = {
 		},
 	},
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	/* https://bugzilla.kernel.org/show_bug.cgi?id=15362 */
 	{

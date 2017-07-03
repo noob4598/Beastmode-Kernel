@@ -239,9 +239,12 @@ int scsi_execute(struct scsi_device *sdev, const unsigned char *cmd,
 	if (!req)
 		return ret;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	blk_rq_set_block_pc(req);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	if (bufflen &&	blk_rq_map_kern(sdev->request_queue, req,
 					buffer, bufflen, __GFP_WAIT))
@@ -254,9 +257,13 @@ int scsi_execute(struct scsi_device *sdev, const unsigned char *cmd,
 	req->retries = retries;
 	req->timeout = timeout;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	req->cmd_type = REQ_TYPE_BLOCK_PC;
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	req->cmd_type = REQ_TYPE_BLOCK_PC;
+>>>>>>> 2617302... source
 	req->cmd_flags |= flags | REQ_QUIET | REQ_PREEMPT;
 
 	/*
@@ -554,6 +561,9 @@ void scsi_run_host_queues(struct Scsi_Host *shost)
 static void __scsi_release_buffers(struct scsi_cmnd *, int);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 /*
  * Function:    scsi_end_request()
  *
@@ -614,8 +624,11 @@ static struct scsi_cmnd *scsi_end_request(struct scsi_cmnd *cmd, int error,
 	return NULL;
 }
 
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 static inline unsigned int scsi_sgtable_index(unsigned short nents)
 {
 	unsigned int index;
@@ -746,6 +759,9 @@ static int __scsi_error_from_host_byte(struct scsi_cmnd *cmd, int result)
  * Returns:     Nothing
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
  * Notes:       This function is matched in terms of capabilities to
  *              the function that created the scatter-gather list.
  *              In other words, if there are no bounce buffers
@@ -756,11 +772,14 @@ static int __scsi_error_from_host_byte(struct scsi_cmnd *cmd, int result)
  *		the specified number of sectors.  If we are done, the
  *		command block will be released and the queue function
  *		will be goosed.  If we are not done then we have to
+<<<<<<< HEAD
 =======
  * Notes:       We will finish off the specified number of sectors.  If we
  *		are done, the command block will be released and the queue
  *		function will be goosed.  If we are not done then we have to
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
  *		figure out what to do next:
  *
  *		a) We can call scsi_requeue_command().  The request
@@ -770,10 +789,14 @@ static int __scsi_error_from_host_byte(struct scsi_cmnd *cmd, int result)
  *		   to switch from READ(10) to READ(6) for example.
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  *		b) We can call scsi_queue_insert().  The request will
 =======
  *		b) We can call __scsi_queue_insert().  The request will
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+ *		b) We can call scsi_queue_insert().  The request will
+>>>>>>> 2617302... source
  *		   be put back on the queue and retried using the same
  *		   command as before, possibly after a delay.
  *
@@ -836,6 +859,7 @@ void scsi_io_completion(struct scsi_cmnd *cmd, unsigned int good_bytes)
 			return;
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	} else if (blk_rq_bytes(req) == 0 && result && !sense_deferred) {
 		/*
@@ -846,6 +870,8 @@ void scsi_io_completion(struct scsi_cmnd *cmd, unsigned int good_bytes)
 		 */
 		error = __scsi_error_from_host_byte(cmd, result);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	}
 
 	/* no bidi support for !REQ_TYPE_BLOCK_PC yet */
@@ -881,12 +907,16 @@ void scsi_io_completion(struct scsi_cmnd *cmd, unsigned int good_bytes)
 
 	/*
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	 * A number of bytes were successfully read.  If there
 	 * are leftovers and there is some kind of error
 	 * (result != 0), retry the rest.
 	 */
 	if (scsi_end_request(cmd, error, good_bytes, result == 0) == NULL)
 		return;
+<<<<<<< HEAD
 =======
 	 * special case: failed zero length commands always need to
 	 * drop down into the retry code. Otherwise, if we finished
@@ -911,6 +941,8 @@ void scsi_io_completion(struct scsi_cmnd *cmd, unsigned int good_bytes)
 	if (result == 0)
 		goto requeue;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	error = __scsi_error_from_host_byte(cmd, result);
 
@@ -1033,9 +1065,13 @@ void scsi_io_completion(struct scsi_cmnd *cmd, unsigned int good_bytes)
 	case ACTION_FAIL:
 		/* Give up and fail the remainder of the request */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		scsi_release_buffers(cmd);
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		scsi_release_buffers(cmd);
+>>>>>>> 2617302... source
 		if (!(req->cmd_flags & REQ_QUIET)) {
 			if (description)
 				scmd_printk(KERN_INFO, cmd, "%s\n",
@@ -1046,12 +1082,16 @@ void scsi_io_completion(struct scsi_cmnd *cmd, unsigned int good_bytes)
 			scsi_print_command(cmd);
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		if (blk_end_request_err(req, error))
 			scsi_requeue_command(q, cmd);
 		else
 			scsi_next_command(cmd);
 		break;
 	case ACTION_REPREP:
+<<<<<<< HEAD
 =======
 		if (!blk_end_request_err(req, error))
 			goto next_command;
@@ -1059,6 +1099,8 @@ void scsi_io_completion(struct scsi_cmnd *cmd, unsigned int good_bytes)
 	case ACTION_REPREP:
 	requeue:
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		/* Unprep the request and put it back at the head of the queue.
 		 * A new command will be prepared and issued.
 		 */
@@ -1075,6 +1117,7 @@ void scsi_io_completion(struct scsi_cmnd *cmd, unsigned int good_bytes)
 		break;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	return;
 
@@ -1082,6 +1125,8 @@ next_command:
 	__scsi_release_buffers(cmd, 0);
 	scsi_next_command(cmd);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 }
 
 static int scsi_init_sgtable(struct request *req, struct scsi_data_buffer *sdb,
@@ -1125,6 +1170,7 @@ int scsi_init_io(struct scsi_cmnd *cmd, gfp_t gfp_mask)
 {
 	struct request *rq = cmd->request;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	int error = scsi_init_sgtable(rq, &cmd->sdb, gfp_mask);
 =======
@@ -1135,6 +1181,10 @@ int scsi_init_io(struct scsi_cmnd *cmd, gfp_t gfp_mask)
 
 	error = scsi_init_sgtable(rq, &cmd->sdb, gfp_mask);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+
+	int error = scsi_init_sgtable(rq, &cmd->sdb, gfp_mask);
+>>>>>>> 2617302... source
 	if (error)
 		goto err_exit;
 
@@ -1227,14 +1277,20 @@ int scsi_setup_blk_pc_cmnd(struct scsi_device *sdev, struct request *req)
 	 */
 	if (req->bio) {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		int ret;
 
 		BUG_ON(!req->nr_phys_segments);
 
 		ret = scsi_init_io(cmd, GFP_ATOMIC);
+<<<<<<< HEAD
 =======
 		int ret = scsi_init_io(cmd, GFP_ATOMIC);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		if (unlikely(ret))
 			return ret;
 	} else {
@@ -1279,13 +1335,19 @@ int scsi_setup_fs_cmnd(struct scsi_device *sdev, struct request *req)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	/*
 	 * Filesystem requests must transfer data.
 	 */
 	BUG_ON(!req->nr_phys_segments);
 
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	cmd = scsi_get_cmd_from_req(sdev, req);
 	if (unlikely(!cmd))
 		return BLKPREP_DEFER;
@@ -1326,6 +1388,7 @@ int scsi_prep_state_check(struct scsi_device *sdev, struct request *req)
 			ret = BLKPREP_KILL;
 			break;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		case SDEV_QUIESCE:
 		case SDEV_BLOCK:
 		case SDEV_CREATED_BLOCK:
@@ -1336,6 +1399,11 @@ int scsi_prep_state_check(struct scsi_device *sdev, struct request *req)
 			break;
 		case SDEV_QUIESCE:
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		case SDEV_QUIESCE:
+		case SDEV_BLOCK:
+		case SDEV_CREATED_BLOCK:
+>>>>>>> 2617302... source
 			/*
 			 * If the devices is blocked we defer normal commands.
 			 */

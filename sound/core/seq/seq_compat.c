@@ -50,11 +50,15 @@ static int snd_seq_call_port_info_ioctl(struct snd_seq_client *client, unsigned 
 	mm_segment_t fs;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	data = memdup_user(data32, sizeof(*data32));
 	if (IS_ERR(data))
 		return PTR_ERR(data);
 
 	if (get_user(data->flags, &data32->flags) ||
+<<<<<<< HEAD
 =======
 	data = kmalloc(sizeof(*data), GFP_KERNEL);
 	if (!data)
@@ -63,6 +67,8 @@ static int snd_seq_call_port_info_ioctl(struct snd_seq_client *client, unsigned 
 	if (copy_from_user(data, data32, sizeof(*data32)) ||
 	    get_user(data->flags, &data32->flags) ||
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	    get_user(data->time_queue, &data32->time_queue))
 		goto error;
 	data->kernel = NULL;

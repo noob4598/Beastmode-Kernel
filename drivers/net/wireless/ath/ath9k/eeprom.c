@@ -409,15 +409,21 @@ void ath9k_hw_get_gain_boundaries_pdadcs(struct ath_hw *ah,
 	if (match) {
 		if (AR_SREV_9287(ah)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 			/* FIXME: array overrun? */
 			for (i = 0; i < numXpdGains; i++) {
 				minPwrT4[i] = data_9287[idxL].pwrPdg[i][0];
 				maxPwrT4[i] = data_9287[idxL].pwrPdg[i][4];
+<<<<<<< HEAD
 =======
 			for (i = 0; i < numXpdGains; i++) {
 				minPwrT4[i] = data_9287[idxL].pwrPdg[i][0];
 				maxPwrT4[i] = data_9287[idxL].pwrPdg[i][intercepts - 1];
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 				ath9k_hw_fill_vpd_table(minPwrT4[i], maxPwrT4[i],
 						data_9287[idxL].pwrPdg[i],
 						data_9287[idxL].vpdPdg[i],
@@ -428,10 +434,14 @@ void ath9k_hw_get_gain_boundaries_pdadcs(struct ath_hw *ah,
 			for (i = 0; i < numXpdGains; i++) {
 				minPwrT4[i] = data_4k[idxL].pwrPdg[i][0];
 <<<<<<< HEAD
+<<<<<<< HEAD
 				maxPwrT4[i] = data_4k[idxL].pwrPdg[i][4];
 =======
 				maxPwrT4[i] = data_4k[idxL].pwrPdg[i][intercepts - 1];
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+				maxPwrT4[i] = data_4k[idxL].pwrPdg[i][4];
+>>>>>>> 2617302... source
 				ath9k_hw_fill_vpd_table(minPwrT4[i], maxPwrT4[i],
 						data_4k[idxL].pwrPdg[i],
 						data_4k[idxL].vpdPdg[i],
@@ -442,10 +452,14 @@ void ath9k_hw_get_gain_boundaries_pdadcs(struct ath_hw *ah,
 			for (i = 0; i < numXpdGains; i++) {
 				minPwrT4[i] = data_def[idxL].pwrPdg[i][0];
 <<<<<<< HEAD
+<<<<<<< HEAD
 				maxPwrT4[i] = data_def[idxL].pwrPdg[i][4];
 =======
 				maxPwrT4[i] = data_def[idxL].pwrPdg[i][intercepts - 1];
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+				maxPwrT4[i] = data_def[idxL].pwrPdg[i][4];
+>>>>>>> 2617302... source
 				ath9k_hw_fill_vpd_table(minPwrT4[i], maxPwrT4[i],
 						data_def[idxL].pwrPdg[i],
 						data_def[idxL].vpdPdg[i],

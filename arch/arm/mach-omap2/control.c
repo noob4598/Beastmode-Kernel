@@ -324,11 +324,15 @@ void omap3_save_scratchpad_contents(void)
 			virt_to_phys(omap3_restore_3630);
 	else if (omap_rev() != OMAP3430_REV_ES3_0 &&
 <<<<<<< HEAD
+<<<<<<< HEAD
 					omap_rev() != OMAP3430_REV_ES3_1)
 =======
 					omap_rev() != OMAP3430_REV_ES3_1 &&
 					omap_rev() != OMAP3430_REV_ES3_1_2)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+					omap_rev() != OMAP3430_REV_ES3_1)
+>>>>>>> 2617302... source
 		scratchpad_contents.public_restore_ptr =
 			virt_to_phys(omap3_restore);
 	else

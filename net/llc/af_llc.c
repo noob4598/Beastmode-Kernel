@@ -627,9 +627,12 @@ static void llc_cmsg_rcv(struct msghdr *msg, struct sk_buff *skb)
 		struct llc_pktinfo info;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		memset(&info, 0, sizeof(info));
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		info.lpi_ifindex = llc_sk(skb->sk)->dev->ifindex;
 		llc_pdu_decode_dsap(skb, &info.lpi_sap);
 		llc_pdu_decode_da(skb, info.lpi_mac);

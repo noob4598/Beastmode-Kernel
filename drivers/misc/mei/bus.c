@@ -72,10 +72,14 @@ static int mei_cl_device_probe(struct device *dev)
 	dev_dbg(dev, "Device probe\n");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	strncpy(id.name, dev_name(dev), MEI_CL_NAME_SIZE);
 =======
 	strlcpy(id.name, dev_name(dev), sizeof(id.name));
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	strncpy(id.name, dev_name(dev), MEI_CL_NAME_SIZE);
+>>>>>>> 2617302... source
 
 	return driver->probe(device, &id);
 }

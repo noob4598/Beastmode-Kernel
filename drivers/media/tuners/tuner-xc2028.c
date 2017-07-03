@@ -290,6 +290,7 @@ static void free_firmware(struct xc2028_data *priv)
 	tuner_dbg("%s called\n", __func__);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/* free allocated f/w string */
 	if (priv->fname != firmware_name)
@@ -300,6 +301,8 @@ static void free_firmware(struct xc2028_data *priv)
 	memset(&priv->cur_fw, 0, sizeof(priv->cur_fw));
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	if (!priv->firm)
 		return;
 
@@ -311,11 +314,17 @@ static void free_firmware(struct xc2028_data *priv)
 	priv->firm = NULL;
 	priv->firm_size = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	priv->state = XC2028_NO_FIRMWARE;
 
 	memset(&priv->cur_fw, 0, sizeof(priv->cur_fw));
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	priv->state = XC2028_NO_FIRMWARE;
+
+	memset(&priv->cur_fw, 0, sizeof(priv->cur_fw));
+>>>>>>> 2617302... source
 }
 
 static int load_all_firmwares(struct dvb_frontend *fe,
@@ -905,6 +914,7 @@ read_not_reliable:
 
 fail:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	priv->state = XC2028_SLEEP;
 
 	memset(&priv->cur_fw, 0, sizeof(priv->cur_fw));
@@ -913,6 +923,11 @@ fail:
 	priv->state = XC2028_SLEEP;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	priv->state = XC2028_SLEEP;
+
+	memset(&priv->cur_fw, 0, sizeof(priv->cur_fw));
+>>>>>>> 2617302... source
 	if (retry_count < 8) {
 		msleep(50);
 		retry_count++;
@@ -1335,15 +1350,21 @@ static int xc2028_dvb_release(struct dvb_frontend *fe)
 
 	/* only perform final cleanup if this is the last instance */
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	if (hybrid_tuner_report_instance_count(priv) == 1) {
 		free_firmware(priv);
 		kfree(priv->ctrl.fname);
 		priv->ctrl.fname = NULL;
 	}
+<<<<<<< HEAD
 =======
 	if (hybrid_tuner_report_instance_count(priv) == 1)
 		free_firmware(priv);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	if (priv)
 		hybrid_tuner_release_state(priv);
@@ -1407,6 +1428,9 @@ static int xc2028_set_config(struct dvb_frontend *fe, void *priv_cfg)
 	/*
 	 * Copy the config data.
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	 * For the firmware name, keep a local copy of the string,
 	 * in order to avoid troubles during device release.
 	 */
@@ -1417,10 +1441,13 @@ static int xc2028_set_config(struct dvb_frontend *fe, void *priv_cfg)
 		if (priv->ctrl.fname == NULL)
 			rc = -ENOMEM;
 	}
+<<<<<<< HEAD
 =======
 	 */
 	memcpy(&priv->ctrl, p, sizeof(priv->ctrl));
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	/*
 	 * If firmware name changed, frees firmware. As free_firmware will
@@ -1436,10 +1463,14 @@ static int xc2028_set_config(struct dvb_frontend *fe, void *priv_cfg)
 	if (priv->state == XC2028_NO_FIRMWARE) {
 		if (!firmware_name[0])
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 			priv->fname = priv->ctrl.fname;
 		else
 			priv->fname = firmware_name;
 
+<<<<<<< HEAD
 =======
 			priv->fname = kstrdup(p->fname, GFP_KERNEL);
 		else
@@ -1451,6 +1482,8 @@ static int xc2028_set_config(struct dvb_frontend *fe, void *priv_cfg)
 		}
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		rc = request_firmware_nowait(THIS_MODULE, 1,
 					     priv->fname,
 					     priv->i2c_props.adap->dev.parent,
@@ -1464,9 +1497,12 @@ static int xc2028_set_config(struct dvb_frontend *fe, void *priv_cfg)
 			priv->state = XC2028_WAITING_FIRMWARE;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 unlock:
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	mutex_unlock(&priv->lock);
 
 	return rc;

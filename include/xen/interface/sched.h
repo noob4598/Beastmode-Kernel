@@ -108,6 +108,7 @@ struct sched_watchdog {
 #define SHUTDOWN_crash      3  /* Tell controller we've crashed.             */
 #define SHUTDOWN_watchdog   4  /* Restart because watchdog time expired.     */
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 /*
  * Domain asked to perform 'soft reset' for it. The expected behavior is to
@@ -118,5 +119,7 @@ struct sched_watchdog {
  */
 #define SHUTDOWN_soft_reset 5
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 #endif /* __XEN_PUBLIC_SCHED_H__ */

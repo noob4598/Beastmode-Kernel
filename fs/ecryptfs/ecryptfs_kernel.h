@@ -46,11 +46,14 @@
 #include <linux/spinlock.h>
 #endif
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #ifdef CONFIG_DLP
 #include "ecryptfs_dlp.h"
 #endif
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 #ifdef CONFIG_WTL_ENCRYPTION_FILTER
 #define ENC_NAME_FILTER_MAX_INSTANCE 5
@@ -303,11 +306,14 @@ struct ecryptfs_crypt_stat {
 	dek_t sdp_dek;
 #endif
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #ifdef CONFIG_DLP
 	struct knox_dlp_data expiry;
 #endif
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 };
 
 /* inode private data. */

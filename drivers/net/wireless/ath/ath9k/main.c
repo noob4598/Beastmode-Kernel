@@ -196,11 +196,15 @@ static bool ath_prepare_reset(struct ath_softc *sc)
 	ath9k_hw_disable_interrupts(ah);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	if (!ath_drain_all_txq(sc))
 		ret = false;
 
 	if (!ath_stoprecv(sc))
 		ret = false;
+<<<<<<< HEAD
 =======
 	if (AR_SREV_9300_20_OR_LATER(ah)) {
 		ret &= ath_stoprecv(sc);
@@ -210,6 +214,8 @@ static bool ath_prepare_reset(struct ath_softc *sc)
 		ret &= ath_stoprecv(sc);
 	}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	return ret;
 }

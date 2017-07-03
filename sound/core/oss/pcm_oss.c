@@ -835,11 +835,15 @@ static int choose_rate(struct snd_pcm_substream *substream,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int snd_pcm_oss_change_params(struct snd_pcm_substream *substream)
 =======
 static int snd_pcm_oss_change_params(struct snd_pcm_substream *substream,
 				     bool trylock)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+static int snd_pcm_oss_change_params(struct snd_pcm_substream *substream)
+>>>>>>> 2617302... source
 {
 	struct snd_pcm_runtime *runtime = substream->runtime;
 	struct snd_pcm_hw_params *params, *sparams;
@@ -854,6 +858,7 @@ static int snd_pcm_oss_change_params(struct snd_pcm_substream *substream,
 	struct snd_mask mask;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (mutex_lock_interruptible(&runtime->oss.params_lock))
 =======
 	if (trylock) {
@@ -861,6 +866,9 @@ static int snd_pcm_oss_change_params(struct snd_pcm_substream *substream,
 			return -EAGAIN;
 	} else if (mutex_lock_interruptible(&runtime->oss.params_lock))
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (mutex_lock_interruptible(&runtime->oss.params_lock))
+>>>>>>> 2617302... source
 		return -EINTR;
 	sw_params = kmalloc(sizeof(*sw_params), GFP_KERNEL);
 	params = kmalloc(sizeof(*params), GFP_KERNEL);
@@ -1104,10 +1112,14 @@ static int snd_pcm_oss_get_active_substream(struct snd_pcm_oss_file *pcm_oss_fil
 			asubstream = substream;
 		if (substream->runtime->oss.params) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			err = snd_pcm_oss_change_params(substream);
 =======
 			err = snd_pcm_oss_change_params(substream, false);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			err = snd_pcm_oss_change_params(substream);
+>>>>>>> 2617302... source
 			if (err < 0)
 				return err;
 		}
@@ -1147,10 +1159,14 @@ static int snd_pcm_oss_make_ready(struct snd_pcm_substream *substream)
 	runtime = substream->runtime;
 	if (runtime->oss.params) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		err = snd_pcm_oss_change_params(substream);
 =======
 		err = snd_pcm_oss_change_params(substream, false);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		err = snd_pcm_oss_change_params(substream);
+>>>>>>> 2617302... source
 		if (err < 0)
 			return err;
 	}
@@ -2189,10 +2205,14 @@ static int snd_pcm_oss_get_space(struct snd_pcm_oss_file *pcm_oss_file, int stre
 
 	if (runtime->oss.params &&
 <<<<<<< HEAD
+<<<<<<< HEAD
 	    (err = snd_pcm_oss_change_params(substream)) < 0)
 =======
 	    (err = snd_pcm_oss_change_params(substream, false)) < 0)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	    (err = snd_pcm_oss_change_params(substream)) < 0)
+>>>>>>> 2617302... source
 		return err;
 
 	info.fragsize = runtime->oss.period_bytes;
@@ -2829,6 +2849,7 @@ static int snd_pcm_oss_mmap(struct file *file, struct vm_area_struct *area)
 	
 	if (runtime->oss.params) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if ((err = snd_pcm_oss_change_params(substream)) < 0)
 =======
 		/* use mutex_trylock() for params_lock for avoiding a deadlock
@@ -2838,6 +2859,9 @@ static int snd_pcm_oss_mmap(struct file *file, struct vm_area_struct *area)
 		err = snd_pcm_oss_change_params(substream, true);
 		if (err < 0)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		if ((err = snd_pcm_oss_change_params(substream)) < 0)
+>>>>>>> 2617302... source
 			return err;
 	}
 #ifdef CONFIG_SND_PCM_OSS_PLUGINS

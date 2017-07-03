@@ -2473,6 +2473,7 @@
 #define PCI_DEVICE_ID_KORENIX_JETCARDF3	0x17ff
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define PCI_VENDOR_ID_NETRONOME		0x19ee
 #define PCI_DEVICE_ID_NETRONOME_NFP3200	0x3200
@@ -2482,6 +2483,8 @@
 #define PCI_DEVICE_ID_NETRONOME_NFP6000_VF	0x6003
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 #define PCI_VENDOR_ID_QMI		0x1a32
 
 #define PCI_VENDOR_ID_AZWAVE		0x1a3b

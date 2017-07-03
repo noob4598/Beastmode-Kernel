@@ -741,6 +741,7 @@ static int selinux_set_mnt_opts(struct super_block *sb,
 
 	if (strcmp(sb->s_type->name, "proc") == 0)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		sbsec->flags |= SE_SBPROC;
 =======
 		sbsec->flags |= SE_SBPROC | SE_SBGENFS;
@@ -750,6 +751,9 @@ static int selinux_set_mnt_opts(struct super_block *sb,
 	    !strcmp(sb->s_type->name, "pstore"))
 		sbsec->flags |= SE_SBGENFS;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		sbsec->flags |= SE_SBPROC;
+>>>>>>> 2617302... source
 
 	/* Determine the labeling behavior to use for this filesystem type. */
 	rc = security_fs_use((sbsec->flags & SE_SBPROC) ? "proc" : sb->s_type->name, &sbsec->behavior, &sbsec->sid);
@@ -1243,12 +1247,16 @@ static inline u16 socket_type_to_security_class(int family, int type, int protoc
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 #ifdef CONFIG_PROC_FS
 static int selinux_proc_get_sid(struct dentry *dentry,
 				u16 tclass,
 				u32 *sid)
 {
 	int rc;
+<<<<<<< HEAD
 =======
 static int selinux_genfs_get_sid(struct dentry *dentry,
 				 u16 tclass,
@@ -1258,6 +1266,8 @@ static int selinux_genfs_get_sid(struct dentry *dentry,
 	int rc;
 	struct super_block *sb = dentry->d_inode->i_sb;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	char *buffer, *path;
 
 	buffer = (char *)__get_free_page(GFP_KERNEL);
@@ -1269,6 +1279,9 @@ static int selinux_genfs_get_sid(struct dentry *dentry,
 		rc = PTR_ERR(path);
 	else {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		/* each process gets a /proc/PID/ entry. Strip off the
 		 * PID part to get a valid selinux labeling.
 		 * e.g. /proc/1/net/rpc/nfs -> /net/rpc/nfs */
@@ -1277,6 +1290,7 @@ static int selinux_genfs_get_sid(struct dentry *dentry,
 			path++;
 		}
 		rc = security_genfs_sid("proc", path, tclass, sid);
+<<<<<<< HEAD
 =======
 		if (flags & SE_SBPROC) {
 			/* each process gets a /proc/PID/ entry. Strip off the
@@ -1289,11 +1303,16 @@ static int selinux_genfs_get_sid(struct dentry *dentry,
 		}
 		rc = security_genfs_sid(sb->s_type->name, path, tclass, sid);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	}
 	free_page((unsigned long)buffer);
 	return rc;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 #else
 static int selinux_proc_get_sid(struct dentry *dentry,
 				u16 tclass,
@@ -1302,8 +1321,11 @@ static int selinux_proc_get_sid(struct dentry *dentry,
 	return -EINVAL;
 }
 #endif
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 /* The inode's security attributes must be initialized before first use. */
 static int inode_doinit_with_dentry(struct inode *inode, struct dentry *opt_dentry)
@@ -1459,10 +1481,14 @@ static int inode_doinit_with_dentry(struct inode *inode, struct dentry *opt_dent
 		isec->sid = sbsec->sid;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if ((sbsec->flags & SE_SBPROC) && !S_ISLNK(inode->i_mode)) {
 =======
 		if ((sbsec->flags & SE_SBGENFS) && !S_ISLNK(inode->i_mode)) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		if ((sbsec->flags & SE_SBPROC) && !S_ISLNK(inode->i_mode)) {
+>>>>>>> 2617302... source
 			/* We must have a dentry to determine the label on
 			 * procfs inodes */
 			if (opt_dentry)
@@ -1486,11 +1512,15 @@ static int inode_doinit_with_dentry(struct inode *inode, struct dentry *opt_dent
 				goto out_unlock;
 			isec->sclass = inode_mode_to_security_class(inode->i_mode);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			rc = selinux_proc_get_sid(dentry, isec->sclass, &sid);
 =======
 			rc = selinux_genfs_get_sid(dentry, isec->sclass,
 						   sbsec->flags, &sid);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			rc = selinux_proc_get_sid(dentry, isec->sclass, &sid);
+>>>>>>> 2617302... source
 			dput(dentry);
 			if (rc)
 				goto out_unlock;
@@ -2034,9 +2064,13 @@ static int selinux_binder_transfer_file(struct task_struct *from, struct task_st
 	struct inode_security_struct *isec = inode->i_security;
 	struct common_audit_data ad;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct selinux_audit_data sad = {0,};
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	struct selinux_audit_data sad = {0,};
+>>>>>>> 2617302... source
 	int rc;
 
 	if ((rc = security_integrity_current()))
@@ -2046,9 +2080,13 @@ static int selinux_binder_transfer_file(struct task_struct *from, struct task_st
 	ad.type = LSM_AUDIT_DATA_PATH;
 	ad.u.path = file->f_path;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ad.selinux_audit_data = &sad;
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	ad.selinux_audit_data = &sad;
+>>>>>>> 2617302... source
 
 	if (sid != fsec->sid) {
 		rc = avc_has_perm(sid, fsec->sid,
@@ -3084,11 +3122,15 @@ static int selinux_inode_setattr(struct dentry *dentry, struct iattr *iattr)
 		return dentry_has_perm(cred, dentry, FILE__SETATTR);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (selinux_policycap_openperm && (ia_valid & ATTR_SIZE))
 =======
 	if (selinux_policycap_openperm && (ia_valid & ATTR_SIZE)
 			&& !(ia_valid & ATTR_FILE))
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (selinux_policycap_openperm && (ia_valid & ATTR_SIZE))
+>>>>>>> 2617302... source
 		av |= FILE__OPEN;
 
 	return dentry_has_perm(cred, dentry, av);
@@ -3431,10 +3473,13 @@ int ioctl_has_perm(const struct cred *cred, struct file *file,
 	u32 ssid = cred_sid(cred);
 	int rc;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	u8 driver = cmd >> 8;
 	u8 xperm = cmd & 0xff;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	ad.type = LSM_AUDIT_DATA_IOCTL_OP;
 	ad.u.op = &ioctl;
@@ -3454,12 +3499,17 @@ int ioctl_has_perm(const struct cred *cred, struct file *file,
 		return 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	rc = avc_has_operation(ssid, isec->sid, isec->sclass,
 			requested, cmd, &ad);
 =======
 	rc = avc_has_extended_perms(ssid, isec->sid, isec->sclass,
 			requested, driver, xperm, &ad);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	rc = avc_has_operation(ssid, isec->sid, isec->sclass,
+			requested, cmd, &ad);
+>>>>>>> 2617302... source
 out:
 	return rc;
 }
@@ -3923,6 +3973,7 @@ static int selinux_kernel_module_request(char *kmod_name)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 static int selinux_kernel_module_from_file(struct file *file)
 {
@@ -3957,6 +4008,8 @@ static int selinux_kernel_module_from_file(struct file *file)
 }
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 static int selinux_task_setpgid(struct task_struct *p, pid_t pgid)
 {
 	int rc;
@@ -6205,10 +6258,14 @@ static int selinux_setprocattr(struct task_struct *p,
 
 	/* Obtain a SID for the context, if one was specified. */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (size && str[1] && str[1] != '\n') {
 =======
 	if (size && str[0] && str[0] != '\n') {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (size && str[1] && str[1] != '\n') {
+>>>>>>> 2617302... source
 		if (str[size-1] == '\n') {
 			str[size-1] = 0;
 			size--;
@@ -6544,9 +6601,12 @@ static struct security_operations selinux_ops = {
 	.kernel_create_files_as =	selinux_kernel_create_files_as,
 	.kernel_module_request =	selinux_kernel_module_request,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	.kernel_module_from_file =      selinux_kernel_module_from_file,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	.task_setpgid =			selinux_task_setpgid,
 	.task_getpgid =			selinux_task_getpgid,
 	.task_getsid =			selinux_task_getsid,

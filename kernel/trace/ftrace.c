@@ -332,19 +332,27 @@ static void update_ftrace_function(void)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	update_function_graph_func();
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	/* If there's no change, then do nothing more here */
 	if (ftrace_trace_function == func)
 		return;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	update_function_graph_func();
 
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	update_function_graph_func();
+
+>>>>>>> 2617302... source
 	/*
 	 * If we are using the list function, it doesn't care
 	 * about the function_trace_ops.
@@ -4231,6 +4239,9 @@ static void ftrace_init_module(struct module *mod,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 static int ftrace_module_notify_enter(struct notifier_block *self,
 				      unsigned long val, void *data)
 {
@@ -4241,6 +4252,7 @@ static int ftrace_module_notify_enter(struct notifier_block *self,
 				   mod->ftrace_callsites +
 				   mod->num_ftrace_callsites);
 	return 0;
+<<<<<<< HEAD
 =======
 void ftrace_module_init(struct module *mod)
 {
@@ -4248,6 +4260,8 @@ void ftrace_module_init(struct module *mod)
 			   mod->ftrace_callsites +
 			   mod->num_ftrace_callsites);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 }
 
 static int ftrace_module_notify_exit(struct notifier_block *self,
@@ -4262,13 +4276,19 @@ static int ftrace_module_notify_exit(struct notifier_block *self,
 }
 #else
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 static int ftrace_module_notify_enter(struct notifier_block *self,
 				      unsigned long val, void *data)
 {
 	return 0;
 }
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 static int ftrace_module_notify_exit(struct notifier_block *self,
 				     unsigned long val, void *data)
 {
@@ -4277,13 +4297,19 @@ static int ftrace_module_notify_exit(struct notifier_block *self,
 #endif /* CONFIG_MODULES */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 struct notifier_block ftrace_module_enter_nb = {
 	.notifier_call = ftrace_module_notify_enter,
 	.priority = INT_MAX,	/* Run before anything that can use kprobes */
 };
 
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 struct notifier_block ftrace_module_exit_nb = {
 	.notifier_call = ftrace_module_notify_exit,
 	.priority = INT_MIN,	/* Run after anything that can remove kprobes */
@@ -4321,12 +4347,18 @@ void __init ftrace_init(void)
 				  __stop_mcount_loc);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	ret = register_module_notifier(&ftrace_module_enter_nb);
 	if (ret)
 		pr_warning("Failed to register trace ftrace module enter notifier\n");
 
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	ret = register_module_notifier(&ftrace_module_exit_nb);
 	if (ret)
 		pr_warning("Failed to register trace ftrace module exit notifier\n");

@@ -525,6 +525,7 @@ gigaset_tty_open(struct tty_struct *tty)
 	atomic_set(&cs->hw.ser->refcnt, 1);
 	init_completion(&cs->hw.ser->dead_cmp);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	tty->disc_data = cs;
 
@@ -542,6 +543,11 @@ gigaset_tty_open(struct tty_struct *tty)
 	tty->receive_room = RBUFSIZE/2;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+
+	tty->disc_data = cs;
+
+>>>>>>> 2617302... source
 	/* OK.. Initialization of the datastructures and the HW is done.. Now
 	 * startup system and notify the LL that we are ready to run
 	 */
@@ -794,6 +800,7 @@ static int __init ser_gigaset_init(void)
 				    GIGASET_MODULENAME, GIGASET_DEVNAME,
 				    &ops, THIS_MODULE);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!driver)
 		goto error;
 =======
@@ -802,6 +809,10 @@ static int __init ser_gigaset_init(void)
 		goto error;
 	}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (!driver)
+		goto error;
+>>>>>>> 2617302... source
 
 	rc = tty_register_ldisc(N_GIGASET_M101, &gigaset_ldisc);
 	if (rc != 0) {

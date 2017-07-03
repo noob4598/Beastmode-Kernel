@@ -943,6 +943,7 @@ void xhci_free_virt_device(struct xhci_hcd *xhci, int slot_id)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 /*
  * Free a virt_device structure.
@@ -979,6 +980,8 @@ void xhci_free_virt_devices_depth_first(struct xhci_hcd *xhci, int slot_id)
 }
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 int xhci_alloc_virt_device(struct xhci_hcd *xhci, int slot_id,
 		struct usb_device *udev, gfp_t flags)
 {
@@ -1455,16 +1458,22 @@ int xhci_endpoint_init(struct xhci_hcd *xhci,
 		if (virt_dev->num_rings_cached == 0)
 			return -ENOMEM;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		virt_dev->eps[ep_index].new_ring =
 			virt_dev->ring_cache[virt_dev->num_rings_cached];
 		virt_dev->ring_cache[virt_dev->num_rings_cached] = NULL;
 		virt_dev->num_rings_cached--;
+<<<<<<< HEAD
 =======
 		virt_dev->num_rings_cached--;
 		virt_dev->eps[ep_index].new_ring =
 			virt_dev->ring_cache[virt_dev->num_rings_cached];
 		virt_dev->ring_cache[virt_dev->num_rings_cached] = NULL;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		xhci_reinit_cached_ring(xhci, virt_dev->eps[ep_index].new_ring,
 					1, type);
 	}
@@ -1535,16 +1544,22 @@ int xhci_endpoint_init(struct xhci_hcd *xhci,
 	 * transfers, we're basically dividing by 1.
 	 *
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	 * xHCI 1.0 specification indicates that the Average TRB Length should
 	 * be set to 8 for control endpoints.
 	 */
 	if (usb_endpoint_xfer_control(&ep->desc) && xhci->hci_version == 0x100)
+<<<<<<< HEAD
 =======
 	 * xHCI 1.0 and 1.1 specification indicates that the Average TRB Length
 	 * should be set to 8 for control endpoints.
 	 */
 	if (usb_endpoint_xfer_control(&ep->desc) && xhci->hci_version >= 0x100)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		ep_ctx->tx_info |= cpu_to_le32(AVG_TRB_LENGTH_FOR_EP(8));
 	else
 		ep_ctx->tx_info |=
@@ -1863,6 +1878,7 @@ void xhci_mem_cleanup(struct xhci_hcd *xhci)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	for (i = 1; i < MAX_HC_SLOTS; ++i)
 		xhci_free_virt_device(xhci, i);
 =======
@@ -1879,6 +1895,10 @@ void xhci_mem_cleanup(struct xhci_hcd *xhci)
 	for (i = HCS_MAX_SLOTS(xhci->hcs_params1); i > 0; i--)
 		xhci_free_virt_devices_depth_first(xhci, i);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	for (i = 1; i < MAX_HC_SLOTS; ++i)
+		xhci_free_virt_device(xhci, i);
+>>>>>>> 2617302... source
 
 	if (xhci->segment_pool)
 		dma_pool_destroy(xhci->segment_pool);
@@ -1918,6 +1938,9 @@ void xhci_mem_cleanup(struct xhci_hcd *xhci)
 		goto no_bw;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	num_ports = HCS_MAX_PORTS(xhci->hcs_params1);
 	for (i = 0; i < num_ports; i++) {
 		struct xhci_interval_bw_table *bwt = &xhci->rh_bw[i].bw_table;
@@ -1928,8 +1951,11 @@ void xhci_mem_cleanup(struct xhci_hcd *xhci)
 		}
 	}
 
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	for (i = 0; i < num_ports; i++) {
 		struct xhci_tt_bw_info *tt, *n;
 		list_for_each_entry_safe(tt, n, &xhci->rh_bw[i].tts, tt_list) {
@@ -1948,6 +1974,7 @@ no_bw:
 	kfree(xhci->rh_bw);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	xhci->usb2_ports = NULL;
 	xhci->usb3_ports = NULL;
@@ -1955,6 +1982,8 @@ no_bw:
 	xhci->rh_bw = NULL;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	xhci->page_size = 0;
 	xhci->page_shift = 0;
 	xhci->bus_state[0].bus_suspended = 0;
@@ -2396,10 +2425,14 @@ int xhci_mem_init(struct xhci_hcd *xhci, gfp_t flags)
 	 */
 	xhci->dcbaa = dma_alloc_coherent(dev, sizeof(*xhci->dcbaa), &dma,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			GFP_KERNEL);
 =======
 			flags);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			GFP_KERNEL);
+>>>>>>> 2617302... source
 	if (!xhci->dcbaa)
 		goto fail;
 	memset(xhci->dcbaa, 0, sizeof *(xhci->dcbaa));
@@ -2491,10 +2524,14 @@ int xhci_mem_init(struct xhci_hcd *xhci, gfp_t flags)
 	xhci->erst.entries = dma_alloc_coherent(dev,
 			sizeof(struct xhci_erst_entry) * ERST_NUM_SEGS, &dma,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			GFP_KERNEL);
 =======
 			flags);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			GFP_KERNEL);
+>>>>>>> 2617302... source
 	if (!xhci->erst.entries)
 		goto fail;
 	xhci_dbg(xhci, "// Allocated event ring segment table at 0x%llx\n",

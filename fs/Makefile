@@ -4,10 +4,14 @@
 # 14 Sep 2000, Christoph Hellwig <hch@infradead.org>
 # Rewritten to use lists instead of if-statements.
 <<<<<<< HEAD
+<<<<<<< HEAD
 # 
 =======
 #
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+# 
+>>>>>>> 2617302... source
 
 obj-y :=	open.o read_write.o file_table.o super.o \
 		char_dev.o stat.o exec.o pipe.o namei.o fcntl.o \
@@ -34,9 +38,12 @@ obj-$(CONFIG_TIMERFD)		+= timerfd.o
 obj-$(CONFIG_EVENTFD)		+= eventfd.o
 obj-$(CONFIG_AIO)               += aio.o
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 obj-$(CONFIG_FS_ENCRYPTION)	+= crypto/
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 obj-$(CONFIG_FILE_LOCKING)      += locks.o
 obj-$(CONFIG_COMPAT)		+= compat.o compat_ioctl.o
 obj-$(CONFIG_BINFMT_AOUT)	+= binfmt_aout.o
@@ -68,10 +75,14 @@ obj-y				+= devpts/
 obj-$(CONFIG_PROFILING)		+= dcookies.o
 obj-$(CONFIG_DLM)		+= dlm/
 <<<<<<< HEAD
+<<<<<<< HEAD
  
 =======
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+ 
+>>>>>>> 2617302... source
 # Do not add any filesystems before this line
 obj-$(CONFIG_FSCACHE)		+= fscache/
 obj-$(CONFIG_REISERFS_FS)	+= reiserfs/

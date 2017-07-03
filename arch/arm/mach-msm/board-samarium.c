@@ -17,10 +17,15 @@
 #include <linux/of_platform.h>
 #include <linux/memory.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/msm_tsens.h>
 #include <linux/msm_thermal.h>
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+#include <linux/msm_tsens.h>
+#include <linux/msm_thermal.h>
+>>>>>>> 2617302... source
 #include <linux/clk/msm-clk-provider.h>
 #include <linux/regulator/rpm-smd-regulator.h>
 #include <asm/mach/map.h>
@@ -83,10 +88,15 @@ void __init msmsamarium_add_drivers(void)
 	else
 		msm_clock_init(&msmsamarium_clock_init_data);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	tsens_tm_init_driver();
 	msm_thermal_device_init();
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	tsens_tm_init_driver();
+	msm_thermal_device_init();
+>>>>>>> 2617302... source
 }
 
 static void __init msmsamarium_map_io(void)

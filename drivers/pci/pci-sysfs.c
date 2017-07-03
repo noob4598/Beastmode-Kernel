@@ -176,10 +176,14 @@ static ssize_t modalias_show(struct device *dev, struct device_attribute *attr, 
 	struct pci_dev *pci_dev = to_pci_dev(dev);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return sprintf(buf, "pci:v%08Xd%08Xsv%08Xsd%08Xbc%02Xsc%02Xi%02x\n",
 =======
 	return sprintf(buf, "pci:v%08Xd%08Xsv%08Xsd%08Xbc%02Xsc%02Xi%02X\n",
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	return sprintf(buf, "pci:v%08Xd%08Xsv%08Xsd%08Xbc%02Xsc%02Xi%02x\n",
+>>>>>>> 2617302... source
 		       pci_dev->vendor, pci_dev->device,
 		       pci_dev->subsystem_vendor, pci_dev->subsystem_device,
 		       (u8)(pci_dev->class >> 16), (u8)(pci_dev->class >> 8),
@@ -1313,16 +1317,22 @@ int __must_check pci_create_sysfs_dev_files (struct pci_dev *pdev)
 		return -EACCES;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	if (pdev->cfg_size < PCI_CFG_SPACE_EXP_SIZE)
 		retval = sysfs_create_bin_file(&pdev->dev.kobj, &pci_config_attr);
 	else
 		retval = sysfs_create_bin_file(&pdev->dev.kobj, &pcie_config_attr);
+<<<<<<< HEAD
 =======
 	if (pdev->cfg_size > PCI_CFG_SPACE_SIZE)
 		retval = sysfs_create_bin_file(&pdev->dev.kobj, &pcie_config_attr);
 	else
 		retval = sysfs_create_bin_file(&pdev->dev.kobj, &pci_config_attr);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	if (retval)
 		goto err;
 
@@ -1380,16 +1390,22 @@ err_resource_files:
 	pci_remove_resource_files(pdev);
 err_config_file:
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	if (pdev->cfg_size < PCI_CFG_SPACE_EXP_SIZE)
 		sysfs_remove_bin_file(&pdev->dev.kobj, &pci_config_attr);
 	else
 		sysfs_remove_bin_file(&pdev->dev.kobj, &pcie_config_attr);
+<<<<<<< HEAD
 =======
 	if (pdev->cfg_size > PCI_CFG_SPACE_SIZE)
 		sysfs_remove_bin_file(&pdev->dev.kobj, &pcie_config_attr);
 	else
 		sysfs_remove_bin_file(&pdev->dev.kobj, &pci_config_attr);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 err:
 	return retval;
 }
@@ -1424,16 +1440,22 @@ void pci_remove_sysfs_dev_files(struct pci_dev *pdev)
 	pci_remove_capabilities_sysfs(pdev);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	if (pdev->cfg_size < PCI_CFG_SPACE_EXP_SIZE)
 		sysfs_remove_bin_file(&pdev->dev.kobj, &pci_config_attr);
 	else
 		sysfs_remove_bin_file(&pdev->dev.kobj, &pcie_config_attr);
+<<<<<<< HEAD
 =======
 	if (pdev->cfg_size > PCI_CFG_SPACE_SIZE)
 		sysfs_remove_bin_file(&pdev->dev.kobj, &pcie_config_attr);
 	else
 		sysfs_remove_bin_file(&pdev->dev.kobj, &pci_config_attr);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	pci_remove_resource_files(pdev);
 

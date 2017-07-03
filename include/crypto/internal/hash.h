@@ -152,6 +152,7 @@ static inline struct ahash_instance *ahash_alloc_instance(
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 static inline void ahash_request_complete(struct ahash_request *req, int err)
 {
@@ -164,6 +165,8 @@ static inline u32 ahash_request_flags(struct ahash_request *req)
 }
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 static inline struct crypto_ahash *crypto_spawn_ahash(
 	struct crypto_ahash_spawn *spawn)
 {

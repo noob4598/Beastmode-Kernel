@@ -12,10 +12,13 @@ unsigned long ucs2_strsize(const ucs2_char_t *data, unsigned long maxlength);
 int ucs2_strncmp(const ucs2_char_t *a, const ucs2_char_t *b, size_t len);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 unsigned long ucs2_utf8size(const ucs2_char_t *src);
 unsigned long ucs2_as_utf8(u8 *dest, const ucs2_char_t *src,
 			   unsigned long maxlength);
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 #endif /* _LINUX_UCS2_STRING_H_ */

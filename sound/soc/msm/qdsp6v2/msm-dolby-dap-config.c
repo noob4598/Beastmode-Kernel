@@ -1,8 +1,12 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* Copyright (c) 2013-2014, The Linux Foundation. All rights reserved.
 =======
 /* Copyright (c) 2013-2014, 2016, The Linux Foundation. All rights reserved.
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+/* Copyright (c) 2013-2014, The Linux Foundation. All rights reserved.
+>>>>>>> 2617302... source
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License version 2 and
 * only version 2 as published by the Free Software Foundation.
@@ -23,12 +27,15 @@
 #include "msm-dolby-dap-config.h"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #ifndef DOLBY_PARAM_VCNB_MAX_LENGTH
 #define DOLBY_PARAM_VCNB_MAX_LENGTH 40
 #endif
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 /* dolby endp based parameters */
 struct dolby_dap_endp_params_s {
 	int device;
@@ -658,10 +665,14 @@ int msm_dolby_dap_param_to_set_control_put(struct snd_kcontrol *kcontrol,
 {
 	int rc = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	uint32_t idx, j;
 =======
 	uint32_t idx, j, current_offset;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	uint32_t idx, j;
+>>>>>>> 2617302... source
 	uint32_t device = ucontrol->value.integer.value[0];
 	uint32_t param_id = ucontrol->value.integer.value[1];
 	uint32_t offset = ucontrol->value.integer.value[2];
@@ -723,6 +734,7 @@ int msm_dolby_dap_param_to_set_control_put(struct snd_kcontrol *kcontrol,
 			/* cache the parameters */
 			dolby_dap_params_modified[idx] += 1;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 			current_offset = dolby_dap_params_offset[idx] + offset;
 			if (current_offset >= TOTAL_LENGTH_DOLBY_PARAM) {
@@ -738,6 +750,8 @@ int msm_dolby_dap_param_to_set_control_put(struct snd_kcontrol *kcontrol,
 				return -EINVAL;
 			}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 			dolby_dap_params_length[idx] = length;
 			pr_debug("%s: param recvd deviceId=0x%x paramId=0x%x offset=%d length=%d\n",
 				__func__, device, param_id, offset, length);
@@ -867,6 +881,7 @@ int msm_dolby_dap_param_visualizer_control_get(struct snd_kcontrol *kcontrol,
 		return -EINVAL;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (length > DOLBY_PARAM_VCNB_MAX_LENGTH || length <= 0) {
 		pr_err("%s Incorrect VCNB length", __func__);
@@ -874,6 +889,8 @@ int msm_dolby_dap_param_visualizer_control_get(struct snd_kcontrol *kcontrol,
 		return -EINVAL;
 	}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	visualizer_data = kzalloc(params_length, GFP_KERNEL);
 	if (!visualizer_data) {
 		pr_err("%s, params memory alloc failed\n", __func__);

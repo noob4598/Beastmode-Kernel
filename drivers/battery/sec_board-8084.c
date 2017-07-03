@@ -57,10 +57,14 @@ void sec_bat_check_batt_id(struct sec_battery_info *battery)
 	data = results.adc_code;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_info("%s: batt_id_adc = (%d)\n", __func__, data);
 =======
 	pr_debug("%s: batt_id_adc = (%d)\n", __func__, data);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	pr_info("%s: batt_id_adc = (%d)\n", __func__, data);
+>>>>>>> 2617302... source
 
 	/* SDI: 28500, ATL: 31000 */
 	if (data > 31000) {
@@ -302,10 +306,14 @@ bool sec_bat_check_callback(struct sec_battery_info *battery)
 	union power_supply_propval value;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_info("%s:  battery->pdata->bat_irq_gpio(%d)\n",
 =======
 	pr_debug("%s:  battery->pdata->bat_irq_gpio(%d)\n",
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	pr_info("%s:  battery->pdata->bat_irq_gpio(%d)\n",
+>>>>>>> 2617302... source
 			__func__, battery->pdata->bat_irq_gpio);
 	psy = get_power_supply_by_name(battery->pdata->charger_name);
 	if (!psy) {
@@ -331,19 +339,27 @@ bool sec_bat_check_callback(struct sec_battery_info *battery)
 			ret = qpnp_pin_config(battery->pdata->bat_irq_gpio, &adc_param);
 			if (ret < 0)
 <<<<<<< HEAD
+<<<<<<< HEAD
 				pr_info("%s: qpnp config error: %d\n",
 =======
 				pr_err("%s: qpnp config error: %d\n",
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+				pr_info("%s: qpnp config error: %d\n",
+>>>>>>> 2617302... source
 						__func__, ret);
 			/* check the adc from vf pin */
 			qpnp_vadc_read(adc_client, P_MUX8_1_3, &result);
 			data = ((int)result.physical) / 1000;
 <<<<<<< HEAD
+<<<<<<< HEAD
 			pr_info("%s: (%dmV) is connected.\n",
 =======
 			pr_debug("%s: (%dmV) is connected.\n",
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			pr_info("%s: (%dmV) is connected.\n",
+>>>>>>> 2617302... source
 					__func__, data);
 #if defined(CONFIG_MACH_TRLTE_ATT) || defined(CONFIG_MACH_TRLTE_SPR) || \
 			defined(CONFIG_MACH_TRLTE_TMO) || defined(CONFIG_MACH_TRLTE_USC) || \
@@ -361,10 +377,14 @@ bool sec_bat_check_callback(struct sec_battery_info *battery)
 			ret = qpnp_pin_config(battery->pdata->bat_irq_gpio, &int_param);
 			if (ret < 0)
 <<<<<<< HEAD
+<<<<<<< HEAD
 				pr_info("%s: qpnp config error int: %d\n",
 =======
 				pr_err("%s: qpnp config error int: %d\n",
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+				pr_info("%s: qpnp config error int: %d\n",
+>>>>>>> 2617302... source
 						__func__, ret);
 		} else {
 			int ret;
@@ -388,10 +408,14 @@ void sec_bat_check_cable_result_callback(struct device *dev,
 	if (current_cable_type == POWER_SUPPLY_TYPE_BATTERY)
 	{
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_info("%s set lvs2 off\n", __func__);
 =======
 		pr_debug("%s set lvs2 off\n", __func__);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		pr_info("%s set lvs2 off\n", __func__);
+>>>>>>> 2617302... source
 		pma8084_lvs2 = regulator_get(dev, "8084_lvs2");
 		if (IS_ERR(pma8084_lvs2)) {
 			pr_err("%s: pma8084_lvs2 regulator_get fail\n", __func__);
@@ -406,10 +430,14 @@ void sec_bat_check_cable_result_callback(struct device *dev,
 	else
 	{
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_info("%s set lvs2 on\n", __func__);
 =======
 		pr_debug("%s set lvs2 on\n", __func__);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		pr_info("%s set lvs2 on\n", __func__);
+>>>>>>> 2617302... source
 		pma8084_lvs2 = regulator_get(dev, "8084_lvs2");
 		if (IS_ERR(pma8084_lvs2)) {
 			pr_err("%s: pma8084_lvs2 regulator_get fail\n", __func__);
@@ -438,10 +466,14 @@ int sec_bat_check_cable_callback(struct sec_battery_info *battery)
 		if (battery->cable_type == POWER_SUPPLY_TYPE_BATTERY &&
 			!gpio_get_value_cansleep(battery->pdata->ta_irq_gpio)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			pr_info("%s : VBUS IN\n", __func__);
 =======
 			pr_debug("%s : VBUS IN\n", __func__);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			pr_info("%s : VBUS IN\n", __func__);
+>>>>>>> 2617302... source
 
 			value.intval = POWER_SUPPLY_TYPE_UARTOFF;
 			psy_do_property("battery", set, POWER_SUPPLY_PROP_ONLINE, value);
@@ -454,10 +486,14 @@ int sec_bat_check_cable_callback(struct sec_battery_info *battery)
 			battery->cable_type == POWER_SUPPLY_TYPE_CARDOCK) &&
 			gpio_get_value_cansleep(battery->pdata->ta_irq_gpio)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			pr_info("%s : VBUS OUT\n", __func__);
 =======
 			pr_debug("%s : VBUS OUT\n", __func__);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			pr_info("%s : VBUS OUT\n", __func__);
+>>>>>>> 2617302... source
 
 			value.intval = POWER_SUPPLY_TYPE_BATTERY;
 			psy_do_property("battery", set, POWER_SUPPLY_PROP_ONLINE, value);
@@ -475,10 +511,14 @@ void board_battery_init(struct platform_device *pdev, struct sec_battery_info *b
 	if ((!battery->pdata->temp_adc_table) &&
 		(battery->pdata->thermal_source == SEC_BATTERY_THERMAL_SOURCE_ADC)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_info("%s : assign temp adc table\n", __func__);
 =======
 		pr_debug("%s : assign temp adc table\n", __func__);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		pr_info("%s : assign temp adc table\n", __func__);
+>>>>>>> 2617302... source
 
 		battery->pdata->temp_adc_table = temp_table;
 		battery->pdata->temp_amb_adc_table = temp_table;
@@ -490,10 +530,14 @@ void board_battery_init(struct platform_device *pdev, struct sec_battery_info *b
 	if ((!battery->pdata->chg_temp_adc_table) &&
 		(battery->pdata->chg_temp_check)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_info("%s : assign chg temp adc table\n", __func__);
 =======
 		pr_debug("%s : assign chg temp adc table\n", __func__);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		pr_info("%s : assign chg temp adc table\n", __func__);
+>>>>>>> 2617302... source
 		battery->pdata->chg_temp_adc_table = chg_temp_table;
 		battery->pdata->chg_temp_adc_table_size = sizeof(chg_temp_table)/sizeof(sec_bat_adc_table_data_t);
 	}
@@ -527,12 +571,16 @@ void board_battery_init(struct platform_device *pdev, struct sec_battery_info *b
 	battery->pdata->swelling_high_chg_current = BATT_SWELLING_HIGH_CHG_CURRENT;
 	battery->pdata->swelling_low_chg_current = BATT_SWELLING_LOW_CHG_CURRENT;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	battery->pdata->swelling_topoff_current = BATT_SWELLING_TOPOFF_CURRENT;
 =======
 #ifndef CONFIG_SEC_KCCAT6_PROJECT
 	battery->pdata->swelling_topoff_current = BATT_SWELLING_TOPOFF_CURRENT;
 #endif
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	battery->pdata->swelling_topoff_current = BATT_SWELLING_TOPOFF_CURRENT;
+>>>>>>> 2617302... source
 	battery->pdata->swelling_drop_float_voltage = BATT_SWELLING_DROP_FLOAT_VOLTAGE;
 	battery->pdata->swelling_high_rechg_voltage = BATT_SWELLING_HIGH_RECHG_VOLTAGE;
 	battery->pdata->swelling_low_rechg_voltage = BATT_SWELLING_LOW_RECHG_VOLTAGE;
@@ -551,16 +599,22 @@ void board_fuelgauge_init(void *data)
 
 		if (!fuelgauge->battery_data) {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 			pr_info("%s : assign battery data\n", __func__);
 			fuelgauge->battery_data = max17048_battery_data;
 
 			pr_info("%s: RCOMP0: 0x%x, RCOMP_charging: 0x%x, "
+<<<<<<< HEAD
 =======
 			pr_debug("%s : assign battery data\n", __func__);
 			fuelgauge->battery_data = max17048_battery_data;
 
 			pr_debug("%s: RCOMP0: 0x%x, RCOMP_charging: 0x%x, "
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 				"temp_cohot: %d, temp_cocold: %d, "
 				"is_using_model_data: %d, type_str: %s\n", __func__ ,
 				fuelgauge->battery_data->RCOMP0,
@@ -578,10 +632,14 @@ void board_fuelgauge_init(void *data)
 
 		if (!fuelgauge->battery_data) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			pr_info("%s : assign battery data\n", __func__);
 =======
 			pr_debug("%s : assign battery data\n", __func__);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			pr_info("%s : assign battery data\n", __func__);
+>>>>>>> 2617302... source
 			fuelgauge->battery_data = max77823_battery_data;
 		}
 	}
@@ -592,10 +650,14 @@ void board_fuelgauge_init(void *data)
 
 		if (!fuelgauge->battery_data) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			pr_info("%s : assign battery data\n", __func__);
 =======
 			pr_debug("%s : assign battery data\n", __func__);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			pr_info("%s : assign battery data\n", __func__);
+>>>>>>> 2617302... source
 			fuelgauge->battery_data = max77843_battery_data;
 		}
 #endif
@@ -606,10 +668,14 @@ void cable_initial_check(struct sec_battery_info *battery)
 	union power_supply_propval value;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_info("%s : current_cable_type : (%d)\n", __func__, current_cable_type);
 =======
 	pr_debug("%s : current_cable_type : (%d)\n", __func__, current_cable_type);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	pr_info("%s : current_cable_type : (%d)\n", __func__, current_cable_type);
+>>>>>>> 2617302... source
 	if (POWER_SUPPLY_TYPE_BATTERY != current_cable_type) {
 		value.intval = current_cable_type;
 		psy_do_property("battery", set,

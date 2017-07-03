@@ -166,9 +166,12 @@ struct adis16400_state {
 
 	struct adis adis;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	unsigned long avail_scan_mask[2];
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 };
 
 /* At the moment triggers are only used for ring buffer

@@ -180,9 +180,12 @@ extern int udp_get_port(struct sock *sk, unsigned short snum,
 					 const struct sock *));
 extern void udp_err(struct sk_buff *, u32);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 int udp_abort(struct sock *sk, int err);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 extern int udp_sendmsg(struct kiocb *iocb, struct sock *sk,
 			    struct msghdr *msg, size_t len);
 extern int udp_push_pending_frames(struct sock *sk);

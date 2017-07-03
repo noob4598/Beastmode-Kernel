@@ -97,6 +97,7 @@ SYSCALL_DEFINE1(iopl, unsigned int, level)
 {
 	struct pt_regs *regs = current_pt_regs();
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned int old = (regs->flags >> 12) & 3;
 	struct thread_struct *t = &current->thread;
 
@@ -110,6 +111,11 @@ SYSCALL_DEFINE1(iopl, unsigned int, level)
 	unsigned int old = t->iopl >> X86_EFLAGS_IOPL_BIT;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	unsigned int old = (regs->flags >> 12) & 3;
+	struct thread_struct *t = &current->thread;
+
+>>>>>>> 2617302... source
 	if (level > 3)
 		return -EINVAL;
 	/* Trying to gain more privileges? */
@@ -118,6 +124,7 @@ SYSCALL_DEFINE1(iopl, unsigned int, level)
 			return -EPERM;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	regs->flags = (regs->flags & ~X86_EFLAGS_IOPL) | (level << 12);
 	t->iopl = level << 12;
 =======
@@ -125,6 +132,10 @@ SYSCALL_DEFINE1(iopl, unsigned int, level)
 		(level << X86_EFLAGS_IOPL_BIT);
 	t->iopl = level << X86_EFLAGS_IOPL_BIT;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	regs->flags = (regs->flags & ~X86_EFLAGS_IOPL) | (level << 12);
+	t->iopl = level << 12;
+>>>>>>> 2617302... source
 	set_iopl_mask(t->iopl);
 
 	return 0;

@@ -50,10 +50,14 @@ struct scu_ipc_data {
 static int scu_reg_access(u32 cmd, struct scu_ipc_data  *data)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int count = data->count;
 =======
 	unsigned int count = data->count;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	int count = data->count;
+>>>>>>> 2617302... source
 
 	if (count == 0 || count == 3 || count > 4)
 		return -EINVAL;

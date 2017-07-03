@@ -102,6 +102,7 @@ UNUSUAL_DEV(  0x03f0, 0x4002, 0x0001, 0x0001,
 		USB_SC_DEVICE, USB_PR_DEVICE, NULL, US_FL_FIX_CAPACITY),
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 UNUSUAL_DEV(  0x03f3, 0x0001, 0x0000, 0x9999,
 		"Adaptec",
@@ -110,6 +111,8 @@ UNUSUAL_DEV(  0x03f3, 0x0001, 0x0000, 0x9999,
 		US_FL_SCM_MULT_TARG ),
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 /* Reported by Sebastian Kapfer <sebastian_kapfer@gmx.net>
  * and Olaf Hering <olh@suse.de> (different bcd's, same vendor/product)
  * for USB floppies that need the SINGLE_LUN enforcement.
@@ -244,6 +247,7 @@ UNUSUAL_DEV(  0x0421, 0x0495, 0x0370, 0x0370,
 		US_FL_MAX_SECTORS_64 ),
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 /* Reported by Daniele Forsi <dforsi@gmail.com> */
 UNUSUAL_DEV(  0x0421, 0x04b9, 0x0350, 0x0350,
@@ -260,6 +264,8 @@ UNUSUAL_DEV(  0x0421, 0x05af, 0x0742, 0x0742,
 		US_FL_MAX_SECTORS_64),
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 /* Patch submitted by Mikhail Zolotaryov <lebon@lebon.org.ua> */
 UNUSUAL_DEV(  0x0421, 0x06aa, 0x1110, 0x1110,
 		"Nokia",
@@ -754,6 +760,7 @@ UNUSUAL_DEV(  0x059b, 0x0001, 0x0100, 0x0100,
 		US_FL_SINGLE_LUN ),
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 UNUSUAL_DEV(  0x059b, 0x0040, 0x0100, 0x0100,
 		"Iomega",
@@ -762,6 +769,8 @@ UNUSUAL_DEV(  0x059b, 0x0040, 0x0100, 0x0100,
 		US_FL_SINGLE_LUN ),
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 /* Reported by <Hendryk.Pfeiffer@gmx.de> */
 UNUSUAL_DEV(  0x059f, 0x0643, 0x0000, 0x0000,
 		"LaCie",
@@ -769,6 +778,7 @@ UNUSUAL_DEV(  0x059f, 0x0643, 0x0000, 0x0000,
 		USB_SC_DEVICE, USB_PR_DEVICE, NULL,
 		US_FL_GO_SLOW ),
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 /* Reported by Christian Schaller <cschalle@redhat.com> */
@@ -779,6 +789,8 @@ UNUSUAL_DEV(  0x059f, 0x0651, 0x0000, 0x0000,
 		US_FL_NO_WP_DETECT ),
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 /* Submitted by Joel Bourquard <numlock@freesurf.ch>
  * Some versions of this device need the SubClass and Protocol overrides
  * while others don't.
@@ -1145,6 +1157,7 @@ UNUSUAL_DEV(  0x0851, 0x1543, 0x0200, 0x0200,
 		US_FL_NOT_LOCKABLE),
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 UNUSUAL_DEV(  0x085a, 0x0026, 0x0100, 0x0133,
 		"Xircom",
@@ -1159,6 +1172,8 @@ UNUSUAL_DEV(  0x085a, 0x0028, 0x0100, 0x0133,
 		US_FL_SCM_MULT_TARG ),
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 /* Submitted by Jan De Luyck <lkml@kcore.org> */
 UNUSUAL_DEV(  0x08bd, 0x1100, 0x0000, 0x0000,
 		"CITIZEN",
@@ -1992,6 +2007,7 @@ UNUSUAL_DEV(  0x152d, 0x2329, 0x0100, 0x0100,
 		US_FL_IGNORE_RESIDUE | US_FL_SANE_SENSE ),
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 /* Entrega Technologies U1-SC25 (later Xircom PortGear PGSCSI)
  * and Mac USB Dock USB-SCSI */
@@ -2002,6 +2018,8 @@ UNUSUAL_DEV(  0x1645, 0x0007, 0x0100, 0x0133,
 		US_FL_SCM_MULT_TARG ),
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 /* Reported by Robert Schedel <r.schedel@yahoo.de>
  * Note: this is a 'super top' device like the above 14cd/6600 device */
 UNUSUAL_DEV(  0x1652, 0x6600, 0x0201, 0x0201,
@@ -2025,6 +2043,7 @@ UNUSUAL_DEV(  0x177f, 0x0400, 0x0000, 0x0000,
 		US_FL_BULK_IGNORE_TAG | US_FL_MAX_SECTORS_64 ),
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 UNUSUAL_DEV(  0x1822, 0x0001, 0x0000, 0x9999,
 		"Ariston Technologies",
@@ -2033,6 +2052,8 @@ UNUSUAL_DEV(  0x1822, 0x0001, 0x0000, 0x9999,
 		US_FL_SCM_MULT_TARG ),
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 /* Reported by Hans de Goede <hdegoede@redhat.com>
  * These Appotech controllers are found in Picture Frames, they provide a
  * (buggy) emulation of a cdrom drive which contains the windows software
@@ -2054,6 +2075,7 @@ UNUSUAL_DEV( 0x1908, 0x3335, 0x0200, 0x0200,
 		US_FL_NO_READ_DISC_INFO ),
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 /* Reported by Oliver Neukum <oneukum@suse.com>
  * This device morphes spontaneously into another device if the access
@@ -2068,6 +2090,8 @@ UNUSUAL_DEV( 0x19d2, 0x1225, 0x0000, 0xffff,
 		US_FL_SINGLE_LUN ),
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 /* Reported by Sven Geggus <sven-usbst@geggus.net>
  * This encrypted pen drive returns bogus data for the initial READ(10).
  */

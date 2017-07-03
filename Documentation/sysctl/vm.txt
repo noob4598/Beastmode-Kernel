@@ -43,10 +43,13 @@ Currently, these files are in /proc/sys/vm:
 - min_unmapped_ratio
 - mmap_min_addr
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 - mmap_rnd_bits
 - mmap_rnd_compat_bits
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 - nr_hugepages
 - nr_overcommit_hugepages
 - nr_trim_pages         (only if CONFIG_MMU=n)
@@ -461,6 +464,7 @@ against future potential kernel bugs.
 ==============================================================
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 mmap_rnd_bits:
 
@@ -490,6 +494,8 @@ This value can be changed after boot using the
 ==============================================================
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 nr_hugepages
 
 Change the minimum size of the hugepage pool.

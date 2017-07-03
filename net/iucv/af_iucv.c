@@ -1830,10 +1830,14 @@ static void iucv_callback_txdone(struct iucv_path *path,
 
 		while (list_skb != (struct sk_buff *)list) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (msg->tag != IUCV_SKB_CB(list_skb)->tag) {
 =======
 			if (msg->tag == IUCV_SKB_CB(list_skb)->tag) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			if (msg->tag != IUCV_SKB_CB(list_skb)->tag) {
+>>>>>>> 2617302... source
 				this = list_skb;
 				break;
 			}

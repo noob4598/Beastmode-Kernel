@@ -51,11 +51,15 @@ union intel_x86_pebs_dse {
 #define SNOOP_NONE_MISS (P(SNOOP, NONE) | P(SNOOP, MISS))
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static const u64 pebs_data_source[] = {
 =======
 /* Version for Sandy Bridge and later */
 static u64 pebs_data_source[] = {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+static const u64 pebs_data_source[] = {
+>>>>>>> 2617302... source
 	P(OP, LOAD) | P(LVL, MISS) | P(LVL, L3) | P(SNOOP, NA),/* 0x00:ukn L3 */
 	OP_LH | P(LVL, L1)  | P(SNOOP, NONE),	/* 0x01: L1 local */
 	OP_LH | P(LVL, LFB) | P(SNOOP, NONE),	/* 0x02: LFB hit */
@@ -75,6 +79,7 @@ static u64 pebs_data_source[] = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 /* Patch up minor differences in the bits */
 void __init intel_pmu_pebs_data_source_nhm(void)
@@ -85,6 +90,8 @@ void __init intel_pmu_pebs_data_source_nhm(void)
 }
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 static u64 precise_store_data(u64 status)
 {
 	union intel_x86_pebs_dse dse;

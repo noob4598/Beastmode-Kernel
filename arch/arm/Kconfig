@@ -5,9 +5,12 @@ config ARM
 	select ARCH_HAS_ATOMIC64_DEC_IF_POSITIVE
 	select ARCH_HAVE_CUSTOM_GPIO_H
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	select ARCH_SUPPORTS_ATOMIC_RMW
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	select ARCH_HAS_TICK_BROADCAST if GENERIC_CLOCKEVENTS_BROADCAST
 	select ARCH_WANT_IPC_PARSE_VERSION
 	select BUILDTIME_EXTABLE_SORT if MMU
@@ -26,9 +29,12 @@ config ARM
 	select HAVE_ARCH_JUMP_LABEL if !XIP_KERNEL
 	select HAVE_ARCH_KGDB
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	select HAVE_ARCH_MMAP_RND_BITS if MMU
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	select HAVE_ARCH_SECCOMP_FILTER
 	select HAVE_ARCH_TRACEHOOK
 	select HAVE_BPF_JIT
@@ -308,6 +314,7 @@ config MMU
 	  support by paged memory management. If unsure, say 'Y'.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 config ARCH_MMAP_RND_BITS_MIN
 	default 8
@@ -318,6 +325,8 @@ config ARCH_MMAP_RND_BITS_MAX
 	default 16
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 #
 # The "ARM system type" choice list is ordered alphabetically by option
 # text.  Please add new entries in the option alphabetic order.
@@ -1663,6 +1672,9 @@ config ARCH_NR_GPIO
 
 source kernel/Kconfig.preempt
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 
 config HZ
 	int
@@ -1671,9 +1683,12 @@ config HZ
 	default AT91_TIMER_HZ if ARCH_AT91
 	default SHMOBILE_TIMER_HZ if ARCH_SHMOBILE
 	default 100
+<<<<<<< HEAD
 =======
 source kernel/Kconfig.hz
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 config SCHED_HRTICK
 	def_bool HIGH_RES_TIMERS

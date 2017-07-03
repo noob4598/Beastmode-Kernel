@@ -4,10 +4,14 @@
  * Implementation of FSF commands.
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright IBM Corp. 2002, 2013
 =======
  * Copyright IBM Corp. 2002, 2015
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+ * Copyright IBM Corp. 2002, 2013
+>>>>>>> 2617302... source
  */
 
 #define KMSG_COMPONENT "zfcp"
@@ -518,6 +522,7 @@ static int zfcp_fsf_exchange_config_evaluate(struct zfcp_fsf_req *req)
 		break;
 	case FSF_TOPO_FABRIC:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		fc_host_port_type(shost) = FC_PORTTYPE_NPORT;
 =======
 		if (bottom->connection_features & FSF_FEATURE_NPIV_MODE)
@@ -525,6 +530,9 @@ static int zfcp_fsf_exchange_config_evaluate(struct zfcp_fsf_req *req)
 		else
 			fc_host_port_type(shost) = FC_PORTTYPE_NPORT;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		fc_host_port_type(shost) = FC_PORTTYPE_NPORT;
+>>>>>>> 2617302... source
 		break;
 	case FSF_TOPO_AL:
 		fc_host_port_type(shost) = FC_PORTTYPE_NLPORT;
@@ -630,9 +638,13 @@ static void zfcp_fsf_exchange_port_evaluate(struct zfcp_fsf_req *req)
 	if (adapter->connection_features & FSF_FEATURE_NPIV_MODE) {
 		fc_host_permanent_port_name(shost) = bottom->wwpn;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		fc_host_port_type(shost) = FC_PORTTYPE_NPIV;
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		fc_host_port_type(shost) = FC_PORTTYPE_NPIV;
+>>>>>>> 2617302... source
 	} else
 		fc_host_permanent_port_name(shost) = fc_host_port_name(shost);
 	fc_host_maxframe_size(shost) = bottom->maximum_frame_size;
@@ -1003,6 +1015,7 @@ static int zfcp_fsf_setup_ct_els_sbals(struct zfcp_fsf_req *req,
 		if (zfcp_qdio_sbals_from_sg(qdio, &req->qdio_req, sg_req))
 			return -EIO;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (zfcp_qdio_sbals_from_sg(qdio, &req->qdio_req, sg_resp))
 			return -EIO;
 =======
@@ -1013,6 +1026,10 @@ static int zfcp_fsf_setup_ct_els_sbals(struct zfcp_fsf_req *req,
 		qtcb->bottom.support.resp_buf_length =
 			zfcp_qdio_real_bytes(sg_resp);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		if (zfcp_qdio_sbals_from_sg(qdio, &req->qdio_req, sg_resp))
+			return -EIO;
+>>>>>>> 2617302... source
 
 		zfcp_qdio_set_data_div(qdio, &req->qdio_req,
 					zfcp_qdio_sbale_count(sg_req));
@@ -1103,9 +1120,12 @@ int zfcp_fsf_send_ct(struct zfcp_fc_wka_port *wka_port,
 	req->handler = zfcp_fsf_send_ct_handler;
 	req->qtcb->header.port_handle = wka_port->handle;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	ct->d_id = wka_port->d_id;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	req->data = ct;
 
 	zfcp_dbf_san_req("fssct_1", req, wka_port->d_id);
@@ -1210,9 +1230,12 @@ int zfcp_fsf_send_els(struct zfcp_adapter *adapter, u32 d_id,
 	hton24(req->qtcb->bottom.support.d_id, d_id);
 	req->handler = zfcp_fsf_send_els_handler;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	els->d_id = d_id;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	req->data = els;
 
 	zfcp_dbf_san_req("fssels1", req, d_id);
@@ -1660,10 +1683,13 @@ int zfcp_fsf_open_wka_port(struct zfcp_fc_wka_port *wka_port)
 out:
 	spin_unlock_irq(&qdio->req_q_lock);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (!retval)
 		zfcp_dbf_rec_run_wka("fsowp_1", wka_port, req->req_id);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	return retval;
 }
 
@@ -1718,10 +1744,13 @@ int zfcp_fsf_close_wka_port(struct zfcp_fc_wka_port *wka_port)
 out:
 	spin_unlock_irq(&qdio->req_q_lock);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (!retval)
 		zfcp_dbf_rec_run_wka("fscwp_1", wka_port, req->req_id);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	return retval;
 }
 

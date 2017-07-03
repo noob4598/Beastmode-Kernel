@@ -129,6 +129,7 @@ static int efivarfs_callback(efi_char16_t *name16, efi_guid_t vendor,
 	unsigned long size = 0;
 	char *name;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int len, i;
 	int err = -ENOMEM;
 =======
@@ -136,6 +137,10 @@ static int efivarfs_callback(efi_char16_t *name16, efi_guid_t vendor,
 	int err = -ENOMEM;
 	bool is_removable = false;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	int len, i;
+	int err = -ENOMEM;
+>>>>>>> 2617302... source
 
 	entry = kmalloc(sizeof(*entry), GFP_KERNEL);
 	if (!entry)
@@ -145,16 +150,21 @@ static int efivarfs_callback(efi_char16_t *name16, efi_guid_t vendor,
 	memcpy(&(entry->var.VendorGuid), &vendor, sizeof(efi_guid_t));
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	len = ucs2_strlen(entry->var.VariableName);
 =======
 	len = ucs2_utf8size(entry->var.VariableName);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	len = ucs2_strlen(entry->var.VariableName);
+>>>>>>> 2617302... source
 
 	/* name, plus '-', plus GUID, plus NUL*/
 	name = kmalloc(len + 1 + EFI_VARIABLE_GUID_LEN + 1, GFP_KERNEL);
 	if (!name)
 		goto fail;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	for (i = 0; i < len; i++)
 		name[i] = entry->var.VariableName[i] & 0xFF;
@@ -164,6 +174,10 @@ static int efivarfs_callback(efi_char16_t *name16, efi_guid_t vendor,
 	if (efivar_variable_is_removable(entry->var.VendorGuid, name, len))
 		is_removable = true;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	for (i = 0; i < len; i++)
+		name[i] = entry->var.VariableName[i] & 0xFF;
+>>>>>>> 2617302... source
 
 	name[len] = '-';
 
@@ -172,11 +186,15 @@ static int efivarfs_callback(efi_char16_t *name16, efi_guid_t vendor,
 	name[len + EFI_VARIABLE_GUID_LEN+1] = '\0';
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	inode = efivarfs_get_inode(sb, root->d_inode, S_IFREG | 0644, 0);
 =======
 	inode = efivarfs_get_inode(sb, root->d_inode, S_IFREG | 0644, 0,
 				   is_removable);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	inode = efivarfs_get_inode(sb, root->d_inode, S_IFREG | 0644, 0);
+>>>>>>> 2617302... source
 	if (!inode)
 		goto fail_name;
 
@@ -233,10 +251,14 @@ static int efivarfs_fill_super(struct super_block *sb, void *data, int silent)
 	sb->s_time_gran         = 1;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	inode = efivarfs_get_inode(sb, NULL, S_IFDIR | 0755, 0);
 =======
 	inode = efivarfs_get_inode(sb, NULL, S_IFDIR | 0755, 0, true);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	inode = efivarfs_get_inode(sb, NULL, S_IFDIR | 0755, 0);
+>>>>>>> 2617302... source
 	if (!inode)
 		return -ENOMEM;
 	inode->i_op = &efivarfs_dir_inode_operations;

@@ -430,6 +430,7 @@ extern int br_handle_frame_finish(struct sk_buff *skb);
 extern rx_handler_result_t br_handle_frame(struct sk_buff **pskb);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 static inline bool br_rx_handler_check_rcu(const struct net_device *dev)
 {
@@ -442,6 +443,8 @@ static inline struct net_bridge_port *br_port_get_check_rcu(const struct net_dev
 }
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 /* br_ioctl.c */
 extern int br_dev_ioctl(struct net_device *dev, struct ifreq *rq, int cmd);
 extern int br_ioctl_deviceless_stub(struct net *net, unsigned int cmd, void __user *arg);

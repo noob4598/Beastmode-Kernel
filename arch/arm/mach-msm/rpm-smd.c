@@ -75,10 +75,14 @@ struct msm_rpm_driver_data {
 #define INIT_ERROR 1
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static ATOMIC_NOTIFIER_HEAD(msm_rpm_sleep_notifier);
 =======
 static __refdata ATOMIC_NOTIFIER_HEAD(msm_rpm_sleep_notifier);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+static ATOMIC_NOTIFIER_HEAD(msm_rpm_sleep_notifier);
+>>>>>>> 2617302... source
 static bool standalone;
 
 int msm_rpm_register_notifier(struct notifier_block *nb)
@@ -320,10 +324,14 @@ int msm_rpm_smd_buffer_request(char *buf, uint32_t size, gfp_t flag)
 {
 	struct slp_buf *slp;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	static DEFINE_SPINLOCK(slp_buffer_lock);
 =======
 	static __refdata DEFINE_SPINLOCK(slp_buffer_lock);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	static DEFINE_SPINLOCK(slp_buffer_lock);
+>>>>>>> 2617302... source
 	unsigned long flags;
 
 	if (size > MAX_SLEEP_BUFFER)
@@ -498,10 +506,14 @@ struct msm_rpm_wait_data {
 	struct completion ack;
 };
 <<<<<<< HEAD
+<<<<<<< HEAD
 DEFINE_SPINLOCK(msm_rpm_list_lock);
 =======
 __refdata DEFINE_SPINLOCK(msm_rpm_list_lock);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+DEFINE_SPINLOCK(msm_rpm_list_lock);
+>>>>>>> 2617302... source
 
 struct msm_rpm_ack_msg {
 	uint32_t req;
@@ -901,10 +913,14 @@ static void msm_rpm_smd_work(struct work_struct *work)
 
 	while (1) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		wait_for_completion(&data_ready);
 =======
 		wait_for_completion_interruptible(&data_ready);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		wait_for_completion(&data_ready);
+>>>>>>> 2617302... source
 
 		spin_lock(&msm_rpm_data.smd_lock_read);
 		while (smd_is_pkt_avail(msm_rpm_data.ch_info)) {

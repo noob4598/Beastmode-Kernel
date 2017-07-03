@@ -476,9 +476,12 @@ static int msm_l2_test_set_ev_constraint(struct perf_event *event)
 				event->state = PERF_EVENT_STATE_OFF;
 				event->attr.constraint_duplicate = 1;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 				err = -EPERM;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 			}
 	}
 out:

@@ -671,9 +671,13 @@ struct iwl_priv {
 	int reload_count;
 	bool ucode_loaded;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	bool init_ucode_run;		/* Don't run init uCode again */
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	bool init_ucode_run;		/* Don't run init uCode again */
+>>>>>>> 2617302... source
 
 	u8 plcp_delta_threshold;
 

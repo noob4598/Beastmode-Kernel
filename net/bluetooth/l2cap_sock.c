@@ -726,10 +726,14 @@ static int l2cap_sock_setsockopt(struct socket *sock, int level, int optname,
 		}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (get_user(opt, (u32 __user *) optval)) {
 =======
 		if (get_user(opt, (u16 __user *) optval)) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		if (get_user(opt, (u32 __user *) optval)) {
+>>>>>>> 2617302... source
 			err = -EFAULT;
 			break;
 		}
@@ -892,11 +896,15 @@ static int l2cap_sock_shutdown(struct socket *sock, int how)
 		lock_sock(sk);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (sock_flag(sk, SOCK_LINGER) && sk->sk_lingertime)
 =======
 		if (sock_flag(sk, SOCK_LINGER) && sk->sk_lingertime &&
 		    !(current->flags & PF_EXITING))
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		if (sock_flag(sk, SOCK_LINGER) && sk->sk_lingertime)
+>>>>>>> 2617302... source
 			err = bt_sock_wait_state(sk, BT_CLOSED,
 						 sk->sk_lingertime);
 	}
@@ -959,14 +967,18 @@ static struct l2cap_chan *l2cap_sock_new_connection_cb(struct l2cap_chan *chan)
 	if (sk_acceptq_is_full(parent)) {
 		BT_DBG("backlog full %d", parent->sk_ack_backlog);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		release_sock(parent);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		return NULL;
 	}
 
 	sk = l2cap_sock_alloc(sock_net(parent), NULL, BTPROTO_L2CAP,
 			      GFP_ATOMIC);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (!sk)
 		return NULL;
@@ -976,6 +988,10 @@ static struct l2cap_chan *l2cap_sock_new_connection_cb(struct l2cap_chan *chan)
 		return NULL;
         }
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (!sk)
+		return NULL;
+>>>>>>> 2617302... source
 
 	bt_sock_reclassify_lock(sk, BTPROTO_L2CAP);
 

@@ -238,6 +238,7 @@ static int msm_vb2_put_buf(struct vb2_buffer *vb, int session_id,
 		}
 		if (vb2_buf != vb) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			pr_err("%s:%d VB buffer is INVALID vb=%x, ses_id=%d, str_id=%d\n",
 				__func__, __LINE__, (unsigned int)vb,
 				session_id, stream_id);
@@ -245,6 +246,11 @@ static int msm_vb2_put_buf(struct vb2_buffer *vb, int session_id,
 			pr_err("VB buffer is INVALID vb=%pK, ses_id=%d, str_id=%d\n",
 					vb, session_id, stream_id);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			pr_err("%s:%d VB buffer is INVALID vb=%x, ses_id=%d, str_id=%d\n",
+				__func__, __LINE__, (unsigned int)vb,
+				session_id, stream_id);
+>>>>>>> 2617302... source
 			spin_unlock_irqrestore(&stream->stream_lock, flags);
 			return -EINVAL;
 		}
@@ -279,6 +285,9 @@ static int msm_vb2_buf_done(struct vb2_buffer *vb, int session_id,
 	spin_lock_irqsave(&stream->stream_lock, flags);
 	if (vb) {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
         list_for_each_entry(msm_vb2, &(stream->queued_list), list) {
         vb2_buf = &(msm_vb2->vb2_buf);
         if (vb2_buf == vb)
@@ -291,6 +300,7 @@ static int msm_vb2_buf_done(struct vb2_buffer *vb, int session_id,
         	spin_unlock_irqrestore(&stream->stream_lock, flags);
         	return -EINVAL;
         }		
+<<<<<<< HEAD
 =======
 		list_for_each_entry(msm_vb2, &(stream->queued_list), list) {
 			vb2_buf = &(msm_vb2->vb2_buf);
@@ -304,6 +314,8 @@ static int msm_vb2_buf_done(struct vb2_buffer *vb, int session_id,
 			return -EINVAL;
 		}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		msm_vb2 =
 			container_of(vb, struct msm_vb2_buffer, vb2_buf);
 		/* put buf before buf done */

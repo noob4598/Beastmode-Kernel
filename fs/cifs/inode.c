@@ -833,10 +833,14 @@ inode_has_hashed_dentries(struct inode *inode)
 
 	spin_lock(&inode->i_lock);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	hlist_for_each_entry(dentry, &inode->i_dentry, d_alias) {
 =======
 	hlist_for_each_entry(dentry, &inode->i_dentry, d_u.d_alias) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	hlist_for_each_entry(dentry, &inode->i_dentry, d_alias) {
+>>>>>>> 2617302... source
 		if (!d_unhashed(dentry) || IS_ROOT(dentry)) {
 			spin_unlock(&inode->i_lock);
 			return true;
@@ -900,12 +904,16 @@ struct inode *cifs_root_iget(struct super_block *sb)
 	long rc;
 	struct cifs_tcon *tcon = cifs_sb_master_tcon(cifs_sb);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 
 	xid = get_xid();
 	if (tcon->unix_ext)
 		rc = cifs_get_inode_info_unix(&inode, "", sb, xid);
 	else
 		rc = cifs_get_inode_info(&inode, "", NULL, sb, xid, NULL);
+<<<<<<< HEAD
 =======
 	char *path = NULL;
 	int len;
@@ -931,6 +939,8 @@ struct inode *cifs_root_iget(struct super_block *sb)
 	else
 		rc = cifs_get_inode_info(&inode, path, NULL, sb, xid, NULL);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	if (!inode) {
 		inode = ERR_PTR(rc);
@@ -959,9 +969,12 @@ struct inode *cifs_root_iget(struct super_block *sb)
 
 out:
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	kfree(path);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	/* can not call macro free_xid here since in a void func
 	 * TODO: This is no longer true
 	 */
@@ -1675,6 +1688,7 @@ unlink_target:
 	/* Try unlinking the target dentry if it's not negative */
 	if (target_dentry->d_inode && (rc == -EACCES || rc == -EEXIST)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		tmprc = cifs_unlink(target_dir, target_dentry);
 =======
 		if (S_ISDIR(target_dentry->d_inode->i_mode))
@@ -1682,12 +1696,16 @@ unlink_target:
 		else
 			tmprc = cifs_unlink(target_dir, target_dentry);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		tmprc = cifs_unlink(target_dir, target_dentry);
+>>>>>>> 2617302... source
 		if (tmprc)
 			goto cifs_rename_exit;
 		rc = cifs_do_rename(xid, source_dentry, from_name,
 				    target_dentry, to_name);
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 	/* force revalidate to go get info when needed */
@@ -1697,6 +1715,8 @@ unlink_target:
 		target_dir->i_mtime = current_fs_time(source_dir->i_sb);
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 cifs_rename_exit:
 	kfree(info_buf_source);
 	kfree(from_name);

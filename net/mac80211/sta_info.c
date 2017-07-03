@@ -271,9 +271,12 @@ void sta_info_free(struct ieee80211_local *local, struct sta_info *sta)
 	sta_dbg(sta->sdata, "Destroyed STA %pM\n", sta->sta.addr);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	kfree(rcu_dereference_raw(sta->sta.rates));
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	kfree(sta);
 }
 

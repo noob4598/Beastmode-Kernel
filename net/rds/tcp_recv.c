@@ -235,6 +235,7 @@ static int rds_tcp_data_recv(read_descriptor_t *desc, struct sk_buff *skb,
 
 			to_copy = min(tc->t_tinc_data_rem, left);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			pskb_pull(clone, offset);
 			pskb_trim(clone, to_copy);
 =======
@@ -248,6 +249,10 @@ static int rds_tcp_data_recv(read_descriptor_t *desc, struct sk_buff *skb,
 				goto out;
 			}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			pskb_pull(clone, offset);
+			pskb_trim(clone, to_copy);
+>>>>>>> 2617302... source
 			skb_queue_tail(&tinc->ti_skb_list, clone);
 
 			rdsdebug("skb %p data %p len %d off %u to_copy %zu -> "

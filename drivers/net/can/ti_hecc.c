@@ -963,6 +963,7 @@ static int ti_hecc_probe(struct platform_device *pdev)
 		HECC_DEF_NAPI_WEIGHT);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	clk_enable(priv->clk);
 =======
 	err = clk_prepare_enable(priv->clk);
@@ -972,6 +973,9 @@ static int ti_hecc_probe(struct platform_device *pdev)
 	}
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	clk_enable(priv->clk);
+>>>>>>> 2617302... source
 	err = register_candev(ndev);
 	if (err) {
 		dev_err(&pdev->dev, "register_candev() failed\n");
@@ -1005,10 +1009,14 @@ static int ti_hecc_remove(struct platform_device *pdev)
 
 	unregister_candev(ndev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	clk_disable(priv->clk);
 =======
 	clk_disable_unprepare(priv->clk);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	clk_disable(priv->clk);
+>>>>>>> 2617302... source
 	clk_put(priv->clk);
 	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
 	iounmap(priv->base);
@@ -1035,10 +1043,14 @@ static int ti_hecc_suspend(struct platform_device *pdev, pm_message_t state)
 	priv->can.state = CAN_STATE_SLEEPING;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	clk_disable(priv->clk);
 =======
 	clk_disable_unprepare(priv->clk);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	clk_disable(priv->clk);
+>>>>>>> 2617302... source
 
 	return 0;
 }
@@ -1047,6 +1059,7 @@ static int ti_hecc_resume(struct platform_device *pdev)
 {
 	struct net_device *dev = platform_get_drvdata(pdev);
 	struct ti_hecc_priv *priv = netdev_priv(dev);
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	clk_enable(priv->clk);
@@ -1057,6 +1070,10 @@ static int ti_hecc_resume(struct platform_device *pdev)
 	if (err)
 		return err;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+
+	clk_enable(priv->clk);
+>>>>>>> 2617302... source
 
 	hecc_clear_bit(priv, HECC_CANMC, HECC_CANMC_PDR);
 	priv->can.state = CAN_STATE_ERROR_ACTIVE;

@@ -1730,10 +1730,14 @@ static int process_nrcpus(struct perf_file_section *section __maybe_unused,
 		nr = bswap_32(nr);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ph->env.nr_cpus_online = nr;
 =======
 	ph->env.nr_cpus_avail = nr;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	ph->env.nr_cpus_online = nr;
+>>>>>>> 2617302... source
 
 	ret = readn(fd, &nr, sizeof(nr));
 	if (ret != sizeof(nr))
@@ -1743,10 +1747,14 @@ static int process_nrcpus(struct perf_file_section *section __maybe_unused,
 		nr = bswap_32(nr);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ph->env.nr_cpus_avail = nr;
 =======
 	ph->env.nr_cpus_online = nr;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	ph->env.nr_cpus_avail = nr;
+>>>>>>> 2617302... source
 	return 0;
 }
 

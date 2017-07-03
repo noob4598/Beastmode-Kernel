@@ -806,6 +806,7 @@ int subsystem_restart_dev(struct subsys_device *dev)
 		/* ADSP cannot work properly after ADSP SSR. So restart SOC. */
 		if (!strcmp("adsp", name))
 <<<<<<< HEAD
+<<<<<<< HEAD
 			dev->restart_level = RESET_SOC;
 =======
 #ifdef CONFIG_SEC_LENTIS_PROJECT
@@ -814,6 +815,9 @@ int subsystem_restart_dev(struct subsys_device *dev)
 			dev->restart_level = RESET_SOC;
 #endif
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			dev->restart_level = RESET_SOC;
+>>>>>>> 2617302... source
 		else
 			dev->restart_level = RESET_SUBSYS_COUPLED; //Why is it delete the RESET_SUBSYS_INDEPENDENT on MSM8974 ?
 	}
@@ -1196,6 +1200,7 @@ static struct subsys_soc_restart_order *ssr_parse_restart_orders(struct
 
 		if (num == count && tmp->count == count)
 <<<<<<< HEAD
+<<<<<<< HEAD
 			return tmp;
 		else if (num)
 			return ERR_PTR(-EINVAL);
@@ -1206,6 +1211,11 @@ static struct subsys_soc_restart_order *ssr_parse_restart_orders(struct
 			goto err;
 		}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			return tmp;
+		else if (num)
+			return ERR_PTR(-EINVAL);
+>>>>>>> 2617302... source
 	}
 
 	order->count = count;
@@ -1218,11 +1228,14 @@ static struct subsys_soc_restart_order *ssr_parse_restart_orders(struct
 
 	return order;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 err:
 	mutex_unlock(&ssr_order_mutex);
 	return tmp;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 }
 
 static int __get_gpio(struct subsys_desc *desc, const char *prop,

@@ -1,11 +1,15 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <errno.h>
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 #include <stdio.h>
 #include <stdint.h>
 #include <stdlib.h>
 #include <unistd.h>
+<<<<<<< HEAD
 <<<<<<< HEAD
 #include <sys/types.h>
 #include <sys/stat.h>
@@ -72,6 +76,11 @@ static int get_immutable(const char *path)
 	return 0;
 }
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+>>>>>>> 2617302... source
 
 int main(int argc, char **argv)
 {
@@ -95,10 +104,14 @@ int main(int argc, char **argv)
 
 	/* create a test variable */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	fd = open(path, O_WRONLY | O_CREAT);
 =======
 	fd = open(path, O_WRONLY | O_CREAT, 0600);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	fd = open(path, O_WRONLY | O_CREAT);
+>>>>>>> 2617302... source
 	if (fd < 0) {
 		perror("open(O_WRONLY)");
 		return EXIT_FAILURE;
@@ -112,6 +125,7 @@ int main(int argc, char **argv)
 
 	close(fd);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 	rc = get_immutable(path);
@@ -127,6 +141,8 @@ int main(int argc, char **argv)
 	}
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	fd = open(path, O_RDONLY);
 	if (fd < 0) {
 		perror("open");

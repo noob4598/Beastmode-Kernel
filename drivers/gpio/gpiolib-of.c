@@ -13,9 +13,12 @@
 
 #include <linux/device.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <linux/err.h>
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 #include <linux/errno.h>
 #include <linux/module.h>
 #include <linux/io.h>
@@ -47,6 +50,7 @@ static int of_gpiochip_find_and_xlate(struct gpio_chip *gc, void *data)
 
 	ret = gc->of_xlate(gc, &gg_data->gpiospec, gg_data->flags);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (ret < 0)
 		return false;
 =======
@@ -59,6 +63,10 @@ static int of_gpiochip_find_and_xlate(struct gpio_chip *gc, void *data)
 		return true;
 	 }
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (ret < 0)
+		return false;
+>>>>>>> 2617302... source
 
 	gg_data->out_gpio = ret + gc->base;
 	return true;

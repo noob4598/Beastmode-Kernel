@@ -11,9 +11,12 @@
 #include <linux/cache.h>
 #include <linux/list.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <linux/llist.h>
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 #include <linux/radix-tree.h>
 #include <linux/rbtree.h>
 #include <linux/init.h>
@@ -50,11 +53,14 @@ struct cred;
 struct swap_info_struct;
 struct seq_file;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 struct workqueue_struct;
 struct fscrypt_info;
 struct fscrypt_operations;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 extern void __init inode_init(void);
 extern void __init inode_init_early(void);
@@ -141,6 +147,7 @@ typedef void (dio_iodone_t)(struct kiocb *iocb, loff_t offset,
 #define FMODE_NONOTIFY		((__force fmode_t)0x1000000)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 /* File can be read using splice */
 #define FMODE_SPLICE_READ       ((__force fmode_t)0x8000000)
@@ -148,6 +155,8 @@ typedef void (dio_iodone_t)(struct kiocb *iocb, loff_t offset,
 #define FMODE_SPLICE_WRITE      ((__force fmode_t)0x10000000)
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 /*
  * Flag for rw_copy_check_uvector and compat_rw_copy_check_uvector
  * that indicates that they should check the contents of the iovec are
@@ -269,6 +278,7 @@ struct iattr {
 #include <linux/quota.h>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 /*
  * Maximum number of layers of fs stack.  Needs to be limited to
@@ -277,6 +287,8 @@ struct iattr {
 #define FILESYSTEM_MAX_STACK_DEPTH 2
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 /** 
  * enum positive_aop_returns - aop return codes with specific semantics
  *
@@ -643,6 +655,7 @@ struct inode {
 	atomic_t		i_readcount; /* struct files open RO */
 #endif
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 #if IS_ENABLED(CONFIG_FS_ENCRYPTION)
@@ -650,6 +663,8 @@ struct inode {
 #endif
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	void			*i_private; /* fs or device private pointer */
 };
 
@@ -806,16 +821,22 @@ static inline int ra_has_index(struct file_ra_state *ra, pgoff_t index)
 
 struct file {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	/*
 	 * fu_list becomes invalid after file_free is called and queued via
 	 * fu_rcuhead for RCU freeing
 	 */
 	union {
 		struct list_head	fu_list;
+<<<<<<< HEAD
 =======
 	union {
 		struct llist_node	fu_llist;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		struct rcu_head 	fu_rcuhead;
 	} f_u;
 	struct path		f_path;
@@ -829,11 +850,17 @@ struct file {
 	 */
 	spinlock_t		f_lock;
 <<<<<<< HEAD
+<<<<<<< HEAD
 #ifdef CONFIG_SMP
 	int			f_sb_list_cpu;
 #endif
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+#ifdef CONFIG_SMP
+	int			f_sb_list_cpu;
+#endif
+>>>>>>> 2617302... source
 	atomic_long_t		f_count;
 	unsigned int 		f_flags;
 	fmode_t			f_mode;
@@ -1309,18 +1336,24 @@ struct super_block {
 
 	struct list_head	s_inodes;	/* all inodes */
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	struct hlist_bl_head	s_anon;		/* anonymous dentries for (nfs) exporting */
 #ifdef CONFIG_SMP
 	struct list_head __percpu *s_files;
 #else
 	struct list_head	s_files;
 #endif
+<<<<<<< HEAD
 =======
 
 	const struct fscrypt_operations	*s_cop;
 
 	struct hlist_bl_head	s_anon;		/* anonymous dentries for (nfs) exporting */
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	struct list_head	s_mounts;	/* list of mounts; _not_ for fs use */
 	/* s_dentry_lru, s_nr_dentry_unused protected by dcache.c lru locks */
 	struct list_head	s_dentry_lru;	/* unused dentry lru */
@@ -1382,6 +1415,7 @@ struct super_block {
 	/* Being remounted read-only */
 	int s_readonly_remount;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 	/*
@@ -1389,6 +1423,8 @@ struct super_block {
 	 */
 	int s_stack_depth;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 };
 
 /* superblock cache pruning functions */
@@ -1519,6 +1555,9 @@ extern bool inode_owner_or_capable(const struct inode *inode);
  */
 extern int vfs_create(struct inode *, struct dentry *, umode_t, bool);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 extern int vfs_mkdir(struct inode *, struct dentry *, umode_t);
 extern int vfs_mknod(struct inode *, struct dentry *, umode_t, dev_t);
 extern int vfs_symlink(struct inode *, struct dentry *, const char *);
@@ -1526,6 +1565,7 @@ extern int vfs_link(struct dentry *, struct inode *, struct dentry *);
 extern int vfs_rmdir(struct inode *, struct dentry *);
 extern int vfs_unlink(struct inode *, struct dentry *);
 extern int vfs_rename(struct inode *, struct dentry *, struct inode *, struct dentry *);
+<<<<<<< HEAD
 =======
 extern int vfs_create2(struct vfsmount *, struct inode *, struct dentry *, umode_t, bool);
 extern int vfs_mkdir(struct inode *, struct dentry *, umode_t);
@@ -1542,6 +1582,8 @@ extern int vfs_unlink2(struct vfsmount *, struct inode *, struct dentry *);
 extern int vfs_rename(struct inode *, struct dentry *, struct inode *, struct dentry *);
 extern int vfs_rename2(struct vfsmount *, struct inode *, struct dentry *, struct inode *, struct dentry *);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 /*
  * VFS dentry helper functions.
@@ -1591,6 +1633,7 @@ int fiemap_check_flags(struct fiemap_extent_info *fieinfo, u32 fs_flags);
  */
 typedef int (*filldir_t)(void *, const char *, int, loff_t, u64, unsigned);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 struct dir_context {
 	const filldir_t actor;
@@ -1605,6 +1648,8 @@ static inline bool dir_emit(struct dir_context *ctx,
 	return ctx->actor(ctx, name, namelen, ctx->pos, ino, type) == 0;
 }
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 struct block_device_operations;
 
 /* These macros are for out of kernel modules to test that
@@ -1622,9 +1667,12 @@ struct file_operations {
 	ssize_t (*aio_write) (struct kiocb *, const struct iovec *, unsigned long, loff_t);
 	int (*readdir) (struct file *, void *, filldir_t);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	int (*iterate) (struct file *, struct dir_context *);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	unsigned int (*poll) (struct file *, struct poll_table_struct *);
 	long (*unlocked_ioctl) (struct file *, unsigned int, unsigned long);
 	long (*compat_ioctl) (struct file *, unsigned int, unsigned long);
@@ -1655,9 +1703,12 @@ struct inode_operations {
 	void * (*follow_link) (struct dentry *, struct nameidata *);
 	int (*permission) (struct inode *, int);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	int (*permission2) (struct vfsmount *, struct inode *, int);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	struct posix_acl * (*get_acl)(struct inode *, int);
 
 	int (*readlink) (struct dentry *, char __user *,int);
@@ -1674,9 +1725,12 @@ struct inode_operations {
 			struct inode *, struct dentry *);
 	int (*setattr) (struct dentry *, struct iattr *);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	int (*setattr2) (struct vfsmount *, struct dentry *, struct iattr *);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	int (*getattr) (struct vfsmount *mnt, struct dentry *, struct kstat *);
 	int (*setxattr) (struct dentry *, const char *,const void *,size_t,int);
 	ssize_t (*getxattr) (struct dentry *, const char *, void *, size_t);
@@ -1717,6 +1771,7 @@ struct super_operations {
 	int (*statfs) (struct dentry *, struct kstatfs *);
 	int (*remount_fs) (struct super_block *, int *, char *);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	void (*umount_begin) (struct super_block *);
 
 	int (*show_options)(struct seq_file *, struct dentry *);
@@ -1729,6 +1784,11 @@ struct super_operations {
 	int (*show_options)(struct seq_file *, struct dentry *);
 	int (*show_options2)(struct vfsmount *,struct seq_file *, struct dentry *);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	void (*umount_begin) (struct super_block *);
+
+	int (*show_options)(struct seq_file *, struct dentry *);
+>>>>>>> 2617302... source
 	int (*show_devname)(struct seq_file *, struct dentry *);
 	int (*show_path)(struct seq_file *, struct dentry *);
 	int (*show_stats)(struct seq_file *, struct dentry *);
@@ -1937,11 +1997,14 @@ struct file_system_type {
 	struct dentry *(*mount) (struct file_system_type *, int,
 		       const char *, void *);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct dentry *(*mount2) (struct vfsmount *, struct file_system_type *, int,
 			       const char *, void *);
 	void *(*alloc_mnt_data) (void);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	void (*kill_sb) (struct super_block *);
 	struct module *owner;
 	struct file_system_type * next;
@@ -2131,10 +2194,13 @@ extern long vfs_truncate(struct path *, loff_t);
 extern int do_truncate(struct dentry *, loff_t start, unsigned int time_attrs,
 		       struct file *filp);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 extern int do_truncate2(struct vfsmount *, struct dentry *, loff_t start,
 			unsigned int time_attrs, struct file *filp);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 extern int do_fallocate(struct file *file, int mode, loff_t offset,
 			loff_t len);
 extern long do_sys_open(int dfd, const char __user *filename, int flags,
@@ -2194,9 +2260,13 @@ extern void emergency_thaw_all(void);
 extern int thaw_bdev(struct block_device *bdev, struct super_block *sb);
 extern int fsync_bdev(struct block_device *);
 <<<<<<< HEAD
+<<<<<<< HEAD
 extern int sb_is_blkdev_sb(struct super_block *sb);
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+extern int sb_is_blkdev_sb(struct super_block *sb);
+>>>>>>> 2617302... source
 #else
 static inline void bd_forget(struct inode *inode) {}
 static inline int sync_blockdev(struct block_device *bdev) { return 0; }
@@ -2217,6 +2287,9 @@ static inline void iterate_bdevs(void (*f)(struct block_device *, void *), void 
 {
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 
 static inline int sb_is_blkdev_sb(struct super_block *sb)
 {
@@ -2226,8 +2299,11 @@ static inline int sb_is_blkdev_sb(struct super_block *sb)
 static inline void iterate_bdevs(void (*f)(struct block_device *, void *), void *arg)
 {
 }
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 #endif
 extern int sync_filesystem(struct super_block *);
 extern const struct file_operations def_blk_fops;
@@ -2359,12 +2435,16 @@ extern sector_t bmap(struct inode *, sector_t);
 #endif
 extern int notify_change(struct dentry *, struct iattr *);
 <<<<<<< HEAD
+<<<<<<< HEAD
 extern int inode_permission(struct inode *, int);
 =======
 extern int notify_change2(struct vfsmount *, struct dentry *, struct iattr *);
 extern int inode_permission(struct inode *, int);
 extern int inode_permission2(struct vfsmount *, struct inode *, int);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+extern int inode_permission(struct inode *, int);
+>>>>>>> 2617302... source
 extern int generic_permission(struct inode *, int);
 
 static inline bool execute_ok(struct inode *inode)
@@ -2647,18 +2727,24 @@ extern int vfs_getattr(struct path *, struct kstat *);
 void __inode_add_bytes(struct inode *inode, loff_t bytes);
 void inode_add_bytes(struct inode *inode, loff_t bytes);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 void __inode_sub_bytes(struct inode *inode, loff_t bytes);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 void inode_sub_bytes(struct inode *inode, loff_t bytes);
 loff_t inode_get_bytes(struct inode *inode);
 void inode_set_bytes(struct inode *inode, loff_t bytes);
 
 extern int vfs_readdir(struct file *, filldir_t, void *);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 extern int iterate_dir(struct file *, struct dir_context *);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 extern int vfs_stat(const char __user *, struct kstat *);
 extern int vfs_lstat(const char __user *, struct kstat *);

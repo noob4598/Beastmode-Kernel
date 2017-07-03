@@ -819,11 +819,14 @@ static int ctr_aes_crypt(struct blkcipher_desc *desc, long func,
 			memcpy(walk->iv, ctrptr, AES_BLOCK_SIZE);
 		spin_unlock(&ctrblk_lock);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	} else {
 		if (!nbytes)
 			memcpy(walk->iv, ctrptr, AES_BLOCK_SIZE);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	}
 	/*
 	 * final block may be < AES_BLOCK_SIZE, copy only nbytes
@@ -974,10 +977,14 @@ module_init(aes_s390_init);
 module_exit(aes_s390_fini);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 MODULE_ALIAS("aes-all");
 =======
 MODULE_ALIAS_CRYPTO("aes-all");
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+MODULE_ALIAS("aes-all");
+>>>>>>> 2617302... source
 
 MODULE_DESCRIPTION("Rijndael (AES) Cipher Algorithm");
 MODULE_LICENSE("GPL");

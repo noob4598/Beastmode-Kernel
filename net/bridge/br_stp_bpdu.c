@@ -154,10 +154,14 @@ void br_stp_rcv(const struct stp_proto *proto, struct sk_buff *skb,
 		goto err;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	p = br_port_get_rcu(dev);
 =======
 	p = br_port_get_check_rcu(dev);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	p = br_port_get_rcu(dev);
+>>>>>>> 2617302... source
 	if (!p)
 		goto err;
 

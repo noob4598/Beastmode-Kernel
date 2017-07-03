@@ -77,10 +77,14 @@ static bool igp_read_bios_from_vram(struct radeon_device *rdev)
 static bool radeon_read_bios(struct radeon_device *rdev)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	uint8_t __iomem *bios;
 =======
 	uint8_t __iomem *bios, val1, val2;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	uint8_t __iomem *bios;
+>>>>>>> 2617302... source
 	size_t size;
 
 	rdev->bios = NULL;
@@ -91,11 +95,15 @@ static bool radeon_read_bios(struct radeon_device *rdev)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	if (size == 0 || bios[0] != 0x55 || bios[1] != 0xaa) {
 		pci_unmap_rom(rdev->pdev, bios);
 		return false;
 	}
 	rdev->bios = kmemdup(bios, size, GFP_KERNEL);
+<<<<<<< HEAD
 =======
 	val1 = readb(&bios[0]);
 	val2 = readb(&bios[1]);
@@ -106,14 +114,19 @@ static bool radeon_read_bios(struct radeon_device *rdev)
 	}
 	rdev->bios = kzalloc(size, GFP_KERNEL);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	if (rdev->bios == NULL) {
 		pci_unmap_rom(rdev->pdev, bios);
 		return false;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	memcpy_fromio(rdev->bios, bios, size);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	pci_unmap_rom(rdev->pdev, bios);
 	return true;
 }
@@ -216,6 +229,7 @@ static bool radeon_atrm_get_bios(struct radeon_device *rdev)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (!found) {
 		while ((pdev = pci_get_class(PCI_CLASS_DISPLAY_OTHER << 8, pdev)) != NULL) {
@@ -232,6 +246,8 @@ static bool radeon_atrm_get_bios(struct radeon_device *rdev)
 	}
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	if (!found)
 		return false;
 

@@ -641,6 +641,7 @@ static int hp_wmi_rfkill_setup(struct platform_device *device)
 		return err;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	err = hp_wmi_perform_query(HPWMI_WIRELESS_QUERY, 1, &wireless,
 				   sizeof(wireless), 0);
@@ -648,6 +649,8 @@ static int hp_wmi_rfkill_setup(struct platform_device *device)
 		return err;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	if (wireless & 0x1) {
 		wifi_rfkill = rfkill_alloc("hp-wifi", &device->dev,
 					   RFKILL_TYPE_WLAN,

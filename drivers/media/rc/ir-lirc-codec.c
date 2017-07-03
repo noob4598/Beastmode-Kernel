@@ -43,11 +43,15 @@ static int ir_lirc_decode(struct rc_dev *dev, struct ir_raw_event ev)
 
 	/* Packet start */
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	if (ev.reset)
 		return 0;
 
 	/* Carrier reports */
 	if (ev.carrier_report) {
+<<<<<<< HEAD
 =======
 	if (ev.reset) {
 		/* Userspace expects a long space event before the start of
@@ -61,6 +65,8 @@ static int ir_lirc_decode(struct rc_dev *dev, struct ir_raw_event ev)
 	/* Carrier reports */
 	} else if (ev.carrier_report) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		sample = LIRC_FREQUENCY(ev.carrier);
 		IR_dprintk(2, "carrier report (freq: %d)\n", sample);
 

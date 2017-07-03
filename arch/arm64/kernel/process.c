@@ -183,6 +183,7 @@ void exit_thread(void)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 void flush_thread(void)
 {
 	fpsimd_flush_thread();
@@ -209,6 +210,11 @@ void flush_thread(void)
 	fpsimd_flush_thread();
 	tls_thread_flush();
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+void flush_thread(void)
+{
+	fpsimd_flush_thread();
+>>>>>>> 2617302... source
 	flush_ptrace_hw_breakpoint(current);
 }
 

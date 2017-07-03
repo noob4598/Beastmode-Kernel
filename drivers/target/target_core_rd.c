@@ -160,10 +160,14 @@ static int rd_allocate_sgl_table(struct rd_dev *rd_dev, struct rd_dev_sg_table *
 
 		for (j = 0; j < sg_per_table; j++) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			pg = alloc_pages(GFP_KERNEL, 0);
 =======
 			pg = alloc_pages(GFP_KERNEL | __GFP_ZERO, 0);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			pg = alloc_pages(GFP_KERNEL, 0);
+>>>>>>> 2617302... source
 			if (!pg) {
 				pr_err("Unable to allocate scatterlist"
 					" pages for struct rd_dev_sg_table\n");

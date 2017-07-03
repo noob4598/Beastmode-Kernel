@@ -156,6 +156,7 @@ do {						\
 	((x)->e_machine == EM_X86_64)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define compat_elf_check_arch(x)		\
 	(elf_check_arch_ia32(x) || (x)->e_machine == EM_X86_64)
 =======
@@ -163,6 +164,10 @@ do {						\
 	(elf_check_arch_ia32(x) ||					\
 	 (IS_ENABLED(CONFIG_X86_X32_ABI) && (x)->e_machine == EM_X86_64))
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+#define compat_elf_check_arch(x)		\
+	(elf_check_arch_ia32(x) || (x)->e_machine == EM_X86_64)
+>>>>>>> 2617302... source
 
 #if __USER32_DS != __USER_DS
 # error "The following code assumes __USER32_DS == __USER_DS"
@@ -278,10 +283,14 @@ struct task_struct;
 #define	ARCH_DLINFO_IA32(vdso_enabled)					\
 do {									\
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (vdso_enabled) {						\
 =======
 	if (VDSO_CURRENT_BASE) {					\
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (vdso_enabled) {						\
+>>>>>>> 2617302... source
 		NEW_AUX_ENT(AT_SYSINFO,	VDSO_ENTRY);			\
 		NEW_AUX_ENT(AT_SYSINFO_EHDR, VDSO_CURRENT_BASE);	\
 	}								\

@@ -18,6 +18,7 @@
 static inline void __native_flush_tlb(void)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	native_write_cr3(native_read_cr3());
 =======
 	/*
@@ -29,6 +30,9 @@ static inline void __native_flush_tlb(void)
 	native_write_cr3(native_read_cr3());
 	preempt_enable();
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	native_write_cr3(native_read_cr3());
+>>>>>>> 2617302... source
 }
 
 static inline void __native_flush_tlb_global_irq_disabled(void)

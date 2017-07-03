@@ -62,11 +62,15 @@ enum asn1_opcode {
 	ASN1_OP_COMPLETE		= 0x1c,
 	ASN1_OP_ACT			= 0x1d,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ASN1_OP_RETURN			= 0x1e,
 =======
 	ASN1_OP_MAYBE_ACT		= 0x1e,
 	ASN1_OP_RETURN			= 0x1f,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	ASN1_OP_RETURN			= 0x1e,
+>>>>>>> 2617302... source
 
 	/* The following eight have bit 0 -> SET, 1 -> OF, 2 -> ACT */
 	ASN1_OP_END_SEQ			= 0x20,

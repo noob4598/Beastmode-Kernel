@@ -302,10 +302,13 @@ isdn_ppp_open(int min, struct file *file)
 
 	is->reset = isdn_ppp_ccp_reset_alloc(is);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (!is->reset)
 		return -ENOMEM;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	is->lp = NULL;
 	is->mp_seqno = 0;       /* MP sequence number */
@@ -326,12 +329,15 @@ isdn_ppp_open(int min, struct file *file)
 	 */
 	is->slcomp = slhc_init(16, 16);	/* not necessary for 2. link in bundle */
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (IS_ERR(is->slcomp)) {
 		isdn_ppp_ccp_reset_free(is);
 		return PTR_ERR(is->slcomp);
 	}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 #endif
 #ifdef CONFIG_IPPP_FILTER
 	is->pass_filter = NULL;
@@ -581,14 +587,20 @@ isdn_ppp_ioctl(int min, struct file *file, unsigned int cmd, unsigned long arg)
 #ifdef CONFIG_ISDN_PPP_VJ
 			sltmp = slhc_init(16, val);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 			if (!sltmp) {
 				printk(KERN_ERR "ippp, can't realloc slhc struct\n");
 				return -ENOMEM;
 			}
+<<<<<<< HEAD
 =======
 			if (IS_ERR(sltmp))
 				return PTR_ERR(sltmp);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 			if (is->slcomp)
 				slhc_free(is->slcomp);
 			is->slcomp = sltmp;

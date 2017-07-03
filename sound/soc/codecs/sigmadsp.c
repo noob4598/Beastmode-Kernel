@@ -177,6 +177,7 @@ static int _process_sigma_firmware(struct device *dev,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (ssfw_head->version != 1) {
 		dev_err(dev,
@@ -186,6 +187,8 @@ static int _process_sigma_firmware(struct device *dev,
 	}
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	crc = crc32(0, fw->data + sizeof(*ssfw_head),
 			fw->size - sizeof(*ssfw_head));
 	pr_debug("%s: crc=%x\n", __func__, crc);

@@ -1532,6 +1532,7 @@ wls_parse_batching_cmd(struct net_device *dev, char *command, int total_len)
 					goto exit;
 				}
 <<<<<<< HEAD
+<<<<<<< HEAD
 					while ((token2 = strsep(&pos2,
 					PNO_PARAM_CHANNEL_DELIMETER)) != NULL) {
 =======
@@ -1539,6 +1540,10 @@ wls_parse_batching_cmd(struct net_device *dev, char *command, int total_len)
 				while ((token2 = strsep(&pos2, PNO_PARAM_CHANNEL_DELIMETER))
 						!= NULL) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+					while ((token2 = strsep(&pos2,
+					PNO_PARAM_CHANNEL_DELIMETER)) != NULL) {
+>>>>>>> 2617302... source
 					if (token2 == NULL || !*token2)
 						break;
 					if (*token2 == '\0')
@@ -1550,11 +1555,15 @@ wls_parse_batching_cmd(struct net_device *dev, char *command, int total_len)
 							(*token2 == 'A')? "A" : "B"));
 					} else {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 						batch_params.chan_list[i++] =
 						simple_strtol(token2, NULL, 0);
 						batch_params.nchan++;
 						DHD_PNO(("channel :%d\n",
 						batch_params.chan_list[i-1]));
+<<<<<<< HEAD
 =======
 						if ((batch_params.nchan >= WL_NUMCHANNELS) ||
 						    	(i >= WL_NUMCHANNELS)) {
@@ -1569,6 +1578,8 @@ wls_parse_batching_cmd(struct net_device *dev, char *command, int total_len)
 						DHD_PNO(("channel :%d\n",
 							batch_params.chan_list[i-1]));
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 					}
 				 }
 			} else if (!strncmp(param, PNO_PARAM_RTT, strlen(PNO_PARAM_RTT))) {
@@ -3660,6 +3671,7 @@ int wl_android_priv_cmd(struct net_device *net, struct ifreq *ifr, int cmd)
 	net_os_wake_lock(net);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (!capable(CAP_NET_ADMIN)) {
 		ret = -EPERM;
@@ -3672,6 +3684,8 @@ int wl_android_priv_cmd(struct net_device *net, struct ifreq *ifr, int cmd)
 	}
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	if (!ifr->ifr_data) {
 		ret = -EINVAL;
 		goto exit;

@@ -510,10 +510,13 @@ static int ast_crtc_do_set_base(struct drm_crtc *crtc,
 		if (ret)
 			DRM_ERROR("failed to kmap fbcon\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		else
 			ast_fbdev_set_base(ast, gpu_addr);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	}
 	ast_bo_unreserve(bo);
 
@@ -1018,12 +1021,17 @@ static u32 copy_cursor_image(u8 *src, u8 *dst, int width, int height)
 			data32.b[0] = srcdata32[0].b[1] | (srcdata32[0].b[0] >> 4);
 			data32.b[1] = srcdata32[0].b[3] | (srcdata32[0].b[2] >> 4);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			data32.b[2] = srcdata32[0].b[1] | (srcdata32[1].b[0] >> 4);
 			data32.b[3] = srcdata32[0].b[3] | (srcdata32[1].b[2] >> 4);
 =======
 			data32.b[2] = srcdata32[1].b[1] | (srcdata32[1].b[0] >> 4);
 			data32.b[3] = srcdata32[1].b[3] | (srcdata32[1].b[2] >> 4);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			data32.b[2] = srcdata32[0].b[1] | (srcdata32[1].b[0] >> 4);
+			data32.b[3] = srcdata32[0].b[3] | (srcdata32[1].b[2] >> 4);
+>>>>>>> 2617302... source
 
 			writel(data32.ul, dstxor);
 			csum += data32.ul;

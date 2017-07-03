@@ -1961,6 +1961,7 @@ static long shmem_fallocate(struct file *file, int mode, loff_t offset,
 		if (error) {
 			/* Remove the !PageUptodate pages we added */
 <<<<<<< HEAD
+<<<<<<< HEAD
 			shmem_undo_range(inode,
 				(loff_t)start << PAGE_CACHE_SHIFT,
 				(loff_t)index << PAGE_CACHE_SHIFT, true);
@@ -1971,6 +1972,11 @@ static long shmem_fallocate(struct file *file, int mode, loff_t offset,
 				 ((loff_t)index << PAGE_CACHE_SHIFT) - 1, true);
 			}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			shmem_undo_range(inode,
+				(loff_t)start << PAGE_CACHE_SHIFT,
+				(loff_t)index << PAGE_CACHE_SHIFT, true);
+>>>>>>> 2617302... source
 			goto undone;
 		}
 
@@ -2149,6 +2155,7 @@ static int shmem_rename(struct inode *old_dir, struct dentry *old_dentry, struct
 	if (new_dentry->d_inode) {
 		(void) shmem_unlink(new_dir, new_dentry);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (they_are_dirs)
 			drop_nlink(old_dir);
 =======
@@ -2157,6 +2164,10 @@ static int shmem_rename(struct inode *old_dir, struct dentry *old_dentry, struct
 			drop_nlink(old_dir);
 		}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		if (they_are_dirs)
+			drop_nlink(old_dir);
+>>>>>>> 2617302... source
 	} else if (they_are_dirs) {
 		drop_nlink(old_dir);
 		inc_nlink(new_dir);

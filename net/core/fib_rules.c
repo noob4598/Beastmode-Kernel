@@ -655,15 +655,19 @@ static int dump_rules(struct sk_buff *skb, struct netlink_callback *cb,
 	int idx = 0;
 	struct fib_rule *rule;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	int err = 0;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	rcu_read_lock();
 	list_for_each_entry_rcu(rule, &ops->rules_list, list) {
 		if (idx < cb->args[1])
 			goto skip;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if (fib_nl_fill_rule(skb, rule, NETLINK_CB(cb->skb).portid,
 				     cb->nlh->nlmsg_seq, RTM_NEWRULE,
@@ -674,6 +678,11 @@ static int dump_rules(struct sk_buff *skb, struct netlink_callback *cb,
 				       NLM_F_MULTI, ops);
 		if (err < 0)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		if (fib_nl_fill_rule(skb, rule, NETLINK_CB(cb->skb).portid,
+				     cb->nlh->nlmsg_seq, RTM_NEWRULE,
+				     NLM_F_MULTI, ops) < 0)
+>>>>>>> 2617302... source
 			break;
 skip:
 		idx++;
@@ -683,10 +692,14 @@ skip:
 	rules_ops_put(ops);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return skb->len;
 =======
 	return err;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	return skb->len;
+>>>>>>> 2617302... source
 }
 
 static int fib_nl_dumprule(struct sk_buff *skb, struct netlink_callback *cb)
@@ -703,12 +716,16 @@ static int fib_nl_dumprule(struct sk_buff *skb, struct netlink_callback *cb)
 			return -EAFNOSUPPORT;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return dump_rules(skb, cb, ops);
 =======
 		dump_rules(skb, cb, ops);
 
 		return skb->len;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		return dump_rules(skb, cb, ops);
+>>>>>>> 2617302... source
 	}
 
 	rcu_read_lock();

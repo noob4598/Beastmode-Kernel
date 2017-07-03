@@ -1,8 +1,12 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* Copyright (c) 2013, The Linux Foundation. All rights reserved.
 =======
 /* Copyright (c) 2013-2014, The Linux Foundation. All rights reserved.
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+/* Copyright (c) 2013, The Linux Foundation. All rights reserved.
+>>>>>>> 2617302... source
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -130,6 +134,7 @@ static int32_t s5k4e1_platform_probe(struct platform_device *pdev)
 	const struct of_device_id *match;
 	match = of_match_device(s5k4e1_dt_match, &pdev->dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	rc = msm_sensor_platform_probe(pdev, match->data);
 =======
 	if (match)
@@ -139,6 +144,9 @@ static int32_t s5k4e1_platform_probe(struct platform_device *pdev)
 		rc = -EINVAL;
 	}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	rc = msm_sensor_platform_probe(pdev, match->data);
+>>>>>>> 2617302... source
 	return rc;
 }
 

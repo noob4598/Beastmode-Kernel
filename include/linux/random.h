@@ -25,9 +25,12 @@ extern const struct file_operations random_fops, urandom_fops;
 
 unsigned int get_random_int(void);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 unsigned long get_random_long(void);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 unsigned long randomize_range(unsigned long start, unsigned long end, unsigned long len);
 
 u32 prandom_u32(void);

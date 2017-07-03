@@ -46,10 +46,14 @@
 #define EXT_EVENT	1
 #define CAL_EVENT	7
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define CAL_TRIGGER	7
 =======
 #define CAL_TRIGGER	1
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+#define CAL_TRIGGER	7
+>>>>>>> 2617302... source
 #define PER_TRIGGER	6
 
 #define MII_DP83640_MICR 0x11

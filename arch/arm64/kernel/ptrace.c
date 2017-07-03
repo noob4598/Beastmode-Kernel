@@ -52,6 +52,7 @@
 void ptrace_disable(struct task_struct *child)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/*
 	 * This would be better off in core code, but PTRACE_DETACH has
@@ -60,6 +61,8 @@ void ptrace_disable(struct task_struct *child)
 	 */
 	user_disable_single_step(child);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 }
 
 /*
@@ -113,11 +116,15 @@ static void ptrace_hbptriggered(struct perf_event *bp,
 		}
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	for (i = ARM_MAX_BRP; i < ARM_MAX_HBP_SLOTS && !bp; ++i) {
 =======
 
 	for (i = 0; i < ARM_MAX_WRP; ++i) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	for (i = ARM_MAX_BRP; i < ARM_MAX_HBP_SLOTS && !bp; ++i) {
+>>>>>>> 2617302... source
 		if (current->thread.debug.hbp_watch[i] == bp) {
 			info.si_errno = -((i << 1) + 1);
 			break;
@@ -472,10 +479,13 @@ static int hw_break_set(struct task_struct *target,
 	limit = regset->n * regset->size;
 	while (count && offset < limit) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		if (count < PTRACE_HBP_ADDR_SZ)
 			return -EINVAL;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		ret = user_regset_copyin(&pos, &count, &kbuf, &ubuf, &addr,
 					 offset, offset + PTRACE_HBP_ADDR_SZ);
 		if (ret)
@@ -486,10 +496,13 @@ static int hw_break_set(struct task_struct *target,
 		offset += PTRACE_HBP_ADDR_SZ;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		if (!count)
 			break;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		ret = user_regset_copyin(&pos, &count, &kbuf, &ubuf, &ctrl,
 					 offset, offset + PTRACE_HBP_CTRL_SZ);
 		if (ret)
@@ -527,10 +540,14 @@ static int gpr_set(struct task_struct *target, const struct user_regset *regset,
 {
 	int ret;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct user_pt_regs newregs;
 =======
 	struct user_pt_regs newregs = task_pt_regs(target)->user_regs;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	struct user_pt_regs newregs;
+>>>>>>> 2617302... source
 
 	ret = user_regset_copyin(&pos, &count, &kbuf, &ubuf, &newregs, 0, -1);
 	if (ret)
@@ -561,11 +578,15 @@ static int fpr_set(struct task_struct *target, const struct user_regset *regset,
 {
 	int ret;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct user_fpsimd_state newstate;
 =======
 	struct user_fpsimd_state newstate =
 		target->thread.fpsimd_state.user_fpsimd;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	struct user_fpsimd_state newstate;
+>>>>>>> 2617302... source
 
 	ret = user_regset_copyin(&pos, &count, &kbuf, &ubuf, &newstate, 0, -1);
 	if (ret)
@@ -589,10 +610,14 @@ static int tls_set(struct task_struct *target, const struct user_regset *regset,
 {
 	int ret;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned long tls;
 =======
 	unsigned long tls = target->thread.tp_value;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	unsigned long tls;
+>>>>>>> 2617302... source
 
 	ret = user_regset_copyin(&pos, &count, &kbuf, &ubuf, &tls, 0, -1);
 	if (ret)
@@ -945,9 +970,12 @@ static int compat_ptrace_write_user(struct task_struct *tsk, compat_ulong_t off,
 {
 	int ret;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	mm_segment_t old_fs = get_fs();
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	if (off & 3 || off >= COMPAT_USER_SZ)
 		return -EIO;
@@ -956,18 +984,24 @@ static int compat_ptrace_write_user(struct task_struct *tsk, compat_ulong_t off,
 		return 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	set_fs(KERNEL_DS);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	ret = copy_regset_from_user(tsk, &user_aarch32_view,
 				    REGSET_COMPAT_GPR, off,
 				    sizeof(compat_ulong_t),
 				    &val);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	set_fs(old_fs);
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	return ret;
 }
 

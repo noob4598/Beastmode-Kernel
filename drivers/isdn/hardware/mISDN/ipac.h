@@ -218,9 +218,12 @@ struct ipac_hw {
 #define ISAC_IND_SD		0x2
 #define ISAC_IND_DIS		0x3
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define ISAC_IND_DR6		0x5
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 #define ISAC_IND_EI		0x6
 #define ISAC_IND_RSY		0x4
 #define ISAC_IND_ARD		0x8

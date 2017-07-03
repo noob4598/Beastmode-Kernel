@@ -351,6 +351,7 @@ static void __setup_APIC_LVTT(unsigned int clocks, int oneshot, int irqen)
 
 	if (lvtt_value & APIC_LVT_TIMER_TSCDEADLINE) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		/*
 		 * See Intel SDM: TSC-Deadline Mode chapter. In xAPIC mode,
@@ -360,6 +361,8 @@ static void __setup_APIC_LVTT(unsigned int clocks, int oneshot, int irqen)
 		asm volatile("mfence" : : : "memory");
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		printk_once(KERN_DEBUG "TSC deadline timer enabled\n");
 		return;
 	}
@@ -1274,10 +1277,14 @@ void __cpuinit setup_local_APIC(void)
 	int i, j, acked = 0;
 	unsigned long long tsc = 0, ntsc;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	long long max_loops = cpu_khz;
 =======
 	long long max_loops = cpu_khz ? cpu_khz : 1000000;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	long long max_loops = cpu_khz;
+>>>>>>> 2617302... source
 
 	if (cpu_has_tsc)
 		rdtscll(tsc);
@@ -1375,10 +1382,14 @@ void __cpuinit setup_local_APIC(void)
 		}
 		if (queued) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (cpu_has_tsc) {
 =======
 			if (cpu_has_tsc && cpu_khz) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			if (cpu_has_tsc) {
+>>>>>>> 2617302... source
 				rdtscll(ntsc);
 				max_loops = (cpu_khz << 10) - (ntsc - tsc);
 			} else
@@ -1593,11 +1604,14 @@ void __init enable_IR_x2apic(void)
 	int hardware_init_ret;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (skip_ioapic_setup)
 		return;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	/* Make sure irq_remap_ops are initialized */
 	setup_irq_remapping_ops();
 

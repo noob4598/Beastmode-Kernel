@@ -936,6 +936,7 @@ xfs_qm_dqiter_bufs(
 			break;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		/*
 		 * A corrupt buffer might not have a verifier attached, so
@@ -944,6 +945,8 @@ xfs_qm_dqiter_bufs(
 		 */
 		bp->b_ops = &xfs_dquot_buf_ops;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		xfs_qm_reset_dqcounts(mp, bp, firstid, type);
 		xfs_buf_delwri_queue(bp, buffer_list);
 		xfs_buf_relse(bp);
@@ -1028,10 +1031,14 @@ xfs_qm_dqiterate(
 					       XFS_FSB_TO_DADDR(mp, rablkno),
 					       mp->m_quotainfo->qi_dqchunklen,
 <<<<<<< HEAD
+<<<<<<< HEAD
 					       NULL);
 =======
 					       &xfs_dquot_buf_ops);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+					       NULL);
+>>>>>>> 2617302... source
 					rablkno++;
 				}
 			}

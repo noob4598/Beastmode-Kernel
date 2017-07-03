@@ -103,11 +103,15 @@ background_gc=%s       Turn on/off cleaning operations, namely garbage
                        idle. If background_gc=on, it will turn on the garbage
                        collection and if background_gc=off, garbage collection
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
                        will be truned off.
                        Default value for this option is on. So garbage
                        collection is on by default.
 disable_roll_forward   Disable the roll-forward recovery routine
 discard                Issue discard/TRIM commands when a segment is cleaned.
+<<<<<<< HEAD
 =======
                        will be turned off. If background_gc=sync, it will turn
                        on synchronous garbage collection running in background.
@@ -120,6 +124,8 @@ discard/nodiscard      Enable/disable real-time discard in f2fs, if discard is
                        enabled, f2fs will issue discard/TRIM commands when a
 		       segment is cleaned.
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 no_heap                Disable heap-style segment allocation which finds free
                        segments for data from the beginning of main area, while
 		       for node from the end of main area.
@@ -132,6 +138,7 @@ active_logs=%u         Support configuring the number of active logs. In the
                        Default number is 6.
 disable_ext_identify   Disable the extension list configured by mkfs, so f2fs
                        does not aware of cold files such as media files.
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 inline_xattr           Enable the inline xattrs feature.
@@ -171,6 +178,8 @@ mode=%s                Control block allocation mode which supports "adaptive"
 io_bits=%u             Set the bit size of write IO requests. It should be set
                        with "mode=lfs".
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 ================================================================================
 DEBUGFS ENTRIES

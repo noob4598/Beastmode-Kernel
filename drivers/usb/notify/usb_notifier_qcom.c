@@ -55,10 +55,14 @@ static void of_get_usb_redriver_dt(struct device_node *np,
 		pr_err("%s: usb30_redriver_en: Invalied gpio pins\n", __func__);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_info("redriver_en : %d\n", pdata->gpio_redriver_en);
 =======
 	pr_debug("redriver_en : %d\n", pdata->gpio_redriver_en);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	pr_info("redriver_en : %d\n", pdata->gpio_redriver_en);
+>>>>>>> 2617302... source
 }
 
 static int of_usb_notifier_dt(struct device *dev,
@@ -103,10 +107,14 @@ static void usbgadget_ready(struct work_struct *work)
 	struct usb_notifier_platform_data *pdata = of_get_usb_notifier_pdata();
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_info("usb: %s,gadget_state:%d\n", __func__,
 =======
 	pr_debug("usb: %s,gadget_state:%d\n", __func__,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	pr_info("usb: %s,gadget_state:%d\n", __func__,
+>>>>>>> 2617302... source
 			pdata->g_ndev.gadget_state);
 	pdata->g_ndev.is_ready = true;
 }
@@ -126,10 +134,14 @@ static int otg_accessory_power(bool enable)
 		psy->set_property(psy, POWER_SUPPLY_PROP_ONLINE, &val);
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_info("otg accessory power = %d\n", on);
 =======
 	pr_debug("otg accessory power = %d\n", on);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	pr_info("otg accessory power = %d\n", on);
+>>>>>>> 2617302... source
 	return 0;
 }
 
@@ -139,10 +151,14 @@ static void sec_usb_work(int usb_mode)
 
 	psy = power_supply_get_by_name("dwc-usb");
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_info("usb: dwc3 power supply set(%d)", usb_mode);
 =======
 	pr_debug("usb: dwc3 power supply set(%d)", usb_mode);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	pr_info("usb: dwc3 power supply set(%d)", usb_mode);
+>>>>>>> 2617302... source
 	if (psy)
 		power_supply_set_present(psy, usb_mode);
 	else
@@ -157,10 +173,14 @@ static int qcom_set_peripheral(bool enable)
 	pdata = get_notify_data(o_notify);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_info("%s: usb enable %d\n", __func__, enable);
 =======
 	pr_debug("%s: usb enable %d\n", __func__, enable);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	pr_info("%s: usb enable %d\n", __func__, enable);
+>>>>>>> 2617302... source
 
 	if (!enable) {
 		pdata->g_ndev.gadget_state = GADGET_NOTIFIER_DETACH;
@@ -184,10 +204,14 @@ static int set_online(int event, int state)
 	struct power_supply *psy;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_info("set_online: %d, %d\n", event, state);
 =======
 	pr_debug("set_online: %d, %d\n", event, state);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	pr_info("set_online: %d, %d\n", event, state);
+>>>>>>> 2617302... source
 
 	psy = power_supply_get_by_name("battery");
 	if (!psy) {
@@ -220,10 +244,14 @@ static int usb_notifier_probe(struct platform_device *pdev)
 	struct usb_notifier_platform_data *pdata = NULL;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_info("notifier_probe\n");
 =======
 	pr_debug("notifier_probe\n");
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	pr_info("notifier_probe\n");
+>>>>>>> 2617302... source
 
 	if (pdev->dev.of_node) {
 		pdata = devm_kzalloc(&pdev->dev,

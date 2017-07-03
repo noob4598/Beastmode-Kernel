@@ -49,14 +49,20 @@ int unwind_frame(struct stackframe *frame)
 	frame->sp = fp + 0x10;
 	frame->fp = *(unsigned long *)(fp);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	/*
 	 * -4 here because we care about the PC at time of bl,
 	 * not where the return will go.
 	 */
 	frame->pc = *(unsigned long *)(fp + 8) - 4;
+<<<<<<< HEAD
 =======
 	frame->pc = *(unsigned long *)(fp + 8);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	return 0;
 }

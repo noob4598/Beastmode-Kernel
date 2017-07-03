@@ -31,10 +31,13 @@
 		interrupts = <0 78 0>;
 		interrupt-names = "csiphy";
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		qcom,csi-vdd-voltage = <1800000>;
 		qcom,mipi-csi-vdd-supply = <&pma8084_l12>;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	};
 
 	qcom,csiphy@fda0b000 {
@@ -46,10 +49,13 @@
 		interrupts = <0 79 0>;
 		interrupt-names = "csiphy";
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		qcom,csi-vdd-voltage = <1800000>;
 		qcom,mipi-csi-vdd-supply = <&pma8084_l12>;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	};
 
 	qcom,csiphy@fda0b400 {
@@ -61,10 +67,13 @@
 		interrupts = <0 80 0>;
 		interrupt-names = "csiphy";
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		qcom,csi-vdd-voltage = <1800000>;
 		qcom,mipi-csi-vdd-supply = <&pma8084_l12>;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	};
 
 	qcom,csid@fda08000  {

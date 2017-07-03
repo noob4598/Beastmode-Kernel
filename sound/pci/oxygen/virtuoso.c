@@ -54,9 +54,12 @@ static DEFINE_PCI_DEVICE_TABLE(xonar_ids) = {
 	{ OXYGEN_PCI_SUBID(0x1043, 0x838e) },
 	{ OXYGEN_PCI_SUBID(0x1043, 0x8522) },
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	{ OXYGEN_PCI_SUBID(0x1043, 0x85f4) },
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	{ OXYGEN_PCI_SUBID_BROKEN_EEPROM },
 	{ }
 };

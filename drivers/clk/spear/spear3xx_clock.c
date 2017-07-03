@@ -212,10 +212,14 @@ static inline void spear310_clk_init(void) { }
 #ifdef CONFIG_MACH_SPEAR320
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define SPEAR320_CONTROL_REG		(soc_config_base + 0x0000)
 =======
 #define SPEAR320_CONTROL_REG		(soc_config_base + 0x0010)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+#define SPEAR320_CONTROL_REG		(soc_config_base + 0x0000)
+>>>>>>> 2617302... source
 #define SPEAR320_EXT_CTRL_REG		(soc_config_base + 0x0018)
 
 	#define SPEAR320_UARTX_PCLK_MASK		0x1

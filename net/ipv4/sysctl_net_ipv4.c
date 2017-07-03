@@ -508,6 +508,7 @@ static struct ctl_table ipv4_table[] = {
 	},
 	{
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		.procname	= "reserved_port_bind",
 		.data		= &sysctl_reserved_port_bind,
@@ -517,6 +518,8 @@ static struct ctl_table ipv4_table[] = {
 	},
 	{
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		.procname	= "igmp_max_memberships",
 		.data		= &sysctl_igmp_max_memberships,
 		.maxlen		= sizeof(int),

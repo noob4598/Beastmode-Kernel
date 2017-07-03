@@ -150,9 +150,13 @@ static int twa_scsiop_execute_scsi(TW_Device_Extension *tw_dev, int request_id, 
 static void twa_scsiop_execute_scsi_complete(TW_Device_Extension *tw_dev, int request_id);
 static char *twa_string_lookup(twa_message_type *table, unsigned int aen_code);
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void twa_unmap_scsi_data(TW_Device_Extension *tw_dev, int request_id);
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+static void twa_unmap_scsi_data(TW_Device_Extension *tw_dev, int request_id);
+>>>>>>> 2617302... source
 
 /* Functions */
 
@@ -230,6 +234,7 @@ static const struct file_operations twa_fops = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 /*
  * The controllers use an inline buffer instead of a mapped SGL for small,
@@ -243,6 +248,8 @@ static bool twa_command_mapped(struct scsi_cmnd *cmd)
 }
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 /* This function will complete an aen request from the isr */
 static int twa_aen_complete(TW_Device_Extension *tw_dev, int request_id)
 {
@@ -1370,11 +1377,15 @@ static irqreturn_t twa_interrupt(int irq, void *dev_instance)
 
 				/* Now complete the io */
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 				tw_dev->state[request_id] = TW_S_COMPLETED;
 				twa_free_request_id(tw_dev, request_id);
 				tw_dev->posted_request_count--;
 				tw_dev->srb[request_id]->scsi_done(tw_dev->srb[request_id]);
 				twa_unmap_scsi_data(tw_dev, request_id);
+<<<<<<< HEAD
 =======
 				if (twa_command_mapped(cmd))
 					scsi_dma_unmap(cmd);
@@ -1383,6 +1394,8 @@ static irqreturn_t twa_interrupt(int irq, void *dev_instance)
 				twa_free_request_id(tw_dev, request_id);
 				tw_dev->posted_request_count--;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 			}
 
 			/* Check for valid status after each drain */
@@ -1441,6 +1454,9 @@ static void twa_load_sgl(TW_Device_Extension *tw_dev, TW_Command_Full *full_comm
 } /* End twa_load_sgl() */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 /* This function will perform a pci-dma mapping for a scatter gather list */
 static int twa_map_scsi_sg_data(TW_Device_Extension *tw_dev, int request_id)
 {
@@ -1461,8 +1477,11 @@ static int twa_map_scsi_sg_data(TW_Device_Extension *tw_dev, int request_id)
 	return use_sg;
 } /* End twa_map_scsi_sg_data() */
 
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 /* This function will poll for a response interrupt of a request */
 static int twa_poll_response(TW_Device_Extension *tw_dev, int request_id, int seconds)
 {
@@ -1642,6 +1661,7 @@ static int twa_reset_device_extension(TW_Device_Extension *tw_dev)
 		    (tw_dev->state[i] != TW_S_COMPLETED)) {
 			if (tw_dev->srb[i]) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 				tw_dev->srb[i]->result = (DID_RESET << 16);
 				tw_dev->srb[i]->scsi_done(tw_dev->srb[i]);
 				twa_unmap_scsi_data(tw_dev, i);
@@ -1653,6 +1673,11 @@ static int twa_reset_device_extension(TW_Device_Extension *tw_dev)
 					scsi_dma_unmap(cmd);
 				cmd->scsi_done(cmd);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+				tw_dev->srb[i]->result = (DID_RESET << 16);
+				tw_dev->srb[i]->scsi_done(tw_dev->srb[i]);
+				twa_unmap_scsi_data(tw_dev, i);
+>>>>>>> 2617302... source
 			}
 		}
 	}
@@ -1832,6 +1857,9 @@ static int twa_scsi_queue_lck(struct scsi_cmnd *SCpnt, void (*done)(struct scsi_
 	tw_dev->srb[request_id] = SCpnt;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	/* Initialize phase to zero */
 	SCpnt->SCp.phase = TW_PHASE_INITIAL;
 
@@ -1847,6 +1875,7 @@ static int twa_scsi_queue_lck(struct scsi_cmnd *SCpnt, void (*done)(struct scsi_
 		twa_unmap_scsi_data(tw_dev, request_id);
 		SCpnt->result = (DID_ERROR << 16);
 		done(SCpnt);
+<<<<<<< HEAD
 =======
 	retval = twa_scsiop_execute_scsi(tw_dev, request_id, NULL, 0, NULL);
 	switch (retval) {
@@ -1863,6 +1892,8 @@ static int twa_scsi_queue_lck(struct scsi_cmnd *SCpnt, void (*done)(struct scsi_
 		tw_dev->state[request_id] = TW_S_COMPLETED;
 		twa_free_request_id(tw_dev, request_id);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		retval = 0;
 	}
 out:
@@ -1921,11 +1952,16 @@ static int twa_scsiop_execute_scsi(TW_Device_Extension *tw_dev, int request_id, 
 
 		if (scsi_sg_count(srb)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if ((scsi_sg_count(srb) == 1) &&
 			    (scsi_bufflen(srb) < TW_MIN_SGL_LENGTH)) {
 =======
 			if (!twa_command_mapped(srb)) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			if ((scsi_sg_count(srb) == 1) &&
+			    (scsi_bufflen(srb) < TW_MIN_SGL_LENGTH)) {
+>>>>>>> 2617302... source
 				if (srb->sc_data_direction == DMA_TO_DEVICE ||
 				    srb->sc_data_direction == DMA_BIDIRECTIONAL)
 					scsi_sg_copy_to_buffer(srb,
@@ -1935,12 +1971,17 @@ static int twa_scsiop_execute_scsi(TW_Device_Extension *tw_dev, int request_id, 
 				command_packet->sg_list[0].length = cpu_to_le32(TW_MIN_SGL_LENGTH);
 			} else {
 <<<<<<< HEAD
+<<<<<<< HEAD
 				sg_count = twa_map_scsi_sg_data(tw_dev, request_id);
 				if (sg_count == 0)
 =======
 				sg_count = scsi_dma_map(srb);
 				if (sg_count < 0)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+				sg_count = twa_map_scsi_sg_data(tw_dev, request_id);
+				if (sg_count == 0)
+>>>>>>> 2617302... source
 					goto out;
 
 				scsi_for_each_sg(srb, sg, sg_count, i) {
@@ -2004,10 +2045,14 @@ static void twa_scsiop_execute_scsi_complete(TW_Device_Extension *tw_dev, int re
 	struct scsi_cmnd *cmd = tw_dev->srb[request_id];
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (scsi_bufflen(cmd) < TW_MIN_SGL_LENGTH &&
 =======
 	if (!twa_command_mapped(cmd) &&
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (scsi_bufflen(cmd) < TW_MIN_SGL_LENGTH &&
+>>>>>>> 2617302... source
 	    (cmd->sc_data_direction == DMA_FROM_DEVICE ||
 	     cmd->sc_data_direction == DMA_BIDIRECTIONAL)) {
 		if (scsi_sg_count(cmd) == 1) {
@@ -2060,6 +2105,9 @@ static char *twa_string_lookup(twa_message_type *table, unsigned int code)
 } /* End twa_string_lookup() */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 /* This function will perform a pci-dma unmap */
 static void twa_unmap_scsi_data(TW_Device_Extension *tw_dev, int request_id)
 {
@@ -2069,8 +2117,11 @@ static void twa_unmap_scsi_data(TW_Device_Extension *tw_dev, int request_id)
 		scsi_dma_unmap(cmd);
 } /* End twa_unmap_scsi_data() */
 
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 /* This function gets called when a disk is coming on-line */
 static int twa_slave_configure(struct scsi_device *sdev)
 {

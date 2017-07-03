@@ -300,11 +300,15 @@ static int xen_initial_domain_console_init(void)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 void xen_console_resume(void)
 {
 	struct xencons_info *info = vtermno_to_xencons(HVC_COOKIE);
 	if (info != NULL && info->irq)
 		rebind_evtchn_irq(info->evtchn, info->irq);
+<<<<<<< HEAD
 =======
 static void xen_console_update_evtchn(struct xencons_info *info)
 {
@@ -328,6 +332,8 @@ void xen_console_resume(void)
 		rebind_evtchn_irq(info->evtchn, info->irq);
 	}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 }
 
 static void xencons_disconnect_backend(struct xencons_info *info)

@@ -944,10 +944,14 @@ again:
 
 		while (cur_offset < item_size) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			extref = (struct btrfs_inode_extref *)base + cur_offset;
 =======
 			extref = (struct btrfs_inode_extref *)(base + cur_offset);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			extref = (struct btrfs_inode_extref *)base + cur_offset;
+>>>>>>> 2617302... source
 
 			victim_name_len = btrfs_inode_extref_name_len(leaf, extref);
 
@@ -1696,18 +1700,26 @@ next:
 	/* check the next slot in the tree to see if it is a valid item */
 	nritems = btrfs_header_nritems(path->nodes[0]);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	path->slots[0]++;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	if (path->slots[0] >= nritems) {
 		ret = btrfs_next_leaf(root, path);
 		if (ret)
 			goto out;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	} else {
 		path->slots[0]++;
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	} else {
+		path->slots[0]++;
+>>>>>>> 2617302... source
 	}
 
 	btrfs_item_key_to_cpu(path->nodes[0], &key, path->slots[0]);

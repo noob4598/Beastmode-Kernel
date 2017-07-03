@@ -263,9 +263,13 @@ static struct of_device_id of_platform_serial_table[] = {
 		.data = (void *)PORT_NWPSERIAL, },
 #endif
 <<<<<<< HEAD
+<<<<<<< HEAD
 	{ .type = "serial",         .data = (void *)PORT_UNKNOWN, },
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	{ .type = "serial",         .data = (void *)PORT_UNKNOWN, },
+>>>>>>> 2617302... source
 	{ /* end of list */ },
 };
 

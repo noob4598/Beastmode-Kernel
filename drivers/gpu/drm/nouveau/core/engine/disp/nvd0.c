@@ -680,10 +680,14 @@ exec_clkcmp(struct nv50_disp_priv *priv, int head, int id,
 
 	if (outp == 8)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return false;
 =======
 		return conf;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		return false;
+>>>>>>> 2617302... source
 
 	data = exec_lookup(priv, head, outp, ctrl, dcb, &ver, &hdr, &cnt, &len, &info1);
 	if (data == 0x0000)

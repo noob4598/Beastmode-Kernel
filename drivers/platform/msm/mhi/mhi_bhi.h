@@ -1,8 +1,12 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* Copyright (c) 2014, The Linux Foundation. All rights reserved.
 =======
 /* Copyright (c) 2013, The Linux Foundation. All rights reserved.
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+/* Copyright (c) 2014, The Linux Foundation. All rights reserved.
+>>>>>>> 2617302... source
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -18,10 +22,14 @@
 #include "mhi.h"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* BHI Offsets */
 =======
 /** BHI Offsets */
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+/* BHI Offsets */
+>>>>>>> 2617302... source
 #define BHI_BHIVERSION_MINOR                               (0x00)
 #define BHI_BHIVERSION_MAJOR                               (0x04)
 #define BHI_IMGADDR_LOW                                    (0x08)
@@ -59,6 +67,7 @@
 #define BHI_POLL_NR_RETRIES 1
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 int bhi_probe(struct mhi_pcie_dev_info *mhi_pcie_device);
 =======
 
@@ -68,5 +77,8 @@ int bhi_release(struct inode *mhi_inode, struct file *file_handle);
 ssize_t bhi_write(struct file *file, const char __user *buf,
 		size_t count, loff_t *offp);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+int bhi_probe(struct mhi_pcie_dev_info *mhi_pcie_device);
+>>>>>>> 2617302... source
 
 #endif

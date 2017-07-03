@@ -1,8 +1,12 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* Copyright (c) 2012-2014, The Linux Foundation. All rights reserved.
 =======
 /* Copyright (c) 2012-2017, The Linux Foundation. All rights reserved.
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+/* Copyright (c) 2012-2014, The Linux Foundation. All rights reserved.
+>>>>>>> 2617302... source
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -1213,6 +1217,7 @@ static int msm_dai_q6_set_channel_map(struct snd_soc_dai *dai,
 			return -EINVAL;
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		if (rx_num > AFE_PORT_MAX_AUDIO_CHAN_CNT) {
 			pr_err("%s: invalid rx num %d\n", __func__, rx_num);
@@ -1220,6 +1225,8 @@ static int msm_dai_q6_set_channel_map(struct snd_soc_dai *dai,
 		}
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		for (i = 0; i < rx_num; i++) {
 			dai_data->port_config.slim_sch.shared_ch_mapping[i] =
 			    rx_slot[i];
@@ -1251,6 +1258,7 @@ static int msm_dai_q6_set_channel_map(struct snd_soc_dai *dai,
 			return -EINVAL;
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		if (tx_num > AFE_PORT_MAX_AUDIO_CHAN_CNT) {
 			pr_err("%s: invalid tx num %d\n", __func__, tx_num);
@@ -1258,6 +1266,8 @@ static int msm_dai_q6_set_channel_map(struct snd_soc_dai *dai,
 		}
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		for (i = 0; i < tx_num; i++) {
 			dai_data->port_config.slim_sch.shared_ch_mapping[i] =
 			    tx_slot[i];
@@ -1549,10 +1559,14 @@ static int msm_auxpcm_dev_probe(struct platform_device *pdev)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dev_dbg(&pdev->dev, "%s: dev %p, dai_data %p, auxpcm_pdata %p\n",
 =======
 	dev_dbg(&pdev->dev, "%s: dev %pK, dai_data %pK, auxpcm_pdata %pK\n",
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	dev_dbg(&pdev->dev, "%s: dev %p, dai_data %p, auxpcm_pdata %p\n",
+>>>>>>> 2617302... source
 		__func__, &pdev->dev, dai_data, auxpcm_pdata);
 
 	rc = of_property_read_u32_array(pdev->dev.of_node,

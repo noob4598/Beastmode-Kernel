@@ -280,6 +280,7 @@ int kernel_active_single_step(void)
 void user_enable_single_step(struct task_struct *task)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	set_ti_thread_flag(task_thread_info(task), TIF_SINGLESTEP);
 	set_regs_spsr_ss(task_pt_regs(task));
 =======
@@ -288,6 +289,10 @@ void user_enable_single_step(struct task_struct *task)
 	if (!test_and_set_ti_thread_flag(ti, TIF_SINGLESTEP))
 		set_regs_spsr_ss(task_pt_regs(task));
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	set_ti_thread_flag(task_thread_info(task), TIF_SINGLESTEP);
+	set_regs_spsr_ss(task_pt_regs(task));
+>>>>>>> 2617302... source
 }
 
 void user_disable_single_step(struct task_struct *task)

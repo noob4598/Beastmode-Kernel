@@ -118,9 +118,12 @@ EXPORT_SYMBOL_GPL(ehci_cf_port_reset_rwsem);
 #define HUB_DEBOUNCE_STABLE	 100
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 static void hub_release(struct kref *kref);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 static int usb_reset_and_verify_device(struct usb_device *udev);
 
 static inline char *portspeed(struct usb_hub *hub, int portstatus)
@@ -146,12 +149,15 @@ struct usb_hub *usb_hub_to_struct_hub(struct usb_device *hdev)
 static int usb_device_supports_lpm(struct usb_device *udev)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/* Some devices have trouble with LPM */
 	if (udev->quirks & USB_QUIRK_NO_LPM)
 		return 0;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	/* USB 2.1 (and greater) devices indicate LPM support through
 	 * their USB 2.0 Extended Capabilities BOS descriptor.
 	 */
@@ -903,6 +909,7 @@ static int hub_usb3_port_disable(struct usb_hub *hub, int port1)
 		return -EINVAL;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	ret = hub_port_status(hub, port1, &portstatus, &portchange);
 	if (ret < 0)
@@ -924,6 +931,8 @@ static int hub_usb3_port_disable(struct usb_hub *hub, int port1)
 	}
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	ret = hub_set_port_link_state(hub, port1, USB_SS_PORT_LS_SS_DISABLED);
 	if (ret)
 		return ret;
@@ -1039,10 +1048,14 @@ static void hub_activate(struct usb_hub *hub, enum hub_activation_type type)
 
 	/* Continue a partial initialization */
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	if (type == HUB_INIT2)
 		goto init2;
 	if (type == HUB_INIT3)
 		goto init3;
+<<<<<<< HEAD
 =======
 	if (type == HUB_INIT2 || type == HUB_INIT3) {
 		device_lock(hub->intfdev);
@@ -1059,6 +1072,8 @@ static void hub_activate(struct usb_hub *hub, enum hub_activation_type type)
 	}
 	kref_get(&hub->kref);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	/* The superspeed hub except for root hub has to use Hub Depth
 	 * value as an offset into the route string to locate the bits
@@ -1205,11 +1220,15 @@ static void hub_activate(struct usb_hub *hub, enum hub_activation_type type)
 			 * check for a new connection
 			 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (udev || (portstatus & USB_PORT_STAT_CONNECTION))
 =======
 			if (udev || (portstatus & USB_PORT_STAT_CONNECTION) ||
 			    (portstatus & USB_PORT_STAT_OVERCURRENT))
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			if (udev || (portstatus & USB_PORT_STAT_CONNECTION))
+>>>>>>> 2617302... source
 				set_bit(port1, hub->change_bits);
 
 		} else if (portstatus & USB_PORT_STAT_ENABLE) {
@@ -1269,9 +1288,12 @@ static void hub_activate(struct usb_hub *hub, enum hub_activation_type type)
 			schedule_delayed_work(&hub->init_work,
 					msecs_to_jiffies(delay));
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 			device_unlock(hub->intfdev);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 			return;		/* Continues at init3: below */
 		} else {
 			msleep(delay);
@@ -1293,6 +1315,7 @@ static void hub_activate(struct usb_hub *hub, enum hub_activation_type type)
 	if (type <= HUB_INIT3)
 		usb_autopm_put_interface_async(to_usb_interface(hub->intfdev));
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 	if (type == HUB_INIT2 || type == HUB_INIT3)
@@ -1300,6 +1323,8 @@ static void hub_activate(struct usb_hub *hub, enum hub_activation_type type)
 
 	kref_put(&hub->kref, hub_release);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 }
 
 /* Implement the continuations for the delays above */
@@ -1762,6 +1787,9 @@ static int hub_probe(struct usb_interface *intf, const struct usb_device_id *id)
 	 *   suspend timer for hub, also may decrease power consumption
 	 *   of USB bus.
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	 */
 	pm_runtime_set_autosuspend_delay(&hdev->dev, 0);
 
@@ -1783,6 +1811,7 @@ static int hub_probe(struct usb_interface *intf, const struct usb_device_id *id)
 		usb_enable_autosuspend(hdev);
 	}
 #endif
+<<<<<<< HEAD
 =======
 	 *
 	 * - If user has indicated to prevent autosuspend by passing
@@ -1807,6 +1836,8 @@ static int hub_probe(struct usb_interface *intf, const struct usb_device_id *id)
 			usb_enable_autosuspend(hdev);
 	}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	if (hdev->level == MAX_TOPO_LEVEL) {
 		dev_err(&intf->dev,
@@ -2047,6 +2078,7 @@ void usb_set_device_state(struct usb_device *udev,
 				;	/* No change to wakeup settings */
 			else if (new_state == USB_STATE_CONFIGURED)
 <<<<<<< HEAD
+<<<<<<< HEAD
 				wakeup = udev->actconfig->desc.bmAttributes
 					 & USB_CONFIG_ATT_WAKEUP;
 =======
@@ -2055,6 +2087,10 @@ void usb_set_device_state(struct usb_device *udev,
 					udev->actconfig->desc.bmAttributes &
 					USB_CONFIG_ATT_WAKEUP;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+				wakeup = udev->actconfig->desc.bmAttributes
+					 & USB_CONFIG_ATT_WAKEUP;
+>>>>>>> 2617302... source
 			else
 				wakeup = 0;
 		}
@@ -2735,6 +2771,7 @@ static int hub_port_wait_reset(struct usb_hub *hub, int port1,
 			return ret;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		/* The port state is unknown until the reset completes. */
 		if (!(portstatus & USB_PORT_STAT_RESET))
 =======
@@ -2748,6 +2785,10 @@ static int hub_port_wait_reset(struct usb_hub *hub, int port1,
 		if (!(portstatus & USB_PORT_STAT_RESET) &&
 		    (portstatus & USB_PORT_STAT_CONNECTION))
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		/* The port state is unknown until the reset completes. */
+		if (!(portstatus & USB_PORT_STAT_RESET))
+>>>>>>> 2617302... source
 			break;
 
 		/* switch to the long delay after two short delay failures */
@@ -3384,6 +3425,7 @@ static int finish_port_resume(struct usb_device *udev)
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
  * There are some SS USB devices which take longer time for link training.
  * XHCI specs 4.19.4 says that when Link training is successful, port
@@ -3423,6 +3465,8 @@ static int wait_for_ss_port_enable(struct usb_device *udev,
 
 /*
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
  * usb_port_resume - re-activate a suspended usb device's upstream port
  * @udev: device to re-activate, not a root hub
  * Context: must be able to sleep; device not locked; pm locks held
@@ -3498,16 +3542,22 @@ int usb_port_resume(struct usb_device *udev, pm_message_t msg)
 				port1, status);
 	} else {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		/* drive resume for at least 20 msec */
 		dev_dbg(&udev->dev, "usb %sresume\n",
 				(PMSG_IS_AUTO(msg) ? "auto-" : ""));
 		msleep(25);
+<<<<<<< HEAD
 =======
 		/* drive resume for USB_RESUME_TIMEOUT msec */
 		dev_dbg(&udev->dev, "usb %sresume\n",
 				(PMSG_IS_AUTO(msg) ? "auto-" : ""));
 		msleep(USB_RESUME_TIMEOUT);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 		/* Virtual root hubs can trigger on GET_PORT_STATUS to
 		 * stop resume signaling.  Then finish the resume
@@ -3536,12 +3586,15 @@ int usb_port_resume(struct usb_device *udev, pm_message_t msg)
 	clear_bit(port1, hub->busy_bits);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (udev->persist_enabled && hub_is_superspeed(hub->hdev))
 		status = wait_for_ss_port_enable(udev, hub, &port1, &portchange,
 				&portstatus);
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	status = check_port_resume_type(udev,
 			hub, port1, status, portchange, portstatus);
 	if (status == 0)
@@ -4398,6 +4451,7 @@ hub_port_init (struct usb_hub *hub, struct usb_device *udev, int port1,
 					break;
 				}
 <<<<<<< HEAD
+<<<<<<< HEAD
 				if (r == 0)
 =======
 				/*
@@ -4408,6 +4462,9 @@ hub_port_init (struct usb_hub *hub, struct usb_device *udev, int port1,
 				 */
 				if (r == 0  || (r == -ETIMEDOUT && j == 0))
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+				if (r == 0)
+>>>>>>> 2617302... source
 					break;
 			}
 			udev->descriptor.bMaxPacketSize0 =
@@ -4546,10 +4603,13 @@ hub_port_init (struct usb_hub *hub, struct usb_device *udev, int port1,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	usb_detect_quirks(udev);
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	if (udev->wusb == 0 && le16_to_cpu(udev->descriptor.bcdUSB) >= 0x0201) {
 		retval = usb_get_bos_descriptor(udev);
 		if (!retval) {
@@ -4792,9 +4852,13 @@ static void hub_port_connect_change(struct usb_hub *hub, int port1,
 			goto loop;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		usb_detect_quirks(udev);
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		usb_detect_quirks(udev);
+>>>>>>> 2617302... source
 		if (udev->quirks & USB_QUIRK_DELAY_INIT)
 			msleep(1000);
 
@@ -4975,12 +5039,16 @@ static void hub_events(void)
 			spin_unlock_irq(&hub_event_lock);
 			goto hub_disconnected;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		} else {
 			usb_get_dev(hub->hdev);
 		}
 		spin_unlock_irq(&hub_event_lock);
 
 		hdev = hub->hdev;
+<<<<<<< HEAD
 =======
 		}
 
@@ -4989,6 +5057,8 @@ static void hub_events(void)
 		spin_unlock_irq(&hub_event_lock);
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		hub_dev = hub->intfdev;
 		intf = to_usb_interface(hub_dev);
 		dev_dbg(hub_dev, "state %d ports %d chg %04x evt %04x\n",

@@ -105,6 +105,7 @@ void rmnet_print_packet(const struct sk_buff *skb, const char *dev, char dir)
 		return;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_err("[%s][%c] - PKT skb->len=%d skb->head=%p skb->data=%p skb->tail=%p skb->end=%p\n",
 		dev, dir, skb->len, skb->head, skb->data, skb->tail, skb->end);
 =======
@@ -113,6 +114,10 @@ void rmnet_print_packet(const struct sk_buff *skb, const char *dev, char dir)
 	pr_err("[%s][%c] - PKT skb->tail=%pK skb->end=%pK\n",
 	       dev, dir, skb_tail_pointer(skb), skb_end_pointer(skb));
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	pr_err("[%s][%c] - PKT skb->len=%d skb->head=%p skb->data=%p skb->tail=%p skb->end=%p\n",
+		dev, dir, skb->len, skb->head, skb->data, skb->tail, skb->end);
+>>>>>>> 2617302... source
 
 	if (skb->len > 0)
 		len = skb->len;

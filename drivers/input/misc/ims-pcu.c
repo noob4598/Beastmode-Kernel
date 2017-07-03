@@ -1434,6 +1434,7 @@ static int ims_pcu_parse_cdc_data(struct usb_interface *intf, struct ims_pcu *pc
 	pcu->ctrl_intf = usb_ifnum_to_if(pcu->udev,
 					 union_desc->bMasterInterface0);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	alt = pcu->ctrl_intf->cur_altsetting;
 =======
@@ -1446,16 +1447,23 @@ static int ims_pcu_parse_cdc_data(struct usb_interface *intf, struct ims_pcu *pc
 		return -ENODEV;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+
+	alt = pcu->ctrl_intf->cur_altsetting;
+>>>>>>> 2617302... source
 	pcu->ep_ctrl = &alt->endpoint[0].desc;
 	pcu->max_ctrl_size = usb_endpoint_maxp(pcu->ep_ctrl);
 
 	pcu->data_intf = usb_ifnum_to_if(pcu->udev,
 					 union_desc->bSlaveInterface0);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (!pcu->data_intf)
 		return -EINVAL;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	alt = pcu->data_intf->cur_altsetting;
 	if (alt->desc.bNumEndpoints != 2) {

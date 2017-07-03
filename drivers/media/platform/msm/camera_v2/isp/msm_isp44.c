@@ -225,11 +225,15 @@ vfe_remap_failed:
 		vfe_dev->vfe_clk, ARRAY_SIZE(msm_vfe44_clk_info), 0);
 clk_enable_failed:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	regulator_disable(vfe_dev->fs_vfe);
 =======
 	if (vfe_dev->fs_vfe)
 		regulator_disable(vfe_dev->fs_vfe);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	regulator_disable(vfe_dev->fs_vfe);
+>>>>>>> 2617302... source
 fs_failed:
 	msm_isp_deinit_bandwidth_mgr(ISP_VFE0 + vfe_dev->pdev->id);
 bus_scale_register_failed:
@@ -327,6 +331,9 @@ static void msm_vfe44_process_violation_status(
 		return;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	if (violation_status == 0)
 		pr_err("%s: camif violation\n", __func__);
 	if (violation_status == 1)
@@ -386,6 +393,7 @@ static void msm_vfe44_process_violation_status(
 	if (violation_status == 30)
 		pr_err("%s: abf violation\n", __func__);
 	if (violation_status == 31)
+<<<<<<< HEAD
 =======
 	if (violation_status & (1 << 0))
 		pr_err("%s: camif violation\n", __func__);
@@ -447,6 +455,8 @@ static void msm_vfe44_process_violation_status(
 		pr_err("%s: abf violation\n", __func__);
 	if (violation_status & (1 << 31))
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		pr_err("%s: bpc violation\n", __func__);
 }
 
@@ -891,6 +901,7 @@ static void msm_vfe44_update_camif_state(struct vfe_device *vfe_dev,
 		vfe_dev->axi_data.src_info[VFE_PIX_0].active = 0;
 	} else if (update_state == DISABLE_CAMIF_IMMEDIATELY) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		msm_camera_io_w_mb(0x6, vfe_dev->vfe_base + 0x2F4);
 		vfe_dev->axi_data.src_info[VFE_PIX_0].active = 0;
 =======
@@ -899,6 +910,10 @@ static void msm_vfe44_update_camif_state(struct vfe_device *vfe_dev,
 		vfe_dev->axi_data.src_info[VFE_PIX_0].active = 0;
 		vfe_dev->ignore_error = 0;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		msm_camera_io_w_mb(0x6, vfe_dev->vfe_base + 0x2F4);
+		vfe_dev->axi_data.src_info[VFE_PIX_0].active = 0;
+>>>>>>> 2617302... source
 	}
 }
 
@@ -1074,11 +1089,16 @@ static void msm_vfe44_cfg_axi_ub_equal_default(
 	uint32_t prop_size = 0;
 	uint32_t wm_ub_size;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	uint32_t delta;
 
 =======
 	uint64_t delta;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	uint32_t delta;
+
+>>>>>>> 2617302... source
 	for (i = 0; i < axi_data->hw_info->num_wm; i++) {
 		if (axi_data->free_wm[i] > 0) {
 			num_used_wms++;
@@ -1090,10 +1110,14 @@ static void msm_vfe44_cfg_axi_ub_equal_default(
 	for (i = 0; i < axi_data->hw_info->num_wm; i++) {
 		if (axi_data->free_wm[i]) {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 			delta =
 				((axi_data->wm_image_size[i] / OVERFLOW_DEVIDER) *
 					prop_size)/ (total_image_size / OVERFLOW_DEVIDER);
 			wm_ub_size = axi_data->hw_info->min_wm_ub + delta;
+<<<<<<< HEAD
 =======
 			delta = (uint64_t)axi_data->wm_image_size[i] *
 					(uint64_t)prop_size;
@@ -1101,6 +1125,8 @@ static void msm_vfe44_cfg_axi_ub_equal_default(
 			wm_ub_size = axi_data->hw_info->min_wm_ub +
 				(uint32_t)delta;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 			msm_camera_io_w(ub_offset << 16 | (wm_ub_size - 1),
 				vfe_dev->vfe_base + VFE44_WM_BASE(i) + 0x10);
 			ub_offset += wm_ub_size;

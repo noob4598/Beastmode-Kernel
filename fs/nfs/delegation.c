@@ -109,10 +109,13 @@ again:
 		if (!test_bit(NFS_DELEGATED_STATE, &state->flags))
 			continue;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		if (!nfs4_valid_open_stateid(state))
 			continue;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		if (!nfs4_stateid_match(&state->stateid, stateid))
 			continue;
 		get_nfs_open_context(ctx);
@@ -181,6 +184,7 @@ static int nfs_do_return_delegation(struct inode *inode, struct nfs_delegation *
 	int res = 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	res = nfs4_proc_delegreturn(inode, delegation->cred, &delegation->stateid, issync);
 =======
 	if (!test_bit(NFS_DELEGATION_REVOKED, &delegation->flags))
@@ -189,6 +193,9 @@ static int nfs_do_return_delegation(struct inode *inode, struct nfs_delegation *
 				&delegation->stateid,
 				issync);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	res = nfs4_proc_delegreturn(inode, delegation->cred, &delegation->stateid, issync);
+>>>>>>> 2617302... source
 	nfs_free_delegation(delegation);
 	return res;
 }
@@ -375,19 +382,26 @@ static int nfs_end_delegation_return(struct inode *inode, struct nfs_delegation 
 	struct nfs_client *clp = NFS_SERVER(inode)->nfs_client;
 	struct nfs_inode *nfsi = NFS_I(inode);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int err;
 =======
 	int err = 0;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	int err;
+>>>>>>> 2617302... source
 
 	if (delegation == NULL)
 		return 0;
 	do {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		if (test_bit(NFS_DELEGATION_REVOKED, &delegation->flags))
 			break;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		err = nfs_delegation_claim_opens(inode, &delegation->stateid);
 		if (!issync || err != -EAGAIN)
 			break;
@@ -609,6 +623,7 @@ static void nfs_client_mark_return_unused_delegation_types(struct nfs_client *cl
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 static void nfs_revoke_delegation(struct inode *inode)
 {
@@ -623,14 +638,19 @@ static void nfs_revoke_delegation(struct inode *inode)
 }
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 void nfs_remove_bad_delegation(struct inode *inode)
 {
 	struct nfs_delegation *delegation;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	nfs_revoke_delegation(inode);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	delegation = nfs_inode_detach_delegation(inode);
 	if (delegation) {
 		nfs_inode_find_state_and_recover(inode, &delegation->stateid);

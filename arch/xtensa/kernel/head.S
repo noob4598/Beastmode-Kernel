@@ -119,10 +119,14 @@ ENTRY(_startup)
 
 	.set	_index, 0
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.rept	XCHAL_NUM_DBREAK - 1
 =======
 	.rept	XCHAL_NUM_DBREAK
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	.rept	XCHAL_NUM_DBREAK - 1
+>>>>>>> 2617302... source
 	wsr	a0, SREG_DBREAKC + _index
 	.set	_index, _index + 1
 	.endr

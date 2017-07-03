@@ -250,10 +250,14 @@ static void hdmi_ddc_print_data(struct hdmi_tx_ddc_data *ddc_data,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	DEV_DBG("%s: buf=%p, d_len=0x%x, d_addr=0x%x, no_align=%d\n",
 =======
 	DEV_DBG("%s: buf=%pK, d_len=0x%x, d_addr=0x%x, no_align=%d\n",
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	DEV_DBG("%s: buf=%p, d_len=0x%x, d_addr=0x%x, no_align=%d\n",
+>>>>>>> 2617302... source
 		caller, ddc_data->data_buf, ddc_data->data_len,
 		ddc_data->dev_addr, ddc_data->no_align);
 	DEV_DBG("%s: offset=0x%x, req_len=0x%x, retry=%d, what=%s\n",

@@ -200,6 +200,7 @@ int walk_page_range(unsigned long addr, unsigned long end,
 			if ((vma->vm_start <= addr) &&
 			    (vma->vm_flags & VM_PFNMAP)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 				next = vma->vm_end;
 =======
 				if (walk->pte_hole)
@@ -207,6 +208,9 @@ int walk_page_range(unsigned long addr, unsigned long end,
 				if (err)
 					break;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+				next = vma->vm_end;
+>>>>>>> 2617302... source
 				pgd = pgd_offset(walk->mm, next);
 				continue;
 			}

@@ -868,6 +868,7 @@ static void ceph_set_dentry_offset(struct dentry *dn)
 	spin_lock(&dir->d_lock);
 	spin_lock_nested(&dn->d_lock, DENTRY_D_LOCK_NESTED);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	list_move(&dn->d_u.d_child, &dir->d_subdirs);
 	dout("set_dentry_offset %p %lld (%p %p)\n", dn, di->offset,
 	     dn->d_u.d_child.prev, dn->d_u.d_child.next);
@@ -876,6 +877,11 @@ static void ceph_set_dentry_offset(struct dentry *dn)
 	dout("set_dentry_offset %p %lld (%p %p)\n", dn, di->offset,
 	     dn->d_child.prev, dn->d_child.next);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	list_move(&dn->d_u.d_child, &dir->d_subdirs);
+	dout("set_dentry_offset %p %lld (%p %p)\n", dn, di->offset,
+	     dn->d_u.d_child.prev, dn->d_u.d_child.next);
+>>>>>>> 2617302... source
 	spin_unlock(&dn->d_lock);
 	spin_unlock(&dir->d_lock);
 }
@@ -1303,10 +1309,14 @@ retry_lookup:
 			spin_lock(&parent->d_lock);
 			spin_lock_nested(&dn->d_lock, DENTRY_D_LOCK_NESTED);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			list_move(&dn->d_u.d_child, &parent->d_subdirs);
 =======
 			list_move(&dn->d_child, &parent->d_subdirs);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			list_move(&dn->d_u.d_child, &parent->d_subdirs);
+>>>>>>> 2617302... source
 			spin_unlock(&dn->d_lock);
 			spin_unlock(&parent->d_lock);
 		}

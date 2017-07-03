@@ -73,11 +73,14 @@ void snd_seq_fifo_delete(struct snd_seq_fifo **fifo)
 	*fifo = NULL;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (f->pool)
 		snd_seq_pool_mark_closing(f->pool);
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	snd_seq_fifo_clear(f);
 
 	/* wake up clients if any */
@@ -144,9 +147,12 @@ int snd_seq_fifo_event_in(struct snd_seq_fifo *f,
 	if (f->head == NULL)
 		f->head = cell;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	cell->next = NULL;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	f->cells++;
 	spin_unlock_irqrestore(&f->lock, flags);
 
@@ -227,10 +233,13 @@ void snd_seq_fifo_cell_putback(struct snd_seq_fifo *f,
 		cell->next = f->head;
 		f->head = cell;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		if (!f->tail)
 			f->tail = cell;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		f->cells++;
 		spin_unlock_irqrestore(&f->lock, flags);
 	}
@@ -277,12 +286,15 @@ int snd_seq_fifo_resize(struct snd_seq_fifo *f, int poolsize)
 	spin_unlock_irqrestore(&f->lock, flags);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/* close the old pool and wait until all users are gone */
 	snd_seq_pool_mark_closing(oldpool);
 	snd_use_lock_sync(&f->use_lock);
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	/* release cells in old pool */
 	for (cell = oldhead; cell; cell = next) {
 		next = cell->next;

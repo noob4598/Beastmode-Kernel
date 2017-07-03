@@ -1301,6 +1301,9 @@ set_qf_format:
 			return 0;
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	} else {
 		if (sbi->s_jquota_fmt) {
 			ext3_msg(sb, KERN_ERR, "error: journaled quota format "
@@ -1308,8 +1311,11 @@ set_qf_format:
 					"enabled.");
 			return 0;
 		}
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	}
 #endif
 	return 1;

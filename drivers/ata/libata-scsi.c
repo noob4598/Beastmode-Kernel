@@ -674,6 +674,9 @@ int ata_sas_scsi_ioctl(struct ata_port *ap, struct scsi_device *scsidev,
 		     int cmd, void __user *arg)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	int val = -EINVAL, rc = -EINVAL;
 	unsigned long flags;
 
@@ -687,6 +690,7 @@ int ata_sas_scsi_ioctl(struct ata_port *ap, struct scsi_device *scsidev,
 		return 0;
 
 	case ATA_IOC_SET_IO32:
+<<<<<<< HEAD
 =======
 	unsigned long val;
 	int rc = -EINVAL;
@@ -701,6 +705,8 @@ int ata_sas_scsi_ioctl(struct ata_port *ap, struct scsi_device *scsidev,
 
 	case HDIO_SET_32BIT:
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		val = (unsigned long) arg;
 		rc = 0;
 		spin_lock_irqsave(ap->lock, flags);
@@ -2528,11 +2534,15 @@ static unsigned int ata_scsiop_read_cap(struct ata_scsi_args *args, u8 *rbuf)
 		rbuf[15] = lowest_aligned;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (ata_id_has_trim(args->id)) {
 =======
 		if (ata_id_has_trim(args->id) &&
 		    !(dev->horkage & ATA_HORKAGE_NOTRIM)) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		if (ata_id_has_trim(args->id)) {
+>>>>>>> 2617302... source
 			rbuf[14] |= 0x80; /* TPE */
 
 			if (ata_id_has_zero_after_trim(args->id))

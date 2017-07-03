@@ -744,9 +744,12 @@ struct mlx4_priv {
 
 	int			pci_dev_data;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	int                     removed;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	struct list_head        pgdir_list;
 	struct mutex            pgdir_mutex;

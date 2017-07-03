@@ -2102,9 +2102,12 @@ static int srpt_create_ch_ib(struct srpt_rdma_ch *ch)
 		goto out;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 retry:
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	ch->cq = ib_create_cq(sdev->device, srpt_completion, NULL, ch,
 			      ch->rq_size + srp_sq_size, 0);
 	if (IS_ERR(ch->cq)) {
@@ -2129,6 +2132,7 @@ retry:
 	if (IS_ERR(ch->qp)) {
 		ret = PTR_ERR(ch->qp);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		if (ret == -ENOMEM) {
 			srp_sq_size /= 2;
@@ -2138,6 +2142,8 @@ retry:
 			}
 		}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		printk(KERN_ERR "failed to create_qp ret= %d\n", ret);
 		goto err_destroy_cq;
 	}

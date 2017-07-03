@@ -26,9 +26,13 @@
 #include "include/policy.h"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+
+>>>>>>> 2617302... source
 /* modified from dcache.c */
 static int prepend(char **buffer, int buflen, const char *str, int namelen)
 {
@@ -42,6 +46,7 @@ static int prepend(char **buffer, int buflen, const char *str, int namelen)
 
 #define CHROOT_NSCONNECT (PATH_CHROOT_REL | PATH_CHROOT_NSCONNECT)
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 /* If the path is not connected to the expected root,
@@ -77,6 +82,8 @@ static int disconnect(const struct path *path, char *buf, char **name,
 }
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 /**
  * d_namespace_path - lookup a name associated with a given path
  * @path: path to lookup  (NOT NULL)
@@ -113,11 +120,15 @@ static int d_namespace_path(struct path *path, char *buf, int buflen,
 			 */
 			return prepend(name, *name - buf, "/proc", 5);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		}
 =======
 		} else
 			return disconnect(path, buf, name, flags);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		}
+>>>>>>> 2617302... source
 		return 0;
 	}
 
@@ -164,6 +175,9 @@ static int d_namespace_path(struct path *path, char *buf, int buflen,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	/* If the path is not connected to the expected root,
 	 * check if it is a sysctl and handle specially else remove any
 	 * leading / that __d_path may have returned.
@@ -187,10 +201,13 @@ static int d_namespace_path(struct path *path, char *buf, int buflen,
 				*name = res + 1;
 		}
 	}
+<<<<<<< HEAD
 =======
 	if (!connected)
 		error = disconnect(path, buf, name, flags);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 out:
 	return error;

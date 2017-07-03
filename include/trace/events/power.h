@@ -49,6 +49,7 @@ DEFINE_EVENT(cpu, cpu_frequency,
 );
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 TRACE_EVENT(cpu_frequency_limits,
 
@@ -76,6 +77,8 @@ TRACE_EVENT(cpu_frequency_limits,
 );
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 TRACE_EVENT(cpu_frequency_switch_start,
 
 	TP_PROTO(unsigned int start_freq, unsigned int end_freq,

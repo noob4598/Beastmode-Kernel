@@ -1586,11 +1586,15 @@ ieee80211_rx_h_defragment(struct ieee80211_rx_data *rx)
 	frag = sc & IEEE80211_SCTL_FRAG;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	if (likely((!ieee80211_has_morefrags(fc) && frag == 0) ||
 		   is_multicast_ether_addr(hdr->addr1))) {
 		/* not fragmented */
 		goto out;
 	}
+<<<<<<< HEAD
 =======
 	if (is_multicast_ether_addr(hdr->addr1)) {
 		rx->local->dot11MulticastReceivedFrameCount++;
@@ -1601,6 +1605,8 @@ ieee80211_rx_h_defragment(struct ieee80211_rx_data *rx)
 		goto out;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	I802_DEBUG_INC(rx->local->rx_handlers_fragments);
 
 	if (skb_linearize(rx->skb))
@@ -1692,18 +1698,24 @@ ieee80211_rx_h_defragment(struct ieee80211_rx_data *rx)
 
  out:
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	if (rx->sta)
 		rx->sta->rx_packets++;
 	if (is_multicast_ether_addr(hdr->addr1))
 		rx->local->dot11MulticastReceivedFrameCount++;
 	else
 		ieee80211_led_rx(rx->local);
+<<<<<<< HEAD
 =======
 	ieee80211_led_rx(rx->local);
  out_no_led:
 	if (rx->sta)
 		rx->sta->rx_packets++;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	return RX_CONTINUE;
 }
 
@@ -1970,6 +1982,9 @@ ieee80211_rx_h_amsdu(struct ieee80211_rx_data *rx)
 		return RX_CONTINUE;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	if (ieee80211_has_a4(hdr->frame_control) &&
 	    rx->sdata->vif.type == NL80211_IFTYPE_AP_VLAN &&
 	    !rx->sdata->u.vlan.sta)
@@ -1980,6 +1995,7 @@ ieee80211_rx_h_amsdu(struct ieee80211_rx_data *rx)
 	      rx->sdata->u.vlan.sta) ||
 	     (rx->sdata->vif.type == NL80211_IFTYPE_STATION &&
 	      rx->sdata->u.mgd.use_4addr)))
+<<<<<<< HEAD
 =======
 	if (unlikely(ieee80211_has_a4(hdr->frame_control))) {
 		switch (rx->sdata->vif.type) {
@@ -1998,6 +2014,8 @@ ieee80211_rx_h_amsdu(struct ieee80211_rx_data *rx)
 
 	if (is_multicast_ether_addr(hdr->addr1))
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		return RX_DROP_UNUSABLE;
 
 	skb->dev = dev;
@@ -2060,11 +2078,14 @@ ieee80211_rx_h_mesh_fwding(struct ieee80211_rx_data *rx)
 	mesh_hdr = (struct ieee80211s_hdr *) (skb->data + hdrlen);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (ieee80211_drop_unencrypted(rx, hdr->frame_control))
 		return RX_DROP_MONITOR;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	/* frame is in RMC, don't forward */
 	if (ieee80211_is_data(hdr->frame_control) &&
 	    is_multicast_ether_addr(hdr->addr1) &&

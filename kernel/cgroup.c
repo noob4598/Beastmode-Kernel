@@ -985,10 +985,14 @@ static void cgroup_d_remove_dir(struct dentry *dentry)
 	spin_lock(&parent->d_lock);
 	spin_lock_nested(&dentry->d_lock, DENTRY_D_LOCK_NESTED);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	list_del_init(&dentry->d_u.d_child);
 =======
 	list_del_init(&dentry->d_child);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	list_del_init(&dentry->d_u.d_child);
+>>>>>>> 2617302... source
 	spin_unlock(&dentry->d_lock);
 	spin_unlock(&parent->d_lock);
 	remove_dir(dentry);
@@ -2135,6 +2139,7 @@ static int cgroup_allow_attach(struct cgroup *cgrp, struct cgroup_taskset *tset)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 int subsys_cgroup_allow_attach(struct cgroup *cgrp, struct cgroup_taskset *tset)
 {
@@ -2156,6 +2161,8 @@ int subsys_cgroup_allow_attach(struct cgroup *cgrp, struct cgroup_taskset *tset)
 }
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 /*
  * Find the task_struct of the task to attach by vpid and pass it along to the
  * function to attach either it or all tasks in its threadgroup. Will lock
@@ -5482,10 +5489,14 @@ static int cgroup_css_links_read(struct cgroup *cont,
 		struct task_struct *task;
 		int count = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		seq_printf(seq, "css_set %p\n", cg);
 =======
 		seq_printf(seq, "css_set %pK\n", cg);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		seq_printf(seq, "css_set %p\n", cg);
+>>>>>>> 2617302... source
 		list_for_each_entry(task, &cg->tasks, cg_list) {
 			if (count++ > MAX_TASKS_SHOWN_PER_CSS) {
 				seq_puts(seq, "  ...\n");

@@ -25,15 +25,22 @@
 
 static LIST_HEAD(f2fs_stat_list);
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct dentry *debugfs_root;
 =======
 static struct dentry *f2fs_debugfs_root;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+static struct dentry *debugfs_root;
+>>>>>>> 2617302... source
 static DEFINE_MUTEX(f2fs_stat_mutex);
 
 static void update_general_status(struct f2fs_sb_info *sbi)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	struct f2fs_stat_info *si = sbi->stat_info;
 	int i;
 
@@ -44,6 +51,7 @@ static void update_general_status(struct f2fs_sb_info *sbi)
 	si->ndirty_dent = get_pages(sbi, F2FS_DIRTY_DENTS);
 	si->ndirty_dirs = sbi->n_dirty_dirs;
 	si->ndirty_meta = get_pages(sbi, F2FS_DIRTY_META);
+<<<<<<< HEAD
 =======
 	struct f2fs_stat_info *si = F2FS_STAT(sbi);
 	int i;
@@ -77,10 +85,13 @@ static void update_general_status(struct f2fs_sb_info *sbi)
 		si->nr_discard =
 			atomic_read(&SM_I(sbi)->dcc_info->submit_discard);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	si->total_count = (int)sbi->user_block_count / sbi->blocks_per_seg;
 	si->rsvd_segs = reserved_segments(sbi);
 	si->overp_segs = overprovision_segments(sbi);
 	si->valid_count = valid_user_blocks(sbi);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	si->valid_node_count = valid_node_count(sbi);
 	si->valid_inode_count = valid_inode_count(sbi);
@@ -95,6 +106,10 @@ static void update_general_status(struct f2fs_sb_info *sbi)
 	si->update = sbi->im[UPDATE_INO].ino_num;
 	si->orphans = sbi->im[ORPHAN_INO].ino_num;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	si->valid_node_count = valid_node_count(sbi);
+	si->valid_inode_count = valid_inode_count(sbi);
+>>>>>>> 2617302... source
 	si->utilization = utilization(sbi);
 
 	si->free_segs = free_segments(sbi);
@@ -102,11 +117,15 @@ static void update_general_status(struct f2fs_sb_info *sbi)
 	si->prefree_count = prefree_segments(sbi);
 	si->dirty_count = dirty_segments(sbi);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	si->node_pages = sbi->node_inode->i_mapping->nrpages;
 	si->meta_pages = sbi->meta_inode->i_mapping->nrpages;
 	si->nats = NM_I(sbi)->nat_cnt;
 	si->sits = SIT_I(sbi)->dirty_sentries;
 	si->fnids = NM_I(sbi)->fcnt;
+<<<<<<< HEAD
 =======
 	si->node_pages = NODE_MAPPING(sbi)->nrpages;
 	si->meta_pages = META_MAPPING(sbi)->nrpages;
@@ -117,6 +136,8 @@ static void update_general_status(struct f2fs_sb_info *sbi)
 	si->free_nids = NM_I(sbi)->nid_cnt[FREE_NID_LIST];
 	si->alloc_nids = NM_I(sbi)->nid_cnt[ALLOC_NID_LIST];
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	si->bg_gc = sbi->bg_gc;
 	si->util_free = (int)(free_user_blocks(sbi) >> sbi->log_blocks_per_seg)
 		* 100 / (int)(sbi->user_block_count >> sbi->log_blocks_per_seg)
@@ -138,10 +159,13 @@ static void update_general_status(struct f2fs_sb_info *sbi)
 		si->block_count[i] = sbi->block_count[i];
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 	si->inplace_count = atomic_read(&sbi->inplace_count);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 }
 
 /*
@@ -149,6 +173,7 @@ static void update_general_status(struct f2fs_sb_info *sbi)
  */
 static void update_sit_info(struct f2fs_sb_info *sbi)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct f2fs_stat_info *si = sbi->stat_info;
 	unsigned int blks_per_sec, hblks_per_sec, total_vblocks, bimodal, dist;
@@ -158,21 +183,32 @@ static void update_sit_info(struct f2fs_sb_info *sbi)
 	unsigned long long blks_per_sec, hblks_per_sec, total_vblocks;
 	unsigned long long bimodal, dist;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	struct f2fs_stat_info *si = sbi->stat_info;
+	unsigned int blks_per_sec, hblks_per_sec, total_vblocks, bimodal, dist;
+	struct sit_info *sit_i = SIT_I(sbi);
+>>>>>>> 2617302... source
 	unsigned int segno, vblocks;
 	int ndirty = 0;
 
 	bimodal = 0;
 	total_vblocks = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	blks_per_sec = sbi->segs_per_sec * (1 << sbi->log_blocks_per_seg);
 	hblks_per_sec = blks_per_sec / 2;
 	mutex_lock(&sit_i->sentry_lock);
 	for (segno = 0; segno < TOTAL_SEGS(sbi); segno += sbi->segs_per_sec) {
+<<<<<<< HEAD
 =======
 	blks_per_sec = sbi->segs_per_sec * sbi->blocks_per_seg;
 	hblks_per_sec = blks_per_sec / 2;
 	for (segno = 0; segno < MAIN_SEGS(sbi); segno += sbi->segs_per_sec) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		vblocks = get_valid_blocks(sbi, segno, sbi->segs_per_sec);
 		dist = abs(vblocks - hblks_per_sec);
 		bimodal += dist * dist;
@@ -183,17 +219,23 @@ static void update_sit_info(struct f2fs_sb_info *sbi)
 		}
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	mutex_unlock(&sit_i->sentry_lock);
 	dist = TOTAL_SECS(sbi) * hblks_per_sec * hblks_per_sec / 100;
 	si->bimodal = bimodal / dist;
 	if (si->dirty_count)
 		si->avg_vblocks = total_vblocks / ndirty;
+<<<<<<< HEAD
 =======
 	dist = div_u64(MAIN_SECS(sbi) * hblks_per_sec * hblks_per_sec, 100);
 	si->bimodal = div64_u64(bimodal, dist);
 	if (si->dirty_count)
 		si->avg_vblocks = div_u64(total_vblocks, ndirty);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	else
 		si->avg_vblocks = 0;
 }
@@ -204,6 +246,7 @@ static void update_sit_info(struct f2fs_sb_info *sbi)
 static void update_mem_info(struct f2fs_sb_info *sbi)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct f2fs_stat_info *si = sbi->stat_info;
 	unsigned npages;
 =======
@@ -211,6 +254,10 @@ static void update_mem_info(struct f2fs_sb_info *sbi)
 	unsigned npages;
 	int i;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	struct f2fs_stat_info *si = sbi->stat_info;
+	unsigned npages;
+>>>>>>> 2617302... source
 
 	if (si->base_mem)
 		goto get_cache;
@@ -219,9 +266,12 @@ static void update_mem_info(struct f2fs_sb_info *sbi)
 	si->base_mem += 2 * sizeof(struct f2fs_inode_info);
 	si->base_mem += sizeof(*sbi->ckpt);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	si->base_mem += sizeof(struct percpu_counter) * NR_COUNT_TYPE;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	/* build sm */
 	si->base_mem += sizeof(struct f2fs_sm_info);
@@ -229,11 +279,15 @@ static void update_mem_info(struct f2fs_sb_info *sbi)
 	/* build sit */
 	si->base_mem += sizeof(struct sit_info);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	si->base_mem += TOTAL_SEGS(sbi) * sizeof(struct seg_entry);
 	si->base_mem += f2fs_bitmap_size(TOTAL_SEGS(sbi));
 	si->base_mem += 2 * SIT_VBLOCK_MAP_SIZE * TOTAL_SEGS(sbi);
 	if (sbi->segs_per_sec > 1)
 		si->base_mem += TOTAL_SECS(sbi) * sizeof(struct sec_entry);
+<<<<<<< HEAD
 =======
 	si->base_mem += MAIN_SEGS(sbi) * sizeof(struct seg_entry);
 	si->base_mem += f2fs_bitmap_size(MAIN_SEGS(sbi));
@@ -244,11 +298,16 @@ static void update_mem_info(struct f2fs_sb_info *sbi)
 	if (sbi->segs_per_sec > 1)
 		si->base_mem += MAIN_SECS(sbi) * sizeof(struct sec_entry);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	si->base_mem += __bitmap_size(sbi, SIT_BITMAP);
 
 	/* build free segmap */
 	si->base_mem += sizeof(struct free_segmap_info);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	si->base_mem += f2fs_bitmap_size(TOTAL_SEGS(sbi));
 	si->base_mem += f2fs_bitmap_size(TOTAL_SECS(sbi));
 
@@ -278,6 +337,7 @@ get_cache:
 	si->cache_mem += npages << PAGE_CACHE_SHIFT;
 	si->cache_mem += sbi->n_orphans * sizeof(struct orphan_inode_entry);
 	si->cache_mem += sbi->n_dirty_dirs * sizeof(struct dir_inode_entry);
+<<<<<<< HEAD
 =======
 	si->base_mem += f2fs_bitmap_size(MAIN_SEGS(sbi));
 	si->base_mem += f2fs_bitmap_size(MAIN_SECS(sbi));
@@ -332,6 +392,8 @@ get_cache:
 	npages = META_MAPPING(sbi)->nrpages;
 	si->page_mem += (unsigned long long)npages << PAGE_SHIFT;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 }
 
 static int stat_show(struct seq_file *s, void *v)
@@ -347,6 +409,7 @@ static int stat_show(struct seq_file *s, void *v)
 		update_general_status(si->sbi);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		seq_printf(s, "\n=====[ partition info(%s). #%d ]=====\n",
 			bdevname(si->sbi->sb->s_bdev, devname), i++);
 =======
@@ -354,12 +417,17 @@ static int stat_show(struct seq_file *s, void *v)
 			bdevname(si->sbi->sb->s_bdev, devname), i++,
 			f2fs_readonly(si->sbi->sb) ? "RO": "RW");
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		seq_printf(s, "\n=====[ partition info(%s). #%d ]=====\n",
+			bdevname(si->sbi->sb->s_bdev, devname), i++);
+>>>>>>> 2617302... source
 		seq_printf(s, "[SB: 1] [CP: 2] [SIT: %d] [NAT: %d] ",
 			   si->sit_area_segs, si->nat_area_segs);
 		seq_printf(s, "[SSA: %d] [MAIN: %d",
 			   si->ssa_area_segs, si->main_area_segs);
 		seq_printf(s, "(OverProv:%d Resv:%d)]\n\n",
 			   si->overp_segs, si->rsvd_segs);
+<<<<<<< HEAD
 <<<<<<< HEAD
 		seq_printf(s, "Utilization: %d%% (%d valid blocks)\n",
 			   si->utilization, si->valid_count);
@@ -372,11 +440,16 @@ static int stat_show(struct seq_file *s, void *v)
 				si->utilization, si->valid_count);
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		seq_printf(s, "Utilization: %d%% (%d valid blocks)\n",
+			   si->utilization, si->valid_count);
+>>>>>>> 2617302... source
 		seq_printf(s, "  - Node: %u (Inode: %u, ",
 			   si->valid_node_count, si->valid_inode_count);
 		seq_printf(s, "Other: %u)\n  - Data: %u\n",
 			   si->valid_node_count - si->valid_inode_count,
 			   si->valid_count - si->valid_node_count);
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 		seq_printf(s, "  - Inline_xattr Inode: %u\n",
@@ -388,6 +461,8 @@ static int stat_show(struct seq_file *s, void *v)
 		seq_printf(s, "  - Orphan/Append/Update Inode: %u, %u, %u\n",
 			   si->orphans, si->append, si->update);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		seq_printf(s, "\nMain area: %d segs, %d secs %d zones\n",
 			   si->main_area_segs, si->main_area_sections,
 			   si->main_area_zones);
@@ -422,6 +497,9 @@ static int stat_show(struct seq_file *s, void *v)
 		seq_printf(s, "  - Prefree: %d\n  - Free: %d (%d)\n\n",
 			   si->prefree_count, si->free_segs, si->free_secs);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		seq_printf(s, "GC calls: %d (BG: %d)\n",
 			   si->call_count, si->bg_gc);
 		seq_printf(s, "  - data segments : %d\n", si->data_segs);
@@ -457,6 +535,7 @@ static int stat_show(struct seq_file *s, void *v)
 		for (j = 0; j < si->util_free; j++)
 			seq_printf(s, "-");
 		seq_printf(s, "]\n\n");
+<<<<<<< HEAD
 =======
 		seq_printf(s, "CP calls: %d (BG: %d)\n",
 				si->cp_count, si->bg_cp_count);
@@ -519,6 +598,8 @@ static int stat_show(struct seq_file *s, void *v)
 		seq_puts(s, "]\n\n");
 		seq_printf(s, "IPU: %u blocks\n", si->inplace_count);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		seq_printf(s, "SSR: %u blocks in %u segments\n",
 			   si->block_count[SSR], si->segment_count[SSR]);
 		seq_printf(s, "LFS: %u blocks in %u segments\n",
@@ -531,6 +612,7 @@ static int stat_show(struct seq_file *s, void *v)
 
 		/* memory footprint */
 		update_mem_info(si->sbi);
+<<<<<<< HEAD
 <<<<<<< HEAD
 		seq_printf(s, "\nMemory: %u KB = static: %u + cached: %u\n",
 				(si->base_mem + si->cache_mem) >> 10,
@@ -545,6 +627,11 @@ static int stat_show(struct seq_file *s, void *v)
 		seq_printf(s, "  - paged : %llu KB\n",
 				si->page_mem >> 10);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		seq_printf(s, "\nMemory: %u KB = static: %u + cached: %u\n",
+				(si->base_mem + si->cache_mem) >> 10,
+				si->base_mem >> 10, si->cache_mem >> 10);
+>>>>>>> 2617302... source
 	}
 	mutex_unlock(&f2fs_stat_mutex);
 	return 0;
@@ -557,9 +644,12 @@ static int stat_open(struct inode *inode, struct file *file)
 
 static const struct file_operations stat_fops = {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	.owner = THIS_MODULE,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	.open = stat_open,
 	.read = seq_read,
 	.llseek = seq_lseek,
@@ -572,17 +662,23 @@ int f2fs_build_stats(struct f2fs_sb_info *sbi)
 	struct f2fs_stat_info *si;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	sbi->stat_info = kzalloc(sizeof(struct f2fs_stat_info), GFP_KERNEL);
 	if (!sbi->stat_info)
 		return -ENOMEM;
 
 	si = sbi->stat_info;
+<<<<<<< HEAD
 =======
 	si = kzalloc(sizeof(struct f2fs_stat_info), GFP_KERNEL);
 	if (!si)
 		return -ENOMEM;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	si->all_area_segs = le32_to_cpu(raw_super->segment_count);
 	si->sit_area_segs = le32_to_cpu(raw_super->segment_count_sit);
 	si->nat_area_segs = le32_to_cpu(raw_super->segment_count_nat);
@@ -592,6 +688,7 @@ int f2fs_build_stats(struct f2fs_sb_info *sbi)
 	si->main_area_zones = si->main_area_sections /
 				le32_to_cpu(raw_super->secs_per_zone);
 	si->sbi = sbi;
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 	sbi->stat_info = si;
@@ -609,6 +706,8 @@ int f2fs_build_stats(struct f2fs_sb_info *sbi)
 	atomic_set(&sbi->aw_cnt, 0);
 	atomic_set(&sbi->max_aw_cnt, 0);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	mutex_lock(&f2fs_stat_mutex);
 	list_add_tail(&si->stat_list, &f2fs_stat_list);
@@ -620,16 +719,23 @@ int f2fs_build_stats(struct f2fs_sb_info *sbi)
 void f2fs_destroy_stats(struct f2fs_sb_info *sbi)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct f2fs_stat_info *si = sbi->stat_info;
 =======
 	struct f2fs_stat_info *si = F2FS_STAT(sbi);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	struct f2fs_stat_info *si = sbi->stat_info;
+>>>>>>> 2617302... source
 
 	mutex_lock(&f2fs_stat_mutex);
 	list_del(&si->stat_list);
 	mutex_unlock(&f2fs_stat_mutex);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	kfree(sbi->stat_info);
 }
 
@@ -639,6 +745,7 @@ void __init f2fs_create_root_stats(void)
 	if (debugfs_root)
 		debugfs_create_file("status", S_IRUGO, debugfs_root,
 					 NULL, &stat_fops);
+<<<<<<< HEAD
 =======
 	kfree(si);
 }
@@ -661,10 +768,13 @@ int __init f2fs_create_root_stats(void)
 
 	return 0;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 }
 
 void f2fs_destroy_root_stats(void)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	debugfs_remove_recursive(debugfs_root);
 	debugfs_root = NULL;
@@ -675,4 +785,8 @@ void f2fs_destroy_root_stats(void)
 	debugfs_remove_recursive(f2fs_debugfs_root);
 	f2fs_debugfs_root = NULL;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	debugfs_remove_recursive(debugfs_root);
+	debugfs_root = NULL;
+>>>>>>> 2617302... source
 }

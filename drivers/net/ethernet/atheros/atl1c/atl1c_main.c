@@ -1017,6 +1017,9 @@ static int atl1c_setup_ring_resources(struct atl1c_adapter *adapter)
 		8 * 4;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	ring_header->desc = pci_alloc_consistent(pdev, ring_header->size,
 				&ring_header->dma);
 	if (unlikely(!ring_header->desc)) {
@@ -1024,6 +1027,7 @@ static int atl1c_setup_ring_resources(struct atl1c_adapter *adapter)
 		goto err_nomem;
 	}
 	memset(ring_header->desc, 0, ring_header->size);
+<<<<<<< HEAD
 =======
 	ring_header->desc = dma_zalloc_coherent(&pdev->dev, ring_header->size,
 						&ring_header->dma, GFP_KERNEL);
@@ -1032,6 +1036,8 @@ static int atl1c_setup_ring_resources(struct atl1c_adapter *adapter)
 		goto err_nomem;
 	}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	/* init TPD ring */
 
 	tpd_ring[0].dma = roundup(ring_header->dma, 8);

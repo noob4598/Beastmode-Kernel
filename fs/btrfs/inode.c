@@ -1287,6 +1287,7 @@ next_slot:
 		btrfs_item_key_to_cpu(leaf, &found_key, path->slots[0]);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (found_key.objectid > ino ||
 		    found_key.type > BTRFS_EXTENT_DATA_KEY ||
 =======
@@ -1299,6 +1300,10 @@ next_slot:
 		}
 		if (found_key.type > BTRFS_EXTENT_DATA_KEY ||
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		if (found_key.objectid > ino ||
+		    found_key.type > BTRFS_EXTENT_DATA_KEY ||
+>>>>>>> 2617302... source
 		    found_key.offset > end)
 			break;
 
@@ -3557,11 +3562,15 @@ noinline int btrfs_update_inode(struct btrfs_trans_handle *trans,
 	 */
 	if (!btrfs_is_free_space_inode(inode)
 <<<<<<< HEAD
+<<<<<<< HEAD
 	    && root->root_key.objectid != BTRFS_DATA_RELOC_TREE_OBJECTID) {
 =======
 	    && root->root_key.objectid != BTRFS_DATA_RELOC_TREE_OBJECTID
 	    && !root->fs_info->log_root_recovering) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	    && root->root_key.objectid != BTRFS_DATA_RELOC_TREE_OBJECTID) {
+>>>>>>> 2617302... source
 		btrfs_update_root_times(trans, root);
 
 		ret = btrfs_delayed_update_inode(trans, root, inode);
@@ -4666,11 +4675,15 @@ void btrfs_evict_inode(struct inode *inode)
 	}
 	/* do we really want it for ->i_nlink > 0 and zero btrfs_root_refs? */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	btrfs_wait_ordered_range(inode, 0, (u64)-1);
 =======
 	if (!special_file(inode->i_mode))
 		btrfs_wait_ordered_range(inode, 0, (u64)-1);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	btrfs_wait_ordered_range(inode, 0, (u64)-1);
+>>>>>>> 2617302... source
 
 	if (root->fs_info->log_root_recovering) {
 		BUG_ON(test_bit(BTRFS_INODE_HAS_ORPHAN_ITEM,
@@ -6846,9 +6859,13 @@ static int btrfs_get_blocks_direct(struct inode *inode, sector_t iblock,
 	     em->block_start != EXTENT_MAP_HOLE)) {
 		int type;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		int ret;
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		int ret;
+>>>>>>> 2617302... source
 		u64 block_start, orig_start, orig_block_len, ram_bytes;
 
 		if (test_bit(EXTENT_FLAG_PREALLOC, &em->flags))
@@ -7495,17 +7512,22 @@ static int btrfs_writepage(struct page *page, struct writeback_control *wbc)
 {
 	struct extent_io_tree *tree;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 	struct inode *inode = page->mapping->host;
 	int ret;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+
+>>>>>>> 2617302... source
 
 	if (current->flags & PF_MEMALLOC) {
 		redirty_page_for_writepage(wbc, page);
 		unlock_page(page);
 		return 0;
 	}
+<<<<<<< HEAD
 <<<<<<< HEAD
 	tree = &BTRFS_I(page->mapping->host)->io_tree;
 	return extent_write_full_page(tree, page, btrfs_get_extent, wbc);
@@ -7525,6 +7547,10 @@ static int btrfs_writepage(struct page *page, struct writeback_control *wbc)
 	btrfs_add_delayed_iput(inode);
 	return ret;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	tree = &BTRFS_I(page->mapping->host)->io_tree;
+	return extent_write_full_page(tree, page, btrfs_get_extent, wbc);
+>>>>>>> 2617302... source
 }
 
 static int btrfs_writepages(struct address_space *mapping,
@@ -8514,6 +8540,7 @@ static int btrfs_symlink(struct inode *dir, struct dentry *dentry,
 	 * 2 items for inode item and ref
 	 * 2 items for dir items
 <<<<<<< HEAD
+<<<<<<< HEAD
 	 * 1 item for xattr if selinux is on
 	 */
 	trans = btrfs_start_transaction(root, 5);
@@ -8524,6 +8551,11 @@ static int btrfs_symlink(struct inode *dir, struct dentry *dentry,
 	 */
 	trans = btrfs_start_transaction(root, 7);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	 * 1 item for xattr if selinux is on
+	 */
+	trans = btrfs_start_transaction(root, 5);
+>>>>>>> 2617302... source
 	if (IS_ERR(trans))
 		return PTR_ERR(trans);
 

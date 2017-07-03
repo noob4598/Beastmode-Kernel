@@ -1208,10 +1208,14 @@ static int qp_alloc_res(struct mlx4_dev *dev, int slave, int op, int cmd,
 	switch (op) {
 	case RES_OP_RESERVE:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		count = get_param_l(&in_param);
 =======
 		count = get_param_l(&in_param) & 0xffffff;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		count = get_param_l(&in_param);
+>>>>>>> 2617302... source
 		align = get_param_h(&in_param);
 		err = __mlx4_qp_reserve_range(dev, count, align, &base);
 		if (err)

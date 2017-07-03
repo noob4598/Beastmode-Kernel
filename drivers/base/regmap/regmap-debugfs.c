@@ -24,11 +24,16 @@ static struct dentry *regmap_debugfs_root;
 static size_t regmap_calc_reg_len(int max_val, char *buf, size_t buf_size)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	snprintf(buf, buf_size, "%x", max_val);
 	return strlen(buf);
 =======
 	return snprintf(NULL, 0, "%x", max_val);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	snprintf(buf, buf_size, "%x", max_val);
+	return strlen(buf);
+>>>>>>> 2617302... source
 }
 
 static ssize_t regmap_name_read_file(struct file *file,
@@ -424,10 +429,14 @@ static ssize_t regmap_access_read_file(struct file *file,
 		if (p >= *ppos) {
 			/* ...but not beyond it */
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (buf_pos >= count - 1 - tot_len)
 =======
 			if (buf_pos + tot_len + 1 >= count)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			if (buf_pos >= count - 1 - tot_len)
+>>>>>>> 2617302... source
 				break;
 
 			/* Format the register */
@@ -469,20 +478,27 @@ void regmap_debugfs_init(struct regmap *map, const char *name)
 	struct rb_node *next;
 	struct regmap_range_node *range_node;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	const char *devname = "dummy";
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	INIT_LIST_HEAD(&map->debugfs_off_cache);
 	mutex_init(&map->cache_lock);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	if (name) {
 		map->debugfs_name = kasprintf(GFP_KERNEL, "%s-%s",
 					      dev_name(map->dev), name);
 		name = map->debugfs_name;
 	} else {
 		name = dev_name(map->dev);
+<<<<<<< HEAD
 =======
 	if (map->dev)
 		devname = dev_name(map->dev);
@@ -494,6 +510,8 @@ void regmap_debugfs_init(struct regmap *map, const char *name)
 	} else {
 		name = devname;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	}
 
 	map->debugfs = debugfs_create_dir(name, regmap_debugfs_root);

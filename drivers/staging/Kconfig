@@ -73,12 +73,18 @@ source "drivers/staging/sep/Kconfig"
 source "drivers/staging/iio/Kconfig"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 source "drivers/staging/zsmalloc/Kconfig"
 
 source "drivers/staging/zram/Kconfig"
 
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 source "drivers/staging/wlags49_h2/Kconfig"
 
 source "drivers/staging/wlags49_h25/Kconfig"
@@ -146,8 +152,11 @@ source "drivers/staging/dwc2/Kconfig"
 source "drivers/staging/vnswap/Kconfig"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 source "drivers/staging/qcacld-2.0/Kconfig"
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 endif # STAGING

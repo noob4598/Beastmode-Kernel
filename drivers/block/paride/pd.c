@@ -127,10 +127,14 @@
 #include <linux/types.h>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool verbose = 0;
 =======
 static int verbose = 0;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+static bool verbose = 0;
+>>>>>>> 2617302... source
 static int major = PD_MAJOR;
 static char *name = PD_NAME;
 static int cluster = 64;
@@ -166,10 +170,14 @@ static DEFINE_MUTEX(pd_mutex);
 static DEFINE_SPINLOCK(pd_lock);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_param(verbose, bool, 0);
 =======
 module_param(verbose, int, 0);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+module_param(verbose, bool, 0);
+>>>>>>> 2617302... source
 module_param(major, int, 0);
 module_param(name, charp, 0);
 module_param(cluster, int, 0);

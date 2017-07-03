@@ -332,9 +332,13 @@ static int atmel_ssc_hw_params(struct snd_pcm_substream *substream,
 	int dir, channels, bits;
 	u32 tfmr, rfmr, tcmr, rcmr;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int start_event;
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	int start_event;
+>>>>>>> 2617302... source
 	int ret;
 
 	/*
@@ -454,6 +458,9 @@ static int atmel_ssc_hw_params(struct snd_pcm_substream *substream,
 		 * on the TK line, and the SSC receive clock is
 		 * generated from the transmit clock.
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		 *
 		 *  For single channel data, one sample is transferred
 		 * on the falling edge of the LRC clock.
@@ -467,12 +474,15 @@ static int atmel_ssc_hw_params(struct snd_pcm_substream *substream,
 		rcmr =	  SSC_BF(RCMR_PERIOD, 0)
 			| SSC_BF(RCMR_STTDLY, START_DELAY)
 			| SSC_BF(RCMR_START, start_event)
+<<<<<<< HEAD
 =======
 		 */
 		rcmr =	  SSC_BF(RCMR_PERIOD, 0)
 			| SSC_BF(RCMR_STTDLY, START_DELAY)
 			| SSC_BF(RCMR_START, SSC_START_FALLING_RF)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 			| SSC_BF(RCMR_CKI, SSC_CKI_RISING)
 			| SSC_BF(RCMR_CKO, SSC_CKO_NONE)
 			| SSC_BF(RCMR_CKS, SSC_CKS_CLOCK);
@@ -481,10 +491,14 @@ static int atmel_ssc_hw_params(struct snd_pcm_substream *substream,
 			| SSC_BF(RFMR_FSOS, SSC_FSOS_NONE)
 			| SSC_BF(RFMR_FSLEN, 0)
 <<<<<<< HEAD
+<<<<<<< HEAD
 			| SSC_BF(RFMR_DATNB, 0)
 =======
 			| SSC_BF(RFMR_DATNB, (channels - 1))
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			| SSC_BF(RFMR_DATNB, 0)
+>>>>>>> 2617302... source
 			| SSC_BIT(RFMR_MSBF)
 			| SSC_BF(RFMR_LOOP, 0)
 			| SSC_BF(RFMR_DATLEN, (bits - 1));
@@ -492,10 +506,14 @@ static int atmel_ssc_hw_params(struct snd_pcm_substream *substream,
 		tcmr =	  SSC_BF(TCMR_PERIOD, 0)
 			| SSC_BF(TCMR_STTDLY, START_DELAY)
 <<<<<<< HEAD
+<<<<<<< HEAD
 			| SSC_BF(TCMR_START, start_event)
 =======
 			| SSC_BF(TCMR_START, SSC_START_FALLING_RF)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			| SSC_BF(TCMR_START, start_event)
+>>>>>>> 2617302... source
 			| SSC_BF(TCMR_CKI, SSC_CKI_FALLING)
 			| SSC_BF(TCMR_CKO, SSC_CKO_NONE)
 			| SSC_BF(TCMR_CKS, SSC_CKS_PIN);
@@ -505,10 +523,14 @@ static int atmel_ssc_hw_params(struct snd_pcm_substream *substream,
 			| SSC_BF(TFMR_FSOS, SSC_FSOS_NONE)
 			| SSC_BF(TFMR_FSLEN, 0)
 <<<<<<< HEAD
+<<<<<<< HEAD
 			| SSC_BF(TFMR_DATNB, 0)
 =======
 			| SSC_BF(TFMR_DATNB, (channels - 1))
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			| SSC_BF(TFMR_DATNB, 0)
+>>>>>>> 2617302... source
 			| SSC_BIT(TFMR_MSBF)
 			| SSC_BF(TFMR_DATDEF, 0)
 			| SSC_BF(TFMR_DATLEN, (bits - 1));

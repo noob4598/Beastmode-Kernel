@@ -40,9 +40,12 @@
  */
 #define CODING_BITS(i)	(i & 0x0e000000)
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define COND_BITS(i)	(i & 0xf0000000)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 #define LDST_I_BIT(i)	(i & (1 << 26))		/* Immediate constant	*/
 #define LDST_P_BIT(i)	(i & (1 << 24))		/* Preindex		*/
@@ -817,10 +820,13 @@ do_alignment(unsigned long addr, unsigned int fsr, struct pt_regs *regs)
 
 	case 0x04000000:	/* ldr or str immediate */
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		if (COND_BITS(instr) == 0xf0000000) /* NEON VLDn, VSTn */
 			goto bad;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		offset.un = OFFSET_BITS(instr);
 		handler = do_alignment_ldrstr;
 		break;

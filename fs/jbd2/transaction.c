@@ -1437,6 +1437,7 @@ int jbd2_journal_stop(handle_t *handle)
 	 * case where a single process is doing a stream of sync
 	 * writes.  No point in waiting for joiners in that case.
 <<<<<<< HEAD
+<<<<<<< HEAD
 	 */
 	pid = current->pid;
 	if (handle->h_sync && journal->j_last_sync_writer != pid) {
@@ -1448,6 +1449,11 @@ int jbd2_journal_stop(handle_t *handle)
 	if (handle->h_sync && journal->j_last_sync_writer != pid &&
 	    journal->j_max_batch_time) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	 */
+	pid = current->pid;
+	if (handle->h_sync && journal->j_last_sync_writer != pid) {
+>>>>>>> 2617302... source
 		u64 commit_time, trans_time;
 
 		journal->j_last_sync_writer = pid;
@@ -1931,9 +1937,12 @@ static int journal_unmap_buffer(journal_t *journal, struct buffer_head *bh,
 		if (!buffer_dirty(bh)) {
 			/* bdflush has written it.  We can drop it now */
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 			__jbd2_journal_remove_checkpoint(jh);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 			goto zap_buffer;
 		}
 
@@ -1964,9 +1973,12 @@ static int journal_unmap_buffer(journal_t *journal, struct buffer_head *bh,
 				 * committed.  We can cleanse this buffer */
 				clear_buffer_jbddirty(bh);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 				__jbd2_journal_remove_checkpoint(jh);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 				goto zap_buffer;
 			}
 		}

@@ -85,10 +85,13 @@ enum {
 	STAC_ALIENWARE_M17X,
 	STAC_92HD89XX_HP_FRONT_JACK,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	STAC_92HD89XX_HP_Z1_G2_RIGHT_MIC_JACK,
 	STAC_92HD73XX_ASUS_MOBO,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	STAC_92HD73XX_MODELS
 };
 
@@ -544,12 +547,17 @@ static void stac_init_power_map(struct hda_codec *codec)
 			continue;
 		if (def_conf == AC_JACK_PORT_COMPLEX &&
 <<<<<<< HEAD
+<<<<<<< HEAD
 		    !(spec->vref_mute_led_nid == nid ||
 		      is_jack_detectable(codec, nid))) {
 =======
 		    spec->vref_mute_led_nid != nid &&
 		    is_jack_detectable(codec, nid)) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		    !(spec->vref_mute_led_nid == nid ||
+		      is_jack_detectable(codec, nid))) {
+>>>>>>> 2617302... source
 			snd_hda_jack_detect_enable_callback(codec, nid,
 							    STAC_PWR_EVENT,
 							    jack_update_power);
@@ -583,6 +591,7 @@ static void stac_store_hints(struct hda_codec *codec)
 	}
 	if (get_int_hint(codec, "gpio_dir", &spec->gpio_dir))
 <<<<<<< HEAD
+<<<<<<< HEAD
 		spec->gpio_mask &= spec->gpio_mask;
 	if (get_int_hint(codec, "gpio_data", &spec->gpio_data))
 		spec->gpio_dir &= spec->gpio_mask;
@@ -591,6 +600,11 @@ static void stac_store_hints(struct hda_codec *codec)
 	if (get_int_hint(codec, "gpio_data", &spec->gpio_data))
 		spec->gpio_data &= spec->gpio_mask;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		spec->gpio_mask &= spec->gpio_mask;
+	if (get_int_hint(codec, "gpio_data", &spec->gpio_data))
+		spec->gpio_dir &= spec->gpio_mask;
+>>>>>>> 2617302... source
 	if (get_int_hint(codec, "eapd_mask", &spec->eapd_mask))
 		spec->eapd_mask &= spec->gpio_mask;
 	if (get_int_hint(codec, "gpio_mute", &spec->gpio_mute))
@@ -718,9 +732,12 @@ static bool hp_blike_system(u32 subsystem_id)
 {
 	switch (subsystem_id) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	case 0x103c1473: /* HP ProBook 6550b */
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	case 0x103c1520:
 	case 0x103c1521:
 	case 0x103c1523:
@@ -1804,6 +1821,7 @@ static const struct hda_pintbl stac92hd89xx_hp_front_jack_pin_configs[] = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 static const struct hda_pintbl stac92hd89xx_hp_z1_g2_right_mic_jack_pin_configs[] = {
 	{ 0x0e, 0x400000f0 },
@@ -1811,6 +1829,8 @@ static const struct hda_pintbl stac92hd89xx_hp_z1_g2_right_mic_jack_pin_configs[
 };
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 static void stac92hd73xx_fixup_ref(struct hda_codec *codec,
 				   const struct hda_fixup *fix, int action)
 {
@@ -1934,6 +1954,7 @@ static const struct hda_fixup stac92hd73xx_fixups[] = {
 		.type = HDA_FIXUP_PINS,
 		.v.pins = stac92hd89xx_hp_front_jack_pin_configs,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	}
 =======
 	},
@@ -1953,6 +1974,9 @@ static const struct hda_fixup stac92hd73xx_fixups[] = {
 		}
 	},
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	}
+>>>>>>> 2617302... source
 };
 
 static const struct hda_model_fixup stac92hd73xx_models[] = {
@@ -1965,9 +1989,12 @@ static const struct hda_model_fixup stac92hd73xx_models[] = {
 	{ .id = STAC_DELL_EQ, .name = "dell-eq" },
 	{ .id = STAC_ALIENWARE_M17X, .name = "alienware" },
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	{ .id = STAC_92HD73XX_ASUS_MOBO, .name = "asus-mobo" },
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	{}
 };
 
@@ -2017,6 +2044,7 @@ static const struct snd_pci_quirk stac92hd73xx_fixup_tbl[] = {
 	SND_PCI_QUIRK(PCI_VENDOR_ID_DELL, 0x0490,
 		      "Alienware M17x R3", STAC_DELL_EQ),
 <<<<<<< HEAD
+<<<<<<< HEAD
 	SND_PCI_QUIRK(PCI_VENDOR_ID_HP, 0x2b17,
 				"unknown HP", STAC_92HD89XX_HP_FRONT_JACK),
 =======
@@ -2027,6 +2055,10 @@ static const struct snd_pci_quirk stac92hd73xx_fixup_tbl[] = {
 	SND_PCI_QUIRK(PCI_VENDOR_ID_ASUSTEK, 0x83f8, "ASUS AT4NM10",
 		      STAC_92HD73XX_ASUS_MOBO),
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	SND_PCI_QUIRK(PCI_VENDOR_ID_HP, 0x2b17,
+				"unknown HP", STAC_92HD89XX_HP_FRONT_JACK),
+>>>>>>> 2617302... source
 	{} /* terminator */
 };
 
@@ -3696,11 +3728,15 @@ static int stac_parse_auto_config(struct hda_codec *codec)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	stac_init_power_map(codec);
 
 	return 0;
 }
 
+<<<<<<< HEAD
 =======
 	return 0;
 }
@@ -3715,6 +3751,8 @@ static int stac_build_controls(struct hda_codec *codec)
 	return 0;
 }
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 static int stac_init(struct hda_codec *codec)
 {
@@ -3858,10 +3896,14 @@ static void stac_set_power_state(struct hda_codec *codec, hda_nid_t fg,
 
 static const struct hda_codec_ops stac_patch_ops = {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.build_controls = snd_hda_gen_build_controls,
 =======
 	.build_controls = stac_build_controls,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	.build_controls = snd_hda_gen_build_controls,
+>>>>>>> 2617302... source
 	.build_pcms = snd_hda_gen_build_pcms,
 	.init = stac_init,
 	.free = stac_free,

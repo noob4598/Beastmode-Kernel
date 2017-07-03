@@ -41,9 +41,13 @@
 
 static pgd_t *save_pgd __initdata;
 <<<<<<< HEAD
+<<<<<<< HEAD
 static unsigned long efi_flags __initdata;
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+static unsigned long efi_flags __initdata;
+>>>>>>> 2617302... source
 
 static void __init early_code_mapping_set_exec(int executable)
 {
@@ -70,9 +74,13 @@ void __init efi_call_phys_prelog(void)
 
 	early_code_mapping_set_exec(1);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	local_irq_save(efi_flags);
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	local_irq_save(efi_flags);
+>>>>>>> 2617302... source
 
 	n_pgds = DIV_ROUND_UP((max_pfn << PAGE_SHIFT), PGDIR_SIZE);
 	save_pgd = kmalloc(n_pgds * sizeof(pgd_t), GFP_KERNEL);
@@ -97,9 +105,13 @@ void __init efi_call_phys_epilog(void)
 	kfree(save_pgd);
 	__flush_tlb_all();
 <<<<<<< HEAD
+<<<<<<< HEAD
 	local_irq_restore(efi_flags);
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	local_irq_restore(efi_flags);
+>>>>>>> 2617302... source
 	early_code_mapping_set_exec(0);
 }
 

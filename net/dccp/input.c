@@ -607,11 +607,15 @@ int dccp_rcv_state_process(struct sock *sk, struct sk_buff *skb,
 								    skb) < 0)
 				return 1;
 <<<<<<< HEAD
+<<<<<<< HEAD
 			goto discard;
 =======
 			consume_skb(skb);
 			return 0;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			goto discard;
+>>>>>>> 2617302... source
 		}
 		if (dh->dccph_type == DCCP_PKT_RESET)
 			goto discard;

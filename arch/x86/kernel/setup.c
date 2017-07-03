@@ -1157,6 +1157,7 @@ void __init setup_arch(char **cmdline_p)
 			swapper_pg_dir     + KERNEL_PGD_BOUNDARY,
 			KERNEL_PGD_PTRS);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 	/*
@@ -1167,6 +1168,8 @@ void __init setup_arch(char **cmdline_p)
 			swapper_pg_dir     + KERNEL_PGD_BOUNDARY,
 			min(KERNEL_PGD_PTRS, KERNEL_PGD_BOUNDARY));
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 #endif
 
 	tboot_probe();

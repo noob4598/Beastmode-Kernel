@@ -205,6 +205,9 @@ static struct attribute_group kernel_attr_group = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 static unsigned int Lgentle_fair_sleepers = 0;
 extern void relay_gfs(unsigned int gfs);
 
@@ -244,11 +247,14 @@ static int __init ksysfs_init(void)
 {
 	int error;
 int retval;
+<<<<<<< HEAD
 =======
 static int __init ksysfs_init(void)
 {
 	int error;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	kernel_kobj = kobject_create_and_add("kernel", NULL);
 	if (!kernel_kobj) {
@@ -260,14 +266,20 @@ static int __init ksysfs_init(void)
 		goto kset_exit;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 gentle_fair_sleepers_kobj = kobject_create_and_add("sched", kernel_kobj);
 	retval = sysfs_create_group(gentle_fair_sleepers_kobj, &gentle_fair_sleepers_attr_group);
 
 	if (retval)
 		kobject_put(gentle_fair_sleepers_kobj);
 
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	if (notes_size > 0) {
 		notes_attr.size = notes_size;
 		error = sysfs_create_bin_file(kernel_kobj, &notes_attr);

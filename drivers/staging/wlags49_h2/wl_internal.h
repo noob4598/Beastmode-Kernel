@@ -1015,10 +1015,14 @@ static inline void wl_unlock(struct wl_private *lp,
 /********************************************************************/
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 extern inline void wl_act_int_on(struct wl_private *lp)
 =======
 static inline void wl_act_int_on(struct wl_private *lp)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+extern inline void wl_act_int_on(struct wl_private *lp)
+>>>>>>> 2617302... source
 {
 	/*
 	 * Only do something when the driver is handling
@@ -1031,10 +1035,14 @@ static inline void wl_act_int_on(struct wl_private *lp)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 extern inline void wl_act_int_off(struct wl_private *lp)
 =======
 static inline void wl_act_int_off(struct wl_private *lp)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+extern inline void wl_act_int_off(struct wl_private *lp)
+>>>>>>> 2617302... source
 {
 	/*
 	 * Only do something when the driver is handling

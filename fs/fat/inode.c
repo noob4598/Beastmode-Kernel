@@ -1200,6 +1200,7 @@ out:
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 static void fat_dummy_inode_init(struct inode *inode)
 {
@@ -1212,6 +1213,8 @@ static void fat_dummy_inode_init(struct inode *inode)
 }
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 static int fat_read_root(struct inode *inode)
 {
 	struct super_block *sb = inode->i_sb;
@@ -1537,19 +1540,26 @@ int fat_fill_super(struct super_block *sb, void *data, int silent, int isvfat,
 	if (!fat_inode)
 		goto out_fail;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	MSDOS_I(fat_inode)->i_pos = 0;
 =======
 	fat_dummy_inode_init(fat_inode);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	MSDOS_I(fat_inode)->i_pos = 0;
+>>>>>>> 2617302... source
 	sbi->fat_inode = fat_inode;
 
 	fsinfo_inode = new_inode(sb);
 	if (!fsinfo_inode)
 		goto out_fail;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	fat_dummy_inode_init(fsinfo_inode);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	fsinfo_inode->i_ino = MSDOS_FSINFO_INO;
 	sbi->fsinfo_inode = fsinfo_inode;
 	insert_inode_hash(fsinfo_inode);

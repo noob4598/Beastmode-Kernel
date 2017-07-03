@@ -26,9 +26,12 @@
  **************************************************************************/
 #include <linux/module.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <linux/console.h>
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 #include <drm/drmP.h>
 #include "vmwgfx_drv.h"
@@ -1197,6 +1200,7 @@ static int __init vmwgfx_init(void)
 {
 	int ret;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 #ifdef CONFIG_VGA_CONSOLE
@@ -1205,6 +1209,8 @@ static int __init vmwgfx_init(void)
 #endif
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	ret = drm_pci_init(&driver, &vmw_pci_driver);
 	if (ret)
 		DRM_ERROR("Failed initializing DRM.\n");

@@ -705,10 +705,15 @@ static void icmp_unreach(struct sk_buff *skb)
 			} else {
 				info = ntohs(icmph->un.frag.mtu);
 <<<<<<< HEAD
+<<<<<<< HEAD
 				if (!info)
 					goto out;
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+				if (!info)
+					goto out;
+>>>>>>> 2617302... source
 			}
 			break;
 		case ICMP_SR_FAILED:

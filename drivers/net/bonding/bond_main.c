@@ -877,6 +877,7 @@ static void bond_mc_swap(struct bonding *bond, struct slave *new_active,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 static struct slave *bond_get_old_active(struct bonding *bond,
 					 struct slave *new_active)
@@ -896,6 +897,8 @@ static struct slave *bond_get_old_active(struct bonding *bond,
 }
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 /*
  * bond_do_fail_over_mac
  *
@@ -940,11 +943,14 @@ static void bond_do_fail_over_mac(struct bonding *bond,
 		read_unlock(&bond->lock);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		if (!old_active)
 			old_active = bond_get_old_active(bond, new_active);
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		if (old_active) {
 			memcpy(tmp_mac, new_active->dev->dev_addr, ETH_ALEN);
 			memcpy(saddr.sa_data, old_active->dev->dev_addr,
@@ -1572,6 +1578,7 @@ int bond_enslave(struct net_device *bond_dev, struct net_device *slave_dev)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* already enslaved */
 	if (slave_dev->flags & IFF_SLAVE) {
 		pr_debug("Error, Device was already enslaved\n");
@@ -1581,6 +1588,11 @@ int bond_enslave(struct net_device *bond_dev, struct net_device *slave_dev)
 		netdev_err(bond_dev,
 			   "Error: Device is in use and cannot be enslaved\n");
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	/* already enslaved */
+	if (slave_dev->flags & IFF_SLAVE) {
+		pr_debug("Error, Device was already enslaved\n");
+>>>>>>> 2617302... source
 		return -EBUSY;
 	}
 
@@ -2222,9 +2234,12 @@ static int  bond_release_and_destroy(struct net_device *bond_dev,
 		pr_info("%s: destroying bond %s.\n",
 			bond_dev->name, bond_dev->name);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		bond_remove_proc_entry(bond);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		unregister_netdevice(bond_dev);
 	}
 	return ret;
@@ -5033,9 +5048,12 @@ out:
 	return res;
 err:
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	bond_destroy_debugfs();
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	rtnl_link_unregister(&bond_link_ops);
 err_link:
 	unregister_pernet_subsys(&bond_net_ops);

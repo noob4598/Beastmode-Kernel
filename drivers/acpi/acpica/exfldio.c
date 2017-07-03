@@ -270,26 +270,36 @@ acpi_ex_access_region(union acpi_operand_object *obj_desc,
 
 	ACPI_DEBUG_PRINT_RAW((ACPI_DB_BFIELD,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			      " Region [%s:%X], Width %X, ByteBase %X, Offset %X at %p\n",
 =======
 			      " Region [%s:%X], Width %X, ByteBase %X, Offset %X at %8.8X%8.8X\n",
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			      " Region [%s:%X], Width %X, ByteBase %X, Offset %X at %p\n",
+>>>>>>> 2617302... source
 			      acpi_ut_get_region_name(rgn_desc->region.
 						      space_id),
 			      rgn_desc->region.space_id,
 			      obj_desc->common_field.access_byte_width,
 			      obj_desc->common_field.base_byte_offset,
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 			      field_datum_byte_offset, ACPI_CAST_PTR(void,
 								     (rgn_desc->
 								      region.
 								      address +
 								      region_offset))));
+<<<<<<< HEAD
 =======
 			      field_datum_byte_offset,
 			      ACPI_FORMAT_UINT64(rgn_desc->region.address +
 						 region_offset)));
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	/* Invoke the appropriate address_space/op_region handler */
 

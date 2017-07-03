@@ -1,8 +1,12 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* Copyright (c) 2014, The Linux Foundation. All rights reserved.
 =======
 /* Copyright (c) 2013-2014, The Linux Foundation. All rights reserved.
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+/* Copyright (c) 2014, The Linux Foundation. All rights reserved.
+>>>>>>> 2617302... source
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -15,6 +19,9 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 #ifndef _H_MHI_SYS_
 #define _H_MHI_SYS_
 
@@ -47,6 +54,7 @@ extern void *mhi_ipc_log;
 #define mhi_log(_msg_lvl, _msg, ...) do { \
 		if ((_msg_lvl) >= mhi_msg_lvl) \
 			pr_alert("[%s] " _msg, __func__, ##__VA_ARGS__);\
+<<<<<<< HEAD
 =======
 #ifndef _H_OSAL_
 #define _H_OSAL_
@@ -114,11 +122,14 @@ extern void *mhi_ipc_log;
 		if ((_msg_lvl) >= mhi_msg_lvl) \
 			pr_info("[%s] " _msg, __func__, ##__VA_ARGS__);\
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		if (mhi_ipc_log && ((_msg_lvl) >= mhi_ipc_log_lvl))	\
 			ipc_log_string(mhi_ipc_log,			\
 			       "[%s] " _msg, __func__, ##__VA_ARGS__);	\
 } while (0)
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 irqreturn_t mhi_msi_handlr(int msi_number, void *dev_id);
 =======
@@ -138,6 +149,9 @@ irqreturn_t mhi_msi_handlr(int msi_number, void *dev_id);
 
 irqreturn_t irq_cb(int msi_number, void *dev_id);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+irqreturn_t mhi_msi_handlr(int msi_number, void *dev_id);
+>>>>>>> 2617302... source
 
 struct mhi_meminfo {
 	struct device *dev;
@@ -149,6 +163,9 @@ struct mhi_meminfo {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 enum MHI_STATUS mhi_mallocmemregion(struct mhi_meminfo *meminfo, size_t size);
 
 uintptr_t mhi_get_phy_addr(struct mhi_meminfo *meminfo);
@@ -166,6 +183,7 @@ ssize_t sysfs_init_m3(struct device *dev, struct device_attribute *attr,
 			const char *buf, size_t count);
 ssize_t sysfs_init_m0(struct device *dev, struct device_attribute *attr,
 			const char *buf, size_t count);
+<<<<<<< HEAD
 =======
 MHI_STATUS mhi_mallocmemregion(mhi_meminfo *meminfo, size_t size);
 
@@ -189,5 +207,7 @@ ssize_t sysfs_init_M1(struct device *dev, struct device_attribute *attr,
 ssize_t sysfs_get_mhi_state(struct device *dev, struct device_attribute *attr,
 			char *buf);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 #endif

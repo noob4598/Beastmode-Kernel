@@ -1076,9 +1076,13 @@ static void ftl_add_mtd(struct mtd_blktrans_ops *tr, struct mtd_info *mtd)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ftl_freepart(partition);
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	ftl_freepart(partition);
+>>>>>>> 2617302... source
 	kfree(partition);
 }
 

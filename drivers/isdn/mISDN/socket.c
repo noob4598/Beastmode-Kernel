@@ -718,11 +718,14 @@ base_sock_bind(struct socket *sock, struct sockaddr *addr, int addr_len)
 		return -EINVAL;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (addr_len < sizeof(struct sockaddr_mISDN))
 		return -EINVAL;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	lock_sock(sk);
 
 	if (_pms(sk)->dev) {

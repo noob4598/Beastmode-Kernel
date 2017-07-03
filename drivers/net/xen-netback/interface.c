@@ -45,6 +45,7 @@ void xenvif_get(struct xenvif *vif)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 void xenvif_get_rings(struct xenvif *vif)
 {
@@ -52,12 +53,15 @@ void xenvif_get_rings(struct xenvif *vif)
 }
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 void xenvif_put(struct xenvif *vif)
 {
 	if (atomic_dec_and_test(&vif->refcnt))
 		wake_up(&vif->waiting_to_free);
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 void xenvif_put_rings(struct xenvif *vif)
@@ -67,6 +71,8 @@ void xenvif_put_rings(struct xenvif *vif)
 }
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 int xenvif_schedulable(struct xenvif *vif)
 {
 	return netif_running(vif->dev) && netif_carrier_ok(vif->dev);
@@ -109,9 +115,12 @@ static int xenvif_start_xmit(struct sk_buff *skb, struct net_device *dev)
 	vif->rx_req_cons_peek += xen_netbk_count_skb_slots(vif, skb);
 	xenvif_get(vif);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	xenvif_get_rings(vif);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	if (vif->can_queue && xen_netbk_must_stop_queue(vif))
 		netif_stop_queue(dev);
@@ -293,9 +302,12 @@ struct xenvif *xenvif_alloc(struct device *parent, domid_t domid,
 	INIT_LIST_HEAD(&vif->schedule_list);
 	INIT_LIST_HEAD(&vif->notify_list);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	init_waitqueue_head(&vif->waiting_to_unmap);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	vif->credit_bytes = vif->remaining_credit = ~0UL;
 	vif->credit_usec  = 0UL;
@@ -391,19 +403,27 @@ void xenvif_disconnect(struct xenvif *vif)
 		xenvif_carrier_off(vif);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	disable_irq(vif->irq);
 	xen_netbk_unmap_frontend_rings(vif);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	if (vif->irq) {
 		unbind_from_irqhandler(vif->irq, vif);
 		vif->irq = 0;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	xen_netbk_unmap_frontend_rings(vif);
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+
+	xen_netbk_unmap_frontend_rings(vif);
+>>>>>>> 2617302... source
 }
 
 void xenvif_free(struct xenvif *vif)

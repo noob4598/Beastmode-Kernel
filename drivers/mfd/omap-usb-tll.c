@@ -270,10 +270,13 @@ static int usbtll_omap_probe(struct platform_device *pdev)
 		if (IS_ERR(tll->ch_clk[i]))
 			dev_dbg(dev, "can't get clock : %s\n", clkname);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		else
 			clk_prepare(tll->ch_clk[i]);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	}
 
 	pm_runtime_put_sync(dev);
@@ -307,6 +310,7 @@ static int usbtll_omap_remove(struct platform_device *pdev)
 	spin_unlock(&tll_lock);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	for (i = 0; i < tll->nch; i++)
 		if (!IS_ERR(tll->ch_clk[i]))
 			clk_put(tll->ch_clk[i]);
@@ -318,6 +322,11 @@ static int usbtll_omap_remove(struct platform_device *pdev)
 		}
 	}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	for (i = 0; i < tll->nch; i++)
+		if (!IS_ERR(tll->ch_clk[i]))
+			clk_put(tll->ch_clk[i]);
+>>>>>>> 2617302... source
 
 	pm_runtime_disable(&pdev->dev);
 	return 0;

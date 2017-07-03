@@ -3215,10 +3215,14 @@ static int pp_hist_enable(struct pp_hist_col_info *hist_info,
 	if (hist_info->col_en) {
 		spin_unlock_irqrestore(&hist_info->hist_lock, flag);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_info("%s Hist collection has already been enabled %p",
 =======
 		pr_info("%s Hist collection has already been enabled %pK\n",
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		pr_info("%s Hist collection has already been enabled %p",
+>>>>>>> 2617302... source
 			__func__, hist_info->base);
 		ret = -EINVAL;
 		goto exit;
@@ -3357,10 +3361,14 @@ static int pp_hist_disable(struct pp_hist_col_info *hist_info)
 	if (hist_info->col_en == false) {
 		spin_unlock_irqrestore(&hist_info->hist_lock, flag);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_debug("Histogram already disabled (%p)", hist_info->base);
 =======
 		pr_debug("Histogram already disabled (%pK)\n", hist_info->base);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		pr_debug("Histogram already disabled (%p)", hist_info->base);
+>>>>>>> 2617302... source
 		ret = -EINVAL;
 		goto exit;
 	}
@@ -3475,10 +3483,14 @@ int mdss_mdp_hist_intr_req(struct mdss_intr *intr, u32 bits, bool en)
 	int ret = 0;
 	if (!intr) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("NULL addr passed, %p", intr);
 =======
 		pr_err("NULL addr passed, %pK\n", intr);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		pr_err("NULL addr passed, %p", intr);
+>>>>>>> 2617302... source
 		return -EINVAL;
 	}
 
@@ -4880,9 +4892,12 @@ static void pp_ad_calc_worker(struct work_struct *work)
 
 	if ((ad->cfg.mode == MDSS_AD_MODE_AUTO_STR) && (ad->last_bl == 0)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		complete(&ad->comp);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		mutex_unlock(&ad->lock);
 		return;
 	}

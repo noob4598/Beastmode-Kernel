@@ -127,12 +127,18 @@ void VISenter(void);
 EXPORT_SYMBOL(VISenter);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 /* CRYPTO code needs this */
 void VISenterhalf(void);
 EXPORT_SYMBOL(VISenterhalf);
 
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 extern void xor_vis_2(unsigned long, unsigned long *, unsigned long *);
 extern void xor_vis_3(unsigned long, unsigned long *, unsigned long *,
 		unsigned long *);

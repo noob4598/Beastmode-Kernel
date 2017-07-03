@@ -977,6 +977,7 @@ int dm_set_target_max_io_len(struct dm_target *ti, sector_t len)
 EXPORT_SYMBOL_GPL(dm_set_target_max_io_len);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 /*
  * Flush current->bio_list when the target map method blocks.
@@ -1029,15 +1030,20 @@ static void dm_offload_end(struct dm_offload *o)
 }
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 static void __map_bio(struct dm_target_io *tio)
 {
 	int r;
 	sector_t sector;
 	struct mapped_device *md;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct dm_offload o;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	struct bio *clone = &tio->clone;
 	struct dm_target *ti = tio->ti;
 
@@ -1052,6 +1058,7 @@ static void __map_bio(struct dm_target_io *tio)
 	atomic_inc(&tio->io->io_count);
 	sector = clone->bi_sector;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	r = ti->type->map(ti, clone);
 =======
 
@@ -1060,6 +1067,9 @@ static void __map_bio(struct dm_target_io *tio)
 	dm_offload_end(&o);
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	r = ti->type->map(ti, clone);
+>>>>>>> 2617302... source
 	if (r == DM_MAPIO_REMAPPED) {
 		/* the bio has been remapped so dispatch it */
 
@@ -2336,10 +2346,14 @@ int dm_setup_md_queue(struct mapped_device *md)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct mapped_device *dm_find_md(dev_t dev)
 =======
 struct mapped_device *dm_get_md(dev_t dev)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+static struct mapped_device *dm_find_md(dev_t dev)
+>>>>>>> 2617302... source
 {
 	struct mapped_device *md;
 	unsigned minor = MINOR(dev);
@@ -2351,12 +2365,16 @@ struct mapped_device *dm_get_md(dev_t dev)
 
 	md = idr_find(&_minor_idr, minor);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	if (md && (md == MINOR_ALLOCED ||
 		   (MINOR(disk_devt(dm_disk(md))) != minor) ||
 		   dm_deleting_md(md) ||
 		   test_bit(DMF_FREEING, &md->flags))) {
 		md = NULL;
 		goto out;
+<<<<<<< HEAD
 =======
 	if (md) {
 		if ((md == MINOR_ALLOCED ||
@@ -2368,6 +2386,8 @@ struct mapped_device *dm_get_md(dev_t dev)
 		}
 		dm_get(md);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	}
 
 out:
@@ -2376,6 +2396,9 @@ out:
 	return md;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 
 struct mapped_device *dm_get_md(dev_t dev)
 {
@@ -2386,8 +2409,11 @@ struct mapped_device *dm_get_md(dev_t dev)
 
 	return md;
 }
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 EXPORT_SYMBOL_GPL(dm_get_md);
 
 void *dm_get_mdptr(struct mapped_device *md)
@@ -2415,9 +2441,12 @@ EXPORT_SYMBOL_GPL(dm_device_name);
 static void __dm_destroy(struct mapped_device *md, bool wait)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct request_queue *q = md->queue;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	struct dm_table *map;
 
 	might_sleep();
@@ -2428,6 +2457,7 @@ static void __dm_destroy(struct mapped_device *md, bool wait)
 	set_bit(DMF_FREEING, &md->flags);
 	spin_unlock(&_minor_lock);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 	spin_lock_irq(q->queue_lock);
@@ -2440,14 +2470,19 @@ static void __dm_destroy(struct mapped_device *md, bool wait)
 	 */
 	mutex_lock(&md->suspend_lock);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	if (!dm_suspended_md(md)) {
 		dm_table_presuspend_targets(map);
 		dm_table_postsuspend_targets(map);
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	mutex_unlock(&md->suspend_lock);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	/*
 	 * Rare, but there may be I/O requests still going to complete,

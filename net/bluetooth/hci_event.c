@@ -3067,6 +3067,7 @@ static void hci_key_refresh_complete_evt(struct hci_dev *hdev,
 		goto unlock;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/* For BR/EDR the necessary steps are taken through the
 	 * auth_complete event.
@@ -3075,6 +3076,8 @@ static void hci_key_refresh_complete_evt(struct hci_dev *hdev,
 		goto unlock;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	if (!ev->status)
 		conn->sec_level = conn->pending_sec_level;
 
@@ -3237,6 +3240,7 @@ static void hci_user_confirm_request_evt(struct hci_dev *hdev,
 		/* If we're not the initiators request authorization to
 		 * proceed from user space (mgmt_user_confirm with
 <<<<<<< HEAD
+<<<<<<< HEAD
 		 * confirm_hint set to 1). */
 		if (!test_bit(HCI_CONN_AUTH_PEND, &conn->flags)) {
 =======
@@ -3246,6 +3250,10 @@ static void hci_user_confirm_request_evt(struct hci_dev *hdev,
 		if (!test_bit(HCI_CONN_AUTH_PEND, &conn->flags) &&
 		    (loc_mitm || rem_mitm)) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		 * confirm_hint set to 1). */
+		if (!test_bit(HCI_CONN_AUTH_PEND, &conn->flags)) {
+>>>>>>> 2617302... source
 			BT_DBG("Confirming auto-accept as acceptor");
 			confirm_hint = 1;
 			goto confirm;

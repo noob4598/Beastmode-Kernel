@@ -367,6 +367,7 @@ void ast_fbdev_set_suspend(struct drm_device *dev, int state)
 	fb_set_suspend(ast->fbdev->helper.fbdev, state);
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 void ast_fbdev_set_base(struct ast_private *ast, unsigned long gpu_addr)
@@ -376,3 +377,5 @@ void ast_fbdev_set_base(struct ast_private *ast, unsigned long gpu_addr)
 	ast->fbdev->helper.fbdev->fix.smem_len = ast->vram_size - gpu_addr;
 }
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source

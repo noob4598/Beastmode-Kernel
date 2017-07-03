@@ -964,6 +964,9 @@ EXPORT_SYMBOL_GPL(of_property_read_string);
 
 /**
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
  * of_property_read_string_index - Find and read a string from a multiple
  * strings property.
  * @np:		device node from which the property value is to be read.
@@ -1010,8 +1013,11 @@ int of_property_read_string_index(struct device_node *np, const char *propname,
 EXPORT_SYMBOL_GPL(of_property_read_string_index);
 
 /**
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
  * of_property_match_string() - Find string in a list and return index
  * @np: pointer to node containing string list property
  * @propname: string list property name
@@ -1038,10 +1044,14 @@ int of_property_match_string(struct device_node *np, const char *propname,
 
 	for (i = 0; p < end; i++, p += l) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		l = strlen(p) + 1;
 =======
 		l = strnlen(p, end - p) + 1;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		l = strlen(p) + 1;
+>>>>>>> 2617302... source
 		if (p + l > end)
 			return -EILSEQ;
 		pr_debug("comparing %s with %s\n", string, p);
@@ -1054,6 +1064,9 @@ EXPORT_SYMBOL_GPL(of_property_match_string);
 
 /**
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
  * of_property_count_strings - Find and return the number of strings from a
  * multiple strings property.
  * @np:		device node from which the property value is to be read.
@@ -1071,6 +1084,7 @@ int of_property_count_strings(struct device_node *np, const char *propname)
 	int i = 0;
 	size_t l = 0, total = 0;
 	const char *p;
+<<<<<<< HEAD
 =======
  * of_property_read_string_util() - Utility helper for parsing string properties
  * @np:		device node from which the property value is to be read.
@@ -1089,12 +1103,17 @@ int of_property_read_string_helper(struct device_node *np, const char *propname,
 	int l = 0, i = 0;
 	const char *p, *end;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	if (!prop)
 		return -EINVAL;
 	if (!prop->value)
 		return -ENODATA;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	if (strnlen(prop->value, prop->length) >= prop->length)
 		return -EILSEQ;
 
@@ -1106,6 +1125,7 @@ int of_property_read_string_helper(struct device_node *np, const char *propname,
 	return i;
 }
 EXPORT_SYMBOL_GPL(of_property_count_strings);
+<<<<<<< HEAD
 =======
 	p = prop->value;
 	end = p + prop->length;
@@ -1122,6 +1142,8 @@ EXPORT_SYMBOL_GPL(of_property_count_strings);
 }
 EXPORT_SYMBOL_GPL(of_property_read_string_helper);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 /**
  * of_parse_phandle - Resolve a phandle property to a device_node pointer

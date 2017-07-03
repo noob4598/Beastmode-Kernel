@@ -128,10 +128,13 @@ static int daq700_ai_rinsn(struct comedi_device *dev,
 	/* set mask scan bit high to disable scanning */
 	outb(chan | 0x80, dev->iobase + CMD_R1);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/* mux needs 2us to really settle [Fred Brooks]. */
 	udelay(2);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	/* convert n samples */
 	for (n = 0; n < insn->n; n++) {

@@ -2,10 +2,14 @@
  * ROW (Read Over Write) I/O scheduler.
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright (c) 2012-2013, The Linux Foundation. All rights reserved.
 =======
  * Copyright (c) 2012-2014, The Linux Foundation. All rights reserved.
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+ * Copyright (c) 2012-2013, The Linux Foundation. All rights reserved.
+>>>>>>> 2617302... source
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -336,12 +340,18 @@ static void row_add_request(struct request_queue *q,
 	s64 diff_ms;
 	bool queue_was_empty = list_empty(&rqueue->fifo);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	unsigned long bv_page_flags = 0;
 
 	if (rq->bio && rq->bio->bi_io_vec && rq->bio->bi_io_vec->bv_page)
 		bv_page_flags = rq->bio->bi_io_vec->bv_page->flags;
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	list_add_tail(&rq->queuelist, &rqueue->fifo);
 	rd->nr_reqs[rq_data_dir(rq)]++;
@@ -375,12 +385,18 @@ static void row_add_request(struct request_queue *q,
 			return;
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 		if ((bv_page_flags & (1L << PG_readahead)) ||
 		    (diff_ms < rd->rd_idle_data.freq_ms)) {
 =======
 		if (diff_ms < rd->rd_idle_data.freq_ms) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+
+		if ((bv_page_flags & (1L << PG_readahead)) ||
+		    (diff_ms < rd->rd_idle_data.freq_ms)) {
+>>>>>>> 2617302... source
 			rqueue->idle_data.begin_idling = true;
 			row_log_rowq(rd, rqueue->prio, "Enable idling");
 		} else {

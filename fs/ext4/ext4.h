@@ -27,9 +27,12 @@
 #include <linux/mutex.h>
 #include <linux/timer.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <linux/version.h>
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 #include <linux/wait.h>
 #include <linux/blockgroup_lock.h>
 #include <linux/percpu_counter.h>
@@ -250,9 +253,12 @@ struct ext4_io_submit {
 #define EXT4_MIN_BLOCK_LOG_SIZE		10
 #define EXT4_MAX_BLOCK_LOG_SIZE		16
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define EXT4_MAX_CLUSTER_LOG_SIZE	30
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 #ifdef __KERNEL__
 # define EXT4_BLOCK_SIZE(s)		((s)->s_blocksize)
 #else
@@ -598,9 +604,12 @@ enum {
 #define EXT4_FREE_BLOCKS_NOFREE_FIRST_CLUSTER	0x0010
 #define EXT4_FREE_BLOCKS_NOFREE_LAST_CLUSTER	0x0020
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define EXT4_FREE_BLOCKS_RESERVE		0x0040
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 /*
  * Flags used by ext4_discard_partial_page_buffers
@@ -740,11 +749,15 @@ struct move_extent {
 	    (einode)->i_extra_isize))			\
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 static inline __le32 ext4_encode_extra_time(struct timespec *time)
 {
        return cpu_to_le32((sizeof(time->tv_sec) > 4 ?
 			   (time->tv_sec >> 32) & EXT4_EPOCH_MASK : 0) |
                           ((time->tv_nsec << EXT4_EPOCH_BITS) & EXT4_NSEC_MASK));
+<<<<<<< HEAD
 =======
 /*
  * We use an encoding that preserves the times for extra epoch "00":
@@ -773,15 +786,21 @@ static inline __le32 ext4_encode_extra_time(struct timespec *time)
 		((time->tv_sec - (s32)time->tv_sec) >> 32) & EXT4_EPOCH_MASK : 0;
 	return cpu_to_le32(extra | (time->tv_nsec << EXT4_EPOCH_BITS));
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 }
 
 static inline void ext4_decode_extra_time(struct timespec *time, __le32 extra)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
        if (sizeof(time->tv_sec) > 4)
 	       time->tv_sec |= (__u64)(le32_to_cpu(extra) & EXT4_EPOCH_MASK)
 			       << 32;
        time->tv_nsec = (le32_to_cpu(extra) & EXT4_NSEC_MASK) >> EXT4_EPOCH_BITS;
+<<<<<<< HEAD
 =======
 	if (unlikely(sizeof(time->tv_sec) > 4 &&
 			(extra & cpu_to_le32(EXT4_EPOCH_MASK)))) {
@@ -803,6 +822,8 @@ static inline void ext4_decode_extra_time(struct timespec *time, __le32 extra)
 	}
 	time->tv_nsec = (le32_to_cpu(extra) & EXT4_NSEC_MASK) >> EXT4_EPOCH_BITS;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 }
 
 #define EXT4_INODE_SET_XTIME(xtime, inode, raw_inode)			       \
@@ -877,6 +898,7 @@ do {									       \
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
  * Lock subclasses for i_data_sem in the ext4_inode_info structure.
  *
@@ -902,6 +924,8 @@ enum {
 
 /*
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
  * fourth extended file system inode data in memory
  */
 struct ext4_inode_info {
@@ -2179,9 +2203,12 @@ int do_journal_get_write_access(handle_t *handle,
 
 extern struct inode *ext4_iget(struct super_block *, unsigned long);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 extern struct inode *ext4_iget_normal(struct super_block *, unsigned long);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 extern int  ext4_write_inode(struct inode *, struct writeback_control *);
 extern int  ext4_setattr(struct dentry *, struct iattr *);
 extern int  ext4_getattr(struct vfsmount *mnt, struct dentry *dentry,
@@ -2368,12 +2395,17 @@ static inline int ext4_has_group_desc_csum(struct super_block *sb)
 {
 	return EXT4_HAS_RO_COMPAT_FEATURE(sb,
 <<<<<<< HEAD
+<<<<<<< HEAD
 					  EXT4_FEATURE_RO_COMPAT_GDT_CSUM |
 					  EXT4_FEATURE_RO_COMPAT_METADATA_CSUM);
 =======
 					  EXT4_FEATURE_RO_COMPAT_GDT_CSUM) ||
 	       (EXT4_SB(sb)->s_chksum_driver != NULL);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+					  EXT4_FEATURE_RO_COMPAT_GDT_CSUM |
+					  EXT4_FEATURE_RO_COMPAT_METADATA_CSUM);
+>>>>>>> 2617302... source
 }
 
 static inline ext4_fsblk_t ext4_blocks_count(struct ext4_super_block *es)

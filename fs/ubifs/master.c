@@ -353,15 +353,21 @@ int ubifs_read_master(struct ubifs_info *c)
  * @c: UBIFS file-system description object
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
  * This function writes the master node. The caller has to take the
  * @c->mst_mutex lock before calling this function. Returns zero in case of
  * success and a negative error code in case of failure. The master node is
  * written twice to enable recovery.
+<<<<<<< HEAD
 =======
  * This function writes the master node. Returns zero in case of success and a
  * negative error code in case of failure. The master node is written twice to
  * enable recovery.
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
  */
 int ubifs_write_master(struct ubifs_info *c)
 {

@@ -399,6 +399,9 @@ static void internal_add_timer(struct tvec_base *base, struct timer_list *timer)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 #ifdef CONFIG_TIMER_STATS
 void __timer_stats_timer_set_start_info(struct timer_list *timer, void *addr)
 {
@@ -427,8 +430,11 @@ static void timer_stats_account_timer(struct timer_list *timer)
 static void timer_stats_account_timer(struct timer_list *timer) {}
 #endif
 
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 #ifdef CONFIG_DEBUG_OBJECTS_TIMERS
 
 static struct debug_obj_descr timer_debug_descr;
@@ -635,13 +641,19 @@ static void do_init_timer(struct timer_list *timer, unsigned int flags,
 	timer->base = (void *)((unsigned long)base | flags);
 	timer->slack = -1;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 #ifdef CONFIG_TIMER_STATS
 	timer->start_site = NULL;
 	timer->start_pid = -1;
 	memset(timer->start_comm, 0, TASK_COMM_LEN);
 #endif
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	lockdep_init_map(&timer->lockdep_map, name, key, 0);
 }
 
@@ -740,9 +752,13 @@ __mod_timer(struct timer_list *timer, unsigned long expires,
 	int ret = 0 , cpu;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	timer_stats_timer_set_start_info(timer);
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	timer_stats_timer_set_start_info(timer);
+>>>>>>> 2617302... source
 	BUG_ON(!timer->function);
 
 	base = lock_timer_base(timer, &flags);
@@ -837,10 +853,14 @@ unsigned long apply_slack(struct timer_list *timer, unsigned long expires)
 	bit = find_last_bit(&mask, BITS_PER_LONG);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mask = (1 << bit) - 1;
 =======
 	mask = (1UL << bit) - 1;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	mask = (1 << bit) - 1;
+>>>>>>> 2617302... source
 
 	expires_limit = expires_limit & ~(mask);
 
@@ -942,6 +962,9 @@ EXPORT_SYMBOL(add_timer);
 void add_timer_on(struct timer_list *timer, int cpu)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	struct tvec_base *base = per_cpu(tvec_bases, cpu);
 	unsigned long flags;
 
@@ -949,6 +972,7 @@ void add_timer_on(struct timer_list *timer, int cpu)
 	BUG_ON(timer_pending(timer) || !timer->function);
 	spin_lock_irqsave(&base->lock, flags);
 	timer_set_base(timer, base);
+<<<<<<< HEAD
 =======
 	struct tvec_base *new_base = per_cpu(tvec_bases, cpu);
 	struct tvec_base *base;
@@ -970,6 +994,8 @@ void add_timer_on(struct timer_list *timer, int cpu)
 		timer_set_base(timer, base);
 	}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	debug_activate(timer, timer->expires);
 	internal_add_timer(base, timer);
 	/*
@@ -1005,9 +1031,13 @@ int del_timer(struct timer_list *timer)
 	debug_assert_init(timer);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	timer_stats_timer_clear_start_info(timer);
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	timer_stats_timer_clear_start_info(timer);
+>>>>>>> 2617302... source
 	if (timer_pending(timer)) {
 		base = lock_timer_base(timer, &flags);
 		ret = detach_if_pending(timer, base, true);
@@ -1036,14 +1066,20 @@ int try_to_del_timer_sync(struct timer_list *timer)
 	base = lock_timer_base(timer, &flags);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	if (base->running_timer != timer) {
 		timer_stats_timer_clear_start_info(timer);
 		ret = detach_if_pending(timer, base, true);
 	}
+<<<<<<< HEAD
 =======
 	if (base->running_timer != timer)
 		ret = detach_if_pending(timer, base, true);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	spin_unlock_irqrestore(&base->lock, flags);
 
 	return ret;
@@ -1226,10 +1262,15 @@ static inline void __run_timers(struct tvec_base *base)
 			irqsafe = tbase_get_irqsafe(timer->base);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 			timer_stats_account_timer(timer);
 
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			timer_stats_account_timer(timer);
+
+>>>>>>> 2617302... source
 			base->running_timer = timer;
 			detach_expired_timer(timer, base);
 
@@ -1707,9 +1748,13 @@ void __init init_timers(void)
 	err = timer_cpu_notify(&timers_nb, (unsigned long)CPU_UP_PREPARE,
 			       (void *)(long)smp_processor_id());
 <<<<<<< HEAD
+<<<<<<< HEAD
 	init_timer_stats();
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	init_timer_stats();
+>>>>>>> 2617302... source
 
 	BUG_ON(err != NOTIFY_OK);
 	register_cpu_notifier(&timers_nb);

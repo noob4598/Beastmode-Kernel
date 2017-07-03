@@ -878,6 +878,9 @@ copy_one_pte(struct mm_struct *dst_mm, struct mm_struct *src_mm,
 			swp_entry_t entry = pte_to_swp_entry(pte);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 			if (swap_duplicate(entry) < 0)
 				return entry.val;
 
@@ -892,6 +895,7 @@ copy_one_pte(struct mm_struct *dst_mm, struct mm_struct *src_mm,
 			if (likely(!non_swap_entry(entry)))
 				rss[MM_SWAPENTS]++;
 			else if (is_migration_entry(entry)) {
+<<<<<<< HEAD
 =======
 			if (likely(!non_swap_entry(entry))) {
 				if (swap_duplicate(entry) < 0)
@@ -908,6 +912,8 @@ copy_one_pte(struct mm_struct *dst_mm, struct mm_struct *src_mm,
 				rss[MM_SWAPENTS]++;
 			} else if (is_migration_entry(entry)) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 				page = migration_entry_to_page(entry);
 
 				if (PageAnon(page))
@@ -1582,6 +1588,7 @@ int zap_vma_ptes(struct vm_area_struct *vma, unsigned long address,
 EXPORT_SYMBOL_GPL(zap_vma_ptes);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 /*
  * FOLL_FORCE can write to even unwritable pte's, but only
@@ -1594,6 +1601,8 @@ static inline bool can_follow_write_pte(pte_t pte, unsigned int flags)
 }
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 /**
  * follow_page_mask - look up a page descriptor from a user-virtual address
  * @vma: vm_area_struct mapping @address
@@ -1702,10 +1711,14 @@ split_fallthrough:
 	if ((flags & FOLL_NUMA) && pte_numa(pte))
 		goto no_page;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if ((flags & FOLL_WRITE) && !pte_write(pte))
 =======
 	if ((flags & FOLL_WRITE) && !can_follow_write_pte(pte, flags))
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if ((flags & FOLL_WRITE) && !pte_write(pte))
+>>>>>>> 2617302... source
 		goto unlock;
 
 	page = vm_normal_page(vma, address, pte);
@@ -1781,14 +1794,20 @@ no_page_table:
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 static inline int stack_guard_page(struct vm_area_struct *vma, unsigned long addr)
 {
 	return stack_guard_page_start(vma, addr) ||
 	       stack_guard_page_end(vma, addr+PAGE_SIZE);
 }
 
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 /**
  * __get_user_pages() - pin user pages in memory
  * @tsk:	task_struct of target task
@@ -1970,13 +1989,19 @@ long __get_user_pages(struct task_struct *tsk, struct mm_struct *mm,
 				unsigned int fault_flags = 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 				/* For mlock, just skip the stack guard page. */
 				if (foll_flags & FOLL_MLOCK) {
 					if (stack_guard_page(vma, start))
 						goto next_page;
 				}
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 				if (foll_flags & FOLL_WRITE)
 					fault_flags |= FAULT_FLAG_WRITE;
 				if (nonblocking)
@@ -2000,11 +2025,15 @@ long __get_user_pages(struct task_struct *tsk, struct mm_struct *mm,
 							return -EFAULT;
 					}
 <<<<<<< HEAD
+<<<<<<< HEAD
 					if (ret & VM_FAULT_SIGBUS)
 =======
 					if (ret & (VM_FAULT_SIGBUS |
 						   VM_FAULT_SIGSEGV))
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+					if (ret & VM_FAULT_SIGBUS)
+>>>>>>> 2617302... source
 						return i ? i : -EFAULT;
 					BUG();
 				}
@@ -2037,10 +2066,14 @@ long __get_user_pages(struct task_struct *tsk, struct mm_struct *mm,
 				if ((ret & VM_FAULT_WRITE) &&
 				    !(vma->vm_flags & VM_WRITE))
 <<<<<<< HEAD
+<<<<<<< HEAD
 					foll_flags &= ~FOLL_WRITE;
 =======
 					foll_flags |= FOLL_COW;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+					foll_flags &= ~FOLL_WRITE;
+>>>>>>> 2617302... source
 
 				cond_resched();
 			}
@@ -2102,9 +2135,12 @@ int fixup_user_fault(struct task_struct *tsk, struct mm_struct *mm,
 {
 	struct vm_area_struct *vma;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	vm_flags_t vm_flags;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	int ret;
 
 	vma = find_extend_vma(mm, address);
@@ -2112,12 +2148,15 @@ int fixup_user_fault(struct task_struct *tsk, struct mm_struct *mm,
 		return -EFAULT;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	vm_flags = (fault_flags & FAULT_FLAG_WRITE) ? VM_WRITE : VM_READ;
 	if (!(vm_flags & vma->vm_flags))
 		return -EFAULT;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	ret = handle_mm_fault(mm, vma, address, fault_flags);
 	if (ret & VM_FAULT_ERROR) {
 		if (ret & VM_FAULT_OOM)
@@ -2125,10 +2164,14 @@ int fixup_user_fault(struct task_struct *tsk, struct mm_struct *mm,
 		if (ret & (VM_FAULT_HWPOISON | VM_FAULT_HWPOISON_LARGE))
 			return -EHWPOISON;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (ret & VM_FAULT_SIGBUS)
 =======
 		if (ret & (VM_FAULT_SIGBUS | VM_FAULT_SIGSEGV))
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		if (ret & VM_FAULT_SIGBUS)
+>>>>>>> 2617302... source
 			return -EFAULT;
 		BUG();
 	}
@@ -3366,6 +3409,9 @@ out_release:
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
  * This is like a special single-page "expand_{down|up}wards()",
  * except we must first make sure that 'address{-|+}PAGE_SIZE'
  * doesn't hit another vma.
@@ -3400,8 +3446,11 @@ static inline int check_stack_guard_page(struct vm_area_struct *vma, unsigned lo
 }
 
 /*
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
  * We enter with non-exclusive mmap_sem (to exclude vma changes,
  * but allow concurrent faults), and pte mapped but not yet locked.
  * We return with mmap_sem still held, but pte unmapped and unlocked.
@@ -3417,12 +3466,17 @@ static int do_anonymous_page(struct mm_struct *mm, struct vm_area_struct *vma,
 	pte_unmap(page_table);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* Check if we need to add a guard page to the stack */
 	if (check_stack_guard_page(vma, address) < 0)
 =======
 	/* File mapping without ->vm_ops ? */
 	if (vma->vm_flags & VM_SHARED)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	/* Check if we need to add a guard page to the stack */
+	if (check_stack_guard_page(vma, address) < 0)
+>>>>>>> 2617302... source
 		return VM_FAULT_SIGBUS;
 
 	/* Use the zero-page for reads */
@@ -3687,11 +3741,14 @@ static int do_linear_fault(struct mm_struct *mm, struct vm_area_struct *vma,
 
 	pte_unmap(page_table);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/* The VMA was not fully populated on mmap() or missing VM_DONTEXPAND */
 	if (!vma->vm_ops->fault)
 		return VM_FAULT_SIGBUS;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	return __do_fault(mm, vma, address, pmd, pgoff, flags, orig_pte);
 }
 
@@ -3904,16 +3961,22 @@ int handle_pte_fault(struct mm_struct *mm,
 	if (!pte_present(entry)) {
 		if (pte_none(entry)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 			if (vma->vm_ops) {
 				if (likely(vma->vm_ops->fault))
 					return do_linear_fault(mm, vma, address,
 						pte, pmd, flags, entry);
 			}
+<<<<<<< HEAD
 =======
 			if (vma->vm_ops)
 				return do_linear_fault(mm, vma, address,
 						pte, pmd, flags, entry);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 			return do_anonymous_page(mm, vma, address,
 						 pte, pmd, flags);
 		}
@@ -3959,12 +4022,17 @@ unlock:
  * By the time we get here, we already hold the mm semaphore
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 int handle_mm_fault(struct mm_struct *mm, struct vm_area_struct *vma,
 		unsigned long address, unsigned int flags)
 =======
 static int __handle_mm_fault(struct mm_struct *mm, struct vm_area_struct *vma,
 			     unsigned long address, unsigned int flags)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+int handle_mm_fault(struct mm_struct *mm, struct vm_area_struct *vma,
+		unsigned long address, unsigned int flags)
+>>>>>>> 2617302... source
 {
 	pgd_t *pgd;
 	pud_t *pud;
@@ -3972,6 +4040,9 @@ static int __handle_mm_fault(struct mm_struct *mm, struct vm_area_struct *vma,
 	pte_t *pte;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	__set_current_state(TASK_RUNNING);
 
 	count_vm_event(PGFAULT);
@@ -3980,8 +4051,11 @@ static int __handle_mm_fault(struct mm_struct *mm, struct vm_area_struct *vma,
 	/* do counter updates before entering really critical section. */
 	check_sync_rss_stat(current);
 
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	if (unlikely(is_vm_hugetlb_page(vma)))
 		return hugetlb_fault(mm, vma, address, flags);
 
@@ -4049,6 +4123,7 @@ retry:
 	    unlikely(__pte_alloc(mm, vma, pmd, address)))
 		return VM_FAULT_OOM;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* if an huge pmd materialized from under us just retry later */
 	if (unlikely(pmd_trans_huge(*pmd)))
 =======
@@ -4065,6 +4140,10 @@ retry:
 	 */
 	if (unlikely(pmd_trans_unstable(pmd)))
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	/* if an huge pmd materialized from under us just retry later */
+	if (unlikely(pmd_trans_huge(*pmd)))
+>>>>>>> 2617302... source
 		return 0;
 	/*
 	 * A regular pmd is established and it can't morph into a huge pmd
@@ -4077,6 +4156,7 @@ retry:
 	return handle_pte_fault(mm, vma, address, pte, pmd, flags);
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 int handle_mm_fault(struct mm_struct *mm, struct vm_area_struct *vma,
@@ -4117,6 +4197,8 @@ int handle_mm_fault(struct mm_struct *mm, struct vm_area_struct *vma,
 }
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 #ifndef __PAGETABLE_PUD_FOLDED
 /*
  * Allocate page upper directory.
@@ -4327,10 +4409,14 @@ int generic_access_phys(struct vm_area_struct *vma, unsigned long addr,
 		return -EINVAL;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	maddr = ioremap_prot(phys_addr, PAGE_SIZE, prot);
 =======
 	maddr = ioremap_prot(phys_addr, PAGE_ALIGN(len + offset), prot);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	maddr = ioremap_prot(phys_addr, PAGE_SIZE, prot);
+>>>>>>> 2617302... source
 	if (write)
 		memcpy_toio(maddr + offset, buf, len);
 	else

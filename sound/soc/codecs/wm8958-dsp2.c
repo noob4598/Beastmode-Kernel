@@ -460,10 +460,14 @@ static int wm8958_put_mbc_enum(struct snd_kcontrol *kcontrol,
 	struct wm8994_priv *wm8994 = snd_soc_codec_get_drvdata(codec);
 	struct wm8994 *control = wm8994->wm8994;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int value = ucontrol->value.integer.value[0];
 =======
 	int value = ucontrol->value.enumerated.item[0];
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	int value = ucontrol->value.integer.value[0];
+>>>>>>> 2617302... source
 	int reg;
 
 	/* Don't allow on the fly reconfiguration */
@@ -554,10 +558,14 @@ static int wm8958_put_vss_enum(struct snd_kcontrol *kcontrol,
 	struct wm8994_priv *wm8994 = snd_soc_codec_get_drvdata(codec);
 	struct wm8994 *control = wm8994->wm8994;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int value = ucontrol->value.integer.value[0];
 =======
 	int value = ucontrol->value.enumerated.item[0];
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	int value = ucontrol->value.integer.value[0];
+>>>>>>> 2617302... source
 	int reg;
 
 	/* Don't allow on the fly reconfiguration */
@@ -591,10 +599,14 @@ static int wm8958_put_vss_hpf_enum(struct snd_kcontrol *kcontrol,
 	struct wm8994_priv *wm8994 = snd_soc_codec_get_drvdata(codec);
 	struct wm8994 *control = wm8994->wm8994;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int value = ucontrol->value.integer.value[0];
 =======
 	int value = ucontrol->value.enumerated.item[0];
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	int value = ucontrol->value.integer.value[0];
+>>>>>>> 2617302... source
 	int reg;
 
 	/* Don't allow on the fly reconfiguration */
@@ -762,10 +774,14 @@ static int wm8958_put_enh_eq_enum(struct snd_kcontrol *kcontrol,
 	struct wm8994_priv *wm8994 = snd_soc_codec_get_drvdata(codec);
 	struct wm8994 *control = wm8994->wm8994;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int value = ucontrol->value.integer.value[0];
 =======
 	int value = ucontrol->value.enumerated.item[0];
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	int value = ucontrol->value.integer.value[0];
+>>>>>>> 2617302... source
 	int reg;
 
 	/* Don't allow on the fly reconfiguration */

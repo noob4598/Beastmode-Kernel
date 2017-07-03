@@ -190,10 +190,14 @@ static void radeon_evict_flags(struct ttm_buffer_object *bo,
 	switch (bo->mem.mem_type) {
 	case TTM_PL_VRAM:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (rbo->rdev->ring[RADEON_RING_TYPE_GFX_INDEX].ready == false)
 =======
 		if (rbo->rdev->ring[radeon_copy_ring_index(rbo->rdev)].ready == false)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		if (rbo->rdev->ring[RADEON_RING_TYPE_GFX_INDEX].ready == false)
+>>>>>>> 2617302... source
 			radeon_ttm_placement_from_domain(rbo, RADEON_GEM_DOMAIN_CPU);
 		else
 			radeon_ttm_placement_from_domain(rbo, RADEON_GEM_DOMAIN_GTT);
@@ -233,12 +237,17 @@ static int radeon_move_blit(struct ttm_buffer_object *bo,
 	rdev = radeon_get_rdev(bo->bdev);
 	ridx = radeon_copy_ring_index(rdev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	old_start = old_mem->start << PAGE_SHIFT;
 	new_start = new_mem->start << PAGE_SHIFT;
 =======
 	old_start = (u64)old_mem->start << PAGE_SHIFT;
 	new_start = (u64)new_mem->start << PAGE_SHIFT;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	old_start = old_mem->start << PAGE_SHIFT;
+	new_start = new_mem->start << PAGE_SHIFT;
+>>>>>>> 2617302... source
 
 	switch (old_mem->mem_type) {
 	case TTM_PL_VRAM:
@@ -629,10 +638,14 @@ static int radeon_ttm_tt_populate(struct ttm_tt *ttm)
 						       PCI_DMA_BIDIRECTIONAL);
 		if (pci_dma_mapping_error(rdev->pdev, gtt->ttm.dma_address[i])) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			while (--i) {
 =======
 			while (i--) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			while (--i) {
+>>>>>>> 2617302... source
 				pci_unmap_page(rdev->pdev, gtt->ttm.dma_address[i],
 					       PAGE_SIZE, PCI_DMA_BIDIRECTIONAL);
 				gtt->ttm.dma_address[i] = 0;

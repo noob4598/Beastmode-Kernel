@@ -1083,6 +1083,7 @@ int balance_internal(struct tree_balance *tb,	/* tree_balance structure         
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	memcpy(new_insert_key_addr, &new_insert_key, KEY_SIZE);
 	insert_ptr[0] = new_insert_ptr;
 =======
@@ -1090,6 +1091,10 @@ int balance_internal(struct tree_balance *tb,	/* tree_balance structure         
 	if (new_insert_ptr)
 		memcpy(new_insert_key_addr, &new_insert_key, KEY_SIZE);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	memcpy(new_insert_key_addr, &new_insert_key, KEY_SIZE);
+	insert_ptr[0] = new_insert_ptr;
+>>>>>>> 2617302... source
 
 	return order;
 }

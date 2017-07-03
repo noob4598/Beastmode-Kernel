@@ -327,11 +327,14 @@ static unsigned long long mmc_merge_ext_csd(u8 *ext_csd, bool continuous, int co
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 /* Minimum partition switch timeout in milliseconds */
 #define MMC_MIN_PART_SWITCH_TIME	300
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 /*
  * Decode extended CSD.
  */
@@ -401,12 +404,15 @@ static int mmc_read_ext_csd(struct mmc_card *card, u8 *ext_csd)
 		/* EXT_CSD value is in units of 10ms, but we store in ms */
 		card->ext_csd.part_time = 10 * ext_csd[EXT_CSD_PART_SWITCH_TIME];
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		/* Some eMMC set the value too low so set a minimum */
 		if (card->ext_csd.part_time &&
 		    card->ext_csd.part_time < MMC_MIN_PART_SWITCH_TIME)
 			card->ext_csd.part_time = MMC_MIN_PART_SWITCH_TIME;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 		/* Sleep / awake timeout in 100ns units */
 		if (sa_shift > 0 && sa_shift <= 0x17)
@@ -594,6 +600,7 @@ static int mmc_read_ext_csd(struct mmc_card *card, u8 *ext_csd)
 
 		/*
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		 * Some eMMC vendors violate eMMC 5.0 spec and set
 		 * REL_WR_SEC_C register to 0x10 to indicate the
@@ -609,6 +616,8 @@ static int mmc_read_ext_csd(struct mmc_card *card, u8 *ext_csd)
 
 		/*
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		 * RPMB regions are defined in multiples of 128K.
 		 */
 		card->ext_csd.raw_rpmb_size_mult = ext_csd[EXT_CSD_RPMB_MULT];

@@ -1,8 +1,12 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* Copyright (c) 2013-2014, The Linux Foundation. All rights reserved.
 =======
 /* Copyright (c) 2013-2017, The Linux Foundation. All rights reserved.
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+/* Copyright (c) 2013-2014, The Linux Foundation. All rights reserved.
+>>>>>>> 2617302... source
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License version 2 and
 * only version 2 as published by the Free Software Foundation.
@@ -1044,10 +1048,14 @@ static int msm_ds2_dap_send_end_point(int dev_map_idx, int endp_idx)
 	pr_debug("%s: cache dev %d, dev_map_idx %d\n", __func__,
 		 cache_device, dev_map_idx);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_debug("%s: endp - %p %p\n",  __func__,
 =======
 	pr_debug("%s: endp - %pK %pK\n",  __func__,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	pr_debug("%s: endp - %p %p\n",  __func__,
+>>>>>>> 2617302... source
 		 &ds2_dap_params[cache_device], ds2_ap_params_obj);
 
 	params_value = kzalloc(params_length, GFP_KERNEL);
@@ -1125,10 +1133,14 @@ static int msm_ds2_dap_send_cached_params(int dev_map_idx,
 
 	ds2_ap_params_obj = &ds2_dap_params[cache_device];
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_debug("%s: cached param - %p %p, cache_device %d\n", __func__,
 =======
 	pr_debug("%s: cached param - %pK %pK, cache_device %d\n", __func__,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	pr_debug("%s: cached param - %p %p, cache_device %d\n", __func__,
+>>>>>>> 2617302... source
 		 &ds2_dap_params[cache_device], ds2_ap_params_obj,
 		 cache_device);
 	params_value = kzalloc(params_length, GFP_KERNEL);
@@ -1454,6 +1466,7 @@ static int msm_ds2_dap_get_param(u32 cmd, void *arg)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/* Return if invalid length */
 	if ((dolby_data->length >
@@ -1465,6 +1478,8 @@ static int msm_ds2_dap_get_param(u32 cmd, void *arg)
 	}
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	for (i = 0; i < DS2_DEVICES_ALL; i++) {
 		if ((dev_map[i].active) &&
 			(dev_map[i].device_id & dolby_data.device_id)) {
@@ -1483,11 +1498,15 @@ static int msm_ds2_dap_get_param(u32 cmd, void *arg)
 		 __func__, port_id, dev_map[i].device_id);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	params_value = kzalloc(params_length, GFP_KERNEL);
 =======
 	params_value = kzalloc(params_length + param_payload_len,
 				GFP_KERNEL);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	params_value = kzalloc(params_length, GFP_KERNEL);
+>>>>>>> 2617302... source
 	if (!params_value) {
 		pr_err("%s: params memory alloc failed\n", __func__);
 		rc = -ENOMEM;
@@ -1512,6 +1531,7 @@ static int msm_ds2_dap_get_param(u32 cmd, void *arg)
 			goto end;
 		} else {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			params_length = (ds2_dap_params_length[i] +
 						DOLBY_PARAM_PAYLOAD_SIZE) *
 						sizeof(uint32_t);
@@ -1520,6 +1540,11 @@ static int msm_ds2_dap_get_param(u32 cmd, void *arg)
 			ds2_dap_params_length[i] * sizeof(uint32_t);
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			params_length = (ds2_dap_params_length[i] +
+						DOLBY_PARAM_PAYLOAD_SIZE) *
+						sizeof(uint32_t);
+>>>>>>> 2617302... source
 			rc = adm_get_params(port_id,
 					    DOLBY_BUNDLE_MODULE_ID,
 					    ds2_dap_params_id[i],
@@ -1580,6 +1605,7 @@ static int msm_ds2_dap_param_visualizer_control_get(u32 cmd, void *arg)
 
 	length = ds2_dap_params[cache_dev].params_val[DOLBY_PARAM_VCNB_OFFSET];
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 	if (length > DOLBY_PARAM_VCNB_MAX_LENGTH || length <= 0) {
@@ -1590,6 +1616,8 @@ static int msm_ds2_dap_param_visualizer_control_get(u32 cmd, void *arg)
 	}
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	params_length = (2*length + DOLBY_VIS_PARAM_HEADER_SIZE) *
 							 sizeof(uint32_t);
 

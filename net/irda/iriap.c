@@ -192,6 +192,7 @@ struct iriap_cb *iriap_open(__u8 slsap_sel, int mode, void *priv,
 	self->magic = IAS_MAGIC;
 	self->mode = mode;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (mode == IAS_CLIENT)
 		iriap_register_lsap(self, slsap_sel, mode);
 =======
@@ -202,6 +203,10 @@ struct iriap_cb *iriap_open(__u8 slsap_sel, int mode, void *priv,
 		}
 	}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (mode == IAS_CLIENT)
+		iriap_register_lsap(self, slsap_sel, mode);
+>>>>>>> 2617302... source
 
 	self->confirm = callback;
 	self->priv = priv;

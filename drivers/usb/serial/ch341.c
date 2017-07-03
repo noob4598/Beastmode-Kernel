@@ -98,10 +98,13 @@ static int ch341_control_out(struct usb_device *dev, u8 request,
 			    USB_TYPE_VENDOR | USB_RECIP_DEVICE | USB_DIR_OUT,
 			    value, index, NULL, 0, DEFAULT_TIMEOUT);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (r < 0)
 		dev_err(&dev->dev, "failed to send control message: %d\n", r);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	return r;
 }
@@ -120,6 +123,7 @@ static int ch341_control_in(struct usb_device *dev,
 			    USB_TYPE_VENDOR | USB_RECIP_DEVICE | USB_DIR_IN,
 			    value, index, buf, bufsize, DEFAULT_TIMEOUT);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return r;
 =======
 	if (r < bufsize) {
@@ -137,6 +141,9 @@ static int ch341_control_in(struct usb_device *dev,
 
 	return 0;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	return r;
+>>>>>>> 2617302... source
 }
 
 static int ch341_set_baudrate(struct usb_device *dev,
@@ -179,6 +186,7 @@ static int ch341_set_handshake(struct usb_device *dev, u8 control)
 static int ch341_get_status(struct usb_device *dev, struct ch341_private *priv)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	char *buffer;
 	int r;
 	const unsigned size = 8;
@@ -187,6 +195,11 @@ static int ch341_get_status(struct usb_device *dev, struct ch341_private *priv)
 	char *buffer;
 	int r;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	char *buffer;
+	int r;
+	const unsigned size = 8;
+>>>>>>> 2617302... source
 	unsigned long flags;
 
 	buffer = kmalloc(size, GFP_KERNEL);
@@ -198,6 +211,9 @@ static int ch341_get_status(struct usb_device *dev, struct ch341_private *priv)
 		goto out;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	/* setup the private status if available */
 	if (r == 2) {
 		r = 0;
@@ -207,12 +223,15 @@ static int ch341_get_status(struct usb_device *dev, struct ch341_private *priv)
 		spin_unlock_irqrestore(&priv->lock, flags);
 	} else
 		r = -EPROTO;
+<<<<<<< HEAD
 =======
 	spin_lock_irqsave(&priv->lock, flags);
 	priv->line_status = (~(*buffer)) & CH341_BITS_MODEM_STAT;
 	priv->multi_status_change = 0;
 	spin_unlock_irqrestore(&priv->lock, flags);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 out:	kfree(buffer);
 	return r;
@@ -223,6 +242,7 @@ out:	kfree(buffer);
 static int ch341_configure(struct usb_device *dev, struct ch341_private *priv)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	char *buffer;
 	int r;
 	const unsigned size = 8;
@@ -231,6 +251,11 @@ static int ch341_configure(struct usb_device *dev, struct ch341_private *priv)
 	char *buffer;
 	int r;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	char *buffer;
+	int r;
+	const unsigned size = 8;
+>>>>>>> 2617302... source
 
 	buffer = kmalloc(size, GFP_KERNEL);
 	if (!buffer)
@@ -294,9 +319,13 @@ static int ch341_port_probe(struct usb_serial_port *port)
 	spin_lock_init(&priv->lock);
 	priv->baud_rate = DEFAULT_BAUD_RATE;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	priv->line_control = CH341_BIT_RTS | CH341_BIT_DTR;
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	priv->line_control = CH341_BIT_RTS | CH341_BIT_DTR;
+>>>>>>> 2617302... source
 
 	r = ch341_configure(port->serial->dev, priv);
 	if (r < 0)
@@ -361,6 +390,9 @@ static int ch341_open(struct tty_struct *tty, struct usb_serial_port *port)
 	r = ch341_configure(serial->dev, priv);
 	if (r)
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		goto out;
 
 	r = ch341_set_handshake(serial->dev, priv->line_control);
@@ -370,6 +402,7 @@ static int ch341_open(struct tty_struct *tty, struct usb_serial_port *port)
 	r = ch341_set_baudrate(serial->dev, priv);
 	if (r)
 		goto out;
+<<<<<<< HEAD
 =======
 		return r;
 
@@ -381,6 +414,8 @@ static int ch341_open(struct tty_struct *tty, struct usb_serial_port *port)
 	if (r)
 		return r;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	dev_dbg(&port->dev, "%s - submitting interrupt urb", __func__);
 	r = usb_submit_urb(port->interrupt_in_urb, GFP_KERNEL);
@@ -389,12 +424,16 @@ static int ch341_open(struct tty_struct *tty, struct usb_serial_port *port)
 			" error %d\n", __func__, r);
 		ch341_close(port);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		goto out;
 	}
 
 	r = usb_serial_generic_open(tty, port);
 
 out:	return r;
+<<<<<<< HEAD
 =======
 		return r;
 	}
@@ -410,6 +449,8 @@ err_kill_interrupt_urb:
 
 	return r;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 }
 
 /* Old_termios contains the original termios settings and
@@ -425,6 +466,9 @@ static void ch341_set_termios(struct tty_struct *tty,
 	baud_rate = tty_get_baud_rate(tty);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	priv->baud_rate = baud_rate;
 
 	if (baud_rate) {
@@ -440,6 +484,7 @@ static void ch341_set_termios(struct tty_struct *tty,
 
 	ch341_set_handshake(port->serial->dev, priv->line_control);
 
+<<<<<<< HEAD
 =======
 	if (baud_rate) {
 		priv->baud_rate = baud_rate;
@@ -447,11 +492,14 @@ static void ch341_set_termios(struct tty_struct *tty,
 	}
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	/* Unimplemented:
 	 * (cflag & CSIZE) : data bits [5, 8]
 	 * (cflag & PARENB) : parity {NONE, EVEN, ODD}
 	 * (cflag & CSTOPB) : stop bits [1, 2]
 	 */
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 
@@ -464,6 +512,8 @@ static void ch341_set_termios(struct tty_struct *tty,
 
 	ch341_set_handshake(port->serial->dev, priv->line_control);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 }
 
 static void ch341_break_ctl(struct tty_struct *tty, int break_state)
@@ -663,6 +713,7 @@ static int ch341_tiocmget(struct tty_struct *tty)
 static int ch341_reset_resume(struct usb_serial *serial)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct ch341_private *priv;
 
 	priv = usb_get_serial_port_data(serial->port[0]);
@@ -671,10 +722,16 @@ static int ch341_reset_resume(struct usb_serial *serial)
 	struct ch341_private *priv = usb_get_serial_port_data(port);
 	int ret;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	struct ch341_private *priv;
+
+	priv = usb_get_serial_port_data(serial->port[0]);
+>>>>>>> 2617302... source
 
 	/* reconfigure ch341 serial port after bus-reset */
 	ch341_configure(serial->dev, priv);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	return 0;
 =======
@@ -689,6 +746,9 @@ static int ch341_reset_resume(struct usb_serial *serial)
 
 	return usb_serial_generic_resume(serial);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	return 0;
+>>>>>>> 2617302... source
 }
 
 static struct usb_serial_driver ch341_device = {

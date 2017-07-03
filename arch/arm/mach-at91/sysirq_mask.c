@@ -26,6 +26,7 @@
 #include "generic.h"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define AT91_RTC_IDR	0x24	/* Interrupt Disable Register */
 #define AT91_RTC_IMR	0x28	/* Interrupt Mask Register */
 =======
@@ -33,26 +34,38 @@
 #define AT91_RTC_IMR		0x28	/* Interrupt Mask Register */
 #define AT91_RTC_IRQ_MASK	0x1f	/* Available IRQs mask */
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+#define AT91_RTC_IDR	0x24	/* Interrupt Disable Register */
+#define AT91_RTC_IMR	0x28	/* Interrupt Mask Register */
+>>>>>>> 2617302... source
 
 void __init at91_sysirq_mask_rtc(u32 rtc_base)
 {
 	void __iomem *base;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u32 mask;
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	u32 mask;
+>>>>>>> 2617302... source
 
 	base = ioremap(rtc_base, 64);
 	if (!base)
 		return;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	mask = readl_relaxed(base + AT91_RTC_IMR);
 	if (mask) {
 		pr_info("AT91: Disabling rtc irq\n");
 		writel_relaxed(mask, base + AT91_RTC_IDR);
 		(void)readl_relaxed(base + AT91_RTC_IMR);	/* flush */
 	}
+<<<<<<< HEAD
 =======
 	/*
 	 * sam9x5 SoCs have the following errata:
@@ -65,6 +78,8 @@ void __init at91_sysirq_mask_rtc(u32 rtc_base)
 	writel_relaxed(AT91_RTC_IRQ_MASK, base + AT91_RTC_IDR);
 	(void)readl_relaxed(base + AT91_RTC_IMR);	/* flush */
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	iounmap(base);
 }

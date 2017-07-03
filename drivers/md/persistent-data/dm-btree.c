@@ -236,6 +236,7 @@ static bool is_internal_level(struct dm_btree_info *info, struct frame *f)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 static void unlock_all_frames(struct del_stack *s)
 {
@@ -248,16 +249,22 @@ static void unlock_all_frames(struct del_stack *s)
 }
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 int dm_btree_del(struct dm_btree_info *info, dm_block_t root)
 {
 	int r;
 	struct del_stack *s;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	s = kmalloc(sizeof(*s), GFP_KERNEL);
 =======
 	s = kmalloc(sizeof(*s), GFP_NOIO);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	s = kmalloc(sizeof(*s), GFP_KERNEL);
+>>>>>>> 2617302... source
 	if (!s)
 		return -ENOMEM;
 	s->tm = info->tm;
@@ -308,6 +315,7 @@ int dm_btree_del(struct dm_btree_info *info, dm_block_t root)
 		}
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 out:
 	kfree(s);
@@ -320,6 +328,11 @@ out:
 	kfree(s);
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+
+out:
+	kfree(s);
+>>>>>>> 2617302... source
 	return r;
 }
 EXPORT_SYMBOL_GPL(dm_btree_del);
@@ -483,6 +496,7 @@ static int btree_split_sibling(struct shadow_spine *s, dm_block_t root,
 	r = insert_at(sizeof(__le64), pn, parent_index + 1,
 		      le64_to_cpu(rn->keys[0]), &location);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (r)
 		return r;
 =======
@@ -491,6 +505,10 @@ static int btree_split_sibling(struct shadow_spine *s, dm_block_t root,
 		return r;
 	}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (r)
+		return r;
+>>>>>>> 2617302... source
 
 	if (key < le64_to_cpu(rn->keys[0])) {
 		unlock_block(s->info, right);
@@ -542,10 +560,14 @@ static int btree_split_beneath(struct shadow_spine *s, uint64_t key)
 	r = new_block(s->info, &right);
 	if (r < 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		/* FIXME: put left */
 =======
 		unlock_block(s->info, left);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		/* FIXME: put left */
+>>>>>>> 2617302... source
 		return r;
 	}
 
@@ -690,15 +712,21 @@ static int insert(struct dm_btree_info *info, dm_block_t root,
 	struct dm_btree_value_type le64_type;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	le64_type.context = NULL;
 	le64_type.size = sizeof(__le64);
 	le64_type.inc = NULL;
 	le64_type.dec = NULL;
 	le64_type.equal = NULL;
 
+<<<<<<< HEAD
 =======
 	init_le64_type(info->tm, &le64_type);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	init_shadow_spine(&spine, info);
 
 	for (level = 0; level < (info->levels - 1); level++) {
@@ -855,21 +883,29 @@ EXPORT_SYMBOL_GPL(dm_btree_find_highest_key);
  * space.  Also this only works for single level trees.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int walk_node(struct ro_spine *s, dm_block_t block,
 =======
 static int walk_node(struct dm_btree_info *info, dm_block_t block,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+static int walk_node(struct ro_spine *s, dm_block_t block,
+>>>>>>> 2617302... source
 		     int (*fn)(void *context, uint64_t *keys, void *leaf),
 		     void *context)
 {
 	int r;
 	unsigned i, nr;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	struct btree_node *n;
 	uint64_t keys;
 
 	r = ro_step(s, block);
 	n = ro_node(s);
+<<<<<<< HEAD
 =======
 	struct dm_block *node;
 	struct btree_node *n;
@@ -881,15 +917,21 @@ static int walk_node(struct dm_btree_info *info, dm_block_t block,
 
 	n = dm_block_data(node);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	nr = le32_to_cpu(n->header.nr_entries);
 	for (i = 0; i < nr; i++) {
 		if (le32_to_cpu(n->header.flags) & INTERNAL_NODE) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			r = walk_node(s, value64(n, i), fn, context);
 =======
 			r = walk_node(info, value64(n, i), fn, context);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			r = walk_node(s, value64(n, i), fn, context);
+>>>>>>> 2617302... source
 			if (r)
 				goto out;
 		} else {
@@ -902,10 +944,14 @@ static int walk_node(struct dm_btree_info *info, dm_block_t block,
 
 out:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ro_pop(s);
 =======
 	dm_tm_unlock(info->tm, node);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	ro_pop(s);
+>>>>>>> 2617302... source
 	return r;
 }
 
@@ -914,6 +960,9 @@ int dm_btree_walk(struct dm_btree_info *info, dm_block_t root,
 		  void *context)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	int r;
 	struct ro_spine spine;
 
@@ -924,9 +973,12 @@ int dm_btree_walk(struct dm_btree_info *info, dm_block_t root,
 	exit_ro_spine(&spine);
 
 	return r;
+<<<<<<< HEAD
 =======
 	BUG_ON(info->levels > 1);
 	return walk_node(info, root, fn, context);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 }
 EXPORT_SYMBOL_GPL(dm_btree_walk);

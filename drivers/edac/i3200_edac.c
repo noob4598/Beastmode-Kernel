@@ -243,11 +243,15 @@ static void i3200_process_error_info(struct mem_ctl_info *mci,
 					     "i3000 UE", "");
 		} else if (log & I3200_ECCERRLOG_CE) {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 			edac_mc_handle_error(HW_EVENT_ERR_UNCORRECTED, mci, 1,
 					     0, 0, eccerrlog_syndrome(log),
 					     eccerrlog_row(channel, log),
 					     -1, -1,
 					     "i3000 UE", "");
+<<<<<<< HEAD
 =======
 			edac_mc_handle_error(HW_EVENT_ERR_CORRECTED, mci, 1,
 					     0, 0, eccerrlog_syndrome(log),
@@ -255,6 +259,8 @@ static void i3200_process_error_info(struct mem_ctl_info *mci,
 					     -1, -1,
 					     "i3000 CE", "");
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		}
 	}
 }

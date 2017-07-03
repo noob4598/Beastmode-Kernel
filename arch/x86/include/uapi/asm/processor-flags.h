@@ -3,6 +3,9 @@
 /* Various flags defined: can be included from assembler. */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 /*
  * EFLAGS bits
  */
@@ -24,6 +27,7 @@
 #define X86_EFLAGS_VIF	0x00080000 /* Virtual Interrupt Flag */
 #define X86_EFLAGS_VIP	0x00100000 /* Virtual Interrupt Pending */
 #define X86_EFLAGS_ID	0x00200000 /* CPUID detection flag */
+<<<<<<< HEAD
 =======
 #include <linux/const.h>
 
@@ -69,11 +73,16 @@
 #define X86_EFLAGS_ID_BIT	21 /* CPUID detection */
 #define X86_EFLAGS_ID		_BITUL(X86_EFLAGS_ID_BIT)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 /*
  * Basic CPU control in CR0
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 #define X86_CR0_PE	0x00000001 /* Protection Enable */
 #define X86_CR0_MP	0x00000002 /* Monitor Coprocessor */
 #define X86_CR0_EM	0x00000004 /* Emulation */
@@ -85,6 +94,7 @@
 #define X86_CR0_NW	0x20000000 /* Not Write-through */
 #define X86_CR0_CD	0x40000000 /* Cache Disable */
 #define X86_CR0_PG	0x80000000 /* Paging */
+<<<<<<< HEAD
 =======
 #define X86_CR0_PE_BIT		0 /* Protection Enable */
 #define X86_CR0_PE		_BITUL(X86_CR0_PE_BIT)
@@ -109,10 +119,13 @@
 #define X86_CR0_PG_BIT		31 /* Paging */
 #define X86_CR0_PG		_BITUL(X86_CR0_PG_BIT)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 /*
  * Paging options in CR3
  */
+<<<<<<< HEAD
 <<<<<<< HEAD
 #define X86_CR3_PWT	0x00000008 /* Page Write Through */
 #define X86_CR3_PCD	0x00000010 /* Page Cache Disable */
@@ -124,11 +137,19 @@
 #define X86_CR3_PCD		_BITUL(X86_CR3_PCD_BIT)
 #define X86_CR3_PCID_MASK	_AC(0x00000fff,UL) /* PCID Mask */
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+#define X86_CR3_PWT	0x00000008 /* Page Write Through */
+#define X86_CR3_PCD	0x00000010 /* Page Cache Disable */
+#define X86_CR3_PCID_MASK 0x00000fff /* PCID Mask */
+>>>>>>> 2617302... source
 
 /*
  * Intel CPU features in CR4
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 #define X86_CR4_VME	0x00000001 /* enable vm86 extensions */
 #define X86_CR4_PVI	0x00000002 /* virtual interrupts flag enable */
 #define X86_CR4_TSD	0x00000004 /* disable time stamp at ipl 3 */
@@ -146,6 +167,7 @@
 #define X86_CR4_OSXSAVE 0x00040000 /* enable xsave and xrestore */
 #define X86_CR4_SMEP	0x00100000 /* enable SMEP support */
 #define X86_CR4_SMAP	0x00200000 /* enable SMAP support */
+<<<<<<< HEAD
 =======
 #define X86_CR4_VME_BIT		0 /* enable vm86 extensions */
 #define X86_CR4_VME		_BITUL(X86_CR4_VME_BIT)
@@ -184,15 +206,21 @@
 #define X86_CR4_SMAP_BIT	21 /* enable SMAP support */
 #define X86_CR4_SMAP		_BITUL(X86_CR4_SMAP_BIT)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 /*
  * x86-64 Task Priority Register, CR8
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define X86_CR8_TPR	0x0000000F /* task priority register */
 =======
 #define X86_CR8_TPR		_AC(0x0000000f,UL) /* task priority register */
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+#define X86_CR8_TPR	0x0000000F /* task priority register */
+>>>>>>> 2617302... source
 
 /*
  * AMD and Transmeta use MSRs for configuration; see <asm/msr-index.h>

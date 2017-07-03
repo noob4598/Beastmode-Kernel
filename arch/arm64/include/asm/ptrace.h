@@ -71,6 +71,9 @@
 #define compat_lr	regs[14]
 #define compat_sp_hyp	regs[15]
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 #define compat_sp_irq	regs[16]
 #define compat_lr_irq	regs[17]
 #define compat_sp_svc	regs[18]
@@ -79,6 +82,7 @@
 #define compat_lr_abt	regs[21]
 #define compat_sp_und	regs[22]
 #define compat_lr_und	regs[23]
+<<<<<<< HEAD
 =======
 #define compat_lr_irq	regs[16]
 #define compat_sp_irq	regs[17]
@@ -89,6 +93,8 @@
 #define compat_lr_und	regs[22]
 #define compat_sp_und	regs[23]
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 #define compat_r8_fiq	regs[24]
 #define compat_r9_fiq	regs[25]
 #define compat_r10_fiq	regs[26]

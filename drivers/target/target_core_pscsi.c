@@ -158,10 +158,14 @@ static void pscsi_tape_read_blocksize(struct se_device *dev,
 	buf = kzalloc(12, GFP_KERNEL);
 	if (!buf)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return;
 =======
 		goto out_free;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		return;
+>>>>>>> 2617302... source
 
 	memset(cdb, 0, MAX_COMMAND_SIZE);
 	cdb[0] = MODE_SENSE;
@@ -177,6 +181,7 @@ static void pscsi_tape_read_blocksize(struct se_device *dev,
 	 */
 	sdev->sector_size = (buf[9] << 16) | (buf[10] << 8) | (buf[11]);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!sdev->sector_size)
 		sdev->sector_size = 1024;
 out_free:
@@ -186,6 +191,11 @@ out_free:
 		sdev->sector_size = 1024;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (!sdev->sector_size)
+		sdev->sector_size = 1024;
+out_free:
+>>>>>>> 2617302... source
 	kfree(buf);
 }
 
@@ -329,6 +339,7 @@ static int pscsi_add_device_to_list(struct se_device *dev,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dev->dev_attrib.hw_block_size = sd->sector_size;
 	dev->dev_attrib.hw_max_sectors =
 		min_t(int, sd->host->max_sectors, queue_max_hw_sectors(q));
@@ -338,6 +349,11 @@ static int pscsi_add_device_to_list(struct se_device *dev,
 	dev->dev_attrib.hw_max_sectors =
 		min_not_zero((unsigned)sd->host->max_sectors, queue_max_hw_sectors(q));
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	dev->dev_attrib.hw_block_size = sd->sector_size;
+	dev->dev_attrib.hw_max_sectors =
+		min_t(int, sd->host->max_sectors, queue_max_hw_sectors(q));
+>>>>>>> 2617302... source
 	dev->dev_attrib.hw_queue_depth = sd->queue_depth;
 
 	/*
@@ -361,6 +377,7 @@ static int pscsi_add_device_to_list(struct se_device *dev,
 	 * For TYPE_TAPE, attempt to determine blocksize with MODE_SENSE.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (sd->type == TYPE_TAPE)
 		pscsi_tape_read_blocksize(dev, sd);
 =======
@@ -369,6 +386,10 @@ static int pscsi_add_device_to_list(struct se_device *dev,
 		dev->dev_attrib.hw_block_size = sd->sector_size;
 	}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (sd->type == TYPE_TAPE)
+		pscsi_tape_read_blocksize(dev, sd);
+>>>>>>> 2617302... source
 	return 0;
 }
 
@@ -435,10 +456,14 @@ static int pscsi_create_type_disk(struct se_device *dev, struct scsi_device *sd)
  * Called with struct Scsi_Host->host_lock called.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int pscsi_create_type_rom(struct se_device *dev, struct scsi_device *sd)
 =======
 static int pscsi_create_type_nondisk(struct se_device *dev, struct scsi_device *sd)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+static int pscsi_create_type_rom(struct se_device *dev, struct scsi_device *sd)
+>>>>>>> 2617302... source
 	__releases(sh->host_lock)
 {
 	struct pscsi_hba_virt *phv = dev->se_hba->hba_ptr;
@@ -466,6 +491,9 @@ static int pscsi_create_type_nondisk(struct se_device *dev, struct scsi_device *
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 /*
  * Called with struct Scsi_Host->host_lock called.
  */
@@ -488,8 +516,11 @@ static int pscsi_create_type_other(struct se_device *dev,
 	return 0;
 }
 
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 static int pscsi_configure_device(struct se_device *dev)
 {
 	struct se_hba *hba = dev->se_hba;
@@ -553,9 +584,12 @@ static int pscsi_configure_device(struct se_device *dev)
 				return -EINVAL;
 			}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 			pdv->pdv_lld_host = sh;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		}
 	} else {
 		if (phv->phv_mode == PHV_VIRTUAL_HOST_ID) {
@@ -581,15 +615,21 @@ static int pscsi_configure_device(struct se_device *dev)
 			ret = pscsi_create_type_disk(dev, sd);
 			break;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		case TYPE_ROM:
 			ret = pscsi_create_type_rom(dev, sd);
 			break;
 		default:
 			ret = pscsi_create_type_other(dev, sd);
+<<<<<<< HEAD
 =======
 		default:
 			ret = pscsi_create_type_nondisk(dev, sd);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 			break;
 		}
 
@@ -644,6 +684,7 @@ static void pscsi_free_device(struct se_device *dev)
 		    (phv->phv_lld_host != NULL))
 			scsi_host_put(phv->phv_lld_host);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 		if ((sd->type == TYPE_DISK) || (sd->type == TYPE_ROM))
 			scsi_device_put(sd);
@@ -653,6 +694,11 @@ static void pscsi_free_device(struct se_device *dev)
 
 		scsi_device_put(sd);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+
+		if ((sd->type == TYPE_DISK) || (sd->type == TYPE_ROM))
+			scsi_device_put(sd);
+>>>>>>> 2617302... source
 
 		pdv->pdv_sd = NULL;
 	}
@@ -1105,10 +1151,13 @@ pscsi_execute_cmd(struct se_cmd *cmd)
 			goto fail;
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 		blk_rq_set_block_pc(req);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	} else {
 		BUG_ON(!cmd->data_length);
 
@@ -1126,9 +1175,13 @@ pscsi_execute_cmd(struct se_cmd *cmd)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	req->cmd_type = REQ_TYPE_BLOCK_PC;
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	req->cmd_type = REQ_TYPE_BLOCK_PC;
+>>>>>>> 2617302... source
 	req->end_io = pscsi_req_done;
 	req->end_io_data = cmd;
 	req->cmd_len = scsi_command_size(pt->pscsi_cdb);
@@ -1169,10 +1222,14 @@ static u32 pscsi_get_device_type(struct se_device *dev)
 	struct scsi_device *sd = pdv->pdv_sd;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return sd->type;
 =======
 	return (sd) ? sd->type : TYPE_NO_LUN;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	return sd->type;
+>>>>>>> 2617302... source
 }
 
 static sector_t pscsi_get_blocks(struct se_device *dev)
@@ -1183,9 +1240,13 @@ static sector_t pscsi_get_blocks(struct se_device *dev)
 		return pdv->pdv_bd->bd_part->nr_sects;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dump_stack();
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	dump_stack();
+>>>>>>> 2617302... source
 	return 0;
 }
 

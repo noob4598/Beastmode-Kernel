@@ -186,6 +186,7 @@ static struct viosrp_crq *crq_queue_next_crq(struct crq_queue *queue)
 		if (++queue->cur == queue->size)
 			queue->cur = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 		/* Ensure the read of the valid bit occurs before reading any
@@ -193,6 +194,8 @@ static struct viosrp_crq *crq_queue_next_crq(struct crq_queue *queue)
 		 */
 		rmb();
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	} else
 		crq = NULL;
 	spin_unlock_irqrestore(&queue->lock, flags);
@@ -212,6 +215,7 @@ static int ibmvscsi_send_crq(struct ibmvscsi_host_data *hostdata,
 	struct vio_dev *vdev = to_vio_dev(hostdata->dev);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/*
 	 * Ensure the command buffer is flushed to memory before handing it
@@ -219,6 +223,8 @@ static int ibmvscsi_send_crq(struct ibmvscsi_host_data *hostdata,
 	 */
 	mb();
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	return plpar_hcall_norets(H_SEND_CRQ, vdev->unit_address, word1, word2);
 }
 
@@ -811,11 +817,15 @@ static void purge_requests(struct ibmvscsi_host_data *hostdata, int error_code)
 			if (evt->cmnd_done)
 				evt->cmnd_done(evt->cmnd);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		} else if (evt->done)
 =======
 		} else if (evt->done && evt->crq.format != VIOSRP_MAD_FORMAT &&
 			   evt->iu.srp.login_req.opcode != SRP_LOGIN_REQ)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		} else if (evt->done)
+>>>>>>> 2617302... source
 			evt->done(evt);
 		free_event_struct(&evt->hostdata->pool, evt);
 		spin_lock_irqsave(hostdata->host->host_lock, flags);

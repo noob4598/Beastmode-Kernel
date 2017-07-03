@@ -571,6 +571,7 @@ vcpu	.req	r0		@ vcpu pointer always in r0
 
 /* Configures the HCPTR (Hyp Coprocessor Trap Register) on entry/return
 <<<<<<< HEAD
+<<<<<<< HEAD
  * (hardware reset value is 0). Keep previous value in r2. */
 .macro set_hcptr operation, mask
 =======
@@ -582,6 +583,10 @@ vcpu	.req	r0		@ vcpu pointer always in r0
  */
 .macro set_hcptr operation, mask, label = none
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+ * (hardware reset value is 0). Keep previous value in r2. */
+.macro set_hcptr operation, mask
+>>>>>>> 2617302... source
 	mrc	p15, 4, r2, c1, c1, 2
 	ldr	r3, =\mask
 	.if \operation == vmentry
@@ -590,6 +595,7 @@ vcpu	.req	r0		@ vcpu pointer always in r0
 	bic	r3, r2, r3		@ Don't trap defined coproc-accesses
 	.endif
 	mcr	p15, 4, r3, c1, c1, 2
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 	.if \operation != vmentry
@@ -604,6 +610,8 @@ vcpu	.req	r0		@ vcpu pointer always in r0
 1:
 	.endif
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 .endm
 
 /* Configures the HDCR (Hyp Debug Configuration Register) on entry/return

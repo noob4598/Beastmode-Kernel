@@ -133,6 +133,7 @@ static int max77804k_haptic_remove(struct platform_device *pdev)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 static void max77804k_haptic_shutdown(struct device *dev)
 {
@@ -148,6 +149,8 @@ static void max77804k_haptic_shutdown(struct device *dev)
 }
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 static int max77804k_haptic_suspend(struct platform_device *pdev,
 			pm_message_t state)
 {
@@ -167,9 +170,12 @@ static struct platform_driver max77804k_haptic_driver = {
 		.name	= "max77804k-haptic",
 		.owner	= THIS_MODULE,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		.shutdown = max77804k_haptic_shutdown,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	},
 };
 

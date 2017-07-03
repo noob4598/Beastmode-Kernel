@@ -2436,10 +2436,14 @@ static void nfs4_xdr_enc_getacl(struct rpc_rqst *req, struct xdr_stream *xdr,
 	encode_sequence(xdr, &args->seq_args, &hdr);
 	encode_putfh(xdr, args->fh, &hdr);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	replen = hdr.replen + op_decode_hdr_maxsz + 1;
 =======
 	replen = hdr.replen + op_decode_hdr_maxsz;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	replen = hdr.replen + op_decode_hdr_maxsz + 1;
+>>>>>>> 2617302... source
 	encode_getattr_two(xdr, FATTR4_WORD0_ACL, 0, &hdr);
 
 	xdr_inline_pages(&req->rq_rcv_buf, replen << 2,

@@ -33,10 +33,13 @@ Currently, these files are in /proc/sys/fs:
 - overflowuid
 - overflowgid
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 - pipe-user-pages-hard
 - pipe-user-pages-soft
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 - protected_hardlinks
 - protected_symlinks
 - suid_dumpable
@@ -165,6 +168,7 @@ The default is 65534.
 ==============================================================
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 pipe-user-pages-hard:
 
@@ -188,6 +192,8 @@ applied.
 ==============================================================
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 protected_hardlinks:
 
 A long-standing class of security issues is the hardlink-based

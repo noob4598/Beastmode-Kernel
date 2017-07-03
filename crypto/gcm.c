@@ -110,10 +110,14 @@ static int crypto_gcm_setkey(struct crypto_aead *aead, const u8 *key,
 	struct {
 		be128 hash;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		u8 iv[8];
 =======
 		u8 iv[16];
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		u8 iv[8];
+>>>>>>> 2617302... source
 
 		struct crypto_gcm_setkey_result result;
 
@@ -587,10 +591,14 @@ static int crypto_gcm_verify(struct aead_request *req,
 	crypto_xor(auth_tag, iauth_tag, 16);
 	scatterwalk_map_and_copy(iauth_tag, req->src, cryptlen, authsize, 0);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return memcmp(iauth_tag, auth_tag, authsize) ? -EBADMSG : 0;
 =======
 	return crypto_memneq(iauth_tag, auth_tag, authsize) ? -EBADMSG : 0;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	return memcmp(iauth_tag, auth_tag, authsize) ? -EBADMSG : 0;
+>>>>>>> 2617302... source
 }
 
 static void gcm_decrypt_done(struct crypto_async_request *areq, int err)
@@ -725,12 +733,16 @@ static struct crypto_instance *crypto_gcm_alloc_common(struct rtattr **tb,
 	ghash_alg = crypto_find_alg(ghash_name, &crypto_ahash_type,
 				    CRYPTO_ALG_TYPE_HASH,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				    CRYPTO_ALG_TYPE_AHASH_MASK);
 =======
 				    CRYPTO_ALG_TYPE_AHASH_MASK |
 				    crypto_requires_sync(algt->type,
 							 algt->mask));
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+				    CRYPTO_ALG_TYPE_AHASH_MASK);
+>>>>>>> 2617302... source
 	if (IS_ERR(ghash_alg))
 		return ERR_CAST(ghash_alg);
 
@@ -1188,11 +1200,14 @@ static struct aead_request *crypto_rfc4543_crypt(struct aead_request *req,
 	aead_request_set_callback(subreq, req->base.flags, crypto_rfc4543_done,
 				  req);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (!enc)
 		aead_request_set_callback(subreq, req->base.flags,
 					  req->base.complete, req->base.data);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	aead_request_set_crypt(subreq, cipher, cipher, enc ? 0 : authsize, iv);
 	aead_request_set_assoc(subreq, assoc, assoclen);
 
@@ -1462,6 +1477,7 @@ MODULE_LICENSE("GPL");
 MODULE_DESCRIPTION("Galois/Counter Mode");
 MODULE_AUTHOR("Mikko Herranen <mh1@iki.fi>");
 <<<<<<< HEAD
+<<<<<<< HEAD
 MODULE_ALIAS("gcm_base");
 MODULE_ALIAS("rfc4106");
 MODULE_ALIAS("rfc4543");
@@ -1471,3 +1487,8 @@ MODULE_ALIAS_CRYPTO("rfc4106");
 MODULE_ALIAS_CRYPTO("rfc4543");
 MODULE_ALIAS_CRYPTO("gcm");
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+MODULE_ALIAS("gcm_base");
+MODULE_ALIAS("rfc4106");
+MODULE_ALIAS("rfc4543");
+>>>>>>> 2617302... source

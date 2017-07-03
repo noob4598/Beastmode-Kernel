@@ -2635,6 +2635,7 @@ struct asm_amrwbplus_cfg {
 } __packed;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 struct asm_flac_cfg {
 	u32 sample_rate;
@@ -2650,6 +2651,8 @@ struct asm_flac_cfg {
 };
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 struct asm_softpause_params {
 	u32 enable;
 	u32 period;
@@ -2998,6 +3001,7 @@ struct asm_aac_enc_cfg_v2 {
 } __packed;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 struct asm_flac_fmt_blk_v2 {
 	struct apr_hdr hdr;
@@ -3067,6 +3071,8 @@ struct asm_flac_fmt_blk_v2 {
 } __packed;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 #define ASM_MEDIA_FMT_AMRNB_FS                  0x00010BEB
 
 /* Enumeration for 4.75 kbps AMR-NB Encoding mode. */
@@ -3472,9 +3478,12 @@ struct asm_amrwbplus_fmt_blk_v2 {
 #define ASM_MEDIA_FMT_DTS                    0x00010D88
 #define ASM_MEDIA_FMT_MP2                    0x00010DE9
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define ASM_MEDIA_FMT_FLAC                   0x00010C16
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 /* Media format ID for adaptive transform acoustic coding. This
  * ID is used by the #ASM_STREAM_CMD_OPEN_WRITE_COMPRESSED command

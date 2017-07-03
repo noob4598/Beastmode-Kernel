@@ -490,9 +490,12 @@ enum iwl_trans_state {
  * @hw_id_str: a string with info about HW ID. Set during transport allocation.
  * @pm_support: set to true in start_hw if link pm is supported
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
  * @ltr_enabled: set to true if the LTR is enabled
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
  * @dev_cmd_pool: pool for Tx cmd allocation - for internal use only.
  *	The user should use iwl_trans_{alloc,free}_tx_cmd.
  * @dev_cmd_headroom: room needed for the transport's private use before the
@@ -518,9 +521,12 @@ struct iwl_trans {
 
 	bool pm_support;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	bool ltr_enabled;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	/* The following fields are internal only */
 	struct kmem_cache *dev_cmd_pool;

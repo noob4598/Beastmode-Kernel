@@ -441,10 +441,14 @@ int jbd2_cleanup_journal_tail(journal_t *journal)
 
 	if (is_journal_aborted(journal))
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return 1;
 =======
 		return -EIO;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		return 1;
+>>>>>>> 2617302... source
 
 	if (!jbd2_journal_get_log_tail(journal, &first_tid, &blocknr))
 		return 1;
@@ -460,15 +464,21 @@ int jbd2_cleanup_journal_tail(journal_t *journal)
 	 */
 	if (journal->j_flags & JBD2_BARRIER)
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		blkdev_issue_flush(journal->j_fs_dev, GFP_KERNEL, NULL);
 
 	__jbd2_update_log_tail(journal, first_tid, blocknr);
 	return 0;
+<<<<<<< HEAD
 =======
 		blkdev_issue_flush(journal->j_fs_dev, GFP_NOFS, NULL);
 
 	return __jbd2_update_log_tail(journal, first_tid, blocknr);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 }
 
 

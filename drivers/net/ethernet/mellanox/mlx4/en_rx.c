@@ -351,6 +351,7 @@ int mlx4_en_activate_rx_rings(struct mlx4_en_priv *priv)
 
 		ring->stride = stride;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (ring->stride <= TXBB_SIZE)
 			ring->buf += TXBB_SIZE;
 =======
@@ -363,6 +364,10 @@ int mlx4_en_activate_rx_rings(struct mlx4_en_priv *priv)
 			ring->buf += TXBB_SIZE;
 		}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		if (ring->stride <= TXBB_SIZE)
+			ring->buf += TXBB_SIZE;
+>>>>>>> 2617302... source
 
 		ring->log_stride = ffs(ring->stride) - 1;
 		ring->buf_size = ring->size * ring->stride;

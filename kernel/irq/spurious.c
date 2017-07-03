@@ -266,10 +266,13 @@ try_misrouted_irq(unsigned int irq, struct irq_desc *desc,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define SPURIOUS_DEFERRED	0x80000000
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 void note_interrupt(unsigned int irq, struct irq_desc *desc,
 		    irqreturn_t action_ret)
 {
@@ -277,17 +280,24 @@ void note_interrupt(unsigned int irq, struct irq_desc *desc,
 		return;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	/* we get here again via the threaded handler */
 	if (action_ret == IRQ_WAKE_THREAD)
 		return;
 
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	if (bad_action_ret(action_ret)) {
 		report_bad_irq(irq, desc, action_ret);
 		return;
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 	/*
@@ -391,6 +401,8 @@ void note_interrupt(unsigned int irq, struct irq_desc *desc,
 	}
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	if (unlikely(action_ret == IRQ_NONE)) {
 		/*
 		 * If we are seeing only the odd spurious IRQ caused by

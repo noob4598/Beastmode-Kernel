@@ -494,10 +494,14 @@ static void slab_stats(struct slabinfo *s)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	if (s->cmpxchg_double_fail || s->cmpxchg_double_cpu_fail)
 		printf("\nCmpxchg_double Looping\n------------------------\n");
 		printf("Locked Cmpxchg Double redos   %lu\nUnlocked Cmpxchg Double redos %lu\n",
 			s->cmpxchg_double_fail, s->cmpxchg_double_cpu_fail);
+<<<<<<< HEAD
 =======
 	if (s->cmpxchg_double_fail || s->cmpxchg_double_cpu_fail) {
 		printf("\nCmpxchg_double Looping\n------------------------\n");
@@ -505,6 +509,8 @@ static void slab_stats(struct slabinfo *s)
 			s->cmpxchg_double_fail, s->cmpxchg_double_cpu_fail);
 	}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 }
 
 static void report(struct slabinfo *s)

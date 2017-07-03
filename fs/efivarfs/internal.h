@@ -16,11 +16,15 @@ extern const struct inode_operations efivarfs_dir_inode_operations;
 extern bool efivarfs_valid_name(const char *str, int len);
 extern struct inode *efivarfs_get_inode(struct super_block *sb,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			const struct inode *dir, int mode, dev_t dev);
 =======
 			const struct inode *dir, int mode, dev_t dev,
 			bool is_removable);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			const struct inode *dir, int mode, dev_t dev);
+>>>>>>> 2617302... source
 
 extern struct list_head efivarfs_list;
 

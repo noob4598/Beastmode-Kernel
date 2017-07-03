@@ -270,6 +270,7 @@ static int spidev_message(struct spidev_data *spidev,
 
 		total += k_tmp->len;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (total > bufsiz) {
 =======
 		/* Check total length of transfers.  Also check each
@@ -277,6 +278,9 @@ static int spidev_message(struct spidev_data *spidev,
 		 */
 		if (total > bufsiz || k_tmp->len > bufsiz) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		if (total > bufsiz) {
+>>>>>>> 2617302... source
 			status = -EMSGSIZE;
 			goto done;
 		}

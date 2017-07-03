@@ -668,9 +668,12 @@ static int msm_cpe_lsm_ioctl_shared(struct snd_pcm_substream *substream,
 				__func__);
 			kfree(session->conf_levels);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 			session->conf_levels = NULL;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 			return -ENOMEM;
 		}
 		session->snd_model_size = snd_model.data_size;
@@ -683,10 +686,13 @@ static int msm_cpe_lsm_ioctl_shared(struct snd_pcm_substream *substream,
 			kfree(session->conf_levels);
 			kfree(session->snd_model_data);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 			session->conf_levels = NULL;
 			session->snd_model_data = NULL;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 			return -EFAULT;
 		}
 
@@ -699,10 +705,13 @@ static int msm_cpe_lsm_ioctl_shared(struct snd_pcm_substream *substream,
 			kfree(session->snd_model_data);
 			kfree(session->conf_levels);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 			session->snd_model_data = NULL;
 			session->conf_levels = NULL;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 			return rc;
 		}
 
@@ -717,10 +726,13 @@ static int msm_cpe_lsm_ioctl_shared(struct snd_pcm_substream *substream,
 			kfree(session->snd_model_data);
 			kfree(session->conf_levels);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 			session->snd_model_data = NULL;
 			session->conf_levels = NULL;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 			return rc;
 		}
 

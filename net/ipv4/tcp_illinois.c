@@ -24,9 +24,13 @@
 #define ALPHA_MAX	(10*ALPHA_SCALE)	/* 10.0 */
 #define ALPHA_BASE	ALPHA_SCALE		/* 1.0 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define U32_MAX		((u32)~0U)
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+#define U32_MAX		((u32)~0U)
+>>>>>>> 2617302... source
 #define RTT_MAX		(U32_MAX / ALPHA_MAX)	/* 3.3 secs */
 
 #define BETA_SHIFT	6

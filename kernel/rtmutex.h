@@ -25,6 +25,7 @@
 #define debug_rt_mutex_detect_deadlock(w,d)		(d)
 #define debug_rt_mutex_reset_waiter(w)			do { } while (0)
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 static inline void rt_mutex_print_deadlock(struct rt_mutex_waiter *w)
@@ -32,3 +33,5 @@ static inline void rt_mutex_print_deadlock(struct rt_mutex_waiter *w)
 	WARN(1, "rtmutex deadlock detected\n");
 }
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source

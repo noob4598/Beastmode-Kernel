@@ -904,6 +904,7 @@ static void read_send_work(struct work_struct *work)
 					 __func__, __LINE__, file_pos, count);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if(count<0) {
 		r = -EIO;
@@ -912,6 +913,8 @@ static void read_send_work(struct work_struct *work)
 		}
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	/* Zero Length Packet should be sent if the last trasfer
 	 * size is equals to the max packet size.
 	 */
@@ -1112,6 +1115,7 @@ static long  mtpg_ioctl(struct file *fd, unsigned int code, unsigned long arg)
 		printk(KERN_DEBUG "[%s]SET_SETUP_DATA size=%d line=[%d]\n",
 						 __func__, size, __LINE__);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 		if ( size > USB_PTPREQUEST_GETSTATUS_SIZE) {
@@ -1119,6 +1123,8 @@ static long  mtpg_ioctl(struct file *fd, unsigned int code, unsigned long arg)
 		}
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		memcpy(req->buf, buf, size);
 		req->zero = 0;
 		req->length = size;

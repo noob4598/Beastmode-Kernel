@@ -29,10 +29,14 @@ struct msm_pm_platform_data {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct msm_pm_platform_data msm_pm_sleep_modes[] = {
 =======
 static struct msm_pm_platform_data msm_pm_sleep_modes[] __refdata = {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+static struct msm_pm_platform_data msm_pm_sleep_modes[] = {
+>>>>>>> 2617302... source
 	[MSM_PM_MODE(0, MSM_PM_SLEEP_MODE_POWER_COLLAPSE_SUSPEND)] = {
 		.idle_supported = 0,
 		.suspend_supported = 1,
@@ -467,7 +471,11 @@ void msm_pm_retention_mode_enable(bool enable)
 	msm_pm_sleep_mode_enable(MSM_PM_SLEEP_MODE_RETENTION, enable);
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 EXPORT_SYMBOL(msm_pm_retention_mode_enable);
 =======
 EXPORT_SYMBOL(msm_pm_retention_mode_enable);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+EXPORT_SYMBOL(msm_pm_retention_mode_enable);
+>>>>>>> 2617302... source

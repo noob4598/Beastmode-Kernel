@@ -857,12 +857,17 @@ config SND_VIRTUOSO
 	help
 	  Say Y here to include support for sound cards based on the
 <<<<<<< HEAD
+<<<<<<< HEAD
 	  Asus AV66/AV100/AV200 chips, i.e., Xonar D1, DX, D2, D2X, DS,
 	  Essence ST (Deluxe), and Essence STX.
 =======
 	  Asus AV66/AV100/AV200 chips, i.e., Xonar D1, DX, D2, D2X, DS, DSX,
 	  Essence ST (Deluxe), and Essence STX (II).
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	  Asus AV66/AV100/AV200 chips, i.e., Xonar D1, DX, D2, D2X, DS,
+	  Essence ST (Deluxe), and Essence STX.
+>>>>>>> 2617302... source
 	  Support for the HDAV1.3 (Deluxe) and HDAV1.3 Slim is experimental;
 	  for the Xense, missing.
 

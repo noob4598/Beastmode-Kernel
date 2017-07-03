@@ -241,6 +241,7 @@ struct name_list {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 struct nfs4_dir_ctx {
 	struct dir_context ctx;
@@ -248,15 +249,21 @@ struct nfs4_dir_ctx {
 };
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 static int
 nfsd4_build_namelist(void *arg, const char *name, int namlen,
 		loff_t offset, u64 ino, unsigned int d_type)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct list_head *names = arg;
 =======
 	struct nfs4_dir_ctx *ctx = arg;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	struct list_head *names = arg;
+>>>>>>> 2617302... source
 	struct name_list *entry;
 
 	if (namlen != HEXDIR_LEN - 1)
@@ -267,10 +274,14 @@ nfsd4_build_namelist(void *arg, const char *name, int namlen,
 	memcpy(entry->name, name, HEXDIR_LEN - 1);
 	entry->name[HEXDIR_LEN - 1] = '\0';
 <<<<<<< HEAD
+<<<<<<< HEAD
 	list_add(&entry->list, names);
 =======
 	list_add(&entry->list, &ctx->names);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	list_add(&entry->list, names);
+>>>>>>> 2617302... source
 	return 0;
 }
 
@@ -280,6 +291,7 @@ nfsd4_list_rec_dir(recdir_func *f, struct nfsd_net *nn)
 	const struct cred *original_cred;
 	struct dentry *dir = nn->rec_file->f_path.dentry;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	LIST_HEAD(names);
 =======
 	struct nfs4_dir_ctx ctx = {
@@ -287,6 +299,9 @@ nfsd4_list_rec_dir(recdir_func *f, struct nfsd_net *nn)
 		.names = LIST_HEAD_INIT(ctx.names)
 	};
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	LIST_HEAD(names);
+>>>>>>> 2617302... source
 	int status;
 
 	status = nfs4_save_creds(&original_cred);
@@ -300,11 +315,15 @@ nfsd4_list_rec_dir(recdir_func *f, struct nfsd_net *nn)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	status = vfs_readdir(nn->rec_file, nfsd4_build_namelist, &names);
 	mutex_lock_nested(&dir->d_inode->i_mutex, I_MUTEX_PARENT);
 	while (!list_empty(&names)) {
 		struct name_list *entry;
 		entry = list_entry(names.next, struct name_list, list);
+<<<<<<< HEAD
 =======
 	status = iterate_dir(nn->rec_file, &ctx.ctx);
 	mutex_lock_nested(&dir->d_inode->i_mutex, I_MUTEX_PARENT);
@@ -312,6 +331,8 @@ nfsd4_list_rec_dir(recdir_func *f, struct nfsd_net *nn)
 		struct name_list *entry;
 		entry = list_entry(ctx.names.next, struct name_list, list);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		if (!status) {
 			struct dentry *dentry;
 			dentry = lookup_one_len(entry->name, dir, HEXDIR_LEN-1);

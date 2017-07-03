@@ -16,10 +16,14 @@
 
 #define F2FS_SUPER_OFFSET		1024	/* byte-size offset */
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 #define F2FS_LOG_SECTOR_SIZE		9	/* 9 bits for 512 byte */
 #define F2FS_LOG_SECTORS_PER_BLOCK	3	/* 4KB: F2FS_BLKSIZE */
 #define F2FS_BLKSIZE			4096	/* support only 4KB block */
 #define F2FS_MAX_EXTENSION		64	/* # of extension entries */
+<<<<<<< HEAD
 =======
 #define F2FS_MIN_LOG_SECTOR_SIZE	9	/* 9 bits for 512 bytes */
 #define F2FS_MAX_LOG_SECTOR_SIZE	12	/* 12 bits for 4096 bytes */
@@ -29,10 +33,13 @@
 #define F2FS_MAX_EXTENSION		64	/* # of extension entries */
 #define F2FS_BLK_ALIGN(x)	(((x) + F2FS_BLKSIZE - 1) >> F2FS_BLKSIZE_BITS)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 #define NULL_ADDR		((block_t)0)	/* used as block_t addresses */
 #define NEW_ADDR		((block_t)-1)	/* used as block_t addresses */
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 #define F2FS_BYTES_TO_BLK(bytes)	((bytes) >> F2FS_BLKSIZE_BITS)
@@ -42,10 +49,13 @@
 #define F2FS_RESERVED_NODE_NUM		3
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 #define F2FS_ROOT_INO(sbi)	(sbi->root_ino_num)
 #define F2FS_NODE_INO(sbi)	(sbi->node_ino_num)
 #define F2FS_META_INO(sbi)	(sbi->meta_ino_num)
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /* This flag is used by node and meta inodes, and by recovery */
 #define GFP_F2FS_ZERO	(GFP_NOFS | __GFP_ZERO)
@@ -60,6 +70,10 @@
 #define GFP_F2FS_ZERO		(GFP_NOFS | __GFP_ZERO)
 #define GFP_F2FS_HIGH_ZERO	(GFP_NOFS | __GFP_ZERO | __GFP_HIGHMEM)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+/* This flag is used by node and meta inodes, and by recovery */
+#define GFP_F2FS_ZERO	(GFP_NOFS | __GFP_ZERO)
+>>>>>>> 2617302... source
 
 /*
  * For further optimization on multi-head logs, on-disk layout supports maximum
@@ -71,6 +85,7 @@
 #define MAX_ACTIVE_NODE_LOGS	8
 #define MAX_ACTIVE_DATA_LOGS	8
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /*
  * For superblock
@@ -90,6 +105,11 @@ struct f2fs_device {
 } __packed;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+/*
+ * For superblock
+ */
+>>>>>>> 2617302... source
 struct f2fs_super_block {
 	__le32 magic;			/* Magic Number */
 	__le16 major_ver;		/* Major Version */
@@ -120,6 +140,7 @@ struct f2fs_super_block {
 	__le32 meta_ino;		/* meta inode number */
 	__u8 uuid[16];			/* 128-bit uuid for volume */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	__le16 volume_name[512];	/* volume name */
 	__le32 extension_count;		/* # of extensions below */
 	__u8 extension_list[F2FS_MAX_EXTENSION][8];	/* extension array */
@@ -136,11 +157,17 @@ struct f2fs_super_block {
 	struct f2fs_device devs[MAX_DEVICES];	/* device list */
 	__u8 reserved[327];		/* valid reserved region */
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	__le16 volume_name[512];	/* volume name */
+	__le32 extension_count;		/* # of extensions below */
+	__u8 extension_list[F2FS_MAX_EXTENSION][8];	/* extension array */
+>>>>>>> 2617302... source
 } __packed;
 
 /*
  * For checkpoint
  */
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 #define CP_NAT_BITS_FLAG	0x00000080
@@ -148,16 +175,21 @@ struct f2fs_super_block {
 #define CP_FASTBOOT_FLAG	0x00000020
 #define CP_FSCK_FLAG		0x00000010
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 #define CP_ERROR_FLAG		0x00000008
 #define CP_COMPACT_SUM_FLAG	0x00000004
 #define CP_ORPHAN_PRESENT_FLAG	0x00000002
 #define CP_UMOUNT_FLAG		0x00000001
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define F2FS_CP_PACKS		2	/* # of checkpoint packs */
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 struct f2fs_checkpoint {
 	__le64 checkpoint_ver;		/* checkpoint block version number */
 	__le64 user_block_count;	/* # of user blocks */
@@ -195,11 +227,14 @@ struct f2fs_checkpoint {
 #define F2FS_ORPHANS_PER_BLOCK	1020
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define GET_ORPHAN_BLOCKS(n)	((n + F2FS_ORPHANS_PER_BLOCK - 1) / \
 					F2FS_ORPHANS_PER_BLOCK)
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 struct f2fs_orphan_block {
 	__le32 ino[F2FS_ORPHANS_PER_BLOCK];	/* inode numbers */
 	__le32 reserved;	/* reserved */
@@ -215,14 +250,19 @@ struct f2fs_orphan_block {
 struct f2fs_extent {
 	__le32 fofs;		/* start file offset of the extent */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	__le32 blk_addr;	/* start block address of the extent */
 =======
 	__le32 blk;		/* start block address of the extent */
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	__le32 blk_addr;	/* start block address of the extent */
+>>>>>>> 2617302... source
 	__le32 len;		/* lengh of the extent */
 } __packed;
 
 #define F2FS_NAME_LEN		255
+<<<<<<< HEAD
 <<<<<<< HEAD
 #define ADDRS_PER_INODE         923	/* Address Pointers in an Inode */
 #define ADDRS_PER_BLOCK         1018	/* Address Pointers in a Direct Block */
@@ -253,15 +293,24 @@ struct f2fs_extent {
 #define MAX_INLINE_DATA		(sizeof(__le32) * (DEF_ADDRS_PER_INODE - \
 						F2FS_INLINE_XATTR_ADDRS - 1))
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+#define ADDRS_PER_INODE         923	/* Address Pointers in an Inode */
+#define ADDRS_PER_BLOCK         1018	/* Address Pointers in a Direct Block */
+#define NIDS_PER_BLOCK          1018	/* Node IDs in an Indirect Block */
+>>>>>>> 2617302... source
 
 struct f2fs_inode {
 	__le16 i_mode;			/* file mode */
 	__u8 i_advise;			/* file hints */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	__u8 i_reserved;		/* reserved */
 =======
 	__u8 i_inline;			/* file inline flags */
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	__u8 i_reserved;		/* reserved */
+>>>>>>> 2617302... source
 	__le32 i_uid;			/* user ID */
 	__le32 i_gid;			/* group ID */
 	__le32 i_links;			/* links count */
@@ -281,6 +330,9 @@ struct f2fs_inode {
 	__le32 i_namelen;		/* file name length */
 	__u8 i_name[F2FS_NAME_LEN];	/* file name for SPOR */
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	__u8 i_reserved2;		/* for backward compatibility */
 
 	struct f2fs_extent i_ext;	/* caching a largest extent */
@@ -288,6 +340,7 @@ struct f2fs_inode {
 	__le32 i_addr[ADDRS_PER_INODE];	/* Pointers to data blocks */
 
 	__le32 i_nid[5];		/* direct(2), indirect(2),
+<<<<<<< HEAD
 =======
 	__u8 i_dir_level;		/* dentry_level for large dir */
 
@@ -297,6 +350,8 @@ struct f2fs_inode {
 
 	__le32 i_nid[DEF_NIDS_PER_INODE];	/* direct(2), indirect(2),
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 						double_indirect(1) node id */
 } __packed;
 
@@ -316,10 +371,13 @@ enum {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define OFFSET_BIT_MASK		(0x07)	/* (0x01 << OFFSET_BIT_SHIFT) - 1 */
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 struct node_footer {
 	__le32 nid;		/* node id */
 	__le32 ino;		/* inode nunmber */
@@ -342,11 +400,15 @@ struct f2fs_node {
  * For NAT entries
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define NAT_ENTRY_PER_BLOCK (PAGE_CACHE_SIZE / sizeof(struct f2fs_nat_entry))
 =======
 #define NAT_ENTRY_PER_BLOCK (PAGE_SIZE / sizeof(struct f2fs_nat_entry))
 #define NAT_ENTRY_BITMAP_SIZE	((NAT_ENTRY_PER_BLOCK + 7) / 8)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+#define NAT_ENTRY_PER_BLOCK (PAGE_CACHE_SIZE / sizeof(struct f2fs_nat_entry))
+>>>>>>> 2617302... source
 
 struct f2fs_nat_entry {
 	__u8 version;		/* latest version of cached nat entry */
@@ -430,10 +492,14 @@ struct f2fs_summary {
 struct summary_footer {
 	unsigned char entry_type;	/* SUM_TYPE_XXX */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	__u32 check_sum;		/* summary checksum */
 =======
 	__le32 check_sum;		/* summary checksum */
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	__u32 check_sum;		/* summary checksum */
+>>>>>>> 2617302... source
 } __packed;
 
 #define SUM_JOURNAL_SIZE	(F2FS_BLKSIZE - SUM_FOOTER_SIZE -\
@@ -447,6 +513,7 @@ struct summary_footer {
 #define SIT_JOURNAL_RESERVED	((SUM_JOURNAL_SIZE - 2) %\
 				sizeof(struct sit_journal_entry))
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 /* Reserved area should make size of f2fs_extra_info equals to
@@ -455,6 +522,8 @@ struct summary_footer {
 #define EXTRA_INFO_RESERVED	(SUM_JOURNAL_SIZE - 2 - 8)
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 /*
  * frequently updated NAT/SIT entries can be stored in the spare area in
  * summary blocks
@@ -485,6 +554,7 @@ struct sit_journal {
 } __packed;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* 4KB-sized summary block structure */
 struct f2fs_summary_block {
 	struct f2fs_summary entries[ENTRIES_IN_SUM];
@@ -496,16 +566,25 @@ struct f2fs_extra_info {
 
 struct f2fs_journal {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+/* 4KB-sized summary block structure */
+struct f2fs_summary_block {
+	struct f2fs_summary entries[ENTRIES_IN_SUM];
+>>>>>>> 2617302... source
 	union {
 		__le16 n_nats;
 		__le16 n_sits;
 	};
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	/* spare area is used by NAT or SIT journals */
 	union {
 		struct nat_journal nat_j;
 		struct sit_journal sit_j;
 	};
+<<<<<<< HEAD
 =======
 	/* spare area is used by NAT or SIT journals or extra info */
 	union {
@@ -520,6 +599,8 @@ struct f2fs_summary_block {
 	struct f2fs_summary entries[ENTRIES_IN_SUM];
 	struct f2fs_journal journal;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	struct summary_footer footer;
 } __packed;
 
@@ -540,12 +621,16 @@ typedef __le32	f2fs_hash_t;
 #define GET_DENTRY_SLOTS(x)	((x + F2FS_SLOT_LEN - 1) >> F2FS_SLOT_LEN_BITS)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 /* the number of dentry in a block */
 #define NR_DENTRY_IN_BLOCK	214
 
 /* MAX level for dir lookup */
 #define MAX_DIR_HASH_DEPTH	63
 
+<<<<<<< HEAD
 =======
 /* MAX level for dir lookup */
 #define MAX_DIR_HASH_DEPTH	63
@@ -567,6 +652,8 @@ typedef __le32	f2fs_hash_t;
  */
 #define NR_DENTRY_IN_BLOCK	214	/* the number of dentry in a block */
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 #define SIZE_OF_DIR_ENTRY	11	/* by byte */
 #define SIZE_OF_DENTRY_BITMAP	((NR_DENTRY_IN_BLOCK + BITS_PER_BYTE - 1) / \
 					BITS_PER_BYTE)
@@ -592,6 +679,7 @@ struct f2fs_dentry_block {
 } __packed;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 /* for inline dir */
 #define NR_INLINE_DENTRY	(MAX_INLINE_DATA * BITS_PER_BYTE / \
@@ -612,6 +700,8 @@ struct f2fs_inline_dentry {
 } __packed;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 /* file types used in inode_info->flags */
 enum {
 	F2FS_FT_UNKNOWN,
@@ -626,8 +716,11 @@ enum {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define S_SHIFT 12
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 #endif  /* _LINUX_F2FS_FS_H */

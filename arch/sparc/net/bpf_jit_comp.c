@@ -84,6 +84,7 @@ static void bpf_flush_icache(void *start_, void *end_)
 
 #ifdef CONFIG_SPARC64
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define BNE_PTR		(F2(0, 1) | CONDNE | (2 << 20))
 #else
 #define BNE_PTR		BNE
@@ -92,6 +93,11 @@ static void bpf_flush_icache(void *start_, void *end_)
 #else
 #define BE_PTR		BE
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+#define BNE_PTR		(F2(0, 1) | CONDNE | (2 << 20))
+#else
+#define BNE_PTR		BNE
+>>>>>>> 2617302... source
 #endif
 
 #define SETHI(K, REG)	\
@@ -607,10 +613,14 @@ void bpf_jit_compile(struct sk_filter *fp)
 				emit_skb_loadptr(dev, r_A);
 				emit_cmpi(r_A, 0);
 <<<<<<< HEAD
+<<<<<<< HEAD
 				emit_branch(BNE_PTR, cleanup_addr + 4);
 =======
 				emit_branch(BE_PTR, cleanup_addr + 4);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+				emit_branch(BNE_PTR, cleanup_addr + 4);
+>>>>>>> 2617302... source
 				emit_nop();
 				emit_load32(r_A, struct net_device, ifindex, r_A);
 				break;
@@ -624,10 +634,14 @@ void bpf_jit_compile(struct sk_filter *fp)
 				emit_skb_loadptr(dev, r_A);
 				emit_cmpi(r_A, 0);
 <<<<<<< HEAD
+<<<<<<< HEAD
 				emit_branch(BNE_PTR, cleanup_addr + 4);
 =======
 				emit_branch(BE_PTR, cleanup_addr + 4);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+				emit_branch(BNE_PTR, cleanup_addr + 4);
+>>>>>>> 2617302... source
 				emit_nop();
 				emit_load16(r_A, struct net_device, type, r_A);
 				break;

@@ -904,6 +904,7 @@ static int tda1004x_get_fe(struct dvb_frontend *fe)
 	struct dtv_frontend_properties *fe_params = &fe->dtv_property_cache;
 	struct tda1004x_state* state = fe->demodulator_priv;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	dprintk("%s\n", __func__);
 
@@ -921,6 +922,11 @@ static int tda1004x_get_fe(struct dvb_frontend *fe)
 		return 0;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+
+	dprintk("%s\n", __func__);
+
+>>>>>>> 2617302... source
 	// inversion status
 	fe_params->inversion = INVERSION_OFF;
 	if (tda1004x_read_byte(state, TDA1004X_CONFC1) & 0x20)

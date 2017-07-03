@@ -32,20 +32,30 @@
 #define MCP3021_SAR_SHIFT	2
 #define MCP3021_SAR_MASK	0x3ff
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 #define MCP3021_OUTPUT_RES	10	/* 10-bit resolution */
 #define MCP3021_OUTPUT_SCALE	4
 =======
 #define MCP3021_OUTPUT_RES	10	/* 10-bit resolution */
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+
+#define MCP3021_OUTPUT_RES	10	/* 10-bit resolution */
+#define MCP3021_OUTPUT_SCALE	4
+>>>>>>> 2617302... source
 
 #define MCP3221_SAR_SHIFT	0
 #define MCP3221_SAR_MASK	0xfff
 #define MCP3221_OUTPUT_RES	12	/* 12-bit resolution */
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define MCP3221_OUTPUT_SCALE	1
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+#define MCP3221_OUTPUT_SCALE	1
+>>>>>>> 2617302... source
 
 enum chips {
 	mcp3021,
@@ -62,9 +72,13 @@ struct mcp3021_data {
 	u16 sar_mask;
 	u8 output_res;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u8 output_scale;
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	u8 output_scale;
+>>>>>>> 2617302... source
 };
 
 static int mcp3021_read16(struct i2c_client *client)
@@ -95,6 +109,9 @@ static int mcp3021_read16(struct i2c_client *client)
 static inline u16 volts_from_reg(struct mcp3021_data *data, u16 val)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	if (val == 0)
 		return 0;
 
@@ -102,9 +119,12 @@ static inline u16 volts_from_reg(struct mcp3021_data *data, u16 val)
 
 	return val * DIV_ROUND_CLOSEST(data->vdd,
 			(1 << data->output_res) * data->output_scale);
+<<<<<<< HEAD
 =======
 	return DIV_ROUND_CLOSEST(data->vdd * val, 1 << data->output_res);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 }
 
 static ssize_t show_in_input(struct device *dev, struct device_attribute *attr,
@@ -147,9 +167,13 @@ static int mcp3021_probe(struct i2c_client *client,
 		data->sar_mask = MCP3021_SAR_MASK;
 		data->output_res = MCP3021_OUTPUT_RES;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		data->output_scale = MCP3021_OUTPUT_SCALE;
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		data->output_scale = MCP3021_OUTPUT_SCALE;
+>>>>>>> 2617302... source
 		break;
 
 	case mcp3221:
@@ -157,9 +181,13 @@ static int mcp3021_probe(struct i2c_client *client,
 		data->sar_mask = MCP3221_SAR_MASK;
 		data->output_res = MCP3221_OUTPUT_RES;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		data->output_scale = MCP3221_OUTPUT_SCALE;
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		data->output_scale = MCP3221_OUTPUT_SCALE;
+>>>>>>> 2617302... source
 		break;
 	}
 

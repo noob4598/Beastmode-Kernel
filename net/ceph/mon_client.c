@@ -153,10 +153,14 @@ static int __open_session(struct ceph_mon_client *monc)
 		ret = ceph_auth_build_hello(monc->auth,
 					    monc->m_auth->front.iov_base,
 <<<<<<< HEAD
+<<<<<<< HEAD
 					    monc->m_auth->front_max);
 =======
 					    monc->m_auth->front_alloc_len);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+					    monc->m_auth->front_max);
+>>>>>>> 2617302... source
 		__send_prepared_auth_request(monc, ret);
 	} else {
 		dout("open_session mon%d already open\n", monc->cur_mon);
@@ -201,10 +205,14 @@ static void __send_subscribe(struct ceph_mon_client *monc)
 
 		p = msg->front.iov_base;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		end = p + msg->front_max;
 =======
 		end = p + msg->front_alloc_len;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		end = p + msg->front_max;
+>>>>>>> 2617302... source
 
 		num = 1 + !!monc->want_next_osdmap + !!monc->want_mdsmap;
 		ceph_encode_32(&p, num);
@@ -906,10 +914,14 @@ static void handle_auth_reply(struct ceph_mon_client *monc,
 				     msg->front.iov_len,
 				     monc->m_auth->front.iov_base,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				     monc->m_auth->front_max);
 =======
 				     monc->m_auth->front_alloc_len);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+				     monc->m_auth->front_max);
+>>>>>>> 2617302... source
 	if (ret < 0) {
 		monc->client->auth_err = ret;
 		wake_up_all(&monc->client->auth_wq);
@@ -952,10 +964,14 @@ static int __validate_auth(struct ceph_mon_client *monc)
 
 	ret = ceph_build_auth(monc->auth, monc->m_auth->front.iov_base,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			      monc->m_auth->front_max);
 =======
 			      monc->m_auth->front_alloc_len);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			      monc->m_auth->front_max);
+>>>>>>> 2617302... source
 	if (ret <= 0)
 		return ret; /* either an error, or no need to authenticate */
 	__send_prepared_auth_request(monc, ret);
@@ -1058,6 +1074,7 @@ static struct ceph_msg *mon_alloc_msg(struct ceph_connection *con,
 		pr_info("alloc_msg unknown type %d\n", type);
 		*skip = 1;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	}
 =======
 	} else if (front_len > m->front_alloc_len) {
@@ -1070,6 +1087,9 @@ static struct ceph_msg *mon_alloc_msg(struct ceph_connection *con,
 	}
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	}
+>>>>>>> 2617302... source
 	return m;
 }
 

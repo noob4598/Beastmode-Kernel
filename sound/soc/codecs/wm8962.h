@@ -1955,12 +1955,15 @@
 #define WM8962_SPKOUTL_ENA_SHIFT                     6  /* SPKOUTL_ENA */
 #define WM8962_SPKOUTL_ENA_WIDTH                     1  /* SPKOUTL_ENA */
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define WM8962_DAC_MUTE_ALT                     0x0010  /* DAC_MUTE */
 #define WM8962_DAC_MUTE_ALT_MASK                0x0010  /* DAC_MUTE */
 #define WM8962_DAC_MUTE_ALT_SHIFT                    4  /* DAC_MUTE */
 #define WM8962_DAC_MUTE_ALT_WIDTH                    1  /* DAC_MUTE */
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 #define WM8962_SPKOUTL_PGA_MUTE                 0x0002  /* SPKOUTL_PGA_MUTE */
 #define WM8962_SPKOUTL_PGA_MUTE_MASK            0x0002  /* SPKOUTL_PGA_MUTE */
 #define WM8962_SPKOUTL_PGA_MUTE_SHIFT                1  /* SPKOUTL_PGA_MUTE */

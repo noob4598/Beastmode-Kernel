@@ -148,6 +148,9 @@ struct sctp_chunk *sctp_inq_pop(struct sctp_inq *queue)
 			/* Nothing to do. Next chunk in the packet, please. */
 			ch = (sctp_chunkhdr_t *) chunk->chunk_end;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 
 			/* Force chunk->skb->data to chunk->chunk_end.  */
 			skb_pull(chunk->skb,
@@ -160,11 +163,14 @@ struct sctp_chunk *sctp_inq_pop(struct sctp_inq *queue)
 				sctp_chunk_free(chunk);
 				chunk = queue->in_progress = NULL;
 			}
+<<<<<<< HEAD
 =======
 			/* Force chunk->skb->data to chunk->chunk_end.  */
 			skb_pull(chunk->skb, chunk->chunk_end - chunk->skb->data);
 			/* We are guaranteed to pull a SCTP header. */
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		}
 	}
 
@@ -201,6 +207,9 @@ struct sctp_chunk *sctp_inq_pop(struct sctp_inq *queue)
 	chunk->subh.v = NULL; /* Subheader is no longer valid.  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	if (chunk->chunk_end < skb_tail_pointer(chunk->skb)) {
 		/* This is not a singleton */
 		chunk->singleton = 0;
@@ -219,6 +228,7 @@ struct sctp_chunk *sctp_inq_pop(struct sctp_inq *queue)
 		chunk = queue->in_progress = NULL;
 
 		return NULL;
+<<<<<<< HEAD
 =======
 	if (chunk->chunk_end + sizeof(sctp_chunkhdr_t) <
 	    skb_tail_pointer(chunk->skb)) {
@@ -229,6 +239,8 @@ struct sctp_chunk *sctp_inq_pop(struct sctp_inq *queue)
 		chunk->pdiscard = 1;
 		chunk->chunk_end = skb_tail_pointer(chunk->skb);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	} else {
 		/* We are at the end of the packet, so mark the chunk
 		 * in case we need to send a SACK.

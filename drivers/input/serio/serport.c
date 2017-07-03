@@ -22,9 +22,12 @@
 #include <linux/serio.h>
 #include <linux/tty.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <linux/compat.h>
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 MODULE_AUTHOR("Vojtech Pavlik <vojtech@ucw.cz>");
 MODULE_DESCRIPTION("Input device TTY line discipline");
@@ -201,6 +204,7 @@ static ssize_t serport_ldisc_read(struct tty_struct * tty, struct file * file, u
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 static void serport_set_type(struct tty_struct *tty, unsigned long type)
 {
@@ -212,11 +216,16 @@ static void serport_set_type(struct tty_struct *tty, unsigned long type)
 }
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 /*
  * serport_ldisc_ioctl() allows to set the port protocol, and device ID
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 static int serport_ldisc_ioctl(struct tty_struct * tty, struct file * file, unsigned int cmd, unsigned long arg)
 {
 	struct serport *serport = (struct serport*) tty->disc_data;
@@ -230,6 +239,7 @@ static int serport_ldisc_ioctl(struct tty_struct * tty, struct file * file, unsi
 		serport->id.id	  = (type & 0x0000ff00) >> 8;
 		serport->id.extra = (type & 0x00ff0000) >> 16;
 
+<<<<<<< HEAD
 =======
 static int serport_ldisc_ioctl(struct tty_struct *tty, struct file *file,
 			       unsigned int cmd, unsigned long arg)
@@ -262,15 +272,20 @@ static long serport_ldisc_compat_ioctl(struct tty_struct *tty,
 
 		serport_set_type(tty, compat_type);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		return 0;
 	}
 
 	return -EINVAL;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #endif
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 static void serport_ldisc_write_wakeup(struct tty_struct * tty)
 {
@@ -295,11 +310,14 @@ static struct tty_ldisc_ops serport_ldisc = {
 	.read =		serport_ldisc_read,
 	.ioctl =	serport_ldisc_ioctl,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #ifdef CONFIG_COMPAT
 	.compat_ioctl =	serport_ldisc_compat_ioctl,
 #endif
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	.receive_buf =	serport_ldisc_receive,
 	.write_wakeup =	serport_ldisc_write_wakeup
 };

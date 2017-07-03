@@ -43,9 +43,12 @@
 #include <linux/of_platform.h>
 #include <linux/dma-mapping.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <linux/personality.h>
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 #include <asm/cputype.h>
 #include <asm/elf.h>
@@ -120,6 +123,7 @@ void __init early_print(const char *str, ...)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 struct cpuinfo_arm64 {
 	struct cpu	cpu;
@@ -135,6 +139,8 @@ void cpuinfo_store_cpu(void)
 }
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 bool arch_match_cpu_phys_id(int cpu, u64 phys_id)
 {
 	return phys_id == cpu_logical_map(cpu);
@@ -240,10 +246,13 @@ static void __init setup_machine_fdt(phys_addr_t dt_phys)
 	unsigned long dt_root;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	cpuinfo_store_cpu();
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	/* Check we have a non-NULL DT pointer */
 	if (!dt_phys) {
 		early_print("\n"
@@ -410,20 +419,29 @@ static int __init arm64_device_init(void)
 arch_initcall(arm64_device_init);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static DEFINE_PER_CPU(struct cpu, cpu_data);
 
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+static DEFINE_PER_CPU(struct cpu, cpu_data);
+
+>>>>>>> 2617302... source
 static int __init topology_init(void)
 {
 	int i;
 
 	for_each_possible_cpu(i) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		struct cpu *cpu = &per_cpu(cpu_data, i);
 =======
 		struct cpu *cpu = &per_cpu(cpu_data.cpu, i);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		struct cpu *cpu = &per_cpu(cpu_data, i);
+>>>>>>> 2617302... source
 		cpu->hotpluggable = 1;
 		register_cpu(cpu, i);
 	}
@@ -440,6 +458,9 @@ static const char *hwcap_str[] = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 static int c_show(struct seq_file *m, void *v)
 {
 	int i;
@@ -448,6 +469,7 @@ static int c_show(struct seq_file *m, void *v)
 		   cpu_name, read_cpuid_id() & 15, ELF_PLATFORM);
 
 	for_each_online_cpu(i) {
+<<<<<<< HEAD
 =======
 #ifdef CONFIG_COMPAT
 static const char *compat_hwcap_str[] = {
@@ -485,6 +507,8 @@ static int c_show(struct seq_file *m, void *v)
 		u32 midr = cpuinfo->reg_midr;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		/*
 		 * glibc reads /proc/cpuinfo to determine the number of
 		 * online processors, looking for lines beginning with
@@ -494,6 +518,9 @@ static int c_show(struct seq_file *m, void *v)
 		seq_printf(m, "processor\t: %d\n", i);
 #endif
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	}
 
 	/* dump out the processor features */
@@ -512,6 +539,7 @@ static int c_show(struct seq_file *m, void *v)
 	seq_puts(m, "\n");
 
 	seq_printf(m, "Hardware\t: %s\n", machine_name);
+<<<<<<< HEAD
 =======
 		seq_printf(m, "BogoMIPS\t: %lu.%02lu\n",
 			   loops_per_jiffy / (500000UL/HZ),
@@ -544,6 +572,8 @@ static int c_show(struct seq_file *m, void *v)
 		seq_printf(m, "CPU revision\t: %d\n\n", (midr & 0xf));
 	}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	return 0;
 }

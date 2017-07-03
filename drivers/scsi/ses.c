@@ -71,9 +71,12 @@ static int ses_recv_diag(struct scsi_device *sdev, int page_code,
 			 void *buf, int bufflen)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	int ret;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	unsigned char cmd[] = {
 		RECEIVE_DIAGNOSTIC,
 		1,		/* Set PCV bit */
@@ -82,6 +85,7 @@ static int ses_recv_diag(struct scsi_device *sdev, int page_code,
 		bufflen & 0xff,
 		0
 	};
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	return scsi_execute_req(sdev, cmd, DMA_FROM_DEVICE, buf, bufflen,
@@ -108,6 +112,11 @@ static int ses_recv_diag(struct scsi_device *sdev, int page_code,
 
 	return -EINVAL;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+
+	return scsi_execute_req(sdev, cmd, DMA_FROM_DEVICE, buf, bufflen,
+				NULL, SES_TIMEOUT, SES_RETRIES, NULL);
+>>>>>>> 2617302... source
 }
 
 static int ses_send_diag(struct scsi_device *sdev, int page_code,
@@ -464,6 +473,7 @@ static void ses_enclosure_data_process(struct enclosure_device *edev,
 				desc_ptr += len;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (addl_desc_ptr)
 =======
 			if (addl_desc_ptr &&
@@ -476,6 +486,9 @@ static void ses_enclosure_data_process(struct enclosure_device *edev,
 			     type_ptr[0] == ENCLOSURE_COMPONENT_SCSI_INITIATOR_PORT ||
 			     type_ptr[0] == ENCLOSURE_COMPONENT_CONTROLLER_ELECTRONICS))
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			if (addl_desc_ptr)
+>>>>>>> 2617302... source
 				addl_desc_ptr += addl_desc_ptr[1] + 2;
 
 		}

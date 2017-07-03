@@ -993,12 +993,17 @@ EXPORT_SYMBOL(start_tty);
 static void tty_update_time(struct timespec *time)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned long sec = get_seconds() & ~7;
 	if ((long)(sec - time->tv_sec) > 0)
 =======
 	unsigned long sec = get_seconds();
 	if (abs(sec - time->tv_sec) & ~7)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	unsigned long sec = get_seconds() & ~7;
+	if ((long)(sec - time->tv_sec) > 0)
+>>>>>>> 2617302... source
 		time->tv_sec = sec;
 }
 
@@ -1703,9 +1708,12 @@ int tty_release(struct inode *inode, struct file *filp)
 	int	idx;
 	char	buf[64];
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	long	timeout = 0;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	if (tty_paranoia_check(tty, inode, __func__))
 		return 0;
@@ -1791,6 +1799,7 @@ int tty_release(struct inode *inode, struct file *filp)
 		tty_unlock_pair(tty, o_tty);
 		mutex_unlock(&tty_mutex);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		schedule();
 =======
 		schedule_timeout_killable(timeout);
@@ -1799,6 +1808,9 @@ int tty_release(struct inode *inode, struct file *filp)
 		else
 			timeout = MAX_SCHEDULE_TIMEOUT;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		schedule();
+>>>>>>> 2617302... source
 	}
 
 	/*

@@ -169,6 +169,9 @@ module_exit(md5_mod_fini);
 MODULE_LICENSE("GPL");
 MODULE_DESCRIPTION("MD5 Message Digest Algorithm");
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 MODULE_ALIAS_CRYPTO("md5");
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source

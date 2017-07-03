@@ -87,6 +87,7 @@ static int alx_refill_rx_ring(struct alx_priv *alx, gfp_t gfp)
 		struct alx_rfd *rfd = &rxq->rfd[cur];
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		skb = __netdev_alloc_skb(alx->dev, alx->rxbuf_size, gfp);
 		if (!skb)
 			break;
@@ -100,6 +101,11 @@ static int alx_refill_rx_ring(struct alx_priv *alx, gfp_t gfp)
 			skb_reserve(skb, 64);
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		skb = __netdev_alloc_skb(alx->dev, alx->rxbuf_size, gfp);
+		if (!skb)
+			break;
+>>>>>>> 2617302... source
 		dma = dma_map_single(&alx->hw.pdev->dev,
 				     skb->data, alx->rxbuf_size,
 				     DMA_FROM_DEVICE);
@@ -196,16 +202,21 @@ static void alx_schedule_reset(struct alx_priv *alx)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool alx_clean_rx_irq(struct alx_priv *alx, int budget)
 =======
 static int alx_clean_rx_irq(struct alx_priv *alx, int budget)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+static bool alx_clean_rx_irq(struct alx_priv *alx, int budget)
+>>>>>>> 2617302... source
 {
 	struct alx_rx_queue *rxq = &alx->rxq;
 	struct alx_rrd *rrd;
 	struct alx_buffer *rxb;
 	struct sk_buff *skb;
 	u16 length, rfd_cleaned = 0;
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	while (budget > 0) {
@@ -214,6 +225,10 @@ static int alx_clean_rx_irq(struct alx_priv *alx, int budget)
 
 	while (work < budget) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+
+	while (budget > 0) {
+>>>>>>> 2617302... source
 		rrd = &rxq->rrd[rxq->rrd_read_idx];
 		if (!(rrd->word3 & cpu_to_le32(1 << RRD_UPDATED_SHIFT)))
 			break;
@@ -225,10 +240,14 @@ static int alx_clean_rx_irq(struct alx_priv *alx, int budget)
 				  RRD_NOR) != 1) {
 			alx_schedule_reset(alx);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			return 0;
 =======
 			return work;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			return 0;
+>>>>>>> 2617302... source
 		}
 
 		rxb = &rxq->bufs[rxq->read_idx];
@@ -269,10 +288,14 @@ static int alx_clean_rx_irq(struct alx_priv *alx, int budget)
 
 		napi_gro_receive(&alx->napi, skb);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		budget--;
 =======
 		work++;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		budget--;
+>>>>>>> 2617302... source
 
 next_pkt:
 		if (++rxq->read_idx == alx->rx_ringsz)
@@ -288,10 +311,14 @@ next_pkt:
 		alx_refill_rx_ring(alx, GFP_ATOMIC);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return budget > 0;
 =======
 	return work;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	return budget > 0;
+>>>>>>> 2617302... source
 }
 
 static int alx_poll(struct napi_struct *napi, int budget)
@@ -299,6 +326,9 @@ static int alx_poll(struct napi_struct *napi, int budget)
 	struct alx_priv *alx = container_of(napi, struct alx_priv, napi);
 	struct alx_hw *hw = &alx->hw;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	bool complete = true;
 	unsigned long flags;
 
@@ -307,6 +337,7 @@ static int alx_poll(struct napi_struct *napi, int budget)
 
 	if (!complete)
 		return 1;
+<<<<<<< HEAD
 =======
 	unsigned long flags;
 	bool tx_complete;
@@ -318,6 +349,8 @@ static int alx_poll(struct napi_struct *napi, int budget)
 	if (!tx_complete || work == budget)
 		return budget;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	napi_complete(&alx->napi);
 
@@ -330,10 +363,14 @@ static int alx_poll(struct napi_struct *napi, int budget)
 	alx_post_write(hw);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return 0;
 =======
 	return work;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	return 0;
+>>>>>>> 2617302... source
 }
 
 static irqreturn_t alx_intr_handle(struct alx_priv *alx, u32 intr)

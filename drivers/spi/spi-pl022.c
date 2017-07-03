@@ -509,18 +509,25 @@ static void giveback(struct pl022 *pl022)
 	pl022->cur_transfer = NULL;
 	pl022->cur_chip = NULL;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	spi_finalize_current_message(pl022->master);
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	spi_finalize_current_message(pl022->master);
+>>>>>>> 2617302... source
 
 	/* disable the SPI/SSP operation */
 	writew((readw(SSP_CR1(pl022->virtbase)) &
 		(~SSP_CR1_MASK_SSE)), SSP_CR1(pl022->virtbase));
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	spi_finalize_current_message(pl022->master);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 }
 
 /**
@@ -1088,10 +1095,14 @@ err_rxdesc:
 err_tx_sgmap:
 	dma_unmap_sg(rxchan->device->dev, pl022->sgt_rx.sgl,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		     pl022->sgt_tx.nents, DMA_FROM_DEVICE);
 =======
 		     pl022->sgt_rx.nents, DMA_FROM_DEVICE);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		     pl022->sgt_tx.nents, DMA_FROM_DEVICE);
+>>>>>>> 2617302... source
 err_rx_sgmap:
 	sg_free_table(&pl022->sgt_tx);
 err_alloc_tx_sg:

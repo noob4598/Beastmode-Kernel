@@ -245,11 +245,14 @@ static void uart_shutdown(struct tty_struct *tty, struct uart_state *state)
 		 * Turn off DTR and RTS early.
 		 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		if (uart_console(uport) && tty)
 			uport->cons->cflag = tty->termios.c_cflag;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		if (!tty || (tty->termios.c_cflag & HUPCL))
 			uart_clear_mctrl(uport, TIOCM_DTR | TIOCM_RTS);
 
@@ -366,10 +369,14 @@ uart_get_baud_rate(struct uart_port *port, struct ktermios *termios,
 		 * Die! Die! Die!
 		 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (baud == 38400)
 =======
 		if (try == 0 && baud == 38400)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		if (baud == 38400)
+>>>>>>> 2617302... source
 			baud = altbaud;
 
 		/*

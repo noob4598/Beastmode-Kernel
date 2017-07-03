@@ -203,11 +203,15 @@ static inline int expect_clash(const struct nf_conntrack_expect *a,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return nf_ct_tuple_mask_cmp(&a->tuple, &b->tuple, &intersect_mask);
 =======
 	return nf_ct_tuple_mask_cmp(&a->tuple, &b->tuple, &intersect_mask) &&
 	       nf_ct_zone(a->master) == nf_ct_zone(b->master);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	return nf_ct_tuple_mask_cmp(&a->tuple, &b->tuple, &intersect_mask);
+>>>>>>> 2617302... source
 }
 
 static inline int expect_matches(const struct nf_conntrack_expect *a,

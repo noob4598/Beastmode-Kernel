@@ -51,10 +51,14 @@ int inode_change_ok(const struct inode *inode, struct iattr *attr)
 	    (!uid_eq(current_fsuid(), inode->i_uid) ||
 	     !uid_eq(attr->ia_uid, inode->i_uid)) &&
 <<<<<<< HEAD
+<<<<<<< HEAD
 	     !capable_wrt_inode_uidgid(inode, CAP_CHOWN))
 =======
 	    !capable_wrt_inode_uidgid(inode, CAP_CHOWN))
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	     !capable_wrt_inode_uidgid(inode, CAP_CHOWN))
+>>>>>>> 2617302... source
 		return -EPERM;
 
 	/* Make sure caller can chgrp. */
@@ -172,10 +176,14 @@ void setattr_copy(struct inode *inode, const struct iattr *attr)
 EXPORT_SYMBOL(setattr_copy);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 int notify_change(struct dentry * dentry, struct iattr * attr)
 =======
 int notify_change2(struct vfsmount *mnt, struct dentry * dentry, struct iattr * attr)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+int notify_change(struct dentry * dentry, struct iattr * attr)
+>>>>>>> 2617302... source
 {
 	struct inode *inode = dentry->d_inode;
 	umode_t mode = inode->i_mode;
@@ -248,12 +256,16 @@ int notify_change2(struct vfsmount *mnt, struct dentry * dentry, struct iattr * 
 		return error;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (inode->i_op->setattr)
 =======
 	if (mnt && inode->i_op->setattr2)
 		error = inode->i_op->setattr2(mnt, dentry, attr);
 	else if (inode->i_op->setattr)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (inode->i_op->setattr)
+>>>>>>> 2617302... source
 		error = inode->i_op->setattr(dentry, attr);
 	else
 		error = simple_setattr(dentry, attr);
@@ -267,6 +279,7 @@ int notify_change2(struct vfsmount *mnt, struct dentry * dentry, struct iattr * 
 	return error;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 EXPORT_SYMBOL(notify_change2);
 
@@ -275,4 +288,6 @@ int notify_change(struct dentry * dentry, struct iattr * attr)
 	return notify_change2(NULL, dentry, attr);
 }
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 EXPORT_SYMBOL(notify_change);

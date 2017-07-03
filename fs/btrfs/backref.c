@@ -1229,11 +1229,15 @@ char *btrfs_ref_to_path(struct btrfs_root *fs_root, struct btrfs_path *path,
 					   name_off, name_len);
 		if (eb != eb_in) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			btrfs_tree_read_unlock_blocking(eb);
 =======
 			if (!path->skip_locking)
 				btrfs_tree_read_unlock_blocking(eb);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			btrfs_tree_read_unlock_blocking(eb);
+>>>>>>> 2617302... source
 			free_extent_buffer(eb);
 		}
 		ret = inode_ref_info(parent, 0, fs_root, path, &found_key);
@@ -1253,6 +1257,7 @@ char *btrfs_ref_to_path(struct btrfs_root *fs_root, struct btrfs_path *path,
 		/* make sure we can use eb after releasing the path */
 		if (eb != eb_in) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			atomic_inc(&eb->refs);
 			btrfs_tree_read_lock(eb);
 			btrfs_set_lock_blocking_rw(eb, BTRFS_READ_LOCK);
@@ -1262,6 +1267,11 @@ char *btrfs_ref_to_path(struct btrfs_root *fs_root, struct btrfs_path *path,
 			path->nodes[0] = NULL;
 			path->locks[0] = 0;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			atomic_inc(&eb->refs);
+			btrfs_tree_read_lock(eb);
+			btrfs_set_lock_blocking_rw(eb, BTRFS_READ_LOCK);
+>>>>>>> 2617302... source
 		}
 		btrfs_release_path(path);
 		iref = btrfs_item_ptr(eb, slot, struct btrfs_inode_ref);
@@ -1360,6 +1370,7 @@ int extent_from_logical(struct btrfs_fs_info *fs_info, u64 logical,
  */
 static int __get_extent_inline_ref(unsigned long *ptr, struct extent_buffer *eb,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				struct btrfs_extent_item *ei, u32 item_size,
 				struct btrfs_extent_inline_ref **out_eiref,
 				int *out_type)
@@ -1369,6 +1380,11 @@ static int __get_extent_inline_ref(unsigned long *ptr, struct extent_buffer *eb,
 				   struct btrfs_extent_inline_ref **out_eiref,
 				   int *out_type)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+				struct btrfs_extent_item *ei, u32 item_size,
+				struct btrfs_extent_inline_ref **out_eiref,
+				int *out_type)
+>>>>>>> 2617302... source
 {
 	unsigned long end;
 	u64 flags;
@@ -1378,6 +1394,7 @@ static int __get_extent_inline_ref(unsigned long *ptr, struct extent_buffer *eb,
 		/* first call */
 		flags = btrfs_extent_flags(eb, ei);
 		if (flags & BTRFS_EXTENT_FLAG_TREE_BLOCK) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 			info = (struct btrfs_tree_block_info *)(ei + 1);
 			*out_eiref =
@@ -1394,24 +1411,37 @@ static int __get_extent_inline_ref(unsigned long *ptr, struct extent_buffer *eb,
 				   (struct btrfs_extent_inline_ref *)(info + 1);
 			}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			info = (struct btrfs_tree_block_info *)(ei + 1);
+			*out_eiref =
+				(struct btrfs_extent_inline_ref *)(info + 1);
+>>>>>>> 2617302... source
 		} else {
 			*out_eiref = (struct btrfs_extent_inline_ref *)(ei + 1);
 		}
 		*ptr = (unsigned long)*out_eiref;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if ((void *)*ptr >= (void *)ei + item_size)
 =======
 		if ((unsigned long)(*ptr) >= (unsigned long)ei + item_size)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		if ((void *)*ptr >= (void *)ei + item_size)
+>>>>>>> 2617302... source
 			return -ENOENT;
 	}
 
 	end = (unsigned long)ei + item_size;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	*out_eiref = (struct btrfs_extent_inline_ref *)*ptr;
 =======
 	*out_eiref = (struct btrfs_extent_inline_ref *)(*ptr);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	*out_eiref = (struct btrfs_extent_inline_ref *)*ptr;
+>>>>>>> 2617302... source
 	*out_type = btrfs_extent_inline_ref_type(eb, *out_eiref);
 
 	*ptr += btrfs_extent_inline_ref_size(*out_type);
@@ -1431,12 +1461,17 @@ static int __get_extent_inline_ref(unsigned long *ptr, struct extent_buffer *eb,
  */
 int tree_backref_for_extent(unsigned long *ptr, struct extent_buffer *eb,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				struct btrfs_extent_item *ei, u32 item_size,
 				u64 *out_root, u8 *out_level)
 =======
 			    struct btrfs_key *key, struct btrfs_extent_item *ei,
 			    u32 item_size, u64 *out_root, u8 *out_level)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+				struct btrfs_extent_item *ei, u32 item_size,
+				u64 *out_root, u8 *out_level)
+>>>>>>> 2617302... source
 {
 	int ret;
 	int type;
@@ -1448,12 +1483,17 @@ int tree_backref_for_extent(unsigned long *ptr, struct extent_buffer *eb,
 
 	while (1) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ret = __get_extent_inline_ref(ptr, eb, ei, item_size,
 						&eiref, &type);
 =======
 		ret = __get_extent_inline_ref(ptr, eb, key, ei, item_size,
 					      &eiref, &type);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		ret = __get_extent_inline_ref(ptr, eb, ei, item_size,
+						&eiref, &type);
+>>>>>>> 2617302... source
 		if (ret < 0)
 			return ret;
 

@@ -4792,6 +4792,7 @@ static void sd_set_streamparm(struct gspca_dev *gspca_dev,
 	int fr, i;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	sd->framerate = tpf->denominator / tpf->numerator;
 =======
 	if (tpf->numerator == 0 || tpf->denominator == 0)
@@ -4800,6 +4801,9 @@ static void sd_set_streamparm(struct gspca_dev *gspca_dev,
 		sd->framerate = tpf->denominator / tpf->numerator;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	sd->framerate = tpf->denominator / tpf->numerator;
+>>>>>>> 2617302... source
 	if (gspca_dev->streaming)
 		setframerate(gspca_dev, v4l2_ctrl_g_ctrl(gspca_dev->exposure));
 

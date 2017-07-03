@@ -392,6 +392,7 @@ config HAVE_UNDERSCORE_SYMBOL_PREFIX
 	  module loading and assembly files need to know about this.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 config HAVE_ARCH_MMAP_RND_BITS
 	bool
@@ -462,6 +463,8 @@ config ARCH_MMAP_RND_COMPAT_BITS
 	  /proc/sys/vm/mmap_rnd_compat_bits tunable
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 #
 # ABI hall of shame
 #

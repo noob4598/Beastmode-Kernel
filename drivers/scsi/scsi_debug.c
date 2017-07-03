@@ -3505,9 +3505,12 @@ static void __exit scsi_debug_exit(void)
 	root_device_unregister(pseudo_primary);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	vfree(map_storep);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	if (dif_storep)
 		vfree(dif_storep);
 

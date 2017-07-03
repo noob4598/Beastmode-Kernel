@@ -60,11 +60,16 @@ void do_page_fault(struct pt_regs *regs, int write, unsigned long address,
 	siginfo_t info;
 	int fault, ret;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned int flags = FAULT_FLAG_ALLOW_RETRY | FAULT_FLAG_KILLABLE |
 				(write ? FAULT_FLAG_WRITE : 0);
 =======
 	unsigned int flags = FAULT_FLAG_ALLOW_RETRY | FAULT_FLAG_KILLABLE;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	unsigned int flags = FAULT_FLAG_ALLOW_RETRY | FAULT_FLAG_KILLABLE |
+				(write ? FAULT_FLAG_WRITE : 0);
+>>>>>>> 2617302... source
 
 	/*
 	 * We fault-in kernel-space virtual memory on-demand. The
@@ -93,10 +98,13 @@ void do_page_fault(struct pt_regs *regs, int write, unsigned long address,
 		goto no_context;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (user_mode(regs))
 		flags |= FAULT_FLAG_USER;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 retry:
 	down_read(&mm->mmap_sem);
 	vma = find_vma(mm, address);
@@ -125,18 +133,25 @@ good_area:
 		if (!(vma->vm_flags & VM_WRITE))
 			goto bad_area;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		flags |= FAULT_FLAG_WRITE;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	} else {
 		if (!(vma->vm_flags & (VM_READ | VM_EXEC)))
 			goto bad_area;
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 survive:
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+survive:
+>>>>>>> 2617302... source
 	/*
 	 * If for any reason at all we couldn't handle the fault,
 	 * make sure we exit gracefully rather than endlessly redo
@@ -176,10 +191,13 @@ survive:
 	if (fault & VM_FAULT_OOM)
 		goto out_of_memory;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	else if (fault & VM_FAULT_SIGSEGV)
 		goto bad_area;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	else if (fault & VM_FAULT_SIGBUS)
 		goto do_sigbus;
 
@@ -222,6 +240,9 @@ no_context:
 
 out_of_memory:
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	if (is_global_init(tsk)) {
 		yield();
 		goto survive;
@@ -230,6 +251,7 @@ out_of_memory:
 
 	if (user_mode(regs))
 		do_group_exit(SIGKILL);	/* This will never return */
+<<<<<<< HEAD
 =======
 	up_read(&mm->mmap_sem);
 
@@ -238,6 +260,8 @@ out_of_memory:
 		return;
 	}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	goto no_context;
 

@@ -68,6 +68,7 @@ static void xen_pcibk_control_isr(struct pci_dev *dev, int reset)
 
 	if (enable) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		/*
 		 * The MSI or MSI-X should not have an IRQ handler. Otherwise
@@ -77,6 +78,8 @@ static void xen_pcibk_control_isr(struct pci_dev *dev, int reset)
 			goto out;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		rc = request_irq(dev_data->irq,
 				xen_pcibk_guest_interrupt, IRQF_SHARED,
 				dev_data->irq_name, dev);
@@ -152,6 +155,7 @@ int xen_pcibk_enable_msi(struct xen_pcibk_device *pdev,
 		printk(KERN_DEBUG DRV_NAME ": %s: enable MSI\n", pci_name(dev));
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	status = pci_enable_msi(dev);
 =======
 	if (dev->msi_enabled)
@@ -161,6 +165,9 @@ int xen_pcibk_enable_msi(struct xen_pcibk_device *pdev,
 	else
 		status = pci_enable_msi(dev);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	status = pci_enable_msi(dev);
+>>>>>>> 2617302... source
 
 	if (status) {
 		pr_warn_ratelimited(DRV_NAME ": %s: error enabling MSI for guest %u: err %d\n",
@@ -190,6 +197,9 @@ int xen_pcibk_disable_msi(struct xen_pcibk_device *pdev,
 			  struct pci_dev *dev, struct xen_pci_op *op)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	struct xen_pcibk_dev_data *dev_data;
 
 	if (unlikely(verbose_request))
@@ -197,6 +207,7 @@ int xen_pcibk_disable_msi(struct xen_pcibk_device *pdev,
 		       pci_name(dev));
 	pci_disable_msi(dev);
 
+<<<<<<< HEAD
 =======
 	if (unlikely(verbose_request))
 		printk(KERN_DEBUG DRV_NAME ": %s: disable MSI\n",
@@ -212,16 +223,24 @@ int xen_pcibk_disable_msi(struct xen_pcibk_device *pdev,
 			dev_data->ack_intr = 1;
 	}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	op->value = dev->irq ? xen_pirq_from_irq(dev->irq) : 0;
 	if (unlikely(verbose_request))
 		printk(KERN_DEBUG DRV_NAME ": %s: MSI: %d\n", pci_name(dev),
 			op->value);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	dev_data = pci_get_drvdata(dev);
 	if (dev_data)
 		dev_data->ack_intr = 1;
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	dev_data = pci_get_drvdata(dev);
+	if (dev_data)
+		dev_data->ack_intr = 1;
+>>>>>>> 2617302... source
 	return 0;
 }
 
@@ -233,13 +252,17 @@ int xen_pcibk_enable_msix(struct xen_pcibk_device *pdev,
 	int i, result;
 	struct msix_entry *entries;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	u16 cmd;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	if (unlikely(verbose_request))
 		printk(KERN_DEBUG DRV_NAME ": %s: enable MSI-X\n",
 		       pci_name(dev));
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (op->value > SH_INFO_MAX_VEC)
 		return -EINVAL;
@@ -261,6 +284,11 @@ int xen_pcibk_enable_msix(struct xen_pcibk_device *pdev,
 		return -ENXIO;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (op->value > SH_INFO_MAX_VEC)
+		return -EINVAL;
+
+>>>>>>> 2617302... source
 	entries = kmalloc(op->value * sizeof(*entries), GFP_KERNEL);
 	if (entries == NULL)
 		return -ENOMEM;
@@ -303,12 +331,16 @@ int xen_pcibk_disable_msix(struct xen_pcibk_device *pdev,
 			   struct pci_dev *dev, struct xen_pci_op *op)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	struct xen_pcibk_dev_data *dev_data;
 	if (unlikely(verbose_request))
 		printk(KERN_DEBUG DRV_NAME ": %s: disable MSI-X\n",
 			pci_name(dev));
 	pci_disable_msix(dev);
 
+<<<<<<< HEAD
 =======
 	if (unlikely(verbose_request))
 		printk(KERN_DEBUG DRV_NAME ": %s: disable MSI-X\n",
@@ -324,6 +356,8 @@ int xen_pcibk_disable_msix(struct xen_pcibk_device *pdev,
 			dev_data->ack_intr = 1;
 	}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	/*
 	 * SR-IOV devices (which don't have any legacy IRQ) have
 	 * an undefined IRQ value of zero.
@@ -331,15 +365,21 @@ int xen_pcibk_disable_msix(struct xen_pcibk_device *pdev,
 	op->value = dev->irq ? xen_pirq_from_irq(dev->irq) : 0;
 	if (unlikely(verbose_request))
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		printk(KERN_DEBUG DRV_NAME ": %s: MSI-X: %d\n", pci_name(dev),
 			op->value);
 	dev_data = pci_get_drvdata(dev);
 	if (dev_data)
 		dev_data->ack_intr = 1;
+<<<<<<< HEAD
 =======
 		printk(KERN_DEBUG DRV_NAME ": %s: MSI-X: %d\n",
 		       pci_name(dev), op->value);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	return 0;
 }
 #endif
@@ -377,6 +417,7 @@ void xen_pcibk_do_op(struct work_struct *data)
 	struct pci_dev *dev;
 	struct xen_pcibk_dev_data *dev_data = NULL;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct xen_pci_op *op = &pdev->sh_info->op;
 	int test_intx = 0;
 
@@ -390,6 +431,11 @@ void xen_pcibk_do_op(struct work_struct *data)
 	*op = pdev->sh_info->op;
 	barrier();
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	struct xen_pci_op *op = &pdev->sh_info->op;
+	int test_intx = 0;
+
+>>>>>>> 2617302... source
 	dev = xen_pcibk_get_pci_dev(pdev, op->domain, op->bus, op->devfn);
 
 	if (dev == NULL)
@@ -416,9 +462,12 @@ void xen_pcibk_do_op(struct work_struct *data)
 			break;
 		case XEN_PCI_OP_enable_msix:
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 			nr = op->value;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 			op->err = xen_pcibk_enable_msix(pdev, dev, op);
 			break;
 		case XEN_PCI_OP_disable_msix:
@@ -436,6 +485,7 @@ void xen_pcibk_do_op(struct work_struct *data)
 			xen_pcibk_control_isr(dev, 0 /* no reset */);
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	pdev->sh_info->op.err = op->err;
 	pdev->sh_info->op.value = op->value;
@@ -449,6 +499,8 @@ void xen_pcibk_do_op(struct work_struct *data)
 	}
 #endif
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	/* Tell the driver domain that we're done. */
 	wmb();
 	clear_bit(_XEN_PCIF_active, (unsigned long *)&pdev->sh_info->flags);

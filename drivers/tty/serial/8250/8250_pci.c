@@ -56,9 +56,12 @@ struct serial_private {
 	void __iomem		*remapped_bar[PCI_NUM_BAR_RESOURCES];
 	struct pci_serial_quirk	*quirk;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	const struct pciserial_board *board;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	int			line[0];
 };
 
@@ -73,10 +76,14 @@ static void moan_device(const char *str, struct pci_dev *dev)
 	       "message (0x%04x,0x%04x,0x%04x,0x%04x), the\n"
 	       "manufacturer and name of serial board or\n"
 <<<<<<< HEAD
+<<<<<<< HEAD
 	       "modem board to rmk+serial@arm.linux.org.uk.\n",
 =======
 	       "modem board to <linux-serial@vger.kernel.org>.\n",
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	       "modem board to rmk+serial@arm.linux.org.uk.\n",
+>>>>>>> 2617302... source
 	       pci_name(dev), str, dev->vendor, dev->device,
 	       dev->subsystem_vendor, dev->subsystem_device);
 }
@@ -3383,9 +3390,12 @@ pciserial_init_ports(struct pci_dev *dev, const struct pciserial_board *board)
 	}
 	priv->nr = i;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	priv->board = board;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	return priv;
 
 err_deinit:
@@ -3397,10 +3407,14 @@ err_out:
 EXPORT_SYMBOL_GPL(pciserial_init_ports);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 void pciserial_remove_ports(struct serial_private *priv)
 =======
 void pciserial_detach_ports(struct serial_private *priv)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+void pciserial_remove_ports(struct serial_private *priv)
+>>>>>>> 2617302... source
 {
 	struct pci_serial_quirk *quirk;
 	int i;
@@ -3421,6 +3435,7 @@ void pciserial_detach_ports(struct serial_private *priv)
 	if (quirk->exit)
 		quirk->exit(priv->dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 }
@@ -3429,6 +3444,9 @@ void pciserial_remove_ports(struct serial_private *priv)
 {
 	pciserial_detach_ports(priv);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+
+>>>>>>> 2617302... source
 	kfree(priv);
 }
 EXPORT_SYMBOL_GPL(pciserial_remove_ports);
@@ -4968,10 +4986,14 @@ static pci_ers_result_t serial8250_io_error_detected(struct pci_dev *dev,
 
 	if (priv)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pciserial_suspend_ports(priv);
 =======
 		pciserial_detach_ports(priv);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		pciserial_suspend_ports(priv);
+>>>>>>> 2617302... source
 
 	pci_disable_device(dev);
 
@@ -4997,6 +5019,7 @@ static void serial8250_io_resume(struct pci_dev *dev)
 {
 	struct serial_private *priv = pci_get_drvdata(dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	if (priv)
 		pciserial_resume_ports(priv);
@@ -5014,6 +5037,11 @@ static void serial8250_io_resume(struct pci_dev *dev)
 		pci_set_drvdata(dev, priv);
 	}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+
+	if (priv)
+		pciserial_resume_ports(priv);
+>>>>>>> 2617302... source
 }
 
 static const struct pci_error_handlers serial8250_err_handler = {

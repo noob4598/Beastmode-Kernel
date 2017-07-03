@@ -189,10 +189,14 @@ static void
 clean_from_lists(struct nf_conn *ct)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_debug("clean_from_lists(%p)\n", ct);
 =======
 	pr_debug("clean_from_lists(%pK)\n", ct);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	pr_debug("clean_from_lists(%p)\n", ct);
+>>>>>>> 2617302... source
 	hlist_nulls_del_rcu(&ct->tuplehash[IP_CT_DIR_ORIGINAL].hnnode);
 	hlist_nulls_del_rcu(&ct->tuplehash[IP_CT_DIR_REPLY].hnnode);
 
@@ -208,10 +212,14 @@ destroy_conntrack(struct nf_conntrack *nfct)
 	struct nf_conntrack_l4proto *l4proto;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_debug("destroy_conntrack(%p)\n", ct);
 =======
 	pr_debug("destroy_conntrack(%pK)\n", ct);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	pr_debug("destroy_conntrack(%p)\n", ct);
+>>>>>>> 2617302... source
 	NF_CT_ASSERT(atomic_read(&nfct->use) == 0);
 	NF_CT_ASSERT(!timer_pending(&ct->timeout));
 
@@ -243,10 +251,14 @@ destroy_conntrack(struct nf_conntrack *nfct)
 		nf_ct_put(ct->master);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_debug("destroy_conntrack: returning ct=%p to slab\n", ct);
 =======
 	pr_debug("destroy_conntrack: returning ct=%pK to slab\n", ct);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	pr_debug("destroy_conntrack: returning ct=%p to slab\n", ct);
+>>>>>>> 2617302... source
 	nf_conntrack_free(ct);
 }
 
@@ -324,6 +336,7 @@ static void death_by_timeout(unsigned long ul_conntrack)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 static inline bool
 nf_ct_key_equal(struct nf_conntrack_tuple_hash *h,
@@ -341,6 +354,8 @@ nf_ct_key_equal(struct nf_conntrack_tuple_hash *h,
 }
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 /*
  * Warning :
  * - Caller must take a reference on returned object
@@ -363,11 +378,16 @@ ____nf_conntrack_find(struct net *net, u16 zone,
 begin:
 	hlist_nulls_for_each_entry_rcu(h, n, &net->ct.hash[bucket], hnnode) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (nf_ct_tuple_equal(tuple, &h->tuple) &&
 		    nf_ct_zone(nf_ct_tuplehash_to_ctrack(h)) == zone) {
 =======
 		if (nf_ct_key_equal(h, tuple, zone)) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		if (nf_ct_tuple_equal(tuple, &h->tuple) &&
+		    nf_ct_zone(nf_ct_tuplehash_to_ctrack(h)) == zone) {
+>>>>>>> 2617302... source
 			NF_CT_STAT_INC(net, found);
 			local_bh_enable();
 			return h;
@@ -415,11 +435,16 @@ begin:
 			h = NULL;
 		else {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (unlikely(!nf_ct_tuple_equal(tuple, &h->tuple) ||
 				     nf_ct_zone(ct) != zone)) {
 =======
 			if (unlikely(!nf_ct_key_equal(h, tuple, zone))) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			if (unlikely(!nf_ct_tuple_equal(tuple, &h->tuple) ||
+				     nf_ct_zone(ct) != zone)) {
+>>>>>>> 2617302... source
 				nf_ct_put(ct);
 				goto begin;
 			}
@@ -535,10 +560,14 @@ __nf_conntrack_confirm(struct sk_buff *skb)
 	   confirmed us. */
 	NF_CT_ASSERT(!nf_ct_is_confirmed(ct));
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_debug("Confirming conntrack %p\n", ct);
 =======
 	pr_debug("Confirming conntrack %pK\n", ct);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	pr_debug("Confirming conntrack %p\n", ct);
+>>>>>>> 2617302... source
 
 	spin_lock_bh(&nf_conntrack_lock);
 
@@ -870,10 +899,14 @@ init_conntrack(struct net *net, struct nf_conn *tmpl,
 	exp = nf_ct_find_expectation(net, zone, tuple);
 	if (exp) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_debug("conntrack: expectation arrives ct=%p exp=%p\n",
 =======
 		pr_debug("conntrack: expectation arrives ct=%pK exp=%pK\n",
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		pr_debug("conntrack: expectation arrives ct=%p exp=%p\n",
+>>>>>>> 2617302... source
 			 ct, exp);
 		/* Welcome, Mr. Bond.  We've been expecting you... */
 		__set_bit(IPS_EXPECTED_BIT, &ct->status);
@@ -964,6 +997,9 @@ resolve_normal_ct(struct net *net, struct nf_conn *tmpl,
 		/* Once we've had two way comms, always ESTABLISHED. */
 		if (test_bit(IPS_SEEN_REPLY_BIT, &ct->status)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 			pr_debug("nf_conntrack_in: normal packet for %p\n", ct);
 			*ctinfo = IP_CT_ESTABLISHED;
 		} else if (test_bit(IPS_EXPECTED_BIT, &ct->status)) {
@@ -972,6 +1008,7 @@ resolve_normal_ct(struct net *net, struct nf_conn *tmpl,
 			*ctinfo = IP_CT_RELATED;
 		} else {
 			pr_debug("nf_conntrack_in: new packet for %p\n", ct);
+<<<<<<< HEAD
 =======
 			pr_debug("nf_conntrack_in: normal packet for %pK\n", ct);
 			*ctinfo = IP_CT_ESTABLISHED;
@@ -982,6 +1019,8 @@ resolve_normal_ct(struct net *net, struct nf_conn *tmpl,
 		} else {
 			pr_debug("nf_conntrack_in: new packet for %pK\n", ct);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 			*ctinfo = IP_CT_NEW;
 		}
 		*set_reply = 0;
@@ -1124,10 +1163,14 @@ void nf_conntrack_alter_reply(struct nf_conn *ct,
 	NF_CT_ASSERT(!nf_ct_is_confirmed(ct));
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_debug("Altering reply tuple of %p to ", ct);
 =======
 	pr_debug("Altering reply tuple of %pK to ", ct);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	pr_debug("Altering reply tuple of %p to ", ct);
+>>>>>>> 2617302... source
 	nf_ct_dump_tuple(newreply);
 
 	ct->tuplehash[IP_CT_DIR_REPLY].tuple = *newreply;
@@ -1703,10 +1746,14 @@ int nf_conntrack_init_net(struct net *net)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	net->ct.slabname = kasprintf(GFP_KERNEL, "nf_conntrack_%p", net);
 =======
 	net->ct.slabname = kasprintf(GFP_KERNEL, "nf_conntrack_%pK", net);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	net->ct.slabname = kasprintf(GFP_KERNEL, "nf_conntrack_%p", net);
+>>>>>>> 2617302... source
 	if (!net->ct.slabname) {
 		ret = -ENOMEM;
 		goto err_slabname;

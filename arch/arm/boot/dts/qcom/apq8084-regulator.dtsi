@@ -472,10 +472,14 @@
 			reg-names = "acs", "mdd";
 			regulator-min-microvolt = <500000>;
 <<<<<<< HEAD
+<<<<<<< HEAD
 			regulator-max-microvolt = <1450000>;
 =======
 			regulator-max-microvolt = <1275000>;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			regulator-max-microvolt = <1450000>;
+>>>>>>> 2617302... source
 			qcom,headroom-voltage = <150000>;
 			qcom,retention-voltage = <675000>;
 			qcom,ldo-default-voltage = <750000>;
@@ -496,10 +500,14 @@
 			reg-names = "acs", "mdd";
 			regulator-min-microvolt = <500000>;
 <<<<<<< HEAD
+<<<<<<< HEAD
 			regulator-max-microvolt = <1450000>;
 =======
 			regulator-max-microvolt = <1275000>;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			regulator-max-microvolt = <1450000>;
+>>>>>>> 2617302... source
 			qcom,headroom-voltage = <150000>;
 			qcom,retention-voltage = <675000>;
 			qcom,ldo-default-voltage = <750000>;
@@ -520,10 +528,14 @@
 			reg-names = "acs", "mdd";
 			regulator-min-microvolt = <500000>;
 <<<<<<< HEAD
+<<<<<<< HEAD
 			regulator-max-microvolt = <1450000>;
 =======
 			regulator-max-microvolt = <1275000>;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			regulator-max-microvolt = <1450000>;
+>>>>>>> 2617302... source
 			qcom,headroom-voltage = <150000>;
 			qcom,retention-voltage = <675000>;
 			qcom,ldo-default-voltage = <750000>;
@@ -544,10 +556,14 @@
 			reg-names = "acs", "mdd";
 			regulator-min-microvolt = <500000>;
 <<<<<<< HEAD
+<<<<<<< HEAD
 			regulator-max-microvolt = <1450000>;
 =======
 			regulator-max-microvolt = <1275000>;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			regulator-max-microvolt = <1450000>;
+>>>>>>> 2617302... source
 			qcom,headroom-voltage = <150000>;
 			qcom,retention-voltage = <675000>;
 			qcom,ldo-default-voltage = <750000>;

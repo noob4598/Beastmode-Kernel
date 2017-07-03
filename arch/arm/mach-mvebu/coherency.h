@@ -20,9 +20,12 @@ int coherency_get_cpu_count(void);
 
 int set_cpu_coherent(int cpu_id, int smp_group_id);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 int coherency_available(void);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 int coherency_init(void);
 
 #endif	/* __MACH_370_XP_COHERENCY_H */

@@ -217,10 +217,14 @@ static void *m_start(struct seq_file *m, loff_t *pos)
 		return ERR_PTR(-ESRCH);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mm = mm_access(priv->task, PTRACE_MODE_READ);
 =======
 	mm = mm_access(priv->task, PTRACE_MODE_READ_FSCREDS);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	mm = mm_access(priv->task, PTRACE_MODE_READ);
+>>>>>>> 2617302... source
 	if (!mm || IS_ERR(mm)) {
 		put_task_struct(priv->task);
 		priv->task = NULL;

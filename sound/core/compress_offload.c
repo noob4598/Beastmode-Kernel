@@ -45,6 +45,7 @@
 #include <sound/compress_driver.h>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 /* struct snd_compr_codec_caps overflows the ioctl bit size for some
  * architectures, so we need to disable the relevant ioctls.
@@ -54,6 +55,8 @@
 #endif
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 /* TODO:
  * - add substream support for multiple devices in case of
  *	SND_DYNAMIC_MINORS is not used
@@ -71,20 +74,27 @@ struct snd_compr_file {
 /*
  * a note on stream states used:
 <<<<<<< HEAD
+<<<<<<< HEAD
  * we use follwing states in the compressed core
 =======
  * we use following states in the compressed core
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+ * we use follwing states in the compressed core
+>>>>>>> 2617302... source
  * SNDRV_PCM_STATE_OPEN: When stream has been opened.
  * SNDRV_PCM_STATE_SETUP: When stream has been initialized. This is done by
  *	calling SNDRV_COMPRESS_SET_PARAMS. running streams will come to this
  *	state at stop by calling SNDRV_COMPRESS_STOP, or at end of drain.
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
  * SNDRV_PCM_STATE_PREPARED: When snd_compr_write() has been called in
  *  SNDRV_PCM_STATE_SETUP state. SNDRV_COMPRESS_START can only be called in
  *  SNDRV_PCM_STATE_PREPARED state.
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
  * SNDRV_PCM_STATE_RUNNING: When stream has been started and is
  *	decoding/encoding and rendering/capturing data.
  * SNDRV_PCM_STATE_DRAINING: When stream is draining current data. This is done
@@ -299,9 +309,12 @@ static ssize_t snd_compr_write(struct file *f, const char __user *buf,
 	/* write is allowed when stream is running or has been steup */
 	if (stream->runtime->state != SNDRV_PCM_STATE_SETUP &&
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	    stream->runtime->state != SNDRV_PCM_STATE_PREPARED &&
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 			stream->runtime->state != SNDRV_PCM_STATE_RUNNING) {
 		mutex_unlock(&stream->device->lock);
 		return -EBADFD;
@@ -465,9 +478,12 @@ out:
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #ifndef COMPR_CODEC_CAPS_OVERFLOW
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 static int
 snd_compr_get_codec_caps(struct snd_compr_stream *stream, unsigned long arg)
 {
@@ -492,9 +508,12 @@ out:
 	return retval;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #endif /* !COMPR_CODEC_CAPS_OVERFLOW */
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 /* revisit this with snd_pcm_preallocate_xxx */
 static int snd_compr_allocate_buffer(struct snd_compr_stream *stream,
@@ -526,10 +545,14 @@ static int snd_compress_check_input(struct snd_compr_params *params)
 	/* first let's check the buffer parameter's */
 	if (params->buffer.fragment_size == 0 ||
 <<<<<<< HEAD
+<<<<<<< HEAD
 			params->buffer.fragments > SIZE_MAX / params->buffer.fragment_size)
 =======
 			params->buffer.fragments > INT_MAX / params->buffer.fragment_size)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			params->buffer.fragments > SIZE_MAX / params->buffer.fragment_size)
+>>>>>>> 2617302... source
 		return -EINVAL;
 
 	/* now codec parameters */
@@ -833,10 +856,14 @@ static int snd_compress_simple_ioctls(struct file *file,
 		break;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	case _IOC_NR(SNDRV_COMPRESS_GET_CODEC_CAPS):
 		retval = snd_compr_get_codec_caps(stream, arg);
 		break;
 
+<<<<<<< HEAD
 =======
 #ifndef COMPR_CODEC_CAPS_OVERFLOW
 	case _IOC_NR(SNDRV_COMPRESS_GET_CODEC_CAPS):
@@ -844,6 +871,8 @@ static int snd_compress_simple_ioctls(struct file *file,
 		break;
 #endif
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	case _IOC_NR(SNDRV_COMPRESS_TSTAMP):
 		retval = snd_compr_tstamp(stream, arg);

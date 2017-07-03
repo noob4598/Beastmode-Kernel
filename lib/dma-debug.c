@@ -446,6 +446,7 @@ static struct dma_debug_entry *dma_entry_alloc(void)
 
 	if (list_empty(&free_entries)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("DMA-API: debugging out of memory - disabling\n");
 		global_disable = true;
 		spin_unlock_irqrestore(&free_entries_lock, flags);
@@ -454,6 +455,11 @@ static struct dma_debug_entry *dma_entry_alloc(void)
 		spin_unlock_irqrestore(&free_entries_lock, flags);
 		pr_err("DMA-API: debugging out of memory - disabling\n");
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		pr_err("DMA-API: debugging out of memory - disabling\n");
+		global_disable = true;
+		spin_unlock_irqrestore(&free_entries_lock, flags);
+>>>>>>> 2617302... source
 		return NULL;
 	}
 
@@ -969,10 +975,14 @@ static inline bool overlap(void *addr, unsigned long len, void *start, void *end
 static void check_for_illegal_area(struct device *dev, void *addr, unsigned long len)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (overlap(addr, len, _text, _etext) ||
 =======
 	if (overlap(addr, len, _stext, _etext) ||
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (overlap(addr, len, _text, _etext) ||
+>>>>>>> 2617302... source
 	    overlap(addr, len, __start_rodata, __end_rodata))
 		err_printk(dev, NULL, "DMA-API: device driver maps memory from kernel text or rodata [addr=%p] [len=%lu]\n", addr, len);
 }

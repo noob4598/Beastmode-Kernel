@@ -16,9 +16,12 @@ struct clk_factors_config {
 	u8 pshift;
 	u8 pwidth;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	u8 n_start;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 };
 
 struct clk *clk_register_factors(struct device *dev, const char *name,

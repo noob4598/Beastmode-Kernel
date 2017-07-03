@@ -584,10 +584,13 @@ static inline void __free_one_page(struct page *page,
 
 	VM_BUG_ON(migratetype == -1);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (!is_migrate_isolate(migratetype))
 		__mod_zone_freepage_state(zone, 1 << order, migratetype);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	page_idx = page_to_pfn(page) & ((1 << MAX_ORDER) - 1);
 
@@ -713,6 +716,9 @@ static void free_pcppages_bulk(struct zone *zone, int count,
 			list_del(&page->lru);
 			mt = get_freepage_migratetype(page);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 			/* MIGRATE_MOVABLE list may include MIGRATE_RESERVEs */
 			__free_one_page(page, zone, 0, mt);
 			trace_mm_page_pcpu_drain(page, 0, mt);
@@ -721,6 +727,7 @@ static void free_pcppages_bulk(struct zone *zone, int count,
 				if (is_migrate_cma(mt))
 					__mod_zone_page_state(zone, NR_FREE_CMA_PAGES, 1);
 			}
+<<<<<<< HEAD
 =======
 			if (unlikely(has_isolate_pageblock(zone)))
 				mt = get_pageblock_migratetype(page);
@@ -728,6 +735,8 @@ static void free_pcppages_bulk(struct zone *zone, int count,
 			__free_one_page(page, zone, 0, mt);
 			trace_mm_page_pcpu_drain(page, 0, mt);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		} while (--to_free && --batch_free && !list_empty(list));
 	}
 	spin_unlock(&zone->lock);
@@ -740,6 +749,7 @@ static void free_one_page(struct zone *zone, struct page *page, int order,
 	zone->pages_scanned = 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	__free_one_page(page, zone, order, migratetype);
 	if (unlikely(!is_migrate_isolate(migratetype)))
 		__mod_zone_freepage_state(zone, 1 << order, migratetype);
@@ -750,6 +760,11 @@ static void free_one_page(struct zone *zone, struct page *page, int order,
 	}
 	__free_one_page(page, zone, order, migratetype);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	__free_one_page(page, zone, order, migratetype);
+	if (unlikely(!is_migrate_isolate(migratetype)))
+		__mod_zone_freepage_state(zone, 1 << order, migratetype);
+>>>>>>> 2617302... source
 	spin_unlock(&zone->lock);
 }
 
@@ -972,9 +987,12 @@ struct page *__rmqueue_smallest(struct zone *zone, unsigned int order,
 		area->nr_free--;
 		expand(zone, page, order, current_order, area, migratetype);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		set_freepage_migratetype(page, migratetype);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		return page;
 	}
 
@@ -1088,6 +1106,7 @@ static void change_pageblock_range(struct page *pageblock_page,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 /*
  * When we are falling back to another migratetype during allocation, try to
@@ -1131,6 +1150,8 @@ static void try_to_steal_freepages(struct zone *zone, struct page *page,
 }
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 /* Remove an element from the buddy allocator from the fallback list */
 static inline struct page *
 __rmqueue_fallback(struct zone *zone, int order, int start_migratetype)
@@ -1139,6 +1160,9 @@ __rmqueue_fallback(struct zone *zone, int order, int start_migratetype)
 	int current_order;
 	struct page *page;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	int migratetype, i;
 
 	/* Find the largest possible block of pages in the other list */
@@ -1146,6 +1170,7 @@ __rmqueue_fallback(struct zone *zone, int order, int start_migratetype)
 						--current_order) {
 		for (i = 0;; i++) {
 			migratetype = fallbacks[start_migratetype][i];
+<<<<<<< HEAD
 =======
 
 	/* Find the largest possible block of pages in the other list */
@@ -1157,6 +1182,8 @@ __rmqueue_fallback(struct zone *zone, int order, int start_migratetype)
 			int migratetype = fallbacks[start_migratetype][i];
 			int buddy_type = start_migratetype;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 			/* MIGRATE_RESERVE handled later if necessary */
 			if (migratetype == MIGRATE_RESERVE)
@@ -1171,6 +1198,9 @@ __rmqueue_fallback(struct zone *zone, int order, int start_migratetype)
 			area->nr_free--;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 			/*
 			 * If breaking a large block of pages, move all free
 			 * pages to the preferred allocation list. If falling
@@ -1198,6 +1228,7 @@ __rmqueue_fallback(struct zone *zone, int order, int start_migratetype)
 								start_migratetype);
 
 				migratetype = start_migratetype;
+<<<<<<< HEAD
 =======
 			if (!is_migrate_cma(migratetype)) {
 				try_to_steal_freepages(zone, page,
@@ -1212,6 +1243,8 @@ __rmqueue_fallback(struct zone *zone, int order, int start_migratetype)
 				 */
 				buddy_type = migratetype;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 			}
 
 			/* Remove the page from the freelists */
@@ -1219,6 +1252,9 @@ __rmqueue_fallback(struct zone *zone, int order, int start_migratetype)
 			rmv_page_order(page);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 			/* Take ownership for orders >= pageblock_order */
 			if (current_order >= pageblock_order &&
 			    !is_migrate_cma(migratetype))
@@ -1228,6 +1264,7 @@ __rmqueue_fallback(struct zone *zone, int order, int start_migratetype)
 			expand(zone, page, order, current_order, area,
 			       is_migrate_cma(migratetype)
 			     ? migratetype : start_migratetype);
+<<<<<<< HEAD
 =======
 			expand(zone, page, order, current_order, area,
 					buddy_type);
@@ -1242,6 +1279,8 @@ __rmqueue_fallback(struct zone *zone, int order, int start_migratetype)
 			 */
 			set_freepage_migratetype(page, buddy_type);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 			trace_mm_page_alloc_extfrag(page, order, current_order,
 				start_migratetype, migratetype);
@@ -1324,10 +1363,14 @@ static int rmqueue_bulk(struct zone *zone, unsigned int order,
 			int migratetype, int cold, int cma)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int mt = migratetype, i;
 =======
 	int i;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	int mt = migratetype, i;
+>>>>>>> 2617302... source
 
 	spin_lock(&zone->lock);
 	for (i = 0; i < count; ++i) {
@@ -1353,6 +1396,9 @@ static int rmqueue_bulk(struct zone *zone, unsigned int order,
 		else
 			list_add_tail(&page->lru, list);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		if (IS_ENABLED(CONFIG_CMA)) {
 			mt = get_pageblock_migratetype(page);
 			if (!is_migrate_cma(mt) && !is_migrate_isolate(mt))
@@ -1361,10 +1407,13 @@ static int rmqueue_bulk(struct zone *zone, unsigned int order,
 		set_freepage_migratetype(page, mt);
 		list = &page->lru;
 		if (is_migrate_cma(mt))
+<<<<<<< HEAD
 =======
 		list = &page->lru;
 		if (is_migrate_cma(get_freepage_migratetype(page)))
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 			__mod_zone_page_state(zone, NR_FREE_CMA_PAGES,
 					      -(1 << order));
 	}
@@ -1748,10 +1797,14 @@ again:
 			goto failed;
 		__mod_zone_freepage_state(zone, -(1 << order),
 <<<<<<< HEAD
+<<<<<<< HEAD
 					  get_pageblock_migratetype(page));
 =======
 					  get_freepage_migratetype(page));
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+					  get_pageblock_migratetype(page));
+>>>>>>> 2617302... source
 	}
 
 	__count_zone_vm_events(PGALLOC, zone, 1 << order);
@@ -2347,6 +2400,7 @@ __alloc_pages_may_oom(gfp_t gfp_mask, unsigned int order,
 
 	/*
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	 * PM-freezer should be notified that there might be an OOM killer on
 	 * its way to kill and wake somebody up. This is too early and we might
@@ -2357,6 +2411,8 @@ __alloc_pages_may_oom(gfp_t gfp_mask, unsigned int order,
 
 	/*
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	 * Go through the zonelist yet one more time, keep very high watermark
 	 * here, this is only to catch a parallel oom killing, we must fail if
 	 * we're still under heavy pressure.
@@ -2595,10 +2651,14 @@ gfp_to_alloc_flags(gfp_t gfp_mask)
 {
 	int alloc_flags = ALLOC_WMARK_MIN | ALLOC_CPUSET;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	const gfp_t wait = gfp_mask & __GFP_WAIT;
 =======
 	const bool atomic = !(gfp_mask & (__GFP_WAIT | __GFP_NO_KSWAPD));
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	const gfp_t wait = gfp_mask & __GFP_WAIT;
+>>>>>>> 2617302... source
 
 	/* __GFP_HIGH is assumed to be the same as ALLOC_HIGH to save a branch. */
 	BUILD_BUG_ON(__GFP_HIGH != (__force gfp_t) ALLOC_HIGH);
@@ -2608,6 +2668,9 @@ gfp_to_alloc_flags(gfp_t gfp_mask)
 	 * cannot run direct reclaim, or if the caller has realtime scheduling
 	 * policy or is asking for __GFP_HIGH memory.  GFP_ATOMIC requests will
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	 * set both ALLOC_HARDER (!wait) and ALLOC_HIGH (__GFP_HIGH).
 	 */
 	alloc_flags |= (__force int) (gfp_mask & __GFP_HIGH);
@@ -2622,6 +2685,7 @@ gfp_to_alloc_flags(gfp_t gfp_mask)
 		/*
 		 * Ignore cpuset if GFP_ATOMIC (!wait) rather than fail alloc.
 		 * See also cpuset_zone_allowed() comment in kernel/cpuset.c.
+<<<<<<< HEAD
 =======
 	 * set both ALLOC_HARDER (atomic == true) and ALLOC_HIGH (__GFP_HIGH).
 	 */
@@ -2638,6 +2702,8 @@ gfp_to_alloc_flags(gfp_t gfp_mask)
 		 * Ignore cpuset mems for GFP_ATOMIC rather than fail, see the
 		 * comment for __cpuset_node_allowed_softwall().
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		 */
 		alloc_flags &= ~ALLOC_CPUSET;
 	} else if (unlikely(rt_task(current)) && !in_interrupt())
@@ -5399,6 +5465,9 @@ void __init free_area_init_nodes(unsigned long *max_zone_pfn)
 	memset(arch_zone_highest_possible_pfn, 0,
 				sizeof(arch_zone_highest_possible_pfn));
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	arch_zone_lowest_possible_pfn[0] = find_min_pfn_with_active_regions();
 	arch_zone_highest_possible_pfn[0] = max_zone_pfn[0];
 	for (i = 1; i < MAX_NR_ZONES; i++) {
@@ -5408,6 +5477,7 @@ void __init free_area_init_nodes(unsigned long *max_zone_pfn)
 			arch_zone_highest_possible_pfn[i-1];
 		arch_zone_highest_possible_pfn[i] =
 			max(max_zone_pfn[i], arch_zone_lowest_possible_pfn[i]);
+<<<<<<< HEAD
 =======
 
 	start_pfn = find_min_pfn_with_active_regions();
@@ -5422,6 +5492,8 @@ void __init free_area_init_nodes(unsigned long *max_zone_pfn)
 
 		start_pfn = end_pfn;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	}
 	arch_zone_lowest_possible_pfn[ZONE_MOVABLE] = 0;
 	arch_zone_highest_possible_pfn[ZONE_MOVABLE] = 0;

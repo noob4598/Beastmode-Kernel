@@ -10,18 +10,24 @@
  */
 #include <linux/fs.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <linux/namei.h>
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 #include <linux/f2fs_fs.h>
 #include <linux/pagemap.h>
 #include <linux/sched.h>
 #include <linux/ctype.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <linux/dcache.h>
 #include <linux/namei.h>
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 #include "f2fs.h"
 #include "node.h"
@@ -32,6 +38,9 @@
 static struct inode *f2fs_new_inode(struct inode *dir, umode_t mode)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	struct super_block *sb = dir->i_sb;
 	struct f2fs_sb_info *sbi = F2FS_SB(sb);
 	nid_t ino;
@@ -65,6 +74,7 @@ static struct inode *f2fs_new_inode(struct inode *dir, umode_t mode)
 	inode->i_mode = mode;
 	inode->i_blocks = 0;
 	inode->i_mtime = inode->i_atime = inode->i_ctime = CURRENT_TIME;
+<<<<<<< HEAD
 =======
 	struct f2fs_sb_info *sbi = F2FS_I_SB(dir);
 	nid_t ino;
@@ -90,6 +100,8 @@ static struct inode *f2fs_new_inode(struct inode *dir, umode_t mode)
 	inode->i_blocks = 0;
 	inode->i_mtime = inode->i_atime = inode->i_ctime = current_time(inode);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	inode->i_generation = sbi->s_next_generation++;
 
 	err = insert_inode_locked(inode);
@@ -97,6 +109,9 @@ static struct inode *f2fs_new_inode(struct inode *dir, umode_t mode)
 		err = -EINVAL;
 		nid_free = true;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		goto out;
 	}
 	trace_f2fs_new_inode(inode, 0);
@@ -112,6 +127,7 @@ fail:
 	iput(inode);
 	if (nid_free)
 		alloc_nid_failed(sbi, ino);
+<<<<<<< HEAD
 =======
 		goto fail;
 	}
@@ -145,6 +161,8 @@ fail:
 		set_inode_flag(inode, FI_FREE_NID);
 	iput(inode);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	return ERR_PTR(err);
 }
 
@@ -153,6 +171,9 @@ static int is_multimedia_file(const unsigned char *s, const char *sub)
 	size_t slen = strlen(s);
 	size_t sublen = strlen(sub);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	int ret;
 
 	if (sublen > slen)
@@ -168,6 +189,7 @@ static int is_multimedia_file(const unsigned char *s, const char *sub)
 	}
 
 	return !ret;
+<<<<<<< HEAD
 =======
 	int i;
 
@@ -187,6 +209,8 @@ static int is_multimedia_file(const unsigned char *s, const char *sub)
 
 	return 0;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 }
 
 /*
@@ -211,6 +235,9 @@ static int f2fs_create(struct inode *dir, struct dentry *dentry, umode_t mode,
 						bool excl)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	struct super_block *sb = dir->i_sb;
 	struct f2fs_sb_info *sbi = F2FS_SB(sb);
 	struct inode *inode;
@@ -218,12 +245,15 @@ static int f2fs_create(struct inode *dir, struct dentry *dentry, umode_t mode,
 	int err, ilock;
 
 	f2fs_balance_fs(sbi);
+<<<<<<< HEAD
 =======
 	struct f2fs_sb_info *sbi = F2FS_I_SB(dir);
 	struct inode *inode;
 	nid_t ino = 0;
 	int err;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	inode = f2fs_new_inode(dir, mode);
 	if (IS_ERR(inode))
@@ -238,11 +268,15 @@ static int f2fs_create(struct inode *dir, struct dentry *dentry, umode_t mode,
 	ino = inode->i_ino;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	ilock = mutex_lock_op(sbi);
 	err = f2fs_add_link(dentry, inode);
 	mutex_unlock_op(sbi, ilock);
 	if (err)
 		goto out;
+<<<<<<< HEAD
 =======
 	f2fs_balance_fs(sbi, true);
 
@@ -252,12 +286,17 @@ static int f2fs_create(struct inode *dir, struct dentry *dentry, umode_t mode,
 		goto out;
 	f2fs_unlock_op(sbi);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	alloc_nid_done(sbi, ino);
 
 	d_instantiate(dentry, inode);
 	unlock_new_inode(inode);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	return 0;
 out:
 	clear_nlink(inode);
@@ -265,6 +304,7 @@ out:
 	make_bad_inode(inode);
 	iput(inode);
 	alloc_nid_failed(sbi, ino);
+<<<<<<< HEAD
 =======
 
 	if (IS_DIRSYNC(dir))
@@ -273,6 +313,8 @@ out:
 out:
 	handle_failed_inode(inode);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	return err;
 }
 
@@ -280,6 +322,9 @@ static int f2fs_link(struct dentry *old_dentry, struct inode *dir,
 		struct dentry *dentry)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	struct inode *inode = old_dentry->d_inode;
 	struct super_block *sb = dir->i_sb;
 	struct f2fs_sb_info *sbi = F2FS_SB(sb);
@@ -302,6 +347,7 @@ static int f2fs_link(struct dentry *old_dentry, struct inode *dir,
 out:
 	clear_inode_flag(F2FS_I(inode), FI_INC_LINK);
 	iput(inode);
+<<<<<<< HEAD
 =======
 	struct inode *inode = d_inode(old_dentry);
 	struct f2fs_sb_info *sbi = F2FS_I_SB(dir);
@@ -333,6 +379,8 @@ out:
 	iput(inode);
 	f2fs_unlock_op(sbi);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	return err;
 }
 
@@ -340,10 +388,14 @@ struct dentry *f2fs_get_parent(struct dentry *child)
 {
 	struct qstr dotdot = QSTR_INIT("..", 2);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	unsigned long ino = f2fs_inode_by_name(child->d_inode, &dotdot);
 	if (!ino)
 		return ERR_PTR(-ENOENT);
 	return d_obtain_alias(f2fs_iget(child->d_inode->i_sb, ino));
+<<<<<<< HEAD
 =======
 	struct page *page;
 	unsigned long ino = f2fs_inode_by_name(d_inode(child), &dotdot, &page);
@@ -404,6 +456,8 @@ out:
 	f2fs_unlock_op(sbi);
 	return err;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 }
 
 static struct dentry *f2fs_lookup(struct inode *dir, struct dentry *dentry,
@@ -412,6 +466,7 @@ static struct dentry *f2fs_lookup(struct inode *dir, struct dentry *dentry,
 	struct inode *inode = NULL;
 	struct f2fs_dir_entry *de;
 	struct page *page;
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 	nid_t ino;
@@ -433,12 +488,17 @@ static struct dentry *f2fs_lookup(struct inode *dir, struct dentry *dentry,
 			return ERR_PTR(res);
 	}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	if (dentry->d_name.len > F2FS_NAME_LEN)
 		return ERR_PTR(-ENAMETOOLONG);
 
 	de = f2fs_find_entry(dir, &dentry->d_name, &page);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	if (de) {
 		nid_t ino = le32_to_cpu(de->ino);
 		kunmap(page);
@@ -450,6 +510,7 @@ static struct dentry *f2fs_lookup(struct inode *dir, struct dentry *dentry,
 	}
 
 	return d_splice_alias(inode, dentry);
+<<<<<<< HEAD
 =======
 	if (!de) {
 		if (IS_ERR(page))
@@ -490,11 +551,16 @@ err_out:
 	iput(inode);
 	return ERR_PTR(err);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 }
 
 static int f2fs_unlink(struct inode *dir, struct dentry *dentry)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	struct super_block *sb = dir->i_sb;
 	struct f2fs_sb_info *sbi = F2FS_SB(sb);
 	struct inode *inode = dentry->d_inode;
@@ -523,6 +589,7 @@ static int f2fs_unlink(struct inode *dir, struct dentry *dentry)
 
 	/* In order to evict this inode,  we set it dirty */
 	mark_inode_dirty(inode);
+<<<<<<< HEAD
 =======
 	struct f2fs_sb_info *sbi = F2FS_I_SB(dir);
 	struct inode *inode = d_inode(dentry);
@@ -555,12 +622,17 @@ static int f2fs_unlink(struct inode *dir, struct dentry *dentry)
 	if (IS_DIRSYNC(dir))
 		f2fs_sync_fs(sbi->sb, 1);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 fail:
 	trace_f2fs_unlink_exit(inode, err);
 	return err;
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 static int f2fs_symlink(struct inode *dir, struct dentry *dentry,
 					const char *symname)
 {
@@ -571,6 +643,7 @@ static int f2fs_symlink(struct inode *dir, struct dentry *dentry,
 	int err, ilock;
 
 	f2fs_balance_fs(sbi);
+<<<<<<< HEAD
 =======
 static void *f2fs_follow_link(struct dentry *dentry, struct nameidata *nd)
 {
@@ -619,12 +692,17 @@ static int f2fs_symlink(struct inode *dir, struct dentry *dentry,
 	if (disk_link.len > dir->i_sb->s_blocksize)
 		return -ENAMETOOLONG;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	inode = f2fs_new_inode(dir, S_IFLNK | S_IRWXUGO);
 	if (IS_ERR(inode))
 		return PTR_ERR(inode);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	inode->i_op = &f2fs_symlink_inode_operations;
 	inode->i_mapping->a_ops = &f2fs_dblock_aops;
 
@@ -646,6 +724,7 @@ out:
 	make_bad_inode(inode);
 	iput(inode);
 	alloc_nid_failed(sbi, inode->i_ino);
+<<<<<<< HEAD
 =======
 	if (f2fs_encrypted_inode(inode))
 		inode->i_op = &f2fs_encrypted_symlink_inode_operations;
@@ -722,22 +801,30 @@ err_out:
 out:
 	handle_failed_inode(inode);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	return err;
 }
 
 static int f2fs_mkdir(struct inode *dir, struct dentry *dentry, umode_t mode)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	struct f2fs_sb_info *sbi = F2FS_SB(dir->i_sb);
 	struct inode *inode;
 	int err, ilock;
 
 	f2fs_balance_fs(sbi);
+<<<<<<< HEAD
 =======
 	struct f2fs_sb_info *sbi = F2FS_I_SB(dir);
 	struct inode *inode;
 	int err;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	inode = f2fs_new_inode(dir, S_IFDIR | mode);
 	if (IS_ERR(inode))
@@ -747,6 +834,9 @@ static int f2fs_mkdir(struct inode *dir, struct dentry *dentry, umode_t mode)
 	inode->i_fop = &f2fs_dir_operations;
 	inode->i_mapping->a_ops = &f2fs_dblock_aops;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	mapping_set_gfp_mask(inode->i_mapping, GFP_F2FS_ZERO);
 
 	set_inode_flag(F2FS_I(inode), FI_INC_LINK);
@@ -755,6 +845,7 @@ static int f2fs_mkdir(struct inode *dir, struct dentry *dentry, umode_t mode)
 	mutex_unlock_op(sbi, ilock);
 	if (err)
 		goto out_fail;
+<<<<<<< HEAD
 =======
 	mapping_set_gfp_mask(inode->i_mapping, GFP_F2FS_HIGH_ZERO);
 
@@ -767,6 +858,8 @@ static int f2fs_mkdir(struct inode *dir, struct dentry *dentry, umode_t mode)
 		goto out_fail;
 	f2fs_unlock_op(sbi);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	alloc_nid_done(sbi, inode->i_ino);
 
@@ -774,6 +867,9 @@ static int f2fs_mkdir(struct inode *dir, struct dentry *dentry, umode_t mode)
 	unlock_new_inode(inode);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	return 0;
 
 out_fail:
@@ -783,6 +879,7 @@ out_fail:
 	make_bad_inode(inode);
 	iput(inode);
 	alloc_nid_failed(sbi, inode->i_ino);
+<<<<<<< HEAD
 =======
 	if (IS_DIRSYNC(dir))
 		f2fs_sync_fs(sbi->sb, 1);
@@ -792,16 +889,22 @@ out_fail:
 	clear_inode_flag(inode, FI_INC_LINK);
 	handle_failed_inode(inode);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	return err;
 }
 
 static int f2fs_rmdir(struct inode *dir, struct dentry *dentry)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct inode *inode = dentry->d_inode;
 =======
 	struct inode *inode = d_inode(dentry);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	struct inode *inode = dentry->d_inode;
+>>>>>>> 2617302... source
 	if (f2fs_empty_dir(inode))
 		return f2fs_unlink(dir, dentry);
 	return -ENOTEMPTY;
@@ -811,25 +914,36 @@ static int f2fs_mknod(struct inode *dir, struct dentry *dentry,
 				umode_t mode, dev_t rdev)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	struct super_block *sb = dir->i_sb;
 	struct f2fs_sb_info *sbi = F2FS_SB(sb);
 	struct inode *inode;
 	int err = 0;
 	int ilock;
+<<<<<<< HEAD
 =======
 	struct f2fs_sb_info *sbi = F2FS_I_SB(dir);
 	struct inode *inode;
 	int err = 0;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	if (!new_valid_dev(rdev))
 		return -EINVAL;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	f2fs_balance_fs(sbi);
 
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	f2fs_balance_fs(sbi);
+
+>>>>>>> 2617302... source
 	inode = f2fs_new_inode(dir, mode);
 	if (IS_ERR(inode))
 		return PTR_ERR(inode);
@@ -838,6 +952,9 @@ static int f2fs_mknod(struct inode *dir, struct dentry *dentry,
 	inode->i_op = &f2fs_special_inode_operations;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	ilock = mutex_lock_op(sbi);
 	err = f2fs_add_link(dentry, inode);
 	mutex_unlock_op(sbi, ilock);
@@ -888,6 +1005,7 @@ static int f2fs_rename(struct inode *old_dir, struct dentry *old_dentry,
 
 	if (new_inode) {
 		struct page *new_page;
+<<<<<<< HEAD
 =======
 	f2fs_balance_fs(sbi, true);
 
@@ -1028,6 +1146,8 @@ static int f2fs_rename(struct inode *old_dir, struct dentry *old_dentry,
 
 	if (new_inode) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 		err = -ENOTEMPTY;
 		if (old_dir_entry && !f2fs_empty_dir(new_inode))
@@ -1037,6 +1157,9 @@ static int f2fs_rename(struct inode *old_dir, struct dentry *old_dentry,
 		new_entry = f2fs_find_entry(new_dir, &new_dentry->d_name,
 						&new_page);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		if (!new_entry)
 			goto out_dir;
 
@@ -1064,6 +1187,7 @@ static int f2fs_rename(struct inode *old_dir, struct dentry *old_dentry,
 	mark_inode_dirty(old_inode);
 
 	f2fs_delete_entry(old_entry, old_page, NULL);
+<<<<<<< HEAD
 =======
 		if (!new_entry) {
 			if (IS_ERR(new_page))
@@ -1147,6 +1271,8 @@ static int f2fs_rename(struct inode *old_dir, struct dentry *old_dentry,
 
 	f2fs_delete_entry(old_entry, old_page, old_dir, NULL);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	if (old_dir_entry) {
 		if (old_dir != new_dir) {
@@ -1154,6 +1280,9 @@ static int f2fs_rename(struct inode *old_dir, struct dentry *old_dentry,
 						old_dir_page, new_dir);
 		} else {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 			kunmap(old_dir_page);
 			f2fs_put_page(old_dir_page, 0);
 		}
@@ -1172,6 +1301,7 @@ out_dir:
 	mutex_unlock_op(sbi, ilock);
 out_old:
 	kunmap(old_page);
+<<<<<<< HEAD
 =======
 			f2fs_dentry_kunmap(old_inode, old_dir_page);
 			f2fs_put_page(old_dir_page, 0);
@@ -1362,11 +1492,14 @@ out_new:
 out_old:
 	f2fs_dentry_kunmap(old_dir, old_page);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	f2fs_put_page(old_page, 0);
 out:
 	return err;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 static int f2fs_rename2(struct inode *old_dir, struct dentry *old_dentry,
@@ -1478,6 +1611,8 @@ const struct inode_operations f2fs_encrypted_symlink_inode_operations = {
 };
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 const struct inode_operations f2fs_dir_inode_operations = {
 	.create		= f2fs_create,
 	.lookup		= f2fs_lookup,
@@ -1502,10 +1637,14 @@ const struct inode_operations f2fs_dir_inode_operations = {
 const struct inode_operations f2fs_symlink_inode_operations = {
 	.readlink       = generic_readlink,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.follow_link    = page_follow_link_light,
 =======
 	.follow_link    = f2fs_follow_link,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	.follow_link    = page_follow_link_light,
+>>>>>>> 2617302... source
 	.put_link       = page_put_link,
 	.getattr	= f2fs_getattr,
 	.setattr	= f2fs_setattr,

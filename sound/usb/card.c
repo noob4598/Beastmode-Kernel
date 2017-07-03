@@ -211,9 +211,13 @@ static int snd_usb_create_stream(struct snd_usb_audio *chip, int ctrlif, int int
 		usb_set_interface(dev, interface, 0); /* reset the current interface */
 		usb_driver_claim_interface(&usb_audio_driver, iface, (void *)-1L);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return -EINVAL;
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		return -EINVAL;
+>>>>>>> 2617302... source
 	}
 
 	return 0;

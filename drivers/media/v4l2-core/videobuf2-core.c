@@ -667,9 +667,12 @@ static int __reqbufs(struct vb2_queue *q, struct v4l2_requestbuffers *req)
 	 */
 	req->count = allocated_buffers;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	q->waiting_for_buffers = !V4L2_TYPE_IS_OUTPUT(q->type);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	return 0;
 }
@@ -719,9 +722,12 @@ static int __create_bufs(struct vb2_queue *q, struct v4l2_create_buffers *create
 		memset(q->alloc_ctx, 0, sizeof(q->alloc_ctx));
 		q->memory = create->memory;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		q->waiting_for_buffers = !V4L2_TYPE_IS_OUTPUT(q->type);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	}
 
 	num_buffers = min(create->count, VB2_MAX_FRAME - q->num_buffers);
@@ -1368,9 +1374,12 @@ int vb2_qbuf(struct vb2_queue *q, struct v4l2_buffer *b)
 	 */
 	list_add_tail(&vb->queued_entry, &q->queued_list);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	q->waiting_for_buffers = false;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	vb->state = VB2_BUF_STATE_QUEUED;
 
 	/*
@@ -1746,9 +1755,12 @@ int vb2_streamoff(struct vb2_queue *q, enum v4l2_buf_type type)
 	 */
 	__vb2_queue_cancel(q);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	q->waiting_for_buffers = !V4L2_TYPE_IS_OUTPUT(q->type);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	dprintk(3, "Streamoff successful\n");
 	return 0;
@@ -2035,6 +2047,7 @@ unsigned int vb2_poll(struct vb2_queue *q, struct file *file, poll_table *wait)
 
 	/*
 <<<<<<< HEAD
+<<<<<<< HEAD
 	 * There is nothing to wait for if no buffers have already been queued.
 	 */
 	if (list_empty(&q->queued_list))
@@ -2050,6 +2063,11 @@ unsigned int vb2_poll(struct vb2_queue *q, struct file *file, poll_table *wait)
 	 */
 	if (q->waiting_for_buffers)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	 * There is nothing to wait for if no buffers have already been queued.
+	 */
+	if (list_empty(&q->queued_list))
+>>>>>>> 2617302... source
 		return res | POLLERR;
 
 	if (list_empty(&q->done_list))

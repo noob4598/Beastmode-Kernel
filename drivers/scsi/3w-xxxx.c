@@ -1284,6 +1284,9 @@ static int tw_initialize_device_extension(TW_Device_Extension *tw_dev)
 } /* End tw_initialize_device_extension() */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 static int tw_map_scsi_sg_data(struct pci_dev *pdev, struct scsi_cmnd *cmd)
 {
 	int use_sg;
@@ -1310,8 +1313,11 @@ static void tw_unmap_scsi_data(struct pci_dev *pdev, struct scsi_cmnd *cmd)
 		scsi_dma_unmap(cmd);
 } /* End tw_unmap_scsi_data() */
 
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 /* This function will reset a device extension */
 static int tw_reset_device_extension(TW_Device_Extension *tw_dev)
 {
@@ -1335,12 +1341,17 @@ static int tw_reset_device_extension(TW_Device_Extension *tw_dev)
 			if (srb != NULL) {
 				srb->result = (DID_RESET << 16);
 <<<<<<< HEAD
+<<<<<<< HEAD
 				tw_dev->srb[i]->scsi_done(tw_dev->srb[i]);
 				tw_unmap_scsi_data(tw_dev->tw_pci_dev, tw_dev->srb[i]);
 =======
 				scsi_dma_unmap(srb);
 				srb->scsi_done(srb);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+				tw_dev->srb[i]->scsi_done(tw_dev->srb[i]);
+				tw_unmap_scsi_data(tw_dev->tw_pci_dev, tw_dev->srb[i]);
+>>>>>>> 2617302... source
 			}
 		}
 	}
@@ -1788,12 +1799,17 @@ static int tw_scsiop_read_write(TW_Device_Extension *tw_dev, int request_id)
 	command_packet->byte6.block_count = num_sectors;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	use_sg = tw_map_scsi_sg_data(tw_dev->tw_pci_dev, tw_dev->srb[request_id]);
 	if (!use_sg)
 =======
 	use_sg = scsi_dma_map(srb);
 	if (use_sg <= 0)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	use_sg = tw_map_scsi_sg_data(tw_dev->tw_pci_dev, tw_dev->srb[request_id]);
+	if (!use_sg)
+>>>>>>> 2617302... source
 		return 1;
 
 	scsi_for_each_sg(tw_dev->srb[request_id], sg, use_sg, i) {
@@ -1981,11 +1997,17 @@ static int tw_scsi_queue_lck(struct scsi_cmnd *SCpnt, void (*done)(struct scsi_c
 	tw_dev->srb[request_id] = SCpnt;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* Initialize phase to zero */
 	SCpnt->SCp.phase = TW_PHASE_INITIAL;
 
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	/* Initialize phase to zero */
+	SCpnt->SCp.phase = TW_PHASE_INITIAL;
+
+>>>>>>> 2617302... source
 	switch (*command) {
 		case READ_10:
 		case READ_6:
@@ -2213,12 +2235,16 @@ static irqreturn_t tw_interrupt(int irq, void *dev_instance)
 				/* Now complete the io */
 				if ((error != TW_ISR_DONT_COMPLETE)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 					tw_dev->state[request_id] = TW_S_COMPLETED;
 					tw_state_request_finish(tw_dev, request_id);
 					tw_dev->posted_request_count--;
 					tw_dev->srb[request_id]->scsi_done(tw_dev->srb[request_id]);
 					
 					tw_unmap_scsi_data(tw_dev->tw_pci_dev, tw_dev->srb[request_id]);
+<<<<<<< HEAD
 =======
 					scsi_dma_unmap(tw_dev->srb[request_id]);
 					tw_dev->srb[request_id]->scsi_done(tw_dev->srb[request_id]);
@@ -2226,6 +2252,8 @@ static irqreturn_t tw_interrupt(int irq, void *dev_instance)
 					tw_state_request_finish(tw_dev, request_id);
 					tw_dev->posted_request_count--;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 				}
 			}
 				

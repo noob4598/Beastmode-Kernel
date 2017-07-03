@@ -271,6 +271,7 @@ static void virtscsi_req_done(struct virtqueue *vq)
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 static void virtscsi_poll_requests(struct virtio_scsi *vscsi)
 {
@@ -283,6 +284,8 @@ static void virtscsi_poll_requests(struct virtio_scsi *vscsi)
 }
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 static void virtscsi_complete_free(struct virtio_scsi *vscsi, void *buf)
 {
 	struct virtio_scsi_cmd *cmd = buf;
@@ -302,10 +305,13 @@ static void virtscsi_ctrl_done(struct virtqueue *vq)
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 static void virtscsi_handle_event(struct work_struct *work);
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 static int virtscsi_kick_event(struct virtio_scsi *vscsi,
 			       struct virtio_scsi_event_node *event_node)
 {
@@ -314,9 +320,12 @@ static int virtscsi_kick_event(struct virtio_scsi *vscsi,
 	unsigned long flags;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	INIT_WORK(&event_node->work, virtscsi_handle_event);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	sg_init_one(&sg, &event_node->event, sizeof(struct virtio_scsi_event));
 
 	spin_lock_irqsave(&vscsi->event_vq.vq_lock, flags);
@@ -435,9 +444,13 @@ static void virtscsi_complete_event(struct virtio_scsi *vscsi, void *buf)
 	struct virtio_scsi_event_node *event_node = buf;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	INIT_WORK(&event_node->work, virtscsi_handle_event);
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	INIT_WORK(&event_node->work, virtscsi_handle_event);
+>>>>>>> 2617302... source
 	schedule_work(&event_node->work);
 }
 
@@ -628,6 +641,7 @@ static int virtscsi_tmf(struct virtio_scsi *vscsi, struct virtio_scsi_cmd *cmd)
 		ret = SUCCESS;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/*
 	 * The spec guarantees that all requests related to the TMF have
@@ -642,6 +656,8 @@ static int virtscsi_tmf(struct virtio_scsi *vscsi, struct virtio_scsi_cmd *cmd)
 	virtscsi_poll_requests(vscsi);
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 out:
 	mempool_free(cmd, virtscsi_cmd_pool);
 	return ret;

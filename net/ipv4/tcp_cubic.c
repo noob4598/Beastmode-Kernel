@@ -409,10 +409,14 @@ static void bictcp_acked(struct sock *sk, u32 cnt, s32 rtt_us)
 		ratio += cnt;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ca->delayed_ack = min(ratio, ACK_RATIO_LIMIT);
 =======
 		ca->delayed_ack = clamp(ratio, 1U, ACK_RATIO_LIMIT);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		ca->delayed_ack = min(ratio, ACK_RATIO_LIMIT);
+>>>>>>> 2617302... source
 	}
 
 	/* Some calls are for duplicates without timetamps */

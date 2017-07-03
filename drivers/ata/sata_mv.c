@@ -4098,11 +4098,14 @@ static int mv_platform_probe(struct platform_device *pdev)
 	hpriv->base = devm_ioremap(&pdev->dev, res->start,
 				   resource_size(res));
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (!hpriv->base)
 		return -ENOMEM;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	hpriv->base -= SATAHC0_REG_BASE;
 
 #if defined(CONFIG_HAVE_CLK)

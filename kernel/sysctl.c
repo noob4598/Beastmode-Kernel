@@ -1069,6 +1069,7 @@ static struct ctl_table kern_table[] = {
 		.mode		= 0644,
 		.proc_handler	= perf_proc_update_handler,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		.extra1		= &one,
 	},
@@ -1081,6 +1082,8 @@ static struct ctl_table kern_table[] = {
 		.extra1		= &zero,
 		.extra2		= &one_hundred,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	},
 #endif
 #ifdef CONFIG_KMEMCHECK
@@ -1522,6 +1525,7 @@ static struct ctl_table vm_table[] = {
 		.proc_handler	= proc_doulongvec_minmax,
 	},
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #ifdef CONFIG_HAVE_ARCH_MMAP_RND_BITS
 	{
@@ -1546,6 +1550,8 @@ static struct ctl_table vm_table[] = {
 	},
 #endif
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	{ }
 };
 
@@ -1720,6 +1726,7 @@ static struct ctl_table fs_table[] = {
 		.extra1		= &pipe_min_size,
 	},
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	{
 		.procname	= "pipe-user-pages-hard",
@@ -1736,6 +1743,8 @@ static struct ctl_table fs_table[] = {
 		.proc_handler	= proc_doulongvec_minmax,
 	},
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	{ }
 };
 
@@ -2315,9 +2324,12 @@ static int __do_proc_doulongvec_minmax(void *data, struct ctl_table *table, int 
 			if (neg)
 				continue;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 			val = convmul * val / convdiv;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 			if ((min && val < *min) || (max && val > *max))
 				continue;
 			*i = val;

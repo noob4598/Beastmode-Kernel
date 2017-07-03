@@ -31,6 +31,7 @@
 #include <asm/asm-offsets.h>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 /*
  * The 32-bit x86 assembler in binutils 2.26 will generate R_386_GOT32X
@@ -61,6 +62,8 @@
 	.hidden _egot
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	__HEAD
 ENTRY(startup_32)
 #ifdef CONFIG_EFI_STUB
@@ -86,10 +89,14 @@ ENTRY(efi_pe_entry)
 reloc:
 	popl	%ecx
 <<<<<<< HEAD
+<<<<<<< HEAD
 	subl	reloc, %ecx
 =======
 	subl	$reloc, %ecx
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	subl	reloc, %ecx
+>>>>>>> 2617302... source
 	movl	%ecx, BP_code32_start(%eax)
 
 	sub	$0x4, %esp

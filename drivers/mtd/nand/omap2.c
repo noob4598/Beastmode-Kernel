@@ -949,10 +949,14 @@ static int omap_calculate_ecc(struct mtd_info *mtd, const u_char *dat,
 
 	val = readl(info->reg.gpmc_ecc_config);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (((val >> ECC_CONFIG_CS_SHIFT)  & ~CS_MASK) != info->gpmc_cs)
 =======
 	if (((val >> ECC_CONFIG_CS_SHIFT) & CS_MASK) != info->gpmc_cs)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (((val >> ECC_CONFIG_CS_SHIFT)  & ~CS_MASK) != info->gpmc_cs)
+>>>>>>> 2617302... source
 		return -EINVAL;
 
 	/* read ecc result */
@@ -1468,10 +1472,14 @@ static int omap_elm_correct_data(struct mtd_info *mtd, u_char *data,
 	/* Check if any error reported */
 	if (!is_error_reported)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return 0;
 =======
 		return stat;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		return 0;
+>>>>>>> 2617302... source
 
 	/* Decode BCH error using ELM module */
 	elm_decode_bch_error_page(info->elm_dev, ecc_vec, err_vec);

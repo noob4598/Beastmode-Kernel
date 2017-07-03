@@ -157,10 +157,14 @@ rproc_recovery_write(struct file *filp, const char __user *user_buf,
 	int ret;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (count > sizeof(buf))
 =======
 	if (count < 1 || count > sizeof(buf))
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (count > sizeof(buf))
+>>>>>>> 2617302... source
 		return count;
 
 	ret = copy_from_user(buf, user_buf, count);

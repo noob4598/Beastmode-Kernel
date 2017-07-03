@@ -88,9 +88,12 @@ static int scm_fp_copy(struct cmsghdr *cmsg, struct scm_fp_list **fplp)
 		fpl->count = 0;
 		fpl->max = SCM_MAX_FD;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		fpl->user = NULL;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	}
 	fpp = &fpl->fp[fpl->count];
 
@@ -112,12 +115,15 @@ static int scm_fp_copy(struct cmsghdr *cmsg, struct scm_fp_list **fplp)
 		fpl->count++;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 	if (!fpl->user)
 		fpl->user = get_uid(current_user());
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	return num;
 }
 
@@ -131,9 +137,12 @@ void __scm_destroy(struct scm_cookie *scm)
 		for (i=fpl->count-1; i>=0; i--)
 			fput(fpl->fp[i]);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		free_uid(fpl->user);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		kfree(fpl);
 	}
 }
@@ -322,10 +331,13 @@ void scm_detach_fds(struct msghdr *msg, struct scm_cookie *scm)
 		if (!err) {
 			cmlen = CMSG_SPACE(i*sizeof(int));
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 			if (msg->msg_controllen < cmlen)
 				cmlen = msg->msg_controllen;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 			msg->msg_control += cmlen;
 			msg->msg_controllen -= cmlen;
 		}
@@ -356,9 +368,12 @@ struct scm_fp_list *scm_fp_dup(struct scm_fp_list *fpl)
 			get_file(fpl->fp[i]);
 		new_fpl->max = new_fpl->count;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		new_fpl->user = get_uid(fpl->user);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	}
 	return new_fpl;
 }

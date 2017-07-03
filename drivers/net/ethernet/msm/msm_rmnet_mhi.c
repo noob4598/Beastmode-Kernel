@@ -1,8 +1,12 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* Copyright (c) 2014, The Linux Foundation. All rights reserved.
 =======
 /* Copyright (c) 2013-2014, The Linux Foundation. All rights reserved.
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+/* Copyright (c) 2014, The Linux Foundation. All rights reserved.
+>>>>>>> 2617302... source
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -25,30 +29,42 @@
 #include <linux/msm_rmnet.h>
 #include <linux/if_arp.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 #include <linux/dma-mapping.h>
 #include <linux/msm_mhi.h>
 #include <linux/debugfs.h>
 #include <linux/ipc_logging.h>
+<<<<<<< HEAD
 =======
 #include <linux/platform_device.h>
 #include <linux/dma-mapping.h>
 #include <linux/pci.h>
 #include <linux/msm_mhi.h>
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 #define RMNET_MHI_DRIVER_NAME "rmnet_mhi"
 #define RMNET_MHI_DEV_NAME    "rmnet_mhi%d"
 #define MHI_DEFAULT_MTU        8000
 #define MHI_DEFAULT_MRU        8000
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
  /* TODO: This will go to the MHI Core HDR I guess */
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 #define MHI_MAX_MRU            0xFFFF
 #define MHI_NAPI_WEIGHT_VALUE  12
 #define MHI_RX_HEADROOM        64
 #define WATCHDOG_TIMEOUT       (30 * HZ)
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 #define MHI_RMNET_DEVICE_COUNT 1
 #define RMNET_IPC_LOG_PAGES (10)
 #define IS_INBOUND(_chan) (((u32)(_chan)) % 2)
@@ -81,6 +97,7 @@ void *rmnet_ipc_log;
 			       "[%s] " _msg, __func__, ##__VA_ARGS__);	\
 } while (0)
 
+<<<<<<< HEAD
 =======
 #define MHI_RMNET_DEVICE_COUNT 1 /* TODO: Will be a compile-time definition */
 #define DMA_RANGE_CHECK(dma_addr, size, mask) \
@@ -98,6 +115,8 @@ static struct platform_driver mhi_rmnet_driver = {
 };
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 unsigned long tx_interrupts_count[MHI_RMNET_DEVICE_COUNT];
 module_param_array(tx_interrupts_count, ulong, 0, S_IRUGO);
 MODULE_PARM_DESC(tx_interrupts_count, "Tx interrupts");
@@ -111,11 +130,14 @@ module_param_array(tx_ring_full_count, ulong, 0, S_IRUGO);
 MODULE_PARM_DESC(tx_ring_full_count, "RING FULL errors from MHI Core");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 unsigned long tx_bounce_buffers_count[MHI_RMNET_DEVICE_COUNT];
 module_param_array(tx_bounce_buffers_count, ulong, 0, S_IRUGO);
 MODULE_PARM_DESC(tx_bounce_buffers_count, "TX bounce buffers used");
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 unsigned long tx_queued_packets_count[MHI_RMNET_DEVICE_COUNT];
 module_param_array(tx_queued_packets_count, ulong, 0, S_IRUGO);
@@ -150,21 +172,30 @@ MODULE_PARM_DESC(rx_napi_budget_overflow,
 struct rmnet_mhi_private {
 	int                           dev_index;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	struct mhi_client_handle      *tx_client_handle;
 	struct mhi_client_handle      *rx_client_handle;
 	enum MHI_CLIENT_CHANNEL       tx_channel;
 	enum MHI_CLIENT_CHANNEL       rx_channel;
+<<<<<<< HEAD
 =======
 	mhi_client_handle            *tx_client_handle;
 	mhi_client_handle            *rx_client_handle;
 	MHI_CLIENT_CHANNEL            tx_channel;
 	MHI_CLIENT_CHANNEL            rx_channel;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	struct sk_buff_head           tx_buffers;
 	struct sk_buff_head           rx_buffers;
 	uint32_t                      mru;
 	struct napi_struct            napi;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	gfp_t                         allocation_flags;
 	uint32_t                      tx_buffers_max;
 	uint32_t                      rx_buffers_max;
@@ -174,6 +205,7 @@ struct rmnet_mhi_private {
 	struct net_device	      *dev;
 	int32_t                       irq_masked_cntr;
 	rwlock_t		      out_chan_full_lock;
+<<<<<<< HEAD
 =======
 	struct sk_buff_head           tx_bounce_buffers;
 	gfp_t                         allocation_flags;
@@ -181,10 +213,13 @@ struct rmnet_mhi_private {
 	uint32_t                      rx_buffers_max;
 	atomic_t		      irq_masked;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 };
 
 struct tx_buffer_priv {
 	dma_addr_t dma_addr;
+<<<<<<< HEAD
 <<<<<<< HEAD
 };
 
@@ -195,15 +230,24 @@ static struct rmnet_mhi_private rmnet_mhi_ctxt_list[MHI_RMNET_DEVICE_COUNT];
 
 static struct net_device *mhi_rmnet_devices[MHI_RMNET_DEVICE_COUNT] = { 0 };
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+};
+
+static struct rmnet_mhi_private rmnet_mhi_ctxt_list[MHI_RMNET_DEVICE_COUNT];
+>>>>>>> 2617302... source
 
 static dma_addr_t rmnet_mhi_internal_get_dma_addr(struct sk_buff *skb,
 						  enum dma_data_direction dir)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (dir == DMA_TO_DEVICE) {
 =======
 	if (DMA_TO_DEVICE == dir) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (dir == DMA_TO_DEVICE) {
+>>>>>>> 2617302... source
 		struct tx_buffer_priv *tx_priv =
 			(struct tx_buffer_priv *)(skb->cb);
 		return tx_priv->dma_addr;
@@ -219,6 +263,9 @@ static void rmnet_mhi_internal_clean_unmap_buffers(struct net_device *dev,
 						   enum dma_data_direction dir)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	struct rmnet_mhi_private *rmnet_mhi_ptr =
 		*(struct rmnet_mhi_private **)netdev_priv(dev);
 	rmnet_log(MSG_INFO, "Entered\n");
@@ -241,6 +288,7 @@ static void rmnet_mhi_internal_clean_unmap_buffers(struct net_device *dev,
 		}
 	}
 	rmnet_log(MSG_INFO, "Exited\n");
+<<<<<<< HEAD
 =======
 	while (!skb_queue_empty(queue)) {
 		struct sk_buff *skb = skb_dequeue(queue);
@@ -252,6 +300,8 @@ static void rmnet_mhi_internal_clean_unmap_buffers(struct net_device *dev,
 		}
 	}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 }
 
 static __be16 rmnet_mhi_ip_type_trans(struct sk_buff *skb)
@@ -275,13 +325,17 @@ static __be16 rmnet_mhi_ip_type_trans(struct sk_buff *skb)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 /* TODO: No error handling yet */
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 static int rmnet_mhi_poll(struct napi_struct *napi, int budget)
 {
 	int received_packets = 0;
 	struct net_device *dev = napi->dev;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct rmnet_mhi_private *rmnet_mhi_ptr =
 			*(struct rmnet_mhi_private **)netdev_priv(dev);
@@ -290,12 +344,20 @@ static int rmnet_mhi_poll(struct napi_struct *napi, int budget)
 	struct rmnet_mhi_private *rmnet_mhi_ptr = netdev_priv(dev);
 	MHI_STATUS res = MHI_STATUS_reserved;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	struct rmnet_mhi_private *rmnet_mhi_ptr =
+			*(struct rmnet_mhi_private **)netdev_priv(dev);
+	enum MHI_STATUS res = MHI_STATUS_reserved;
+>>>>>>> 2617302... source
 	bool should_reschedule = true;
 	struct sk_buff *skb;
 	dma_addr_t dma_addr;
 	uintptr_t *cb_ptr;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	rmnet_log(MSG_VERBOSE, "Entered\n");
 	while (received_packets < budget) {
 		struct mhi_result *result =
@@ -306,6 +368,7 @@ static int rmnet_mhi_poll(struct napi_struct *napi, int budget)
 			rmnet_log(MSG_CRITICAL,
 				  "mhi_poll failed, error is %d\n",
 				  result->transaction_status);
+<<<<<<< HEAD
 =======
 	/* Reset the watchdog? */
 
@@ -320,25 +383,36 @@ static int rmnet_mhi_poll(struct napi_struct *napi, int budget)
 			pr_err("%s: mhi_poll failed, error is %d",
 			       __func__, result->transaction_status);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 			break;
 		}
 
 		/* Nothing more to read, or out of buffers in MHI layer */
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if (unlikely(!result->payload_buf ||
 						!result->bytes_xferd)) {
 =======
 		if (unlikely(0 == result->payload_buf || 0 == result->bytes_xferd)) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		if (unlikely(!result->payload_buf ||
+						!result->bytes_xferd)) {
+>>>>>>> 2617302... source
 			should_reschedule = false;
 			break;
 		}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		skb = skb_dequeue(&(rmnet_mhi_ptr->rx_buffers));
 		if (unlikely(!skb)) {
 			rmnet_log(MSG_CRITICAL,
 				  "No RX buffers to match");
+<<<<<<< HEAD
 =======
 		/* Assumption
 		   ----------
@@ -352,6 +426,8 @@ static int rmnet_mhi_poll(struct napi_struct *napi, int budget)
 			/* TODO: This shouldn't happen, we had a guard above */
 			pr_err("%s: No RX buffers to match", __func__);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 			break;
 		}
 
@@ -360,17 +436,23 @@ static int rmnet_mhi_poll(struct napi_struct *napi, int budget)
 
 		/* Sanity check, ensuring that this is actually the buffer */
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		if (unlikely(dma_addr != result->payload_buf)) {
 			rmnet_log(MSG_CRITICAL,
 				  "Buf mismatch, expected 0x%lx, got 0x%lx",
 					(uintptr_t)dma_addr,
 					(uintptr_t)result->payload_buf);
+<<<<<<< HEAD
 =======
 		if (unlikely((uintptr_t)dma_addr != (uintptr_t)result->payload_buf)) {
 			/* TODO: Handle error */
 			pr_err("%s: Unexpected physical address mismatch, expected 0x%lx, got 0x%lx",
 			       __func__, (uintptr_t)dma_addr, (uintptr_t)result->payload_buf);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 			break;
 		}
 
@@ -390,12 +472,16 @@ static int rmnet_mhi_poll(struct napi_struct *napi, int budget)
 		dev->stats.rx_bytes += result->bytes_xferd;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		/* Need to allocate a new buffer instead of this one */
 		skb = alloc_skb(rmnet_mhi_ptr->mru, GFP_ATOMIC);
 
 		if (unlikely(!skb)) {
 			rmnet_log(MSG_CRITICAL,
 				  "Can't allocate a new RX buffer for MHI");
+<<<<<<< HEAD
 =======
 		/* Need to allocate a new buffer instead of this one
 		   (TODO: Maybe we can do it @ the end?)
@@ -407,6 +493,8 @@ static int rmnet_mhi_poll(struct napi_struct *napi, int budget)
 			pr_err("%s: Can't allocate a new RX buffer for MHI",
 			       __func__);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 			break;
 		}
 
@@ -415,6 +503,9 @@ static int rmnet_mhi_poll(struct napi_struct *napi, int budget)
 		cb_ptr = (uintptr_t *)skb->cb;
 		dma_addr = dma_map_single(&(dev->dev), skb->data,
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 					(rmnet_mhi_ptr->mru - MHI_RX_HEADROOM),
 					DMA_FROM_DEVICE);
 		*cb_ptr = (uintptr_t)dma_addr;
@@ -422,6 +513,7 @@ static int rmnet_mhi_poll(struct napi_struct *napi, int budget)
 		if (unlikely(dma_mapping_error(&(dev->dev), dma_addr))) {
 			rmnet_log(MSG_CRITICAL,
 				  "DMA mapping error in polling function");
+<<<<<<< HEAD
 =======
 					 rmnet_mhi_ptr->mru - MHI_RX_HEADROOM,
 					  DMA_FROM_DEVICE);
@@ -446,6 +538,8 @@ static int rmnet_mhi_poll(struct napi_struct *napi, int budget)
 					(rmnet_mhi_ptr->mru - MHI_RX_HEADROOM),
 							 DMA_FROM_DEVICE);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 			dev_kfree_skb_irq(skb);
 			break;
 		}
@@ -453,6 +547,9 @@ static int rmnet_mhi_poll(struct napi_struct *napi, int budget)
 		res = mhi_queue_xfer(
 			rmnet_mhi_ptr->rx_client_handle,
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 			(uintptr_t)dma_addr, rmnet_mhi_ptr->mru, MHI_EOT);
 
 		if (unlikely(MHI_STATUS_SUCCESS != res)) {
@@ -461,6 +558,7 @@ static int rmnet_mhi_poll(struct napi_struct *napi, int budget)
 			dma_unmap_single(&(dev->dev), dma_addr,
 					(rmnet_mhi_ptr->mru - MHI_RX_HEADROOM),
 					DMA_FROM_DEVICE);
+<<<<<<< HEAD
 =======
 			(uintptr_t)dma_addr, rmnet_mhi_ptr->mru, 0, 0);
 
@@ -472,6 +570,8 @@ static int rmnet_mhi_poll(struct napi_struct *napi, int budget)
 					(rmnet_mhi_ptr->mru - MHI_RX_HEADROOM),
 							 DMA_FROM_DEVICE);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 			dev_kfree_skb_irq(skb);
 			break;
@@ -485,16 +585,22 @@ static int rmnet_mhi_poll(struct napi_struct *napi, int budget)
 
 	/* We got a NULL descriptor back */
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	if (should_reschedule == false) {
 		if (rmnet_mhi_ptr->irq_masked_cntr) {
 			mhi_unmask_irq(rmnet_mhi_ptr->rx_client_handle);
 			--rmnet_mhi_ptr->irq_masked_cntr;
+<<<<<<< HEAD
 =======
 	if (false == should_reschedule) {
 		if (atomic_read(&rmnet_mhi_ptr->irq_masked)) {
 			atomic_dec(&rmnet_mhi_ptr->irq_masked);
 			mhi_unmask_irq(rmnet_mhi_ptr->rx_client_handle);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		}
 	} else {
 		if (received_packets == budget)
@@ -503,10 +609,13 @@ static int rmnet_mhi_poll(struct napi_struct *napi, int budget)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/* Start a watchdog? */
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	rx_napi_skb_burst_min[rmnet_mhi_ptr->dev_index] =
 	min((unsigned long)received_packets,
 	    rx_napi_skb_burst_min[rmnet_mhi_ptr->dev_index]);
@@ -516,6 +625,9 @@ static int rmnet_mhi_poll(struct napi_struct *napi, int budget)
 	    rx_napi_skb_burst_max[rmnet_mhi_ptr->dev_index]);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	rmnet_log(MSG_VERBOSE, "Exited, polled %d pkts\n", received_packets);
 	return received_packets;
 }
@@ -611,17 +723,23 @@ static int rmnet_mhi_init_inbound(struct rmnet_mhi_private *rmnet_mhi_ptr)
 }
 
 static void rmnet_mhi_tx_cb(struct mhi_result *result)
+<<<<<<< HEAD
 =======
 	return received_packets;
 }
 
 void rmnet_mhi_tx_cb(mhi_cb_info *cb_info)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 {
 	struct net_device *dev;
 	struct rmnet_mhi_private *rmnet_mhi_ptr;
 	unsigned long burst_counter = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	unsigned long flags;
 
 	rmnet_mhi_ptr = result->user_data;
@@ -638,6 +756,7 @@ void rmnet_mhi_tx_cb(mhi_cb_info *cb_info)
 		if (!skb) {
 			rmnet_log(MSG_CRITICAL,
 				  "NULL buffer returned, error");
+<<<<<<< HEAD
 =======
 	mhi_result* result;
 
@@ -682,6 +801,8 @@ void rmnet_mhi_tx_cb(mhi_cb_info *cb_info)
 				/* TODO: How do we handle this error? */
 			}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 			break;
 		} else {
 			struct tx_buffer_priv *tx_priv =
@@ -690,11 +811,15 @@ void rmnet_mhi_tx_cb(mhi_cb_info *cb_info)
 			int data_len = skb->len;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 			dma_unmap_single(&(dev->dev),
 					dma_addr,
 					 skb->len,
 					 DMA_TO_DEVICE);
 			kfree_skb(skb);
+<<<<<<< HEAD
 =======
 			/* Re-use the bounce buffer */
 			if (tx_priv->is_bounce_buffer)
@@ -707,6 +832,8 @@ void rmnet_mhi_tx_cb(mhi_cb_info *cb_info)
 				dev_kfree_skb_irq(skb);
 			}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 			burst_counter++;
 
 			/* Update statistics */
@@ -714,6 +841,9 @@ void rmnet_mhi_tx_cb(mhi_cb_info *cb_info)
 			dev->stats.tx_bytes += data_len;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 			/* The payload is expected to be the phy addr.
 			   Comparing to see if it's the last skb to
 			   replenish
@@ -723,6 +853,7 @@ void rmnet_mhi_tx_cb(mhi_cb_info *cb_info)
 				break;
 		}
 	} /* While TX queue is not empty */
+<<<<<<< HEAD
 =======
 			/* The payload is expected to be the physical address.
 			   Comparing to see if it's the last skb to replenish */
@@ -732,6 +863,8 @@ void rmnet_mhi_tx_cb(mhi_cb_info *cb_info)
 	} /* While TX queue is not empty */
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	tx_cb_skb_free_burst_min[rmnet_mhi_ptr->dev_index] =
 		min(burst_counter,
 		    tx_cb_skb_free_burst_min[rmnet_mhi_ptr->dev_index]);
@@ -742,6 +875,9 @@ void rmnet_mhi_tx_cb(mhi_cb_info *cb_info)
 
 	/* In case we couldn't write again, now we can! */
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	read_lock_irqsave(&rmnet_mhi_ptr->out_chan_full_lock, flags);
 	netif_wake_queue(dev);
 	read_unlock_irqrestore(&rmnet_mhi_ptr->out_chan_full_lock, flags);
@@ -793,6 +929,7 @@ static int rmnet_mhi_disable_iface(struct rmnet_mhi_private *rmnet_mhi_ptr)
 		rmnet_mhi_ptr->dev = 0;
 	}
 	return 0;
+<<<<<<< HEAD
 =======
 	netif_wake_queue(dev);
 		break;
@@ -1034,11 +1171,16 @@ cleanup:
 
 	return -ENODEV;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 }
 
 static int rmnet_mhi_close(struct net_device *dev)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	struct rmnet_mhi_private *rmnet_mhi_ptr =
 		*(struct rmnet_mhi_private **)netdev_priv(dev);
 	rmnet_mhi_ptr->mhi_enabled = 0;
@@ -1048,6 +1190,7 @@ static int rmnet_mhi_close(struct net_device *dev)
 		mhi_unmask_irq(rmnet_mhi_ptr->rx_client_handle);
 		--rmnet_mhi_ptr->irq_masked_cntr;
 	}
+<<<<<<< HEAD
 =======
 	struct rmnet_mhi_private *rmnet_mhi_ptr = netdev_priv(dev);
 
@@ -1058,6 +1201,8 @@ static int rmnet_mhi_close(struct net_device *dev)
 	}
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	return 0;
 }
 
@@ -1075,16 +1220,22 @@ static int rmnet_mhi_change_mtu(struct net_device *dev, int new_mtu)
 
 	dev->mtu = new_mtu;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	return 0;
 }
 
 static int rmnet_mhi_xmit(struct sk_buff *skb, struct net_device *dev)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	struct rmnet_mhi_private *rmnet_mhi_ptr =
 			*(struct rmnet_mhi_private **)netdev_priv(dev);
 	enum MHI_STATUS res = MHI_STATUS_reserved;
@@ -1132,6 +1283,7 @@ static int rmnet_mhi_xmit(struct sk_buff *skb, struct net_device *dev)
 		netif_stop_queue(dev);
 		rmnet_log(MSG_CRITICAL,
 			  "mhi_queue_xfer failed, error %d\n", res);
+<<<<<<< HEAD
 =======
 	struct rmnet_mhi_private *rmnet_mhi_ptr = netdev_priv(dev);
 	MHI_STATUS res = MHI_STATUS_reserved;
@@ -1197,6 +1349,8 @@ static int rmnet_mhi_xmit(struct sk_buff *skb, struct net_device *dev)
 		netif_stop_queue(dev);
 		pr_err("%s: mhi_queue_xfer failed, error %d", __func__, res);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		goto rmnet_mhi_xmit_error_cleanup;
 	}
 
@@ -1205,6 +1359,9 @@ static int rmnet_mhi_xmit(struct sk_buff *skb, struct net_device *dev)
 	dev->trans_start = jiffies;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	tx_queued_packets_count[rmnet_mhi_ptr->dev_index]++;
 	rmnet_log(MSG_VERBOSE, "Exited\n");
 	return 0;
@@ -1215,6 +1372,7 @@ rmnet_mhi_xmit_error_cleanup:
 	rmnet_log(MSG_VERBOSE, "Ring full\n");
 	write_unlock_irqrestore(&rmnet_mhi_ptr->out_chan_full_lock, flags);
 	return NETDEV_TX_BUSY;
+<<<<<<< HEAD
 =======
 	if (bounce_buffer_used)
 		tx_bounce_buffers_count[rmnet_mhi_ptr->dev_index]++;
@@ -1232,6 +1390,8 @@ rmnet_mhi_xmit_error_cleanup:
 	return NETDEV_TX_BUSY;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 }
 
 static int rmnet_mhi_ioctl_extended(struct net_device *dev, struct ifreq *ifr)
@@ -1239,11 +1399,16 @@ static int rmnet_mhi_ioctl_extended(struct net_device *dev, struct ifreq *ifr)
 	struct rmnet_ioctl_extended_s ext_cmd;
 	int rc = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct rmnet_mhi_private *rmnet_mhi_ptr =
 			*(struct rmnet_mhi_private **)netdev_priv(dev);
 =======
 	struct rmnet_mhi_private *rmnet_mhi_ptr = netdev_priv(dev);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	struct rmnet_mhi_private *rmnet_mhi_ptr =
+			*(struct rmnet_mhi_private **)netdev_priv(dev);
+>>>>>>> 2617302... source
 
 
 	rc = copy_from_user(&ext_cmd, ifr->ifr_ifru.ifru_data,
@@ -1251,17 +1416,23 @@ static int rmnet_mhi_ioctl_extended(struct net_device *dev, struct ifreq *ifr)
 
 	if (rc) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		rmnet_log(MSG_CRITICAL,
 				"copy_from_user failed ,error %d", rc);
 =======
 		pr_err("%s: copy_from_user failed ,error %d", __func__, rc);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		rmnet_log(MSG_CRITICAL,
+				"copy_from_user failed ,error %d", rc);
+>>>>>>> 2617302... source
 		return rc;
 	}
 
 	switch (ext_cmd.extended_ioctl) {
 	case RMNET_IOCTL_SET_MRU:
 		if ((0 > ext_cmd.u.data) || (ext_cmd.u.data > MHI_MAX_MRU)) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 			rmnet_log(MSG_CRITICAL,
 				 "Can't set MRU, value %u is invalid\n",
@@ -1270,15 +1441,23 @@ static int rmnet_mhi_ioctl_extended(struct net_device *dev, struct ifreq *ifr)
 			pr_err("%s: Can't set MRU, value %u is invalid",
 			       __func__, ext_cmd.u.data);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			rmnet_log(MSG_CRITICAL,
+				 "Can't set MRU, value %u is invalid\n",
+				 ext_cmd.u.data);
+>>>>>>> 2617302... source
 			return -EINVAL;
 		}
 		rmnet_mhi_ptr->mru = ext_cmd.u.data;
 		break;
 	case RMNET_IOCTL_GET_EPID:
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		/* TODO: TX or RX handle? */
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		ext_cmd.u.data =
 			mhi_get_epid(rmnet_mhi_ptr->tx_client_handle);
 		break;
@@ -1302,20 +1481,29 @@ static int rmnet_mhi_ioctl_extended(struct net_device *dev, struct ifreq *ifr)
 
 	if (rc)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		rmnet_log(MSG_CRITICAL,
 				"copy_to_user failed, error %d\n",
 				rc);
 =======
 		pr_err("%s: copy_to_user failed, error %d", __func__, rc);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		rmnet_log(MSG_CRITICAL,
+				"copy_to_user failed, error %d\n",
+				rc);
+>>>>>>> 2617302... source
 
 	return rc;
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 /* TODO: Which IOCTL do we actually need here? */
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 static int rmnet_mhi_ioctl(struct net_device *dev, struct ifreq *ifr, int cmd)
 {
 	int rc = 0;
@@ -1385,17 +1573,23 @@ static void rmnet_mhi_setup(struct net_device *dev)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 static int rmnet_mhi_enable_iface(struct rmnet_mhi_private *rmnet_mhi_ptr)
 {
 	int ret = 0;
 	struct rmnet_mhi_private **rmnet_mhi_ctxt = NULL;
 	enum MHI_STATUS r = MHI_STATUS_SUCCESS;
+<<<<<<< HEAD
 =======
 int rmnet_mhi_probe(struct platform_device *dev)
 {
 	int ret = 0, index = 0, cleanup_index = 0;
 	struct rmnet_mhi_private *rmnet_mhi_ptr = 0;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	memset(tx_interrupts_count, 0, sizeof(tx_interrupts_count));
 	memset(rx_interrupts_count, 0, sizeof(rx_interrupts_count));
@@ -1407,6 +1601,9 @@ int rmnet_mhi_probe(struct platform_device *dev)
 	memset(tx_cb_skb_free_burst_max, 0, sizeof(tx_cb_skb_free_burst_max));
 	memset(tx_ring_full_count, 0, sizeof(tx_ring_full_count));
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	memset(tx_queued_packets_count, 0, sizeof(tx_queued_packets_count));
 	memset(rx_napi_budget_overflow, 0, sizeof(rx_napi_budget_overflow));
 	rmnet_log(MSG_INFO, "Entered.\n");
@@ -1619,6 +1816,7 @@ module_init(rmnet_mhi_init);
 
 MODULE_DESCRIPTION("MHI RMNET Network Interface");
 MODULE_LICENSE("GPL v2");
+<<<<<<< HEAD
 =======
 	memset(tx_bounce_buffers_count, 0, sizeof(tx_bounce_buffers_count));
 	memset(tx_queued_packets_count, 0, sizeof(tx_queued_packets_count));
@@ -1696,3 +1894,5 @@ int rmnet_mhi_init(void)
 	return platform_driver_register(&mhi_rmnet_driver);
 }
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source

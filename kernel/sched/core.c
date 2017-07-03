@@ -95,6 +95,7 @@
 #endif
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 static atomic_t __su_instances;
 
@@ -128,6 +129,8 @@ void su_exit(void)
 	atomic_dec(&__su_instances);
 }
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 ATOMIC_NOTIFIER_HEAD(migration_notifier_head);
 
@@ -222,21 +225,31 @@ struct static_key sched_feat_keys[__SCHED_FEAT_NR] = {
 static void sched_feat_disable(int i)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (static_key_enabled(&sched_feat_keys[i]))
 		static_key_slow_dec(&sched_feat_keys[i]);
 =======
 	static_key_disable(&sched_feat_keys[i]);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (static_key_enabled(&sched_feat_keys[i]))
+		static_key_slow_dec(&sched_feat_keys[i]);
+>>>>>>> 2617302... source
 }
 
 static void sched_feat_enable(int i)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (!static_key_enabled(&sched_feat_keys[i]))
 		static_key_slow_inc(&sched_feat_keys[i]);
 =======
 	static_key_enable(&sched_feat_keys[i]);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (!static_key_enabled(&sched_feat_keys[i]))
+		static_key_slow_inc(&sched_feat_keys[i]);
+>>>>>>> 2617302... source
 }
 #else
 static void sched_feat_disable(int i) { };
@@ -1303,10 +1316,14 @@ out:
 		 */
 		if (p->mm && printk_ratelimit()) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			printk_sched("process %d (%s) no longer affine to cpu%d\n",
 =======
 			printk_deferred("process %d (%s) no longer affine to cpu%d\n",
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			printk_sched("process %d (%s) no longer affine to cpu%d\n",
+>>>>>>> 2617302... source
 					task_pid_nr(p), p->comm, cpu);
 		}
 	}
@@ -1703,6 +1720,7 @@ try_to_wake_up(struct task_struct *p, unsigned int state, int wake_flags)
 	success = 1; /* we're going to change ->state */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/*
 	 * Ensure we load p->on_rq _after_ p->state, otherwise it would
@@ -1727,11 +1745,14 @@ try_to_wake_up(struct task_struct *p, unsigned int state, int wake_flags)
 	 */
 	smp_rmb();
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	if (p->on_rq && ttwu_remote(p, wake_flags))
 		goto stat;
 
 #ifdef CONFIG_SMP
 	/*
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 	 * Ensure we load p->on_cpu _after_ p->on_rq, otherwise it would be
@@ -1754,6 +1775,8 @@ try_to_wake_up(struct task_struct *p, unsigned int state, int wake_flags)
 
 	/*
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	 * If the owning (remote) cpu is still in the middle of schedule() with
 	 * this task as prev, wait until its done referencing the task.
 	 */
@@ -1825,10 +1848,14 @@ static void try_to_wake_up_local(struct task_struct *p)
 
 	if (rq != this_rq() || p == current) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		printk_sched("%s: Failed to wakeup task %d (%s), rq = %p, this_rq = %p, p = %p, current = %p\n",
 =======
 		printk_deferred("%s: Failed to wakeup task %d (%s), rq = %p, this_rq = %p, p = %p, current = %p\n",
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		printk_sched("%s: Failed to wakeup task %d (%s), rq = %p, this_rq = %p, p = %p, current = %p\n",
+>>>>>>> 2617302... source
 			__func__, task_pid_nr(p), p->comm, rq,
 			this_rq(), p, current);
 		return;
@@ -1868,9 +1895,13 @@ out:
 int wake_up_process(struct task_struct *p)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	WARN_ON(task_is_stopped_or_traced(p));
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	WARN_ON(task_is_stopped_or_traced(p));
+>>>>>>> 2617302... source
 	return try_to_wake_up(p, TASK_NORMAL, 0);
 }
 EXPORT_SYMBOL(wake_up_process);
@@ -4455,18 +4486,26 @@ long sched_setaffinity(pid_t pid, const struct cpumask *in_mask)
 	int retval;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	get_online_cpus();
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	get_online_cpus();
+>>>>>>> 2617302... source
 	rcu_read_lock();
 
 	p = find_process_by_pid(pid);
 	if (!p) {
 		rcu_read_unlock();
 <<<<<<< HEAD
+<<<<<<< HEAD
 		put_online_cpus();
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		put_online_cpus();
+>>>>>>> 2617302... source
 		return -ESRCH;
 	}
 
@@ -4524,9 +4563,13 @@ out_free_cpus_allowed:
 out_put_task:
 	put_task_struct(p);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	put_online_cpus();
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	put_online_cpus();
+>>>>>>> 2617302... source
 	return retval;
 }
 
@@ -4570,9 +4613,13 @@ long sched_getaffinity(pid_t pid, struct cpumask *mask)
 	int retval;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	get_online_cpus();
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	get_online_cpus();
+>>>>>>> 2617302... source
 	rcu_read_lock();
 
 	retval = -ESRCH;
@@ -4586,18 +4633,26 @@ long sched_getaffinity(pid_t pid, struct cpumask *mask)
 
 	raw_spin_lock_irqsave(&p->pi_lock, flags);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	cpumask_and(mask, &p->cpus_allowed, cpu_online_mask);
 =======
 	cpumask_and(mask, &p->cpus_allowed, cpu_active_mask);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	cpumask_and(mask, &p->cpus_allowed, cpu_online_mask);
+>>>>>>> 2617302... source
 	raw_spin_unlock_irqrestore(&p->pi_lock, flags);
 
 out_unlock:
 	rcu_read_unlock();
 <<<<<<< HEAD
+<<<<<<< HEAD
 	put_online_cpus();
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	put_online_cpus();
+>>>>>>> 2617302... source
 
 	return retval;
 }
@@ -5022,11 +5077,15 @@ void show_state_filter(unsigned long state_filter)
 
 #ifdef CONFIG_SYSRQ_SCHED_DEBUG
 <<<<<<< HEAD
+<<<<<<< HEAD
 	sysrq_sched_debug_show();
 =======
 	if (!state_filter)
 		sysrq_sched_debug_show();
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	sysrq_sched_debug_show();
+>>>>>>> 2617302... source
 #endif
 	rcu_read_unlock();
 	/*
@@ -5549,9 +5608,12 @@ migration_call(struct notifier_block *nfb, unsigned long action, void *hcpu)
 	case CPU_UP_PREPARE:
 		rq->calc_load_update = calc_load_update;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		account_reset_rq(rq);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		break;
 
 	case CPU_ONLINE:
@@ -7212,9 +7274,13 @@ void __init sched_init_smp(void)
 	sched_init_numa();
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	get_online_cpus();
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	get_online_cpus();
+>>>>>>> 2617302... source
 	mutex_lock(&sched_domains_mutex);
 	init_sched_domains(cpu_active_mask);
 	cpumask_andnot(non_isolated_cpus, cpu_possible_mask, cpu_isolated_map);
@@ -7222,9 +7288,13 @@ void __init sched_init_smp(void)
 		cpumask_set_cpu(smp_processor_id(), non_isolated_cpus);
 	mutex_unlock(&sched_domains_mutex);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	put_online_cpus();
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	put_online_cpus();
+>>>>>>> 2617302... source
 
 	hotcpu_notifier(sched_domains_numa_masks_update, CPU_PRI_SCHED_ACTIVE);
 	hotcpu_notifier(cpuset_cpu_active, CPU_PRI_CPUSET_ACTIVE);
@@ -7331,14 +7401,20 @@ void __init sched_init(void)
 	unsigned long alloc_size = 0, ptr;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 #ifdef CONFIG_SEC_DEBUG
 	sec_gaf_supply_rqinfo(offsetof(struct rq, curr),
 					offsetof(struct cfs_rq, rq));
 #endif
+<<<<<<< HEAD
 =======
 	sec_gaf_supply_rqinfo(offsetof(struct rq, curr),
 					offsetof(struct cfs_rq, rq));
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 #ifdef CONFIG_FAIR_GROUP_SCHED
 	alloc_size += 2 * nr_cpu_ids * sizeof(void **);
@@ -8149,6 +8225,9 @@ static void cpu_cgroup_css_offline(struct cgroup *cgrp)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 static int
 cpu_cgroup_allow_attach(struct cgroup *cgrp, struct cgroup_taskset *tset)
 {
@@ -8166,8 +8245,11 @@ cpu_cgroup_allow_attach(struct cgroup *cgrp, struct cgroup_taskset *tset)
 	return 0;
 }
 
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 static int cpu_cgroup_can_attach(struct cgroup *cgrp,
 				 struct cgroup_taskset *tset)
 {
@@ -8558,10 +8640,14 @@ struct cgroup_subsys cpu_cgroup_subsys = {
 	.can_attach	= cpu_cgroup_can_attach,
 	.attach		= cpu_cgroup_attach,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.allow_attach	= cpu_cgroup_allow_attach,
 =======
 	.allow_attach	= subsys_cgroup_allow_attach,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	.allow_attach	= cpu_cgroup_allow_attach,
+>>>>>>> 2617302... source
 	.exit		= cpu_cgroup_exit,
 	.subsys_id	= cpu_cgroup_subsys_id,
 	.base_cftypes	= cpu_files,

@@ -1,9 +1,13 @@
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright (c) 2014, The Linux Foundation. All rights reserved.
 =======
  * Copyright (c) 2014-2015, The Linux Foundation. All rights reserved.
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+ * Copyright (c) 2014, The Linux Foundation. All rights reserved.
+>>>>>>> 2617302... source
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -79,10 +83,14 @@ int get_entropy_callback(void *ctx, void *buf)
 		return FIPS140_PRNG_ERR;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret_val = msm_rng_direct_read(msm_rng_dev, buf);
 =======
 	ret_val = msm_rng_direct_read(msm_rng_dev, buf, Q_HW_DRBG_BLOCK_BYTES);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	ret_val = msm_rng_direct_read(msm_rng_dev, buf);
+>>>>>>> 2617302... source
 	if ((size_t)ret_val != Q_HW_DRBG_BLOCK_BYTES)
 		return ret_val;
 
@@ -120,10 +128,13 @@ do_fips_drbg_init(struct fips_drbg_ctx_s *ctx,
 		reseed_interval = CTR_DRBG_MAX_RESEED_INTERVAL;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	mutex_init(&ctx->drbg_lock);
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	/* fill in callback related fields in ctx */
 	ctx->get_entropy_callback = callback;
 	ctx->get_entropy_callback_ctx = callback_ctx;
@@ -220,23 +231,32 @@ fips_drbg_reseed(struct fips_drbg_ctx_s *ctx)
 
 	if (!memcmp(entropy_pool,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		    ctx->prev_hw_drbg_block,
 		    Q_HW_DRBG_BLOCK_BYTES)) {
 =======
 			ctx->prev_hw_drbg_block,
 			Q_HW_DRBG_BLOCK_BYTES)) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		    ctx->prev_hw_drbg_block,
+		    Q_HW_DRBG_BLOCK_BYTES)) {
+>>>>>>> 2617302... source
 		memset(entropy_pool, 0, Q_HW_DRBG_BLOCK_BYTES);
 		return FIPS140_PRNG_ERR;
 	} else
 		memcpy(ctx->prev_hw_drbg_block,
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		       entropy_pool,
 		       Q_HW_DRBG_BLOCK_BYTES);
 
 	init_rv = ctr_drbg_reseed(&ctx->ctr_drbg_ctx,
 				  entropy_pool,
 				  8 * MSM_ENTROPY_BUFFER_SIZE);
+<<<<<<< HEAD
 =======
 				entropy_pool,
 				Q_HW_DRBG_BLOCK_BYTES);
@@ -245,6 +265,8 @@ fips_drbg_reseed(struct fips_drbg_ctx_s *ctx)
 				entropy_pool,
 				8*MSM_ENTROPY_BUFFER_SIZE);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	/* Zeroize the buffer for security. */
 	memset(entropy_pool, 0, Q_HW_DRBG_BLOCK_BYTES);
@@ -269,19 +291,26 @@ fips_drbg_gen(struct fips_drbg_ctx_s *ctx, void *tgt, size_t len)
 
 	enum ctr_drbg_status_t gen_rv;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int rv;
 =======
 	int rv = FIPS140_PRNG_ERR;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	int rv;
+>>>>>>> 2617302... source
 
 	if (ctx == NULL || ctx->magic != MAGIC)
 		return FIPS140_PRNG_ERR;
 	if (tgt == NULL && len > 0)
 		return FIPS140_PRNG_ERR;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	mutex_lock(&ctx->drbg_lock);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	while (len > 0) {
 		size_t req_len;
 
@@ -301,6 +330,9 @@ fips_drbg_gen(struct fips_drbg_ctx_s *ctx, void *tgt, size_t len)
 		case CTR_DRBG_NEEDS_RESEED:
 			rv = fips_drbg_reseed(ctx);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 			if (rv != 0)
 				return rv;
 			break;
@@ -310,6 +342,7 @@ fips_drbg_gen(struct fips_drbg_ctx_s *ctx, void *tgt, size_t len)
 	}
 
 	return 0;
+<<<<<<< HEAD
 =======
 			if (FIPS140_PRNG_OK != rv)
 				goto err;
@@ -323,6 +356,8 @@ err:
 	mutex_unlock(&ctx->drbg_lock);
 	return rv;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 }
 
 /* free resources and zeroize state */

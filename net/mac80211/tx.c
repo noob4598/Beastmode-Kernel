@@ -282,11 +282,17 @@ ieee80211_tx_h_check_assoc(struct ieee80211_tx_data *tx)
 		return TX_CONTINUE;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (tx->sdata->vif.type == NL80211_IFTYPE_MESH_POINT)
 		return TX_CONTINUE;
 
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (tx->sdata->vif.type == NL80211_IFTYPE_MESH_POINT)
+		return TX_CONTINUE;
+
+>>>>>>> 2617302... source
 	if (tx->flags & IEEE80211_TX_PS_BUFFERED)
 		return TX_CONTINUE;
 
@@ -342,10 +348,14 @@ static void purge_old_ps_buffers(struct ieee80211_local *local)
 		if (skb) {
 			purged++;
 <<<<<<< HEAD
+<<<<<<< HEAD
 			dev_kfree_skb(skb);
 =======
 			ieee80211_free_txskb(&local->hw, skb);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			dev_kfree_skb(skb);
+>>>>>>> 2617302... source
 		}
 		total += skb_queue_len(&ps->bc_buf);
 	}
@@ -406,11 +416,14 @@ ieee80211_tx_h_multicast_ps_buf(struct ieee80211_tx_data *tx)
 		return TX_CONTINUE;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (ieee80211_is_probe_req(hdr->frame_control))
 		return TX_CONTINUE;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	/* no stations in PS mode */
 	if (!atomic_read(&ps->num_sta_ps))
 		return TX_CONTINUE;
@@ -431,10 +444,14 @@ ieee80211_tx_h_multicast_ps_buf(struct ieee80211_tx_data *tx)
 		ps_dbg(tx->sdata,
 		       "BC TX buffer full - dropping the oldest frame\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev_kfree_skb(skb_dequeue(&ps->bc_buf));
 =======
 		ieee80211_free_txskb(&tx->local->hw, skb_dequeue(&ps->bc_buf));
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		dev_kfree_skb(skb_dequeue(&ps->bc_buf));
+>>>>>>> 2617302... source
 	} else
 		tx->local->total_ps_buffered++;
 
@@ -465,9 +482,12 @@ ieee80211_tx_h_unicast_ps_buf(struct ieee80211_tx_data *tx)
 	struct sta_info *sta = tx->sta;
 	struct ieee80211_tx_info *info = IEEE80211_SKB_CB(tx->skb);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct ieee80211_hdr *hdr = (struct ieee80211_hdr *)tx->skb->data;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	struct ieee80211_local *local = tx->local;
 
 	if (unlikely(!sta))
@@ -478,6 +498,7 @@ ieee80211_tx_h_unicast_ps_buf(struct ieee80211_tx_data *tx)
 		     !(info->flags & IEEE80211_TX_CTL_NO_PS_BUFFER))) {
 		int ac = skb_get_queue_mapping(tx->skb);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 		/* only deauth, disassoc and action are bufferable MMPDUs */
@@ -490,6 +511,8 @@ ieee80211_tx_h_unicast_ps_buf(struct ieee80211_tx_data *tx)
 		}
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		ps_dbg(sta->sdata, "STA %pM aid %d: PS buffer for AC %d\n",
 		       sta->sta.addr, sta->sta.aid, ac);
 		if (tx->local->total_ps_buffered >= TOTAL_MAX_TX_BUFFER)
@@ -548,6 +571,9 @@ static ieee80211_tx_result debug_noinline
 ieee80211_tx_h_ps_buf(struct ieee80211_tx_data *tx)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	struct ieee80211_tx_info *info = IEEE80211_SKB_CB(tx->skb);
 	struct ieee80211_hdr *hdr = (struct ieee80211_hdr *)tx->skb->data;
 
@@ -564,10 +590,13 @@ ieee80211_tx_h_ps_buf(struct ieee80211_tx_data *tx)
 		return TX_CONTINUE;
 	}
 
+<<<<<<< HEAD
 =======
 	if (unlikely(tx->flags & IEEE80211_TX_PS_BUFFERED))
 		return TX_CONTINUE;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	if (tx->flags & IEEE80211_TX_UNICAST)
 		return ieee80211_tx_h_unicast_ps_buf(tx);
 	else
@@ -2754,10 +2783,14 @@ ieee80211_get_buffered_bc(struct ieee80211_hw *hw,
 		if (!ieee80211_tx_prepare(sdata, &tx, skb))
 			break;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev_kfree_skb_any(skb);
 =======
 		ieee80211_free_txskb(hw, skb);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		dev_kfree_skb_any(skb);
+>>>>>>> 2617302... source
 	}
 
 	info = IEEE80211_SKB_CB(skb);

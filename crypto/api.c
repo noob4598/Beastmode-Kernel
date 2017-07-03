@@ -173,10 +173,14 @@ static struct crypto_alg *crypto_larval_wait(struct crypto_alg *alg)
 	long timeout;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	timeout = wait_for_completion_interruptible_timeout(
 =======
 	timeout = wait_for_completion_killable_timeout(
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	timeout = wait_for_completion_interruptible_timeout(
+>>>>>>> 2617302... source
 		&larval->completion, 60 * HZ);
 
 	alg = larval->adult;
@@ -221,11 +225,15 @@ struct crypto_alg *crypto_larval_lookup(const char *name, u32 type, u32 mask)
 	alg = crypto_alg_lookup(name, type, mask);
 	if (!alg) {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		request_module("%s", name);
 
 		if (!((type ^ CRYPTO_ALG_NEED_FALLBACK) & mask &
 		      CRYPTO_ALG_NEED_FALLBACK))
 			request_module("%s-all", name);
+<<<<<<< HEAD
 =======
 		request_module("crypto-%s", name);
 
@@ -233,6 +241,8 @@ struct crypto_alg *crypto_larval_lookup(const char *name, u32 type, u32 mask)
 		      CRYPTO_ALG_NEED_FALLBACK))
 			request_module("crypto-%s-all", name);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 		alg = crypto_alg_lookup(name, type, mask);
 	}
@@ -464,10 +474,14 @@ err:
 		if (err != -EAGAIN)
 			break;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (signal_pending(current)) {
 =======
 		if (fatal_signal_pending(current)) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		if (signal_pending(current)) {
+>>>>>>> 2617302... source
 			err = -EINTR;
 			break;
 		}
@@ -597,10 +611,14 @@ err:
 		if (err != -EAGAIN)
 			break;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (signal_pending(current)) {
 =======
 		if (fatal_signal_pending(current)) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		if (signal_pending(current)) {
+>>>>>>> 2617302... source
 			err = -EINTR;
 			break;
 		}

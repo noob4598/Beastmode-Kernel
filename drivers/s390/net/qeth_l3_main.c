@@ -3334,9 +3334,12 @@ static void qeth_l3_remove_device(struct ccwgroup_device *cgdev)
 
 	if (card->dev) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		netif_napi_del(&card->napi);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		unregister_netdev(card->dev);
 		card->dev = NULL;
 	}

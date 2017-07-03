@@ -104,10 +104,14 @@ static unsigned fpos_off(loff_t p)
  * When possible, we try to satisfy a readdir by peeking at the
  * dcache.  We make this work by carefully ordering dentries on
 <<<<<<< HEAD
+<<<<<<< HEAD
  * d_u.d_child when we initially get results back from the MDS, and
 =======
  * d_child when we initially get results back from the MDS, and
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+ * d_u.d_child when we initially get results back from the MDS, and
+>>>>>>> 2617302... source
  * falling back to a "normal" sync readdir if any dentries in the dir
  * are dropped.
  *
@@ -144,11 +148,15 @@ static int __dcache_readdir(struct file *filp,
 		dout(" initial p %p/%p\n", p->prev, p->next);
 	} else {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		p = last->d_u.d_child.prev;
 	}
 
 more:
 	dentry = list_entry(p, struct dentry, d_u.d_child);
+<<<<<<< HEAD
 =======
 		p = last->d_child.prev;
 	}
@@ -156,6 +164,8 @@ more:
 more:
 	dentry = list_entry(p, struct dentry, d_child);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	di = ceph_dentry(dentry);
 	while (1) {
 		dout(" p %p/%p %s d_subdirs %p/%p\n", p->prev, p->next,
@@ -178,10 +188,14 @@ more:
 		spin_unlock(&dentry->d_lock);
 		p = p->prev;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dentry = list_entry(p, struct dentry, d_u.d_child);
 =======
 		dentry = list_entry(p, struct dentry, d_child);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		dentry = list_entry(p, struct dentry, d_u.d_child);
+>>>>>>> 2617302... source
 		di = ceph_dentry(dentry);
 	}
 

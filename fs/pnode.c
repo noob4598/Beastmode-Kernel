@@ -360,6 +360,7 @@ int propagate_umount(struct list_head *list)
 	return 0;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 int propagate_remount(struct mount *mnt) {
@@ -376,3 +377,5 @@ int propagate_remount(struct mount *mnt) {
 	return ret;
 }
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source

@@ -165,11 +165,14 @@ static void mei_me_hw_reset_release(struct mei_device *dev)
 	hcsr &= ~H_RST;
 	mei_hcsr_set(hw, hcsr);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 	/* complete this write before we set host ready on another CPU */
 	mmiowb();
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 }
 /**
  * mei_me_hw_reset - resets fw via mei csr register.
@@ -189,6 +192,7 @@ static void mei_me_hw_reset(struct mei_device *dev, bool intr_enable)
 	else
 		hcsr &= ~H_IE;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	mei_me_reg_write(hw, H_CSR, hcsr);
 
@@ -211,6 +215,11 @@ static void mei_me_hw_reset(struct mei_device *dev, bool intr_enable)
 
 	if (intr_enable == false)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	mei_me_reg_write(hw, H_CSR, hcsr);
+
+	if (dev->dev_state == MEI_DEV_POWER_DOWN)
+>>>>>>> 2617302... source
 		mei_me_hw_reset_release(dev);
 
 	dev_dbg(&dev->pdev->dev, "current HCSR = 0x%08x.\n", mei_hcsr_read(hw));
@@ -227,9 +236,12 @@ static void mei_me_host_set_ready(struct mei_device *dev)
 {
 	struct mei_me_hw *hw = to_me_hw(dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	hw->host_hw_state = mei_hcsr_read(hw);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	hw->host_hw_state |= H_IE | H_IG | H_RDY;
 	mei_hcsr_set(hw, hw->host_hw_state);
 }
@@ -263,13 +275,19 @@ static int mei_me_hw_ready_wait(struct mei_device *dev)
 {
 	int err;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	if (mei_me_hw_is_ready(dev))
 		return 0;
 
 	dev->recvd_hw_ready = false;
+<<<<<<< HEAD
 =======
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	mutex_unlock(&dev->device_lock);
 	err = wait_event_interruptible_timeout(dev->wait_hw_ready,
 			dev->recvd_hw_ready,
@@ -530,14 +548,20 @@ irqreturn_t mei_me_irq_thread_handler(int irq, void *dev_id)
 	if (!mei_host_is_ready(dev)) {
 		if (mei_hw_is_ready(dev)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 			mei_me_hw_reset_release(dev);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 			dev_dbg(&dev->pdev->dev, "we need to start the dev.\n");
 
 			dev->recvd_hw_ready = true;
 			wake_up_interruptible(&dev->wait_hw_ready);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 
 			mutex_unlock(&dev->device_lock);
 			return IRQ_HANDLED;
@@ -547,12 +571,15 @@ irqreturn_t mei_me_irq_thread_handler(int irq, void *dev_id)
 			mutex_unlock(&dev->device_lock);
 			return IRQ_HANDLED;
 		}
+<<<<<<< HEAD
 =======
 		} else {
 			dev_dbg(&dev->pdev->dev, "Spurious Interrupt\n");
 		}
 		goto end;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	}
 	/* check slots available for reading */
 	slots = mei_count_full_read_slots(dev);

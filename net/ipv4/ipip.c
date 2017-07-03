@@ -150,20 +150,28 @@ static int ipip_err(struct sk_buff *skb, u32 info)
 	if (type == ICMP_DEST_UNREACH && code == ICMP_FRAG_NEEDED) {
 		ipv4_update_pmtu(skb, dev_net(skb->dev), info,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				 t->dev->ifindex, 0, IPPROTO_IPIP, 0);
 =======
 				 t->parms.link, 0, IPPROTO_IPIP, 0);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+				 t->dev->ifindex, 0, IPPROTO_IPIP, 0);
+>>>>>>> 2617302... source
 		err = 0;
 		goto out;
 	}
 
 	if (type == ICMP_REDIRECT) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ipv4_redirect(skb, dev_net(skb->dev), t->dev->ifindex, 0,
 =======
 		ipv4_redirect(skb, dev_net(skb->dev), t->parms.link, 0,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		ipv4_redirect(skb, dev_net(skb->dev), t->dev->ifindex, 0,
+>>>>>>> 2617302... source
 			      IPPROTO_IPIP, 0);
 		err = 0;
 		goto out;
@@ -492,7 +500,10 @@ module_init(ipip_init);
 module_exit(ipip_fini);
 MODULE_LICENSE("GPL");
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 MODULE_ALIAS_RTNL_LINK("ipip");
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 MODULE_ALIAS_NETDEV("tunl0");

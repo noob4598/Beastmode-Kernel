@@ -374,6 +374,7 @@ static inline void list_splice_tail_init(struct list_head *list,
 
 /**
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
  * list_next_entry - get the next element in list
  * @pos:	the type * to cursor
@@ -392,6 +393,8 @@ static inline void list_splice_tail_init(struct list_head *list,
 
 /**
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
  * list_for_each	-	iterate over a list
  * @pos:	the &struct list_head to use as a loop cursor.
  * @head:	the head for your list.

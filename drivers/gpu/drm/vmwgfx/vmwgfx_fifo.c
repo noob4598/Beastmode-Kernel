@@ -164,6 +164,7 @@ void vmw_fifo_release(struct vmw_private *dev_priv, struct vmw_fifo_state *fifo)
 	mutex_lock(&dev_priv->hw_mutex);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	while (vmw_read(dev_priv, SVGA_REG_BUSY) != 0)
 		vmw_write(dev_priv, SVGA_REG_SYNC, SVGA_SYNC_GENERIC);
 =======
@@ -171,6 +172,10 @@ void vmw_fifo_release(struct vmw_private *dev_priv, struct vmw_fifo_state *fifo)
 	while (vmw_read(dev_priv, SVGA_REG_BUSY) != 0)
 		;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	while (vmw_read(dev_priv, SVGA_REG_BUSY) != 0)
+		vmw_write(dev_priv, SVGA_REG_SYNC, SVGA_SYNC_GENERIC);
+>>>>>>> 2617302... source
 
 	dev_priv->last_read_seqno = ioread32(fifo_mem + SVGA_FIFO_FENCE);
 

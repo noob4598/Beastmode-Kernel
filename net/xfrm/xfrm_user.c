@@ -391,6 +391,7 @@ static inline int xfrm_replay_verify_len(struct xfrm_replay_state_esn *replay_es
 	ulen = xfrm_replay_state_esn_len(up);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (nla_len(rp) < ulen || xfrm_replay_state_esn_len(replay_esn) != ulen)
 =======
 	/* Check the overall length and the internal bitmap length to avoid
@@ -402,6 +403,9 @@ static inline int xfrm_replay_verify_len(struct xfrm_replay_state_esn *replay_es
 
 	if (up->replay_window > up->bmp_len * sizeof(__u32) * 8)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (nla_len(rp) < ulen || xfrm_replay_state_esn_len(replay_esn) != ulen)
+>>>>>>> 2617302... source
 		return -EINVAL;
 
 	return 0;

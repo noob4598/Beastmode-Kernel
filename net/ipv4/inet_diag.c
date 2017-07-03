@@ -49,10 +49,13 @@ struct inet_diag_entry {
 	struct in6_addr daddr_storage;	/* for IPv4-mapped-IPv6 addresses */
 #endif
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	u32 ifindex;
 	u32 mark;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 };
 
 static DEFINE_MUTEX(inet_diag_table_mutex);
@@ -77,6 +80,7 @@ static inline void inet_diag_unlock_handler(
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 static size_t inet_sk_attr_size(void)
 {
@@ -93,15 +97,21 @@ static size_t inet_sk_attr_size(void)
 }
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 int inet_sk_diag_fill(struct sock *sk, struct inet_connection_sock *icsk,
 			      struct sk_buff *skb, struct inet_diag_req_v2 *req,
 			      struct user_namespace *user_ns,		      	
 			      u32 portid, u32 seq, u16 nlmsg_flags,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			      const struct nlmsghdr *unlh)
 =======
 			      const struct nlmsghdr *unlh, bool net_admin)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			      const struct nlmsghdr *unlh)
+>>>>>>> 2617302... source
 {
 	const struct inet_sock *inet = inet_sk(sk);
 	struct inet_diag_msg *r;
@@ -163,11 +173,14 @@ int inet_sk_diag_fill(struct sock *sk, struct inet_connection_sock *icsk,
 #endif
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (net_admin && nla_put_u32(skb, INET_DIAG_MARK, sk->sk_mark))
 		goto errout;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	r->idiag_uid = from_kuid_munged(user_ns, sock_i_uid(sk));
 	r->idiag_inode = sock_i_ino(sk);
 
@@ -248,10 +261,14 @@ static int inet_csk_diag_fill(struct sock *sk,
 			      struct user_namespace *user_ns,
 			      u32 portid, u32 seq, u16 nlmsg_flags,
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 			      const struct nlmsghdr *unlh)
 {
 	return inet_sk_diag_fill(sk, inet_csk(sk),
 			skb, req, user_ns, portid, seq, nlmsg_flags, unlh);
+<<<<<<< HEAD
 =======
 			      const struct nlmsghdr *unlh,
 			      bool net_admin)
@@ -259,6 +276,8 @@ static int inet_csk_diag_fill(struct sock *sk,
 	return inet_sk_diag_fill(sk, inet_csk(sk),
 			skb, req, user_ns, portid, seq, nlmsg_flags, unlh, net_admin);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 }
 
 static int inet_twsk_diag_fill(struct inet_timewait_sock *tw,
@@ -322,16 +341,23 @@ static int sk_diag_fill(struct sock *sk, struct sk_buff *skb,
 			struct user_namespace *user_ns,
 			u32 portid, u32 seq, u16 nlmsg_flags,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			const struct nlmsghdr *unlh)
 =======
 			const struct nlmsghdr *unlh, bool net_admin)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			const struct nlmsghdr *unlh)
+>>>>>>> 2617302... source
 {
 	if (sk->sk_state == TCP_TIME_WAIT)
 		return inet_twsk_diag_fill((struct inet_timewait_sock *)sk,
 					   skb, r, portid, seq, nlmsg_flags,
 					   unlh);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	return inet_csk_diag_fill(sk, skb, r, user_ns, portid, seq, nlmsg_flags, unlh);
 }
 
@@ -344,6 +370,7 @@ int inet_diag_dump_one_icsk(struct inet_hashinfo *hashinfo, struct sk_buff *in_s
 	struct net *net = sock_net(in_skb->sk);
 
 	err = -EINVAL;
+<<<<<<< HEAD
 =======
 	return inet_csk_diag_fill(sk, skb, r, user_ns, portid, seq, nlmsg_flags,
 				  unlh, net_admin);
@@ -356,6 +383,8 @@ struct sock *inet_diag_find_one_icsk(struct net *net,
 	struct sock *sk;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	if (req->sdiag_family == AF_INET) {
 		sk = inet_lookup(net, hashinfo, req->id.idiag_dst[0],
 				 req->id.idiag_dport, req->id.idiag_src[0],
@@ -364,6 +393,9 @@ struct sock *inet_diag_find_one_icsk(struct net *net,
 #if IS_ENABLED(CONFIG_IPV6)
 	else if (req->sdiag_family == AF_INET6) {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		sk = inet6_lookup(net, hashinfo,
 				  (struct in6_addr *)req->id.idiag_dst,
 				  req->id.idiag_dport,
@@ -387,6 +419,7 @@ struct sock *inet_diag_find_one_icsk(struct net *net,
 	rep = nlmsg_new(sizeof(struct inet_diag_msg) +
 			sizeof(struct inet_diag_meminfo) +
 			sizeof(struct tcp_info) + 64, GFP_KERNEL);
+<<<<<<< HEAD
 =======
 		if (ipv6_addr_v4mapped((struct in6_addr *)req->id.idiag_dst) &&
 		    ipv6_addr_v4mapped((struct in6_addr *)req->id.idiag_src))
@@ -438,6 +471,8 @@ int inet_diag_dump_one_icsk(struct inet_hashinfo *hashinfo,
 
 	rep = nlmsg_new(inet_sk_attr_size(), GFP_KERNEL);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	if (!rep) {
 		err = -ENOMEM;
 		goto out;
@@ -447,12 +482,16 @@ int inet_diag_dump_one_icsk(struct inet_hashinfo *hashinfo,
 			   sk_user_ns(NETLINK_CB(in_skb).sk),
 			   NETLINK_CB(in_skb).portid,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			   nlh->nlmsg_seq, 0, nlh);
 =======
 			   nlh->nlmsg_seq, 0, nlh,
 			   ns_capable(sock_net(in_skb->sk)->user_ns,
 				      CAP_NET_ADMIN));
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			   nlh->nlmsg_seq, 0, nlh);
+>>>>>>> 2617302... source
 	if (err < 0) {
 		WARN_ON(err == -EMSGSIZE);
 		nlmsg_free(rep);
@@ -471,18 +510,26 @@ out:
 			sock_put(sk);
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 out_nosk:
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+out_nosk:
+>>>>>>> 2617302... source
 	return err;
 }
 EXPORT_SYMBOL_GPL(inet_diag_dump_one_icsk);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int inet_diag_get_exact(struct sk_buff *in_skb,
 =======
 static int inet_diag_cmd_exact(int cmd, struct sk_buff *in_skb,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+static int inet_diag_get_exact(struct sk_buff *in_skb,
+>>>>>>> 2617302... source
 			       const struct nlmsghdr *nlh,
 			       struct inet_diag_req_v2 *req)
 {
@@ -492,6 +539,7 @@ static int inet_diag_cmd_exact(int cmd, struct sk_buff *in_skb,
 	handler = inet_diag_lock_handler(req->sdiag_protocol);
 	if (IS_ERR(handler))
 		err = PTR_ERR(handler);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	else
 		err = handler->dump_one(in_skb, nlh, req);
@@ -503,6 +551,10 @@ static int inet_diag_cmd_exact(int cmd, struct sk_buff *in_skb,
 	else
 		err = -EOPNOTSUPP;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	else
+		err = handler->dump_one(in_skb, nlh, req);
+>>>>>>> 2617302... source
 	inet_diag_unlock_handler(handler);
 
 	return err;
@@ -608,6 +660,7 @@ static int inet_diag_bc_run(const struct nlattr *_bc,
 			break;
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		case INET_DIAG_BC_DEV_COND: {
 			u32 ifindex;
@@ -626,6 +679,8 @@ static int inet_diag_bc_run(const struct nlattr *_bc,
 			break;
 		}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		}
 
 		if (yes) {
@@ -663,12 +718,16 @@ int inet_diag_bc_sk(const struct nlattr *bc, struct sock *sk)
 	entry.sport = inet->inet_num;
 	entry.dport = ntohs(inet->inet_dport);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	entry.userlocks = sk->sk_userlocks;
 =======
 	entry.ifindex = sk->sk_bound_dev_if;
 	entry.userlocks = sk->sk_userlocks;
 	entry.mark = sk->sk_mark;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	entry.userlocks = sk->sk_userlocks;
+>>>>>>> 2617302... source
 
 	return inet_diag_bc_run(bc, &entry);
 }
@@ -692,6 +751,7 @@ static int valid_cc(const void *bc, int len, int cc)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 /* data is u32 ifindex */
 static bool valid_devcond(const struct inet_diag_bc_op *op, int len,
@@ -705,6 +765,8 @@ static bool valid_devcond(const struct inet_diag_bc_op *op, int len,
 	return true;
 }
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 /* Validate an inet_diag_hostcond. */
 static bool valid_hostcond(const struct inet_diag_bc_op *op, int len,
 			   int *min_len)
@@ -755,10 +817,14 @@ static inline bool valid_port_comparison(const struct inet_diag_bc_op *op,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 static int inet_diag_bc_audit(const void *bytecode, int bytecode_len)
 {
 	const void *bc = bytecode;
 	int  len = bytecode_len;
+<<<<<<< HEAD
 =======
 static bool valid_markcond(const struct inet_diag_bc_op *op, int len,
 			   int *min_len)
@@ -780,6 +846,8 @@ static int inet_diag_bc_audit(const struct nlattr *attr,
 	bytecode = bc = nla_data(attr);
 	len = bytecode_len = nla_len(attr);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	while (len > 0) {
 		const struct inet_diag_bc_op *op = bc;
@@ -793,12 +861,15 @@ static int inet_diag_bc_audit(const struct nlattr *attr,
 				return -EINVAL;
 			break;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		case INET_DIAG_BC_DEV_COND:
 			if (!valid_devcond(bc, len, &min_len))
 				return -EINVAL;
 			break;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		case INET_DIAG_BC_S_GE:
 		case INET_DIAG_BC_S_LE:
 		case INET_DIAG_BC_D_GE:
@@ -806,6 +877,7 @@ static int inet_diag_bc_audit(const struct nlattr *attr,
 			if (!valid_port_comparison(bc, len, &min_len))
 				return -EINVAL;
 			break;
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 		case INET_DIAG_BC_MARK_COND:
@@ -815,6 +887,8 @@ static int inet_diag_bc_audit(const struct nlattr *attr,
 				return -EINVAL;
 			break;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		case INET_DIAG_BC_AUTO:
 		case INET_DIAG_BC_JMP:
 		case INET_DIAG_BC_NOP:
@@ -844,11 +918,15 @@ static int inet_csk_diag_dump(struct sock *sk,
 			      struct netlink_callback *cb,
 			      struct inet_diag_req_v2 *r,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			      const struct nlattr *bc)
 =======
 			      const struct nlattr *bc,
 			      bool net_admin)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			      const struct nlattr *bc)
+>>>>>>> 2617302... source
 {
 	if (!inet_diag_bc_sk(bc, sk))
 		return 0;
@@ -857,11 +935,15 @@ static int inet_csk_diag_dump(struct sock *sk,
 				  sk_user_ns(NETLINK_CB(cb->skb).sk),
 				  NETLINK_CB(cb->skb).portid,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				  cb->nlh->nlmsg_seq, NLM_F_MULTI, cb->nlh);
 =======
 				  cb->nlh->nlmsg_seq, NLM_F_MULTI, cb->nlh,
 				  net_admin);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+				  cb->nlh->nlmsg_seq, NLM_F_MULTI, cb->nlh);
+>>>>>>> 2617302... source
 }
 
 static int inet_twsk_diag_dump(struct inet_timewait_sock *tw,
@@ -890,9 +972,12 @@ static int inet_twsk_diag_dump(struct inet_timewait_sock *tw,
 		entry.dport = ntohs(tw->tw_dport);
 		entry.userlocks = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		entry.mark = 0;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 		if (!inet_diag_bc_run(bc, &entry))
 			return 0;
@@ -1020,9 +1105,12 @@ static int inet_diag_dump_reqs(struct sk_buff *skb, struct sock *sk,
 		entry.sport = inet->inet_num;
 		entry.userlocks = sk->sk_userlocks;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		entry.mark = sk->sk_mark;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	}
 
 	for (j = s_j; j < lopt->nr_table_entries; j++) {
@@ -1073,9 +1161,12 @@ void inet_diag_dump_icsk(struct inet_hashinfo *hashinfo, struct sk_buff *skb,
 	int s_i, s_num;
 	struct net *net = sock_net(skb->sk);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	bool net_admin = ns_capable(net->user_ns, CAP_NET_ADMIN);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	s_i = cb->args[1];
 	s_num = num = cb->args[2];
@@ -1117,11 +1208,15 @@ void inet_diag_dump_icsk(struct inet_hashinfo *hashinfo, struct sk_buff *skb,
 					goto syn_recv;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 				if (inet_csk_diag_dump(sk, skb, cb, r, bc) < 0) {
 =======
 				if (inet_csk_diag_dump(sk, skb, cb, r,
 						       bc, net_admin) < 0) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+				if (inet_csk_diag_dump(sk, skb, cb, r, bc) < 0) {
+>>>>>>> 2617302... source
 					spin_unlock_bh(&ilb->lock);
 					goto done;
 				}
@@ -1189,11 +1284,15 @@ skip_listen_ht:
 			    r->id.idiag_dport)
 				goto next_normal;
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (inet_csk_diag_dump(sk, skb, cb, r, bc) < 0) {
 =======
 			if (inet_csk_diag_dump(sk, skb, cb, r,
 					       bc, net_admin) < 0) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			if (inet_csk_diag_dump(sk, skb, cb, r, bc) < 0) {
+>>>>>>> 2617302... source
 				spin_unlock_bh(lock);
 				goto done;
 			}
@@ -1312,10 +1411,14 @@ static int inet_diag_get_exact_compat(struct sk_buff *in_skb,
 	req.id = rc->id;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return inet_diag_get_exact(in_skb, nlh, &req);
 =======
 	return inet_diag_cmd_exact(SOCK_DIAG_BY_FAMILY, in_skb, nlh, &req);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	return inet_diag_get_exact(in_skb, nlh, &req);
+>>>>>>> 2617302... source
 }
 
 static int inet_diag_rcv_msg_compat(struct sk_buff *skb, struct nlmsghdr *nlh)
@@ -1331,6 +1434,9 @@ static int inet_diag_rcv_msg_compat(struct sk_buff *skb, struct nlmsghdr *nlh)
 		if (nlmsg_attrlen(nlh, hdrlen)) {
 			struct nlattr *attr;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 
 			attr = nlmsg_find_attr(nlh, hdrlen,
 					       INET_DIAG_REQ_BYTECODE);
@@ -1338,6 +1444,7 @@ static int inet_diag_rcv_msg_compat(struct sk_buff *skb, struct nlmsghdr *nlh)
 			    nla_len(attr) < sizeof(struct inet_diag_bc_op) ||
 			    inet_diag_bc_audit(nla_data(attr), nla_len(attr)))
 				return -EINVAL;
+<<<<<<< HEAD
 =======
 			int err;
 
@@ -1347,6 +1454,8 @@ static int inet_diag_rcv_msg_compat(struct sk_buff *skb, struct nlmsghdr *nlh)
 			if (err)
 				return err;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		}
 		{
 			struct netlink_dump_control c = {
@@ -1360,10 +1469,14 @@ static int inet_diag_rcv_msg_compat(struct sk_buff *skb, struct nlmsghdr *nlh)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int inet_diag_handler_dump(struct sk_buff *skb, struct nlmsghdr *h)
 =======
 static int inet_diag_handler_cmd(struct sk_buff *skb, struct nlmsghdr *h)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+static int inet_diag_handler_dump(struct sk_buff *skb, struct nlmsghdr *h)
+>>>>>>> 2617302... source
 {
 	int hdrlen = sizeof(struct inet_diag_req_v2);
 	struct net *net = sock_net(skb->sk);
@@ -1372,6 +1485,9 @@ static int inet_diag_handler_cmd(struct sk_buff *skb, struct nlmsghdr *h)
 		return -EINVAL;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	if (h->nlmsg_flags & NLM_F_DUMP) {
 		if (nlmsg_attrlen(h, hdrlen)) {
 			struct nlattr *attr;
@@ -1381,6 +1497,7 @@ static int inet_diag_handler_cmd(struct sk_buff *skb, struct nlmsghdr *h)
 			    nla_len(attr) < sizeof(struct inet_diag_bc_op) ||
 			    inet_diag_bc_audit(nla_data(attr), nla_len(attr)))
 				return -EINVAL;
+<<<<<<< HEAD
 =======
 	if (h->nlmsg_type == SOCK_DIAG_BY_FAMILY &&
 	    h->nlmsg_flags & NLM_F_DUMP) {
@@ -1394,6 +1511,8 @@ static int inet_diag_handler_cmd(struct sk_buff *skb, struct nlmsghdr *h)
 			if (err)
 				return err;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		}
 		{
 			struct netlink_dump_control c = {
@@ -1404,30 +1523,42 @@ static int inet_diag_handler_cmd(struct sk_buff *skb, struct nlmsghdr *h)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return inet_diag_get_exact(skb, h, nlmsg_data(h));
 =======
 	return inet_diag_cmd_exact(h->nlmsg_type, skb, h, nlmsg_data(h));
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	return inet_diag_get_exact(skb, h, nlmsg_data(h));
+>>>>>>> 2617302... source
 }
 
 static const struct sock_diag_handler inet_diag_handler = {
 	.family = AF_INET,
 <<<<<<< HEAD
-	.dump = inet_diag_handler_dump,
-=======
-	.dump = inet_diag_handler_cmd,
-	.destroy = inet_diag_handler_cmd,
->>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
-};
-
-static const struct sock_diag_handler inet6_diag_handler = {
-	.family = AF_INET6,
 <<<<<<< HEAD
 	.dump = inet_diag_handler_dump,
 =======
 	.dump = inet_diag_handler_cmd,
 	.destroy = inet_diag_handler_cmd,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	.dump = inet_diag_handler_dump,
+>>>>>>> 2617302... source
+};
+
+static const struct sock_diag_handler inet6_diag_handler = {
+	.family = AF_INET6,
+<<<<<<< HEAD
+<<<<<<< HEAD
+	.dump = inet_diag_handler_dump,
+=======
+	.dump = inet_diag_handler_cmd,
+	.destroy = inet_diag_handler_cmd,
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	.dump = inet_diag_handler_dump,
+>>>>>>> 2617302... source
 };
 
 int inet_diag_register(const struct inet_diag_handler *h)

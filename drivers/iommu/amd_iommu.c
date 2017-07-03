@@ -1030,10 +1030,14 @@ again:
 	left      = (head - next_tail) % iommu->cmd_buf_size;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (left <= 2) {
 =======
 	if (left <= 0x20) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (left <= 2) {
+>>>>>>> 2617302... source
 		struct iommu_cmd sync_cmd;
 		volatile u64 sem = 0;
 		int ret;
@@ -1996,11 +2000,14 @@ static void dma_ops_domain_free(struct dma_ops_domain *dom)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (dom->domain.id)
 		domain_id_free(dom->domain.id);
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	kfree(dom);
 }
 
@@ -2117,12 +2124,17 @@ static void clear_dte_entry(u16 devid)
 {
 	/* remove entry from the device table seen by the hardware */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	amd_iommu_dev_table[devid].data[0] = IOMMU_PTE_P | IOMMU_PTE_TV;
 	amd_iommu_dev_table[devid].data[1] = 0;
 =======
 	amd_iommu_dev_table[devid].data[0]  = IOMMU_PTE_P | IOMMU_PTE_TV;
 	amd_iommu_dev_table[devid].data[1] &= DTE_FLAG_MASK;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	amd_iommu_dev_table[devid].data[0] = IOMMU_PTE_P | IOMMU_PTE_TV;
+	amd_iommu_dev_table[devid].data[1] = 0;
+>>>>>>> 2617302... source
 
 	amd_iommu_apply_erratum_63(devid);
 }
@@ -2567,6 +2579,7 @@ static void update_device_table(struct protection_domain *domain)
 	struct iommu_dev_data *dev_data;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	list_for_each_entry(dev_data, &domain->dev_list, list)
 		set_dte_entry(dev_data->devid, domain, dev_data->ats.enabled);
 =======
@@ -2581,6 +2594,10 @@ static void update_device_table(struct protection_domain *domain)
 			      dev_data->alias_data->ats.enabled);
 	}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	list_for_each_entry(dev_data, &domain->dev_list, list)
+		set_dte_entry(dev_data->devid, domain, dev_data->ats.enabled);
+>>>>>>> 2617302... source
 }
 
 static void update_domain(struct protection_domain *domain)
@@ -3216,14 +3233,19 @@ free_domains:
 static void cleanup_domain(struct protection_domain *domain)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct iommu_dev_data *dev_data, *next;
 =======
 	struct iommu_dev_data *entry;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	struct iommu_dev_data *dev_data, *next;
+>>>>>>> 2617302... source
 	unsigned long flags;
 
 	write_lock_irqsave(&amd_iommu_devtable_lock, flags);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	list_for_each_entry_safe(dev_data, next, &domain->dev_list, list) {
 		__detach_device(dev_data);
@@ -3235,6 +3257,11 @@ static void cleanup_domain(struct protection_domain *domain)
 		__detach_device(entry);
 		atomic_set(&entry->bind, 0);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	list_for_each_entry_safe(dev_data, next, &domain->dev_list, list) {
+		__detach_device(dev_data);
+		atomic_set(&dev_data->bind, 0);
+>>>>>>> 2617302... source
 	}
 
 	write_unlock_irqrestore(&amd_iommu_devtable_lock, flags);
@@ -4000,10 +4027,14 @@ static struct irq_remap_table *get_irq_table(u16 devid, bool ioapic)
 	if (devid != alias) {
 		irq_lookup_table[alias] = table;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		set_dte_irq_entry(devid, table);
 =======
 		set_dte_irq_entry(alias, table);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		set_dte_irq_entry(devid, table);
+>>>>>>> 2617302... source
 		iommu_flush_dte(iommu, alias);
 	}
 

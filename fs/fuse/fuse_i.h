@@ -349,11 +349,14 @@ struct fuse_req {
 	struct inode *inode;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/** Path used for completing d_canonical_path */
 	struct path *canonical_path;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	/** AIO control block */
 	struct fuse_io_priv *io;
 

@@ -104,8 +104,12 @@ struct rtmsg;
 extern int ipmr_get_route(struct net *net, struct sk_buff *skb,
 			  __be32 saddr, __be32 daddr,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			  struct rtmsg *rtm, int nowait);
 =======
 			  struct rtmsg *rtm, int nowait, u32 portid);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			  struct rtmsg *rtm, int nowait);
+>>>>>>> 2617302... source
 #endif

@@ -1080,6 +1080,7 @@ bool dma_rxfill(struct dma_pub *pub)
 		pa = dma_map_single(di->dmadev, p->data, di->rxbufsize,
 				    DMA_FROM_DEVICE);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (dma_mapping_error(di->dmadev, pa))
 			return false;
 =======
@@ -1088,6 +1089,10 @@ bool dma_rxfill(struct dma_pub *pub)
 			return false;
 		}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		if (dma_mapping_error(di->dmadev, pa))
+			return false;
+>>>>>>> 2617302... source
 
 		/* save the free packet pointer */
 		di->rxp[rxout] = p;

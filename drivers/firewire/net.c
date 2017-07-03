@@ -74,6 +74,9 @@ struct rfc2734_header {
 #define fwnet_get_hdr_lf(h)		(((h)->w0 & 0xc0000000) >> 30)
 #define fwnet_get_hdr_ether_type(h)	(((h)->w0 & 0x0000ffff))
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 #define fwnet_get_hdr_dg_size(h)	(((h)->w0 & 0x0fff0000) >> 16)
 #define fwnet_get_hdr_fg_off(h)		(((h)->w0 & 0x00000fff))
 #define fwnet_get_hdr_dgl(h)		(((h)->w1 & 0xffff0000) >> 16)
@@ -81,6 +84,7 @@ struct rfc2734_header {
 #define fwnet_set_hdr_lf(lf)		((lf)  << 30)
 #define fwnet_set_hdr_ether_type(et)	(et)
 #define fwnet_set_hdr_dg_size(dgs)	((dgs) << 16)
+<<<<<<< HEAD
 =======
 #define fwnet_get_hdr_dg_size(h)	((((h)->w0 & 0x0fff0000) >> 16) + 1)
 #define fwnet_get_hdr_fg_off(h)		(((h)->w0 & 0x00000fff))
@@ -90,6 +94,8 @@ struct rfc2734_header {
 #define fwnet_set_hdr_ether_type(et)	(et)
 #define fwnet_set_hdr_dg_size(dgs)	(((dgs) - 1) << 16)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 #define fwnet_set_hdr_fg_off(fgo)	(fgo)
 
 #define fwnet_set_hdr_dgl(dgl)		((dgl) << 16)
@@ -602,11 +608,14 @@ static int fwnet_incoming_packet(struct fwnet_device *dev, __be32 *buf, int len,
 	u16 ether_type;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (len <= RFC2374_UNFRAG_HDR_SIZE)
 		return 0;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	hdr.w0 = be32_to_cpu(buf[0]);
 	lf = fwnet_get_hdr_lf(&hdr);
 	if (lf == RFC2374_HDR_UNFRAG) {
@@ -632,6 +641,7 @@ static int fwnet_incoming_packet(struct fwnet_device *dev, __be32 *buf, int len,
 						    is_broadcast, ether_type);
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* A datagram fragment has been received, now the fun begins. */
 =======
 
@@ -641,6 +651,9 @@ static int fwnet_incoming_packet(struct fwnet_device *dev, __be32 *buf, int len,
 		return 0;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	/* A datagram fragment has been received, now the fun begins. */
+>>>>>>> 2617302... source
 	hdr.w1 = ntohl(buf[1]);
 	buf += 2;
 	len -= RFC2374_FRAG_HDR_SIZE;
@@ -653,6 +666,7 @@ static int fwnet_incoming_packet(struct fwnet_device *dev, __be32 *buf, int len,
 	}
 	datagram_label = fwnet_get_hdr_dgl(&hdr);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dg_size = fwnet_get_hdr_dg_size(&hdr); /* ??? + 1 */
 =======
 	dg_size = fwnet_get_hdr_dg_size(&hdr);
@@ -660,6 +674,9 @@ static int fwnet_incoming_packet(struct fwnet_device *dev, __be32 *buf, int len,
 	if (fg_off + len > dg_size)
 		return 0;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	dg_size = fwnet_get_hdr_dg_size(&hdr); /* ??? + 1 */
+>>>>>>> 2617302... source
 
 	spin_lock_irqsave(&dev->lock, flags);
 
@@ -768,6 +785,7 @@ static void fwnet_receive_packet(struct fw_card *card, struct fw_request *r,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 static int gasp_source_id(__be32 *p)
 {
@@ -786,6 +804,8 @@ static u32 gasp_version(__be32 *p)
 }
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 static void fwnet_receive_broadcast(struct fw_iso_context *context,
 		u32 cycle, size_t header_length, void *header, void *data)
 {
@@ -796,11 +816,17 @@ static void fwnet_receive_broadcast(struct fw_iso_context *context,
 	int retval;
 	u32 length;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u16 source_node_id;
 	u32 specifier_id;
 	u32 ver;
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	u16 source_node_id;
+	u32 specifier_id;
+	u32 ver;
+>>>>>>> 2617302... source
 	unsigned long offset;
 	unsigned long flags;
 
@@ -818,6 +844,9 @@ static void fwnet_receive_broadcast(struct fw_iso_context *context,
 	spin_unlock_irqrestore(&dev->lock, flags);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	specifier_id =    (be32_to_cpu(buf_ptr[0]) & 0xffff) << 8
 			| (be32_to_cpu(buf_ptr[1]) & 0xff000000) >> 24;
 	ver = be32_to_cpu(buf_ptr[1]) & 0xffffff;
@@ -834,6 +863,7 @@ static void fwnet_receive_broadcast(struct fw_iso_context *context,
 		fwnet_incoming_packet(dev, buf_ptr, length, source_node_id,
 				      context->card->generation, true);
 	}
+<<<<<<< HEAD
 =======
 	if (length > IEEE1394_GASP_HDR_SIZE &&
 	    gasp_specifier_id(buf_ptr) == IANA_SPECIFIER_ID &&
@@ -847,6 +877,8 @@ static void fwnet_receive_broadcast(struct fw_iso_context *context,
 				      gasp_source_id(buf_ptr),
 				      context->card->generation, true);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	packet.payload_length = dev->rcv_buffer_size;
 	packet.interrupt = 1;

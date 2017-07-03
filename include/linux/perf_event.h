@@ -317,6 +317,7 @@ struct perf_event {
 	int				group_flags;
 	struct perf_event		*group_leader;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 	/*
@@ -325,6 +326,8 @@ struct perf_event {
 	 */
 	struct mutex			group_leader_mutex;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	struct pmu			*pmu;
 
 	enum perf_event_active_state	state;
@@ -442,13 +445,19 @@ struct perf_event {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 enum perf_event_context_type {
 	task_context,
 	cpu_context,
 };
 
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 /**
  * struct perf_event_context - event context structure
  *
@@ -457,9 +466,13 @@ enum perf_event_context_type {
 struct perf_event_context {
 	struct pmu			*pmu;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	enum perf_event_context_type	type;
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	enum perf_event_context_type	type;
+>>>>>>> 2617302... source
 	/*
 	 * Protect the states of the events in the list,
 	 * nr_active, and the list:
@@ -713,15 +726,19 @@ extern int sysctl_perf_event_paranoid;
 extern int sysctl_perf_event_mlock;
 extern int sysctl_perf_event_sample_rate;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 extern int sysctl_perf_cpu_time_max_percent;
 
 extern void perf_sample_event_took(u64 sample_len_ns);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 extern int perf_proc_update_handler(struct ctl_table *table, int write,
 		void __user *buffer, size_t *lenp,
 		loff_t *ppos);
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 extern int perf_cpu_time_max_percent_handler(struct ctl_table *table, int write,
@@ -734,6 +751,8 @@ static inline bool perf_paranoid_any(void)
 	return sysctl_perf_event_paranoid > 2;
 }
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 static inline bool perf_paranoid_tracepoint_raw(void)
 {

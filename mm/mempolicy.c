@@ -609,6 +609,9 @@ static unsigned long change_prot_numa(struct vm_area_struct *vma,
  * put them on the pagelist.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 static struct vm_area_struct *
 check_range(struct mm_struct *mm, unsigned long start, unsigned long end,
 		const nodemask_t *nodes, unsigned long flags, void *private)
@@ -622,6 +625,7 @@ check_range(struct mm_struct *mm, unsigned long start, unsigned long end,
 		return ERR_PTR(-EFAULT);
 	prev = NULL;
 	for (vma = first; vma && vma->vm_start < end; vma = vma->vm_next) {
+<<<<<<< HEAD
 =======
 static int
 check_range(struct mm_struct *mm, unsigned long start, unsigned long end,
@@ -636,6 +640,8 @@ check_range(struct mm_struct *mm, unsigned long start, unsigned long end,
 	prev = NULL;
 	for (; vma && vma->vm_start < end; vma = vma->vm_next) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		unsigned long endvma = vma->vm_end;
 
 		if (endvma > end)
@@ -646,6 +652,7 @@ check_range(struct mm_struct *mm, unsigned long start, unsigned long end,
 		if (!(flags & MPOL_MF_DISCONTIG_OK)) {
 			if (!vma->vm_next && vma->vm_end < end)
 <<<<<<< HEAD
+<<<<<<< HEAD
 				return ERR_PTR(-EFAULT);
 			if (prev && prev->vm_end < vma->vm_start)
 				return ERR_PTR(-EFAULT);
@@ -654,6 +661,11 @@ check_range(struct mm_struct *mm, unsigned long start, unsigned long end,
 			if (prev && prev->vm_end < vma->vm_start)
 				return -EFAULT;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+				return ERR_PTR(-EFAULT);
+			if (prev && prev->vm_end < vma->vm_start)
+				return ERR_PTR(-EFAULT);
+>>>>>>> 2617302... source
 		}
 
 		if (is_vm_hugetlb_page(vma))
@@ -671,23 +683,33 @@ check_range(struct mm_struct *mm, unsigned long start, unsigned long end,
 			err = check_pgd_range(vma, start, endvma, nodes,
 						flags, private);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 			if (err) {
 				first = ERR_PTR(err);
 				break;
 			}
+<<<<<<< HEAD
 =======
 			if (err)
 				break;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		}
 next:
 		prev = vma;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return first;
 =======
 	return err;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	return first;
+>>>>>>> 2617302... source
 }
 
 /*
@@ -1169,20 +1191,28 @@ out:
 /*
  * Allocate a new page for page migration based on vma policy.
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Start assuming that page is mapped by vma pointed to by @private.
 =======
  * Start by assuming the page is mapped by the same vma as contains @start.
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+ * Start assuming that page is mapped by vma pointed to by @private.
+>>>>>>> 2617302... source
  * Search forward from there, if not.  N.B., this assumes that the
  * list of pages handed to migrate_pages()--which is how we get here--
  * is in virtual address order.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 static struct page *new_vma_page(struct page *page, unsigned long private, int **x)
 {
 	struct vm_area_struct *vma = (struct vm_area_struct *)private;
 	unsigned long uninitialized_var(address);
 
+<<<<<<< HEAD
 =======
 static struct page *new_page(struct page *page, unsigned long start, int **x)
 {
@@ -1191,6 +1221,8 @@ static struct page *new_page(struct page *page, unsigned long start, int **x)
 
 	vma = find_vma(current->mm, start);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	while (vma) {
 		address = page_address_in_vma(page, vma);
 		if (address != -EFAULT)
@@ -1217,10 +1249,14 @@ int do_migrate_pages(struct mm_struct *mm, const nodemask_t *from,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct page *new_vma_page(struct page *page, unsigned long private, int **x)
 =======
 static struct page *new_page(struct page *page, unsigned long start, int **x)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+static struct page *new_vma_page(struct page *page, unsigned long private, int **x)
+>>>>>>> 2617302... source
 {
 	return NULL;
 }
@@ -1231,9 +1267,13 @@ static long do_mbind(unsigned long start, unsigned long len,
 		     nodemask_t *nmask, unsigned long flags)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct vm_area_struct *vma;
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	struct vm_area_struct *vma;
+>>>>>>> 2617302... source
 	struct mm_struct *mm = current->mm;
 	struct mempolicy *new;
 	unsigned long end;
@@ -1300,16 +1340,22 @@ static long do_mbind(unsigned long start, unsigned long len,
 		goto mpol_out;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	vma = check_range(mm, start, end, nmask,
 			  flags | MPOL_MF_INVERT, &pagelist);
 
 	err = PTR_ERR(vma);	/* maybe ... */
 	if (!IS_ERR(vma))
+<<<<<<< HEAD
 =======
 	err = check_range(mm, start, end, nmask,
 			  flags | MPOL_MF_INVERT, &pagelist);
 	if (!err)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		err = mbind_range(mm, start, end, new);
 
 	if (!err) {
@@ -1318,6 +1364,7 @@ static long do_mbind(unsigned long start, unsigned long len,
 		if (!list_empty(&pagelist)) {
 			WARN_ON_ONCE(flags & MPOL_MF_LAZY);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			nr_failed = migrate_pages(&pagelist, new_vma_page,
 					(unsigned long)vma,
 					MIGRATE_SYNC, MR_MEMPOLICY_MBIND);
@@ -1325,6 +1372,11 @@ static long do_mbind(unsigned long start, unsigned long len,
 			nr_failed = migrate_pages(&pagelist, new_page,
 				start, MIGRATE_SYNC, MR_MEMPOLICY_MBIND);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			nr_failed = migrate_pages(&pagelist, new_vma_page,
+					(unsigned long)vma,
+					MIGRATE_SYNC, MR_MEMPOLICY_MBIND);
+>>>>>>> 2617302... source
 			if (nr_failed)
 				putback_lru_pages(&pagelist);
 		}
@@ -1605,9 +1657,13 @@ asmlinkage long compat_sys_set_mempolicy(int mode, compat_ulong_t __user *nmask,
 				     compat_ulong_t maxnode)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	long err = 0;
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	long err = 0;
+>>>>>>> 2617302... source
 	unsigned long __user *nm = NULL;
 	unsigned long nr_bits, alloc_size;
 	DECLARE_BITMAP(bm, MAX_NUMNODES);
@@ -1617,6 +1673,9 @@ asmlinkage long compat_sys_set_mempolicy(int mode, compat_ulong_t __user *nmask,
 
 	if (nmask) {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		err = compat_get_bitmap(bm, nmask, nr_bits);
 		nm = compat_alloc_user_space(alloc_size);
 		err |= copy_to_user(nm, bm, alloc_size);
@@ -1625,6 +1684,7 @@ asmlinkage long compat_sys_set_mempolicy(int mode, compat_ulong_t __user *nmask,
 	if (err)
 		return -EFAULT;
 
+<<<<<<< HEAD
 =======
 		if (compat_get_bitmap(bm, nmask, nr_bits))
 			return -EFAULT;
@@ -1634,6 +1694,8 @@ asmlinkage long compat_sys_set_mempolicy(int mode, compat_ulong_t __user *nmask,
 	}
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	return sys_set_mempolicy(mode, nm, nr_bits+1);
 }
 
@@ -1642,9 +1704,13 @@ asmlinkage long compat_sys_mbind(compat_ulong_t start, compat_ulong_t len,
 			     compat_ulong_t maxnode, compat_ulong_t flags)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	long err = 0;
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	long err = 0;
+>>>>>>> 2617302... source
 	unsigned long __user *nm = NULL;
 	unsigned long nr_bits, alloc_size;
 	nodemask_t bm;
@@ -1654,6 +1720,9 @@ asmlinkage long compat_sys_mbind(compat_ulong_t start, compat_ulong_t len,
 
 	if (nmask) {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		err = compat_get_bitmap(nodes_addr(bm), nmask, nr_bits);
 		nm = compat_alloc_user_space(alloc_size);
 		err |= copy_to_user(nm, nodes_addr(bm), alloc_size);
@@ -1662,6 +1731,7 @@ asmlinkage long compat_sys_mbind(compat_ulong_t start, compat_ulong_t len,
 	if (err)
 		return -EFAULT;
 
+<<<<<<< HEAD
 =======
 		if (compat_get_bitmap(nodes_addr(bm), nmask, nr_bits))
 			return -EFAULT;
@@ -1671,6 +1741,8 @@ asmlinkage long compat_sys_mbind(compat_ulong_t start, compat_ulong_t len,
 	}
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	return sys_mbind(start, len, mode, nm, nr_bits+1, flags);
 }
 
@@ -2180,9 +2252,13 @@ struct mempolicy *__mpol_dup(struct mempolicy *old)
 		*new = *old;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	rcu_read_lock();
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	rcu_read_lock();
+>>>>>>> 2617302... source
 	if (current_cpuset_is_being_rebound()) {
 		nodemask_t mems = cpuset_mems_allowed(current);
 		if (new->flags & MPOL_F_REBINDING)
@@ -2191,9 +2267,13 @@ struct mempolicy *__mpol_dup(struct mempolicy *old)
 			mpol_rebind_policy(new, &mems, MPOL_REBIND_ONCE);
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	rcu_read_unlock();
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	rcu_read_unlock();
+>>>>>>> 2617302... source
 	atomic_set(&new->refcnt, 1);
 	return new;
 }

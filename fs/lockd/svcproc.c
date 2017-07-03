@@ -465,10 +465,14 @@ nlmsvc_proc_sm_notify(struct svc_rqst *rqstp, struct nlm_reboot *argp,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	nlm_host_rebooted(argp);
 =======
 	nlm_host_rebooted(SVC_NET(rqstp), argp);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	nlm_host_rebooted(argp);
+>>>>>>> 2617302... source
 	return rpc_success;
 }
 

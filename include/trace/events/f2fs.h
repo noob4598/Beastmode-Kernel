@@ -7,12 +7,17 @@
 #include <linux/tracepoint.h>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define show_dev(entry)		MAJOR(entry->dev), MINOR(entry->dev)
 #define show_dev_ino(entry)	show_dev(entry), (unsigned long)entry->ino
 =======
 #define show_dev(dev)		MAJOR(dev), MINOR(dev)
 #define show_dev_ino(entry)	show_dev(entry->dev), (unsigned long)entry->ino
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+#define show_dev(entry)		MAJOR(entry->dev), MINOR(entry->dev)
+#define show_dev_ino(entry)	show_dev(entry), (unsigned long)entry->ino
+>>>>>>> 2617302... source
 
 #define show_block_type(type)						\
 	__print_symbolic(type,						\
@@ -20,6 +25,9 @@
 		{ DATA,		"DATA" },				\
 		{ META,		"META" },				\
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		{ META_FLUSH,	"META_FLUSH" })
 
 #define show_bio_type(type)						\
@@ -31,6 +39,7 @@
 		{ WRITE_SYNC, 	"WRITE_SYNC" },				\
 		{ WRITE_FLUSH,	"WRITE_FLUSH" },			\
 		{ WRITE_FUA, 	"WRITE_FUA" })
+<<<<<<< HEAD
 =======
 		{ META_FLUSH,	"META_FLUSH" },				\
 		{ INMEM,	"INMEM" },				\
@@ -63,6 +72,8 @@
 		{ REQ_META | REQ_PRIO,	"(MP)" },			\
 		{ 0, " \b" })
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 #define show_data_type(type)						\
 	__print_symbolic(type,						\
@@ -75,6 +86,7 @@
 		{ NO_CHECK_TYPE, 	"No TYPE" })
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define show_file_type(type)						\
 	__print_symbolic(type,						\
@@ -82,6 +94,8 @@
 		{ 1,		"DIR" })
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 #define show_gc_type(type)						\
 	__print_symbolic(type,						\
 		{ FG_GC,	"Foreground GC" },			\
@@ -98,6 +112,7 @@
 		{ GC_CB,	"Cost-Benefit" })
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 struct victim_sel_policy;
 =======
 #define show_cpreason(type)						\
@@ -111,6 +126,9 @@ struct victim_sel_policy;
 struct victim_sel_policy;
 struct f2fs_map_blocks;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+struct victim_sel_policy;
+>>>>>>> 2617302... source
 
 DECLARE_EVENT_CLASS(f2fs__inode,
 
@@ -184,10 +202,14 @@ DEFINE_EVENT(f2fs__inode, f2fs_sync_file_enter,
 TRACE_EVENT(f2fs_sync_file_exit,
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	TP_PROTO(struct inode *inode, bool need_cp, int datasync, int ret),
 =======
 	TP_PROTO(struct inode *inode, int need_cp, int datasync, int ret),
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	TP_PROTO(struct inode *inode, bool need_cp, int datasync, int ret),
+>>>>>>> 2617302... source
 
 	TP_ARGS(inode, need_cp, datasync, ret),
 
@@ -195,10 +217,14 @@ TRACE_EVENT(f2fs_sync_file_exit,
 		__field(dev_t,	dev)
 		__field(ino_t,	ino)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		__field(bool,	need_cp)
 =======
 		__field(int,	need_cp)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		__field(bool,	need_cp)
+>>>>>>> 2617302... source
 		__field(int,	datasync)
 		__field(int,	ret)
 	),
@@ -234,19 +260,27 @@ TRACE_EVENT(f2fs_sync_fs,
 	TP_fast_assign(
 		__entry->dev	= sb->s_dev;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		__entry->dirty	= F2FS_SB(sb)->s_dirty;
 =======
 		__entry->dirty	= is_sbi_flag_set(F2FS_SB(sb), SBI_IS_DIRTY);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		__entry->dirty	= F2FS_SB(sb)->s_dirty;
+>>>>>>> 2617302... source
 		__entry->wait	= wait;
 	),
 
 	TP_printk("dev = (%d,%d), superblock is %s, wait = %d",
 <<<<<<< HEAD
+<<<<<<< HEAD
 		show_dev(__entry),
 =======
 		show_dev(__entry->dev),
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		show_dev(__entry),
+>>>>>>> 2617302... source
 		__entry->dirty ? "dirty" : "not dirty",
 		__entry->wait)
 );
@@ -317,6 +351,7 @@ DEFINE_EVENT(f2fs__inode_exit, f2fs_unlink_exit,
 );
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 DEFINE_EVENT(f2fs__inode_exit, f2fs_drop_inode,
 
@@ -326,6 +361,8 @@ DEFINE_EVENT(f2fs__inode_exit, f2fs_drop_inode,
 );
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 DEFINE_EVENT(f2fs__inode, f2fs_truncate,
 
 	TP_PROTO(struct inode *inode),
@@ -502,6 +539,9 @@ TRACE_EVENT(f2fs_truncate_partial_nodes,
 );
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 TRACE_EVENT_CONDITION(f2fs_readpage,
 
 	TP_PROTO(struct page *page, sector_t blkaddr, int type),
@@ -509,17 +549,23 @@ TRACE_EVENT_CONDITION(f2fs_readpage,
 	TP_ARGS(page, blkaddr, type),
 
 	TP_CONDITION(page->mapping),
+<<<<<<< HEAD
 =======
 TRACE_EVENT(f2fs_map_blocks,
 	TP_PROTO(struct inode *inode, struct f2fs_map_blocks *map, int ret),
 
 	TP_ARGS(inode, map, ret),
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	TP_STRUCT__entry(
 		__field(dev_t,	dev)
 		__field(ino_t,	ino)
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		__field(pgoff_t,	index)
 		__field(sector_t,	blkaddr)
 		__field(int,	type)
@@ -572,6 +618,7 @@ TRACE_EVENT(f2fs_get_data_block,
 		(unsigned long long)__entry->bh_start,
 		(unsigned long long)__entry->bh_size,
 		__entry->ret)
+<<<<<<< HEAD
 =======
 		__field(block_t,	m_lblk)
 		__field(block_t,	m_pblk)
@@ -624,6 +671,8 @@ TRACE_EVENT(f2fs_background_gc,
 		__entry->prefree,
 		__entry->free)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 );
 
 TRACE_EVENT(f2fs_get_victim,
@@ -663,10 +712,14 @@ TRACE_EVENT(f2fs_get_victim,
 	TP_printk("dev = (%d,%d), type = %s, policy = (%s, %s, %s), victim = %u "
 		"ofs_unit = %u, pre_victim_secno = %d, prefree = %u, free = %u",
 <<<<<<< HEAD
+<<<<<<< HEAD
 		show_dev(__entry),
 =======
 		show_dev(__entry->dev),
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		show_dev(__entry),
+>>>>>>> 2617302... source
 		show_data_type(__entry->type),
 		show_gc_type(__entry->gc_type),
 		show_alloc_mode(__entry->alloc_mode),
@@ -719,11 +772,15 @@ TRACE_EVENT(f2fs_fallocate,
 );
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 TRACE_EVENT(f2fs_reserve_new_block,
 
 	TP_PROTO(struct inode *inode, nid_t nid, unsigned int ofs_in_node),
 
 	TP_ARGS(inode, nid, ofs_in_node),
+<<<<<<< HEAD
 =======
 TRACE_EVENT(f2fs_direct_IO_enter,
 
@@ -795,15 +852,20 @@ TRACE_EVENT(f2fs_reserve_new_blocks,
 
 	TP_ARGS(inode, nid, ofs_in_node, count),
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	TP_STRUCT__entry(
 		__field(dev_t,	dev)
 		__field(nid_t, nid)
 		__field(unsigned int, ofs_in_node)
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		__field(blkcnt_t, count)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	),
 
 	TP_fast_assign(
@@ -811,6 +873,9 @@ TRACE_EVENT(f2fs_reserve_new_blocks,
 		__entry->nid	= nid;
 		__entry->ofs_in_node = ofs_in_node;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	),
 
 	TP_printk("dev = (%d,%d), nid = %u, ofs_in_node = %u",
@@ -829,6 +894,7 @@ TRACE_EVENT(f2fs_do_submit_bio,
 		__field(dev_t,	dev)
 		__field(int,	btype)
 		__field(bool,	sync)
+<<<<<<< HEAD
 =======
 		__entry->count = count;
 	),
@@ -909,12 +975,15 @@ DECLARE_EVENT_CLASS(f2fs__bio,
 		__field(int,	op_flags)
 		__field(int,	type)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		__field(sector_t,	sector)
 		__field(unsigned int,	size)
 	),
 
 	TP_fast_assign(
 		__entry->dev		= sb->s_dev;
+<<<<<<< HEAD
 <<<<<<< HEAD
 		__entry->btype		= btype;
 		__entry->sync		= sync;
@@ -924,15 +993,23 @@ DECLARE_EVENT_CLASS(f2fs__bio,
 		__entry->op_flags	= bio->bi_rw;
 		__entry->type		= type;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		__entry->btype		= btype;
+		__entry->sync		= sync;
+>>>>>>> 2617302... source
 		__entry->sector		= bio->bi_sector;
 		__entry->size		= bio->bi_size;
 	),
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	TP_printk("dev = (%d,%d), type = %s, io = %s, sector = %lld, size = %u",
 		show_dev(__entry),
 		show_block_type(__entry->btype),
 		__entry->sync ? "sync" : "no sync",
+<<<<<<< HEAD
 =======
 	TP_printk("dev = (%d,%d)/(%d,%d), rw = %s%s, %s, sector = %lld, size = %u",
 		show_dev(__entry->target),
@@ -940,16 +1017,22 @@ DECLARE_EVENT_CLASS(f2fs__bio,
 		show_bio_type(__entry->op, __entry->op_flags),
 		show_block_type(__entry->type),
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		(unsigned long long)__entry->sector,
 		__entry->size)
 );
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 TRACE_EVENT(f2fs_submit_write_page,
 
 	TP_PROTO(struct page *page, block_t blk_addr, int type),
 
 	TP_ARGS(page, blk_addr, type),
+<<<<<<< HEAD
 =======
 DEFINE_EVENT_CONDITION(f2fs__bio, f2fs_prepare_write_bio,
 
@@ -1053,11 +1136,14 @@ DECLARE_EVENT_CLASS(f2fs__page,
 
 	TP_ARGS(page, type),
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	TP_STRUCT__entry(
 		__field(dev_t,	dev)
 		__field(ino_t,	ino)
 		__field(int, type)
+<<<<<<< HEAD
 <<<<<<< HEAD
 		__field(pgoff_t, index)
 		__field(block_t, block)
@@ -1067,6 +1153,10 @@ DECLARE_EVENT_CLASS(f2fs__page,
 		__field(int, dirty)
 		__field(int, uptodate)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		__field(pgoff_t, index)
+		__field(block_t, block)
+>>>>>>> 2617302... source
 	),
 
 	TP_fast_assign(
@@ -1074,6 +1164,9 @@ DECLARE_EVENT_CLASS(f2fs__page,
 		__entry->ino	= page->mapping->host->i_ino;
 		__entry->type	= type;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		__entry->index	= page->index;
 		__entry->block	= blk_addr;
 	),
@@ -1083,6 +1176,7 @@ DECLARE_EVENT_CLASS(f2fs__page,
 		show_block_type(__entry->type),
 		(unsigned long)__entry->index,
 		(unsigned long long)__entry->block)
+<<<<<<< HEAD
 =======
 		__entry->dir	= S_ISDIR(page->mapping->host->i_mode);
 		__entry->index	= page->index;
@@ -1235,11 +1329,16 @@ TRACE_EVENT(f2fs_readpages,
 		(unsigned long)__entry->start,
 		__entry->nrpage)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 );
 
 TRACE_EVENT(f2fs_write_checkpoint,
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	TP_PROTO(struct super_block *sb, bool is_umount, char *msg),
 
 	TP_ARGS(sb, is_umount, msg),
@@ -1247,6 +1346,7 @@ TRACE_EVENT(f2fs_write_checkpoint,
 	TP_STRUCT__entry(
 		__field(dev_t,	dev)
 		__field(bool,	is_umount)
+<<<<<<< HEAD
 =======
 	TP_PROTO(struct super_block *sb, int reason, char *msg),
 
@@ -1256,26 +1356,36 @@ TRACE_EVENT(f2fs_write_checkpoint,
 		__field(dev_t,	dev)
 		__field(int,	reason)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		__field(char *,	msg)
 	),
 
 	TP_fast_assign(
 		__entry->dev		= sb->s_dev;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		__entry->is_umount	= is_umount;
 =======
 		__entry->reason		= reason;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		__entry->is_umount	= is_umount;
+>>>>>>> 2617302... source
 		__entry->msg		= msg;
 	),
 
 	TP_printk("dev = (%d,%d), checkpoint for %s, state = %s",
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		show_dev(__entry),
 		__entry->is_umount ? "clean umount" : "consistency",
 		__entry->msg)
 );
 
+<<<<<<< HEAD
 =======
 		show_dev(__entry->dev),
 		show_cpreason(__entry->reason),
@@ -1529,6 +1639,8 @@ DEFINE_EVENT(f2fs_sync_dirty_inodes, f2fs_sync_dirty_inodes_exit,
 );
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 #endif /* _TRACE_F2FS_H */
 
  /* This part must be outside protection */

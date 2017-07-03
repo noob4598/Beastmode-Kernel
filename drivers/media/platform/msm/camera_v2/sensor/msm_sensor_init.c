@@ -50,15 +50,22 @@ static int msm_sensor_wait_for_probe_done(struct msm_sensor_init_t *s_init)
 {
 	int rc;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 	int tm = 10000;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+
+>>>>>>> 2617302... source
 	if (s_init->module_init_status == 1) {
 		pr_err("msm_cam_get_module_init_status -2\n");
 		return 0;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 
 	while (1) {
 		rc = wait_event_interruptible(s_init->state_wait,
@@ -69,6 +76,7 @@ static int msm_sensor_wait_for_probe_done(struct msm_sensor_init_t *s_init)
 			break;
 	}
 	return 0;
+<<<<<<< HEAD
 =======
 	rc = wait_event_interruptible_timeout(s_init->state_wait,
 		(s_init->module_init_status == 1), msecs_to_jiffies(tm));
@@ -79,6 +87,8 @@ static int msm_sensor_wait_for_probe_done(struct msm_sensor_init_t *s_init)
 
 	return rc;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 }
 
 /* Static function definition */
@@ -91,10 +101,14 @@ static int32_t msm_sensor_driver_cmd(struct msm_sensor_init_t *s_init,
 	/* Validate input parameters */
 	if (!s_init || !cfg) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("failed: s_init %p cfg %p", s_init, cfg);
 =======
 		pr_err("failed: s_init %pK cfg %pK", s_init, cfg);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		pr_err("failed: s_init %p cfg %p", s_init, cfg);
+>>>>>>> 2617302... source
 		return -EINVAL;
 	}
 
@@ -135,10 +149,14 @@ static long msm_sensor_init_subdev_ioctl(struct v4l2_subdev *sd,
 	/* Validate input parameters */
 	if (!s_init) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("failed: s_init %p", s_init);
 =======
 		pr_err("failed: s_init %pK", s_init);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		pr_err("failed: s_init %p", s_init);
+>>>>>>> 2617302... source
 		return -EINVAL;
 	}
 
@@ -427,11 +445,15 @@ static int __init msm_sensor_init_module(void)
 	if (!s_init) {
 		class_destroy(camera_class);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		pr_err("failed: no memory s_init %p", NULL);
 		return -ENOMEM;
 	}
 
 	pr_err("MSM_SENSOR_INIT_MODULE %p", NULL);
+<<<<<<< HEAD
 =======
 		pr_err("failed: no memory s_init %pK", NULL);
 		return -ENOMEM;
@@ -439,6 +461,8 @@ static int __init msm_sensor_init_module(void)
 
 	CDBG("MSM_SENSOR_INIT_MODULE %pK", NULL);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	/* Initialize mutex */
 	mutex_init(&s_init->imutex);

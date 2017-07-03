@@ -686,9 +686,12 @@ void blk_trace_shutdown(struct request_queue *q)
  * @q:		queue the io is for
  * @rq:		the source request
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
  * @nr_bytes:	number of completed bytes
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
  * @what:	the action
  *
  * Description:
@@ -697,10 +700,14 @@ void blk_trace_shutdown(struct request_queue *q)
  **/
 static void blk_add_trace_rq(struct request_queue *q, struct request *rq,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			     u32 what)
 =======
 			     unsigned int nr_bytes, u32 what)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			     u32 what)
+>>>>>>> 2617302... source
 {
 	struct blk_trace *bt = q->blk_trace;
 
@@ -710,11 +717,15 @@ static void blk_add_trace_rq(struct request_queue *q, struct request *rq,
 	if (rq->cmd_type == REQ_TYPE_BLOCK_PC) {
 		what |= BLK_TC_ACT(BLK_TC_PC);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		__blk_add_trace(bt, 0, blk_rq_bytes(rq), rq->cmd_flags,
 				what, rq->errors, rq->cmd_len, rq->cmd);
 	} else  {
 		what |= BLK_TC_ACT(BLK_TC_FS);
 		__blk_add_trace(bt, blk_rq_pos(rq), blk_rq_bytes(rq),
+<<<<<<< HEAD
 =======
 		__blk_add_trace(bt, 0, nr_bytes, rq->cmd_flags,
 				what, rq->errors, rq->cmd_len, rq->cmd);
@@ -722,6 +733,8 @@ static void blk_add_trace_rq(struct request_queue *q, struct request *rq,
 		what |= BLK_TC_ACT(BLK_TC_FS);
 		__blk_add_trace(bt, blk_rq_pos(rq), nr_bytes,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 				rq->cmd_flags, what, rq->errors, 0, NULL);
 	}
 }
@@ -730,30 +743,42 @@ static void blk_add_trace_rq_abort(void *ignore,
 				   struct request_queue *q, struct request *rq)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	blk_add_trace_rq(q, rq, BLK_TA_ABORT);
 =======
 	blk_add_trace_rq(q, rq, blk_rq_bytes(rq), BLK_TA_ABORT);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	blk_add_trace_rq(q, rq, BLK_TA_ABORT);
+>>>>>>> 2617302... source
 }
 
 static void blk_add_trace_rq_insert(void *ignore,
 				    struct request_queue *q, struct request *rq)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	blk_add_trace_rq(q, rq, BLK_TA_INSERT);
 =======
 	blk_add_trace_rq(q, rq, blk_rq_bytes(rq), BLK_TA_INSERT);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	blk_add_trace_rq(q, rq, BLK_TA_INSERT);
+>>>>>>> 2617302... source
 }
 
 static void blk_add_trace_rq_issue(void *ignore,
 				   struct request_queue *q, struct request *rq)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	blk_add_trace_rq(q, rq, BLK_TA_ISSUE);
 =======
 	blk_add_trace_rq(q, rq, blk_rq_bytes(rq), BLK_TA_ISSUE);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	blk_add_trace_rq(q, rq, BLK_TA_ISSUE);
+>>>>>>> 2617302... source
 }
 
 static void blk_add_trace_rq_requeue(void *ignore,
@@ -761,14 +786,19 @@ static void blk_add_trace_rq_requeue(void *ignore,
 				     struct request *rq)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	blk_add_trace_rq(q, rq, BLK_TA_REQUEUE);
 =======
 	blk_add_trace_rq(q, rq, blk_rq_bytes(rq), BLK_TA_REQUEUE);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	blk_add_trace_rq(q, rq, BLK_TA_REQUEUE);
+>>>>>>> 2617302... source
 }
 
 static void blk_add_trace_rq_complete(void *ignore,
 				      struct request_queue *q,
+<<<<<<< HEAD
 <<<<<<< HEAD
 				      struct request *rq)
 {
@@ -779,6 +809,11 @@ static void blk_add_trace_rq_complete(void *ignore,
 {
 	blk_add_trace_rq(q, rq, nr_bytes, BLK_TA_COMPLETE);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+				      struct request *rq)
+{
+	blk_add_trace_rq(q, rq, BLK_TA_COMPLETE);
+>>>>>>> 2617302... source
 }
 
 /**

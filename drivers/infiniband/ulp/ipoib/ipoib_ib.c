@@ -980,6 +980,7 @@ static void __ipoib_ib_dev_flush(struct ipoib_dev_priv *priv,
 
 	if (level == IPOIB_FLUSH_LIGHT) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ipoib_mark_paths_invalid(dev);
 		ipoib_mcast_dev_flush(dev);
 =======
@@ -995,6 +996,10 @@ static void __ipoib_ib_dev_flush(struct ipoib_dev_priv *priv,
 		if (oper_up)
 			set_bit(IPOIB_FLAG_OPER_UP, &priv->flags);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		ipoib_mark_paths_invalid(dev);
+		ipoib_mcast_dev_flush(dev);
+>>>>>>> 2617302... source
 	}
 
 	if (level >= IPOIB_FLUSH_NORMAL)

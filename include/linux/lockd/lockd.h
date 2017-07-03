@@ -237,11 +237,15 @@ struct nlm_host * nlm_get_host(struct nlm_host *);
 void		  nlm_shutdown_hosts(void);
 void		  nlm_shutdown_hosts_net(struct net *net);
 <<<<<<< HEAD
+<<<<<<< HEAD
 void		  nlm_host_rebooted(const struct nlm_reboot *);
 =======
 void		  nlm_host_rebooted(const struct net *net,
 					const struct nlm_reboot *);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+void		  nlm_host_rebooted(const struct nlm_reboot *);
+>>>>>>> 2617302... source
 
 /*
  * Host monitoring
@@ -250,11 +254,15 @@ int		  nsm_monitor(const struct nlm_host *host);
 void		  nsm_unmonitor(const struct nlm_host *host);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 struct nsm_handle *nsm_get_handle(const struct sockaddr *sap,
 					const size_t salen,
 					const char *hostname,
 					const size_t hostname_len);
 struct nsm_handle *nsm_reboot_lookup(const struct nlm_reboot *info);
+<<<<<<< HEAD
 =======
 struct nsm_handle *nsm_get_handle(const struct net *net,
 					const struct sockaddr *sap,
@@ -264,6 +272,8 @@ struct nsm_handle *nsm_get_handle(const struct net *net,
 struct nsm_handle *nsm_reboot_lookup(const struct net *net,
 					const struct nlm_reboot *info);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 void		  nsm_release(struct nsm_handle *nsm);
 
 /*
@@ -368,11 +378,15 @@ static inline int nlm_compare_locks(const struct file_lock *fl1,
 				    const struct file_lock *fl2)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return	fl1->fl_pid   == fl2->fl_pid
 =======
 	return file_inode(fl1->fl_file) == file_inode(fl2->fl_file)
 	     && fl1->fl_pid   == fl2->fl_pid
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	return	fl1->fl_pid   == fl2->fl_pid
+>>>>>>> 2617302... source
 	     && fl1->fl_owner == fl2->fl_owner
 	     && fl1->fl_start == fl2->fl_start
 	     && fl1->fl_end   == fl2->fl_end

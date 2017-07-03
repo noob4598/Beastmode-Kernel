@@ -1,8 +1,12 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* Copyright (c) 2014, The Linux Foundation. All rights reserved.
 =======
 /* Copyright (c) 2013-2014, The Linux Foundation. All rights reserved.
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+/* Copyright (c) 2014, The Linux Foundation. All rights reserved.
+>>>>>>> 2617302... source
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -15,6 +19,9 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 #include <mhi_sys.h>
 #include <mhi.h>
 
@@ -86,6 +93,7 @@ static int mhi_ssr_notify_cb(struct notifier_block *nb,
 	}
 	return NOTIFY_OK;
 }
+<<<<<<< HEAD
 =======
 #include "mhi_sys.h"
 #include "mhi.h"
@@ -94,16 +102,22 @@ int mhi_ssr_notify_cb(struct notifier_block *nb,
 			unsigned long action, void *data);
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 static struct notifier_block mhi_ssr_nb = {
 	.notifier_call = mhi_ssr_notify_cb,
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 static void esoc_parse_link_type(struct mhi_device_ctxt *mhi_dev_ctxt)
 {
 	int ret_val;
 	ret_val = strcmp(mhi_dev_ctxt->esoc_handle->link, "HSIC+PCIe");
+<<<<<<< HEAD
 =======
 static void esoc_parse_link_type(mhi_device_ctxt* mhi_dev_ctxt)
 {
@@ -112,6 +126,8 @@ static void esoc_parse_link_type(mhi_device_ctxt* mhi_dev_ctxt)
 				"HSIC+PCIe",
 				sizeof("HSIC+PCIe"));
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	mhi_log(MHI_MSG_VERBOSE, "Link type is %s as indicated by ESOC\n",
 					mhi_dev_ctxt->esoc_handle->link);
 	if (ret_val)
@@ -121,10 +137,14 @@ static void esoc_parse_link_type(mhi_device_ctxt* mhi_dev_ctxt)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 int mhi_esoc_register(struct mhi_device_ctxt *mhi_dev_ctxt)
 =======
 int mhi_esoc_register(mhi_device_ctxt* mhi_dev_ctxt)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+int mhi_esoc_register(struct mhi_device_ctxt *mhi_dev_ctxt)
+>>>>>>> 2617302... source
 {
 	int ret_val = 0;
 	struct device_node *np;
@@ -136,10 +156,14 @@ int mhi_esoc_register(mhi_device_ctxt* mhi_dev_ctxt)
 	mhi_dev_ctxt->esoc_handle = devm_register_esoc_client(dev, "mdm");
 	mhi_log(MHI_MSG_VERBOSE,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		"Of table of pcie struct device property is dev->of_node %p\n",
 =======
 		"Of table of pcie device property is dev->of_node %p \n",
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		"Of table of pcie struct device property is dev->of_node %p\n",
+>>>>>>> 2617302... source
 		np);
 	if (IS_ERR_OR_NULL(mhi_dev_ctxt->esoc_handle)) {
 		mhi_log(MHI_MSG_CRITICAL,
@@ -164,6 +188,9 @@ int mhi_esoc_register(mhi_device_ctxt* mhi_dev_ctxt)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 void mhi_notify_client(struct mhi_client_handle *client_handle,
 		       enum MHI_CB_REASON reason)
 {
@@ -194,6 +221,7 @@ void mhi_notify_clients(struct mhi_device_ctxt *mhi_dev_ctxt,
 		if (VALID_CHAN_NR(i)) {
 			client_handle = mhi_dev_ctxt->client_handle_list[i];
 			mhi_notify_client(client_handle, reason);
+<<<<<<< HEAD
 =======
 void mhi_notify_clients(mhi_device_ctxt *mhi_dev_ctxt, MHI_CB_REASON reason)
 {
@@ -215,12 +243,15 @@ void mhi_notify_clients(mhi_device_ctxt *mhi_dev_ctxt, MHI_CB_REASON reason)
 				client_handle->client_info.mhi_client_cb(&cb_info);
 			}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		}
 	}
 }
 
 void mhi_link_state_cb(struct msm_pcie_notify *notify)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	enum MHI_STATUS ret_val = MHI_STATUS_SUCCESS;
 	struct mhi_pcie_dev_info *mhi_pcie_dev = notify->data;
@@ -230,12 +261,20 @@ void mhi_link_state_cb(struct msm_pcie_notify *notify)
 	mhi_pcie_dev_info *mhi_pcie_dev = notify->data;
 	mhi_device_ctxt *mhi_dev_ctxt = NULL;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	enum MHI_STATUS ret_val = MHI_STATUS_SUCCESS;
+	struct mhi_pcie_dev_info *mhi_pcie_dev = notify->data;
+	struct mhi_device_ctxt *mhi_dev_ctxt = NULL;
+>>>>>>> 2617302... source
 	if (NULL == notify || NULL == notify->data) {
 		mhi_log(MHI_MSG_CRITICAL,
 		"Incomplete handle received\n");
 		return;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	mhi_dev_ctxt = &mhi_pcie_dev->mhi_ctxt;
 	switch (notify->event) {
 	case MSM_PCIE_EVENT_LINKDOWN:
@@ -243,6 +282,7 @@ void mhi_link_state_cb(struct msm_pcie_notify *notify)
 		break;
 	case MSM_PCIE_EVENT_LINKUP:
 		mhi_log(MHI_MSG_INFO,
+<<<<<<< HEAD
 =======
 	mhi_dev_ctxt = mhi_pcie_dev->mhi_ctxt;
 	switch (notify->event){
@@ -252,10 +292,13 @@ void mhi_link_state_cb(struct msm_pcie_notify *notify)
 	case MSM_PCIE_EVENT_LINKUP:
 		mhi_log(MHI_MSG_CRITICAL,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 			"Received MSM_PCIE_EVENT_LINKUP\n");
 		if (0 == mhi_pcie_dev->link_up_cntr) {
 			mhi_log(MHI_MSG_INFO,
 				"Initializing MHI for the first time\n");
+<<<<<<< HEAD
 <<<<<<< HEAD
 				mhi_ctxt_init(mhi_pcie_dev);
 				mhi_dev_ctxt = &mhi_pcie_dev->mhi_ctxt;
@@ -264,6 +307,11 @@ void mhi_link_state_cb(struct msm_pcie_notify *notify)
 				mhi_startup_thread(mhi_pcie_dev);
 				mhi_dev_ctxt = mhi_pcie_dev->mhi_ctxt;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+				mhi_ctxt_init(mhi_pcie_dev);
+				mhi_dev_ctxt = &mhi_pcie_dev->mhi_ctxt;
+				mhi_pcie_dev->mhi_ctxt.flags.link_up = 1;
+>>>>>>> 2617302... source
 				pci_set_master(mhi_pcie_dev->pcie_device);
 				init_mhi_base_state(mhi_dev_ctxt);
 		} else {
@@ -274,6 +322,9 @@ void mhi_link_state_cb(struct msm_pcie_notify *notify)
 		break;
 	case MSM_PCIE_EVENT_WAKEUP:
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		mhi_log(MHI_MSG_INFO,
 			"Received MSM_PCIE_EVENT_WAKE\n");
 		__pm_stay_awake(&mhi_dev_ctxt->w_lock);
@@ -281,6 +332,7 @@ void mhi_link_state_cb(struct msm_pcie_notify *notify)
 		if (atomic_read(&mhi_dev_ctxt->flags.pending_resume)) {
 			mhi_log(MHI_MSG_INFO,
 				"There is a pending resume, doing nothing.\n");
+<<<<<<< HEAD
 =======
 		mhi_log(MHI_MSG_CRITICAL,
 			"Received MSM_PCIE_EVENT_WAKE\n");
@@ -290,6 +342,8 @@ void mhi_link_state_cb(struct msm_pcie_notify *notify)
 			mhi_log(MHI_MSG_INFO,
 				"There is a pending resume, doing nothing \n");
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 			return;
 		}
 		ret_val = mhi_init_state_transition(mhi_dev_ctxt,
@@ -308,6 +362,9 @@ void mhi_link_state_cb(struct msm_pcie_notify *notify)
 		}
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 
 enum MHI_STATUS init_mhi_base_state(struct mhi_device_ctxt *mhi_dev_ctxt)
 {
@@ -321,6 +378,7 @@ enum MHI_STATUS init_mhi_base_state(struct mhi_device_ctxt *mhi_dev_ctxt)
 	if (r)
 		mhi_log(MHI_MSG_INFO,
 			"Failed to scale bus request to active set.\n");
+<<<<<<< HEAD
 =======
 int mhi_ssr_notify_cb(struct notifier_block *nb,
 			unsigned long action, void *data)
@@ -356,6 +414,8 @@ MHI_STATUS init_mhi_base_state(mhi_device_ctxt* mhi_dev_ctxt)
 	mhi_log(MHI_MSG_INFO,
 		"Failed to scale bus request to active set.\n");
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	ret_val = mhi_init_state_transition(mhi_dev_ctxt,
 			mhi_dev_ctxt->base_state);
 	if (MHI_STATUS_SUCCESS != ret_val) {

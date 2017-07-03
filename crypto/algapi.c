@@ -370,10 +370,14 @@ static void crypto_wait_for_test(struct crypto_larval *larval)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	err = wait_for_completion_interruptible(&larval->completion);
 =======
 	err = wait_for_completion_killable(&larval->completion);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	err = wait_for_completion_interruptible(&larval->completion);
+>>>>>>> 2617302... source
 	WARN_ON(err);
 
 out:
@@ -395,9 +399,12 @@ int crypto_register_alg(struct crypto_alg *alg)
 #endif
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	alg->cra_flags &= ~CRYPTO_ALG_DEAD;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	err = crypto_check_alg(alg);
 	if (err)
 		return err;
@@ -569,12 +576,17 @@ struct crypto_template *crypto_lookup_template(const char *name)
 	}
 #endif
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return try_then_request_module(__crypto_lookup_template(name), "%s",
 				       name);
 =======
 	return try_then_request_module(__crypto_lookup_template(name),
 				       "crypto-%s", name);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	return try_then_request_module(__crypto_lookup_template(name), "%s",
+				       name);
+>>>>>>> 2617302... source
 }
 EXPORT_SYMBOL_GPL(crypto_lookup_template);
 

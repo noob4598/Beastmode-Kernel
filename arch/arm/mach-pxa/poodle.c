@@ -26,9 +26,12 @@
 #include <linux/i2c.h>
 #include <linux/i2c/pxa-i2c.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <linux/regulator/machine.h>
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 #include <linux/spi/spi.h>
 #include <linux/spi/ads7846.h>
 #include <linux/spi/pxa2xx_spi.h>
@@ -457,9 +460,12 @@ static void __init poodle_init(void)
 	i2c_register_board_info(0, ARRAY_AND_SIZE(poodle_i2c_devices));
 	poodle_init_spi();
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	regulator_has_full_constraints();
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 }
 
 static void __init fixup_poodle(struct tag *tags, char **cmdline,

@@ -4191,6 +4191,9 @@ static void pretty_print(struct trace_seq *s, void *data, int size, struct event
 					char *p;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 					ls = 2;
 					/* make %l into %ll */
 					p = strchr(format, 'l');
@@ -4198,6 +4201,7 @@ static void pretty_print(struct trace_seq *s, void *data, int size, struct event
 						memmove(p+1, p, strlen(p)+1);
 					else if (strcmp(format, "%p") == 0)
 						strcpy(format, "0x%llx");
+<<<<<<< HEAD
 =======
 					/* make %l into %ll */
 					if (ls == 1 && (p = strchr(format, 'l')))
@@ -4206,6 +4210,8 @@ static void pretty_print(struct trace_seq *s, void *data, int size, struct event
 						strcpy(format, "0x%llx");
 					ls = 2;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 				}
 				switch (ls) {
 				case -2:

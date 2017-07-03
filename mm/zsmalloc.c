@@ -11,6 +11,9 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 
 /*
  * This allocator is designed for use with zcache and zram. Thus, the
@@ -43,9 +46,12 @@
  * be mapped using zs_map_object() to get a usable pointer and subsequently
  * unmapped using zs_unmap_object().
  *
+<<<<<<< HEAD
 =======
 /*
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
  * Following is how we use various fields and flags of underlying
  * struct page(s) to form a zspage.
  *
@@ -63,6 +69,7 @@
  *	page->private (union with page->first_page): refers to the
  *		component page after the first page
 <<<<<<< HEAD
+<<<<<<< HEAD
  *	page->freelist: points to the first free object in zspage.
  *		Free objects are linked together using in-place
  *		metadata.
@@ -75,6 +82,11 @@
  *	page->objects: maximum number of objects we can store in this
  *		zspage (class->zspage_order * PAGE_SIZE / class->size)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+ *	page->freelist: points to the first free object in zspage.
+ *		Free objects are linked together using in-place
+ *		metadata.
+>>>>>>> 2617302... source
  *	page->lru: links together first pages of various zspages.
  *		Basically forming list of zspages in a fullness group.
  *	page->mapping: class index and fullness group of the zspage
@@ -85,6 +97,7 @@
  *
  */
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 #include <linux/module.h>
 #include <linux/kernel.h>
@@ -97,6 +110,10 @@
 #include <linux/kernel.h>
 #include <linux/sched.h>
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+#include <linux/module.h>
+#include <linux/kernel.h>
+>>>>>>> 2617302... source
 #include <linux/bitops.h>
 #include <linux/errno.h>
 #include <linux/highmem.h>
@@ -112,6 +129,7 @@
 #include <linux/spinlock.h>
 #include <linux/types.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 #include <linux/zsmalloc.h>
 =======
@@ -119,6 +137,10 @@
 #include <linux/zsmalloc.h>
 #include <linux/zpool.h>
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+
+#include <linux/zsmalloc.h>
+>>>>>>> 2617302... source
 
 /*
  * This must be power of 2 and greater than of equal to sizeof(link_free).
@@ -136,10 +158,13 @@
 #define ZS_MAX_PAGES_PER_ZSPAGE (_AC(1, UL) << ZS_MAX_ZSPAGE_ORDER)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define ZS_HANDLE_SIZE (sizeof(unsigned long))
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 /*
  * Object location (<PFN>, <obj_idx>) is encoded as
  * as single (unsigned long) handle value.
@@ -164,6 +189,7 @@
 #endif
 #define _PFN_BITS		(MAX_PHYSMEM_BITS - PAGE_SHIFT)
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define OBJ_INDEX_BITS	(BITS_PER_LONG - _PFN_BITS)
 =======
 
@@ -187,6 +213,9 @@
 #define OBJ_TAG_BITS 1
 #define OBJ_INDEX_BITS	(BITS_PER_LONG - _PFN_BITS - OBJ_TAG_BITS)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+#define OBJ_INDEX_BITS	(BITS_PER_LONG - _PFN_BITS)
+>>>>>>> 2617302... source
 #define OBJ_INDEX_MASK	((_AC(1, UL) << OBJ_INDEX_BITS) - 1)
 
 #define MAX(a, b) ((a) >= (b) ? (a) : (b))
@@ -194,10 +223,14 @@
 #define ZS_MIN_ALLOC_SIZE \
 	MAX(32, (ZS_MAX_PAGES_PER_ZSPAGE << PAGE_SHIFT >> OBJ_INDEX_BITS))
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 #define ZS_MAX_ALLOC_SIZE	PAGE_SIZE
 
 /*
  * On systems with 4K page size, this gives 254 size classes! There is a
+<<<<<<< HEAD
 =======
 /* each chunk includes extra space to keep handle */
 #define ZS_MAX_ALLOC_SIZE	PAGE_SIZE
@@ -205,6 +238,8 @@
 /*
  * On systems with 4K page size, this gives 255 size classes! There is a
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
  * trader-off here:
  *  - Large number of size classes is potentially wasteful as free page are
  *    spread across these classes
@@ -218,10 +253,15 @@
  */
 #define ZS_SIZE_CLASS_DELTA	(PAGE_SIZE >> 8)
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define ZS_SIZE_CLASSES		((ZS_MAX_ALLOC_SIZE - ZS_MIN_ALLOC_SIZE) / \
 					ZS_SIZE_CLASS_DELTA + 1)
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+#define ZS_SIZE_CLASSES		((ZS_MAX_ALLOC_SIZE - ZS_MIN_ALLOC_SIZE) / \
+					ZS_SIZE_CLASS_DELTA + 1)
+>>>>>>> 2617302... source
 
 /*
  * We do not maintain any list for completely empty or full pages
@@ -235,6 +275,7 @@ enum fullness_group {
 	ZS_FULL
 };
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 enum zs_stat_type {
@@ -261,16 +302,22 @@ struct zs_size_stat {
 static int zs_size_classes;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 /*
  * We assign a page to ZS_ALMOST_EMPTY fullness group when:
  *	n <= N / f, where
  * n = number of allocated objects
  * N = total number of objects zspage can store
 <<<<<<< HEAD
+<<<<<<< HEAD
  * f = 1/fullness_threshold_frac
 =======
  * f = fullness_threshold_frac
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+ * f = 1/fullness_threshold_frac
+>>>>>>> 2617302... source
  *
  * Similarly, we assign zspage to:
  *	ZS_ALMOST_FULL	when n > N / f
@@ -292,11 +339,15 @@ struct size_class {
 	/* Number of PAGE_SIZE sized pages to combine to form a 'zspage' */
 	int pages_per_zspage;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 
 	spinlock_t lock;
 
 	/* stats */
 	u64 pages_allocated;
+<<<<<<< HEAD
 =======
 	/* huge object: pages_per_zspage == 1 && maxobj_per_zspage == 1 */
 	bool huge;
@@ -307,6 +358,8 @@ struct size_class {
 
 	spinlock_t lock;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	struct page *fullness_list[_ZS_NR_FULLNESS_GROUPS];
 };
@@ -319,6 +372,9 @@ struct size_class {
  */
 struct link_free {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	/* Handle of next free chunk (encodes <PFN, obj_idx>) */
 	void *next;
 };
@@ -327,6 +383,7 @@ struct zs_pool {
 	struct size_class size_class[ZS_SIZE_CLASSES];
 
 	struct zs_ops *ops;
+<<<<<<< HEAD
 =======
 	union {
 		/*
@@ -354,6 +411,8 @@ struct zs_pool {
 	struct dentry *stat_dentry;
 #endif
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 };
 
 /*
@@ -374,6 +433,9 @@ struct mapping_area {
 	char *vm_addr; /* address of kmap_atomic()'ed pages */
 	enum zs_mapmode vm_mm; /* mapping mode */
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 };
 
 /* default page alloc/free ops */
@@ -392,6 +454,7 @@ struct zs_ops zs_default_ops = {
 	.free = zs_free_page
 };
 
+<<<<<<< HEAD
 =======
 	bool huge;
 };
@@ -508,6 +571,8 @@ static unsigned int get_maxobj_per_zspage(int size, int pages_per_zspage)
 }
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 /* per-cpu VM mapping areas for zspage accesses that cross page boundaries */
 static DEFINE_PER_CPU(struct mapping_area, zs_map_area);
 
@@ -558,6 +623,7 @@ static int get_size_class_index(int size)
 		idx = DIV_ROUND_UP(size - ZS_MIN_ALLOC_SIZE,
 				ZS_SIZE_CLASS_DELTA);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	return idx;
 }
@@ -740,6 +806,11 @@ static inline void zs_pool_stat_destroy(struct zs_pool *pool)
 
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	return idx;
+}
+
+>>>>>>> 2617302... source
 /*
  * For each size class, zspages are divided into different groups
  * depending on how "full" they are. This was done so that we could
@@ -748,11 +819,16 @@ static inline void zs_pool_stat_destroy(struct zs_pool *pool)
  * status of the given page.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static enum fullness_group get_fullness_group(struct page *page,
 					struct size_class *class)
 =======
 static enum fullness_group get_fullness_group(struct page *page)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+static enum fullness_group get_fullness_group(struct page *page,
+					struct size_class *class)
+>>>>>>> 2617302... source
 {
 	int inuse, max_objects;
 	enum fullness_group fg;
@@ -760,20 +836,28 @@ static enum fullness_group get_fullness_group(struct page *page)
 
 	inuse = page->inuse;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	max_objects = class->pages_per_zspage * PAGE_SIZE / class->size;
 =======
 	max_objects = page->objects;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	max_objects = class->pages_per_zspage * PAGE_SIZE / class->size;
+>>>>>>> 2617302... source
 
 	if (inuse == 0)
 		fg = ZS_EMPTY;
 	else if (inuse == max_objects)
 		fg = ZS_FULL;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	else if (inuse <= max_objects / fullness_threshold_frac)
 =======
 	else if (inuse <= 3 * max_objects / fullness_threshold_frac)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	else if (inuse <= max_objects / fullness_threshold_frac)
+>>>>>>> 2617302... source
 		fg = ZS_ALMOST_EMPTY;
 	else
 		fg = ZS_ALMOST_FULL;
@@ -803,10 +887,13 @@ static void insert_zspage(struct page *page, struct size_class *class,
 
 	*head = page;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	zs_stat_inc(class, fullness == ZS_ALMOST_EMPTY ?
 			CLASS_ALMOST_EMPTY : CLASS_ALMOST_FULL, 1);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 }
 
 /*
@@ -833,10 +920,13 @@ static void remove_zspage(struct page *page, struct size_class *class,
 
 	list_del_init(&page->lru);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	zs_stat_dec(class, fullness == ZS_ALMOST_EMPTY ?
 			CLASS_ALMOST_EMPTY : CLASS_ALMOST_FULL, 1);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 }
 
 /*
@@ -849,28 +939,39 @@ static void remove_zspage(struct page *page, struct size_class *class,
  * fullness group.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 static enum fullness_group fix_fullness_group(struct zs_pool *pool,
 						struct page *page)
 {
 	int class_idx;
 	struct size_class *class;
+<<<<<<< HEAD
 =======
 static enum fullness_group fix_fullness_group(struct size_class *class,
 						struct page *page)
 {
 	int class_idx;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	enum fullness_group currfg, newfg;
 
 	BUG_ON(!is_first_page(page));
 
 	get_zspage_mapping(page, &class_idx, &currfg);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	class = &pool->size_class[class_idx];
 	newfg = get_fullness_group(page, class);
 =======
 	newfg = get_fullness_group(page);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	class = &pool->size_class[class_idx];
+	newfg = get_fullness_group(page, class);
+>>>>>>> 2617302... source
 	if (newfg == currfg)
 		goto out;
 
@@ -888,11 +989,15 @@ out:
  * to reduce wastage due to unusable space left at end of
  * each zspage which is given as:
 <<<<<<< HEAD
+<<<<<<< HEAD
  *	wastage = Zp - Zp % size_class
 =======
  *     wastage = Zp % class_size
  *     usage = Zp - wastage
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+ *	wastage = Zp - Zp % size_class
+>>>>>>> 2617302... source
  * where Zp = zspage size = k * PAGE_SIZE where k = 1, 2, ...
  *
  * For example, for size class of 3/8 * PAGE_SIZE, we should
@@ -943,10 +1048,14 @@ static struct page *get_next_page(struct page *page)
 		next = NULL;
 	else if (is_first_page(page))
 <<<<<<< HEAD
+<<<<<<< HEAD
 		next = (struct page *)page->private;
 =======
 		next = (struct page *)page_private(page);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		next = (struct page *)page->private;
+>>>>>>> 2617302... source
 	else
 		next = list_entry(page->lru.next, struct page, lru);
 
@@ -954,10 +1063,14 @@ static struct page *get_next_page(struct page *page)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 /* Encode <page, obj_idx> as a single handle value */
 static void *obj_location_to_handle(struct page *page, unsigned long obj_idx)
 {
 	unsigned long handle;
+<<<<<<< HEAD
 =======
 /*
  * Encode <page, obj_idx> as a single handle value.
@@ -967,6 +1080,8 @@ static void *location_to_obj(struct page *page, unsigned long obj_idx)
 {
 	unsigned long obj;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	if (!page) {
 		BUG_ON(obj_idx);
@@ -974,6 +1089,9 @@ static void *location_to_obj(struct page *page, unsigned long obj_idx)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	handle = page_to_pfn(page) << OBJ_INDEX_BITS;
 	handle |= (obj_idx & OBJ_INDEX_MASK);
 
@@ -986,6 +1104,7 @@ static void obj_handle_to_location(unsigned long handle, struct page **page,
 {
 	*page = pfn_to_page(handle >> OBJ_INDEX_BITS);
 	*obj_idx = handle & OBJ_INDEX_MASK;
+<<<<<<< HEAD
 =======
 	obj = page_to_pfn(page) << OBJ_INDEX_BITS;
 	obj |= ((obj_idx) & OBJ_INDEX_MASK);
@@ -1021,6 +1140,8 @@ static unsigned long obj_to_head(struct size_class *class, struct page *page,
 	} else
 		return *(unsigned long *)obj;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 }
 
 static unsigned long obj_idx_to_offset(struct page *page,
@@ -1034,6 +1155,7 @@ static unsigned long obj_idx_to_offset(struct page *page,
 	return off + obj_idx * class_size;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 static inline int trypin_tag(unsigned long handle)
@@ -1056,6 +1178,8 @@ static void unpin_tag(unsigned long handle)
 }
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 static void reset_page(struct page *page)
 {
 	clear_bit(PG_private, &page->flags);
@@ -1067,10 +1191,14 @@ static void reset_page(struct page *page)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void free_zspage(struct zs_ops *ops, struct page *first_page)
 =======
 static void free_zspage(struct page *first_page)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+static void free_zspage(struct zs_ops *ops, struct page *first_page)
+>>>>>>> 2617302... source
 {
 	struct page *nextp, *tmp, *head_extra;
 
@@ -1081,10 +1209,14 @@ static void free_zspage(struct page *first_page)
 
 	reset_page(first_page);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ops->free(first_page);
 =======
 	__free_page(first_page);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	ops->free(first_page);
+>>>>>>> 2617302... source
 
 	/* zspage with only 1 system page */
 	if (!head_extra)
@@ -1094,16 +1226,22 @@ static void free_zspage(struct page *first_page)
 		list_del(&nextp->lru);
 		reset_page(nextp);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		ops->free(nextp);
 	}
 	reset_page(head_extra);
 	ops->free(head_extra);
+<<<<<<< HEAD
 =======
 		__free_page(nextp);
 	}
 	reset_page(head_extra);
 	__free_page(nextp);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 }
 
 /* Initialize a newly allocated zspage */
@@ -1117,11 +1255,15 @@ static void init_zspage(struct page *first_page, struct size_class *class)
 		struct page *next_page;
 		struct link_free *link;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		unsigned int i, objs_on_page;
 =======
 		unsigned int i = 1;
 		void *vaddr;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		unsigned int i, objs_on_page;
+>>>>>>> 2617302... source
 
 		/*
 		 * page->index stores offset of first object starting
@@ -1133,6 +1275,9 @@ static void init_zspage(struct page *first_page, struct size_class *class)
 			page->index = off;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		link = (struct link_free *)kmap_atomic(page) +
 						off / sizeof(*link);
 		objs_on_page = (PAGE_SIZE - off) / class->size;
@@ -1143,6 +1288,7 @@ static void init_zspage(struct page *first_page, struct size_class *class)
 				link->next = obj_location_to_handle(page, i);
 				link += class->size / sizeof(*link);
 			}
+<<<<<<< HEAD
 =======
 		vaddr = kmap_atomic(page);
 		link = (struct link_free *)vaddr + off / sizeof(*link);
@@ -1151,6 +1297,8 @@ static void init_zspage(struct page *first_page, struct size_class *class)
 			link->next = location_to_obj(page, i++);
 			link += class->size / sizeof(*link);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		}
 
 		/*
@@ -1160,16 +1308,22 @@ static void init_zspage(struct page *first_page, struct size_class *class)
 		 */
 		next_page = get_next_page(page);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		link->next = obj_location_to_handle(next_page, 0);
 		kunmap_atomic(link);
 		page = next_page;
 		off = (off + class->size) % PAGE_SIZE;
+<<<<<<< HEAD
 =======
 		link->next = location_to_obj(next_page, 0);
 		kunmap_atomic(vaddr);
 		page = next_page;
 		off %= PAGE_SIZE;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	}
 }
 
@@ -1177,11 +1331,16 @@ static void init_zspage(struct page *first_page, struct size_class *class)
  * Allocate a zspage for the given size class
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct page *alloc_zspage(struct zs_ops *ops, struct size_class *class,
 				gfp_t flags)
 =======
 static struct page *alloc_zspage(struct size_class *class, gfp_t flags)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+static struct page *alloc_zspage(struct zs_ops *ops, struct size_class *class,
+				gfp_t flags)
+>>>>>>> 2617302... source
 {
 	int i, error;
 	struct page *first_page = NULL, *uninitialized_var(prev_page);
@@ -1202,10 +1361,14 @@ static struct page *alloc_zspage(struct size_class *class, gfp_t flags)
 		struct page *page;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		page = ops->alloc(flags);
 =======
 		page = alloc_page(flags);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		page = ops->alloc(flags);
+>>>>>>> 2617302... source
 		if (!page)
 			goto cleanup;
 
@@ -1218,10 +1381,14 @@ static struct page *alloc_zspage(struct size_class *class, gfp_t flags)
 		}
 		if (i == 1)
 <<<<<<< HEAD
+<<<<<<< HEAD
 			first_page->private = (unsigned long)page;
 =======
 			set_page_private(first_page, (unsigned long)page);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			first_page->private = (unsigned long)page;
+>>>>>>> 2617302... source
 		if (i >= 1)
 			page->first_page = first_page;
 		if (i >= 2)
@@ -1234,22 +1401,30 @@ static struct page *alloc_zspage(struct size_class *class, gfp_t flags)
 	init_zspage(first_page, class);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	first_page->freelist = obj_location_to_handle(first_page, 0);
 =======
 	first_page->freelist = location_to_obj(first_page, 0);
 	/* Maximum number of objects we can store in this zspage */
 	first_page->objects = class->pages_per_zspage * PAGE_SIZE / class->size;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	first_page->freelist = obj_location_to_handle(first_page, 0);
+>>>>>>> 2617302... source
 
 	error = 0; /* Success */
 
 cleanup:
 	if (unlikely(error) && first_page) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		free_zspage(ops, first_page);
 =======
 		free_zspage(first_page);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		free_zspage(ops, first_page);
+>>>>>>> 2617302... source
 		first_page = NULL;
 	}
 
@@ -1305,6 +1480,9 @@ static inline void __zs_unmap_object(struct mapping_area *area,
 {
 	unsigned long addr = (unsigned long)area->vm_addr;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	unsigned long end = addr + (PAGE_SIZE * 2);
 
 	flush_cache_vunmap(addr, end);
@@ -1313,6 +1491,7 @@ static inline void __zs_unmap_object(struct mapping_area *area,
 }
 
 #else /* CONFIG_PGTABLE_MAPPING*/
+<<<<<<< HEAD
 =======
 
 	unmap_kernel_range(addr, PAGE_SIZE * 2);
@@ -1320,6 +1499,8 @@ static inline void __zs_unmap_object(struct mapping_area *area,
 
 #else /* CONFIG_PGTABLE_MAPPING */
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 static inline int __zs_cpu_up(struct mapping_area *area)
 {
@@ -1330,10 +1511,14 @@ static inline int __zs_cpu_up(struct mapping_area *area)
 	if (area->vm_buf)
 		return 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	area->vm_buf = (char *)__get_free_page(GFP_KERNEL);
 =======
 	area->vm_buf = kmalloc(ZS_MAX_ALLOC_SIZE, GFP_KERNEL);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	area->vm_buf = (char *)__get_free_page(GFP_KERNEL);
+>>>>>>> 2617302... source
 	if (!area->vm_buf)
 		return -ENOMEM;
 	return 0;
@@ -1342,11 +1527,16 @@ static inline int __zs_cpu_up(struct mapping_area *area)
 static inline void __zs_cpu_down(struct mapping_area *area)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (area->vm_buf)
 		free_page((unsigned long)area->vm_buf);
 =======
 	kfree(area->vm_buf);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (area->vm_buf)
+		free_page((unsigned long)area->vm_buf);
+>>>>>>> 2617302... source
 	area->vm_buf = NULL;
 }
 
@@ -1384,15 +1574,20 @@ static void __zs_unmap_object(struct mapping_area *area,
 	int sizes[2];
 	void *addr;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	char *buf = area->vm_buf;
 =======
 	char *buf;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	char *buf = area->vm_buf;
+>>>>>>> 2617302... source
 
 	/* no write fastpath */
 	if (area->vm_mm == ZS_MM_RO)
 		goto out;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 	buf = area->vm_buf;
@@ -1403,6 +1598,8 @@ static void __zs_unmap_object(struct mapping_area *area,
 	}
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	sizes[0] = PAGE_SIZE - off;
 	sizes[1] = size - sizes[0];
 
@@ -1449,6 +1646,9 @@ static struct notifier_block zs_cpu_nb = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 static void zs_exit(void)
 {
 	int cpu;
@@ -1558,6 +1758,7 @@ unsigned long zs_malloc(struct zs_pool *pool, size_t size, gfp_t flags)
 
 	struct page *first_page, *m_page;
 	unsigned long m_objidx, m_offset;
+<<<<<<< HEAD
 =======
 static int zs_register_cpu_notifier(void)
 {
@@ -1811,6 +2012,33 @@ unsigned long zs_malloc(struct zs_pool *pool, size_t size)
 	obj = (unsigned long)first_page->freelist;
 	obj_handle_to_location(obj, &m_page, &m_objidx);
 	m_offset = obj_idx_to_offset(m_page, m_objidx, class->size);
+=======
+
+	if (unlikely(!size || size > ZS_MAX_ALLOC_SIZE))
+		return 0;
+
+	class_idx = get_size_class_index(size);
+	class = &pool->size_class[class_idx];
+	BUG_ON(class_idx != class->index);
+
+	spin_lock(&class->lock);
+	first_page = find_get_zspage(class);
+
+	if (!first_page) {
+		spin_unlock(&class->lock);
+		first_page = alloc_zspage(pool->ops, class, flags);
+		if (unlikely(!first_page))
+			return 0;
+
+		set_zspage_mapping(first_page, class->index, ZS_EMPTY);
+		spin_lock(&class->lock);
+		class->pages_allocated += class->pages_per_zspage;
+	}
+
+	obj = (unsigned long)first_page->freelist;
+	obj_handle_to_location(obj, &m_page, &m_objidx);
+	m_offset = obj_idx_to_offset(m_page, m_objidx, class->size);
+>>>>>>> 2617302... source
 
 	link = (struct link_free *)kmap_atomic(m_page) +
 					m_offset / sizeof(*link);
@@ -1828,6 +2056,7 @@ unsigned long zs_malloc(struct zs_pool *pool, size_t size)
 EXPORT_SYMBOL_GPL(zs_malloc);
 
 void zs_free(struct zs_pool *pool, unsigned long obj)
+<<<<<<< HEAD
 =======
 		first_page = alloc_zspage(class, pool->flags);
 		if (unlikely(!first_page)) {
@@ -1857,11 +2086,16 @@ EXPORT_SYMBOL_GPL(zs_malloc);
 static void obj_free(struct zs_pool *pool, struct size_class *class,
 			unsigned long obj)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 {
 	struct link_free *link;
 	struct page *first_page, *f_page;
 	unsigned long f_objidx, f_offset;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 
 	int class_idx;
 	struct size_class *class;
@@ -2000,6 +2234,7 @@ u64 zs_get_total_size_bytes(struct zs_pool *pool)
 	return npages << PAGE_SHIFT;
 }
 EXPORT_SYMBOL_GPL(zs_get_total_size_bytes);
+<<<<<<< HEAD
 =======
 	void *vaddr;
 	int class_idx;
@@ -2505,6 +2740,8 @@ static void __exit zs_exit(void)
 	zs_stat_exit();
 }
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 module_init(zs_init);
 module_exit(zs_exit);

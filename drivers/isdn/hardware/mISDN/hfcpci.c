@@ -2296,12 +2296,17 @@ static void
 hfcpci_softirq(void *arg)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	(void) driver_for_each_device(&hfc_driver.driver, NULL, arg,
 				      _hfcpci_softirq);
 =======
 	WARN_ON_ONCE(driver_for_each_device(&hfc_driver.driver, NULL, arg,
 				      _hfcpci_softirq) != 0);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	(void) driver_for_each_device(&hfc_driver.driver, NULL, arg,
+				      _hfcpci_softirq);
+>>>>>>> 2617302... source
 
 	/* if next event would be in the past ... */
 	if ((s32)(hfc_jiffies + tics - jiffies) <= 0)

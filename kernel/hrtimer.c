@@ -250,6 +250,7 @@ again:
 		}
 		timer->base = new_base;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	} else {
 		if (cpu != this_cpu && hrtimer_check_target(timer, new_base)) {
@@ -257,6 +258,8 @@ again:
 			goto again;
 		}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	}
 	return new_base;
 }
@@ -834,6 +837,9 @@ void hrtimers_resume(void)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 static inline void timer_stats_hrtimer_set_start_info(struct hrtimer *timer)
 {
 #ifdef CONFIG_TIMER_STATS
@@ -862,8 +868,11 @@ static inline void timer_stats_account_hrtimer(struct hrtimer *timer)
 #endif
 }
 
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 /*
  * Counterpart to lock_hrtimer_base above:
  */
@@ -998,9 +1007,13 @@ remove_hrtimer(struct hrtimer *timer, struct hrtimer_clock_base *base)
 		 */
 		debug_deactivate(timer);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		timer_stats_hrtimer_clear_start_info(timer);
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		timer_stats_hrtimer_clear_start_info(timer);
+>>>>>>> 2617302... source
 		reprogram = base->cpu_base == &__get_cpu_var(hrtimer_bases);
 		/*
 		 * We must preserve the CALLBACK state flag here,
@@ -1028,15 +1041,21 @@ int __hrtimer_start_range_ns(struct hrtimer *timer, ktime_t tim,
 	ret = remove_hrtimer(timer, base);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	/* Switch the timer base, if necessary: */
 	new_base = switch_hrtimer_base(timer, base, mode & HRTIMER_MODE_PINNED);
 
 	if (mode & HRTIMER_MODE_REL) {
 		tim = ktime_add_safe(tim, new_base->get_time());
+<<<<<<< HEAD
 =======
 	if (mode & HRTIMER_MODE_REL) {
 		tim = ktime_add_safe(tim, base->get_time());
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		/*
 		 * CONFIG_TIME_LOW_RES is a temporary way for architectures
 		 * to signal that they simply return xtime in
@@ -1052,11 +1071,15 @@ int __hrtimer_start_range_ns(struct hrtimer *timer, ktime_t tim,
 	hrtimer_set_expires_range_ns(timer, tim, delta_ns);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	timer_stats_hrtimer_set_start_info(timer);
 =======
 	/* Switch the timer base, if necessary: */
 	new_base = switch_hrtimer_base(timer, base, mode & HRTIMER_MODE_PINNED);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	timer_stats_hrtimer_set_start_info(timer);
+>>>>>>> 2617302... source
 
 	leftmost = enqueue_hrtimer(timer, new_base);
 
@@ -1159,10 +1182,15 @@ int hrtimer_start_gpio_ir(struct hrtimer *timer, ktime_t tim,
 	hrtimer_set_expires_range_ns(timer, tim, delta_ns);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	timer_stats_hrtimer_set_start_info(timer);
 
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	timer_stats_hrtimer_set_start_info(timer);
+
+>>>>>>> 2617302... source
 	leftmost = enqueue_hrtimer(timer, new_base);
 
 	/*
@@ -1307,13 +1335,19 @@ void hrtimer_init_gpio_ir(struct hrtimer *timer, clockid_t clock_id,
 	timerqueue_init(&timer->node);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 #ifdef CONFIG_TIMER_STATS
 	timer->start_site = NULL;
 	timer->start_pid = -1;
 	memset(timer->start_comm, 0, TASK_COMM_LEN);
 #endif
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 }
 #endif
 
@@ -1336,13 +1370,19 @@ static void __hrtimer_init(struct hrtimer *timer, clockid_t clock_id,
 	timerqueue_init(&timer->node);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 #ifdef CONFIG_TIMER_STATS
 	timer->start_site = NULL;
 	timer->start_pid = -1;
 	memset(timer->start_comm, 0, TASK_COMM_LEN);
 #endif
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 }
 
 /**
@@ -1391,9 +1431,13 @@ static void __run_hrtimer(struct hrtimer *timer, ktime_t *now)
 	debug_deactivate(timer);
 	__remove_hrtimer(timer, base, HRTIMER_STATE_CALLBACK, 0);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	timer_stats_account_hrtimer(timer);
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	timer_stats_account_hrtimer(timer);
+>>>>>>> 2617302... source
 	fn = timer->function;
 
 	/*

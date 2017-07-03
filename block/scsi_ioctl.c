@@ -176,11 +176,14 @@ static void blk_set_cmd_filter_defaults(struct blk_cmd_filter *filter)
 	__set_bit(WRITE_LONG, filter->write_ok);
 	__set_bit(WRITE_LONG_2, filter->write_ok);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	__set_bit(WRITE_SAME, filter->write_ok);
 	__set_bit(WRITE_SAME_16, filter->write_ok);
 	__set_bit(WRITE_SAME_32, filter->write_ok);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	__set_bit(ERASE, filter->write_ok);
 	__set_bit(GPCMD_MODE_SELECT_10, filter->write_ok);
 	__set_bit(MODE_SELECT, filter->write_ok);
@@ -240,9 +243,13 @@ static int blk_fill_sghdr_rq(struct request_queue *q, struct request *rq,
 	 */
 	rq->cmd_len = hdr->cmd_len;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	rq->cmd_type = REQ_TYPE_BLOCK_PC;
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	rq->cmd_type = REQ_TYPE_BLOCK_PC;
+>>>>>>> 2617302... source
 
 	rq->timeout = msecs_to_jiffies(hdr->timeout);
 	if (!rq->timeout)
@@ -324,9 +331,12 @@ static int sg_io(struct request_queue *q, struct gendisk *bd_disk,
 	if (!rq)
 		return -ENOMEM;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	blk_rq_set_block_pc(rq);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	if (blk_fill_sghdr_rq(q, rq, hdr, mode)) {
 		blk_put_request(rq);
@@ -520,27 +530,37 @@ int sg_scsi_ioctl(struct request_queue *q, struct gendisk *disk, fmode_t mode,
 	if (bytes && blk_rq_map_kern(q, rq, buffer, bytes, __GFP_WAIT)) {
 		err = DRIVER_ERROR << 24;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		goto out;
 =======
 		goto error;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		goto out;
+>>>>>>> 2617302... source
 	}
 
 	memset(sense, 0, sizeof(sense));
 	rq->sense = sense;
 	rq->sense_len = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	rq->cmd_type = REQ_TYPE_BLOCK_PC;
 
 	blk_execute_rq(q, disk, rq, 0);
 
 out:
+<<<<<<< HEAD
 =======
 	blk_rq_set_block_pc(rq);
 
 	blk_execute_rq(q, disk, rq, 0);
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	err = rq->errors & 0xff;	/* only 8 bit SCSI status */
 	if (err) {
 		if (rq->sense_len && rq->sense) {
@@ -570,10 +590,14 @@ static int __blk_send_generic(struct request_queue *q, struct gendisk *bd_disk,
 
 	rq = blk_get_request(q, WRITE, __GFP_WAIT);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	rq->cmd_type = REQ_TYPE_BLOCK_PC;
 =======
 	blk_rq_set_block_pc(rq);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	rq->cmd_type = REQ_TYPE_BLOCK_PC;
+>>>>>>> 2617302... source
 	rq->timeout = BLK_DEFAULT_SG_TIMEOUT;
 	rq->cmd[0] = cmd;
 	rq->cmd[4] = data;

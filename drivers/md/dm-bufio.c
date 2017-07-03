@@ -463,9 +463,12 @@ static void __relink_lru(struct dm_buffer *b, int dirty)
 	b->list_mode = dirty;
 	list_move(&b->lru_list, &c->lru[dirty]);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	b->last_accessed = jiffies;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 }
 
 /*----------------------------------------------------------------
@@ -533,6 +536,7 @@ static void use_dmio(struct dm_buffer *b, int rw, sector_t block,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 static void inline_endio(struct bio *bio, int error)
 {
@@ -548,6 +552,8 @@ static void inline_endio(struct bio *bio, int error)
 }
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 static void use_inline_bio(struct dm_buffer *b, int rw, sector_t block,
 			   bio_end_io_t *end_io)
 {
@@ -560,6 +566,7 @@ static void use_inline_bio(struct dm_buffer *b, int rw, sector_t block,
 	b->bio.bi_sector = block << b->c->sectors_per_block_bits;
 	b->bio.bi_bdev = b->c->bdev;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	b->bio.bi_end_io = end_io;
 =======
 	b->bio.bi_end_io = inline_endio;
@@ -569,6 +576,9 @@ static void use_inline_bio(struct dm_buffer *b, int rw, sector_t block,
 	 */
 	b->bio.bi_private = end_io;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	b->bio.bi_end_io = end_io;
+>>>>>>> 2617302... source
 
 	/*
 	 * We assume that if len >= PAGE_SIZE ptr is page-aligned.

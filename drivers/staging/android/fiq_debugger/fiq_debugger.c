@@ -31,9 +31,12 @@
 #include <linux/slab.h>
 #include <linux/smp.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <linux/sysrq.h>
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 #include <linux/timer.h>
 #include <linux/tty.h>
 #include <linux/tty_flip.h>
@@ -400,10 +403,14 @@ static void fiq_debugger_work(struct work_struct *work)
 		while (*cmd == ' ')
 			cmd++;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (cmd != '\0')
 =======
 		if ((cmd != '\0') && sysrq_on())
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		if (cmd != '\0')
+>>>>>>> 2617302... source
 			kernel_restart(cmd);
 		else
 			kernel_restart(NULL);
@@ -434,6 +441,9 @@ static void fiq_debugger_help(struct fiq_debugger_state *state)
 {
 	fiq_debugger_printf(&state->output,
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 				"FIQ Debugger commands:\n"
 				" pc            PC status\n"
 				" regs          Register dump\n"
@@ -457,6 +467,7 @@ static void fiq_debugger_help(struct fiq_debugger_state *state)
 #ifdef CONFIG_KGDB
 	fiq_debugger_printf(&state->output,
 				" kgdb          Enter kernel debugger\n");
+<<<<<<< HEAD
 =======
 			"FIQ Debugger commands:\n");
 	if (sysrq_on()) {
@@ -492,6 +503,8 @@ static void fiq_debugger_help(struct fiq_debugger_state *state)
 		fiq_debugger_printf(&state->output,
 			" kgdb          Enter kernel debugger\n");
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 #endif
 }
 
@@ -524,6 +537,9 @@ static bool fiq_debugger_fiq_exec(struct fiq_debugger_state *state,
 		fiq_debugger_help(state);
 	} else if (!strcmp(cmd, "pc")) {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		fiq_debugger_dump_pc(&state->output, regs);
 	} else if (!strcmp(cmd, "regs")) {
 		fiq_debugger_dump_regs(&state->output, regs);
@@ -531,6 +547,7 @@ static bool fiq_debugger_fiq_exec(struct fiq_debugger_state *state,
 		fiq_debugger_dump_allregs(&state->output, regs);
 	} else if (!strcmp(cmd, "bt")) {
 		fiq_debugger_dump_stacktrace(&state->output, regs, 100, svc_sp);
+<<<<<<< HEAD
 =======
 		if (sysrq_on())
 			fiq_debugger_dump_pc(&state->output, regs);
@@ -545,15 +562,21 @@ static bool fiq_debugger_fiq_exec(struct fiq_debugger_state *state,
 			fiq_debugger_dump_stacktrace(&state->output, regs,
 						     100, svc_sp);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	} else if (!strncmp(cmd, "reset", 5)) {
 		cmd += 5;
 		while (*cmd == ' ')
 			cmd++;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (*cmd) {
 =======
 		if (*cmd && sysrq_on()) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		if (*cmd) {
+>>>>>>> 2617302... source
 			char tmp_cmd[32];
 			strlcpy(tmp_cmd, cmd, sizeof(tmp_cmd));
 			machine_restart(tmp_cmd);
@@ -563,6 +586,7 @@ static bool fiq_debugger_fiq_exec(struct fiq_debugger_state *state,
 	} else if (!strcmp(cmd, "irqs")) {
 		fiq_debugger_dump_irqs(state);
 	} else if (!strcmp(cmd, "kmsg")) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		fiq_debugger_dump_kernel_log(state);
 	} else if (!strcmp(cmd, "version")) {
@@ -575,6 +599,11 @@ static bool fiq_debugger_fiq_exec(struct fiq_debugger_state *state,
 			fiq_debugger_printf(&state->output, "%s\n",
 					    linux_banner);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		fiq_debugger_dump_kernel_log(state);
+	} else if (!strcmp(cmd, "version")) {
+		fiq_debugger_printf(&state->output, "%s\n", linux_banner);
+>>>>>>> 2617302... source
 	} else if (!strcmp(cmd, "sleep")) {
 		state->no_sleep = false;
 		fiq_debugger_printf(&state->output, "enabling sleep\n");
@@ -587,6 +616,7 @@ static bool fiq_debugger_fiq_exec(struct fiq_debugger_state *state,
 		state->console_enable = true;
 	} else if (!strcmp(cmd, "cpu")) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		fiq_debugger_printf(&state->output, "cpu %d\n", state->current_cpu);
 	} else if (!strncmp(cmd, "cpu ", 4)) {
 =======
@@ -595,17 +625,25 @@ static bool fiq_debugger_fiq_exec(struct fiq_debugger_state *state,
 					    state->current_cpu);
 	} else if (!strncmp(cmd, "cpu ", 4) && sysrq_on()) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		fiq_debugger_printf(&state->output, "cpu %d\n", state->current_cpu);
+	} else if (!strncmp(cmd, "cpu ", 4)) {
+>>>>>>> 2617302... source
 		unsigned long cpu = 0;
 		if (strict_strtoul(cmd + 4, 10, &cpu) == 0)
 			fiq_debugger_switch_cpu(state, cpu);
 		else
 			fiq_debugger_printf(&state->output, "invalid cpu\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
 		fiq_debugger_printf(&state->output, "cpu %d\n", state->current_cpu);
 =======
 		fiq_debugger_printf(&state->output, "cpu %d\n",
 				    state->current_cpu);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		fiq_debugger_printf(&state->output, "cpu %d\n", state->current_cpu);
+>>>>>>> 2617302... source
 	} else {
 		if (state->debug_busy) {
 			fiq_debugger_printf(&state->output,

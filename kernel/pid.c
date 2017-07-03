@@ -336,10 +336,13 @@ out:
 out_unlock:
 	spin_unlock_irq(&pidmap_lock);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	put_pid_ns(ns);
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 out_free:
 	while (++i <= ns->level)
 		free_pidmap(pid->numbers + i);

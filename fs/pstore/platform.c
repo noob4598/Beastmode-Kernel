@@ -19,10 +19,13 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 #include <linux/atomic.h>
 #include <linux/types.h>
 #include <linux/errno.h>
@@ -183,6 +186,7 @@ static struct kmsg_dumper pstore_dumper = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 
@@ -227,6 +231,8 @@ EXPORT_SYMBOL_GPL(pstore_annotate);
 
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 #ifdef CONFIG_PSTORE_CONSOLE
 static void pstore_console_write(struct console *con, const char *s, unsigned c)
 {
@@ -324,9 +330,12 @@ int pstore_register(struct pstore_info *psi)
 		add_timer(&pstore_timer);
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	pr_info("psi registered\n");
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	return 0;
 }
@@ -364,9 +373,12 @@ void pstore_get_records(int quiet)
 		if (rc && (rc != -EEXIST || !quiet))
 			failed++;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		pr_info("Found record type %d, psi name %s\n", type, psi->name);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	}
 	if (psi->close)
 		psi->close(psi);

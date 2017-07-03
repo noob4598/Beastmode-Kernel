@@ -559,10 +559,14 @@ static enum alarmtimer_restart alarm_handle_timer(struct alarm *alarm,
 							ktime_t now)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	struct k_itimer *ptr = container_of(alarm, struct k_itimer,
 						it.alarm.alarmtimer);
 	if (posix_timer_event(ptr, 0) != 0)
 		ptr->it_overrun++;
+<<<<<<< HEAD
 =======
 	unsigned long flags;
 	struct k_itimer *ptr = container_of(alarm, struct k_itimer,
@@ -575,11 +579,14 @@ static enum alarmtimer_restart alarm_handle_timer(struct alarm *alarm,
 			ptr->it_overrun++;
 	}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	/* Re-add periodic timers */
 	if (ptr->it.alarm.interval.tv64) {
 		ptr->it_overrun += alarm_forward(alarm, now,
 						ptr->it.alarm.interval);
+<<<<<<< HEAD
 <<<<<<< HEAD
 		return ALARMTIMER_RESTART;
 	}
@@ -591,6 +598,11 @@ static enum alarmtimer_restart alarm_handle_timer(struct alarm *alarm,
 
 	return result;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		return ALARMTIMER_RESTART;
+	}
+	return ALARMTIMER_NORESTART;
+>>>>>>> 2617302... source
 }
 
 /**
@@ -701,6 +713,7 @@ static int alarm_timer_set(struct k_itimer *timr, int flags,
 				struct itimerspec *old_setting)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!rtcdev)
 		return -ENOTSUPP;
 
@@ -714,6 +727,11 @@ static int alarm_timer_set(struct k_itimer *timr, int flags,
 		return -EINVAL;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (!rtcdev)
+		return -ENOTSUPP;
+
+>>>>>>> 2617302... source
 	if (old_setting)
 		alarm_timer_get(timr, old_setting);
 
@@ -723,6 +741,7 @@ static int alarm_timer_set(struct k_itimer *timr, int flags,
 
 	/* start the timer */
 	timr->it.alarm.interval = timespec_to_ktime(new_setting->it_interval);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	alarm_start(&timr->it.alarm.alarmtimer,
 			timespec_to_ktime(new_setting->it_value));
@@ -738,6 +757,10 @@ static int alarm_timer_set(struct k_itimer *timr, int flags,
 
 	alarm_start(&timr->it.alarm.alarmtimer, exp);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	alarm_start(&timr->it.alarm.alarmtimer,
+			timespec_to_ktime(new_setting->it_value));
+>>>>>>> 2617302... source
 	return 0;
 }
 
@@ -870,11 +893,14 @@ static int alarm_timer_nsleep(const clockid_t which_clock, int flags,
 		return -ENOTSUPP;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (flags & ~TIMER_ABSTIME)
 		return -EINVAL;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	if (!capable(CAP_WAKE_ALARM))
 		return -EPERM;
 

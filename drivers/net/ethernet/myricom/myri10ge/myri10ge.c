@@ -857,12 +857,15 @@ static int myri10ge_dma_test(struct myri10ge_priv *mgp, int test_type)
 	dmatest_bus = pci_map_page(mgp->pdev, dmatest_page, 0, PAGE_SIZE,
 				   DMA_BIDIRECTIONAL);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (unlikely(pci_dma_mapping_error(mgp->pdev, dmatest_bus))) {
 		__free_page(dmatest_page);
 		return -ENOMEM;
 	}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	/* Run a small DMA test.
 	 * The magic multipliers to the length tell the firmware
@@ -1199,9 +1202,12 @@ myri10ge_alloc_rx_pages(struct myri10ge_priv *mgp, struct myri10ge_rx_buf *rx,
 {
 	struct page *page;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	dma_addr_t bus;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	int idx;
 #if MYRI10GE_ALLOC_SIZE > 4096
 	int end_offset;
@@ -1227,11 +1233,15 @@ myri10ge_alloc_rx_pages(struct myri10ge_priv *mgp, struct myri10ge_rx_buf *rx,
 				return;
 			}
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 			rx->page = page;
 			rx->page_offset = 0;
 			rx->bus = pci_map_page(mgp->pdev, page, 0,
 					       MYRI10GE_ALLOC_SIZE,
 					       PCI_DMA_FROMDEVICE);
+<<<<<<< HEAD
 =======
 
 			bus = pci_map_page(mgp->pdev, page, 0,
@@ -1249,6 +1259,8 @@ myri10ge_alloc_rx_pages(struct myri10ge_priv *mgp, struct myri10ge_rx_buf *rx,
 			rx->bus = bus;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		}
 		rx->info[idx].page = rx->page;
 		rx->info[idx].page_offset = rx->page_offset;
@@ -2606,6 +2618,7 @@ myri10ge_submit_req(struct myri10ge_tx_buf *tx, struct mcp_kreq_ether_send *src,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 static void myri10ge_unmap_tx_dma(struct myri10ge_priv *mgp,
 				  struct myri10ge_tx_buf *tx, int idx)
@@ -2637,6 +2650,8 @@ static void myri10ge_unmap_tx_dma(struct myri10ge_priv *mgp,
 }
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 /*
  * Transmit a packet.  We need to split the packet so that a single
  * segment does not cross myri10ge->tx_boundary, so this makes segment
@@ -2661,10 +2676,14 @@ static netdev_tx_t myri10ge_xmit(struct sk_buff *skb,
 	__be32 high_swapped;
 	unsigned int len;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int idx, last_idx, avail, frag_cnt, frag_idx, count, mss, max_segments;
 =======
 	int idx, avail, frag_cnt, frag_idx, count, mss, max_segments;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	int idx, last_idx, avail, frag_cnt, frag_idx, count, mss, max_segments;
+>>>>>>> 2617302... source
 	u16 pseudo_hdr_offset, cksum_offset, queue;
 	int cum_len, seglen, boundary, rdma_count;
 	u8 flags, odd_flag;
@@ -2762,6 +2781,7 @@ again:
 	/* map the skb for DMA */
 	len = skb_headlen(skb);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	idx = tx->req & tx->mask;
 	tx->info[idx].skb = skb;
 	bus = pci_map_single(mgp->pdev, skb->data, len, PCI_DMA_TODEVICE);
@@ -2773,6 +2793,11 @@ again:
 	idx = tx->req & tx->mask;
 	tx->info[idx].skb = skb;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	idx = tx->req & tx->mask;
+	tx->info[idx].skb = skb;
+	bus = pci_map_single(mgp->pdev, skb->data, len, PCI_DMA_TODEVICE);
+>>>>>>> 2617302... source
 	dma_unmap_addr_set(&tx->info[idx], bus, bus);
 	dma_unmap_len_set(&tx->info[idx], len, len);
 
@@ -2872,14 +2897,19 @@ again:
 
 		/* map next fragment for DMA */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		idx = (count + tx->req) & tx->mask;
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		idx = (count + tx->req) & tx->mask;
+>>>>>>> 2617302... source
 		frag = &skb_shinfo(skb)->frags[frag_idx];
 		frag_idx++;
 		len = skb_frag_size(frag);
 		bus = skb_frag_dma_map(&mgp->pdev->dev, frag, 0, len,
 				       DMA_TO_DEVICE);
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 		if (unlikely(pci_dma_mapping_error(mgp->pdev, bus))) {
@@ -2888,6 +2918,8 @@ again:
 		}
 		idx = (count + tx->req) & tx->mask;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		dma_unmap_addr_set(&tx->info[idx], bus, bus);
 		dma_unmap_len_set(&tx->info[idx], len, len);
 	}
@@ -2919,6 +2951,9 @@ again:
 
 abort_linearize:
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	/* Free any DMA resources we've alloced and clear out the skb
 	 * slot so as to not trip up assertions, and to avoid a
 	 * double-free if linearizing fails */
@@ -2944,10 +2979,13 @@ abort_linearize:
 		}
 		idx = (idx + 1) & tx->mask;
 	} while (idx != last_idx);
+<<<<<<< HEAD
 =======
 	myri10ge_unmap_tx_dma(mgp, tx, idx);
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	if (skb_is_gso(skb)) {
 		netdev_err(mgp->dev, "TSO but wanted to linearize?!?!?\n");
 		goto drop;

@@ -34,10 +34,13 @@ struct backend_info {
 	struct xenbus_watch hotplug_status_watch;
 	u8 have_hotplug_status_watch:1;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 	const char *hotplug_script;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 };
 
 static int connect_rings(struct backend_info *);
@@ -61,9 +64,12 @@ static int netback_remove(struct xenbus_device *dev)
 		be->vif = NULL;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	kfree(be->hotplug_script);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	kfree(be);
 	dev_set_drvdata(&dev->dev, NULL);
 	return 0;
@@ -82,9 +88,12 @@ static int netback_probe(struct xenbus_device *dev,
 	int err;
 	int sg;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	const char *script;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	struct backend_info *be = kzalloc(sizeof(struct backend_info),
 					  GFP_KERNEL);
 	if (!be) {
@@ -146,6 +155,7 @@ static int netback_probe(struct xenbus_device *dev,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	script = xenbus_read(XBT_NIL, dev->nodename, "script", NULL);
 	if (IS_ERR(script)) {
@@ -157,6 +167,8 @@ static int netback_probe(struct xenbus_device *dev,
 	be->hotplug_script = script;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	err = xenbus_switch_state(dev, XenbusStateInitWait);
 	if (err)
 		goto fail;
@@ -188,6 +200,9 @@ static int netback_uevent(struct xenbus_device *xdev,
 {
 	struct backend_info *be = dev_get_drvdata(&xdev->dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	char *val;
 
 	val = xenbus_read(XBT_NIL, xdev->nodename, "script", NULL);
@@ -204,6 +219,7 @@ static int netback_uevent(struct xenbus_device *xdev,
 	}
 
 	if (!be || !be->vif)
+<<<<<<< HEAD
 =======
 
 	if (!be)
@@ -214,6 +230,8 @@ static int netback_uevent(struct xenbus_device *xdev,
 
 	if (!be->vif)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		return 0;
 
 	return add_uevent_var(env, "vif=%s", be->vif->dev->name);

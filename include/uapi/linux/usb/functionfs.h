@@ -11,12 +11,16 @@
 enum {
 	FUNCTIONFS_DESCRIPTORS_MAGIC = 1,
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	FUNCTIONFS_STRINGS_MAGIC     = 2
 };
 
 #define FUNCTIONFS_SS_DESC_MAGIC 0x0055DE5C
 
 #ifndef __KERNEL__
+<<<<<<< HEAD
 =======
 	FUNCTIONFS_STRINGS_MAGIC = 2,
 	FUNCTIONFS_DESCRIPTORS_MAGIC_V2 = 3,
@@ -31,6 +35,8 @@ enum functionfs_flags {
 	FUNCTIONFS_EVENTFD = 32,
 };
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 /* Descriptor of an non-audio endpoint */
 struct usb_endpoint_descriptor_no_audio {
@@ -44,11 +50,15 @@ struct usb_endpoint_descriptor_no_audio {
 } __attribute__((packed));
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 
 /*
  * All numbers must be in little endian order.
  */
 
+<<<<<<< HEAD
 =======
 struct usb_functionfs_descs_head_v2 {
 	__le32 magic;
@@ -62,11 +72,14 @@ struct usb_functionfs_descs_head_v2 {
 
 /* Legacy format, deprecated as of 3.14. */
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 struct usb_functionfs_descs_head {
 	__le32 magic;
 	__le32 length;
 	__le32 fs_count;
 	__le32 hs_count;
+<<<<<<< HEAD
 <<<<<<< HEAD
 } __attribute__((packed));
 
@@ -105,11 +118,16 @@ struct usb_ext_prop_desc {
 #ifndef __KERNEL__
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+} __attribute__((packed));
+
+>>>>>>> 2617302... source
 /*
  * Descriptors format:
  *
  * | off | name      | type         | description                          |
  * |-----+-----------+--------------+--------------------------------------|
+<<<<<<< HEAD
 <<<<<<< HEAD
  * |   0 | magic     | LE32         | FUNCTIONFS_{FS,HS}_DESCRIPTORS_MAGIC |
 =======
@@ -135,18 +153,25 @@ struct usb_ext_prop_desc {
  * |-----+-----------+--------------+--------------------------------------|
  * |   0 | magic     | LE32         | FUNCTIONFS_DESCRIPTORS_MAGIC         |
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+ * |   0 | magic     | LE32         | FUNCTIONFS_{FS,HS}_DESCRIPTORS_MAGIC |
+>>>>>>> 2617302... source
  * |   4 | length    | LE32         | length of the whole data chunk       |
  * |   8 | fs_count  | LE32         | number of full-speed descriptors     |
  * |  12 | hs_count  | LE32         | number of high-speed descriptors     |
  * |  16 | fs_descrs | Descriptor[] | list of full-speed descriptors       |
  * |     | hs_descrs | Descriptor[] | list of high-speed descriptors       |
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
  * |     | ss_magic  | LE32         | FUNCTIONFS_SS_DESC_MAGIC             |
  * |     | ss_count  | LE32         | number of super-speed descriptors    |
  * |     | ss_descrs | Descriptor[] | list of super-speed descriptors      |
  *
  * ss_magic: if present then it implies that SS_DESCs are also present
  * descs are just valid USB descriptors and have the following format:
+<<<<<<< HEAD
 =======
  *
  * All numbers must be in little endian order.
@@ -154,12 +179,15 @@ struct usb_ext_prop_desc {
  * Descriptor[] is an array of valid USB descriptors which have the following
  * format:
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
  *
  * | off | name            | type | description              |
  * |-----+-----------------+------+--------------------------|
  * |   0 | bLength         | U8   | length of the descriptor |
  * |   1 | bDescriptorType | U8   | descriptor type          |
  * |   2 | payload         |      | descriptor's payload     |
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
  *
@@ -209,6 +237,8 @@ struct usb_ext_prop_desc {
  * |10+NL| dwPropertyDataLength  | U32  | bPropertyData length (DL)           |
  * |14+NL| bProperty             |U8[DL]| payload of this property            |
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
  */
 
 struct usb_functionfs_strings_head {
@@ -316,6 +346,7 @@ struct usb_functionfs_event {
 #define	FUNCTIONFS_ENDPOINT_REVMAP	_IO('g', 129)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 /*
  * Returns endpoint descriptor. If function is not active returns -ENODEV.
@@ -324,6 +355,8 @@ struct usb_functionfs_event {
 					     struct usb_endpoint_descriptor)
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 
 #endif /* _UAPI__LINUX_FUNCTIONFS_H__ */

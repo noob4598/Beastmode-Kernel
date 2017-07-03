@@ -1003,6 +1003,7 @@ static int audit_policy(int op, gfp_t gfp, const char *name, const char *info,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 bool policy_view_capable(void)
 {
@@ -1021,6 +1022,8 @@ bool policy_admin_capable(void)
 }
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 /**
  * aa_may_manage_policy - can the current task manage policy
  * @op: the policy manipulation operation being done
@@ -1036,10 +1039,14 @@ bool aa_may_manage_policy(int op)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!capable(CAP_MAC_ADMIN)) {
 =======
 	if (!policy_admin_capable()) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (!capable(CAP_MAC_ADMIN)) {
+>>>>>>> 2617302... source
 		audit_policy(op, GFP_KERNEL, NULL, "not policy admin", -EACCES);
 		return 0;
 	}

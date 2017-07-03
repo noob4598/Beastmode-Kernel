@@ -205,10 +205,14 @@ static ssize_t da9055_hwmon_show_name(struct device *dev,
 				      char *buf)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return sprintf(buf, "da9055-hwmon\n");
 =======
 	return sprintf(buf, "da9055\n");
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	return sprintf(buf, "da9055-hwmon\n");
+>>>>>>> 2617302... source
 }
 
 static ssize_t show_label(struct device *dev,

@@ -5,9 +5,12 @@
 #include <asm-generic/hugetlb.h>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define hugepages_supported() cpu_has_pse
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 static inline int is_hugepage_only_range(struct mm_struct *mm,
 					 unsigned long addr,
@@ -57,9 +60,12 @@ static inline void huge_ptep_clear_flush(struct vm_area_struct *vma,
 					 unsigned long addr, pte_t *ptep)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	ptep_clear_flush(vma, addr, ptep);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 }
 
 static inline int huge_pte_none(pte_t pte)

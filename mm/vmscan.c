@@ -813,16 +813,23 @@ static unsigned long shrink_page_list(struct list_head *page_list,
 			 * writeback and there is nothing else to reclaim.
 			 *
 <<<<<<< HEAD
+<<<<<<< HEAD
 			 * Check __GFP_IO, certainly because a loop driver
 =======
 			 * Require may_enter_fs to wait on writeback, because
 			 * fs may not have submitted IO yet. And a loop driver
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			 * Check __GFP_IO, certainly because a loop driver
+>>>>>>> 2617302... source
 			 * thread might enter reclaim, and deadlock if it waits
 			 * on a page for which it is needed to do the write
 			 * (loop masks off __GFP_IO|__GFP_FS for this reason);
 			 * but more thought would probably show more reasons.
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 			 *
 			 * Don't require __GFP_FS, since we're not going into
 			 * the FS, just waiting on its writeback completion.
@@ -832,11 +839,14 @@ static unsigned long shrink_page_list(struct list_head *page_list,
 			 */
 			if (global_reclaim(sc) ||
 			    !PageReclaim(page) || !(sc->gfp_mask & __GFP_IO)) {
+<<<<<<< HEAD
 =======
 			 */
 			if (global_reclaim(sc) ||
 			    !PageReclaim(page) || !may_enter_fs) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 				/*
 				 * This is slightly racy - end_page_writeback()
 				 * might have just cleared PageReclaim, then
@@ -2413,15 +2423,19 @@ static bool pfmemalloc_watermark_ok(pg_data_t *pgdat)
 	for (i = 0; i <= ZONE_NORMAL; i++) {
 		zone = &pgdat->node_zones[i];
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		if (!populated_zone(zone))
 			continue;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		pfmemalloc_reserve += min_wmark_pages(zone);
 		free_pages += zone_page_state(zone, NR_FREE_PAGES);
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 	/* If there are no reserves (unexpected config) then do not throttle */
@@ -2429,6 +2443,8 @@ static bool pfmemalloc_watermark_ok(pg_data_t *pgdat)
 		return true;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	wmark_ok = free_pages > pfmemalloc_reserve / 2;
 
 	/* kswapd must be awake if processes are being throttled */
@@ -2454,6 +2470,7 @@ static bool throttle_direct_reclaim(gfp_t gfp_mask, struct zonelist *zonelist,
 					nodemask_t *nodemask)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct zone *zone;
 	int high_zoneidx = gfp_zone(gfp_mask);
 	pg_data_t *pgdat;
@@ -2462,6 +2479,11 @@ static bool throttle_direct_reclaim(gfp_t gfp_mask, struct zonelist *zonelist,
 	struct zone *zone;
 	pg_data_t *pgdat = NULL;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	struct zone *zone;
+	int high_zoneidx = gfp_zone(gfp_mask);
+	pg_data_t *pgdat;
+>>>>>>> 2617302... source
 
 	/*
 	 * Kernel threads should not be throttled as they may be indirectly
@@ -2481,10 +2503,14 @@ static bool throttle_direct_reclaim(gfp_t gfp_mask, struct zonelist *zonelist,
 		goto out;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	/* Check if the pfmemalloc reserves are ok */
 	first_zones_zonelist(zonelist, high_zoneidx, NULL, &zone);
 	pgdat = zone->zone_pgdat;
 	if (pfmemalloc_watermark_ok(pgdat))
+<<<<<<< HEAD
 =======
 	/*
 	 * Check if the pfmemalloc reserves are ok by finding the first node
@@ -2515,6 +2541,8 @@ static bool throttle_direct_reclaim(gfp_t gfp_mask, struct zonelist *zonelist,
 	/* If no zone was usable by the allocation flags then do not throttle */
 	if (!pgdat)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		goto out;
 
 	/* Account for the throttling */
@@ -2792,6 +2820,9 @@ static bool prepare_kswapd_sleep(pg_data_t *pgdat, int order, long remaining,
 
 	/*
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	 * There is a potential race between when kswapd checks its watermarks
 	 * and a process gets throttled. There is also a potential race if
 	 * processes get throttled, kswapd wakes, a large process exits therby
@@ -2804,6 +2835,7 @@ static bool prepare_kswapd_sleep(pg_data_t *pgdat, int order, long remaining,
 		wake_up(&pgdat->pfmemalloc_wait);
 		return false;
 	}
+<<<<<<< HEAD
 =======
 	 * The throttled processes are normally woken up in balance_pgdat() as
 	 * soon as pfmemalloc_watermark_ok() is true. But there is a potential
@@ -2820,6 +2852,8 @@ static bool prepare_kswapd_sleep(pg_data_t *pgdat, int order, long remaining,
 	if (waitqueue_active(&pgdat->pfmemalloc_wait))
 		wake_up_all(&pgdat->pfmemalloc_wait);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	return pgdat_balanced(pgdat, order, classzone_idx);
 }
@@ -3267,6 +3301,7 @@ static int kswapd(void *p)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	current->reclaim_state = NULL;
 =======
 	tsk->flags &= ~(PF_MEMALLOC | PF_SWAPWRITE | PF_KSWAPD);
@@ -3274,6 +3309,9 @@ static int kswapd(void *p)
 	lockdep_clear_current_reclaim_state();
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	current->reclaim_state = NULL;
+>>>>>>> 2617302... source
 	return 0;
 }
 

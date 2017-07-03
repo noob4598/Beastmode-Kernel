@@ -181,10 +181,14 @@ static void hid_io_error(struct hid_device *hid)
 
 		/* Retries failed, so do a port reset unless we lack bandwidth*/
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (test_bit(HID_NO_BANDWIDTH, &usbhid->iofl)
 =======
 		if (!test_bit(HID_NO_BANDWIDTH, &usbhid->iofl)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		if (test_bit(HID_NO_BANDWIDTH, &usbhid->iofl)
+>>>>>>> 2617302... source
 		     && !test_and_set_bit(HID_RESET_PENDING, &usbhid->iofl)) {
 
 			schedule_work(&usbhid->reset_work);
@@ -498,10 +502,15 @@ static void hid_ctrl(struct urb *urb)
 	int unplug = 0, status = urb->status;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	spin_lock(&usbhid->lock);
 
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	spin_lock(&usbhid->lock);
+
+>>>>>>> 2617302... source
 	switch (status) {
 	case 0:			/* success */
 		if (usbhid->ctrl[usbhid->ctrltail].dir == USB_DIR_IN)
@@ -522,10 +531,13 @@ static void hid_ctrl(struct urb *urb)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	spin_lock(&usbhid->lock);
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	if (unplug) {
 		usbhid->ctrltail = usbhid->ctrlhead;
 	} else {
@@ -1004,6 +1016,9 @@ static int usbhid_output_raw_report(struct hid_device *hid, __u8 *buf, size_t co
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 static void usbhid_restart_queues(struct usbhid_device *usbhid)
 {
 	if (usbhid->urbout && !test_bit(HID_OUT_RUNNING, &usbhid->iofl))
@@ -1012,8 +1027,11 @@ static void usbhid_restart_queues(struct usbhid_device *usbhid)
 		usbhid_restart_ctrl_queue(usbhid);
 }
 
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 static void hid_free_buffers(struct usb_device *dev, struct hid_device *hid)
 {
 	struct usbhid_device *usbhid = hid->driver_data;
@@ -1431,6 +1449,7 @@ static void hid_cease_io(struct usbhid_device *usbhid)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 static void hid_restart_io(struct hid_device *hid)
 {
@@ -1464,6 +1483,8 @@ static void hid_restart_io(struct hid_device *hid)
 }
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 /* Treat USB reset pretty much the same as suspend/resume */
 static int hid_pre_reset(struct usb_interface *intf)
 {
@@ -1514,6 +1535,9 @@ static int hid_post_reset(struct usb_interface *intf)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	spin_lock_irq(&usbhid->lock);
 	clear_bit(HID_RESET_PENDING, &usbhid->iofl);
 	spin_unlock_irq(&usbhid->lock);
@@ -1522,6 +1546,7 @@ static int hid_post_reset(struct usb_interface *intf)
 	if (status < 0)
 		hid_io_error(hid);
 	usbhid_restart_queues(usbhid);
+<<<<<<< HEAD
 =======
 	/* No need to do another reset or clear a halted endpoint */
 	spin_lock_irq(&usbhid->lock);
@@ -1532,6 +1557,8 @@ static int hid_post_reset(struct usb_interface *intf)
 
 	hid_restart_io(hid);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	return 0;
 }
@@ -1555,6 +1582,9 @@ void usbhid_put_power(struct hid_device *hid)
 static int hid_resume_common(struct hid_device *hid, bool driver_suspended)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	struct usbhid_device *usbhid = hid->driver_data;
 	int status;
 
@@ -1574,11 +1604,14 @@ static int hid_resume_common(struct hid_device *hid, bool driver_suspended)
 	if (status < 0)
 		hid_io_error(hid);
 
+<<<<<<< HEAD
 =======
 	int status = 0;
 
 	hid_restart_io(hid);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	if (driver_suspended && hid->driver && hid->driver->resume)
 		status = hid->driver->resume(hid);
 	return status;
@@ -1646,16 +1679,22 @@ static int hid_resume(struct usb_interface *intf)
 {
 	struct hid_device *hid = usb_get_intfdata (intf);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	struct usbhid_device *usbhid = hid->driver_data;
 	int status;
 
 	if (!test_bit(HID_STARTED, &usbhid->iofl))
 		return 0;
 
+<<<<<<< HEAD
 =======
 	int status;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	status = hid_resume_common(hid, true);
 	dev_dbg(&intf->dev, "resume status %d\n", status);
 	return 0;
@@ -1665,14 +1704,20 @@ static int hid_reset_resume(struct usb_interface *intf)
 {
 	struct hid_device *hid = usb_get_intfdata(intf);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	struct usbhid_device *usbhid = hid->driver_data;
 	int status;
 
 	clear_bit(HID_SUSPENDED, &usbhid->iofl);
+<<<<<<< HEAD
 =======
 	int status;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	status = hid_post_reset(intf);
 	if (status >= 0 && hid->driver && hid->driver->reset_resume) {
 		int ret = hid->driver->reset_resume(hid);

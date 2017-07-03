@@ -202,12 +202,17 @@ static struct sdhci_pxa_platdata *pxav3_get_mmc_pdata(struct device *dev)
 		return NULL;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	of_property_read_u32(np, "mrvl,clk-delay-cycles", &clk_delay_cycles);
 	if (clk_delay_cycles > 0)
 =======
 	if (!of_property_read_u32(np, "mrvl,clk-delay-cycles",
 				  &clk_delay_cycles))
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	of_property_read_u32(np, "mrvl,clk-delay-cycles", &clk_delay_cycles);
+	if (clk_delay_cycles > 0)
+>>>>>>> 2617302... source
 		pdata->clk_delay_cycles = clk_delay_cycles;
 
 	return pdata;
@@ -261,9 +266,12 @@ static int sdhci_pxav3_probe(struct platform_device *pdev)
 		sdhci_get_of_property(pdev);
 		pdata = pxav3_get_mmc_pdata(dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		pdev->dev.platform_data = pdata;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	} else if (pdata) {
 		/* on-chip device */
 		if (pdata->flags & PXA_FLAG_CARD_PERMANENT)

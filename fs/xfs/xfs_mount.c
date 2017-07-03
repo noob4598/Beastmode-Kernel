@@ -690,11 +690,15 @@ xfs_sb_verify(
 	 * mkfs.xfs doesn't clear it from secondary superblocks.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return xfs_mount_validate_sb(mp, &sb, bp->b_bn == XFS_SB_DADDR,
 =======
 	return xfs_mount_validate_sb(mp, &sb,
 				     bp->b_maps[0].bm_bn == XFS_SB_DADDR,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	return xfs_mount_validate_sb(mp, &sb, bp->b_bn == XFS_SB_DADDR,
+>>>>>>> 2617302... source
 				     check_version);
 }
 

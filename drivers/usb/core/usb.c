@@ -1020,9 +1020,12 @@ static int __init usb_init(void)
 		return 0;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	usb_init_pool_max();
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	retval = usb_debugfs_init();
 	if (retval)

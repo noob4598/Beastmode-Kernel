@@ -1779,9 +1779,12 @@ static int ipx_recvmsg(struct kiocb *iocb, struct socket *sock,
 	struct sk_buff *skb;
 	int copied, rc;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	bool locked = true;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	lock_sock(sk);
 	/* put the autobinding in */
@@ -1809,10 +1812,13 @@ static int ipx_recvmsg(struct kiocb *iocb, struct socket *sock,
 		goto out;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	release_sock(sk);
 	locked = false;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	skb = skb_recv_datagram(sk, flags & ~MSG_DONTWAIT,
 				flags & MSG_DONTWAIT, &rc);
 	if (!skb)
@@ -1847,11 +1853,15 @@ out_free:
 	skb_free_datagram(sk, skb);
 out:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	release_sock(sk);
 =======
 	if (locked)
 		release_sock(sk);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	release_sock(sk);
+>>>>>>> 2617302... source
 	return rc;
 }
 

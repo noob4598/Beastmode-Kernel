@@ -121,10 +121,14 @@ static void mr6_netlink_event(struct mr6_table *mrt, struct mfc6_cache *mfc,
 static int ip6mr_rtm_dumproute(struct sk_buff *skb,
 			       struct netlink_callback *cb);
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void mroute_clean_tables(struct mr6_table *mrt);
 =======
 static void mroute_clean_tables(struct mr6_table *mrt, bool all);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+static void mroute_clean_tables(struct mr6_table *mrt);
+>>>>>>> 2617302... source
 static void ipmr_expire_process(unsigned long arg);
 
 #ifdef CONFIG_IPV6_MROUTE_MULTIPLE_TABLES
@@ -341,12 +345,17 @@ static struct mr6_table *ip6mr_new_table(struct net *net, u32 id)
 static void ip6mr_free_table(struct mr6_table *mrt)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	del_timer(&mrt->ipmr_expire_timer);
 	mroute_clean_tables(mrt);
 =======
 	del_timer_sync(&mrt->ipmr_expire_timer);
 	mroute_clean_tables(mrt, true);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	del_timer(&mrt->ipmr_expire_timer);
+	mroute_clean_tables(mrt);
+>>>>>>> 2617302... source
 	kfree(mrt);
 }
 
@@ -562,10 +571,14 @@ static void ipmr_mfc_seq_stop(struct seq_file *seq, void *v)
 	if (it->cache == &mrt->mfc6_unres_queue)
 		spin_unlock_bh(&mfc_unres_lock);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	else if (it->cache == mrt->mfc6_cache_array)
 =======
 	else if (it->cache == &mrt->mfc6_cache_array[it->ct])
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	else if (it->cache == mrt->mfc6_cache_array)
+>>>>>>> 2617302... source
 		read_unlock(&mrt_lock);
 }
 
@@ -791,11 +804,15 @@ failure:
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int mif6_delete(struct mr6_table *mrt, int vifi, struct list_head *head)
 =======
 static int mif6_delete(struct mr6_table *mrt, int vifi, int notify,
 		       struct list_head *head)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+static int mif6_delete(struct mr6_table *mrt, int vifi, struct list_head *head)
+>>>>>>> 2617302... source
 {
 	struct mif_device *v;
 	struct net_device *dev;
@@ -842,10 +859,14 @@ static int mif6_delete(struct mr6_table *mrt, int vifi, int notify,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (v->flags & MIFF_REGISTER)
 =======
 	if ((v->flags & MIFF_REGISTER) && !notify)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (v->flags & MIFF_REGISTER)
+>>>>>>> 2617302... source
 		unregister_netdevice_queue(dev, head);
 
 	dev_put(dev);
@@ -1100,9 +1121,12 @@ static struct mfc6_cache *ip6mr_cache_alloc(void)
 	if (c == NULL)
 		return NULL;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	c->mfc_un.res.last_assert = jiffies - MFC_ASSERT_THRESH - 1;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	c->mfc_un.res.minvif = MAXMIFS;
 	return c;
 }
@@ -1359,9 +1383,13 @@ static int ip6mr_device_event(struct notifier_block *this,
 	struct mif_device *v;
 	int ct;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	LIST_HEAD(list);
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	LIST_HEAD(list);
+>>>>>>> 2617302... source
 
 	if (event != NETDEV_UNREGISTER)
 		return NOTIFY_DONE;
@@ -1371,15 +1399,21 @@ static int ip6mr_device_event(struct notifier_block *this,
 		for (ct = 0; ct < mrt->maxvif; ct++, v++) {
 			if (v->dev == dev)
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 				mif6_delete(mrt, ct, &list);
 		}
 	}
 	unregister_netdevice_many(&list);
+<<<<<<< HEAD
 =======
 				mif6_delete(mrt, ct, 1, NULL);
 		}
 	}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	return NOTIFY_DONE;
 }
@@ -1573,10 +1607,14 @@ static int ip6mr_mfc_add(struct net *net, struct mr6_table *mrt,
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void mroute_clean_tables(struct mr6_table *mrt)
 =======
 static void mroute_clean_tables(struct mr6_table *mrt, bool all)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+static void mroute_clean_tables(struct mr6_table *mrt)
+>>>>>>> 2617302... source
 {
 	int i;
 	LIST_HEAD(list);
@@ -1587,6 +1625,7 @@ static void mroute_clean_tables(struct mr6_table *mrt, bool all)
 	 */
 	for (i = 0; i < mrt->maxvif; i++) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (!(mrt->vif6_table[i].flags & VIFF_STATIC))
 			mif6_delete(mrt, i, &list);
 =======
@@ -1594,6 +1633,10 @@ static void mroute_clean_tables(struct mr6_table *mrt, bool all)
 			continue;
 		mif6_delete(mrt, i, 0, &list);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		if (!(mrt->vif6_table[i].flags & VIFF_STATIC))
+			mif6_delete(mrt, i, &list);
+>>>>>>> 2617302... source
 	}
 	unregister_netdevice_many(&list);
 
@@ -1603,10 +1646,14 @@ static void mroute_clean_tables(struct mr6_table *mrt, bool all)
 	for (i = 0; i < MFC6_LINES; i++) {
 		list_for_each_entry_safe(c, next, &mrt->mfc6_cache_array[i], list) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (c->mfc_flags & MFC_STATIC)
 =======
 			if (!all && (c->mfc_flags & MFC_STATIC))
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			if (c->mfc_flags & MFC_STATIC)
+>>>>>>> 2617302... source
 				continue;
 			write_lock_bh(&mrt_lock);
 			list_del(&c->list);
@@ -1670,10 +1717,14 @@ int ip6mr_sk_done(struct sock *sk)
 			write_unlock_bh(&mrt_lock);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 			mroute_clean_tables(mrt);
 =======
 			mroute_clean_tables(mrt, false);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			mroute_clean_tables(mrt);
+>>>>>>> 2617302... source
 			err = 0;
 			break;
 		}
@@ -1755,10 +1806,14 @@ int ip6_mroute_setsockopt(struct sock *sk, int optname, char __user *optval, uns
 			return -EFAULT;
 		rtnl_lock();
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ret = mif6_delete(mrt, mifi, NULL);
 =======
 		ret = mif6_delete(mrt, mifi, 0, NULL);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		ret = mif6_delete(mrt, mifi, NULL);
+>>>>>>> 2617302... source
 		rtnl_unlock();
 		return ret;
 
@@ -2331,12 +2386,17 @@ static int __ip6mr_fill_mroute(struct mr6_table *mrt, struct sk_buff *skb,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 int ip6mr_get_route(struct net *net,
 		    struct sk_buff *skb, struct rtmsg *rtm, int nowait)
 =======
 int ip6mr_get_route(struct net *net, struct sk_buff *skb, struct rtmsg *rtm,
 		    int nowait, u32 portid)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+int ip6mr_get_route(struct net *net,
+		    struct sk_buff *skb, struct rtmsg *rtm, int nowait)
+>>>>>>> 2617302... source
 {
 	int err;
 	struct mr6_table *mrt;
@@ -2382,9 +2442,12 @@ int ip6mr_get_route(struct net *net, struct sk_buff *skb, struct rtmsg *rtm,
 		}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		NETLINK_CB(skb2).portid = portid;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		skb_reset_transport_header(skb2);
 
 		skb_put(skb2, sizeof(struct ipv6hdr));

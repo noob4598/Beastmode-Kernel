@@ -63,9 +63,12 @@ struct lsm_client {
 	uint8_t		num_confidence_levels;
 	uint8_t		*confidence_levels;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	bool		opened;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	bool		started;
 	dma_addr_t	lsm_cal_phy_addr;
 	uint32_t	lsm_cal_size;

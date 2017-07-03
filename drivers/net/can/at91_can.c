@@ -732,6 +732,7 @@ static int at91_poll_rx(struct net_device *dev, int quota)
 	/* upper group completed, look again in lower */
 	if (priv->rx_next > get_mb_rx_low_last(priv) &&
 <<<<<<< HEAD
+<<<<<<< HEAD
 	    quota > 0 && mb > get_mb_rx_last(priv)) {
 		priv->rx_next = get_mb_rx_first(priv);
 		goto again;
@@ -741,6 +742,11 @@ static int at91_poll_rx(struct net_device *dev, int quota)
 		if (quota > 0)
 			goto again;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	    quota > 0 && mb > get_mb_rx_last(priv)) {
+		priv->rx_next = get_mb_rx_first(priv);
+		goto again;
+>>>>>>> 2617302... source
 	}
 
 	return received;

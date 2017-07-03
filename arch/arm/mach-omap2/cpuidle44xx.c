@@ -15,9 +15,12 @@
 #include <linux/cpu_pm.h>
 #include <linux/export.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <linux/clockchips.h>
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 #include <asm/cpuidle.h>
 #include <asm/proc-fns.h>
@@ -85,9 +88,12 @@ static int omap_enter_idle_coupled(struct cpuidle_device *dev,
 {
 	struct idle_statedata *cx = state_ptr + index;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	int cpu_id = smp_processor_id();
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	/*
 	 * CPU0 has to wait and stay ON until CPU1 is OFF state.
@@ -113,10 +119,13 @@ static int omap_enter_idle_coupled(struct cpuidle_device *dev,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	clockevents_notify(CLOCK_EVT_NOTIFY_BROADCAST_ENTER, &cpu_id);
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	/*
 	 * Call idle CPU PM enter notifier chain so that
 	 * VFP and per CPU interrupt context is saved.
@@ -161,10 +170,13 @@ static int omap_enter_idle_coupled(struct cpuidle_device *dev,
 		cpu_cluster_pm_exit();
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	clockevents_notify(CLOCK_EVT_NOTIFY_BROADCAST_EXIT, &cpu_id);
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 fail:
 	cpuidle_coupled_parallel_barrier(dev, &abort_barrier);
 	cpu_done[dev->cpu] = false;
@@ -172,6 +184,7 @@ fail:
 	return index;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 /*
@@ -185,6 +198,8 @@ static void omap_setup_broadcast_timer(void *arg)
 }
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 static struct cpuidle_driver omap4_idle_driver = {
 	.name				= "omap4_idle",
 	.owner				= THIS_MODULE,
@@ -203,11 +218,16 @@ static struct cpuidle_driver omap4_idle_driver = {
 			.exit_latency = 328 + 440,
 			.target_residency = 960,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			.flags = CPUIDLE_FLAG_TIME_VALID | CPUIDLE_FLAG_COUPLED |
 			         CPUIDLE_FLAG_TIMER_STOP,
 =======
 			.flags = CPUIDLE_FLAG_TIME_VALID | CPUIDLE_FLAG_COUPLED,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			.flags = CPUIDLE_FLAG_TIME_VALID | CPUIDLE_FLAG_COUPLED |
+			         CPUIDLE_FLAG_TIMER_STOP,
+>>>>>>> 2617302... source
 			.enter = omap_enter_idle_coupled,
 			.name = "C2",
 			.desc = "CPUx OFF, MPUSS CSWR",
@@ -217,11 +237,16 @@ static struct cpuidle_driver omap4_idle_driver = {
 			.exit_latency = 460 + 518,
 			.target_residency = 1100,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			.flags = CPUIDLE_FLAG_TIME_VALID | CPUIDLE_FLAG_COUPLED |
 			         CPUIDLE_FLAG_TIMER_STOP,
 =======
 			.flags = CPUIDLE_FLAG_TIME_VALID | CPUIDLE_FLAG_COUPLED,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			.flags = CPUIDLE_FLAG_TIME_VALID | CPUIDLE_FLAG_COUPLED |
+			         CPUIDLE_FLAG_TIMER_STOP,
+>>>>>>> 2617302... source
 			.enter = omap_enter_idle_coupled,
 			.name = "C3",
 			.desc = "CPUx OFF, MPUSS OSWR",
@@ -253,10 +278,13 @@ int __init omap4_idle_init(void)
 		return -ENODEV;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/* Configure the broadcast timer on each cpu */
 	on_each_cpu(omap_setup_broadcast_timer, NULL, 1);
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	return cpuidle_register(&omap4_idle_driver, cpu_online_mask);
 }

@@ -2166,9 +2166,12 @@ static int cdrom_read_cdda_bpc(struct cdrom_device_info *cdi, __u8 __user *ubuf,
 			break;
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		blk_rq_set_block_pc(rq);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 		ret = blk_rq_map_user(q, rq, NULL, ubuf, len, GFP_KERNEL);
 		if (ret) {
@@ -2189,9 +2192,13 @@ static int cdrom_read_cdda_bpc(struct cdrom_device_info *cdi, __u8 __user *ubuf,
 
 		rq->cmd_len = 12;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		rq->cmd_type = REQ_TYPE_BLOCK_PC;
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		rq->cmd_type = REQ_TYPE_BLOCK_PC;
+>>>>>>> 2617302... source
 		rq->timeout = 60 * HZ;
 		bio = rq->bio;
 

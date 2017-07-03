@@ -385,10 +385,14 @@ int qmi_filter_request_send(struct ipa_install_fltr_rule_req_msg_v01 *req)
 		IPAWANDBG("IPACM pass zero rules to Q6\n");
 	} else {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		IPAWANDBG("IPACM pass %d rules to Q6\n",
 =======
 		IPAWANDBG("IPACM pass %u rules to Q6\n",
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		IPAWANDBG("IPACM pass %d rules to Q6\n",
+>>>>>>> 2617302... source
 		req->filter_spec_list_len);
 	}
 
@@ -426,16 +430,21 @@ int qmi_filter_notify_send(struct ipa_fltr_installed_notif_req_msg_v01 *req)
 	struct ipa_fltr_installed_notif_resp_msg_v01 resp;
 	struct msg_desc req_desc, resp_desc;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int rc = 0;
 =======
 	int rc = 0, i = 0;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	int rc = 0;
+>>>>>>> 2617302... source
 
 	/* check if the filter rules from IPACM is valid */
 	if (req->filter_index_list_len == 0) {
 		IPAERR(" delete UL filter rule for pipe %d\n",
 		req->source_pipe_index);
 		return -EINVAL;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	}
 
@@ -458,6 +467,10 @@ int qmi_filter_notify_send(struct ipa_fltr_installed_notif_req_msg_v01 *req)
 		return -EINVAL;
 	}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	}
+
+>>>>>>> 2617302... source
 	req_desc.max_msg_len =
 	QMI_IPA_FILTER_INSTALLED_NOTIF_REQ_MAX_MSG_LEN_V01;
 	req_desc.msg_id = QMI_IPA_FILTER_INSTALLED_NOTIF_REQ_V01;

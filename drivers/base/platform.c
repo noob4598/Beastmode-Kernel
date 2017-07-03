@@ -348,12 +348,18 @@ int platform_device_add(struct platform_device *pdev)
 	while (--i >= 0) {
 		struct resource *r = &pdev->resource[i];
 <<<<<<< HEAD
+<<<<<<< HEAD
 		unsigned long type = resource_type(r);
 
 		if (type == IORESOURCE_MEM || type == IORESOURCE_IO)
 =======
 		if (r->parent)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		unsigned long type = resource_type(r);
+
+		if (type == IORESOURCE_MEM || type == IORESOURCE_IO)
+>>>>>>> 2617302... source
 			release_resource(r);
 	}
 
@@ -385,12 +391,18 @@ void platform_device_del(struct platform_device *pdev)
 		for (i = 0; i < pdev->num_resources; i++) {
 			struct resource *r = &pdev->resource[i];
 <<<<<<< HEAD
+<<<<<<< HEAD
 			unsigned long type = resource_type(r);
 
 			if (type == IORESOURCE_MEM || type == IORESOURCE_IO)
 =======
 			if (r->parent)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			unsigned long type = resource_type(r);
+
+			if (type == IORESOURCE_MEM || type == IORESOURCE_IO)
+>>>>>>> 2617302... source
 				release_resource(r);
 		}
 	}

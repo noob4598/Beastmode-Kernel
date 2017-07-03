@@ -34,9 +34,12 @@ static const unsigned char asn1_op_lengths[ASN1_OP__NR] = {
 	[ASN1_OP_COMPLETE]			= 1,
 	[ASN1_OP_ACT]				= 1         + 1,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	[ASN1_OP_MAYBE_ACT]			= 1         + 1,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	[ASN1_OP_RETURN]			= 1,
 	[ASN1_OP_END_SEQ]			= 1,
 	[ASN1_OP_END_SEQ_OF]			= 1     + 1,
@@ -74,10 +77,14 @@ next_tag:
 	/* Extract a tag from the data */
 	tag = data[dp++];
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (tag == 0) {
 =======
 	if (tag == ASN1_EOC) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (tag == 0) {
+>>>>>>> 2617302... source
 		/* It appears to be an EOC. */
 		if (data[dp++] != 0)
 			goto invalid_eoc;
@@ -100,14 +107,20 @@ next_tag:
 	/* Extract the length */
 	len = data[dp++];
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	if (len <= 0x7f) {
 		dp += len;
 		goto next_tag;
 	}
+<<<<<<< HEAD
 =======
 	if (len <= 0x7f)
 		goto check_length;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	if (unlikely(len == ASN1_INDEFINITE_LENGTH)) {
 		/* Indefinite length */
@@ -119,6 +132,9 @@ next_tag:
 
 	n = len - 0x80;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	if (unlikely(n > sizeof(size_t) - 1))
 		goto length_too_long;
 	if (unlikely(n > datalen - dp))
@@ -127,6 +143,7 @@ next_tag:
 		len <<= 8;
 		len |= data[dp++];
 	}
+<<<<<<< HEAD
 =======
 	if (unlikely(n > sizeof(len) - 1))
 		goto length_too_long;
@@ -141,6 +158,8 @@ check_length:
 	if (len > datalen - dp)
 		goto data_overrun_error;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	dp += len;
 	goto next_tag;
 
@@ -169,10 +188,14 @@ error:
  * @context: The caller's context (to be passed to the action functions)
  * @data: The encoded data
 <<<<<<< HEAD
+<<<<<<< HEAD
  * @datasize: The size of the encoded data
 =======
  * @datalen: The size of the encoded data
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+ * @datasize: The size of the encoded data
+>>>>>>> 2617302... source
  *
  * Decode BER/DER/CER encoded ASN.1 data according to a bytecode pattern
  * produced by asn1_compiler.  Action functions are called on marked tags to
@@ -210,9 +233,12 @@ int asn1_ber_decoder(const struct asn1_decoder *decoder,
 #define FLAG_INDEFINITE_LENGTH	0x01
 #define FLAG_MATCHED		0x02
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define FLAG_LAST_MATCHED	0x04 /* Last tag matched */
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 #define FLAG_CONS		0x20 /* Corresponds to CONS bit in the opcode tag
 				      * - ie. whether or not we are going to parse
 				      *   a compound type.
@@ -245,6 +271,7 @@ next_op:
 
 		/* Skip conditional matches if possible */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if ((op & ASN1_OP_MATCH__COND &&
 		     flags & FLAG_MATCHED) ||
 		    dp == datalen) {
@@ -253,6 +280,11 @@ next_op:
 		    (op & ASN1_OP_MATCH__SKIP && dp == datalen)) {
 			flags &= ~FLAG_LAST_MATCHED;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		if ((op & ASN1_OP_MATCH__COND &&
+		     flags & FLAG_MATCHED) ||
+		    dp == datalen) {
+>>>>>>> 2617302... source
 			pc += asn1_op_lengths[op];
 			goto next_op;
 		}
@@ -465,6 +497,7 @@ next_op:
 		goto next_op;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	case ASN1_OP_ACT:
 		ret = actions[machine[pc + 1]](context, hdr, tag, data + tdp, len);
 =======
@@ -478,6 +511,10 @@ next_op:
 		if (ret < 0)
 			return ret;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	case ASN1_OP_ACT:
+		ret = actions[machine[pc + 1]](context, hdr, tag, data + tdp, len);
+>>>>>>> 2617302... source
 		pc += asn1_op_lengths[op];
 		goto next_op;
 
@@ -486,9 +523,12 @@ next_op:
 			goto jump_stack_underflow;
 		pc = jump_stack[--jsp];
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		flags |= FLAG_MATCHED | FLAG_LAST_MATCHED;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		goto next_op;
 
 	default:
@@ -497,11 +537,15 @@ next_op:
 
 	/* Shouldn't reach here */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_err("ASN.1 decoder error: Found reserved opcode (%u)\n", op);
 =======
 	pr_err("ASN.1 decoder error: Found reserved opcode (%u) pc=%zu\n",
 	       op, pc);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	pr_err("ASN.1 decoder error: Found reserved opcode (%u)\n", op);
+>>>>>>> 2617302... source
 	return -EBADMSG;
 
 data_overrun_error:

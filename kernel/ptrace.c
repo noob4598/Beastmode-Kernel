@@ -152,11 +152,15 @@ static void ptrace_unfreeze_traced(struct task_struct *task)
 	WARN_ON(!task->ptrace || task->parent != current);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	spin_lock_irq(&task->sighand->siglock);
 	if (__fatal_signal_pending(task))
 		wake_up_state(task, __TASK_TRACED);
 	else
 		task->state = TASK_TRACED;
+<<<<<<< HEAD
 =======
 	/*
 	 * PTRACE_LISTEN can allow ptrace_trap_notify to wake us up remotely.
@@ -170,6 +174,8 @@ static void ptrace_unfreeze_traced(struct task_struct *task)
 			task->state = TASK_TRACED;
 	}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	spin_unlock_irq(&task->sighand->siglock);
 }
 
@@ -263,6 +269,7 @@ static int __ptrace_may_access(struct task_struct *task, unsigned int mode)
 {
 	const struct cred *cred = current_cred(), *tcred;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	int dumpable = 0;
 	kuid_t caller_uid;
@@ -273,6 +280,8 @@ static int __ptrace_may_access(struct task_struct *task, unsigned int mode)
 		return -EPERM;
 	}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	/* May we inspect the given task?
 	 * This check is used both for attaching with ptrace
@@ -283,6 +292,9 @@ static int __ptrace_may_access(struct task_struct *task, unsigned int mode)
 	 * or halting the specified task is impossible.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	int dumpable = 0;
 	/* Don't let security modules deny introspection */
 	if (task == current)
@@ -295,6 +307,7 @@ static int __ptrace_may_access(struct task_struct *task, unsigned int mode)
 	    gid_eq(cred->gid, tcred->egid) &&
 	    gid_eq(cred->gid, tcred->sgid) &&
 	    gid_eq(cred->gid, tcred->gid))
+<<<<<<< HEAD
 =======
 
 	/* Don't let security modules deny introspection */
@@ -324,6 +337,8 @@ static int __ptrace_may_access(struct task_struct *task, unsigned int mode)
 	    gid_eq(caller_gid, tcred->sgid) &&
 	    gid_eq(caller_gid, tcred->gid))
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		goto ok;
 	if (ptrace_has_cap(tcred, mode))
 		goto ok;
@@ -391,10 +406,14 @@ static int ptrace_attach(struct task_struct *task, long request,
 
 	task_lock(task);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	retval = __ptrace_may_access(task, PTRACE_MODE_ATTACH);
 =======
 	retval = __ptrace_may_access(task, PTRACE_MODE_ATTACH_REALCREDS);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	retval = __ptrace_may_access(task, PTRACE_MODE_ATTACH);
+>>>>>>> 2617302... source
 	task_unlock(task);
 	if (retval)
 		goto unlock_creds;
@@ -803,10 +822,13 @@ static int ptrace_resume(struct task_struct *child, long request,
 			 unsigned long data)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	bool need_siglock;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	if (!valid_signal(data))
 		return -EIO;
 
@@ -835,6 +857,7 @@ static int ptrace_resume(struct task_struct *child, long request,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	child->exit_code = data;
 	wake_up_state(child, __TASK_TRACED);
 =======
@@ -859,6 +882,10 @@ static int ptrace_resume(struct task_struct *child, long request,
 	if (need_siglock)
 		spin_unlock_irq(&child->sighand->siglock);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	child->exit_code = data;
+	wake_up_state(child, __TASK_TRACED);
+>>>>>>> 2617302... source
 
 	return 0;
 }

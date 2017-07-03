@@ -219,16 +219,22 @@ static unsigned long ksm_rmap_items;
 
 /* Number of pages ksmd should scan in one batch */
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 static unsigned int ksm_thread_pages_to_scan = 250;
 
 /* Milliseconds ksmd should sleep between batches */
 static unsigned int ksm_thread_sleep_millisecs = 1500;
+<<<<<<< HEAD
 =======
 static unsigned int ksm_thread_pages_to_scan = 100;
 
 /* Milliseconds ksmd should sleep between batches */
 static unsigned int ksm_thread_sleep_millisecs = 20;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 /* Boolean to indicate whether to use deferred timer or not */
 static bool use_deferred_timer;
@@ -243,11 +249,17 @@ static int ksm_nr_node_ids = 1;
 #endif
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* Boolean to indicate whether to use deferred timer or not */
 static bool use_deferred_timer = true;
 
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+/* Boolean to indicate whether to use deferred timer or not */
+static bool use_deferred_timer = true;
+
+>>>>>>> 2617302... source
 #define KSM_RUN_STOP	0
 #define KSM_RUN_MERGE	1
 #define KSM_RUN_UNMERGE	2
@@ -300,11 +312,15 @@ static inline struct rmap_item *alloc_rmap_item(void)
 	struct rmap_item *rmap_item;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	rmap_item = kmem_cache_zalloc(rmap_item_cache, GFP_KERNEL);
 =======
 	rmap_item = kmem_cache_zalloc(rmap_item_cache, GFP_KERNEL |
 						__GFP_NORETRY | __GFP_NOWARN);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	rmap_item = kmem_cache_zalloc(rmap_item_cache, GFP_KERNEL);
+>>>>>>> 2617302... source
 	if (rmap_item)
 		ksm_rmap_items++;
 	return rmap_item;
@@ -398,10 +414,14 @@ static int break_ksm(struct vm_area_struct *vma, unsigned long addr)
 			ret = VM_FAULT_WRITE;
 		put_page(page);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	} while (!(ret & (VM_FAULT_WRITE | VM_FAULT_SIGBUS | VM_FAULT_OOM)));
 =======
 	} while (!(ret & (VM_FAULT_WRITE | VM_FAULT_SIGBUS | VM_FAULT_SIGSEGV | VM_FAULT_OOM)));
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	} while (!(ret & (VM_FAULT_WRITE | VM_FAULT_SIGBUS | VM_FAULT_OOM)));
+>>>>>>> 2617302... source
 	/*
 	 * We must loop because handle_mm_fault() may back out if there's
 	 * any difficulty e.g. if pte accessed bit gets updated concurrently.

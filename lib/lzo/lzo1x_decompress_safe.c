@@ -20,6 +20,9 @@
 #include "lzodefs.h"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 #define HAVE_IP(t, x)					\
 	(((size_t)(ip_end - ip) >= (size_t)(t + x)) &&	\
 	 (((t + x) >= t) && ((t + x) >= x)))
@@ -45,6 +48,7 @@
 		if ((m_pos) < out)			\
 			goto lookbehind_overrun;	\
 	} while (0)
+<<<<<<< HEAD
 =======
 #define HAVE_IP(x)      ((size_t)(ip_end - ip) >= (size_t)(x))
 #define HAVE_OP(x)      ((size_t)(op_end - op) >= (size_t)(x))
@@ -62,6 +66,8 @@
  */
 #define MAX_255_COUNT      ((((size_t)~0) / 255) - 2)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 int lzo1x_decompress_safe(const unsigned char *in, size_t in_len,
 			  unsigned char *out, size_t *out_len)
@@ -94,12 +100,16 @@ int lzo1x_decompress_safe(const unsigned char *in, size_t in_len,
 			if (likely(state == 0)) {
 				if (unlikely(t == 0)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 					while (unlikely(*ip == 0)) {
 						t += 255;
 						ip++;
 						NEED_IP(1, 0);
 					}
 					t += 15 + *ip++;
+<<<<<<< HEAD
 =======
 					size_t offset;
 					const unsigned char *ip_last = ip;
@@ -115,15 +125,21 @@ int lzo1x_decompress_safe(const unsigned char *in, size_t in_len,
 					offset = (offset << 8) - offset;
 					t += offset + 15 + *ip++;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 				}
 				t += 3;
 copy_literal_run:
 #if defined(CONFIG_HAVE_EFFICIENT_UNALIGNED_ACCESS)
 <<<<<<< HEAD
+<<<<<<< HEAD
 				if (likely(HAVE_IP(t, 15) && HAVE_OP(t, 15))) {
 =======
 				if (likely(HAVE_IP(t + 15) && HAVE_OP(t + 15))) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+				if (likely(HAVE_IP(t, 15) && HAVE_OP(t, 15))) {
+>>>>>>> 2617302... source
 					const unsigned char *ie = ip + t;
 					unsigned char *oe = op + t;
 					do {
@@ -140,12 +156,17 @@ copy_literal_run:
 #endif
 				{
 <<<<<<< HEAD
+<<<<<<< HEAD
 					NEED_OP(t, 0);
 					NEED_IP(t, 3);
 =======
 					NEED_OP(t);
 					NEED_IP(t + 3);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+					NEED_OP(t, 0);
+					NEED_IP(t, 3);
+>>>>>>> 2617302... source
 					do {
 						*op++ = *ip++;
 					} while (--t > 0);
@@ -159,10 +180,14 @@ copy_literal_run:
 				m_pos -= *ip++ << 2;
 				TEST_LB(m_pos);
 <<<<<<< HEAD
+<<<<<<< HEAD
 				NEED_OP(2, 0);
 =======
 				NEED_OP(2);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+				NEED_OP(2, 0);
+>>>>>>> 2617302... source
 				op[0] = m_pos[0];
 				op[1] = m_pos[1];
 				op += 2;
@@ -184,6 +209,9 @@ copy_literal_run:
 			t = (t & 31) + (3 - 1);
 			if (unlikely(t == 2)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 				while (unlikely(*ip == 0)) {
 					t += 255;
 					ip++;
@@ -191,6 +219,7 @@ copy_literal_run:
 				}
 				t += 31 + *ip++;
 				NEED_IP(2, 0);
+<<<<<<< HEAD
 =======
 				size_t offset;
 				const unsigned char *ip_last = ip;
@@ -207,6 +236,8 @@ copy_literal_run:
 				t += offset + 31 + *ip++;
 				NEED_IP(2);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 			}
 			m_pos = op - 1;
 			next = get_unaligned_le16(ip);
@@ -219,6 +250,9 @@ copy_literal_run:
 			t = (t & 7) + (3 - 1);
 			if (unlikely(t == 2)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 				while (unlikely(*ip == 0)) {
 					t += 255;
 					ip++;
@@ -226,6 +260,7 @@ copy_literal_run:
 				}
 				t += 7 + *ip++;
 				NEED_IP(2, 0);
+<<<<<<< HEAD
 =======
 				size_t offset;
 				const unsigned char *ip_last = ip;
@@ -242,6 +277,8 @@ copy_literal_run:
 				t += offset + 7 + *ip++;
 				NEED_IP(2);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 			}
 			next = get_unaligned_le16(ip);
 			ip += 2;
@@ -256,10 +293,14 @@ copy_literal_run:
 		if (op - m_pos >= 8) {
 			unsigned char *oe = op + t;
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (likely(HAVE_OP(t, 15))) {
 =======
 			if (likely(HAVE_OP(t + 15))) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			if (likely(HAVE_OP(t, 15))) {
+>>>>>>> 2617302... source
 				do {
 					COPY8(op, m_pos);
 					op += 8;
@@ -270,10 +311,14 @@ copy_literal_run:
 				} while (op < oe);
 				op = oe;
 <<<<<<< HEAD
+<<<<<<< HEAD
 				if (HAVE_IP(6, 0)) {
 =======
 				if (HAVE_IP(6)) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+				if (HAVE_IP(6, 0)) {
+>>>>>>> 2617302... source
 					state = next;
 					COPY4(op, ip);
 					op += next;
@@ -282,10 +327,14 @@ copy_literal_run:
 				}
 			} else {
 <<<<<<< HEAD
+<<<<<<< HEAD
 				NEED_OP(t, 0);
 =======
 				NEED_OP(t);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+				NEED_OP(t, 0);
+>>>>>>> 2617302... source
 				do {
 					*op++ = *m_pos++;
 				} while (op < oe);
@@ -295,10 +344,14 @@ copy_literal_run:
 		{
 			unsigned char *oe = op + t;
 <<<<<<< HEAD
+<<<<<<< HEAD
 			NEED_OP(t, 0);
 =======
 			NEED_OP(t);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			NEED_OP(t, 0);
+>>>>>>> 2617302... source
 			op[0] = m_pos[0];
 			op[1] = m_pos[1];
 			op += 2;
@@ -312,10 +365,14 @@ match_next:
 		t = next;
 #if defined(CONFIG_HAVE_EFFICIENT_UNALIGNED_ACCESS)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (likely(HAVE_IP(6, 0) && HAVE_OP(4, 0))) {
 =======
 		if (likely(HAVE_IP(6) && HAVE_OP(4))) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		if (likely(HAVE_IP(6, 0) && HAVE_OP(4, 0))) {
+>>>>>>> 2617302... source
 			COPY4(op, ip);
 			op += t;
 			ip += t;
@@ -323,12 +380,17 @@ match_next:
 #endif
 		{
 <<<<<<< HEAD
+<<<<<<< HEAD
 			NEED_IP(t, 3);
 			NEED_OP(t, 0);
 =======
 			NEED_IP(t + 3);
 			NEED_OP(t);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			NEED_IP(t, 3);
+			NEED_OP(t, 0);
+>>>>>>> 2617302... source
 			while (t > 0) {
 				*op++ = *ip++;
 				t--;

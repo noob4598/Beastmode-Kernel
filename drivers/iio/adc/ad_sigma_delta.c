@@ -478,10 +478,14 @@ static int ad_sd_probe_trigger(struct iio_dev *indio_dev)
 
 	/* select default trigger */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	indio_dev->trig = sigma_delta->trig;
 =======
 	indio_dev->trig = iio_trigger_get(sigma_delta->trig);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	indio_dev->trig = sigma_delta->trig;
+>>>>>>> 2617302... source
 
 	return 0;
 

@@ -21,10 +21,13 @@
 #include "msm_sd.h"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define CSID_NUM_CLK_MAX  16
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 enum msm_csid_state_t {
 	CSID_POWER_UP,
 	CSID_POWER_DOWN,
@@ -44,10 +47,14 @@ struct csid_device {
 	enum msm_csid_state_t csid_state;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct clk *csid_clk[11];
 =======
 	struct clk *csid_clk[CSID_NUM_CLK_MAX];
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	struct clk *csid_clk[11];
+>>>>>>> 2617302... source
 };
 
 #define VIDIOC_MSM_CSID_RELEASE \

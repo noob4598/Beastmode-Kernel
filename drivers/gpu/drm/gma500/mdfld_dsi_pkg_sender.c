@@ -86,10 +86,14 @@ static const char *const dsi_errors[] = {
 	"HS Generic Write FIFO Full",
 	"LP Generic Write FIFO Full",
 <<<<<<< HEAD
+<<<<<<< HEAD
 	"Generic Read Data Avail"
 =======
 	"Generic Read Data Avail",
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	"Generic Read Data Avail"
+>>>>>>> 2617302... source
 	"Special Packet Sent",
 	"Tearing Effect",
 };

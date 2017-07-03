@@ -3265,6 +3265,7 @@ static int ocfs2_downconvert_lock(struct ocfs2_super *osb,
 	     lockres->l_level, new_level);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/*
 	 * On DLM_LKF_VALBLK, fsdlm behaves differently with o2cb. It always
@@ -3277,6 +3278,8 @@ static int ocfs2_downconvert_lock(struct ocfs2_super *osb,
 		lvb = 1;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	if (lvb)
 		dlm_flags |= DLM_LKF_VALBLK;
 
@@ -3985,6 +3988,7 @@ static void ocfs2_downconvert_thread_do_work(struct ocfs2_super *osb)
 
 	processed = osb->blocked_lock_count;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	while (processed) {
 		BUG_ON(list_empty(&osb->blocked_lock_list));
 
@@ -3997,6 +4001,11 @@ static void ocfs2_downconvert_thread_do_work(struct ocfs2_super *osb)
 	 */
 	while (processed && !list_empty(&osb->blocked_lock_list)) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	while (processed) {
+		BUG_ON(list_empty(&osb->blocked_lock_list));
+
+>>>>>>> 2617302... source
 		lockres = list_entry(osb->blocked_lock_list.next,
 				     struct ocfs2_lock_res, l_blocked_list);
 		list_del_init(&lockres->l_blocked_list);

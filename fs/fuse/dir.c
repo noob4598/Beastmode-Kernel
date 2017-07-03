@@ -253,6 +253,7 @@ static int fuse_dentry_revalidate(struct dentry *entry, unsigned int flags)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 /*
  * Get the canonical path. Since we must translate to a path, this must be done
@@ -299,6 +300,8 @@ default_path:
 }
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 static int invalid_nodeid(u64 nodeid)
 {
 	return !nodeid || nodeid == FUSE_ROOT_ID;
@@ -307,9 +310,12 @@ static int invalid_nodeid(u64 nodeid)
 const struct dentry_operations fuse_dentry_operations = {
 	.d_revalidate	= fuse_dentry_revalidate,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	.d_canonical_path = fuse_dentry_canonical_path,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 };
 
 int fuse_valid_type(int m)

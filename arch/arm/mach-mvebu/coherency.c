@@ -138,6 +138,7 @@ static struct notifier_block mvebu_hwcc_platform_nb = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 /*
  * Keep track of whether we have IO hardware coherency enabled or not.
@@ -154,10 +155,13 @@ int coherency_available(void)
 }
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 int __init coherency_init(void)
 {
 	struct device_node *np;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 	/*
@@ -184,6 +188,8 @@ int __init coherency_init(void)
 		return 0;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	np = of_find_matching_node(NULL, of_coherency_table);
 	if (np) {
 		pr_info("Initializing Coherency fabric\n");
@@ -191,9 +197,12 @@ int __init coherency_init(void)
 		coherency_cpu_base = of_iomap(np, 1);
 		set_cpu_coherent(cpu_logical_map(smp_processor_id()), 0);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		coherency_enabled = 1;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		bus_register_notifier(&platform_bus_type,
 					&mvebu_hwcc_platform_nb);
 	}

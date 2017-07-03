@@ -1200,6 +1200,7 @@ again:
 
 	/*
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	 * CondChgd bit 63 doesn't mean any overflow status. Ignore
 	 * and clear the bit.
@@ -1211,6 +1212,8 @@ again:
 
 	/*
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	 * PEBS overflow sets bit 62 in the global status register
 	 */
 	if (__test_and_clear_bit(62, (unsigned long *)&status)) {
@@ -2092,9 +2095,12 @@ __init int intel_pmu_init(void)
 			X86_CONFIG(.event=0xb1, .umask=0x3f, .inv=1, .cmask=1);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		intel_pmu_pebs_data_source_nhm();
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		x86_add_quirk(intel_nehalem_quirk);
 
 		pr_cont("Nehalem events, ");
@@ -2141,9 +2147,12 @@ __init int intel_pmu_init(void)
 			X86_CONFIG(.event=0xb1, .umask=0x3f, .inv=1, .cmask=1);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		intel_pmu_pebs_data_source_nhm();
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		pr_cont("Westmere events, ");
 		break;
 
@@ -2184,11 +2193,14 @@ __init int intel_pmu_init(void)
 		memcpy(hw_cache_event_ids, snb_hw_cache_event_ids,
 		       sizeof(hw_cache_event_ids));
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		/* dTLB-load-misses on IVB is different than SNB */
 		hw_cache_event_ids[C(DTLB)][C(OP_READ)][C(RESULT_MISS)] = 0x8108; /* DTLB_LOAD_MISSES.DEMAND_LD_MISS_CAUSES_A_WALK */
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		memcpy(hw_cache_extra_regs, snb_hw_cache_extra_regs,
 		       sizeof(hw_cache_extra_regs));
 
@@ -2254,6 +2266,9 @@ __init int intel_pmu_init(void)
 		 */
 		for_each_event_constraint(c, x86_pmu.event_constraints) {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 			if (c->cmask != X86_RAW_EVENT_MASK
 			    || c->idxmsk64 == INTEL_PMC_MSK_FIXED_REF_CYCLES) {
 				continue;
@@ -2261,6 +2276,7 @@ __init int intel_pmu_init(void)
 
 			c->idxmsk64 |= (1ULL << x86_pmu.num_counters) - 1;
 			c->weight += x86_pmu.num_counters;
+<<<<<<< HEAD
 =======
 			if (c->cmask == X86_RAW_EVENT_MASK
 			    && c->idxmsk64 == INTEL_PMC_MSK_FIXED_REF_CYCLES) {
@@ -2273,6 +2289,8 @@ __init int intel_pmu_init(void)
 			c->weight = hweight64(c->idxmsk64);
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		}
 	}
 

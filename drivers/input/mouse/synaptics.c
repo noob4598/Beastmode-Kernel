@@ -550,10 +550,14 @@ static int synaptics_parse_hw_state(const unsigned char buf[],
 			 ((buf[3] & 0x04) >> 2));
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		hw->left  = (buf[0] & 0x01) ? 1 : 0;
 		hw->right = (buf[0] & 0x02) ? 1 : 0;
 
 		if (SYN_CAP_CLICKPAD(priv->ext_cap_0c)) {
+<<<<<<< HEAD
 =======
 		if ((SYN_CAP_ADV_GESTURE(priv->ext_cap_0c) ||
 			SYN_CAP_IMAGE_SENSOR(priv->ext_cap_0c)) &&
@@ -611,6 +615,8 @@ static int synaptics_parse_hw_state(const unsigned char buf[],
 
 		} else if (SYN_CAP_CLICKPAD(priv->ext_cap_0c)) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 			/*
 			 * Clickpad's button is transmitted as middle button,
 			 * however, since it is primary button, we will report
@@ -630,6 +636,9 @@ static int synaptics_parse_hw_state(const unsigned char buf[],
 		}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		if ((SYN_CAP_ADV_GESTURE(priv->ext_cap_0c) ||
 			SYN_CAP_IMAGE_SENSOR(priv->ext_cap_0c)) &&
 		    hw->w == 2) {
@@ -645,8 +654,11 @@ static int synaptics_parse_hw_state(const unsigned char buf[],
 			 buf[5]);
 		hw->z = buf[2];
 
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		if (SYN_CAP_MULTI_BUTTON_NO(priv->ext_cap) &&
 		    ((buf[0] ^ buf[3]) & 0x02)) {
 			switch (SYN_CAP_MULTI_BUTTON_NO(priv->ext_cap) & ~0x01) {
@@ -1614,10 +1626,14 @@ static const struct dmi_system_id min_max_dmi_table[] __initconst = {
 			DMI_MATCH(DMI_PRODUCT_VERSION, "ThinkPad T540"),
 		},
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.driver_data = (int []){1024, 5056, 2058, 4832},
 =======
 		.driver_data = (int []){1024, 5112, 2024, 4832},
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		.driver_data = (int []){1024, 5056, 2058, 4832},
+>>>>>>> 2617302... source
 	},
 	{
 		/* Lenovo ThinkPad L540 */
@@ -1629,6 +1645,7 @@ static const struct dmi_system_id min_max_dmi_table[] __initconst = {
 	},
 	{
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		/* Lenovo ThinkPad W540 */
 		.matches = {
@@ -1639,6 +1656,8 @@ static const struct dmi_system_id min_max_dmi_table[] __initconst = {
 	},
 	{
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		/* Lenovo Yoga S1 */
 		.matches = {
 			DMI_MATCH(DMI_SYS_VENDOR, "LENOVO"),

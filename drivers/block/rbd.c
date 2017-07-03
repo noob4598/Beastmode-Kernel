@@ -94,10 +94,13 @@ static int atomic_dec_return_safe(atomic_t *v)
 #define RBD_MINORS_PER_MAJOR	256		/* max minors per blkdev */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define RBD_MAX_PARENT_CHAIN_LEN	16
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 #define RBD_SNAP_DEV_NAME_PREFIX	"snap_"
 #define RBD_MAX_SNAP_NAME_LEN	\
 			(NAME_MAX - (sizeof (RBD_SNAP_DEV_NAME_PREFIX) - 1))
@@ -400,10 +403,14 @@ static ssize_t rbd_add(struct bus_type *bus, const char *buf,
 static ssize_t rbd_remove(struct bus_type *bus, const char *buf,
 			  size_t count);
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int rbd_dev_image_probe(struct rbd_device *rbd_dev, bool mapping);
 =======
 static int rbd_dev_image_probe(struct rbd_device *rbd_dev, int depth);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+static int rbd_dev_image_probe(struct rbd_device *rbd_dev, bool mapping);
+>>>>>>> 2617302... source
 static void rbd_spec_put(struct rbd_spec *spec);
 
 static struct bus_attribute rbd_bus_attrs[] = {
@@ -467,9 +474,12 @@ void rbd_warn(struct rbd_device *rbd_dev, const char *fmt, ...)
 #endif /* !RBD_DEBUG */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 static void rbd_osd_copyup_callback(struct rbd_obj_request *obj_request);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 static int rbd_img_obj_request_submit(struct rbd_obj_request *obj_request);
 static void rbd_img_parent_read(struct rbd_obj_request *obj_request);
 static void rbd_dev_remove_parent(struct rbd_device *rbd_dev);
@@ -1399,6 +1409,7 @@ static bool obj_request_exists_test(struct rbd_obj_request *obj_request)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 static bool obj_request_overlaps_parent(struct rbd_obj_request *obj_request)
 {
@@ -1409,6 +1420,8 @@ static bool obj_request_overlaps_parent(struct rbd_obj_request *obj_request)
 }
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 static void rbd_obj_request_get(struct rbd_obj_request *obj_request)
 {
 	dout("%s: obj %p (was %d)\n", __func__, obj_request,
@@ -1426,6 +1439,7 @@ static void rbd_obj_request_put(struct rbd_obj_request *obj_request)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 static void rbd_img_request_get(struct rbd_img_request *img_request)
 {
@@ -1435,6 +1449,8 @@ static void rbd_img_request_get(struct rbd_img_request *img_request)
 }
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 static bool img_request_child_test(struct rbd_img_request *img_request);
 static void rbd_parent_request_destroy(struct kref *kref);
 static void rbd_img_request_destroy(struct kref *kref);
@@ -1690,6 +1706,7 @@ static void rbd_osd_stat_callback(struct rbd_obj_request *obj_request)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 static void rbd_osd_call_callback(struct rbd_obj_request *obj_request)
 {
@@ -1702,6 +1719,8 @@ static void rbd_osd_call_callback(struct rbd_obj_request *obj_request)
 }
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 static void rbd_osd_req_callback(struct ceph_osd_request *osd_req,
 				struct ceph_msg *msg)
 {
@@ -1741,10 +1760,13 @@ static void rbd_osd_req_callback(struct ceph_osd_request *osd_req,
 		break;
 	case CEPH_OSD_OP_CALL:
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		rbd_osd_call_callback(obj_request);
 		break;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	case CEPH_OSD_OP_NOTIFY_ACK:
 	case CEPH_OSD_OP_WATCH:
 		rbd_osd_trivial_callback(obj_request);
@@ -1889,11 +1911,15 @@ static struct rbd_obj_request *rbd_obj_request_create(const char *object_name,
 
 	size = strlen(object_name) + 1;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	name = kmalloc(size, GFP_KERNEL);
 	if (!name)
 		return NULL;
 
 	obj_request = kmem_cache_zalloc(rbd_obj_request_cache, GFP_KERNEL);
+<<<<<<< HEAD
 =======
 	name = kmalloc(size, GFP_NOIO);
 	if (!name)
@@ -1901,6 +1927,8 @@ static struct rbd_obj_request *rbd_obj_request_create(const char *object_name,
 
 	obj_request = kmem_cache_zalloc(rbd_obj_request_cache, GFP_NOIO);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	if (!obj_request) {
 		kfree(name);
 		return NULL;
@@ -2161,6 +2189,7 @@ static bool rbd_img_obj_end_request(struct rbd_obj_request *obj_request)
 		if (!img_request->result)
 			img_request->result = result;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		/*
 		 * Need to end I/O on the entire obj_request worth of
@@ -2168,6 +2197,8 @@ static bool rbd_img_obj_end_request(struct rbd_obj_request *obj_request)
 		 */
 		xferred = obj_request->length;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	}
 
 	/* Image object requests don't own their page array */
@@ -2203,9 +2234,13 @@ static void rbd_img_obj_callback(struct rbd_obj_request *obj_request)
 	rbd_assert(which != BAD_WHICH);
 	rbd_assert(which < img_request->obj_request_count);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	rbd_assert(which >= img_request->next_completion);
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	rbd_assert(which >= img_request->next_completion);
+>>>>>>> 2617302... source
 
 	spin_lock_irq(&img_request->completion_lock);
 	if (which != img_request->next_completion)
@@ -2226,9 +2261,12 @@ static void rbd_img_obj_callback(struct rbd_obj_request *obj_request)
 out:
 	spin_unlock_irq(&img_request->completion_lock);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	rbd_img_request_put(img_request);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	if (!more)
 		rbd_img_request_complete(img_request);
@@ -2326,9 +2364,12 @@ static int rbd_img_request_fill(struct rbd_img_request *img_request,
 		obj_request->osd_req = osd_req;
 		obj_request->callback = rbd_img_obj_callback;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		rbd_img_request_get(img_request);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 		osd_req_op_extent_init(osd_req, 0, opcode, offset, length,
 						0, 0);
@@ -2358,20 +2399,28 @@ out_partial:
 out_unwind:
 	for_each_obj_request_safe(img_request, obj_request, next_obj_request)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		rbd_obj_request_put(obj_request);
 =======
 		rbd_img_obj_request_del(img_request, obj_request);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		rbd_obj_request_put(obj_request);
+>>>>>>> 2617302... source
 
 	return -ENOMEM;
 }
 
 static void
 <<<<<<< HEAD
+<<<<<<< HEAD
 rbd_img_obj_copyup_callback(struct rbd_obj_request *obj_request)
 =======
 rbd_osd_copyup_callback(struct rbd_obj_request *obj_request)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+rbd_img_obj_copyup_callback(struct rbd_obj_request *obj_request)
+>>>>>>> 2617302... source
 {
 	struct rbd_img_request *img_request;
 	struct rbd_device *rbd_dev;
@@ -2379,10 +2428,13 @@ rbd_osd_copyup_callback(struct rbd_obj_request *obj_request)
 	u32 page_count;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	dout("%s: obj %p\n", __func__, obj_request);
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	rbd_assert(obj_request->type == OBJ_REQUEST_BIO);
 	rbd_assert(obj_request_img_data_test(obj_request));
 	img_request = obj_request->img_request;
@@ -2409,12 +2461,18 @@ rbd_osd_copyup_callback(struct rbd_obj_request *obj_request)
 		obj_request->xferred = obj_request->length;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* Finish up with the normal image object callback */
 
 	rbd_img_obj_callback(obj_request);
 =======
 	obj_request_done_set(obj_request);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	/* Finish up with the normal image object callback */
+
+	rbd_img_obj_callback(obj_request);
+>>>>>>> 2617302... source
 }
 
 static void
@@ -2512,9 +2570,13 @@ rbd_img_obj_parent_read_full_callback(struct rbd_img_request *img_request)
 	/* All set, send it off. */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	orig_request->callback = rbd_img_obj_copyup_callback;
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	orig_request->callback = rbd_img_obj_copyup_callback;
+>>>>>>> 2617302... source
 	osdc = &rbd_dev->rbd_client->client->osdc;
 	img_result = rbd_obj_request_submit(osdc, orig_request);
 	if (!img_result)
@@ -2773,10 +2835,14 @@ static int rbd_img_obj_request_submit(struct rbd_obj_request *obj_request)
 	if (!img_request_write_test(img_request) ||
 		!img_request_layered_test(img_request) ||
 <<<<<<< HEAD
+<<<<<<< HEAD
 		rbd_dev->parent_overlap <= obj_request->img_offset ||
 =======
 		!obj_request_overlaps_parent(obj_request) ||
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		rbd_dev->parent_overlap <= obj_request->img_offset ||
+>>>>>>> 2617302... source
 		((known = obj_request_known_test(obj_request)) &&
 			obj_request_exists_test(obj_request))) {
 
@@ -3314,10 +3380,14 @@ static int rbd_obj_read_sync(struct rbd_device *rbd_dev,
 	pages = ceph_alloc_page_vector(page_count, GFP_KERNEL);
 	if (IS_ERR(pages))
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ret = PTR_ERR(pages);
 =======
 		return PTR_ERR(pages);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		ret = PTR_ERR(pages);
+>>>>>>> 2617302... source
 
 	ret = -ENOMEM;
 	obj_request = rbd_obj_request_create(object_name, offset, length,
@@ -3528,11 +3598,14 @@ static int rbd_init_disk(struct rbd_device *rbd_dev)
 
 	blk_queue_merge_bvec(q, rbd_merge_bvec);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (!ceph_test_opt(rbd_dev->rbd_client->client, NOCRC))
 		q->backing_dev_info.capabilities |= BDI_CAP_STABLE_WRITES;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	disk->queue = q;
 
 	q->queuedata = rbd_dev;
@@ -4909,11 +4982,15 @@ out_err:
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 static int rbd_dev_probe_parent(struct rbd_device *rbd_dev)
 {
 	struct rbd_device *parent = NULL;
 	struct rbd_spec *parent_spec;
 	struct rbd_client *rbdc;
+<<<<<<< HEAD
 =======
 /*
  * @depth is rbd_dev_image_probe() -> rbd_dev_probe_parent() ->
@@ -4924,11 +5001,16 @@ static int rbd_dev_probe_parent(struct rbd_device *rbd_dev, int depth)
 {
 	struct rbd_device *parent = NULL;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	int ret;
 
 	if (!rbd_dev->parent_spec)
 		return 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	/*
 	 * We need to pass a reference to the client and the parent
 	 * spec when creating the parent rbd_dev.  Images related by
@@ -4959,6 +5041,7 @@ out_err:
 		rbd_spec_put(parent_spec);
 	}
 
+<<<<<<< HEAD
 =======
 
 	if (++depth > RBD_MAX_PARENT_CHAIN_LEN) {
@@ -4993,6 +5076,8 @@ out_err:
 	if (parent)
 		rbd_dev_destroy(parent);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	return ret;
 }
 
@@ -5099,10 +5184,14 @@ static void rbd_dev_image_release(struct rbd_device *rbd_dev)
  * object to get detailed information about the rbd image.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int rbd_dev_image_probe(struct rbd_device *rbd_dev, bool mapping)
 =======
 static int rbd_dev_image_probe(struct rbd_device *rbd_dev, int depth)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+static int rbd_dev_image_probe(struct rbd_device *rbd_dev, bool mapping)
+>>>>>>> 2617302... source
 {
 	int ret;
 	int tmp;
@@ -5124,10 +5213,14 @@ static int rbd_dev_image_probe(struct rbd_device *rbd_dev, int depth)
 		goto err_out_format;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (mapping) {
 =======
 	if (!depth) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (mapping) {
+>>>>>>> 2617302... source
 		ret = rbd_dev_header_watch_sync(rbd_dev, true);
 		if (ret)
 			goto out_header_name;
@@ -5145,10 +5238,14 @@ static int rbd_dev_image_probe(struct rbd_device *rbd_dev, int depth)
 		goto err_out_probe;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = rbd_dev_probe_parent(rbd_dev);
 =======
 	ret = rbd_dev_probe_parent(rbd_dev, depth);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	ret = rbd_dev_probe_parent(rbd_dev);
+>>>>>>> 2617302... source
 	if (ret)
 		goto err_out_probe;
 
@@ -5160,10 +5257,14 @@ err_out_probe:
 	rbd_dev_unprobe(rbd_dev);
 err_out_watch:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (mapping) {
 =======
 	if (!depth) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (mapping) {
+>>>>>>> 2617302... source
 		tmp = rbd_dev_header_watch_sync(rbd_dev, false);
 		if (tmp)
 			rbd_warn(rbd_dev, "unable to tear down "
@@ -5235,10 +5336,14 @@ static ssize_t rbd_add(struct bus_type *bus,
 	spec = NULL;		/* rbd_dev now owns this */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	rc = rbd_dev_image_probe(rbd_dev, true);
 =======
 	rc = rbd_dev_image_probe(rbd_dev, 0);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	rc = rbd_dev_image_probe(rbd_dev, true);
+>>>>>>> 2617302... source
 	if (rc < 0)
 		goto err_out_rbd_dev;
 

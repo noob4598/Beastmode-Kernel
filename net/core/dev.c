@@ -928,10 +928,14 @@ bool dev_valid_name(const char *name)
 
 	while (*name) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (*name == '/' || isspace(*name))
 =======
 		if (*name == '/' || *name == ':' || isspace(*name))
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		if (*name == '/' || isspace(*name))
+>>>>>>> 2617302... source
 			return false;
 		name++;
 	}
@@ -1564,11 +1568,15 @@ EXPORT_SYMBOL(call_netdevice_notifiers);
 static struct static_key netstamp_needed __read_mostly;
 #ifdef HAVE_JUMP_LABEL
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 /* We are not allowed to call static_key_slow_dec() from irq context
  * If net_disable_timestamp() is called from irq context, defer the
  * static_key_slow_dec() calls.
  */
 static atomic_t netstamp_needed_deferred;
+<<<<<<< HEAD
 =======
 static atomic_t netstamp_needed_deferred;
 static atomic_t netstamp_wanted;
@@ -1585,12 +1593,17 @@ static void netstamp_clear(struct work_struct *work)
 }
 static DECLARE_WORK(netstamp_work, netstamp_clear);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 #endif
 
 void net_enable_timestamp(void)
 {
 #ifdef HAVE_JUMP_LABEL
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	int deferred = atomic_xchg(&netstamp_needed_deferred, 0);
 
 	if (deferred) {
@@ -1600,6 +1613,7 @@ void net_enable_timestamp(void)
 	}
 #endif
 	static_key_slow_inc(&netstamp_needed);
+<<<<<<< HEAD
 =======
 	int wanted;
 
@@ -1616,6 +1630,8 @@ void net_enable_timestamp(void)
 	static_key_slow_inc(&netstamp_needed);
 #endif
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 }
 EXPORT_SYMBOL(net_enable_timestamp);
 
@@ -1623,12 +1639,16 @@ void net_disable_timestamp(void)
 {
 #ifdef HAVE_JUMP_LABEL
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	if (in_interrupt()) {
 		atomic_inc(&netstamp_needed_deferred);
 		return;
 	}
 #endif
 	static_key_slow_dec(&netstamp_needed);
+<<<<<<< HEAD
 =======
 	int wanted;
 
@@ -1645,6 +1665,8 @@ void net_disable_timestamp(void)
 	static_key_slow_dec(&netstamp_needed);
 #endif
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 }
 EXPORT_SYMBOL(net_disable_timestamp);
 
@@ -2290,10 +2312,14 @@ int skb_checksum_help(struct sk_buff *skb)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	*(__sum16 *)(skb->data + offset) = csum_fold(csum);
 =======
 	*(__sum16 *)(skb->data + offset) = csum_fold(csum) ?: CSUM_MANGLED_0;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	*(__sum16 *)(skb->data + offset) = csum_fold(csum);
+>>>>>>> 2617302... source
 out_set_summed:
 	skb->ip_summed = CHECKSUM_NONE;
 out:
@@ -2521,6 +2547,7 @@ static netdev_features_t harmonize_features(struct sk_buff *skb,
 	    !can_checksum_protocol(features, protocol)) {
 		features &= ~NETIF_F_ALL_CSUM;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	} else if (illegal_highdma(dev, skb)) {
 		features &= ~NETIF_F_SG;
 	}
@@ -2529,6 +2556,11 @@ static netdev_features_t harmonize_features(struct sk_buff *skb,
 	if (illegal_highdma(dev, skb))
 		features &= ~NETIF_F_SG;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	} else if (illegal_highdma(dev, skb)) {
+		features &= ~NETIF_F_SG;
+	}
+>>>>>>> 2617302... source
 
 	return features;
 }
@@ -3412,6 +3444,7 @@ out:
 
 /**
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
  *	netdev_is_rx_handler_busy - check if receive handler is registered
  *	@dev: device to check
@@ -3430,6 +3463,8 @@ EXPORT_SYMBOL_GPL(netdev_is_rx_handler_busy);
 
 /**
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
  *	netdev_rx_handler_register - register receive handler
  *	@dev: device to register a handler for
  *	@rx_handler: receive handler to register
@@ -3528,10 +3563,15 @@ static int __netif_receive_skb_core(struct sk_buff *skb, bool pfmemalloc)
 	pt_prev = NULL;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	rcu_read_lock();
 
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	rcu_read_lock();
+
+>>>>>>> 2617302... source
 another_round:
 	skb->skb_iif = skb->dev->ifindex;
 
@@ -3542,10 +3582,14 @@ another_round:
 		skb = vlan_untag(skb);
 		if (unlikely(!skb))
 <<<<<<< HEAD
+<<<<<<< HEAD
 			goto unlock;
 =======
 			goto out;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			goto unlock;
+>>>>>>> 2617302... source
 	}
 
 #ifdef CONFIG_NET_CLS_ACT
@@ -3571,10 +3615,14 @@ skip_taps:
 	skb = handle_ing(skb, &pt_prev, &ret, orig_dev);
 	if (!skb)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		goto unlock;
 =======
 		goto out;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		goto unlock;
+>>>>>>> 2617302... source
 ncls:
 #endif
 
@@ -3590,10 +3638,14 @@ ncls:
 			goto another_round;
 		else if (unlikely(!skb))
 <<<<<<< HEAD
+<<<<<<< HEAD
 			goto unlock;
 =======
 			goto out;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			goto unlock;
+>>>>>>> 2617302... source
 	}
 
 	rx_handler = rcu_dereference(skb->dev->rx_handler);
@@ -3606,10 +3658,14 @@ ncls:
 		case RX_HANDLER_CONSUMED:
 			ret = NET_RX_SUCCESS;
 <<<<<<< HEAD
+<<<<<<< HEAD
 			goto unlock;
 =======
 			goto out;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			goto unlock;
+>>>>>>> 2617302... source
 		case RX_HANDLER_ANOTHER:
 			goto another_round;
 		case RX_HANDLER_EXACT:
@@ -3662,10 +3718,15 @@ drop:
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 unlock:
 	rcu_read_unlock();
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+unlock:
+	rcu_read_unlock();
+>>>>>>> 2617302... source
 out:
 	return ret;
 }
@@ -3713,16 +3774,22 @@ static int __netif_receive_skb(struct sk_buff *skb)
 int netif_receive_skb(struct sk_buff *skb)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	int ret;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	net_timestamp_check(netdev_tstamp_prequeue, skb);
 
 	if (skb_defer_rx_timestamp(skb))
 		return NET_RX_SUCCESS;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 #ifdef CONFIG_RPS
 	if (static_key_false(&rps_needed)) {
 		struct rps_dev_flow voidflow, *rflow = &voidflow;
@@ -3731,6 +3798,7 @@ int netif_receive_skb(struct sk_buff *skb)
 		rcu_read_lock();
 
 		cpu = get_rps_cpu(skb->dev, skb, &rflow);
+<<<<<<< HEAD
 =======
 	rcu_read_lock();
 
@@ -3739,6 +3807,8 @@ int netif_receive_skb(struct sk_buff *skb)
 		struct rps_dev_flow voidflow, *rflow = &voidflow;
 		int cpu = get_rps_cpu(skb->dev, skb, &rflow);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 		if (cpu >= 0) {
 			ret = enqueue_to_backlog(skb, cpu, &rflow->last_qtail);
@@ -3746,10 +3816,14 @@ int netif_receive_skb(struct sk_buff *skb)
 			return ret;
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		rcu_read_unlock();
 	}
 #endif
 	return __netif_receive_skb(skb);
+<<<<<<< HEAD
 =======
 	}
 #endif
@@ -3757,6 +3831,8 @@ int netif_receive_skb(struct sk_buff *skb)
 	rcu_read_unlock();
 	return ret;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 }
 EXPORT_SYMBOL(netif_receive_skb);
 
@@ -4007,12 +4083,16 @@ static void skb_gro_reset_offset(struct sk_buff *skb)
 	    !PageHighMem(skb_frag_page(frag0))) {
 		NAPI_GRO_CB(skb)->frag0 = skb_frag_address(frag0);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		NAPI_GRO_CB(skb)->frag0_len = skb_frag_size(frag0);
 =======
 		NAPI_GRO_CB(skb)->frag0_len = min_t(unsigned int,
 						    skb_frag_size(frag0),
 						    skb->end - skb->tail);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		NAPI_GRO_CB(skb)->frag0_len = skb_frag_size(frag0);
+>>>>>>> 2617302... source
 	}
 }
 
@@ -4033,9 +4113,12 @@ static void napi_reuse_skb(struct napi_struct *napi, struct sk_buff *skb)
 	skb->dev = napi->dev;
 	skb->skb_iif = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	skb->truesize = SKB_TRUESIZE(skb_end_offset(skb));
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	napi->skb = skb;
 }
@@ -4178,6 +4261,7 @@ static int process_backlog(struct napi_struct *napi, int quota)
 
 		while ((skb = __skb_dequeue(&sd->process_queue))) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			local_irq_enable();
 			__netif_receive_skb(skb);
 =======
@@ -4186,6 +4270,10 @@ static int process_backlog(struct napi_struct *napi, int quota)
 			__netif_receive_skb(skb);
 			rcu_read_unlock();
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			local_irq_enable();
+			__netif_receive_skb(skb);
+>>>>>>> 2617302... source
 			local_irq_disable();
 			input_queue_head_incr(sd);
 			if (++work >= quota) {
@@ -4782,9 +4870,12 @@ void __dev_set_rx_mode(struct net_device *dev)
 		ops->ndo_set_rx_mode(dev);
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 EXPORT_SYMBOL(__dev_set_rx_mode);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 void dev_set_rx_mode(struct net_device *dev)
 {
@@ -5977,11 +6068,14 @@ EXPORT_SYMBOL(unregister_netdevice_queue);
  *	unregister_netdevice_many - unregister many devices
  *	@head: list of devices
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
  *
  *  Note: As most callers use a stack allocated list_head,
  *  we force a list_del() to make sure stack wont be corrupted later.
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
  */
 void unregister_netdevice_many(struct list_head *head)
 {
@@ -5992,9 +6086,12 @@ void unregister_netdevice_many(struct list_head *head)
 		list_for_each_entry(dev, head, unreg_list)
 			net_set_todo(dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		list_del(head);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	}
 }
 EXPORT_SYMBOL(unregister_netdevice_many);
@@ -6177,12 +6274,17 @@ static int dev_cpu_callback(struct notifier_block *nfb,
 	while (!list_empty(&oldsd->poll_list)) {
 		struct napi_struct *napi = list_first_entry(&oldsd->poll_list,
 <<<<<<< HEAD
+<<<<<<< HEAD
 							struct napi_struct,
 							poll_list);
 =======
 							    struct napi_struct,
 							    poll_list);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+							struct napi_struct,
+							poll_list);
+>>>>>>> 2617302... source
 
 		list_del_init(&napi->poll_list);
 		if (napi->poll == process_backlog)
@@ -6427,9 +6529,13 @@ static void __net_exit default_device_exit_batch(struct list_head *net_list)
 	}
 	unregister_netdevice_many(&dev_kill_list);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	list_del(&dev_kill_list);
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	list_del(&dev_kill_list);
+>>>>>>> 2617302... source
 	rtnl_unlock();
 }
 

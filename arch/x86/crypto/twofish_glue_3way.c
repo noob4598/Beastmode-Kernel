@@ -496,9 +496,14 @@ module_exit(fini);
 MODULE_LICENSE("GPL");
 MODULE_DESCRIPTION("Twofish Cipher Algorithm, 3-way parallel asm optimized");
 <<<<<<< HEAD
+<<<<<<< HEAD
 MODULE_ALIAS("twofish");
 MODULE_ALIAS("twofish-asm");
 =======
 MODULE_ALIAS_CRYPTO("twofish");
 MODULE_ALIAS_CRYPTO("twofish-asm");
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+MODULE_ALIAS("twofish");
+MODULE_ALIAS("twofish-asm");
+>>>>>>> 2617302... source

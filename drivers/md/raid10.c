@@ -1682,11 +1682,15 @@ static void error(struct mddev *mddev, struct md_rdev *rdev)
 		mddev->degraded++;
 		spin_unlock_irqrestore(&conf->device_lock, flags);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		/*
 		 * if recovery is running, make sure it aborts.
 		 */
 		set_bit(MD_RECOVERY_INTR, &mddev->recovery);
 	}
+<<<<<<< HEAD
 =======
 	}
 	/*
@@ -1694,6 +1698,8 @@ static void error(struct mddev *mddev, struct md_rdev *rdev)
 	 */
 	set_bit(MD_RECOVERY_INTR, &mddev->recovery);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	set_bit(Blocked, &rdev->flags);
 	set_bit(Faulty, &rdev->flags);
 	set_bit(MD_CHANGE_DEVS, &mddev->flags);
@@ -2606,10 +2612,14 @@ static int narrow_write_error(struct r10bio *r10_bio, int i)
 				   (sector - r10_bio->sector));
 		wbio->bi_bdev = rdev->bdev;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (submit_bio_wait(WRITE, wbio) == 0)
 =======
 		if (submit_bio_wait(WRITE, wbio) < 0)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		if (submit_bio_wait(WRITE, wbio) == 0)
+>>>>>>> 2617302... source
 			/* Failure! */
 			ok = rdev_set_badblocks(rdev, sector,
 						sectors, 0)
@@ -2961,9 +2971,12 @@ static sector_t sync_request(struct mddev *mddev, sector_t sector_nr,
 		if (test_bit(MD_RECOVERY_RESHAPE, &mddev->recovery)) {
 			end_reshape(conf);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 			close_sync(conf);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 			return 0;
 		}
 
@@ -3594,9 +3607,12 @@ static struct r10conf *setup_conf(struct mddev *mddev)
 			conf->prev.stride = conf->dev_sectors;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	conf->reshape_safe = conf->reshape_progress;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	spin_lock_init(&conf->device_lock);
 	INIT_LIST_HEAD(&conf->retry_list);
 
@@ -3805,9 +3821,13 @@ static int run(struct mddev *mddev)
 		conf->offset_diff = min_offset_diff;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		conf->reshape_safe = conf->reshape_progress;
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		conf->reshape_safe = conf->reshape_progress;
+>>>>>>> 2617302... source
 		clear_bit(MD_RECOVERY_SYNC, &mddev->recovery);
 		clear_bit(MD_RECOVERY_CHECK, &mddev->recovery);
 		set_bit(MD_RECOVERY_RESHAPE, &mddev->recovery);
@@ -4153,9 +4173,12 @@ static int raid10_start_reshape(struct mddev *mddev)
 	} else
 		conf->reshape_progress = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	conf->reshape_safe = conf->reshape_progress;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	spin_unlock_irq(&conf->device_lock);
 
 	if (mddev->delta_disks && mddev->bitmap) {
@@ -4223,9 +4246,12 @@ abort:
 	smp_wmb();
 	conf->reshape_progress = MaxSector;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	conf->reshape_safe = MaxSector;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	mddev->reshape_position = MaxSector;
 	spin_unlock_irq(&conf->device_lock);
 	return ret;
@@ -4430,10 +4456,14 @@ read_more:
 	read_bio->bi_end_io = end_sync_read;
 	read_bio->bi_rw = READ;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	read_bio->bi_flags &= ~(BIO_POOL_MASK - 1);
 =======
 	read_bio->bi_flags &= (~0UL << BIO_RESET_BITS);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	read_bio->bi_flags &= ~(BIO_POOL_MASK - 1);
+>>>>>>> 2617302... source
 	read_bio->bi_flags |= 1 << BIO_UPTODATE;
 	read_bio->bi_vcnt = 0;
 	read_bio->bi_size = 0;
@@ -4578,9 +4608,12 @@ static void end_reshape(struct r10conf *conf)
 	smp_wmb();
 	conf->reshape_progress = MaxSector;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	conf->reshape_safe = MaxSector;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	spin_unlock_irq(&conf->device_lock);
 
 	/* read-ahead size must cover two whole stripes, which is

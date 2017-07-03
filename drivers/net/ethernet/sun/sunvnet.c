@@ -657,10 +657,14 @@ static int vnet_start_xmit(struct sk_buff *skb, struct net_device *dev)
 
 	dr = &port->vio.drings[VIO_DRIVER_TX_RING];
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (unlikely(vnet_tx_dring_avail(dr) < 2)) {
 =======
 	if (unlikely(vnet_tx_dring_avail(dr) < 1)) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (unlikely(vnet_tx_dring_avail(dr) < 2)) {
+>>>>>>> 2617302... source
 		if (!netif_queue_stopped(dev)) {
 			netif_stop_queue(dev);
 
@@ -709,10 +713,14 @@ static int vnet_start_xmit(struct sk_buff *skb, struct net_device *dev)
 
 	dr->prod = (dr->prod + 1) & (VNET_TX_RING_SIZE - 1);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (unlikely(vnet_tx_dring_avail(dr) < 2)) {
 =======
 	if (unlikely(vnet_tx_dring_avail(dr) < 1)) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (unlikely(vnet_tx_dring_avail(dr) < 2)) {
+>>>>>>> 2617302... source
 		netif_stop_queue(dev);
 		if (vnet_tx_dring_avail(dr) > VNET_TX_WAKEUP_THRESH(dr))
 			netif_wake_queue(dev);
@@ -1092,6 +1100,7 @@ static struct vnet *vnet_find_or_create(const u64 *local_mac)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 static void vnet_cleanup(void)
 {
@@ -1112,6 +1121,8 @@ static void vnet_cleanup(void)
 }
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 static const char *local_mac_prop = "local-mac-address";
 
 static struct vnet *vnet_find_parent(struct mdesc_handle *hp,
@@ -1270,9 +1281,13 @@ static int vnet_port_remove(struct vio_dev *vdev)
 		kfree(port);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		unregister_netdev(vp->dev);
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		unregister_netdev(vp->dev);
+>>>>>>> 2617302... source
 	}
 	return 0;
 }
@@ -1301,9 +1316,12 @@ static void __exit vnet_exit(void)
 {
 	vio_unregister_driver(&vnet_port_driver);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	vnet_cleanup();
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 }
 
 module_init(vnet_init);

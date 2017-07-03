@@ -17,10 +17,14 @@
 #include <net/udplite.h>
 #include <linux/sock_diag.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 
 static int sk_diag_dump(struct sock *sk, struct sk_buff *skb,
 		struct netlink_callback *cb, struct inet_diag_req_v2 *req,
 		struct nlattr *bc)
+<<<<<<< HEAD
 =======
 #include <net/ipv6.h>
 
@@ -28,6 +32,8 @@ static int sk_diag_dump(struct sock *sk, struct sk_buff *skb,
 		struct netlink_callback *cb, struct inet_diag_req_v2 *req,
 		struct nlattr *bc, bool net_admin)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 {
 	if (!inet_diag_bc_sk(bc, sk))
 		return 0;
@@ -36,10 +42,14 @@ static int sk_diag_dump(struct sock *sk, struct sk_buff *skb,
 			sk_user_ns(NETLINK_CB(cb->skb).sk),
 			NETLINK_CB(cb->skb).portid,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			cb->nlh->nlmsg_seq, NLM_F_MULTI, cb->nlh);
 =======
 			cb->nlh->nlmsg_seq, NLM_F_MULTI, cb->nlh, net_admin);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			cb->nlh->nlmsg_seq, NLM_F_MULTI, cb->nlh);
+>>>>>>> 2617302... source
 }
 
 static int udp_dump_one(struct udp_table *tbl, struct sk_buff *in_skb,
@@ -86,11 +96,15 @@ static int udp_dump_one(struct udp_table *tbl, struct sk_buff *in_skb,
 			   sk_user_ns(NETLINK_CB(in_skb).sk),
 			   NETLINK_CB(in_skb).portid,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			   nlh->nlmsg_seq, 0, nlh);
 =======
 			   nlh->nlmsg_seq, 0, nlh,
 			   ns_capable(net->user_ns, CAP_NET_ADMIN));
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			   nlh->nlmsg_seq, 0, nlh);
+>>>>>>> 2617302... source
 	if (err < 0) {
 		WARN_ON(err == -EMSGSIZE);
 		kfree_skb(rep);
@@ -113,27 +127,37 @@ static void udp_dump(struct udp_table *table, struct sk_buff *skb, struct netlin
 	int num, s_num, slot, s_slot;
 	struct net *net = sock_net(skb->sk);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	bool net_admin = ns_capable(net->user_ns, CAP_NET_ADMIN);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	s_slot = cb->args[0];
 	num = s_num = cb->args[1];
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	for (slot = s_slot; slot <= table->mask; num = s_num = 0, slot++) {
 =======
 	for (slot = s_slot; slot <= table->mask; s_num = 0, slot++) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	for (slot = s_slot; slot <= table->mask; num = s_num = 0, slot++) {
+>>>>>>> 2617302... source
 		struct sock *sk;
 		struct hlist_nulls_node *node;
 		struct udp_hslot *hslot = &table->hash[slot];
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		num = 0;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		if (hlist_nulls_empty(&hslot->head))
 			continue;
 
@@ -158,10 +182,14 @@ static void udp_dump(struct udp_table *table, struct sk_buff *skb, struct netlin
 				goto next;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (sk_diag_dump(sk, skb, cb, r, bc) < 0) {
 =======
 			if (sk_diag_dump(sk, skb, cb, r, bc, net_admin) < 0) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			if (sk_diag_dump(sk, skb, cb, r, bc) < 0) {
+>>>>>>> 2617302... source
 				spin_unlock_bh(&hslot->lock);
 				goto done;
 			}
@@ -194,6 +222,7 @@ static void udp_diag_get_info(struct sock *sk, struct inet_diag_msg *r,
 	r->idiag_wqueue = sk_wmem_alloc_get(sk);
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 #ifdef CONFIG_INET_DIAG_DESTROY
@@ -270,17 +299,22 @@ static int udplite_diag_destroy(struct sk_buff *in_skb,
 #endif
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 static const struct inet_diag_handler udp_diag_handler = {
 	.dump		 = udp_diag_dump,
 	.dump_one	 = udp_diag_dump_one,
 	.idiag_get_info  = udp_diag_get_info,
 	.idiag_type	 = IPPROTO_UDP,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #ifdef CONFIG_INET_DIAG_DESTROY
 	.destroy	 = udp_diag_destroy,
 #endif
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 };
 
 static void udplite_diag_dump(struct sk_buff *skb, struct netlink_callback *cb,
@@ -301,11 +335,14 @@ static const struct inet_diag_handler udplite_diag_handler = {
 	.idiag_get_info  = udp_diag_get_info,
 	.idiag_type	 = IPPROTO_UDPLITE,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #ifdef CONFIG_INET_DIAG_DESTROY
 	.destroy	 = udplite_diag_destroy,
 #endif
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 };
 
 static int __init udp_diag_init(void)

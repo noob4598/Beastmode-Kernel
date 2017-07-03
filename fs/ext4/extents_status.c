@@ -656,6 +656,7 @@ int ext4_es_insert_extent(struct inode *inode, ext4_lblk_t lblk,
 	BUG_ON(end < lblk);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if ((status & EXTENT_STATUS_DELAYED) &&
 	    (status & EXTENT_STATUS_WRITTEN)) {
@@ -666,6 +667,8 @@ int ext4_es_insert_extent(struct inode *inode, ext4_lblk_t lblk,
 	}
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	newes.es_lblk = lblk;
 	newes.es_len = len;
 	ext4_es_store_pblock(&newes, pblk);

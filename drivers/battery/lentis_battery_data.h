@@ -103,6 +103,9 @@ static sec_bat_adc_table_data_t chg_temp_table[] = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 #define TEMP_HIGH_THRESHOLD_EVENT	600
 #define TEMP_HIGH_RECOVERY_EVENT		460
 #define TEMP_LOW_THRESHOLD_EVENT		-50
@@ -116,6 +119,7 @@ static sec_bat_adc_table_data_t chg_temp_table[] = {
 #define TEMP_LOW_THRESHOLD_LPM		-50
 #define TEMP_LOW_RECOVERY_LPM		0
 
+<<<<<<< HEAD
 =======
 #define TEMP_HIGH_THRESHOLD_EVENT		580
 #define TEMP_HIGH_RECOVERY_EVENT		530
@@ -144,4 +148,6 @@ static sec_bat_adc_table_data_t chg_temp_table[] = {
 #endif
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 #endif /* __SEC_BATTERY_DATA_H */

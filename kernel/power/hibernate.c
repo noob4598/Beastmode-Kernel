@@ -492,6 +492,7 @@ int hibernation_restore(int platform_mode)
 	if (!error) {
 		error = resume_target_kernel(platform_mode);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dpm_resume_end(PMSG_RECOVER);
 	}
 =======
@@ -504,6 +505,10 @@ int hibernation_restore(int platform_mode)
 	}
 	dpm_resume_end(PMSG_RECOVER);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		dpm_resume_end(PMSG_RECOVER);
+	}
+>>>>>>> 2617302... source
 	pm_restore_gfp_mask();
 	ftrace_start();
 	resume_console();

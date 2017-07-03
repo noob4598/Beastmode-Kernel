@@ -1,9 +1,13 @@
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright (c) 2013-2014, Linux Foundation. All rights reserved.
 =======
  * Copyright (c) 2013-2017, Linux Foundation. All rights reserved.
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+ * Copyright (c) 2013-2014, Linux Foundation. All rights reserved.
+>>>>>>> 2617302... source
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -79,9 +83,12 @@ struct lsm_priv {
 	spinlock_t event_lock;
 	wait_queue_head_t event_wait;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct mutex lsm_api_lock;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	unsigned long event_avail;
 	atomic_t event_wait_stop;
 };
@@ -203,9 +210,12 @@ static int msm_lsm_ioctl_shared(struct snd_pcm_substream *substream,
 
 	pr_debug("%s: enter cmd %x\n", __func__, cmd);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	mutex_lock(&prtd->lsm_api_lock);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	switch (cmd) {
 	case SNDRV_LSM_SET_SESSION_DATA:
 		pr_debug("%s: set Session data\n", __func__);
@@ -250,10 +260,14 @@ static int msm_lsm_ioctl_shared(struct snd_pcm_substream *substream,
 			   snd_model_v2.data, snd_model_v2.data_size)) {
 			pr_err("%s: copy from user data failed\n"
 <<<<<<< HEAD
+<<<<<<< HEAD
 			       "data %p size %d\n", __func__,
 =======
 			       "data %pK size %d\n", __func__,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			       "data %p size %d\n", __func__,
+>>>>>>> 2617302... source
 			       snd_model_v2.data, snd_model_v2.data_size);
 			rc = -EFAULT;
 		}
@@ -293,11 +307,15 @@ static int msm_lsm_ioctl_shared(struct snd_pcm_substream *substream,
 			pr_err("%s: %s Invalid argument\n",
 				__func__, "SNDRV_LSM_SET_PARAMS");
 <<<<<<< HEAD
+<<<<<<< HEAD
 			return -EINVAL;
 =======
 			rc = -EINVAL;
 			break;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			return -EINVAL;
+>>>>>>> 2617302... source
 		}
 
 		memcpy(&det_params, arg,
@@ -346,10 +364,14 @@ static int msm_lsm_ioctl_shared(struct snd_pcm_substream *substream,
 		if (copy_from_user(prtd->lsm_client->sound_model.data,
 				   snd_model.data, snd_model.data_size)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			pr_err("%s: copy from user data failed data %p size %d\n",
 =======
 			pr_err("%s: copy from user data failed data %pK size %d\n",
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			pr_err("%s: copy from user data failed data %p size %d\n",
+>>>>>>> 2617302... source
 			       __func__, snd_model.data, snd_model.data_size);
 			rc = -EFAULT;
 			break;
@@ -382,6 +404,7 @@ static int msm_lsm_ioctl_shared(struct snd_pcm_substream *substream,
 		pr_debug("%s: Get event status\n", __func__);
 		atomic_set(&prtd->event_wait_stop, 0);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 		/*
@@ -391,14 +414,19 @@ static int msm_lsm_ioctl_shared(struct snd_pcm_substream *substream,
 		 */
 		mutex_unlock(&prtd->lsm_api_lock);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		rc = wait_event_interruptible(prtd->event_wait,
 				(cmpxchg(&prtd->event_avail, 1, 0) ||
 				 (xchg = atomic_cmpxchg(&prtd->event_wait_stop,
 							1, 0))));
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		mutex_lock(&prtd->lsm_api_lock);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		pr_debug("%s: wait_event_interruptible %d event_wait_stop %d\n",
 			 __func__, rc, xchg);
 		if (!rc && !xchg) {
@@ -465,9 +493,12 @@ static int msm_lsm_ioctl_shared(struct snd_pcm_substream *substream,
 		pr_err("%s: cmd 0x%x failed %d\n", __func__, cmd, rc);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	mutex_unlock(&prtd->lsm_api_lock);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	return rc;
 }
 
@@ -626,9 +657,12 @@ static int msm_lsm_open(struct snd_pcm_substream *substream)
 		return -ENOMEM;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	mutex_init(&prtd->lsm_api_lock);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	spin_lock_init(&prtd->event_lock);
 	init_waitqueue_head(&prtd->event_wait);
 	prtd->substream = substream;
@@ -688,6 +722,9 @@ static int msm_lsm_prepare(struct snd_pcm_substream *substream)
 		return -EINVAL;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	ret = q6lsm_open(prtd->lsm_client, prtd->lsm_client->app_id);
 	if (ret < 0) {
 		pr_err("%s: lsm open failed, %d\n", __func__, ret);
@@ -695,6 +732,7 @@ static int msm_lsm_prepare(struct snd_pcm_substream *substream)
 		kfree(prtd);
 		return ret;
 	}
+<<<<<<< HEAD
 =======
 	prtd->lsm_client->opened = false;
 	ret = q6lsm_open(prtd->lsm_client, prtd->lsm_client->app_id);
@@ -704,6 +742,8 @@ static int msm_lsm_prepare(struct snd_pcm_substream *substream)
 	}
 	prtd->lsm_client->opened = true;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	pr_debug("%s: Session ID %d\n", __func__,
 		 prtd->lsm_client->session);
 	prtd->lsm_client->started = false;
@@ -744,6 +784,7 @@ static int msm_lsm_close(struct snd_pcm_substream *substream)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	q6lsm_close(prtd->lsm_client);
 =======
 	if (prtd->lsm_client->opened) {
@@ -751,6 +792,9 @@ static int msm_lsm_close(struct snd_pcm_substream *substream)
 		prtd->lsm_client->opened = false;
 	}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	q6lsm_close(prtd->lsm_client);
+>>>>>>> 2617302... source
 	q6lsm_client_free(prtd->lsm_client);
 
 	spin_lock_irqsave(&prtd->event_lock, flags);
@@ -758,9 +802,12 @@ static int msm_lsm_close(struct snd_pcm_substream *substream)
 	prtd->event_status = NULL;
 	spin_unlock_irqrestore(&prtd->event_lock, flags);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	mutex_destroy(&prtd->lsm_api_lock);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	kfree(prtd);
 
 	return 0;

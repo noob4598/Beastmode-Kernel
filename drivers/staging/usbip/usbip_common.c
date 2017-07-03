@@ -785,6 +785,7 @@ int usbip_recv_xbuff(struct usbip_device *ud, struct urb *urb)
 		return 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (size > urb->transfer_buffer_length) {
 		/* should not happen, probably malicious packet */
@@ -798,6 +799,8 @@ int usbip_recv_xbuff(struct usbip_device *ud, struct urb *urb)
 	}
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	ret = usbip_recv(ud->tcp_socket, urb->transfer_buffer, size);
 	if (ret != size) {
 		dev_err(&urb->dev->dev, "recv xbuf, %d\n", ret);

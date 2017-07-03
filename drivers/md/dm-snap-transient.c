@@ -53,19 +53,27 @@ static int transient_prepare_exception(struct dm_exception_store *store,
 
 static void transient_commit_exception(struct dm_exception_store *store,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				       struct dm_exception *e,
 =======
 				       struct dm_exception *e, int valid,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+				       struct dm_exception *e,
+>>>>>>> 2617302... source
 				       void (*callback) (void *, int success),
 				       void *callback_context)
 {
 	/* Just succeed */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	callback(callback_context, 1);
 =======
 	callback(callback_context, valid);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	callback(callback_context, 1);
+>>>>>>> 2617302... source
 }
 
 static void transient_usage(struct dm_exception_store *store,

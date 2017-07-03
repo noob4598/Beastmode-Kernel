@@ -1,8 +1,12 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* Copyright (c) 2012-2014, The Linux Foundation. All rights reserved.
 =======
 /* Copyright (c) 2012-2016, The Linux Foundation. All rights reserved.
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+/* Copyright (c) 2012-2014, The Linux Foundation. All rights reserved.
+>>>>>>> 2617302... source
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -29,6 +33,7 @@
 #define IPA_NAT_SHARED_MEMORY  1
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 enum nat_table_type {
 	IPA_NAT_BASE_TBL = 0,
@@ -41,6 +46,8 @@ enum nat_table_type {
 #define NAT_INTEX_TABLE_ENTRY_SIZE_BYTE 4
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 static int ipa_nat_vma_fault_remap(
 	 struct vm_area_struct *vma, struct vm_fault *vmf)
 {
@@ -404,6 +411,7 @@ int ipa_nat_dma_cmd(struct ipa_ioc_nat_dma_cmd *dma)
 		goto bail;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 	for (cnt = 0; cnt < dma->entries; cnt++) {
@@ -471,6 +479,8 @@ int ipa_nat_dma_cmd(struct ipa_ioc_nat_dma_cmd *dma)
 		}
 	}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	size = sizeof(struct ipa_desc) * dma->entries;
 	desc = kmalloc(size, GFP_KERNEL);
 	if (desc == NULL) {

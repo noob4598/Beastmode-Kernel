@@ -479,6 +479,7 @@ config FRONTSWAP
 	  If unsure, say Y to enable frontswap.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 config ZSMALLOC_NEW
 	tristate "Memory allocator for compressed pages"
 	depends on !ZSMALLOC
@@ -494,6 +495,11 @@ config ZSMALLOC
 	bool "Memory allocator for compressed pages"
 	depends on MMU
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+config ZSMALLOC_NEW
+	tristate "Memory allocator for compressed pages"
+	depends on !ZSMALLOC
+>>>>>>> 2617302... source
 	default n
 	help
 	  zsmalloc is a slab-based memory allocator designed to store
@@ -506,10 +512,14 @@ config ZSMALLOC
 config PGTABLE_MAPPING
 	bool "Use page table mapping to access object in zsmalloc"
 <<<<<<< HEAD
+<<<<<<< HEAD
 	depends on ZSMALLOC_NEW
 =======
 	depends on ZSMALLOC
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	depends on ZSMALLOC_NEW
+>>>>>>> 2617302... source
 	help
 	  By default, zsmalloc uses a copy-based object mapping method to
 	  access allocations that span two pages. However, if a particular
@@ -517,6 +527,7 @@ config PGTABLE_MAPPING
 	  then you should select this. This causes zsmalloc to use page table
 	  mapping rather than copying for object mapping.
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	  You can check speed with zsmalloc benchmark[1].
 	  [1] https://github.com/spartacus06/zsmalloc
@@ -534,16 +545,24 @@ config ZSMALLOC_STAT
 	  information to userspace via debugfs.
 	  If unsure, say N.
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	  You can check speed with zsmalloc benchmark[1].
+	  [1] https://github.com/spartacus06/zsmalloc
+>>>>>>> 2617302... source
 
 config ZSWAP
 	bool "In-kernel swap page compression"
 	depends on FRONTSWAP && CRYPTO
 	select CRYPTO_LZO
 <<<<<<< HEAD
+<<<<<<< HEAD
 	select ZSMALLOC_NEW
 =======
 	select ZSMALLOC
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	select ZSMALLOC_NEW
+>>>>>>> 2617302... source
 	default n
 	help
 	  Zswap is a backend for the frontswap mechanism in the VMM.

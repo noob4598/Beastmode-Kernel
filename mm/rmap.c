@@ -104,9 +104,12 @@ static inline void anon_vma_free(struct anon_vma *anon_vma)
 	 * happen _before_ what follows.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	might_sleep();
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	if (rwsem_is_locked(&anon_vma->root->rwsem)) {
 		anon_vma_lock_write(anon_vma);
 		anon_vma_unlock_write(anon_vma);
@@ -431,6 +434,7 @@ struct anon_vma *page_get_anon_vma(struct page *page)
 	 */
 	if (!page_mapped(page)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		put_anon_vma(anon_vma);
 		anon_vma = NULL;
 =======
@@ -438,6 +442,10 @@ struct anon_vma *page_get_anon_vma(struct page *page)
 		put_anon_vma(anon_vma);
 		return NULL;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		put_anon_vma(anon_vma);
+		anon_vma = NULL;
+>>>>>>> 2617302... source
 	}
 out:
 	rcu_read_unlock();
@@ -488,6 +496,7 @@ struct anon_vma *page_lock_anon_vma_read(struct page *page)
 
 	if (!page_mapped(page)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		put_anon_vma(anon_vma);
 		anon_vma = NULL;
 		goto out;
@@ -496,6 +505,11 @@ struct anon_vma *page_lock_anon_vma_read(struct page *page)
 		put_anon_vma(anon_vma);
 		return NULL;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		put_anon_vma(anon_vma);
+		anon_vma = NULL;
+		goto out;
+>>>>>>> 2617302... source
 	}
 
 	/* we pinned the anon_vma, its safe to sleep */
@@ -994,6 +1008,7 @@ void page_move_anon_rmap(struct page *page,
 /**
  * __page_set_anon_rmap - set up new anonymous rmap
 <<<<<<< HEAD
+<<<<<<< HEAD
  * @page:	Page to add to rmap
  * @vma:	VM area to add page to.
  * @address:	User virtual address of the mapping
@@ -1002,6 +1017,11 @@ void page_move_anon_rmap(struct page *page,
  * @vma:	VM area to add page to.
  * @address:	User virtual address of the mapping	
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+ * @page:	Page to add to rmap
+ * @vma:	VM area to add page to.
+ * @address:	User virtual address of the mapping
+>>>>>>> 2617302... source
  * @exclusive:	the page is exclusively owned by the current process
  */
 static void __page_set_anon_rmap(struct page *page,
@@ -1698,15 +1718,21 @@ void __put_anon_vma(struct anon_vma *anon_vma)
 	struct anon_vma *root = anon_vma->root;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	if (root != anon_vma && atomic_dec_and_test(&root->refcount))
 		anon_vma_free(root);
 
 	anon_vma_free(anon_vma);
+<<<<<<< HEAD
 =======
 	anon_vma_free(anon_vma);
 	if (root != anon_vma && atomic_dec_and_test(&root->refcount))
 		anon_vma_free(root);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 }
 
 #ifdef CONFIG_MIGRATION

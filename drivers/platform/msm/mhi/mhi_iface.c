@@ -1,8 +1,12 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* Copyright (c) 2014, The Linux Foundation. All rights reserved.
 =======
 /* Copyright (c) 2013-2014, The Linux Foundation. All rights reserved.
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+/* Copyright (c) 2014, The Linux Foundation. All rights reserved.
+>>>>>>> 2617302... source
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -15,6 +19,9 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 #include <linux/pci.h>
 #include <linux/gpio.h>
 #include <linux/module.h>
@@ -23,10 +30,13 @@
 #include <linux/delay.h>
 #include <linux/debugfs.h>
 
+<<<<<<< HEAD
 =======
 
 /* MHI Includes */
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 #include "mhi_sys.h"
 #include "mhi.h"
 #include "mhi_macros.h"
@@ -34,6 +44,9 @@
 #include "mhi_bhi.h"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 struct mhi_pcie_devices mhi_devices;
 
 static int mhi_pci_probe(struct pci_dev *pcie_device,
@@ -42,6 +55,7 @@ static int __exit mhi_plat_remove(struct platform_device *pdev);
 void *mhi_ipc_log;
 
 static DEFINE_PCI_DEVICE_TABLE(mhi_pcie_device_id) = {
+<<<<<<< HEAD
 =======
 mhi_pcie_devices mhi_devices;
 void *mhi_ipc_log;
@@ -57,6 +71,8 @@ struct timestamp *timestamps_log;
 
 static const struct pci_device_id mhi_pcie_device_id[] = {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	{ MHI_PCIE_VENDOR_ID, MHI_PCIE_DEVICE_ID,
 		PCI_ANY_ID, PCI_ANY_ID, 0, 0, 0},
 	{ 0, },
@@ -65,10 +81,14 @@ static const struct pci_device_id mhi_pcie_device_id[] = {
 static const struct of_device_id mhi_plat_match[] = {
 	{
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		.compatible = "qcom,mhi",
 	},
 	{},
 };
+<<<<<<< HEAD
 =======
 		.compatible = "mhi",
 		.data = NULL,
@@ -171,6 +191,8 @@ static int __init mhi_init(void)
 	return 0;
 }
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 static void mhi_msm_fixup(struct pci_dev *pcie_device)
 {
@@ -181,15 +203,22 @@ static void mhi_msm_fixup(struct pci_dev *pcie_device)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 int mhi_ctxt_init(struct mhi_pcie_dev_info *mhi_pcie_dev)
 =======
 int mhi_startup_thread(void *ctxt)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+int mhi_ctxt_init(struct mhi_pcie_dev_info *mhi_pcie_dev)
+>>>>>>> 2617302... source
 {
 	int ret_val = 0;
 	u32 i = 0;
 	u32 retry_count = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	struct pci_dev *pcie_device = NULL;
 
 	if (NULL == mhi_pcie_dev)
@@ -197,6 +226,7 @@ int mhi_startup_thread(void *ctxt)
 	pcie_device = mhi_pcie_dev->pcie_device;
 
 	ret_val = mhi_init_pcie_device(mhi_pcie_dev);
+<<<<<<< HEAD
 =======
 	mhi_pcie_dev_info *mhi_pcie_dev = (mhi_pcie_dev_info *)ctxt;
 	struct pci_dev *pcie_device =
@@ -208,16 +238,22 @@ int mhi_startup_thread(void *ctxt)
 	ret_val = mhi_init_pcie_device(mhi_pcie_dev);
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	if (0 != ret_val) {
 		mhi_log(MHI_MSG_CRITICAL,
 				"Failed to initialize pcie device, ret %d\n",
 				ret_val);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		return -ENODEV;
 	}
 	ret_val = mhi_init_device_ctxt(mhi_pcie_dev,
 					&mhi_pcie_dev->mhi_ctxt);
 	if (MHI_STATUS_SUCCESS != ret_val) {
+<<<<<<< HEAD
 =======
 	}
 	ret_val = mhi_init_device_ctxt(mhi_pcie_dev,
@@ -225,22 +261,31 @@ int mhi_startup_thread(void *ctxt)
 	if (MHI_STATUS_SUCCESS != ret_val)
 	{
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		mhi_log(MHI_MSG_CRITICAL,
 			"Failed to initialize main MHI ctxt ret %d\n",
 			ret_val);
 		goto msi_config_err;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret_val = mhi_esoc_register(&mhi_pcie_dev->mhi_ctxt);
 =======
 	ret_val = mhi_esoc_register(mhi_pcie_dev->mhi_ctxt);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	ret_val = mhi_esoc_register(&mhi_pcie_dev->mhi_ctxt);
+>>>>>>> 2617302... source
 	if (ret_val) {
 		mhi_log(MHI_MSG_ERROR,
 				"Failed to register with esoc ret %d.\n",
 				ret_val);
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	mhi_pcie_dev->mhi_ctxt.bus_scale_table =
 				msm_bus_cl_get_pdata(mhi_pcie_dev->plat_dev);
 	mhi_pcie_dev->mhi_ctxt.bus_client =
@@ -252,6 +297,7 @@ int mhi_startup_thread(void *ctxt)
 			mhi_pcie_dev->mhi_ctxt.bus_client);
 	} else {
 		ret_val = mhi_set_bus_request(&mhi_pcie_dev->mhi_ctxt, 1);
+<<<<<<< HEAD
 =======
 
 
@@ -283,6 +329,8 @@ int mhi_startup_thread(void *ctxt)
 	} else {
 		ret_val = mhi_set_bus_request(mhi_pcie_dev->mhi_ctxt, 1);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		if (ret_val)
 			mhi_log(MHI_MSG_CRITICAL,
 				"Could not set bus frequency ret: %d\n",
@@ -300,10 +348,14 @@ int mhi_startup_thread(void *ctxt)
 	for (i = 0; i < MAX_NR_MSI; ++i) {
 		ret_val = request_irq(pcie_device->irq + i,
 <<<<<<< HEAD
+<<<<<<< HEAD
 					mhi_msi_handlr,
 =======
 					irq_cb,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+					mhi_msi_handlr,
+>>>>>>> 2617302... source
 					IRQF_NO_SUSPEND,
 					"mhi_drv",
 					(void *)&pcie_device->dev);
@@ -319,24 +371,34 @@ int mhi_startup_thread(void *ctxt)
 	mhi_pcie_dev->core.max_nr_msis = MAX_NR_MSI;
 	do  {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ret_val = mhi_init_gpios(mhi_pcie_dev);
 =======
 	ret_val = mhi_init_gpios(mhi_pcie_dev);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		ret_val = mhi_init_gpios(mhi_pcie_dev);
+>>>>>>> 2617302... source
 		switch (ret_val) {
 		case -EPROBE_DEFER:
 			mhi_log(MHI_MSG_VERBOSE,
 				"DT requested probe defer, wait and retry\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 			msleep(500);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 			break;
 		case 0:
 			break;
 		default:
 			mhi_log(MHI_MSG_CRITICAL,
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 				"Could not get gpio from struct device tree!\n");
 			goto msi_config_err;
 		}
@@ -353,6 +415,7 @@ int mhi_startup_thread(void *ctxt)
 	mhi_pcie_dev->mhi_ctxt.mmio_addr = mhi_pcie_dev->core.bar0_base;
 	pcie_device->dev.platform_data = &mhi_pcie_dev->mhi_ctxt;
 	if (mhi_pcie_dev->mhi_ctxt.base_state == STATE_TRANSITION_BHI) {
+<<<<<<< HEAD
 =======
 				"Could not get gpio from device tree!\n");
 		goto msi_config_err;
@@ -373,6 +436,8 @@ int mhi_startup_thread(void *ctxt)
 	pcie_device->dev.platform_data = (void *)&mhi_pcie_dev->mhi_ctxt;
 	if (mhi_pcie_dev->mhi_ctxt->base_state == STATE_TRANSITION_BHI) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		ret_val = bhi_probe(mhi_pcie_dev);
 		if (ret_val) {
 			mhi_log(MHI_MSG_ERROR, "Failed to initialize BHI.\n");
@@ -380,12 +445,16 @@ int mhi_startup_thread(void *ctxt)
 		}
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (MHI_STATUS_SUCCESS != mhi_reg_notifiers(&mhi_pcie_dev->mhi_ctxt)) {
 =======
 	/* Fire off the state transition  thread */
 
 	if (MHI_STATUS_SUCCESS != mhi_reg_notifiers(mhi_pcie_dev->mhi_ctxt)) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (MHI_STATUS_SUCCESS != mhi_reg_notifiers(&mhi_pcie_dev->mhi_ctxt)) {
+>>>>>>> 2617302... source
 		mhi_log(MHI_MSG_ERROR, "Failed to register for notifiers\n");
 		return MHI_STATUS_ERROR;
 	}
@@ -396,6 +465,9 @@ int mhi_startup_thread(void *ctxt)
 
 mhi_state_transition_error:
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	if (MHI_STATUS_SUCCESS != mhi_clean_init_stage(&mhi_pcie_dev->mhi_ctxt,
 				MHI_INIT_ERROR_STAGE_UNWIND_ALL))
 		mhi_log(MHI_MSG_ERROR, "Could not clean up context\n");
@@ -405,6 +477,7 @@ sysfs_config_err:
 	for (; i >= 0; --i)
 		free_irq(pcie_device->irq + i, &pcie_device->dev);
 	debugfs_remove_recursive(mhi_pcie_dev->mhi_ctxt.mhi_parent_folder);
+<<<<<<< HEAD
 =======
 	if (MHI_STATUS_SUCCESS != mhi_clean_init_stage(mhi_pcie_dev->mhi_ctxt,
 				MHI_INIT_ERROR_STAGE_UNWIND_ALL))
@@ -412,6 +485,8 @@ sysfs_config_err:
 sysfs_config_err:
 	gpio_free(mhi_pcie_dev->core.device_wake_gpio);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 msi_config_err:
 	pci_disable_msi(pcie_device);
 	pci_disable_device(pcie_device);
@@ -419,6 +494,9 @@ msi_config_err:
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 static struct pci_driver mhi_pcie_driver = {
 	.name = "mhi_pcie_drv",
 	.id_table = mhi_pcie_device_id,
@@ -530,6 +608,7 @@ module_init(mhi_init);
 
 MODULE_LICENSE("GPL v2");
 MODULE_ALIAS("MHI_CORE");
+<<<<<<< HEAD
 =======
 DECLARE_PCI_FIXUP_HEADER(MHI_PCIE_VENDOR_ID,
 		MHI_PCIE_DEVICE_ID,
@@ -540,4 +619,6 @@ MODULE_LICENSE("GPL v2");
 MODULE_ALIAS("MHI_CORE");
 MODULE_AUTHOR("Andrei Danaila <adanaila@codeaurora.org>");
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 MODULE_DESCRIPTION("MHI Host Driver");

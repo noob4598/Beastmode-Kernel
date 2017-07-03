@@ -721,10 +721,14 @@ static int hostfs_mknod(struct inode *dir, struct dentry *dentry, umode_t mode, 
 	init_special_inode(inode, mode, dev);
 	err = do_mknod(name, mode, MAJOR(dev), MINOR(dev));
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!err)
 =======
 	if (err)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (!err)
+>>>>>>> 2617302... source
 		goto out_free;
 
 	err = read_name(inode, name);
@@ -732,10 +736,15 @@ static int hostfs_mknod(struct inode *dir, struct dentry *dentry, umode_t mode, 
 	if (err)
 		goto out_put;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (err)
 		goto out_put;
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (err)
+		goto out_put;
+>>>>>>> 2617302... source
 
 	d_instantiate(dentry, inode);
 	return 0;
@@ -952,10 +961,14 @@ static int hostfs_fill_sb_common(struct super_block *sb, void *d, int silent)
 	if (S_ISLNK(root_inode->i_mode)) {
 		char *name = follow_link(host_root_path);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		if (IS_ERR(name))
 			err = PTR_ERR(name);
 		else
 			err = read_name(root_inode, name);
+<<<<<<< HEAD
 =======
 		if (IS_ERR(name)) {
 			err = PTR_ERR(name);
@@ -963,6 +976,8 @@ static int hostfs_fill_sb_common(struct super_block *sb, void *d, int silent)
 		}
 		err = read_name(root_inode, name);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		kfree(name);
 		if (err)
 			goto out_put;

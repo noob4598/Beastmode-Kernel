@@ -780,6 +780,7 @@ find_root:
 		return ERR_PTR(-ENOENT);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (!(sb->s_flags & MS_RDONLY)) {
 		int ret;
@@ -791,6 +792,8 @@ find_root:
 	}
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	dir_id = btrfs_root_dirid(&new_root->root_item);
 setup_root:
 	location.objectid = dir_id;

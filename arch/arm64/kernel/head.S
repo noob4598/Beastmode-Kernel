@@ -185,6 +185,7 @@ ENTRY(el2_setup)
 #endif
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/* EL2 debug */
 	mrs	x0, pmcr_el0			// Disable debug access traps
@@ -192,6 +193,8 @@ ENTRY(el2_setup)
 	msr	mdcr_el2, x0			// all PMU counters from EL1
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	/* Stage-2 translation */
 	msr	vttbr_el2, xzr
 

@@ -280,6 +280,7 @@ static void __init paravirt_ops_setup(void)
 {
 	pv_info.name = "KVM";
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pv_info.paravirt_enabled = 1;
 =======
 
@@ -291,6 +292,9 @@ static void __init paravirt_ops_setup(void)
 	 */
 	pv_info.paravirt_enabled = 0;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	pv_info.paravirt_enabled = 1;
+>>>>>>> 2617302... source
 
 	if (kvm_para_has_feature(KVM_FEATURE_NOP_IO_DELAY))
 		pv_cpu_ops.io_delay = kvm_io_delay;

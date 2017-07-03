@@ -735,6 +735,7 @@ ssize_t tcp_splice_read(struct socket *sock, loff_t *ppos,
 				break;
 			}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 			/* if __tcp_splice_read() got nothing while we have
 			 * an skb in receive queue, we do not want to loop.
@@ -743,6 +744,8 @@ ssize_t tcp_splice_read(struct socket *sock, loff_t *ppos,
 			if (!skb_queue_empty(&sk->sk_receive_queue))
 				break;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 			sk_wait_data(sk, &timeo);
 			if (signal_pending(current)) {
 				ret = sock_intr_errno(timeo);
@@ -1086,10 +1089,14 @@ int tcp_sendmsg(struct kiocb *iocb, struct sock *sk, struct msghdr *msg,
 		if (tp->repair_queue == TCP_RECV_QUEUE) {
 			copied = tcp_send_rcvq(sk, msg, size);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			goto out;
 =======
 			goto out_nopush;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			goto out;
+>>>>>>> 2617302... source
 		}
 
 		err = -EINVAL;
@@ -1263,9 +1270,12 @@ out:
 	if (copied)
 		tcp_push(sk, flags, mss_now, tp->nonagle);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 out_nopush:
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	release_sock(sk);
 
 	if (copied + copied_syn)
@@ -3406,6 +3416,7 @@ void tcp_done(struct sock *sk)
 EXPORT_SYMBOL_GPL(tcp_done);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 int tcp_abort(struct sock *sk, int err)
 {
@@ -3445,6 +3456,8 @@ int tcp_abort(struct sock *sk, int err)
 EXPORT_SYMBOL_GPL(tcp_abort);
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 extern struct tcp_congestion_ops tcp_reno;
 
 static __initdata unsigned long thash_entries;
@@ -3603,10 +3616,14 @@ int tcp_nuke_addr(struct net *net, struct sockaddr *addr)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	for (bucket = 0; bucket < tcp_hashinfo.ehash_mask; bucket++) {
 =======
 	for (bucket = 0; bucket <= tcp_hashinfo.ehash_mask; bucket++) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	for (bucket = 0; bucket < tcp_hashinfo.ehash_mask; bucket++) {
+>>>>>>> 2617302... source
 		struct hlist_nulls_node *node;
 		struct sock *sk;
 		spinlock_t *lock = inet_ehash_lockp(&tcp_hashinfo, bucket);

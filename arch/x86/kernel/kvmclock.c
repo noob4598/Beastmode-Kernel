@@ -266,9 +266,13 @@ void __init kvmclock_init(void)
 	kvm_get_preset_lpj();
 	clocksource_register_hz(&kvm_clock, NSEC_PER_SEC);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pv_info.paravirt_enabled = 1;
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	pv_info.paravirt_enabled = 1;
+>>>>>>> 2617302... source
 	pv_info.name = "KVM";
 
 	if (kvm_para_has_feature(KVM_FEATURE_CLOCKSOURCE_STABLE_BIT))

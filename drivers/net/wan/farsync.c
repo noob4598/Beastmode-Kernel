@@ -2546,10 +2546,14 @@ fst_add_one(struct pci_dev *pdev, const struct pci_device_id *ent)
                                  + BUF_OFFSET ( txBuffer[i][0][0]);
                 dev->mem_end     = card->phys_mem
 <<<<<<< HEAD
+<<<<<<< HEAD
                                  + BUF_OFFSET ( txBuffer[i][NUM_TX_BUFFER][0]);
 =======
                                  + BUF_OFFSET ( txBuffer[i][NUM_TX_BUFFER - 1][LEN_RX_BUFFER - 1]);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+                                 + BUF_OFFSET ( txBuffer[i][NUM_TX_BUFFER][0]);
+>>>>>>> 2617302... source
                 dev->base_addr   = card->pci_conf;
                 dev->irq         = card->irq;
 

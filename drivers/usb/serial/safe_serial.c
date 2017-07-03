@@ -216,6 +216,7 @@ static void safe_process_read_urb(struct urb *urb)
 		goto out;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (length < 2) {
 		dev_err(&port->dev, "malformed packet\n");
@@ -223,6 +224,8 @@ static void safe_process_read_urb(struct urb *urb)
 	}
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	fcs = fcs_compute10(data, length, CRC10_INITFCS);
 	if (fcs) {
 		dev_err(&port->dev, "%s - bad CRC %x\n", __func__, fcs);

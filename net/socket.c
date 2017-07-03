@@ -1797,10 +1797,13 @@ SYSCALL_DEFINE6(sendto, int, fd, void __user *, buff, size_t, len,
 	if (len > INT_MAX)
 		len = INT_MAX;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (unlikely(!access_ok(VERIFY_READ, buff, len)))
 		return -EFAULT;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	sock = sockfd_lookup_light(fd, &err, &fput_needed);
 	if (!sock)
 		goto out;
@@ -1861,10 +1864,13 @@ SYSCALL_DEFINE6(recvfrom, int, fd, void __user *, ubuf, size_t, size,
 	if (size > INT_MAX)
 		size = INT_MAX;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (unlikely(!access_ok(VERIFY_WRITE, ubuf, size)))
 		return -EFAULT;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	sock = sockfd_lookup_light(fd, &err, &fput_needed);
 	if (!sock)
 		goto out;
@@ -2032,6 +2038,9 @@ static int ___sys_sendmsg(struct socket *sock, struct msghdr __user *msg,
 
 	err = -EFAULT;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	if (MSG_CMSG_COMPAT & flags) {
 		if (get_compat_msghdr(msg_sys, msg_compat))
 			return -EFAULT;
@@ -2040,6 +2049,7 @@ static int ___sys_sendmsg(struct socket *sock, struct msghdr __user *msg,
 		if (err)
 			return err;
 	}
+<<<<<<< HEAD
 =======
 	if (MSG_CMSG_COMPAT & flags)
 		err = get_compat_msghdr(msg_sys, msg_compat);
@@ -2048,6 +2058,8 @@ static int ___sys_sendmsg(struct socket *sock, struct msghdr __user *msg,
 	if (err)
 		return err;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	if (msg_sys->msg_iovlen > UIO_FASTIOV) {
 		err = -EMSGSIZE;
@@ -2253,6 +2265,9 @@ static int ___sys_recvmsg(struct socket *sock, struct msghdr __user *msg,
 	int __user *uaddr_len;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	if (MSG_CMSG_COMPAT & flags) {
 		if (get_compat_msghdr(msg_sys, msg_compat))
 			return -EFAULT;
@@ -2261,6 +2276,7 @@ static int ___sys_recvmsg(struct socket *sock, struct msghdr __user *msg,
 		if (err)
 			return err;
 	}
+<<<<<<< HEAD
 =======
 	if (MSG_CMSG_COMPAT & flags)
 		err = get_compat_msghdr(msg_sys, msg_compat);
@@ -2269,6 +2285,8 @@ static int ___sys_recvmsg(struct socket *sock, struct msghdr __user *msg,
 	if (err)
 		return err;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	if (msg_sys->msg_iovlen > UIO_FASTIOV) {
 		err = -EMSGSIZE;
@@ -2392,6 +2410,7 @@ int __sys_recvmmsg(int fd, struct mmsghdr __user *mmsg, unsigned int vlen,
 
 	err = sock_error(sock->sk);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (err)
 		goto out_put;
 =======
@@ -2400,6 +2419,10 @@ int __sys_recvmmsg(int fd, struct mmsghdr __user *mmsg, unsigned int vlen,
 		goto out_put;
 	}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (err)
+		goto out_put;
+>>>>>>> 2617302... source
 
 	entry = mmsg;
 	compat_entry = (struct compat_mmsghdr __user *)mmsg;
@@ -2454,6 +2477,9 @@ int __sys_recvmmsg(int fd, struct mmsghdr __user *mmsg, unsigned int vlen,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 out_put:
 	fput_light(sock->file, fput_needed);
 
@@ -2479,6 +2505,7 @@ out_put:
 	}
 
 	return err;
+<<<<<<< HEAD
 =======
 	if (err == 0)
 		goto out_put;
@@ -2506,6 +2533,8 @@ out_put:
 
 	return datagrams;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 }
 
 SYSCALL_DEFINE5(recvmmsg, int, fd, struct mmsghdr __user *, mmsg,

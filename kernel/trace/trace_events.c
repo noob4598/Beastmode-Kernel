@@ -426,10 +426,14 @@ static void remove_event_file_dir(struct ftrace_event_file *file)
 	if (dir) {
 		spin_lock(&dir->d_lock);	/* probably unneeded */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		list_for_each_entry(child, &dir->d_subdirs, d_u.d_child) {
 =======
 		list_for_each_entry(child, &dir->d_subdirs, d_child) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		list_for_each_entry(child, &dir->d_subdirs, d_u.d_child) {
+>>>>>>> 2617302... source
 			if (child->d_inode)	/* probably unneeded */
 				child->d_inode->i_private = NULL;
 		}
@@ -607,11 +611,15 @@ t_next(struct seq_file *m, void *v, loff_t *pos)
 		 * They can not be enabled or disabled via the event files.
 		 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (call->class && call->class->reg)
 =======
 		if (call->class && call->class->reg &&
 		    !(call->flags & TRACE_EVENT_FL_IGNORE_ENABLE))
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		if (call->class && call->class->reg)
+>>>>>>> 2617302... source
 			return file;
 	}
 

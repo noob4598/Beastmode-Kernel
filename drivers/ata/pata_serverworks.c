@@ -253,6 +253,7 @@ static void serverworks_set_dmamode(struct ata_port *ap, struct ata_device *adev
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct scsi_host_template serverworks_sht = {
 =======
 static struct scsi_host_template serverworks_osb4_sht = {
@@ -262,15 +263,21 @@ static struct scsi_host_template serverworks_osb4_sht = {
 
 static struct scsi_host_template serverworks_csb_sht = {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+static struct scsi_host_template serverworks_sht = {
+>>>>>>> 2617302... source
 	ATA_BMDMA_SHT(DRV_NAME),
 };
 
 static struct ata_port_operations serverworks_osb4_port_ops = {
 	.inherits	= &ata_bmdma_port_ops,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	.qc_prep	= ata_bmdma_dumb_qc_prep,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	.cable_detect	= serverworks_cable_detect,
 	.mode_filter	= serverworks_osb4_filter,
 	.set_piomode	= serverworks_set_piomode,
@@ -280,9 +287,12 @@ static struct ata_port_operations serverworks_osb4_port_ops = {
 static struct ata_port_operations serverworks_csb_port_ops = {
 	.inherits	= &serverworks_osb4_port_ops,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	.qc_prep	= ata_bmdma_qc_prep,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	.mode_filter	= serverworks_csb_filter,
 };
 
@@ -423,9 +433,12 @@ static int serverworks_init_one(struct pci_dev *pdev, const struct pci_device_id
 	};
 	const struct ata_port_info *ppi[] = { &info[id->driver_data], NULL };
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct scsi_host_template *sht = &serverworks_csb_sht;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	int rc;
 
 	rc = pcim_enable_device(pdev);
@@ -440,9 +453,12 @@ static int serverworks_init_one(struct pci_dev *pdev, const struct pci_device_id
 		if (rc < 0)
 			ppi[0] = &info[1];
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		sht = &serverworks_osb4_sht;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	}
 	/* setup CSB5/CSB6 : South Bridge and IDE option RAID */
 	else if ((pdev->device == PCI_DEVICE_ID_SERVERWORKS_CSB5IDE) ||
@@ -460,10 +476,14 @@ static int serverworks_init_one(struct pci_dev *pdev, const struct pci_device_id
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return ata_pci_bmdma_init_one(pdev, ppi, &serverworks_sht, NULL, 0);
 =======
 	return ata_pci_bmdma_init_one(pdev, ppi, sht, NULL, 0);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	return ata_pci_bmdma_init_one(pdev, ppi, &serverworks_sht, NULL, 0);
+>>>>>>> 2617302... source
 }
 
 #ifdef CONFIG_PM

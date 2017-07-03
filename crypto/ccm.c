@@ -365,10 +365,14 @@ static void crypto_ccm_decrypt_done(struct crypto_async_request *areq,
 	if (!err) {
 		err = crypto_ccm_auth(req, req->dst, cryptlen);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (!err && memcmp(pctx->auth_tag, pctx->odata, authsize))
 =======
 		if (!err && crypto_memneq(pctx->auth_tag, pctx->odata, authsize))
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		if (!err && memcmp(pctx->auth_tag, pctx->odata, authsize))
+>>>>>>> 2617302... source
 			err = -EBADMSG;
 	}
 	aead_request_complete(req, err);
@@ -428,10 +432,14 @@ static int crypto_ccm_decrypt(struct aead_request *req)
 
 	/* verify */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (memcmp(authtag, odata, authsize))
 =======
 	if (crypto_memneq(authtag, odata, authsize))
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (memcmp(authtag, odata, authsize))
+>>>>>>> 2617302... source
 		return -EBADMSG;
 
 	return err;
@@ -888,6 +896,7 @@ module_exit(crypto_ccm_module_exit);
 MODULE_LICENSE("GPL");
 MODULE_DESCRIPTION("Counter with CBC MAC");
 <<<<<<< HEAD
+<<<<<<< HEAD
 MODULE_ALIAS("ccm_base");
 MODULE_ALIAS("rfc4309");
 =======
@@ -895,3 +904,7 @@ MODULE_ALIAS_CRYPTO("ccm_base");
 MODULE_ALIAS_CRYPTO("rfc4309");
 MODULE_ALIAS_CRYPTO("ccm");
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+MODULE_ALIAS("ccm_base");
+MODULE_ALIAS("rfc4309");
+>>>>>>> 2617302... source

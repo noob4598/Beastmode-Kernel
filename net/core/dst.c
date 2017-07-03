@@ -268,6 +268,7 @@ again:
 EXPORT_SYMBOL(dst_destroy);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 static void dst_destroy_rcu(struct rcu_head *head)
 {
@@ -279,11 +280,16 @@ static void dst_destroy_rcu(struct rcu_head *head)
 }
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 void dst_release(struct dst_entry *dst)
 {
 	if (dst) {
 		int newrefcnt;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 
 		newrefcnt = atomic_dec_return(&dst->__refcnt);
 		WARN_ON(newrefcnt < 0);
@@ -292,6 +298,7 @@ void dst_release(struct dst_entry *dst)
 			if (dst)
 				__dst_free(dst);
 		}
+<<<<<<< HEAD
 =======
 		unsigned short nocache = dst->flags & DST_NOCACHE;
 
@@ -302,6 +309,8 @@ void dst_release(struct dst_entry *dst)
 		if (!newrefcnt && unlikely(nocache))
 			call_rcu(&dst->rcu_head, dst_destroy_rcu);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	}
 }
 EXPORT_SYMBOL(dst_release);

@@ -1008,10 +1008,14 @@ static int br_ip6_multicast_mld2_report(struct net_bridge *br,
 		err = br_ip6_multicast_add_group(br, port, &grec->grec_mca,
 						 vid);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (!err)
 =======
 		if (err)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		if (!err)
+>>>>>>> 2617302... source
 			break;
 	}
 
@@ -1031,11 +1035,14 @@ static void br_multicast_add_router(struct net_bridge *br,
 	struct hlist_node *slot = NULL;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (!hlist_unhashed(&port->rlist))
 		return;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	hlist_for_each_entry(p, &br->router_list, rlist) {
 		if ((unsigned long) port >= (unsigned long) p)
 			break;
@@ -1064,16 +1071,22 @@ static void br_multicast_mark_router(struct net_bridge *br,
 		return;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	if (!hlist_unhashed(&port->rlist))
 		goto timer;
 
 	br_multicast_add_router(br, port);
 
 timer:
+<<<<<<< HEAD
 =======
 	br_multicast_add_router(br, port);
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	mod_timer(&port->multicast_router_timer,
 		  now + br->multicast_querier_interval);
 }

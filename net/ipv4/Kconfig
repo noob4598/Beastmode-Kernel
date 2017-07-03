@@ -434,6 +434,7 @@ config INET_UDP_DIAG
 	  If unsure, say Y.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 config INET_DIAG_DESTROY
 	bool "INET: allow privileged process to administratively close sockets"
@@ -449,6 +450,8 @@ config INET_DIAG_DESTROY
 	  If unsure, say N.
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 menuconfig TCP_CONG_ADVANCED
 	bool "TCP: advanced congestion control"
 	---help---

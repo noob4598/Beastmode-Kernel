@@ -779,6 +779,7 @@ static int usb_serial_probe(struct usb_interface *interface,
 			/* we found a bulk in endpoint */
 			dev_dbg(ddev, "found bulk in on endpoint %d\n", i);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			bulk_in_endpoint[num_bulk_in] = endpoint;
 			++num_bulk_in;
 =======
@@ -787,11 +788,16 @@ static int usb_serial_probe(struct usb_interface *interface,
 				++num_bulk_in;
 			}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			bulk_in_endpoint[num_bulk_in] = endpoint;
+			++num_bulk_in;
+>>>>>>> 2617302... source
 		}
 
 		if (usb_endpoint_is_bulk_out(endpoint)) {
 			/* we found a bulk out endpoint */
 			dev_dbg(ddev, "found bulk out on endpoint %d\n", i);
+<<<<<<< HEAD
 <<<<<<< HEAD
 			bulk_out_endpoint[num_bulk_out] = endpoint;
 			++num_bulk_out;
@@ -801,11 +807,16 @@ static int usb_serial_probe(struct usb_interface *interface,
 				++num_bulk_out;
 			}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			bulk_out_endpoint[num_bulk_out] = endpoint;
+			++num_bulk_out;
+>>>>>>> 2617302... source
 		}
 
 		if (usb_endpoint_is_int_in(endpoint)) {
 			/* we found a interrupt in endpoint */
 			dev_dbg(ddev, "found interrupt in on endpoint %d\n", i);
+<<<<<<< HEAD
 <<<<<<< HEAD
 			interrupt_in_endpoint[num_interrupt_in] = endpoint;
 			++num_interrupt_in;
@@ -816,11 +827,16 @@ static int usb_serial_probe(struct usb_interface *interface,
 				++num_interrupt_in;
 			}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			interrupt_in_endpoint[num_interrupt_in] = endpoint;
+			++num_interrupt_in;
+>>>>>>> 2617302... source
 		}
 
 		if (usb_endpoint_is_int_out(endpoint)) {
 			/* we found an interrupt out endpoint */
 			dev_dbg(ddev, "found interrupt out on endpoint %d\n", i);
+<<<<<<< HEAD
 <<<<<<< HEAD
 			interrupt_out_endpoint[num_interrupt_out] = endpoint;
 			++num_interrupt_out;
@@ -831,6 +847,10 @@ static int usb_serial_probe(struct usb_interface *interface,
 				++num_interrupt_out;
 			}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			interrupt_out_endpoint[num_interrupt_out] = endpoint;
+			++num_interrupt_out;
+>>>>>>> 2617302... source
 		}
 	}
 
@@ -854,6 +874,7 @@ static int usb_serial_probe(struct usb_interface *interface,
 					/* we found a interrupt in endpoint */
 					dev_dbg(ddev, "found interrupt in for Prolific device on separate interface\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
 					interrupt_in_endpoint[num_interrupt_in] = endpoint;
 					++num_interrupt_in;
 =======
@@ -862,6 +883,10 @@ static int usb_serial_probe(struct usb_interface *interface,
 						++num_interrupt_in;
 					}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+					interrupt_in_endpoint[num_interrupt_in] = endpoint;
+					++num_interrupt_in;
+>>>>>>> 2617302... source
 				}
 			}
 		}
@@ -902,6 +927,7 @@ static int usb_serial_probe(struct usb_interface *interface,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (num_ports > MAX_NUM_PORTS) {
 		dev_warn(ddev, "too many ports requested: %d\n", num_ports);
@@ -909,6 +935,8 @@ static int usb_serial_probe(struct usb_interface *interface,
 	}
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	serial->num_ports = num_ports;
 	serial->num_bulk_in = num_bulk_in;
 	serial->num_bulk_out = num_bulk_out;
@@ -1413,10 +1441,14 @@ static void usb_serial_deregister(struct usb_serial_driver *device)
 {
 	pr_info("USB Serial deregistering driver %s\n", device->description);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	mutex_lock(&table_lock);
 	list_del(&device->driver_list);
 	usb_serial_bus_deregister(device);
 	mutex_unlock(&table_lock);
+<<<<<<< HEAD
 =======
 
 	mutex_lock(&table_lock);
@@ -1425,6 +1457,8 @@ static void usb_serial_deregister(struct usb_serial_driver *device)
 
 	usb_serial_bus_deregister(device);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 }
 
 /**
@@ -1480,10 +1514,14 @@ int usb_serial_register_drivers(struct usb_serial_driver *const serial_drivers[]
 	rc = usb_register(udriver);
 	if (rc)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return rc;
 =======
 		goto failed_usb_register;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		return rc;
+>>>>>>> 2617302... source
 
 	for (sd = serial_drivers; *sd; ++sd) {
 		(*sd)->usb_driver = udriver;
@@ -1502,10 +1540,13 @@ int usb_serial_register_drivers(struct usb_serial_driver *const serial_drivers[]
 		usb_serial_deregister(*sd);
 	usb_deregister(udriver);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 failed_usb_register:
 	kfree(udriver);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	return rc;
 }
 EXPORT_SYMBOL_GPL(usb_serial_register_drivers);

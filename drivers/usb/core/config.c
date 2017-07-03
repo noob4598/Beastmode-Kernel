@@ -115,10 +115,14 @@ static void usb_parse_ss_endpoint_companion(struct device *ddev, int cfgno,
 		ep->ss_ep_comp.bmAttributes = 16;
 	} else if (usb_endpoint_xfer_isoc(&ep->desc) &&
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 			desc->bmAttributes > 2) {
 		dev_warn(ddev, "Isoc endpoint has Mult of %d in "
 				"config %d interface %d altsetting %d ep %d: "
 				"setting to 3\n", desc->bmAttributes + 1,
+<<<<<<< HEAD
 =======
 		   USB_SS_MULT(desc->bmAttributes) > 3) {
 		dev_warn(ddev, "Isoc endpoint has Mult of %d in "
@@ -126,17 +130,23 @@ static void usb_parse_ss_endpoint_companion(struct device *ddev, int cfgno,
 				"setting to 3\n",
 				USB_SS_MULT(desc->bmAttributes),
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 				cfgno, inum, asnum, ep->desc.bEndpointAddress);
 		ep->ss_ep_comp.bmAttributes = 2;
 	}
 
 	if (usb_endpoint_xfer_isoc(&ep->desc))
 <<<<<<< HEAD
+<<<<<<< HEAD
 		max_tx = (desc->bMaxBurst + 1) * (desc->bmAttributes + 1) *
 =======
 		max_tx = (desc->bMaxBurst + 1) *
 			(USB_SS_MULT(desc->bmAttributes)) *
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		max_tx = (desc->bMaxBurst + 1) * (desc->bmAttributes + 1) *
+>>>>>>> 2617302... source
 			usb_endpoint_maxp(&ep->desc);
 	else if (usb_endpoint_xfer_int(&ep->desc))
 		max_tx = usb_endpoint_maxp(&ep->desc) *
@@ -155,6 +165,7 @@ static void usb_parse_ss_endpoint_companion(struct device *ddev, int cfgno,
 	}
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 static const unsigned short low_speed_maxpacket_maxes[4] = {
@@ -183,6 +194,8 @@ static const unsigned short super_speed_maxpacket_maxes[4] = {
 };
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 static int usb_parse_endpoint(struct device *ddev, int cfgno, int inum,
     int asnum, struct usb_host_interface *ifp, int num_ep,
     unsigned char *buffer, int size)
@@ -192,10 +205,13 @@ static int usb_parse_endpoint(struct device *ddev, int cfgno, int inum,
 	struct usb_host_endpoint *endpoint;
 	int n, i, j, retval;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	unsigned int maxp;
 	const unsigned short *maxpacket_maxes;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	d = (struct usb_endpoint_descriptor *) buffer;
 	buffer += d->bLength;
@@ -225,6 +241,7 @@ static int usb_parse_endpoint(struct device *ddev, int cfgno, int inum,
 		goto skip_to_next_endpoint_or_interface_descriptor;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/* Check for duplicate endpoint addresses */
 	for (i = 0; i < ifp->desc.bNumEndpoints; ++i) {
@@ -237,12 +254,15 @@ static int usb_parse_endpoint(struct device *ddev, int cfgno, int inum,
 	}
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	endpoint = &ifp->endpoint[ifp->desc.bNumEndpoints];
 	++ifp->desc.bNumEndpoints;
 
 	memcpy(&endpoint->desc, d, n);
 	INIT_LIST_HEAD(&endpoint->urb_list);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/* Fix up bInterval values outside the legal range. Use 32 ms if no
 	 * proper value can be guessed. */
@@ -252,6 +272,10 @@ static int usb_parse_endpoint(struct device *ddev, int cfgno, int inum,
 	 * Use 10 or 8 ms if no proper value can be guessed.
 	 */
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	/* Fix up bInterval values outside the legal range. Use 32 ms if no
+	 * proper value can be guessed. */
+>>>>>>> 2617302... source
 	i = 0;		/* i = min, j = max, n = default */
 	j = 255;
 	if (usb_endpoint_xfer_int(d)) {
@@ -260,6 +284,9 @@ static int usb_parse_endpoint(struct device *ddev, int cfgno, int inum,
 		case USB_SPEED_SUPER:
 		case USB_SPEED_HIGH:
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 			/* Many device manufacturers are using full-speed
 			 * bInterval values in high-speed interrupt endpoint
 			 * descriptors. Try to fix those and fall back to a
@@ -274,6 +301,7 @@ static int usb_parse_endpoint(struct device *ddev, int cfgno, int inum,
 			 * But some "overclocked" devices might want faster
 			 * polling so we'll allow it. */
 			n = 32;
+<<<<<<< HEAD
 =======
 			/*
 			 * Many device manufacturers are using full-speed
@@ -294,6 +322,8 @@ static int usb_parse_endpoint(struct device *ddev, int cfgno, int inum,
 			 */
 			n = 10;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 			break;
 		}
 	} else if (usb_endpoint_xfer_isoc(d)) {
@@ -302,16 +332,22 @@ static int usb_parse_endpoint(struct device *ddev, int cfgno, int inum,
 		switch (to_usb_device(ddev)->speed) {
 		case USB_SPEED_HIGH:
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 			n = 9;		/* 32 ms = 2^(9-1) uframes */
 			break;
 		default:		/* USB_SPEED_FULL */
 			n = 6;		/* 32 ms = 2^(6-1) frames */
+<<<<<<< HEAD
 =======
 			n = 7;		/* 8 ms = 2^(7-1) uframes */
 			break;
 		default:		/* USB_SPEED_FULL */
 			n = 4;		/* 8 ms = 2^(4-1) frames */
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 			break;
 		}
 	}
@@ -339,6 +375,7 @@ static int usb_parse_endpoint(struct device *ddev, int cfgno, int inum,
 			endpoint->desc.wMaxPacketSize = cpu_to_le16(8);
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 	/* Validate the wMaxPacketSize field */
@@ -377,6 +414,8 @@ static int usb_parse_endpoint(struct device *ddev, int cfgno, int inum,
 	}
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	/*
 	 * Some buggy high speed devices have bulk endpoints using
 	 * maxpacket sizes other than 512.  High speed HCDs may not
@@ -385,11 +424,17 @@ static int usb_parse_endpoint(struct device *ddev, int cfgno, int inum,
 	if (to_usb_device(ddev)->speed == USB_SPEED_HIGH
 			&& usb_endpoint_xfer_bulk(d)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		unsigned maxp;
 
 		maxp = usb_endpoint_maxp(&endpoint->desc) & 0x07ff;
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		unsigned maxp;
+
+		maxp = usb_endpoint_maxp(&endpoint->desc) & 0x07ff;
+>>>>>>> 2617302... source
 		if (maxp != 512)
 			dev_warn(ddev, "config %d interface %d altsetting %d "
 				"bulk endpoint 0x%X has invalid maxpacket %d\n",

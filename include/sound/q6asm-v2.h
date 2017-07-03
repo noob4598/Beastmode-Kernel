@@ -46,9 +46,12 @@
 #define FORMAT_EAC3         0x0014
 #define FORMAT_MP2          0x0015
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define FORMAT_FLAC         0x0016
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 #define ENCDEC_SBCBITRATE   0x0001
 #define ENCDEC_IMMEDIATE_DECODE 0x0002
@@ -204,10 +207,14 @@ int q6asm_audio_client_buf_alloc(unsigned int dir/* 1:Out,0:In */,
 				struct audio_client *ac,
 				unsigned int bufsz,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				unsigned int bufcnt);
 =======
 				uint32_t bufcnt);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+				unsigned int bufcnt);
+>>>>>>> 2617302... source
 int q6asm_audio_client_buf_alloc_contiguous(unsigned int dir
 				/* 1:Out,0:In */,
 				struct audio_client *ac,
@@ -382,11 +389,14 @@ int q6asm_media_format_block_amrwbplus(struct audio_client *ac,
 			struct asm_amrwbplus_cfg *cfg);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 int q6asm_stream_media_format_block_flac(struct audio_client *ac,
 			struct asm_flac_cfg *cfg, int stream_id);
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 int q6asm_ds1_set_endp_params(struct audio_client *ac,
 				int param_id, int param_value);
 

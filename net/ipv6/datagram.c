@@ -41,10 +41,14 @@ static bool ipv6_mapped_addr_any(const struct in6_addr *a)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 int ip6_datagram_connect(struct sock *sk, struct sockaddr *uaddr, int addr_len)
 =======
 static int __ip6_datagram_connect(struct sock *sk, struct sockaddr *uaddr, int addr_len)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+int ip6_datagram_connect(struct sock *sk, struct sockaddr *uaddr, int addr_len)
+>>>>>>> 2617302... source
 {
 	struct sockaddr_in6	*usin = (struct sockaddr_in6 *) uaddr;
 	struct inet_sock      	*inet = inet_sk(sk);
@@ -61,10 +65,14 @@ static int __ip6_datagram_connect(struct sock *sk, struct sockaddr *uaddr, int a
 		if (__ipv6_only_sock(sk))
 			return -EAFNOSUPPORT;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		err = ip4_datagram_connect(sk, uaddr, addr_len);
 =======
 		err = __ip4_datagram_connect(sk, uaddr, addr_len);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		err = ip4_datagram_connect(sk, uaddr, addr_len);
+>>>>>>> 2617302... source
 		goto ipv4_connected;
 	}
 
@@ -108,6 +116,7 @@ static int __ip6_datagram_connect(struct sock *sk, struct sockaddr *uaddr, int a
 		sin.sin_port = usin->sin6_port;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		err = ip4_datagram_connect(sk,
 					   (struct sockaddr *) &sin,
 					   sizeof(sin));
@@ -116,6 +125,11 @@ static int __ip6_datagram_connect(struct sock *sk, struct sockaddr *uaddr, int a
 					     (struct sockaddr *) &sin,
 					     sizeof(sin));
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		err = ip4_datagram_connect(sk,
+					   (struct sockaddr *) &sin,
+					   sizeof(sin));
+>>>>>>> 2617302... source
 
 ipv4_connected:
 		if (err)
@@ -184,6 +198,7 @@ ipv4_connected:
 	security_sk_classify_flow(sk, flowi6_to_flowi(&fl6));
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	opt = flowlabel ? flowlabel->opt : np->opt;
 	final_p = fl6_update_dst(&fl6, opt, &final);
 =======
@@ -192,6 +207,10 @@ ipv4_connected:
 	final_p = fl6_update_dst(&fl6, opt, &final);
 	rcu_read_unlock();
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	opt = flowlabel ? flowlabel->opt : np->opt;
+	final_p = fl6_update_dst(&fl6, opt, &final);
+>>>>>>> 2617302... source
 
 	dst = ip6_dst_lookup_flow(sk, &fl6, final_p, true);
 	err = 0;
@@ -227,6 +246,7 @@ out:
 	return err;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 int ip6_datagram_connect(struct sock *sk, struct sockaddr *uaddr, int addr_len)
@@ -239,6 +259,8 @@ int ip6_datagram_connect(struct sock *sk, struct sockaddr *uaddr, int addr_len)
 	return res;
 }
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 EXPORT_SYMBOL_GPL(ip6_datagram_connect);
 
 void ipv6_icmp_error(struct sock *sk, struct sk_buff *skb, int err,
@@ -410,17 +432,23 @@ int ipv6_recv_error(struct sock *sk, struct msghdr *msg, int len, int *addr_len)
 	memcpy(&errhdr.ee, &serr->ee, sizeof(struct sock_extended_err));
 	sin = &errhdr.offender;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	sin->sin6_family = AF_UNSPEC;
 	if (serr->ee.ee_origin != SO_EE_ORIGIN_LOCAL) {
 		sin->sin6_family = AF_INET6;
 		sin->sin6_flowinfo = 0;
 		sin->sin6_port = 0;
+<<<<<<< HEAD
 =======
 	memset(sin, 0, sizeof(*sin));
 
 	if (serr->ee.ee_origin != SO_EE_ORIGIN_LOCAL) {
 		sin->sin6_family = AF_INET6;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		if (skb->protocol == htons(ETH_P_IPV6)) {
 			sin->sin6_addr = ipv6_hdr(skb)->saddr;
 			if (np->rxopt.all)
@@ -430,17 +458,23 @@ int ipv6_recv_error(struct sock *sk, struct msghdr *msg, int len, int *addr_len)
 						    IP6CB(skb)->iif);
 		} else {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 			struct inet_sock *inet = inet_sk(sk);
 
 			ipv6_addr_set_v4mapped(ip_hdr(skb)->saddr,
 					       &sin->sin6_addr);
 			sin->sin6_scope_id = 0;
 			if (inet->cmsg_flags)
+<<<<<<< HEAD
 =======
 			ipv6_addr_set_v4mapped(ip_hdr(skb)->saddr,
 					       &sin->sin6_addr);
 			if (inet_sk(sk)->cmsg_flags)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 				ip_cmsg_recv(msg, skb);
 		}
 	}

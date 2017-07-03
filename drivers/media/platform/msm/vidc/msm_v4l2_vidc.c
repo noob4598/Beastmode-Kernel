@@ -1,8 +1,12 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* Copyright (c) 2012-2014, The Linux Foundation. All rights reserved.
 =======
 /* Copyright (c) 2012-2017, The Linux Foundation. All rights reserved.
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+/* Copyright (c) 2012-2014, The Linux Foundation. All rights reserved.
+>>>>>>> 2617302... source
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -291,10 +295,14 @@ static int read_platform_resources(struct msm_vidc_core *core,
 {
 	if (!core || !pdev) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dprintk(VIDC_ERR, "%s: Invalid params %p %p\n",
 =======
 		dprintk(VIDC_ERR, "%s: Invalid params %pK %pK\n",
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		dprintk(VIDC_ERR, "%s: Invalid params %p %p\n",
+>>>>>>> 2617302... source
 			__func__, core, pdev);
 		return -EINVAL;
 	}
@@ -528,10 +536,14 @@ static int msm_vidc_remove(struct platform_device *pdev)
 
 	if (!pdev) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dprintk(VIDC_ERR, "%s invalid input %p", __func__, pdev);
 =======
 		dprintk(VIDC_ERR, "%s invalid input %pK", __func__, pdev);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		dprintk(VIDC_ERR, "%s invalid input %p", __func__, pdev);
+>>>>>>> 2617302... source
 		return -EINVAL;
 	}
 	core = pdev->dev.platform_data;
@@ -624,10 +636,13 @@ static int __init msm_vidc_init(void)
 		dprintk(VIDC_ERR,
 			"Failed to register platform driver\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		msm_vidc_debugfs_deinit_drv();
 		debugfs_remove_recursive(vidc_driver->debugfs_root);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		kfree(vidc_driver);
 		vidc_driver = NULL;
 	}
@@ -639,9 +654,12 @@ static void __exit msm_vidc_exit(void)
 {
 	platform_driver_unregister(&msm_vidc_driver);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	msm_vidc_debugfs_deinit_drv();
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	debugfs_remove_recursive(vidc_driver->debugfs_root);
 	kfree(vidc_driver);
 	vidc_driver = NULL;

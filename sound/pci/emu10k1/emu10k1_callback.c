@@ -86,10 +86,13 @@ snd_emu10k1_ops_setup(struct snd_emux *emux)
  *
  * terminate most inactive voice and give it as a pcm voice.
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
  *
  * voice_lock is already held.
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
  */
 int
 snd_emu10k1_synth_get_voice(struct snd_emu10k1 *hw)
@@ -98,17 +101,25 @@ snd_emu10k1_synth_get_voice(struct snd_emu10k1 *hw)
 	struct snd_emux_voice *vp;
 	struct best_voice best[V_END];
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned long flags;
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	unsigned long flags;
+>>>>>>> 2617302... source
 	int i;
 
 	emu = hw->synth;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	spin_lock_irqsave(&emu->voice_lock, flags);
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	spin_lock_irqsave(&emu->voice_lock, flags);
+>>>>>>> 2617302... source
 	lookup_voices(emu, hw, best, 1); /* no OFF voices */
 	for (i = 0; i < V_END; i++) {
 		if (best[i].voice >= 0) {
@@ -125,16 +136,22 @@ snd_emu10k1_synth_get_voice(struct snd_emu10k1 *hw)
 			vp->ch = -1;
 			vp->state = SNDRV_EMUX_ST_OFF;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 			spin_unlock_irqrestore(&emu->voice_lock, flags);
 			return ch;
 		}
 	}
 	spin_unlock_irqrestore(&emu->voice_lock, flags);
+<<<<<<< HEAD
 =======
 			return ch;
 		}
 	}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	/* not found */
 	return -ENOMEM;
@@ -435,10 +452,14 @@ start_voice(struct snd_emux_voice *vp)
 
 	/* invalidate maps */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	temp = (hw->silent_page.addr << 1) | MAP_PTI_MASK;
 =======
 	temp = (hw->silent_page.addr << hw->address_mode) | (hw->address_mode ? MAP_PTI_MASK1 : MAP_PTI_MASK0);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	temp = (hw->silent_page.addr << 1) | MAP_PTI_MASK;
+>>>>>>> 2617302... source
 	snd_emu10k1_ptr_write(hw, MAPA, ch, temp);
 	snd_emu10k1_ptr_write(hw, MAPB, ch, temp);
 #if 0
@@ -460,10 +481,14 @@ start_voice(struct snd_emux_voice *vp)
 
 		/* invalidate maps */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		temp = ((unsigned int)hw->silent_page.addr << 1) | MAP_PTI_MASK;
 =======
 		temp = ((unsigned int)hw->silent_page.addr << hw_address_mode) | (hw->address_mode ? MAP_PTI_MASK1 : MAP_PTI_MASK0);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		temp = ((unsigned int)hw->silent_page.addr << 1) | MAP_PTI_MASK;
+>>>>>>> 2617302... source
 		snd_emu10k1_ptr_write(hw, MAPA, ch, temp);
 		snd_emu10k1_ptr_write(hw, MAPB, ch, temp);
 		

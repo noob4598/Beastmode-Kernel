@@ -732,10 +732,14 @@ static int stmmac_get_ts_info(struct net_device *dev,
 	struct stmmac_priv *priv = netdev_priv(dev);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	if ((priv->hwts_tx_en) && (priv->hwts_rx_en)) {
 
 		info->so_timestamping = SOF_TIMESTAMPING_TX_HARDWARE |
 					SOF_TIMESTAMPING_RX_HARDWARE |
+<<<<<<< HEAD
 =======
 	if ((priv->dma_cap.time_stamp || priv->dma_cap.atime_stamp)) {
 
@@ -745,6 +749,8 @@ static int stmmac_get_ts_info(struct net_device *dev,
 					SOF_TIMESTAMPING_RX_HARDWARE |
 					SOF_TIMESTAMPING_SOFTWARE |
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 					SOF_TIMESTAMPING_RAW_HARDWARE;
 
 		if (priv->ptp_clock)

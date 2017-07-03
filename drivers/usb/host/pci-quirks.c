@@ -471,11 +471,15 @@ static void quirk_usb_handoff_ohci(struct pci_dev *pdev)
 	void __iomem *base;
 	u32 control;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u32 fminterval;
 =======
 	u32 fminterval = 0;
 	bool no_fminterval = false;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	u32 fminterval;
+>>>>>>> 2617302... source
 	int cnt;
 
 	if (!mmio_resource_enabled(pdev, 0))
@@ -486,6 +490,7 @@ static void quirk_usb_handoff_ohci(struct pci_dev *pdev)
 		return;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/*
 	 * ULi M5237 OHCI controller locks the whole system when accessing
@@ -495,6 +500,8 @@ static void quirk_usb_handoff_ohci(struct pci_dev *pdev)
 		no_fminterval = true;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	control = readl(base + OHCI_CONTROL);
 
 /* On PA-RISC, PDC can leave IR set incorrectly; ignore it there. */
@@ -534,12 +541,16 @@ static void quirk_usb_handoff_ohci(struct pci_dev *pdev)
 
 	/* software reset of the controller, preserving HcFmInterval */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	fminterval = readl(base + OHCI_FMINTERVAL);
 =======
 	if (!no_fminterval)
 		fminterval = readl(base + OHCI_FMINTERVAL);
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	fminterval = readl(base + OHCI_FMINTERVAL);
+>>>>>>> 2617302... source
 	writel(OHCI_HCR, base + OHCI_CMDSTATUS);
 
 	/* reset requires max 10 us delay */
@@ -549,12 +560,16 @@ static void quirk_usb_handoff_ohci(struct pci_dev *pdev)
 		udelay(1);
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	writel(fminterval, base + OHCI_FMINTERVAL);
 =======
 
 	if (!no_fminterval)
 		writel(fminterval, base + OHCI_FMINTERVAL);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	writel(fminterval, base + OHCI_FMINTERVAL);
+>>>>>>> 2617302... source
 
 	/* Now the controller is safely in SUSPEND and nothing can wake it up */
 	iounmap(base);
@@ -583,6 +598,7 @@ static const struct dmi_system_id ehci_dmi_nohandoff_table[] = {
 		},
 	},
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	{
 		/* HASEE E200 */
@@ -593,6 +609,8 @@ static const struct dmi_system_id ehci_dmi_nohandoff_table[] = {
 		},
 	},
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	{ }
 };
 
@@ -602,6 +620,7 @@ static void ehci_bios_handoff(struct pci_dev *pdev,
 {
 	int try_handoff = 1, tried_handoff = 0;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/* The Pegatron Lucid tablet sporadically waits for 98 seconds trying
 	 * the handoff on its unused controller.  Skip it. */
@@ -616,6 +635,11 @@ static void ehci_bios_handoff(struct pci_dev *pdev,
 	if (pdev->vendor == 0x8086 && (pdev->device == 0x283a ||
 			pdev->device == 0x27cc)) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	/* The Pegatron Lucid tablet sporadically waits for 98 seconds trying
+	 * the handoff on its unused controller.  Skip it. */
+	if (pdev->vendor == 0x8086 && pdev->device == 0x283a) {
+>>>>>>> 2617302... source
 		if (dmi_check_system(ehci_dmi_nohandoff_table))
 			try_handoff = 0;
 	}

@@ -72,6 +72,7 @@ int get_compat_msghdr(struct msghdr *kmsg, struct compat_msghdr __user *umsg)
 	    __get_user(kmsg->msg_flags, &umsg->msg_flags))
 		return -EFAULT;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 	if (!tmp1)
@@ -81,6 +82,8 @@ int get_compat_msghdr(struct msghdr *kmsg, struct compat_msghdr __user *umsg)
 		return -EINVAL;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	if (kmsg->msg_namelen > sizeof(struct sockaddr_storage))
 		kmsg->msg_namelen = sizeof(struct sockaddr_storage);
 	kmsg->msg_name = compat_ptr(tmp1);
@@ -96,10 +99,14 @@ int verify_compat_iovec(struct msghdr *kern_msg, struct iovec *kern_iov,
 	int tot_len;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (kern_msg->msg_namelen) {
 =======
 	if (kern_msg->msg_name && kern_msg->msg_namelen) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (kern_msg->msg_namelen) {
+>>>>>>> 2617302... source
 		if (mode == VERIFY_READ) {
 			int err = move_addr_to_kernel(kern_msg->msg_name,
 						      kern_msg->msg_namelen,
@@ -108,10 +115,14 @@ int verify_compat_iovec(struct msghdr *kern_msg, struct iovec *kern_iov,
 				return err;
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		if (kern_msg->msg_name)
 			kern_msg->msg_name = kern_address;
 	} else
 		kern_msg->msg_name = NULL;
+<<<<<<< HEAD
 =======
 		kern_msg->msg_name = kern_address;
 	} else {
@@ -119,6 +130,8 @@ int verify_compat_iovec(struct msghdr *kern_msg, struct iovec *kern_iov,
 		kern_msg->msg_namelen = 0;
 	}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	tot_len = iov_from_user_compat_to_kern(kern_iov,
 					  (struct compat_iovec __user *)kern_msg->msg_iov,
@@ -760,10 +773,15 @@ static unsigned char nas[21] = {
 asmlinkage long compat_sys_sendmsg(int fd, struct compat_msghdr __user *msg, unsigned int flags)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (flags & MSG_CMSG_COMPAT)
 		return -EINVAL;
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (flags & MSG_CMSG_COMPAT)
+		return -EINVAL;
+>>>>>>> 2617302... source
 	return __sys_sendmsg(fd, (struct msghdr __user *)msg, flags | MSG_CMSG_COMPAT);
 }
 
@@ -771,10 +789,15 @@ asmlinkage long compat_sys_sendmmsg(int fd, struct compat_mmsghdr __user *mmsg,
 				    unsigned int vlen, unsigned int flags)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (flags & MSG_CMSG_COMPAT)
 		return -EINVAL;
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (flags & MSG_CMSG_COMPAT)
+		return -EINVAL;
+>>>>>>> 2617302... source
 	return __sys_sendmmsg(fd, (struct mmsghdr __user *)mmsg, vlen,
 			      flags | MSG_CMSG_COMPAT);
 }
@@ -782,10 +805,15 @@ asmlinkage long compat_sys_sendmmsg(int fd, struct compat_mmsghdr __user *mmsg,
 asmlinkage long compat_sys_recvmsg(int fd, struct compat_msghdr __user *msg, unsigned int flags)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (flags & MSG_CMSG_COMPAT)
 		return -EINVAL;
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (flags & MSG_CMSG_COMPAT)
+		return -EINVAL;
+>>>>>>> 2617302... source
 	return __sys_recvmsg(fd, (struct msghdr __user *)msg, flags | MSG_CMSG_COMPAT);
 }
 
@@ -809,11 +837,17 @@ asmlinkage long compat_sys_recvmmsg(int fd, struct compat_mmsghdr __user *mmsg,
 	struct timespec ktspec;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (flags & MSG_CMSG_COMPAT)
 		return -EINVAL;
 
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (flags & MSG_CMSG_COMPAT)
+		return -EINVAL;
+
+>>>>>>> 2617302... source
 	if (timeout == NULL)
 		return __sys_recvmmsg(fd, (struct mmsghdr __user *)mmsg, vlen,
 				      flags | MSG_CMSG_COMPAT, NULL);

@@ -5,10 +5,14 @@
  * requests.
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright IBM Corp. 2009
 =======
  * Copyright IBM Corp. 2009, 2016
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+ * Copyright IBM Corp. 2009
+>>>>>>> 2617302... source
  */
 
 #ifndef ZFCP_REQLIST_H
@@ -185,6 +189,7 @@ static inline void zfcp_reqlist_move(struct zfcp_reqlist *rl,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 /**
  * zfcp_reqlist_apply_for_all() - apply a function to every request.
@@ -215,4 +220,6 @@ zfcp_reqlist_apply_for_all(struct zfcp_reqlist *rl,
 }
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 #endif /* ZFCP_REQLIST_H */

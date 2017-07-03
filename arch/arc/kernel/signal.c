@@ -81,6 +81,9 @@ static int restore_usr_regs(struct pt_regs *regs, struct rt_sigframe __user *sf)
 
 	err = __copy_from_user(&set, &sf->uc.uc_sigmask, sizeof(set));
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	if (!err)
 		set_current_blocked(&set);
 
@@ -88,6 +91,7 @@ static int restore_usr_regs(struct pt_regs *regs, struct rt_sigframe __user *sf)
 				sizeof(sf->uc.uc_mcontext.regs.scratch));
 
 	return err;
+<<<<<<< HEAD
 =======
 	err |= __copy_from_user(regs, &(sf->uc.uc_mcontext.regs.scratch),
 				sizeof(sf->uc.uc_mcontext.regs.scratch));
@@ -98,6 +102,8 @@ static int restore_usr_regs(struct pt_regs *regs, struct rt_sigframe __user *sf)
 
 	return 0;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 }
 
 static inline int is_do_ss_needed(unsigned int magic)
@@ -143,6 +149,7 @@ SYSCALL_DEFINE0(rt_sigreturn)
 	syscall_wont_restart(regs);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/*
 	 * Ensure that sigreturn always returns to user mode (in case the
@@ -154,6 +161,8 @@ SYSCALL_DEFINE0(rt_sigreturn)
 	regs->status32 |= STATUS_U_MASK;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	return regs->r0;
 
 badframe:
@@ -258,6 +267,7 @@ setup_rt_frame(int signo, struct k_sigaction *ka, siginfo_t *info,
 	/*
 	 * handler returns using sigreturn stub provided already by userpsace
 <<<<<<< HEAD
+<<<<<<< HEAD
 	 */
 	BUG_ON(!(ka->sa.sa_flags & SA_RESTORER));
 =======
@@ -267,6 +277,10 @@ setup_rt_frame(int signo, struct k_sigaction *ka, siginfo_t *info,
 		return 1;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	 */
+	BUG_ON(!(ka->sa.sa_flags & SA_RESTORER));
+>>>>>>> 2617302... source
 	regs->blink = (unsigned long)ka->sa.sa_restorer;
 
 	/* User Stack for signal handler will be above the frame just carved */
@@ -334,12 +348,16 @@ handle_signal(unsigned long sig, struct k_sigaction *ka, siginfo_t *info,
 {
 	sigset_t *oldset = sigmask_to_save();
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	int ret;
 
 	/* Set up the stack frame */
 	ret = setup_rt_frame(sig, ka, info, oldset, regs);
 
 	if (ret)
+<<<<<<< HEAD
 =======
 	int failed;
 
@@ -348,6 +366,8 @@ handle_signal(unsigned long sig, struct k_sigaction *ka, siginfo_t *info,
 
 	if (failed)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		force_sigsegv(sig, current);
 	else
 		signal_delivered(sig, info, ka, regs, 0);

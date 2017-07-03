@@ -5,9 +5,12 @@ TARGETS += kcmp
 TARGETS += memory-hotplug
 TARGETS += mqueue
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 TARGETS += mount
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 TARGETS += net
 TARGETS += ptrace
 TARGETS += vm

@@ -1424,11 +1424,14 @@ static void hdspm_set_dds_value(struct hdspm *hdspm, int rate)
 	u64 n;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (snd_BUG_ON(rate <= 0))
 		return;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	if (rate >= 112000)
 		rate /= 4;
 	else if (rate >= 56000)
@@ -2052,10 +2055,13 @@ static int hdspm_get_system_sample_rate(struct hdspm *hdspm)
 			/* slave mode, return external sample rate */
 			rate = hdspm_external_sample_rate(hdspm);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 			if (!rate)
 				rate = hdspm->system_sample_rate;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		}
 	}
 
@@ -2102,6 +2108,7 @@ static int snd_hdspm_put_system_sample_rate(struct snd_kcontrol *kcontrol,
 {
 	struct hdspm *hdspm = snd_kcontrol_chip(kcontrol);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	hdspm_set_dds_value(hdspm, ucontrol->value.enumerated.item[0]);
 =======
@@ -2111,6 +2118,10 @@ static int snd_hdspm_put_system_sample_rate(struct snd_kcontrol *kcontrol,
 		return -EINVAL;
 	hdspm_set_dds_value(hdspm, ucontrol->value.integer.value[0]);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+
+	hdspm_set_dds_value(hdspm, ucontrol->value.enumerated.item[0]);
+>>>>>>> 2617302... source
 	return 0;
 }
 
@@ -4219,10 +4230,14 @@ static int snd_hdspm_get_tco_word_term(struct snd_kcontrol *kcontrol,
 	struct hdspm *hdspm = snd_kcontrol_chip(kcontrol);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ucontrol->value.enumerated.item[0] = hdspm->tco->term;
 =======
 	ucontrol->value.integer.value[0] = hdspm->tco->term;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	ucontrol->value.enumerated.item[0] = hdspm->tco->term;
+>>>>>>> 2617302... source
 
 	return 0;
 }
@@ -4234,12 +4249,17 @@ static int snd_hdspm_put_tco_word_term(struct snd_kcontrol *kcontrol,
 	struct hdspm *hdspm = snd_kcontrol_chip(kcontrol);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (hdspm->tco->term != ucontrol->value.enumerated.item[0]) {
 		hdspm->tco->term = ucontrol->value.enumerated.item[0];
 =======
 	if (hdspm->tco->term != ucontrol->value.integer.value[0]) {
 		hdspm->tco->term = ucontrol->value.integer.value[0];
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (hdspm->tco->term != ucontrol->value.enumerated.item[0]) {
+		hdspm->tco->term = ucontrol->value.enumerated.item[0];
+>>>>>>> 2617302... source
 
 		hdspm_tco_write(hdspm);
 
@@ -5818,11 +5838,14 @@ static int snd_hdspm_playback_open(struct snd_pcm_substream *substream)
 					     SNDRV_PCM_HW_PARAM_PERIOD_SIZE,
 					     64, 8192);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		snd_pcm_hw_constraint_minmax(runtime,
 					     SNDRV_PCM_HW_PARAM_PERIODS,
 					     2, 2);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		break;
 	}
 
@@ -5898,11 +5921,14 @@ static int snd_hdspm_capture_open(struct snd_pcm_substream *substream)
 					     SNDRV_PCM_HW_PARAM_PERIOD_SIZE,
 					     64, 8192);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		snd_pcm_hw_constraint_minmax(runtime,
 					     SNDRV_PCM_HW_PARAM_PERIODS,
 					     2, 2);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		break;
 	}
 

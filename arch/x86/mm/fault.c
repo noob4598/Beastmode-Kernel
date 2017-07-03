@@ -813,15 +813,21 @@ do_sigbus(struct pt_regs *regs, unsigned long error_code, unsigned long address,
 {
 	struct task_struct *tsk = current;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	struct mm_struct *mm = tsk->mm;
 	int code = BUS_ADRERR;
 
 	up_read(&mm->mmap_sem);
 
+<<<<<<< HEAD
 =======
 	int code = BUS_ADRERR;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	/* Kernel mode? Handle exceptions or die: */
 	if (!(error_code & PF_USER)) {
 		no_context(regs, error_code, address, SIGBUS, BUS_ADRERR);
@@ -848,6 +854,9 @@ do_sigbus(struct pt_regs *regs, unsigned long error_code, unsigned long address,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 static noinline int
 mm_fault_error(struct pt_regs *regs, unsigned long error_code,
 	       unsigned long address, unsigned int fault)
@@ -865,6 +874,7 @@ mm_fault_error(struct pt_regs *regs, unsigned long error_code,
 	}
 	if (!(fault & VM_FAULT_ERROR))
 		return 0;
+<<<<<<< HEAD
 =======
 static noinline void
 mm_fault_error(struct pt_regs *regs, unsigned long error_code,
@@ -875,11 +885,16 @@ mm_fault_error(struct pt_regs *regs, unsigned long error_code,
 		return;
 	}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	if (fault & VM_FAULT_OOM) {
 		/* Kernel mode? Handle exceptions or die: */
 		if (!(error_code & PF_USER)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 			up_read(&current->mm->mmap_sem);
 			no_context(regs, error_code, address,
 				   SIGSEGV, SEGV_MAPERR);
@@ -888,6 +903,7 @@ mm_fault_error(struct pt_regs *regs, unsigned long error_code,
 
 		up_read(&current->mm->mmap_sem);
 
+<<<<<<< HEAD
 =======
 			no_context(regs, error_code, address,
 				   SIGSEGV, SEGV_MAPERR);
@@ -895,6 +911,8 @@ mm_fault_error(struct pt_regs *regs, unsigned long error_code,
 		}
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		/*
 		 * We ran out of memory, call the OOM killer, and return the
 		 * userspace (which will retry the fault, or kill us if we got
@@ -906,10 +924,14 @@ mm_fault_error(struct pt_regs *regs, unsigned long error_code,
 			     VM_FAULT_HWPOISON_LARGE))
 			do_sigbus(regs, error_code, address, fault);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		else
 			BUG();
 	}
 	return 1;
+<<<<<<< HEAD
 =======
 		else if (fault & VM_FAULT_SIGSEGV)
 			bad_area_nosemaphore(regs, error_code, address);
@@ -917,6 +939,8 @@ mm_fault_error(struct pt_regs *regs, unsigned long error_code,
 			BUG();
 	}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 }
 
 static int spurious_fault_check(unsigned long error_code, pte_t *pte)
@@ -1050,12 +1074,18 @@ __do_page_fault(struct pt_regs *regs, unsigned long error_code)
 	struct mm_struct *mm;
 	int fault;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int write = error_code & PF_WRITE;
 	unsigned int flags = FAULT_FLAG_ALLOW_RETRY | FAULT_FLAG_KILLABLE |
 					(write ? FAULT_FLAG_WRITE : 0);
 =======
 	unsigned int flags = FAULT_FLAG_ALLOW_RETRY | FAULT_FLAG_KILLABLE;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	int write = error_code & PF_WRITE;
+	unsigned int flags = FAULT_FLAG_ALLOW_RETRY | FAULT_FLAG_KILLABLE |
+					(write ? FAULT_FLAG_WRITE : 0);
+>>>>>>> 2617302... source
 
 	tsk = current;
 	mm = tsk->mm;
@@ -1126,9 +1156,12 @@ __do_page_fault(struct pt_regs *regs, unsigned long error_code)
 		local_irq_enable();
 		error_code |= PF_USER;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		flags |= FAULT_FLAG_USER;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	} else {
 		if (regs->flags & X86_EFLAGS_IF)
 			local_irq_enable();
@@ -1154,11 +1187,14 @@ __do_page_fault(struct pt_regs *regs, unsigned long error_code)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (error_code & PF_WRITE)
 		flags |= FAULT_FLAG_WRITE;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	/*
 	 * When running in the kernel we expect faults to occur only to
 	 * addresses in user space.  All other faults represent errors in
@@ -1238,6 +1274,7 @@ good_area:
 	fault = handle_mm_fault(mm, vma, address, flags);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (unlikely(fault & (VM_FAULT_RETRY|VM_FAULT_ERROR))) {
 		if (mm_fault_error(regs, error_code, address, fault))
 			return;
@@ -1255,6 +1292,11 @@ good_area:
 		mm_fault_error(regs, error_code, address, fault);
 		return;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (unlikely(fault & (VM_FAULT_RETRY|VM_FAULT_ERROR))) {
+		if (mm_fault_error(regs, error_code, address, fault))
+			return;
+>>>>>>> 2617302... source
 	}
 
 	/*

@@ -28,14 +28,20 @@
 #include "ct20k1reg.h"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 #if BITS_PER_LONG == 32
 #define CT_XFI_DMA_MASK		DMA_BIT_MASK(32) /* 32 bit PTE */
 #else
 #define CT_XFI_DMA_MASK		DMA_BIT_MASK(64) /* 64 bit PTE */
 #endif
 
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 struct hw20k1 {
 	struct hw hw;
 	spinlock_t reg_20k1_lock;
@@ -1907,9 +1913,12 @@ static int hw_card_start(struct hw *hw)
 	int err;
 	struct pci_dev *pci = hw->pci;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	const unsigned int dma_bits = BITS_PER_LONG;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	err = pci_enable_device(pci);
 	if (err < 0)
@@ -1917,6 +1926,9 @@ static int hw_card_start(struct hw *hw)
 
 	/* Set DMA transfer mask */
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	if (pci_set_dma_mask(pci, CT_XFI_DMA_MASK) < 0 ||
 	    pci_set_consistent_dma_mask(pci, CT_XFI_DMA_MASK) < 0) {
 		printk(KERN_ERR "architecture does not support PCI "
@@ -1924,6 +1936,7 @@ static int hw_card_start(struct hw *hw)
 		       CT_XFI_DMA_MASK);
 		err = -ENXIO;
 		goto error1;
+<<<<<<< HEAD
 =======
 	if (!dma_set_mask(&pci->dev, DMA_BIT_MASK(dma_bits))) {
 		dma_set_coherent_mask(&pci->dev, DMA_BIT_MASK(dma_bits));
@@ -1931,6 +1944,8 @@ static int hw_card_start(struct hw *hw)
 		dma_set_mask(&pci->dev, DMA_BIT_MASK(32));
 		dma_set_coherent_mask(&pci->dev, DMA_BIT_MASK(32));
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	}
 
 	if (!hw->io_base) {

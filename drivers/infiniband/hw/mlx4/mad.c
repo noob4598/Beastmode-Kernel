@@ -65,6 +65,7 @@ enum {
 #define GUID_TBL_BLK_SIZE (GUID_TBL_ENTRY_SIZE * GUID_TBL_BLK_NUM_ENTRIES)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 /* Counters should be saturate once they reach their maximum value */
 #define ASSIGN_32BIT_COUNTER(counter, value) do {\
@@ -75,6 +76,8 @@ enum {
 } while (0)
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 struct mlx4_mad_rcv_buf {
 	struct ib_grh grh;
 	u8 payload[256];
@@ -742,10 +745,14 @@ static void edit_counter(struct mlx4_counter *cnt,
 					struct ib_pma_portcounters *pma_cnt)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	pma_cnt->port_xmit_data = cpu_to_be32((be64_to_cpu(cnt->tx_bytes)>>2));
 	pma_cnt->port_rcv_data  = cpu_to_be32((be64_to_cpu(cnt->rx_bytes)>>2));
 	pma_cnt->port_xmit_packets = cpu_to_be32(be64_to_cpu(cnt->tx_frames));
 	pma_cnt->port_rcv_packets  = cpu_to_be32(be64_to_cpu(cnt->rx_frames));
+<<<<<<< HEAD
 =======
 	ASSIGN_32BIT_COUNTER(pma_cnt->port_xmit_data,
 			     (be64_to_cpu(cnt->tx_bytes) >> 2));
@@ -756,6 +763,8 @@ static void edit_counter(struct mlx4_counter *cnt,
 	ASSIGN_32BIT_COUNTER(pma_cnt->port_rcv_packets,
 			     be64_to_cpu(cnt->rx_frames));
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 }
 
 static int iboe_process_mad(struct ib_device *ibdev, int mad_flags, u8 port_num,

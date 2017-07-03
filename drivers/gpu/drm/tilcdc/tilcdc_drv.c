@@ -79,9 +79,12 @@ static int modeset_init(struct drm_device *dev)
 		/* oh nos! */
 		dev_err(dev->dev, "no encoders/connectors found\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		drm_mode_config_cleanup(dev);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		return -ENXIO;
 	}
 
@@ -121,9 +124,12 @@ static int tilcdc_unload(struct drm_device *dev)
 	struct tilcdc_module *mod, *cur;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	drm_fbdev_cma_fini(priv->fbdev);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	drm_kms_helper_poll_fini(dev);
 	drm_mode_config_cleanup(dev);
 	drm_vblank_cleanup(dev);
@@ -178,22 +184,29 @@ static int tilcdc_load(struct drm_device *dev, unsigned long flags)
 
 	priv->wq = alloc_ordered_workqueue("tilcdc", 0);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (!priv->wq) {
 		ret = -ENOMEM;
 		goto fail_free_priv;
 	}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
 	if (!res) {
 		dev_err(dev->dev, "failed to get memory resource\n");
 		ret = -EINVAL;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		goto fail;
 =======
 		goto fail_free_wq;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		goto fail;
+>>>>>>> 2617302... source
 	}
 
 	priv->mmio = ioremap_nocache(res->start, resource_size(res));
@@ -201,10 +214,14 @@ static int tilcdc_load(struct drm_device *dev, unsigned long flags)
 		dev_err(dev->dev, "failed to ioremap\n");
 		ret = -ENOMEM;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		goto fail;
 =======
 		goto fail_free_wq;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		goto fail;
+>>>>>>> 2617302... source
 	}
 
 	priv->clk = clk_get(dev->dev, "fck");
@@ -212,10 +229,14 @@ static int tilcdc_load(struct drm_device *dev, unsigned long flags)
 		dev_err(dev->dev, "failed to get functional clock\n");
 		ret = -ENODEV;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		goto fail;
 =======
 		goto fail_iounmap;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		goto fail;
+>>>>>>> 2617302... source
 	}
 
 	priv->disp_clk = clk_get(dev->dev, "dpll_disp_ck");
@@ -223,10 +244,14 @@ static int tilcdc_load(struct drm_device *dev, unsigned long flags)
 		dev_err(dev->dev, "failed to get display clock\n");
 		ret = -ENODEV;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		goto fail;
 =======
 		goto fail_put_clk;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		goto fail;
+>>>>>>> 2617302... source
 	}
 
 #ifdef CONFIG_CPU_FREQ
@@ -237,10 +262,14 @@ static int tilcdc_load(struct drm_device *dev, unsigned long flags)
 	if (ret) {
 		dev_err(dev->dev, "failed to register cpufreq notifier\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
 		goto fail;
 =======
 		goto fail_put_disp_clk;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		goto fail;
+>>>>>>> 2617302... source
 	}
 #endif
 
@@ -273,20 +302,28 @@ static int tilcdc_load(struct drm_device *dev, unsigned long flags)
 	if (ret < 0) {
 		dev_err(dev->dev, "failed to initialize mode setting\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
 		goto fail;
 =======
 		goto fail_cpufreq_unregister;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		goto fail;
+>>>>>>> 2617302... source
 	}
 
 	ret = drm_vblank_init(dev, 1);
 	if (ret < 0) {
 		dev_err(dev->dev, "failed to initialize vblank\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
 		goto fail;
 =======
 		goto fail_mode_config_cleanup;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		goto fail;
+>>>>>>> 2617302... source
 	}
 
 	pm_runtime_get_sync(dev->dev);
@@ -295,10 +332,14 @@ static int tilcdc_load(struct drm_device *dev, unsigned long flags)
 	if (ret < 0) {
 		dev_err(dev->dev, "failed to install IRQ handler\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
 		goto fail;
 =======
 		goto fail_vblank_cleanup;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		goto fail;
+>>>>>>> 2617302... source
 	}
 
 	platform_set_drvdata(pdev, dev);
@@ -307,17 +348,21 @@ static int tilcdc_load(struct drm_device *dev, unsigned long flags)
 			dev->mode_config.num_crtc,
 			dev->mode_config.num_connector);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (IS_ERR(priv->fbdev)) {
 		ret = PTR_ERR(priv->fbdev);
 		goto fail_irq_uninstall;
 	}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	drm_kms_helper_poll_init(dev);
 
 	return 0;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 fail:
 	tilcdc_unload(dev);
@@ -356,6 +401,10 @@ fail_free_priv:
 	dev->dev_private = NULL;
 	kfree(priv);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+fail:
+	tilcdc_unload(dev);
+>>>>>>> 2617302... source
 	return ret;
 }
 
@@ -687,16 +736,22 @@ static void __exit tilcdc_drm_fini(void)
 {
 	DBG("fini");
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	tilcdc_tfp410_fini();
 	tilcdc_slave_fini();
 	tilcdc_panel_fini();
 	platform_driver_unregister(&tilcdc_platform_driver);
+<<<<<<< HEAD
 =======
 	platform_driver_unregister(&tilcdc_platform_driver);
 	tilcdc_panel_fini();
 	tilcdc_slave_fini();
 	tilcdc_tfp410_fini();
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 }
 
 late_initcall(tilcdc_drm_init);

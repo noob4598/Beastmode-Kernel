@@ -61,10 +61,14 @@ int adis_probe_trigger(struct adis *adis, struct iio_dev *indio_dev)
 	ret = iio_trigger_register(adis->trig);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	indio_dev->trig = adis->trig;
 =======
 	indio_dev->trig = iio_trigger_get(adis->trig);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	indio_dev->trig = adis->trig;
+>>>>>>> 2617302... source
 	if (ret)
 		goto error_free_irq;
 

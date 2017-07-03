@@ -406,10 +406,14 @@ static void android_work(struct work_struct *data)
 		    ((uevent_envp == configured) &&
 		      (last_uevent == USB_CONFIGURED))) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			pr_info("%s: sent missed DISCONNECT event\n", __func__);
 =======
 			pr_debug("%s: sent missed DISCONNECT event\n", __func__);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			pr_info("%s: sent missed DISCONNECT event\n", __func__);
+>>>>>>> 2617302... source
 			kobject_uevent_env(&dev->dev->kobj, KOBJ_CHANGE,
 								disconnected);
 //			msleep(20);
@@ -428,6 +432,7 @@ static void android_work(struct work_struct *data)
 			last_uevent = next_state;
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_info("%s: sent uevent %s\n", __func__, uevent_envp[0]);
 	} else {
 		pr_info("%s: did not send uevent (%d %d %p)\n", __func__,
@@ -436,6 +441,11 @@ static void android_work(struct work_struct *data)
 	} else {
 		pr_debug("%s: did not send uevent (%d %d %p)\n", __func__,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		pr_info("%s: sent uevent %s\n", __func__, uevent_envp[0]);
+	} else {
+		pr_info("%s: did not send uevent (%d %d %p)\n", __func__,
+>>>>>>> 2617302... source
 			 dev->connected, dev->sw_connected, cdev->config);
 	}
 }
@@ -1161,10 +1171,14 @@ ncm_function_bind_config(struct android_usb_function *f,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_info("%s MAC: %02X:%02X:%02X:%02X:%02X:%02X\n", __func__,
 =======
 	pr_debug("%s MAC: %02X:%02X:%02X:%02X:%02X:%02X\n", __func__,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	pr_info("%s MAC: %02X:%02X:%02X:%02X:%02X:%02X\n", __func__,
+>>>>>>> 2617302... source
 		ncm->ethaddr[0], ncm->ethaddr[1], ncm->ethaddr[2],
 		ncm->ethaddr[3], ncm->ethaddr[4], ncm->ethaddr[5]);
 
@@ -1270,10 +1284,14 @@ static int ecm_qc_function_bind_config(struct android_usb_function *f,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_info("%s MAC: %02X:%02X:%02X:%02X:%02X:%02X\n", __func__,
 =======
 	pr_debug("%s MAC: %02X:%02X:%02X:%02X:%02X:%02X\n", __func__,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	pr_info("%s MAC: %02X:%02X:%02X:%02X:%02X:%02X\n", __func__,
+>>>>>>> 2617302... source
 		ecm->ethaddr[0], ecm->ethaddr[1], ecm->ethaddr[2],
 		ecm->ethaddr[3], ecm->ethaddr[4], ecm->ethaddr[5]);
 
@@ -2007,10 +2025,14 @@ rndis_function_bind_config(struct android_usb_function *f,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_info("%s MAC: %02X:%02X:%02X:%02X:%02X:%02X\n", __func__,
 =======
 	pr_debug("%s MAC: %02X:%02X:%02X:%02X:%02X:%02X\n", __func__,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	pr_info("%s MAC: %02X:%02X:%02X:%02X:%02X:%02X\n", __func__,
+>>>>>>> 2617302... source
 		rndis->ethaddr[0], rndis->ethaddr[1], rndis->ethaddr[2],
 		rndis->ethaddr[3], rndis->ethaddr[4], rndis->ethaddr[5]);
 
@@ -2055,10 +2077,14 @@ static int rndis_qc_function_bind_config(struct android_usb_function *f,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_info("%s MAC: %02X:%02X:%02X:%02X:%02X:%02X\n", __func__,
 =======
 	pr_debug("%s MAC: %02X:%02X:%02X:%02X:%02X:%02X\n", __func__,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	pr_info("%s MAC: %02X:%02X:%02X:%02X:%02X:%02X\n", __func__,
+>>>>>>> 2617302... source
 		rndis->ethaddr[0], rndis->ethaddr[1], rndis->ethaddr[2],
 		rndis->ethaddr[3], rndis->ethaddr[4], rndis->ethaddr[5]);
 
@@ -2358,10 +2384,14 @@ static int ecm_function_bind_config(struct android_usb_function *f,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_info("%s MAC: %02X:%02X:%02X:%02X:%02X:%02X\n", __func__,
 =======
 	pr_debug("%s MAC: %02X:%02X:%02X:%02X:%02X:%02X\n", __func__,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	pr_info("%s MAC: %02X:%02X:%02X:%02X:%02X:%02X\n", __func__,
+>>>>>>> 2617302... source
 		ecm->ethaddr[0], ecm->ethaddr[1], ecm->ethaddr[2],
 		ecm->ethaddr[3], ecm->ethaddr[4], ecm->ethaddr[5]);
 
@@ -3529,10 +3559,14 @@ static ssize_t store_usb_device_lock_state(struct device *pdev,
 
 	if (!psy) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_info("%s: couldn't get usb power supply\n", __func__);
 =======
 		pr_err("%s: couldn't get usb power supply\n", __func__);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		pr_info("%s: couldn't get usb power supply\n", __func__);
+>>>>>>> 2617302... source
 		return -EINVAL;
 	}
 
@@ -3541,25 +3575,35 @@ static ssize_t store_usb_device_lock_state(struct device *pdev,
 	sscanf(buff, "%d", &value);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_info("%s : usb_lock %d Buff %d \n",__func__,dev->usb_lock,value);
 =======
 	pr_debug("%s : usb_lock %d Buff %d \n",__func__,dev->usb_lock,value);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	pr_info("%s : usb_lock %d Buff %d \n",__func__,dev->usb_lock,value);
+>>>>>>> 2617302... source
 
 	if (value != dev->usb_lock) {
 		dev->usb_lock = value;
 		if (dev->usb_lock == 0){
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 			pr_info("%s : usb connect for support MDM\n",__func__);
 			android_enable(dev);
 		} else if (dev->usb_lock == 1){
 			pr_info("%s : usb disconnect for support MDM\n",__func__);
+<<<<<<< HEAD
 =======
 			pr_debug("%s : usb connect for support MDM\n",__func__);
 			android_enable(dev);
 		} else if (dev->usb_lock == 1){
 			pr_debug("%s : usb disconnect for support MDM\n",__func__);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 			android_disable(dev);
 		} else {
 			pr_warn("%s: Wrong command\n", __func__);
@@ -3568,10 +3612,14 @@ static ssize_t store_usb_device_lock_state(struct device *pdev,
 		}
 	} else {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			pr_info("%s: Duplicated command\n", __func__);
 =======
 			pr_debug("%s: Duplicated command\n", __func__);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			pr_info("%s: Duplicated command\n", __func__);
+>>>>>>> 2617302... source
 			mutex_unlock(&dev->mutex);
 			return count;
 	}
@@ -3633,16 +3681,22 @@ static ssize_t ss_host_available_show(struct device *pdev,
 		windowsos = get_host_os_type();
 		if((ss_host_available == 1) && ( windowsos == 1)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 			printk(KERN_ERR "usb:: %s superspeed available \n", __func__);
 			value = 1;
 		}
 		printk(KERN_ERR "usb:: %s ss_host_available(%d), windowsos(%d)\n",
+<<<<<<< HEAD
 =======
 			printk(KERN_DEBUG "usb:: %s superspeed available \n", __func__);
 			value = 1;
 		}
 		printk(KERN_INFO "usb:: %s ss_host_available(%d), windowsos(%d)\n",
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 			__func__, ss_host_available, windowsos);
 	} else {
 		printk(KERN_ERR "usb:: %s gadget not available \n", __func__);
@@ -3663,16 +3717,22 @@ static ssize_t macos_show(struct device *pdev,
 		windowsos = get_host_os_type();
 		if((ss_host_available == 1) && ( windowsos == 1)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 			printk(KERN_ERR "usb:: %s superspeed available \n", __func__);
 			value = 0;
 		}
 		printk(KERN_ERR "usb:: %s ss_host_available(%d), windowsos(%d)\n",
+<<<<<<< HEAD
 =======
 			printk(KERN_DEBUG "usb:: %s superspeed available \n", __func__);
 			value = 0;
 		}
 		printk(KERN_INFO "usb:: %s ss_host_available(%d), windowsos(%d)\n",
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 			__func__, ss_host_available, windowsos);
 	} else {
 		printk(KERN_ERR "usb:: %s gadget not available \n", __func__);

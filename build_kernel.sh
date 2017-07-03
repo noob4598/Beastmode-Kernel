@@ -2,6 +2,9 @@
 
 export ARCH=arm
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 export CROSS_COMPILE=$(pwd)/../PLATFORM/prebuilts/gcc/linux-x86/arm/arm-eabi-4.8/bin/arm-eabi-
 
 mkdir output
@@ -9,6 +12,7 @@ mkdir output
 make -C $(pwd) O=output VARIANT_DEFCONFIG=apq8084_sec_trlte_tmo_defconfig apq8084_sec_defconfig SELINUX_DEFCONFIG=selinux_defconfig
 make -C $(pwd) O=output
 
+<<<<<<< HEAD
 cp output/arch/arm/boot/Image $(pwd)/arch/arm/boot/zImage
 =======
 export PATH=$(pwd)/../PLATFORM/prebuilts/gcc/linux-x86/arm/arm-eabi-4.8/bin:$PATH
@@ -20,3 +24,6 @@ make -j64 -C $(pwd) O=output CROSS_COMPILE=arm-eabi-
 
 cp output/arch/arm/boot/zImage $(pwd)/arch/arm/boot/zImage
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+cp output/arch/arm/boot/Image $(pwd)/arch/arm/boot/zImage
+>>>>>>> 2617302... source

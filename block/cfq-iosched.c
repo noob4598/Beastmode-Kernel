@@ -1276,14 +1276,20 @@ static void
 cfq_update_group_weight(struct cfq_group *cfqg)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	BUG_ON(!RB_EMPTY_NODE(&cfqg->rb_node));
 
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	BUG_ON(!RB_EMPTY_NODE(&cfqg->rb_node));
+
+>>>>>>> 2617302... source
 	if (cfqg->new_weight) {
 		cfqg->weight = cfqg->new_weight;
 		cfqg->new_weight = 0;
 	}
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 }
@@ -1293,6 +1299,8 @@ cfq_update_group_leaf_weight(struct cfq_group *cfqg)
 {
 	BUG_ON(!RB_EMPTY_NODE(&cfqg->rb_node));
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	if (cfqg->new_leaf_weight) {
 		cfqg->leaf_weight = cfqg->new_leaf_weight;
@@ -1312,10 +1320,14 @@ cfq_group_service_tree_add(struct cfq_rb_root *st, struct cfq_group *cfqg)
 	BUG_ON(!RB_EMPTY_NODE(&cfqg->rb_node));
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	cfq_update_group_weight(cfqg);
 =======
 	cfq_update_group_leaf_weight(cfqg);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	cfq_update_group_weight(cfqg);
+>>>>>>> 2617302... source
 	__cfq_group_service_tree_add(st, cfqg);
 
 	/*
@@ -1340,9 +1352,12 @@ cfq_group_service_tree_add(struct cfq_rb_root *st, struct cfq_group *cfqg)
 	while ((parent = cfqg_parent(pos))) {
 		if (propagate) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 			cfq_update_group_weight(pos);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 			propagate = !parent->nr_active++;
 			parent->children_weight += pos->weight;
 		}
@@ -2828,9 +2843,13 @@ static struct request *cfq_check_fifo(struct cfq_queue *cfqq)
 		rq = NULL;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	cfq_log_cfqq(cfqq->cfqd, cfqq, "fifo=%p", rq);
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	cfq_log_cfqq(cfqq->cfqd, cfqq, "fifo=%p", rq);
+>>>>>>> 2617302... source
 	return rq;
 }
 
@@ -3208,11 +3227,14 @@ static bool cfq_may_dispatch(struct cfq_data *cfqd, struct cfq_queue *cfqq)
 	unsigned int max_dispatch;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (cfq_cfqq_must_dispatch(cfqq))
 		return true;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	/*
 	 * Drain async requests before we start sync IO
 	 */
@@ -3305,18 +3327,22 @@ static bool cfq_dispatch_request(struct cfq_data *cfqd, struct cfq_queue *cfqq)
 	BUG_ON(RB_EMPTY_ROOT(&cfqq->sort_list));
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	rq = cfq_check_fifo(cfqq);
 	if (rq)
 		cfq_mark_cfqq_must_dispatch(cfqq);
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	if (!cfq_may_dispatch(cfqd, cfqq))
 		return false;
 
 	/*
 	 * follow expired path, else get first next available
 	 */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	rq = cfq_check_fifo(cfqq);
 	if (!rq)
@@ -3327,6 +3353,11 @@ static bool cfq_dispatch_request(struct cfq_data *cfqd, struct cfq_queue *cfqq)
 	else
 		cfq_log_cfqq(cfqq->cfqd, cfqq, "fifo=%p", rq);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	rq = cfq_check_fifo(cfqq);
+	if (!rq)
+		rq = cfqq->next_rq;
+>>>>>>> 2617302... source
 
 	/*
 	 * insert request into driver dispatch list
@@ -3617,6 +3648,7 @@ retry:
 	blkcg = bio_blkcg(bio);
 	cfqg = cfq_lookup_create_cfqg(cfqd, blkcg);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (!cfqg) {
 		cfqq = &cfqd->oom_cfqq;
@@ -3624,6 +3656,8 @@ retry:
 	}
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	cfqq = cic_to_cfqq(cic, is_sync);
 
 	/*
@@ -3661,10 +3695,14 @@ retry:
 			cfqq = &cfqd->oom_cfqq;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 out:
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+
+>>>>>>> 2617302... source
 	if (new_cfqq)
 		kmem_cache_free(cfq_pool, new_cfqq);
 
@@ -3695,16 +3733,22 @@ cfq_get_queue(struct cfq_data *cfqd, bool is_sync, struct cfq_io_cq *cic,
 	      struct bio *bio, gfp_t gfp_mask)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	const int ioprio_class = IOPRIO_PRIO_CLASS(cic->ioprio);
 	const int ioprio = IOPRIO_PRIO_DATA(cic->ioprio);
 =======
 	int ioprio_class = IOPRIO_PRIO_CLASS(cic->ioprio);
 	int ioprio = IOPRIO_PRIO_DATA(cic->ioprio);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	const int ioprio_class = IOPRIO_PRIO_CLASS(cic->ioprio);
+	const int ioprio = IOPRIO_PRIO_DATA(cic->ioprio);
+>>>>>>> 2617302... source
 	struct cfq_queue **async_cfqq = NULL;
 	struct cfq_queue *cfqq = NULL;
 
 	if (!is_sync) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 		if (!ioprio_valid(cic->ioprio)) {
@@ -3713,6 +3757,8 @@ cfq_get_queue(struct cfq_data *cfqd, bool is_sync, struct cfq_io_cq *cic,
 			ioprio_class = task_nice_ioclass(tsk);
 		}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		async_cfqq = cfq_async_queue_prio(cfqd, ioprio_class, ioprio);
 		cfqq = *async_cfqq;
 	}
@@ -3851,10 +3897,14 @@ cfq_should_preempt(struct cfq_data *cfqd, struct cfq_queue *new_cfqq,
 	 * not, let the sync request have priority.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (rq_is_sync(rq) && !cfq_cfqq_sync(cfqq))
 =======
 	if (rq_is_sync(rq) && !cfq_cfqq_sync(cfqq) && !cfq_cfqq_must_dispatch(cfqq))
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (rq_is_sync(rq) && !cfq_cfqq_sync(cfqq))
+>>>>>>> 2617302... source
 		return true;
 
 	if (new_cfqq->cfqg != cfqq->cfqg)

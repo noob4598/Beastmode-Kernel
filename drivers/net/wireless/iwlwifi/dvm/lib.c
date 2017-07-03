@@ -1024,10 +1024,14 @@ static void iwlagn_wowlan_program_keys(struct ieee80211_hw *hw,
 
 			ieee80211_get_key_rx_seq(key, i, &seq);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			aes_sc->pn = cpu_to_le64(
 =======
 			aes_sc[i].pn = cpu_to_le64(
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			aes_sc->pn = cpu_to_le64(
+>>>>>>> 2617302... source
 					(u64)pn[5] |
 					((u64)pn[4] << 8) |
 					((u64)pn[3] << 16) |

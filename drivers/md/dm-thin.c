@@ -2110,10 +2110,14 @@ static int pool_ctr(struct dm_target *ti, unsigned argc, char **argv)
 						pool);
 	if (r)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		goto out_free_pt;
 =======
 		goto out_flags_changed;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		goto out_free_pt;
+>>>>>>> 2617302... source
 
 	pt->callbacks.congested_fn = pool_is_congested;
 	dm_table_add_target_callbacks(ti->table, &pt->callbacks);
@@ -2286,10 +2290,14 @@ static void pool_postsuspend(struct dm_target *ti)
 	struct pool *pool = pt->pool;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	cancel_delayed_work(&pool->waker);
 =======
 	cancel_delayed_work_sync(&pool->waker);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	cancel_delayed_work(&pool->waker);
+>>>>>>> 2617302... source
 	flush_workqueue(pool->wq);
 	(void) commit_or_fallback(pool);
 }
@@ -2466,6 +2474,7 @@ static int pool_message(struct dm_target *ti, unsigned argc, char **argv)
 	struct pool *pool = pt->pool;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (get_pool_mode(pool) >= PM_READ_ONLY) {
 		DMERR("%s: unable to service pool target messages in READ_ONLY or FAIL mode",
@@ -2474,6 +2483,8 @@ static int pool_message(struct dm_target *ti, unsigned argc, char **argv)
 	}
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	if (!strcasecmp(argv[0], "create_thin"))
 		r = process_create_thin_mesg(argc, argv, pool);
 
@@ -2665,11 +2676,15 @@ static void set_discard_limits(struct pool_c *pt, struct queue_limits *limits)
 	if (pt->adjusted_pf.discard_passdown) {
 		data_limits = &bdev_get_queue(pt->data_dev->bdev)->limits;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		limits->discard_granularity = data_limits->discard_granularity;
 =======
 		limits->discard_granularity = max(data_limits->discard_granularity,
 						  pool->sectors_per_block << SECTOR_SHIFT);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		limits->discard_granularity = data_limits->discard_granularity;
+>>>>>>> 2617302... source
 	} else
 		limits->discard_granularity = pool->sectors_per_block << SECTOR_SHIFT;
 }

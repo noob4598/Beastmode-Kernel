@@ -95,9 +95,12 @@ static void * r1buf_pool_alloc(gfp_t gfp_flags, void *data)
 	struct r1bio *r1_bio;
 	struct bio *bio;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	int need_pages;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	int i, j;
 
 	r1_bio = r1bio_pool_alloc(gfp_flags, pi);
@@ -121,25 +124,35 @@ static void * r1buf_pool_alloc(gfp_t gfp_flags, void *data)
 	 */
 	if (test_bit(MD_RECOVERY_REQUESTED, &pi->mddev->recovery))
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		j = pi->raid_disks;
 	else
 		j = 1;
 	while(j--) {
+<<<<<<< HEAD
 =======
 		need_pages = pi->raid_disks;
 	else
 		need_pages = 1;
 	for (j = 0; j < need_pages; j++) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		bio = r1_bio->bios[j];
 		bio->bi_vcnt = RESYNC_PAGES;
 
 		if (bio_alloc_pages(bio, gfp_flags))
 <<<<<<< HEAD
+<<<<<<< HEAD
 			goto out_free_bio;
 =======
 			goto out_free_pages;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			goto out_free_bio;
+>>>>>>> 2617302... source
 	}
 	/* If not user-requests, copy the page pointers to all bios */
 	if (!test_bit(MD_RECOVERY_REQUESTED, &pi->mddev->recovery)) {
@@ -154,6 +167,7 @@ static void * r1buf_pool_alloc(gfp_t gfp_flags, void *data)
 	return r1_bio;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 out_free_pages:
 	while (--j >= 0) {
@@ -164,6 +178,8 @@ out_free_pages:
 	}
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 out_free_bio:
 	while (++j < pi->raid_disks)
 		bio_put(r1_bio->bios[j]);
@@ -345,10 +361,14 @@ static void raid1_end_read_request(struct bio *bio, int error)
 		if (r1_bio->mddev->degraded == conf->raid_disks ||
 		    (r1_bio->mddev->degraded == conf->raid_disks-1 &&
 <<<<<<< HEAD
+<<<<<<< HEAD
 		     !test_bit(Faulty, &conf->mirrors[mirror].rdev->flags)))
 =======
 		     test_bit(In_sync, &conf->mirrors[mirror].rdev->flags)))
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		     !test_bit(Faulty, &conf->mirrors[mirror].rdev->flags)))
+>>>>>>> 2617302... source
 			uptodate = 1;
 		spin_unlock_irqrestore(&conf->device_lock, flags);
 	}
@@ -579,27 +599,37 @@ static int read_balance(struct r1conf *conf, struct r1bio *r1_bio, int *max_sect
 			/* Don't balance among write-mostly, just
 			 * use the first as a last resort */
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 			if (best_disk < 0) {
 				if (is_badblock(rdev, this_sector, sectors,
 						&first_bad, &bad_sectors)) {
 					if (first_bad < this_sector)
+<<<<<<< HEAD
 =======
 			if (best_dist_disk < 0) {
 				if (is_badblock(rdev, this_sector, sectors,
 						&first_bad, &bad_sectors)) {
 					if (first_bad <= this_sector)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 						/* Cannot use this */
 						continue;
 					best_good_sectors = first_bad - this_sector;
 				} else
 					best_good_sectors = sectors;
 <<<<<<< HEAD
+<<<<<<< HEAD
 				best_disk = disk;
 =======
 				best_dist_disk = disk;
 				best_pending_disk = disk;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+				best_disk = disk;
+>>>>>>> 2617302... source
 			}
 			continue;
 		}
@@ -1415,9 +1445,12 @@ static void error(struct mddev *mddev, struct md_rdev *rdev)
 	char b[BDEVNAME_SIZE];
 	struct r1conf *conf = mddev->private;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	unsigned long flags;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	/*
 	 * If it is not operational, then we have already marked it as dead
@@ -1438,6 +1471,9 @@ static void error(struct mddev *mddev, struct md_rdev *rdev)
 	}
 	set_bit(Blocked, &rdev->flags);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	if (test_and_clear_bit(In_sync, &rdev->flags)) {
 		unsigned long flags;
 		spin_lock_irqsave(&conf->device_lock, flags);
@@ -1450,6 +1486,7 @@ static void error(struct mddev *mddev, struct md_rdev *rdev)
 		set_bit(MD_RECOVERY_INTR, &mddev->recovery);
 	} else
 		set_bit(Faulty, &rdev->flags);
+<<<<<<< HEAD
 =======
 	spin_lock_irqsave(&conf->device_lock, flags);
 	if (test_and_clear_bit(In_sync, &rdev->flags)) {
@@ -1463,6 +1500,8 @@ static void error(struct mddev *mddev, struct md_rdev *rdev)
 	 */
 	set_bit(MD_RECOVERY_INTR, &mddev->recovery);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	set_bit(MD_CHANGE_DEVS, &mddev->flags);
 	printk(KERN_ALERT
 	       "md/raid1:%s: Disk failure on %s, disabling device.\n"
@@ -1517,6 +1556,7 @@ static int raid1_spare_active(struct mddev *mddev)
 	 * and mark them readable.
 	 * Called under mddev lock, so rcu protection not needed.
 <<<<<<< HEAD
+<<<<<<< HEAD
 	 */
 =======
 	 * device_lock used to avoid races with raid1_end_read_request
@@ -1524,6 +1564,9 @@ static int raid1_spare_active(struct mddev *mddev)
 	 */
 	spin_lock_irqsave(&conf->device_lock, flags);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	 */
+>>>>>>> 2617302... source
 	for (i = 0; i < conf->raid_disks; i++) {
 		struct md_rdev *rdev = conf->mirrors[i].rdev;
 		struct md_rdev *repl = conf->mirrors[conf->raid_disks + i].rdev;
@@ -1554,9 +1597,13 @@ static int raid1_spare_active(struct mddev *mddev)
 		}
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	spin_lock_irqsave(&conf->device_lock, flags);
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	spin_lock_irqsave(&conf->device_lock, flags);
+>>>>>>> 2617302... source
 	mddev->degraded -= count;
 	spin_unlock_irqrestore(&conf->device_lock, flags);
 
@@ -2113,10 +2160,14 @@ static void fix_read_error(struct r1conf *conf, int read_disk,
 			rdev = conf->mirrors[d].rdev;
 			if (rdev &&
 <<<<<<< HEAD
+<<<<<<< HEAD
 			    test_bit(In_sync, &rdev->flags))
 =======
 			    !test_bit(Faulty, &rdev->flags))
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			    test_bit(In_sync, &rdev->flags))
+>>>>>>> 2617302... source
 				r1_sync_page_io(rdev, sect, s,
 						conf->tmppage, WRITE);
 		}
@@ -2129,10 +2180,14 @@ static void fix_read_error(struct r1conf *conf, int read_disk,
 			rdev = conf->mirrors[d].rdev;
 			if (rdev &&
 <<<<<<< HEAD
+<<<<<<< HEAD
 			    test_bit(In_sync, &rdev->flags)) {
 =======
 			    !test_bit(Faulty, &rdev->flags)) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			    test_bit(In_sync, &rdev->flags)) {
+>>>>>>> 2617302... source
 				if (r1_sync_page_io(rdev, sect, s,
 						    conf->tmppage, READ)) {
 					atomic_add(s, &rdev->corrected_errors);
@@ -2214,10 +2269,14 @@ static int narrow_write_error(struct r1bio *r1_bio, int i)
 		wbio->bi_sector += rdev->data_offset;
 		wbio->bi_bdev = rdev->bdev;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (submit_bio_wait(WRITE, wbio) == 0)
 =======
 		if (submit_bio_wait(WRITE, wbio) < 0)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		if (submit_bio_wait(WRITE, wbio) == 0)
+>>>>>>> 2617302... source
 			/* failure! */
 			ok = rdev_set_badblocks(rdev, sector,
 						sectors, 0)

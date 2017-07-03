@@ -2328,10 +2328,14 @@ static ssize_t wcnss_wlan_write(struct file *fp, const char __user
 {
 	int rc = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u32 size = 0;
 =======
 	size_t size = 0;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	u32 size = 0;
+>>>>>>> 2617302... source
 
 	if (!penv || !penv->device_opened || penv->user_cal_available)
 		return -EFAULT;

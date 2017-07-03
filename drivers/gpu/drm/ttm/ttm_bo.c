@@ -1867,9 +1867,13 @@ static int ttm_bo_swapout(struct ttm_mem_shrink *shrink)
 	int ret = -EBUSY;
 	int put_count;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	uint32_t swap_placement = (TTM_PL_FLAG_CACHED | TTM_PL_FLAG_SYSTEM);
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	uint32_t swap_placement = (TTM_PL_FLAG_CACHED | TTM_PL_FLAG_SYSTEM);
+>>>>>>> 2617302... source
 
 	spin_lock(&glob->lru_lock);
 	list_for_each_entry(bo, &glob->swap_lru, swap) {
@@ -1908,11 +1912,15 @@ static int ttm_bo_swapout(struct ttm_mem_shrink *shrink)
 		goto out;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if ((bo->mem.placement & swap_placement) != swap_placement) {
 =======
 	if (bo->mem.mem_type != TTM_PL_SYSTEM ||
 	    bo->ttm->caching_state != tt_cached) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if ((bo->mem.placement & swap_placement) != swap_placement) {
+>>>>>>> 2617302... source
 		struct ttm_mem_reg evict_mem;
 
 		evict_mem = bo->mem;

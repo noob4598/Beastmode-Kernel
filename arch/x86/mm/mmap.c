@@ -36,12 +36,16 @@ struct __read_mostly va_alignment va_align = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 static unsigned int stack_maxrandom_size(void)
 {
 	unsigned int max = 0;
 	if ((current->flags & PF_RANDOMIZE) &&
 		!(current->personality & ADDR_NO_RANDOMIZE)) {
 		max = ((-1U) & STACK_RND_MASK) << PAGE_SHIFT;
+<<<<<<< HEAD
 =======
 static unsigned long stack_maxrandom_size(void)
 {
@@ -50,6 +54,8 @@ static unsigned long stack_maxrandom_size(void)
 		!(current->personality & ADDR_NO_RANDOMIZE)) {
 		max = ((-1UL) & STACK_RND_MASK) << PAGE_SHIFT;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	}
 
 	return max;
@@ -77,6 +83,9 @@ static int mmap_is_legacy(void)
 static unsigned long mmap_rnd(void)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	unsigned long rnd = 0;
 
 	/*
@@ -93,6 +102,7 @@ static unsigned long mmap_rnd(void)
 }
 
 static unsigned long mmap_base(void)
+<<<<<<< HEAD
 =======
 	unsigned long rnd;
 
@@ -110,6 +120,8 @@ static unsigned long mmap_base(void)
 
 static unsigned long mmap_base(unsigned long rnd)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 {
 	unsigned long gap = rlimit(RLIMIT_STACK);
 
@@ -119,6 +131,9 @@ static unsigned long mmap_base(unsigned long rnd)
 		gap = MAX_GAP;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	return PAGE_ALIGN(TASK_SIZE - gap - mmap_rnd());
 }
 
@@ -132,9 +147,12 @@ static unsigned long mmap_legacy_base(void)
 		return TASK_UNMAPPED_BASE;
 	else
 		return TASK_UNMAPPED_BASE + mmap_rnd();
+<<<<<<< HEAD
 =======
 	return PAGE_ALIGN(TASK_SIZE - gap - rnd);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 }
 
 /*
@@ -143,6 +161,7 @@ static unsigned long mmap_legacy_base(void)
  */
 void arch_pick_mmap_layout(struct mm_struct *mm)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	mm->mmap_legacy_base = mmap_legacy_base();
 	mm->mmap_base = mmap_base();
@@ -154,6 +173,10 @@ void arch_pick_mmap_layout(struct mm_struct *mm)
 
 	mm->mmap_legacy_base = TASK_UNMAPPED_BASE + random_factor;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	mm->mmap_legacy_base = mmap_legacy_base();
+	mm->mmap_base = mmap_base();
+>>>>>>> 2617302... source
 
 	if (mmap_is_legacy()) {
 		mm->mmap_base = mm->mmap_legacy_base;
@@ -161,9 +184,12 @@ void arch_pick_mmap_layout(struct mm_struct *mm)
 		mm->unmap_area = arch_unmap_area;
 	} else {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		mm->mmap_base = mmap_base(random_factor);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		mm->get_unmapped_area = arch_get_unmapped_area_topdown;
 		mm->unmap_area = arch_unmap_area_topdown;
 	}

@@ -101,10 +101,14 @@ static int ast_detect_chip(struct drm_device *dev)
 			ast->vga2_clone = false;
 		} else {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			ast->chip = 2000;
 =======
 			ast->chip = AST2000;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			ast->chip = 2000;
+>>>>>>> 2617302... source
 			DRM_INFO("AST 2000 detected\n");
 		}
 	}
@@ -125,11 +129,15 @@ static int ast_get_dram_info(struct drm_device *dev)
 
 	do {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		;
 	} while (ast_read32(ast, 0x10000) != 0x01);
 	data = ast_read32(ast, 0x10004);
 
 	if (data & 0x400)
+<<<<<<< HEAD
 =======
 		if (pci_channel_offline(dev->pdev))
 			return -EIO;
@@ -138,6 +146,8 @@ static int ast_get_dram_info(struct drm_device *dev)
 
 	if (data & 0x40)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		ast->dram_bus_width = 16;
 	else
 		ast->dram_bus_width = 32;
@@ -357,12 +367,16 @@ int ast_driver_load(struct drm_device *dev, unsigned long flags)
 
 	if (ast->chip != AST1180) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ast_get_dram_info(dev);
 =======
 		ret = ast_get_dram_info(dev);
 		if (ret)
 			goto out_free;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		ast_get_dram_info(dev);
+>>>>>>> 2617302... source
 		ast->vram_size = ast_get_vram_info(dev);
 		DRM_INFO("dram %d %d %d %08x\n", ast->mclk, ast->dram_type, ast->dram_bus_width, ast->vram_size);
 	}
@@ -379,9 +393,12 @@ int ast_driver_load(struct drm_device *dev, unsigned long flags)
 	dev->mode_config.preferred_depth = 24;
 	dev->mode_config.prefer_shadow = 1;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	dev->mode_config.fb_base = pci_resource_start(ast->dev->pdev, 0);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	if (ast->chip == AST2100 ||
 	    ast->chip == AST2200 ||

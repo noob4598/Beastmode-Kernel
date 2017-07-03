@@ -1358,11 +1358,15 @@ static int media_not_present(struct scsi_disk *sdkp,
 static unsigned int sd_check_events(struct gendisk *disk, unsigned int clearing)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	struct scsi_disk *sdkp = scsi_disk(disk);
 	struct scsi_device *sdp = sdkp->device;
 	struct scsi_sense_hdr *sshdr = NULL;
 	int retval;
 
+<<<<<<< HEAD
 =======
 	struct scsi_disk *sdkp = scsi_disk_get(disk);
 	struct scsi_device *sdp;
@@ -1374,6 +1378,8 @@ static unsigned int sd_check_events(struct gendisk *disk, unsigned int clearing)
 
 	sdp = sdkp->device;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	SCSI_LOG_HLQUEUE(3, sd_printk(KERN_INFO, sdkp, "sd_check_events\n"));
 
 	/*
@@ -1431,9 +1437,12 @@ out:
 	retval = sdp->changed ? DISK_EVENT_MEDIA_CHANGE : 0;
 	sdp->changed = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	scsi_disk_put(sdkp);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	return retval;
 }
 
@@ -1939,6 +1948,7 @@ static void read_capacity_error(struct scsi_disk *sdkp, struct scsi_device *sdp,
 #define READ_CAPACITY_RETRIES_ON_RESET	10
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 /*
  * Ensure that we don't overflow sector_t when CONFIG_LBDAF is not set
@@ -1957,6 +1967,8 @@ static bool sd_addressable_capacity(u64 lba, unsigned int sector_size)
 }
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 static int read_capacity_16(struct scsi_disk *sdkp, struct scsi_device *sdp,
 						unsigned char *buffer)
 {
@@ -2023,10 +2035,14 @@ static int read_capacity_16(struct scsi_disk *sdkp, struct scsi_device *sdp,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if ((sizeof(sdkp->capacity) == 4) && (lba >= 0xffffffffULL)) {
 =======
 	if (!sd_addressable_capacity(lba, sector_size)) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if ((sizeof(sdkp->capacity) == 4) && (lba >= 0xffffffffULL)) {
+>>>>>>> 2617302... source
 		sd_printk(KERN_ERR, sdkp, "Too big for this kernel. Use a "
 			"kernel compiled with support for large block "
 			"devices.\n");
@@ -2113,10 +2129,14 @@ static int read_capacity_10(struct scsi_disk *sdkp, struct scsi_device *sdp,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if ((sizeof(sdkp->capacity) == 4) && (lba == 0xffffffff)) {
 =======
 	if (!sd_addressable_capacity(lba, sector_size)) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if ((sizeof(sdkp->capacity) == 4) && (lba == 0xffffffff)) {
+>>>>>>> 2617302... source
 		sd_printk(KERN_ERR, sdkp, "Too big for this kernel. Use a "
 			"kernel compiled with support for large block "
 			"devices.\n");
@@ -3291,12 +3311,17 @@ static int sd_suspend(struct device *dev)
 	int ret = 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!sdkp)
 		return 0;	/* this can happen */
 =======
 	if (!sdkp)	/* E.g.: runtime suspend following sd_remove() */
 		return 0;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (!sdkp)
+		return 0;	/* this can happen */
+>>>>>>> 2617302... source
 
 	if (sdkp->WCE) {
 		sd_printk(KERN_NOTICE, sdkp, "Synchronizing SCSI cache\n");
@@ -3321,11 +3346,14 @@ static int sd_resume(struct device *dev)
 	int ret = 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (!sdkp)	/* E.g.: runtime resume at the start of sd_probe() */
 		return 0;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	if (!sdkp->device->manage_start_stop)
 		goto done;
 

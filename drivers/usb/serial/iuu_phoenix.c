@@ -70,6 +70,7 @@ struct iuu_private {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 static int iuu_attach(struct usb_serial *serial)
 {
@@ -82,6 +83,8 @@ static int iuu_attach(struct usb_serial *serial)
 }
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 static int iuu_port_probe(struct usb_serial_port *port)
 {
 	struct iuu_private *priv;
@@ -1213,9 +1216,12 @@ static struct usb_serial_driver iuu_device = {
 	.set_termios = iuu_set_termios,
 	.init_termios = iuu_init_termios,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	.attach = iuu_attach,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	.port_probe = iuu_port_probe,
 	.port_remove = iuu_port_remove,
 };

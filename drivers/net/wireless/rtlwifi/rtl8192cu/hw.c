@@ -1002,10 +1002,14 @@ int rtl92cu_hw_init(struct ieee80211_hw *hw)
 	if (err) {
 		RT_TRACE(rtlpriv, COMP_ERR, DBG_EMERG, "init mac failed!\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return err;
 =======
 		goto exit;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		return err;
+>>>>>>> 2617302... source
 	}
 	err = rtl92c_download_fw(hw);
 	if (err) {

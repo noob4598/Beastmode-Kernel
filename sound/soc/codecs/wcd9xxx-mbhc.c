@@ -66,10 +66,14 @@
 #define STATUS_REL_DETECTION 0x0C
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define HS_DETECT_PLUG_TIME_MS (5 * 1000)
 =======
 #define HS_DETECT_PLUG_TIME_MS (2 * 1000)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+#define HS_DETECT_PLUG_TIME_MS (5 * 1000)
+>>>>>>> 2617302... source
 #define ANC_HPH_DETECT_PLUG_TIME_MS (5 * 1000)
 #define HS_DETECT_PLUG_INERVAL_MS 100
 #define SWCH_REL_DEBOUNCE_TIME_MS 50
@@ -329,6 +333,7 @@ static bool __wcd9xxx_switch_micbias(struct wcd9xxx_mbhc *mbhc,
 		if (!override)
 			wcd9xxx_turn_onoff_override(mbhc, true);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 		snd_soc_update_bits(codec, WCD9XXX_A_MAD_ANA_CTRL,
@@ -336,6 +341,8 @@ static bool __wcd9xxx_switch_micbias(struct wcd9xxx_mbhc *mbhc,
 		snd_soc_update_bits(codec, WCD9XXX_A_LDO_H_MODE_1,
 				    0x20, 0x00);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		/* Adjust threshold if Mic Bias voltage changes */
 		if (d->micb_mv != VDDIO_MICBIAS_MV) {
 			cfilt_k_val = __wcd9xxx_resmgr_get_k_val(mbhc,
@@ -398,6 +405,7 @@ static bool __wcd9xxx_switch_micbias(struct wcd9xxx_mbhc *mbhc,
 		    restartpolling)
 			wcd9xxx_pause_hs_polling(mbhc);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 			snd_soc_update_bits(codec, WCD9XXX_A_MAD_ANA_CTRL,
@@ -405,6 +413,8 @@ static bool __wcd9xxx_switch_micbias(struct wcd9xxx_mbhc *mbhc,
 			snd_soc_update_bits(codec, WCD9XXX_A_LDO_H_MODE_1,
 					    0x20, 0x20);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		/* Reprogram thresholds */
 		if (d->micb_mv != VDDIO_MICBIAS_MV) {
 			cfilt_k_val =

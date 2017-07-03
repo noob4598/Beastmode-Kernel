@@ -710,19 +710,26 @@ static int msm_eeprom_config(struct msm_eeprom_ctrl_t *e_ctrl,
 		(struct msm_eeprom_cfg_data *)argp;
 	int rc = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	size_t length = 0;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	CDBG("%s E\n", __func__);
 	switch (cdata->cfgtype) {
 	case CFG_EEPROM_GET_INFO:
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	CDBG("%s E CFG_EEPROM_GET_INFO\n", __func__);
 		cdata->is_supported = e_ctrl->is_supported;
 		memcpy(cdata->cfg.eeprom_name,
 			e_ctrl->eboard_info->eeprom_name,
 			sizeof(cdata->cfg.eeprom_name));
+<<<<<<< HEAD
 =======
 		CDBG("%s E CFG_EEPROM_GET_INFO\n", __func__);
 		cdata->is_supported = e_ctrl->is_supported;
@@ -736,6 +743,8 @@ static int msm_eeprom_config(struct msm_eeprom_ctrl_t *e_ctrl,
 		memcpy(cdata->cfg.eeprom_name,
 		       e_ctrl->eboard_info->eeprom_name, length);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		break;
 	case CFG_EEPROM_GET_CAL_DATA:
 		CDBG("%s E CFG_EEPROM_GET_CAL_DATA\n", __func__);
@@ -807,10 +816,14 @@ static long msm_eeprom_subdev_ioctl(struct v4l2_subdev *sd,
 	void __user *argp = (void __user *)arg;
 	CDBG("%s E\n", __func__);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	CDBG("%s:%d a_ctrl %p argp %p\n", __func__, __LINE__, e_ctrl, argp);
 =======
 	CDBG("%s:%d a_ctrl %pK argp %pK\n", __func__, __LINE__, e_ctrl, argp);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	CDBG("%s:%d a_ctrl %p argp %p\n", __func__, __LINE__, e_ctrl, argp);
+>>>>>>> 2617302... source
 	switch (cmd) {
 	case VIDIOC_MSM_SENSOR_GET_SUBDEV_ID:
 		return msm_eeprom_get_subdev_id(e_ctrl, argp);
@@ -852,10 +865,14 @@ static int msm_eeprom_i2c_probe(struct i2c_client *client,
 	e_ctrl->eeprom_v4l2_subdev_ops = &msm_eeprom_subdev_ops;
 	e_ctrl->eeprom_mutex = &msm_eeprom_mutex;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	CDBG("%s client = 0x%p\n", __func__, client);
 =======
 	CDBG("%s client = 0x%pK\n", __func__, client);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	CDBG("%s client = 0x%p\n", __func__, client);
+>>>>>>> 2617302... source
 	e_ctrl->eboard_info = (struct msm_eeprom_board_info *)(id->driver_data);
 	if (!e_ctrl->eboard_info) {
 		pr_err("%s:%d board info NULL\n", __func__, __LINE__);
@@ -1010,12 +1027,15 @@ static int msm_eeprom_get_dt_data(struct msm_eeprom_ctrl_t *e_ctrl)
 		of_node = e_ctrl->pdev->dev.of_node;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (!of_node) {
 		pr_err("%s: %d of_node is NULL\n", __func__ , __LINE__);
 		return -ENOMEM;
 	}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	rc = msm_camera_get_dt_vreg_data(of_node, &power_info->cam_vreg,
 					     &power_info->num_vreg);
 	if (rc < 0)

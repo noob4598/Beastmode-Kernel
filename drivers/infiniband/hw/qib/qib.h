@@ -1056,14 +1056,20 @@ struct qib_devdata {
 	struct mutex eep_lock;
 	uint64_t traffic_wds;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	/* active time is kept in seconds, but logged in hours */
 	atomic_t active_time;
 	/* Below are nominal shadow of EEPROM, new since last EEPROM update */
 	uint8_t eep_st_errs[QIB_EEP_LOG_CNT];
 	uint8_t eep_st_new_errs[QIB_EEP_LOG_CNT];
 	uint16_t eep_hrs;
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	/*
 	 * masks for which bits of errs, hwerrs that cause
 	 * each of the counters to increment.
@@ -1282,11 +1288,16 @@ int qib_twsi_blk_wr(struct qib_devdata *dd, int dev, int addr,
 		    const void *buffer, int len);
 void qib_get_eeprom_info(struct qib_devdata *);
 <<<<<<< HEAD
+<<<<<<< HEAD
 int qib_update_eeprom_log(struct qib_devdata *dd);
 void qib_inc_eeprom_err(struct qib_devdata *dd, u32 eidx, u32 incr);
 =======
 #define qib_inc_eeprom_err(dd, eidx, incr)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+int qib_update_eeprom_log(struct qib_devdata *dd);
+void qib_inc_eeprom_err(struct qib_devdata *dd, u32 eidx, u32 incr);
+>>>>>>> 2617302... source
 void qib_dump_lookup_output_queue(struct qib_devdata *);
 void qib_force_pio_avail_update(struct qib_devdata *);
 void qib_clear_symerror_on_linkup(unsigned long opaque);
@@ -1482,6 +1493,9 @@ extern struct mutex qib_mutex;
  */
 #define qib_early_err(dev, fmt, ...) \
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	do { \
 		dev_err(dev, fmt, ##__VA_ARGS__); \
 	} while (0)
@@ -1503,6 +1517,7 @@ extern struct mutex qib_mutex;
 	do { \
 		dev_info(&(pcidev)->dev, fmt, ##__VA_ARGS__); \
 	} while (0)
+<<<<<<< HEAD
 =======
 	dev_err(dev, fmt, ##__VA_ARGS__)
 
@@ -1521,6 +1536,8 @@ extern struct mutex qib_mutex;
 #define qib_devinfo(pcidev, fmt, ...) \
 	dev_info(&(pcidev)->dev, fmt, ##__VA_ARGS__)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 /*
  * this is used for formatting hw error messages...

@@ -573,6 +573,7 @@ static const struct dmi_system_id video_vendor_dmi_table[] = {
 		},
 	},
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	{
 		/*
@@ -586,6 +587,8 @@ static const struct dmi_system_id video_vendor_dmi_table[] = {
 		},
 	},
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	{}
 };
 
@@ -1864,11 +1867,15 @@ static int acer_wmi_enable_lm(void)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 static acpi_status __init acer_wmi_get_handle_cb(acpi_handle ah, u32 level,
 						void *ctx, void **retval)
 {
 	*(acpi_handle *)retval = ah;
 	return AE_OK;
+<<<<<<< HEAD
 =======
 #define ACER_WMID_ACCEL_HID	"BST0001"
 
@@ -1889,6 +1896,8 @@ static acpi_status __init acer_wmi_get_handle_cb(acpi_handle ah, u32 level,
 
 	return AE_CTRL_TERMINATE;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 }
 
 static int __init acer_wmi_get_handle(const char *name, const char *prop,
@@ -1903,11 +1912,16 @@ static int __init acer_wmi_get_handle(const char *name, const char *prop,
 	status = acpi_get_devices(prop, acer_wmi_get_handle_cb,
 					(void *)name, &handle);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	if (ACPI_SUCCESS(status)) {
 =======
 	if (ACPI_SUCCESS(status) && handle) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+
+	if (ACPI_SUCCESS(status)) {
+>>>>>>> 2617302... source
 		*ah = handle;
 		return 0;
 	} else {
@@ -1920,10 +1934,14 @@ static int __init acer_wmi_accel_setup(void)
 	int err;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	err = acer_wmi_get_handle("SENR", "BST0001", &gsensor_handle);
 =======
 	err = acer_wmi_get_handle("SENR", ACER_WMID_ACCEL_HID, &gsensor_handle);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	err = acer_wmi_get_handle("SENR", "BST0001", &gsensor_handle);
+>>>>>>> 2617302... source
 	if (err)
 		return err;
 
@@ -2295,10 +2313,14 @@ static int __init acer_wmi_init(void)
 		if (err)
 			return err;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	}
 
 	acer_wmi_accel_setup();
 
+<<<<<<< HEAD
 =======
 		err = acer_wmi_accel_setup();
 		if (err && err != -ENODEV)
@@ -2306,6 +2328,8 @@ static int __init acer_wmi_init(void)
 	}
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	err = platform_driver_register(&acer_platform_driver);
 	if (err) {
 		pr_err("Unable to register platform driver\n");

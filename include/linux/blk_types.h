@@ -178,12 +178,16 @@ enum rq_flag_bits {
 	__REQ_FAILED,		/* set if the request failed */
 	__REQ_QUIET,		/* don't worry about errors */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	__REQ_PREEMPT,		/* set for "ide_preempt" requests */
 =======
 	__REQ_PREEMPT,		/* set for "ide_preempt" requests and also
 				   for requests for which the SCSI "quiesce"
 				   state must be ignored. */
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	__REQ_PREEMPT,		/* set for "ide_preempt" requests */
+>>>>>>> 2617302... source
 	__REQ_ALLOCED,		/* request came from our alloc pool */
 	__REQ_COPY_USER,	/* contains copies of user pages */
 	__REQ_FLUSH_SEQ,	/* request for flush sequence */

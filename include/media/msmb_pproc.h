@@ -14,9 +14,12 @@
 #define MAX_NUM_CPP_STRIPS 8
 #define MSM_CPP_MAX_NUM_PLANES 3
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define MSM_CPP_MIN_FRAME_LENGTH 13
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 #define MSM_CPP_MAX_FRAME_LENGTH 2048
 #define MSM_CPP_MAX_FW_NAME_LEN 32
 

@@ -7,9 +7,12 @@
 #include <linux/security.h>
 #include <linux/syscalls.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <linux/user_namespace.h>
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 #include <asm/uaccess.h>
 
 /* init to 2 - one for init_task, one to ensure it is never freed */
@@ -238,6 +241,7 @@ out:
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 bool may_setgroups(void)
 {
@@ -248,6 +252,8 @@ bool may_setgroups(void)
 }
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 /*
  *	SMP: Our groups are copy-on-write. We can set them safely
  *	without another task interfering.
@@ -259,10 +265,14 @@ SYSCALL_DEFINE2(setgroups, int, gidsetsize, gid_t __user *, grouplist)
 	int retval;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!nsown_capable(CAP_SETGID))
 =======
 	if (!may_setgroups())
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (!nsown_capable(CAP_SETGID))
+>>>>>>> 2617302... source
 		return -EPERM;
 	if ((unsigned)gidsetsize > NGROUPS_MAX)
 		return -EINVAL;

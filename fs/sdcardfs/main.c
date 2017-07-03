@@ -3,11 +3,15 @@
  *
  * Copyright (c) 2013 Samsung Electronics Co. Ltd
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
  *   Authors: Daeho Jeong, Woojoong Lee, Seunghwan Hyun, 
  *               Sunghwan Yun, Sungjong Seo
  *                      
  * This program has been developed as a stackable file system based on
  * the WrapFS which written by 
+<<<<<<< HEAD
 =======
  *   Authors: Daeho Jeong, Woojoong Lee, Seunghwan Hyun,
  *               Sunghwan Yun, Sungjong Seo
@@ -15,6 +19,8 @@
  * This program has been developed as a stackable file system based on
  * the WrapFS which written by
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
  *
  * Copyright (c) 1998-2011 Erez Zadok
  * Copyright (c) 2009     Shrikar Archak
@@ -28,6 +34,9 @@
 
 #include "sdcardfs.h"
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 #include "version.h"
 #include <linux/module.h>
 #include <linux/types.h>
@@ -46,6 +55,7 @@ enum {
 	Opt_multi_user,
 	Opt_label,
 	Opt_type,
+<<<<<<< HEAD
 =======
 #include <linux/module.h>
 #include <linux/types.h>
@@ -61,11 +71,16 @@ enum {
 	Opt_userid,
 	Opt_reserved_mb,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	Opt_err,
 };
 
 static const match_table_t sdcardfs_tokens = {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	{Opt_low_uid, "low_uid=%u"},
 	{Opt_low_gid, "low_gid=%u"},
 	{Opt_gid, "gid=%u"},
@@ -82,6 +97,7 @@ static const match_table_t sdcardfs_tokens = {
 
 static int parse_options(struct super_block *sb, char *options, int silent, 
 				int *debug, struct sdcardfs_mount_options *opts)
+<<<<<<< HEAD
 =======
 	{Opt_fsuid, "fsuid=%u"},
 	{Opt_fsgid, "fsgid=%u"},
@@ -98,11 +114,16 @@ static int parse_options(struct super_block *sb, char *options, int silent,
 				int *debug, struct sdcardfs_vfsmount_options *vfsopts,
 				struct sdcardfs_mount_options *opts)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 {
 	char *p;
 	substring_t args[MAX_OPT_ARGS];
 	int option;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	char *string_option;
 	char *label;
 
@@ -122,6 +143,7 @@ static int parse_options(struct super_block *sb, char *options, int silent,
 	opts->multi_user = false;
 	opts->label = NULL;
 	opts->type = TYPE_NONE;
+<<<<<<< HEAD
 =======
 
 	/* by default, we use AID_MEDIA_RW as uid, gid */
@@ -134,6 +156,8 @@ static int parse_options(struct super_block *sb, char *options, int silent,
 	/* by default, 0MB is reserved */
 	opts->reserved_mb = 0;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	*debug = 0;
 
@@ -143,36 +167,51 @@ static int parse_options(struct super_block *sb, char *options, int silent,
 	while ((p = strsep(&options, ",")) != NULL) {
 		int token;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		if (!*p)
 			continue;
 
 		token = match_token(p, sdcardfs_tokens, args);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		
 =======
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		
+>>>>>>> 2617302... source
 		switch (token) {
 		case Opt_debug:
 			*debug = 1;
 			break;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		case Opt_low_uid:
 =======
 		case Opt_fsuid:
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		case Opt_low_uid:
+>>>>>>> 2617302... source
 			if (match_int(&args[0], &option))
 				return 0;
 			opts->fs_low_uid = option;
 			break;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		case Opt_low_gid:
 =======
 		case Opt_fsgid:
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		case Opt_low_gid:
+>>>>>>> 2617302... source
 			if (match_int(&args[0], &option))
 				return 0;
 			opts->fs_low_gid = option;
@@ -180,6 +219,9 @@ static int parse_options(struct super_block *sb, char *options, int silent,
 		case Opt_gid:
 			if (match_int(&args[0], &option))
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 				goto invalid_option;
 			opts->gid = option;
 			break;
@@ -201,6 +243,7 @@ static int parse_options(struct super_block *sb, char *options, int silent,
 				goto invalid_option;
 			}
 			kfree(string_option);
+<<<<<<< HEAD
 =======
 				return 0;
 			vfsopts->gid = option;
@@ -218,6 +261,8 @@ static int parse_options(struct super_block *sb, char *options, int silent,
 		case Opt_multiuser:
 			opts->multiuser = true;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 			break;
 		case Opt_reserved_mb:
 			if (match_int(&args[0], &option))
@@ -225,6 +270,9 @@ static int parse_options(struct super_block *sb, char *options, int silent,
 			opts->reserved_mb = option;
 			break;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		case Opt_mask:
 			if (match_octal(&args[0], &option))
 				goto invalid_option;
@@ -262,6 +310,7 @@ invalid_option:
 				printk( KERN_ERR "Unrecognized mount option \"%s\" "
 						"or missing value", p);
 			}
+<<<<<<< HEAD
 =======
 		/* unknown option */
 		default:
@@ -328,32 +377,43 @@ int parse_options_remount(struct super_block *sb, char *options, int silent,
 			if (!silent)
 				pr_err("Unrecognized mount option \"%s\" or missing value", p);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 			return -EINVAL;
 		}
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	if (*debug) {
 		printk( KERN_INFO "sdcardfs : options - debug:%d\n", *debug);
 		printk( KERN_INFO "sdcardfs : options - uid:%d\n", 
 							opts->fs_low_uid);
 		printk( KERN_INFO "sdcardfs : options - gid:%d\n", 
 							opts->fs_low_gid);
+<<<<<<< HEAD
 =======
 	if (debug) {
 		pr_info("sdcardfs : options - debug:%d\n", debug);
 		pr_info("sdcardfs : options - gid:%d\n", vfsopts->gid);
 		pr_info("sdcardfs : options - mask:%d\n", vfsopts->mask);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	}
 
 	return 0;
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #if 0
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 /*
  * our custom d_alloc_root work-alike
  *
@@ -371,6 +431,7 @@ static struct dentry *sdcardfs_d_alloc_root(struct super_block *sb)
 		};
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ret = __d_alloc(sb, &name);
 		if (ret) {
 			d_set_d_op(ret, &sdcardfs_ci_dops);
@@ -380,11 +441,17 @@ static struct dentry *sdcardfs_d_alloc_root(struct super_block *sb)
 			d_set_d_op(ret, &sdcardfs_ci_dops);
 			ret->d_sb = sb;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		ret = __d_alloc(sb, &name);
+		if (ret) {
+			d_set_d_op(ret, &sdcardfs_ci_dops);
+>>>>>>> 2617302... source
 			ret->d_parent = ret;
 		}
 	}
 	return ret;
 }
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 #endif
@@ -394,11 +461,14 @@ EXPORT_SYMBOL_GPL(sdcardfs_super_list_lock);
 LIST_HEAD(sdcardfs_super_list);
 EXPORT_SYMBOL_GPL(sdcardfs_super_list);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 /*
  * There is no need to lock the sdcardfs_super_info's rwsem as there is no
  * way anyone can have a reference to the superblock at this point in time.
  */
+<<<<<<< HEAD
 <<<<<<< HEAD
 static int sdcardfs_read_super(struct super_block *sb, const char *dev_name, 
 						void *raw_data, int silent)
@@ -406,6 +476,10 @@ static int sdcardfs_read_super(struct super_block *sb, const char *dev_name,
 static int sdcardfs_read_super(struct vfsmount *mnt, struct super_block *sb,
 		const char *dev_name, void *raw_data, int silent)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+static int sdcardfs_read_super(struct super_block *sb, const char *dev_name, 
+						void *raw_data, int silent)
+>>>>>>> 2617302... source
 {
 	int err = 0;
 	int debug;
@@ -413,6 +487,9 @@ static int sdcardfs_read_super(struct vfsmount *mnt, struct super_block *sb,
 	struct path lower_path;
 	struct sdcardfs_sb_info *sb_info;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	void *pkgl_id;
 
 	printk(KERN_INFO "sdcardfs: version %s\n", SDCARDFS_VERSION);
@@ -420,6 +497,7 @@ static int sdcardfs_read_super(struct vfsmount *mnt, struct super_block *sb,
 	if (!dev_name) {
 		printk(KERN_ERR
 		       "sdcardfs: read_super: missing dev_name argument\n");
+<<<<<<< HEAD
 =======
 	struct sdcardfs_vfsmount_options *mnt_opt = mnt->data;
 	struct inode *inode;
@@ -429,10 +507,13 @@ static int sdcardfs_read_super(struct vfsmount *mnt, struct super_block *sb,
 	if (!dev_name) {
 		pr_err("sdcardfs: read_super: missing dev_name argument\n");
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		err = -EINVAL;
 		goto out;
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	printk(KERN_INFO "sdcardfs: dev_name -> %s\n", dev_name);
 	printk(KERN_INFO "sdcardfs: options -> %s\n", (char *)raw_data);
@@ -441,17 +522,26 @@ static int sdcardfs_read_super(struct vfsmount *mnt, struct super_block *sb,
 	pr_info("sdcardfs: options -> %s\n", (char *)raw_data);
 	pr_info("sdcardfs: mnt -> %p\n", mnt);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	printk(KERN_INFO "sdcardfs: dev_name -> %s\n", dev_name);
+	printk(KERN_INFO "sdcardfs: options -> %s\n", (char *)raw_data);
+>>>>>>> 2617302... source
 
 	/* parse lower path */
 	err = kern_path(dev_name, LOOKUP_FOLLOW | LOOKUP_DIRECTORY,
 			&lower_path);
 	if (err) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		printk(KERN_ERR	"sdcardfs: error accessing "
 		       "lower directory '%s'\n", dev_name);
 =======
 		pr_err("sdcardfs: error accessing lower directory '%s'\n", dev_name);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		printk(KERN_ERR	"sdcardfs: error accessing "
+		       "lower directory '%s'\n", dev_name);
+>>>>>>> 2617302... source
 		goto out;
 	}
 
@@ -459,16 +549,23 @@ static int sdcardfs_read_super(struct vfsmount *mnt, struct super_block *sb,
 	sb->s_fs_info = kzalloc(sizeof(struct sdcardfs_sb_info), GFP_KERNEL);
 	if (!SDCARDFS_SB(sb)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		printk(KERN_CRIT "sdcardfs: read_super: out of memory\n");
 =======
 		pr_crit("sdcardfs: read_super: out of memory\n");
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		printk(KERN_CRIT "sdcardfs: read_super: out of memory\n");
+>>>>>>> 2617302... source
 		err = -ENOMEM;
 		goto out_free;
 	}
 
 	sb_info = sb->s_fs_info;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 
 	/* parse options */
 	err = parse_options(sb, raw_data, silent, &debug, &sb_info->options);
@@ -483,6 +580,7 @@ static int sdcardfs_read_super(struct vfsmount *mnt, struct super_block *sb,
 	else
 		sb_info->pkgl_id = pkgl_id;
 
+<<<<<<< HEAD
 =======
 	/* parse options */
 	err = parse_options(sb, raw_data, silent, &debug, mnt_opt, &sb_info->options);
@@ -492,11 +590,14 @@ static int sdcardfs_read_super(struct vfsmount *mnt, struct super_block *sb,
 	}
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	/* set the lower superblock field of upper superblock */
 	lower_sb = lower_path.dentry->d_sb;
 	atomic_inc(&lower_sb->s_active);
 	sdcardfs_set_lower_super(sb, lower_sb);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 	sb->s_stack_depth = lower_sb->s_stack_depth + 1;
@@ -507,6 +608,8 @@ static int sdcardfs_read_super(struct vfsmount *mnt, struct super_block *sb,
 	}
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	/* inherit maxbytes from lower file system */
 	sb->s_maxbytes = lower_sb->s_maxbytes;
 
@@ -518,6 +621,9 @@ static int sdcardfs_read_super(struct vfsmount *mnt, struct super_block *sb,
 
 	sb->s_magic = SDCARDFS_SUPER_MAGIC;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	if (sb_info->options.type != TYPE_NONE)
 		sb->s_op = &sdcardfs_multimount_sops;
 	else
@@ -529,6 +635,7 @@ static int sdcardfs_read_super(struct vfsmount *mnt, struct super_block *sb,
 		err = -ENOMEM;
 		goto out_sput;
 	}
+<<<<<<< HEAD
 =======
 	sb->s_op = &sdcardfs_sops;
 
@@ -545,6 +652,8 @@ static int sdcardfs_read_super(struct vfsmount *mnt, struct super_block *sb,
 	}
 	d_set_d_op(sb->s_root, &sdcardfs_ci_dops);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	/* link the upper and lower dentries */
 	sb->s_root->d_fsdata = NULL;
@@ -556,6 +665,9 @@ static int sdcardfs_read_super(struct vfsmount *mnt, struct super_block *sb,
 	sdcardfs_set_lower_path(sb->s_root, &lower_path);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	/* call interpose to create the upper level inode */
 	err = sdcardfs_interpose(sb->s_root, sb, &lower_path);
 	if (!err) {
@@ -594,6 +706,7 @@ out_sput:
 	/* drop refs we took earlier */
 	atomic_dec(&lower_sb->s_active);
 	packagelist_destroy(sb_info->pkgl_id);
+<<<<<<< HEAD
 =======
 	/*
 	 * No need to call interpose because we already have a positive
@@ -635,6 +748,8 @@ out_sput:
 	/* drop refs we took earlier */
 	atomic_dec(&lower_sb->s_active);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 out_freesbi:
 	kfree(SDCARDFS_SB(sb));
 	sb->s_fs_info = NULL;
@@ -647,6 +762,7 @@ out:
 
 /* A feature which supports mount_nodev() with options */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct dentry *mount_nodev_with_options(struct file_system_type *fs_type,
         int flags, const char *dev_name, void *data,
         int (*fill_super)(struct super_block *, const char *, void *, int))
@@ -657,6 +773,11 @@ static struct dentry *mount_nodev_with_options(struct vfsmount *mnt,
 			int (*fill_super)(struct vfsmount *, struct super_block *,
 						const char *, void *, int))
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+static struct dentry *mount_nodev_with_options(struct file_system_type *fs_type,
+        int flags, const char *dev_name, void *data,
+        int (*fill_super)(struct super_block *, const char *, void *, int))
+>>>>>>> 2617302... source
 
 {
 	int error;
@@ -668,10 +789,14 @@ static struct dentry *mount_nodev_with_options(struct vfsmount *mnt,
 	s->s_flags = flags;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	error = fill_super(s, dev_name, data, flags & MS_SILENT ? 1 : 0);
 =======
 	error = fill_super(mnt, s, dev_name, data, flags & MS_SILENT ? 1 : 0);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	error = fill_super(s, dev_name, data, flags & MS_SILENT ? 1 : 0);
+>>>>>>> 2617302... source
 	if (error) {
 		deactivate_locked_super(s);
 		return ERR_PTR(error);
@@ -681,6 +806,9 @@ static struct dentry *mount_nodev_with_options(struct vfsmount *mnt,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 struct dentry *sdcardfs_mount(struct file_system_type *fs_type, int flags,
 			    const char *dev_name, void *raw_data)
 {
@@ -690,6 +818,7 @@ struct dentry *sdcardfs_mount(struct file_system_type *fs_type, int flags,
 	 */
 	return mount_nodev_with_options(fs_type, flags, dev_name,
 					raw_data, sdcardfs_read_super);
+<<<<<<< HEAD
 =======
 static struct dentry *sdcardfs_mount(struct vfsmount *mnt,
 		struct file_system_type *fs_type, int flags,
@@ -727,16 +856,22 @@ void sdcardfs_kill_sb(struct super_block *sb)
 	}
 	generic_shutdown_super(sb);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 }
 
 static struct file_system_type sdcardfs_fs_type = {
 	.owner		= THIS_MODULE,
 	.name		= SDCARDFS_NAME,
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	.mount		= sdcardfs_mount,
 	.kill_sb	= generic_shutdown_super,
 	.fs_flags	= 0,
 };
+<<<<<<< HEAD
 =======
 	.mount		= sdcardfs_mount_wrn,
 	.mount2		= sdcardfs_mount,
@@ -746,6 +881,8 @@ static struct file_system_type sdcardfs_fs_type = {
 };
 MODULE_ALIAS_FS(SDCARDFS_NAME);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 static int __init init_sdcardfs_fs(void)
 {
@@ -782,6 +919,7 @@ static void __exit exit_sdcardfs_fs(void)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 MODULE_AUTHOR("Woojoong Lee, Daeho Jeong, Kitae Lee, Yeongjin Gil"
         " System Memory Lab., Samsung Electronics");
 =======
@@ -794,6 +932,10 @@ MODULE_AUTHOR("Woojoong Lee, Daeho Jeong, Kitae Lee, Yeongjin Gil System Memory 
 /* Current maintainer */
 MODULE_AUTHOR("Daniel Rosenberg, Google");
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+MODULE_AUTHOR("Woojoong Lee, Daeho Jeong, Kitae Lee, Yeongjin Gil"
+        " System Memory Lab., Samsung Electronics");
+>>>>>>> 2617302... source
 MODULE_DESCRIPTION("Sdcardfs " SDCARDFS_VERSION);
 MODULE_LICENSE("GPL");
 

@@ -386,11 +386,17 @@ EXPORT_SYMBOL(hashbin_new);
  *    just supply kfree, which should take care of the job.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 #ifdef CONFIG_LOCKDEP
 static int hashbin_lock_depth = 0;
 #endif
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+#ifdef CONFIG_LOCKDEP
+static int hashbin_lock_depth = 0;
+#endif
+>>>>>>> 2617302... source
 int hashbin_delete( hashbin_t* hashbin, FREE_FUNC free_func)
 {
 	irda_queue_t* queue;
@@ -402,14 +408,20 @@ int hashbin_delete( hashbin_t* hashbin, FREE_FUNC free_func)
 
 	/* Synchronize */
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	if ( hashbin->hb_type & HB_LOCK ) {
 		spin_lock_irqsave_nested(&hashbin->hb_spinlock, flags,
 					 hashbin_lock_depth++);
 	}
+<<<<<<< HEAD
 =======
 	if (hashbin->hb_type & HB_LOCK)
 		spin_lock_irqsave(&hashbin->hb_spinlock, flags);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	/*
 	 *  Free the entries in the hashbin, TODO: use hashbin_clear when
@@ -417,12 +429,16 @@ int hashbin_delete( hashbin_t* hashbin, FREE_FUNC free_func)
 	 */
 	for (i = 0; i < HASHBIN_SIZE; i ++ ) {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		queue = dequeue_first((irda_queue_t**) &hashbin->hb_queue[i]);
 		while (queue ) {
 			if (free_func)
 				(*free_func)(queue);
 			queue = dequeue_first(
 				(irda_queue_t**) &hashbin->hb_queue[i]);
+<<<<<<< HEAD
 =======
 		while (1) {
 			queue = dequeue_first((irda_queue_t**) &hashbin->hb_queue[i]);
@@ -438,6 +454,8 @@ int hashbin_delete( hashbin_t* hashbin, FREE_FUNC free_func)
 					spin_lock_irqsave(&hashbin->hb_spinlock, flags);
 			}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		}
 	}
 
@@ -447,16 +465,22 @@ int hashbin_delete( hashbin_t* hashbin, FREE_FUNC free_func)
 
 	/* Release lock */
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	if ( hashbin->hb_type & HB_LOCK) {
 		spin_unlock_irqrestore(&hashbin->hb_spinlock, flags);
 #ifdef CONFIG_LOCKDEP
 		hashbin_lock_depth--;
 #endif
 	}
+<<<<<<< HEAD
 =======
 	if (hashbin->hb_type & HB_LOCK)
 		spin_unlock_irqrestore(&hashbin->hb_spinlock, flags);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	/*
 	 *  Free the hashbin structure

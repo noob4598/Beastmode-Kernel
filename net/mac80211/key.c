@@ -608,10 +608,14 @@ void ieee80211_free_sta_keys(struct ieee80211_local *local,
 
 	mutex_lock(&local->key_mtx);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	for (i = 0; i < NUM_DEFAULT_KEYS; i++) {
 =======
 	for (i = 0; i < ARRAY_SIZE(sta->gtk); i++) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	for (i = 0; i < NUM_DEFAULT_KEYS; i++) {
+>>>>>>> 2617302... source
 		key = key_mtx_dereference(local, sta->gtk[i]);
 		if (!key)
 			continue;

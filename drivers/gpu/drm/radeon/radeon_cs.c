@@ -97,6 +97,7 @@ static int radeon_cs_parser_relocs(struct radeon_cs_parser *p)
 				r->write_domain : r->read_domains;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 			if (domain & RADEON_GEM_DOMAIN_CPU) {
 				DRM_ERROR("RADEON_GEM_DOMAIN_CPU is not valid "
@@ -105,6 +106,8 @@ static int radeon_cs_parser_relocs(struct radeon_cs_parser *p)
 			}
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 			p->relocs[i].lobj.domain = domain;
 			if (domain == RADEON_GEM_DOMAIN_VRAM)
 				domain |= RADEON_GEM_DOMAIN_GTT;
@@ -181,11 +184,15 @@ int radeon_cs_parser_init(struct radeon_cs_parser *p, void *data)
 	s32 priority = 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	if (!cs->num_chunks) {
 		return 0;
 	}
 	/* get chunks */
 	INIT_LIST_HEAD(&p->validated);
+<<<<<<< HEAD
 =======
 	INIT_LIST_HEAD(&p->validated);
 
@@ -195,6 +202,8 @@ int radeon_cs_parser_init(struct radeon_cs_parser *p, void *data)
 
 	/* get chunks */
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	p->idx = 0;
 	p->ib.sa_bo = NULL;
 	p->ib.semaphore = NULL;

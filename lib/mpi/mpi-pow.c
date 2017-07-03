@@ -65,6 +65,7 @@ int mpi_powm(MPI res, MPI base, MPI exp, MPI mod)
 		/* Exponent is zero, result is 1 mod MOD, i.e., 1 or 0
 		 * depending on if MOD equals 1.  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		rp[0] = 1;
 		res->nlimbs = (msize == 1 && mod->d[0] == 1) ? 0 : 1;
 =======
@@ -76,6 +77,10 @@ int mpi_powm(MPI res, MPI base, MPI exp, MPI mod)
 			rp[0] = 1;
 		}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		rp[0] = 1;
+		res->nlimbs = (msize == 1 && mod->d[0] == 1) ? 0 : 1;
+>>>>>>> 2617302... source
 		res->sign = 0;
 		goto leave;
 	}

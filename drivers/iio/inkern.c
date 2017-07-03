@@ -179,19 +179,27 @@ static struct iio_channel *of_iio_channel_get_by_name(struct device_node *np,
 							 name);
 		chan = of_iio_channel_get(np, index);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (!IS_ERR(chan))
 =======
 		if (!IS_ERR(chan) || PTR_ERR(chan) == -EPROBE_DEFER)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		if (!IS_ERR(chan))
+>>>>>>> 2617302... source
 			break;
 		else if (name && index >= 0) {
 			pr_err("ERROR: could not get IIO channel %s:%s(%i)\n",
 				np->full_name, name ? name : "", index);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			return chan;
 =======
 			return NULL;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			return chan;
+>>>>>>> 2617302... source
 		}
 
 		/*
@@ -202,6 +210,7 @@ static struct iio_channel *of_iio_channel_get_by_name(struct device_node *np,
 		np = np->parent;
 		if (np && !of_get_property(np, "io-channel-ranges", NULL))
 <<<<<<< HEAD
+<<<<<<< HEAD
 			break;
 	}
 =======
@@ -209,6 +218,10 @@ static struct iio_channel *of_iio_channel_get_by_name(struct device_node *np,
 	}
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			break;
+	}
+>>>>>>> 2617302... source
 	return chan;
 }
 
@@ -332,9 +345,12 @@ struct iio_channel *iio_channel_get(struct device *dev,
 			return channel;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	return iio_channel_get_sys(name, channel_name);
 }
 EXPORT_SYMBOL_GPL(iio_channel_get);

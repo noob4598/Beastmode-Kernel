@@ -43,12 +43,17 @@ int extent_from_logical(struct btrfs_fs_info *fs_info, u64 logical,
 
 int tree_backref_for_extent(unsigned long *ptr, struct extent_buffer *eb,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				struct btrfs_extent_item *ei, u32 item_size,
 				u64 *out_root, u8 *out_level);
 =======
 			    struct btrfs_key *key, struct btrfs_extent_item *ei,
 			    u32 item_size, u64 *out_root, u8 *out_level);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+				struct btrfs_extent_item *ei, u32 item_size,
+				u64 *out_root, u8 *out_level);
+>>>>>>> 2617302... source
 
 int iterate_extent_inodes(struct btrfs_fs_info *fs_info,
 				u64 extent_item_objectid,

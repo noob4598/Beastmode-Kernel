@@ -452,6 +452,7 @@ void inet6_destroy_sock(struct sock *sk)
 	/* Free tx options */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	opt = xchg(&np->opt, NULL);
 	if (opt != NULL)
 		sock_kfree_s(sk, opt, opt->tot_len);
@@ -462,6 +463,11 @@ void inet6_destroy_sock(struct sock *sk)
 		txopt_put(opt);
 	}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	opt = xchg(&np->opt, NULL);
+	if (opt != NULL)
+		sock_kfree_s(sk, opt, opt->tot_len);
+>>>>>>> 2617302... source
 }
 EXPORT_SYMBOL_GPL(inet6_destroy_sock);
 
@@ -709,6 +715,7 @@ int inet6_sk_rebuild_header(struct sock *sk)
 		security_sk_classify_flow(sk, flowi6_to_flowi(&fl6));
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		final_p = fl6_update_dst(&fl6, np->opt, &final);
 =======
 		rcu_read_lock();
@@ -716,6 +723,9 @@ int inet6_sk_rebuild_header(struct sock *sk)
 					 &final);
 		rcu_read_unlock();
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		final_p = fl6_update_dst(&fl6, np->opt, &final);
+>>>>>>> 2617302... source
 
 		dst = ip6_dst_lookup_flow(sk, &fl6, final_p, false);
 		if (IS_ERR(dst)) {
@@ -954,11 +964,14 @@ static int __init inet6_init(void)
 	if (err)
 		goto ip6_route_fail;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	err = ndisc_late_init();
 	if (err)
 		goto ndisc_late_fail;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	err = ip6_flowlabel_init();
 	if (err)
 		goto ip6_flowlabel_fail;
@@ -1026,10 +1039,13 @@ addrconf_fail:
 	ip6_flowlabel_cleanup();
 ip6_flowlabel_fail:
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	ndisc_late_cleanup();
 ndisc_late_fail:
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	ip6_route_cleanup();
 ip6_route_fail:
 #ifdef CONFIG_PROC_FS
@@ -1093,9 +1109,12 @@ static void __exit inet6_exit(void)
 	addrconf_cleanup();
 	ip6_flowlabel_cleanup();
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	ndisc_late_cleanup();
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	ip6_route_cleanup();
 #ifdef CONFIG_PROC_FS
 

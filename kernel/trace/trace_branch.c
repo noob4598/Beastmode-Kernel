@@ -38,6 +38,7 @@ probe_likely_condition(struct ftrace_branch_data *f, int val, int expect)
 	struct ring_buffer *buffer;
 	unsigned long flags;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int cpu, pc;
 	const char *p;
 
@@ -49,6 +50,11 @@ probe_likely_condition(struct ftrace_branch_data *f, int val, int expect)
 		return;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	int cpu, pc;
+	const char *p;
+
+>>>>>>> 2617302... source
 	/*
 	 * I would love to save just the ftrace_likely_data pointer, but
 	 * this code can also be used by modules. Ugly things can happen
@@ -60,16 +66,22 @@ probe_likely_condition(struct ftrace_branch_data *f, int val, int expect)
 		return;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	local_irq_save(flags);
 	cpu = raw_smp_processor_id();
 	data = per_cpu_ptr(tr->trace_buffer.data, cpu);
 	if (atomic_inc_return(&data->disabled) != 1)
+<<<<<<< HEAD
 =======
 	raw_local_irq_save(flags);
 	current->trace_recursion |= TRACE_BRANCH_BIT;
 	data = this_cpu_ptr(tr->trace_buffer.data);
 	if (atomic_read(&data->disabled))
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		goto out;
 
 	pc = preempt_count();
@@ -99,12 +111,17 @@ probe_likely_condition(struct ftrace_branch_data *f, int val, int expect)
 
  out:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	atomic_dec(&data->disabled);
 	local_irq_restore(flags);
 =======
 	current->trace_recursion &= ~TRACE_BRANCH_BIT;
 	raw_local_irq_restore(flags);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	atomic_dec(&data->disabled);
+	local_irq_restore(flags);
+>>>>>>> 2617302... source
 }
 
 static inline

@@ -622,6 +622,7 @@ int __carl9170_exec_cmd(struct ar9170 *ar, struct carl9170_cmd *cmd,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	usb_fill_int_urb(urb, ar->udev, usb_sndintpipe(ar->udev,
 		AR9170_USB_EP_CMD), cmd, cmd->hdr.len + 4,
 		carl9170_usb_cmd_complete, ar, 1);
@@ -637,6 +638,11 @@ int __carl9170_exec_cmd(struct ar9170 *ar, struct carl9170_cmd *cmd,
 				 cmd, cmd->hdr.len + 4,
 				 carl9170_usb_cmd_complete, ar, 1);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	usb_fill_int_urb(urb, ar->udev, usb_sndintpipe(ar->udev,
+		AR9170_USB_EP_CMD), cmd, cmd->hdr.len + 4,
+		carl9170_usb_cmd_complete, ar, 1);
+>>>>>>> 2617302... source
 
 	if (free_buf)
 		urb->transfer_flags |= URB_FREE_BUFFER;
@@ -1046,6 +1052,7 @@ static int carl9170_usb_probe(struct usb_interface *intf,
 			      const struct usb_device_id *id)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct ar9170 *ar;
 	struct usb_device *udev;
 	int err;
@@ -1055,6 +1062,11 @@ static int carl9170_usb_probe(struct usb_interface *intf,
 	struct usb_device *udev;
 	int i, err;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	struct ar9170 *ar;
+	struct usb_device *udev;
+	int err;
+>>>>>>> 2617302... source
 
 	err = usb_reset_device(interface_to_usbdev(intf));
 	if (err)
@@ -1070,6 +1082,7 @@ static int carl9170_usb_probe(struct usb_interface *intf,
 	ar->intf = intf;
 	ar->features = id->driver_info;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 	/* We need to remember the type of endpoint 4 because it differs
@@ -1088,6 +1101,8 @@ static int carl9170_usb_probe(struct usb_interface *intf,
 	}
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	usb_set_intfdata(intf, ar);
 	SET_IEEE80211_DEV(ar->hw, &intf->dev);
 

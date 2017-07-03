@@ -993,11 +993,15 @@ grow_dev_page(struct block_device *bdev, sector_t block,
 		if (bh->b_size == size) {
 			end_block = init_page_buffers(page, bdev,
 <<<<<<< HEAD
+<<<<<<< HEAD
 						index << sizebits, size);
 =======
 						(sector_t)index << sizebits,
 						size);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+						index << sizebits, size);
+>>>>>>> 2617302... source
 			goto done;
 		}
 		if (!try_to_free_buffers(page))
@@ -1019,11 +1023,15 @@ grow_dev_page(struct block_device *bdev, sector_t block,
 	spin_lock(&inode->i_mapping->private_lock);
 	link_dev_buffers(page, bh);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	end_block = init_page_buffers(page, bdev, index << sizebits, size);
 =======
 	end_block = init_page_buffers(page, bdev, (sector_t)index << sizebits,
 			size);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	end_block = init_page_buffers(page, bdev, index << sizebits, size);
+>>>>>>> 2617302... source
 	spin_unlock(&inode->i_mapping->private_lock);
 done:
 	ret = (block < end_block) ? 1 : -ENXIO;
@@ -2099,9 +2107,12 @@ int generic_write_end(struct file *file, struct address_space *mapping,
 {
 	struct inode *inode = mapping->host;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	loff_t old_size = inode->i_size;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	int i_size_changed = 0;
 
 	copied = block_write_end(file, mapping, pos, len, copied, page, fsdata);
@@ -2122,10 +2133,13 @@ int generic_write_end(struct file *file, struct address_space *mapping,
 	page_cache_release(page);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (old_size < pos)
 		pagecache_isize_extended(inode, old_size, pos);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	/*
 	 * Don't mark the inode dirty under page lock. First, it unnecessarily
 	 * makes the holding time of page lock longer. Second, it forces lock
@@ -2344,6 +2358,7 @@ static int cont_expand_zero(struct file *file, struct address_space *mapping,
 
 		balance_dirty_pages_ratelimited(mapping);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 		if (unlikely(fatal_signal_pending(current))) {
@@ -2351,6 +2366,8 @@ static int cont_expand_zero(struct file *file, struct address_space *mapping,
 			goto out;
 		}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	}
 
 	/* page covers the boundary, find the boundary offset */

@@ -433,6 +433,7 @@ static int bcma_device_probe(struct device *dev)
 	int err = 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (adrv->probe)
 		err = adrv->probe(core);
 =======
@@ -442,6 +443,10 @@ static int bcma_device_probe(struct device *dev)
 	if (err)
 		put_device(dev);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (adrv->probe)
+		err = adrv->probe(core);
+>>>>>>> 2617302... source
 
 	return err;
 }
@@ -455,9 +460,12 @@ static int bcma_device_remove(struct device *dev)
 	if (adrv->remove)
 		adrv->remove(core);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	put_device(dev);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	return 0;
 }

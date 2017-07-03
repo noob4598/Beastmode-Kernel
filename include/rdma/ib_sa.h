@@ -138,19 +138,27 @@ struct ib_sa_path_rec {
 	__be16       dlid;
 	__be16       slid;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int          raw_traffic;
 =======
 	u8           raw_traffic;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	int          raw_traffic;
+>>>>>>> 2617302... source
 	/* reserved */
 	__be32       flow_label;
 	u8           hop_limit;
 	u8           traffic_class;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int          reversible;
 =======
 	u8           reversible;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	int          reversible;
+>>>>>>> 2617302... source
 	u8           numb_path;
 	__be16       pkey;
 	__be16       qos_class;
@@ -202,10 +210,14 @@ struct ib_sa_mcmember_rec {
 	u8           scope;
 	u8           join_state;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int          proxy_join;
 =======
 	u8           proxy_join;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	int          proxy_join;
+>>>>>>> 2617302... source
 };
 
 /* Service Record Component Mask Sec 15.2.5.14 Ver 1.1	*/

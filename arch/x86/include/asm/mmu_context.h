@@ -43,6 +43,7 @@ static inline void switch_mm(struct mm_struct *prev, struct mm_struct *next,
 		cpumask_set_cpu(cpu, mm_cpumask(next));
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		/* Re-load page tables */
 =======
 		/*
@@ -74,6 +75,9 @@ static inline void switch_mm(struct mm_struct *prev, struct mm_struct *next,
 		 *
 		 */
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		/* Re-load page tables */
+>>>>>>> 2617302... source
 		load_cr3(next->pgd);
 
 		/* Stop flush ipis for the previous mm */
@@ -97,19 +101,25 @@ static inline void switch_mm(struct mm_struct *prev, struct mm_struct *next,
 			 */
 			cpumask_set_cpu(cpu, mm_cpumask(next));
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 			/*
 			 * We were in lazy tlb mode and leave_mm disabled
 			 * tlb flush IPI delivery. We must reload CR3
 			 * to make sure to use no freed page tables.
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 			 *
 			 * As above, load_cr3() is serializing and orders TLB
 			 * fills with respect to the mm_cpumask write.
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 			 */
 			load_cr3(next->pgd);
 			load_LDT_nolock(&next->context);

@@ -1050,9 +1050,12 @@ static int garmin_write_bulk(struct usb_serial_port *port,
 				__func__, status);
 		count = status;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		kfree(buffer);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	}
 
 	/* we are done with this urb, so let the host driver

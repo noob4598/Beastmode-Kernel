@@ -5,11 +5,14 @@
 #include <linux/device.h> /* for dev_warn */
 #include <linux/selection.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <linux/workqueue.h>
 #include <linux/tty.h>
 #include <asm/cmpxchg.h>
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 #include "speakup.h"
 
@@ -128,6 +131,9 @@ int speakup_set_selection(struct tty_struct *tty)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 /* TODO: move to some helper thread, probably.  That'd fix having to check for
  * in_atomic().  */
 int speakup_paste_selection(struct tty_struct *tty)
@@ -135,6 +141,7 @@ int speakup_paste_selection(struct tty_struct *tty)
 	struct vc_data *vc = (struct vc_data *) tty->driver_data;
 	int pasted = 0, count;
 	DECLARE_WAITQUEUE(wait, current);
+<<<<<<< HEAD
 =======
 struct speakup_paste_work {
 	struct work_struct work;
@@ -157,31 +164,45 @@ static void __speakup_paste_selection(struct work_struct *work)
 
 	/* FIXME: this is completely unsafe */
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	add_wait_queue(&vc->paste_wait, &wait);
 	while (sel_buffer && sel_buffer_lth > pasted) {
 		set_current_state(TASK_INTERRUPTIBLE);
 		if (test_bit(TTY_THROTTLED, &tty->flags)) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 			if (in_atomic())
 				/* if we are in an interrupt handler, abort */
 				break;
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			if (in_atomic())
+				/* if we are in an interrupt handler, abort */
+				break;
+>>>>>>> 2617302... source
 			schedule();
 			continue;
 		}
 		count = sel_buffer_lth - pasted;
 		count = min_t(int, count, tty->receive_room);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		tty->ldisc->ops->receive_buf(tty, sel_buffer + pasted,
 			NULL, count);
 =======
 		ld->ops->receive_buf(tty, sel_buffer + pasted, NULL, count);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		tty->ldisc->ops->receive_buf(tty, sel_buffer + pasted,
+			NULL, count);
+>>>>>>> 2617302... source
 		pasted += count;
 	}
 	remove_wait_queue(&vc->paste_wait, &wait);
 	current->state = TASK_RUNNING;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	return 0;
 }
@@ -214,3 +235,8 @@ void speakup_cancel_paste(void)
 	tty_kref_put(speakup_paste_work.tty);
 }
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	return 0;
+}
+
+>>>>>>> 2617302... source

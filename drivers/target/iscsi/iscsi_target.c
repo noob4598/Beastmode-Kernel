@@ -461,9 +461,12 @@ int iscsit_del_np(struct iscsi_np *np)
 	np->np_exports--;
 	if (np->np_exports) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		np->enabled = true;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		spin_unlock_bh(&np->np_thread_lock);
 		return 0;
 	}
@@ -522,10 +525,14 @@ static struct iscsit_transport iscsi_target_transport = {
 static int __init iscsi_target_init_module(void)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int ret = 0;
 =======
 	int ret = 0, size;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	int ret = 0;
+>>>>>>> 2617302... source
 
 	pr_debug("iSCSI-Target "ISCSIT_VERSION"\n");
 
@@ -535,9 +542,12 @@ static int __init iscsi_target_init_module(void)
 		return -1;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	spin_lock_init(&iscsit_global->ts_bitmap_lock);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	mutex_init(&auth_id_lock);
 	spin_lock_init(&sess_idr_lock);
 	idr_init(&tiqn_idr);
@@ -548,6 +558,9 @@ static int __init iscsi_target_init_module(void)
 		goto out;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	ret = iscsi_thread_set_init();
 	if (ret < 0)
 		goto configfs_out;
@@ -557,6 +570,7 @@ static int __init iscsi_target_init_module(void)
 		pr_err("iscsi_allocate_thread_sets() returned"
 			" unexpected value!\n");
 		goto ts_out1;
+<<<<<<< HEAD
 =======
 	size = BITS_TO_LONGS(ISCSIT_BITMAP_BITS) * sizeof(long);
 	iscsit_global->ts_bitmap = vzalloc(size);
@@ -564,6 +578,8 @@ static int __init iscsi_target_init_module(void)
 		pr_err("Unable to allocate iscsit_global->ts_bitmap\n");
 		goto configfs_out;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	}
 
 	lio_cmd_cache = kmem_cache_create("lio_cmd_cache",
@@ -573,10 +589,14 @@ static int __init iscsi_target_init_module(void)
 		pr_err("Unable to kmem_cache_create() for"
 				" lio_cmd_cache\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
 		goto ts_out2;
 =======
 		goto bitmap_out;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		goto ts_out2;
+>>>>>>> 2617302... source
 	}
 
 	lio_qr_cache = kmem_cache_create("lio_qr_cache",
@@ -632,14 +652,20 @@ qr_out:
 cmd_out:
 	kmem_cache_destroy(lio_cmd_cache);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 ts_out2:
 	iscsi_deallocate_thread_sets();
 ts_out1:
 	iscsi_thread_set_free();
+<<<<<<< HEAD
 =======
 bitmap_out:
 	vfree(iscsit_global->ts_bitmap);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 configfs_out:
 	iscsi_target_deregister_configfs();
 out:
@@ -650,10 +676,15 @@ out:
 static void __exit iscsi_target_cleanup_module(void)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	iscsi_deallocate_thread_sets();
 	iscsi_thread_set_free();
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	iscsi_deallocate_thread_sets();
+	iscsi_thread_set_free();
+>>>>>>> 2617302... source
 	iscsit_release_discovery_tpg();
 	iscsit_unregister_transport(&iscsi_target_transport);
 	kmem_cache_destroy(lio_cmd_cache);
@@ -665,9 +696,12 @@ static void __exit iscsi_target_cleanup_module(void)
 	iscsi_target_deregister_configfs();
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	vfree(iscsit_global->ts_bitmap);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	kfree(iscsit_global);
 }
 
@@ -1215,10 +1249,14 @@ iscsit_handle_scsi_cmd(struct iscsi_conn *conn, struct iscsi_cmd *cmd,
 	 */
 	if (iscsit_allocate_iovecs(cmd) < 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return iscsit_add_reject_cmd(cmd,
 =======
 		return iscsit_reject_cmd(cmd,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		return iscsit_add_reject_cmd(cmd,
+>>>>>>> 2617302... source
 				ISCSI_REASON_BOOKMARK_NO_RESOURCES, buf);
 	}
 	immed_data = cmd->immediate_data;
@@ -1353,10 +1391,14 @@ iscsit_check_dataout_hdr(struct iscsi_conn *conn, unsigned char *buf,
 		pr_err("Command ITT: 0x%08x received DataOUT for a"
 			" NON-WRITE command.\n", cmd->init_task_tag);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return iscsit_reject_cmd(cmd, ISCSI_REASON_PROTOCOL_ERROR, buf);
 =======
 		return iscsit_dump_data_payload(conn, payload_length, 1);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		return iscsit_reject_cmd(cmd, ISCSI_REASON_PROTOCOL_ERROR, buf);
+>>>>>>> 2617302... source
 	}
 	se_cmd = &cmd->se_cmd;
 	iscsit_mod_dataout_timer(cmd);
@@ -3634,6 +3676,9 @@ static int iscsit_send_reject(
 void iscsit_thread_get_cpumask(struct iscsi_conn *conn)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	struct iscsi_thread_set *ts = conn->thread_set;
 	int ord, cpu;
 	/*
@@ -3645,6 +3690,7 @@ void iscsit_thread_get_cpumask(struct iscsi_conn *conn)
 	 * execute upon.
 	 */
 	ord = ts->thread_id % cpumask_weight(cpu_online_mask);
+<<<<<<< HEAD
 =======
 	int ord, cpu;
 	/*
@@ -3657,6 +3703,8 @@ void iscsit_thread_get_cpumask(struct iscsi_conn *conn)
 	 */
 	ord = conn->bitmap_id % cpumask_weight(cpu_online_mask);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	for_each_online_cpu(cpu) {
 		if (ord-- == 0) {
 			cpumask_set_cpu(cpu, conn->conn_cpumask);
@@ -3849,10 +3897,14 @@ check_rsp_state:
 	case ISTATE_SEND_LOGOUTRSP:
 		if (!iscsit_logout_post_handler(cmd, conn))
 <<<<<<< HEAD
+<<<<<<< HEAD
 			goto restart;
 =======
 			return -ECONNRESET;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			goto restart;
+>>>>>>> 2617302... source
 		/* fall through */
 	case ISTATE_SEND_STATUS:
 	case ISTATE_SEND_ASYNCMSG:
@@ -3881,10 +3933,15 @@ check_rsp_state:
 err:
 	return -1;
 <<<<<<< HEAD
+<<<<<<< HEAD
 restart:
 	return -EAGAIN;
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+restart:
+	return -EAGAIN;
+>>>>>>> 2617302... source
 }
 
 static int iscsit_handle_response_queue(struct iscsi_conn *conn)
@@ -3912,11 +3969,16 @@ int iscsi_target_tx_thread(void *arg)
 {
 	int ret = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct iscsi_conn *conn;
 	struct iscsi_thread_set *ts = arg;
 =======
 	struct iscsi_conn *conn = arg;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	struct iscsi_conn *conn;
+	struct iscsi_thread_set *ts = arg;
+>>>>>>> 2617302... source
 	/*
 	 * Allow ourselves to be interrupted by SIGINT so that a
 	 * connection recovery / failure event can be triggered externally.
@@ -3924,6 +3986,9 @@ int iscsi_target_tx_thread(void *arg)
 	allow_signal(SIGINT);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 restart:
 	conn = iscsi_tx_thread_pre_handler(ts);
 	if (!conn)
@@ -3931,8 +3996,11 @@ restart:
 
 	ret = 0;
 
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	while (!kthread_should_stop()) {
 		/*
 		 * Ensure that both TX and RX per connection kthreads
@@ -3942,16 +4010,22 @@ restart:
 
 		wait_event_interruptible(conn->queues_wq,
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 					 !iscsit_conn_all_queues_empty(conn) ||
 					 ts->status == ISCSI_THREAD_SET_RESET);
 
 		if ((ts->status == ISCSI_THREAD_SET_RESET) ||
 		     signal_pending(current))
+<<<<<<< HEAD
 =======
 					 !iscsit_conn_all_queues_empty(conn));
 
 		if (signal_pending(current))
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 			goto transport_err;
 
 get_immediate:
@@ -3963,17 +4037,23 @@ get_immediate:
 		if (ret == 1)
 			goto get_immediate;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		else if (ret == -EAGAIN)
 			goto restart;
 =======
 		else if (ret == -ECONNRESET)
 			goto out;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		else if (ret == -EAGAIN)
+			goto restart;
+>>>>>>> 2617302... source
 		else if (ret < 0)
 			goto transport_err;
 	}
 
 transport_err:
+<<<<<<< HEAD
 <<<<<<< HEAD
 	iscsit_take_action_for_connection_exit(conn);
 	goto restart;
@@ -3986,6 +4066,10 @@ transport_err:
 	if (conn->conn_state != TARG_CONN_STATE_IN_LOGIN)
 		iscsit_take_action_for_connection_exit(conn);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	iscsit_take_action_for_connection_exit(conn);
+	goto restart;
+>>>>>>> 2617302... source
 out:
 	return 0;
 }
@@ -4066,6 +4150,9 @@ reject:
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 int iscsi_target_rx_thread(void *arg)
 {
 	int ret;
@@ -4073,6 +4160,7 @@ int iscsi_target_rx_thread(void *arg)
 	u32 checksum = 0, digest = 0;
 	struct iscsi_conn *conn = NULL;
 	struct iscsi_thread_set *ts = arg;
+<<<<<<< HEAD
 =======
 static bool iscsi_target_check_conn_state(struct iscsi_conn *conn)
 {
@@ -4092,6 +4180,8 @@ int iscsi_target_rx_thread(void *arg)
 	u32 checksum = 0, digest = 0;
 	struct iscsi_conn *conn = arg;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	struct kvec iov;
 	/*
 	 * Allow ourselves to be interrupted by SIGINT so that a
@@ -4099,6 +4189,9 @@ int iscsi_target_rx_thread(void *arg)
 	 */
 	allow_signal(SIGINT);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 
 restart:
 	conn = iscsi_rx_thread_pre_handler(ts);
@@ -4108,6 +4201,7 @@ restart:
 	if (conn->conn_transport->transport_type == ISCSI_INFINIBAND) {
 		struct completion comp;
 		int rc;
+<<<<<<< HEAD
 =======
 	/*
 	 * Wait for iscsi_post_login_handler() to complete before allowing
@@ -4120,6 +4214,8 @@ restart:
 	if (conn->conn_transport->transport_type == ISCSI_INFINIBAND) {
 		struct completion comp;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 		init_completion(&comp);
 		rc = wait_for_completion_interruptible(&comp);
@@ -4127,10 +4223,14 @@ restart:
 			goto transport_err;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		goto out;
 =======
 		goto transport_err;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		goto out;
+>>>>>>> 2617302... source
 	}
 
 	while (!kthread_should_stop()) {
@@ -4214,10 +4314,15 @@ transport_err:
 		atomic_set(&conn->transport_failed, 1);
 	iscsit_take_action_for_connection_exit(conn);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	goto restart;
 out:
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	goto restart;
+out:
+>>>>>>> 2617302... source
 	return 0;
 }
 
@@ -4268,6 +4373,9 @@ int iscsit_close_connection(
 		" %u\n", conn->cid, sess->sid);
 	/*
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	 * Always up conn_logout_comp just in case the RX Thread is sleeping
 	 * and the logout response never got sent because the connection
 	 * failed.
@@ -4275,6 +4383,7 @@ int iscsit_close_connection(
 	complete(&conn->conn_logout_comp);
 
 	iscsi_release_thread_set(conn);
+<<<<<<< HEAD
 =======
 	 * Always up conn_logout_comp for the traditional TCP case just in case
 	 * the RX Thread in iscsi_target_rx_opcode() is sleeping and the logout
@@ -4307,6 +4416,8 @@ int iscsit_close_connection(
 			      get_order(1));
 	spin_unlock(&iscsit_global->ts_bitmap_lock);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	iscsit_stop_timers_for_cmds(conn);
 	iscsit_stop_nopin_response_timer(conn);
@@ -4316,10 +4427,15 @@ int iscsit_close_connection(
 		conn->conn_transport->iscsit_wait_conn(conn);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	iscsit_free_queue_reqs_for_conn(conn);
 
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	iscsit_free_queue_reqs_for_conn(conn);
+
+>>>>>>> 2617302... source
 	/*
 	 * During Connection recovery drop unacknowledged out of order
 	 * commands for this connection, and prepare the other commands
@@ -4337,9 +4453,12 @@ int iscsit_close_connection(
 		iscsit_release_commands_from_conn(conn);
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	iscsit_free_queue_reqs_for_conn(conn);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	/*
 	 * Handle decrementing session or connection usage count if
@@ -4594,6 +4713,7 @@ static void iscsit_logout_post_handler_closesession(
 {
 	struct iscsi_session *sess = conn->sess;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	iscsi_set_thread_clear(conn, ISCSI_CLEAR_TX_THREAD);
 	iscsi_set_thread_set_signal(conn, ISCSI_SIGNAL_TX_THREAD);
@@ -4611,16 +4731,25 @@ static void iscsit_logout_post_handler_closesession(
 	if (conn->conn_transport->transport_type == ISCSI_TCP)
 		sleep = cmpxchg(&conn->tx_thread_active, true, false);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+
+	iscsi_set_thread_clear(conn, ISCSI_CLEAR_TX_THREAD);
+	iscsi_set_thread_set_signal(conn, ISCSI_SIGNAL_TX_THREAD);
+>>>>>>> 2617302... source
 
 	atomic_set(&conn->conn_logout_remove, 0);
 	complete(&conn->conn_logout_comp);
 
 	iscsit_dec_conn_usage_count(conn);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	iscsit_stop_session(sess, 1, 1);
 =======
 	iscsit_stop_session(sess, sleep, sleep);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	iscsit_stop_session(sess, 1, 1);
+>>>>>>> 2617302... source
 	iscsit_dec_session_usage_count(sess);
 	target_put_session(sess->se_sess);
 }
@@ -4628,6 +4757,7 @@ static void iscsit_logout_post_handler_closesession(
 static void iscsit_logout_post_handler_samecid(
 	struct iscsi_conn *conn)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	iscsi_set_thread_clear(conn, ISCSI_CLEAR_TX_THREAD);
 	iscsi_set_thread_set_signal(conn, ISCSI_SIGNAL_TX_THREAD);
@@ -4637,15 +4767,23 @@ static void iscsit_logout_post_handler_samecid(
 	if (conn->conn_transport->transport_type == ISCSI_TCP)
 		sleep = cmpxchg(&conn->tx_thread_active, true, false);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	iscsi_set_thread_clear(conn, ISCSI_CLEAR_TX_THREAD);
+	iscsi_set_thread_set_signal(conn, ISCSI_SIGNAL_TX_THREAD);
+>>>>>>> 2617302... source
 
 	atomic_set(&conn->conn_logout_remove, 0);
 	complete(&conn->conn_logout_comp);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	iscsit_cause_connection_reinstatement(conn, 1);
 =======
 	iscsit_cause_connection_reinstatement(conn, sleep);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	iscsit_cause_connection_reinstatement(conn, 1);
+>>>>>>> 2617302... source
 	iscsit_dec_conn_usage_count(conn);
 }
 
@@ -4656,9 +4794,12 @@ static void iscsit_logout_post_handler_diffcid(
 	struct iscsi_conn *l_conn;
 	struct iscsi_session *sess = conn->sess;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	bool conn_found = false;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	if (!sess)
 		return;
@@ -4668,19 +4809,26 @@ static void iscsit_logout_post_handler_diffcid(
 		if (l_conn->cid == cid) {
 			iscsit_inc_conn_usage_count(l_conn);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 			conn_found = true;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 			break;
 		}
 	}
 	spin_unlock_bh(&sess->conn_lock);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!l_conn)
 =======
 	if (!conn_found)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (!l_conn)
+>>>>>>> 2617302... source
 		return;
 
 	if (l_conn->sock)
@@ -4870,9 +5018,12 @@ int iscsit_release_sessions_for_tpg(struct iscsi_portal_group *tpg, int force)
 	struct se_portal_group *se_tpg = &tpg->tpg_se_tpg;
 	struct se_session *se_sess, *se_sess_tmp;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	LIST_HEAD(free_list);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	int session_count = 0;
 
 	spin_lock_bh(&se_tpg->session_lock);
@@ -4895,6 +5046,9 @@ int iscsit_release_sessions_for_tpg(struct iscsi_portal_group *tpg, int force)
 		atomic_set(&sess->session_reinstatement, 1);
 		spin_unlock(&sess->conn_lock);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		spin_unlock_bh(&se_tpg->session_lock);
 
 		iscsit_free_session(sess);
@@ -4903,6 +5057,7 @@ int iscsit_release_sessions_for_tpg(struct iscsi_portal_group *tpg, int force)
 		session_count++;
 	}
 	spin_unlock_bh(&se_tpg->session_lock);
+<<<<<<< HEAD
 =======
 
 		list_move_tail(&se_sess->sess_list, &free_list);
@@ -4916,6 +5071,8 @@ int iscsit_release_sessions_for_tpg(struct iscsi_portal_group *tpg, int force)
 		session_count++;
 	}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	pr_debug("Released %d iSCSI Session(s) from Target Portal"
 			" Group: %hu\n", session_count, tpg->tpgt);

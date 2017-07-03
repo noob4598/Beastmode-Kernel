@@ -207,10 +207,13 @@ static int snd_pcm_status_user_compat(struct snd_pcm_substream *substream,
 		return err;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (clear_user(src, sizeof(*src)))
 		return -EFAULT;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	if (put_user(status.state, &src->state) ||
 	    compat_put_timespec(&status.trigger_tstamp, &src->trigger_tstamp) ||
 	    compat_put_timespec(&status.tstamp, &src->tstamp) ||
@@ -240,10 +243,14 @@ static int snd_pcm_ioctl_hw_params_compat(struct snd_pcm_substream *substream,
 		return -ENOTTY;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	/* only fifo_size is different, so just copy all */
 	data = memdup_user(data32, sizeof(*data32));
 	if (IS_ERR(data))
 		return PTR_ERR(data);
+<<<<<<< HEAD
 =======
 	data = kmalloc(sizeof(*data), GFP_KERNEL);
 	if (!data)
@@ -255,6 +262,8 @@ static int snd_pcm_ioctl_hw_params_compat(struct snd_pcm_substream *substream,
 		goto error;
 	}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	if (refine)
 		err = snd_pcm_hw_refine(substream, data);

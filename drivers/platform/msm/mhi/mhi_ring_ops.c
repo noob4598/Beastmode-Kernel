@@ -1,8 +1,12 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* Copyright (c) 2014, The Linux Foundation. All rights reserved.
 =======
 /* Copyright (c) 2013, The Linux Foundation. All rights reserved.
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+/* Copyright (c) 2014, The Linux Foundation. All rights reserved.
+>>>>>>> 2617302... source
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -17,6 +21,7 @@
 #include "mhi_sys.h"
 #include "mhi.h"
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static enum MHI_STATUS add_element(struct mhi_ring *ring, void **rp,
 			void **wp, void **assigned_addr)
@@ -33,6 +38,10 @@ inline MHI_STATUS ctxt_del_element(mhi_ring *ring, void **assigned_addr)
 MHI_STATUS add_element(mhi_ring *ring, void * volatile *rp,
 			void * volatile *wp, void **assigned_addr)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+static enum MHI_STATUS add_element(struct mhi_ring *ring, void **rp,
+			void **wp, void **assigned_addr)
+>>>>>>> 2617302... source
 {
 	uintptr_t d_wp = 0, d_rp = 0, ring_size = 0;
 
@@ -68,6 +77,9 @@ MHI_STATUS add_element(mhi_ring *ring, void * volatile *rp,
 	return MHI_STATUS_SUCCESS;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 
 inline enum MHI_STATUS ctxt_add_element(struct mhi_ring *ring,
 						void **assigned_addr)
@@ -91,6 +103,7 @@ inline enum MHI_STATUS ctxt_del_element(struct mhi_ring *ring,
  */
 enum MHI_STATUS delete_element(struct mhi_ring *ring, void **rp,
 			void **wp, void **assigned_addr)
+<<<<<<< HEAD
 =======
 /**
 *@brief Moves the read pointer of the transfer ring to
@@ -103,6 +116,8 @@ enum MHI_STATUS delete_element(struct mhi_ring *ring, void **rp,
 MHI_STATUS delete_element(mhi_ring *ring, void * volatile *rp,
 			void * volatile *wp, void **assigned_addr)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 {
 	uintptr_t d_wp = 0, d_rp = 0, ring_size = 0;
 
@@ -139,6 +154,9 @@ MHI_STATUS delete_element(mhi_ring *ring, void * volatile *rp,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 int mhi_get_free_desc(struct mhi_client_handle *client_handle)
 {
 	u32 chan = client_handle->chan;
@@ -166,6 +184,7 @@ int get_nr_avail_ring_elements(struct mhi_ring *ring)
 
 enum MHI_STATUS get_nr_enclosed_el(struct mhi_ring *ring, void *rp,
 						void *wp, u32 *nr_el)
+<<<<<<< HEAD
 =======
 /**
  * @brief Returns the number of free ring elements.
@@ -193,6 +212,8 @@ int get_nr_avail_ring_elements(mhi_ring *ring)
 
 MHI_STATUS get_nr_enclosed_el(mhi_ring *ring, void *rp, void *wp, u32 *nr_el)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 {
 	uintptr_t index_rp = 0;
 	uintptr_t index_wp = 0;
@@ -204,19 +225,27 @@ MHI_STATUS get_nr_enclosed_el(mhi_ring *ring, void *rp, void *wp, u32 *nr_el)
 	}
 	if (MHI_STATUS_SUCCESS != get_element_index(ring, rp, &index_rp)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		mhi_log(MHI_MSG_CRITICAL, "Bad element index rp 0x%p.\n", rp);
 =======
 		mhi_log(MHI_MSG_CRITICAL, "Bad element index.\n");
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		mhi_log(MHI_MSG_CRITICAL, "Bad element index rp 0x%p.\n", rp);
+>>>>>>> 2617302... source
 		return MHI_STATUS_ERROR;
 	}
 
 	if (MHI_STATUS_SUCCESS != get_element_index(ring, wp, &index_wp)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		mhi_log(MHI_MSG_CRITICAL, "Bad element index wp 0x%p.\n", wp);
 =======
 		mhi_log(MHI_MSG_CRITICAL, "Bad element index.\n");
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		mhi_log(MHI_MSG_CRITICAL, "Bad element index wp 0x%p.\n", wp);
+>>>>>>> 2617302... source
 		return MHI_STATUS_ERROR;
 	}
 	ring_size = ring->len / ring->el_size;
@@ -231,11 +260,16 @@ MHI_STATUS get_nr_enclosed_el(mhi_ring *ring, void *rp, void *wp, u32 *nr_el)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 enum MHI_STATUS get_element_index(struct mhi_ring *ring,
 				void *address, uintptr_t *index)
 =======
 MHI_STATUS get_element_index(mhi_ring *ring, void *address, uintptr_t *index)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+enum MHI_STATUS get_element_index(struct mhi_ring *ring,
+				void *address, uintptr_t *index)
+>>>>>>> 2617302... source
 {
 	if (MHI_STATUS_SUCCESS != validate_ring_el_addr(ring,
 							(uintptr_t)address))
@@ -245,11 +279,16 @@ MHI_STATUS get_element_index(mhi_ring *ring, void *address, uintptr_t *index)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 enum MHI_STATUS get_element_addr(struct mhi_ring *ring,
 				uintptr_t index, void **address)
 =======
 MHI_STATUS get_element_addr(mhi_ring *ring, uintptr_t index, void **address)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+enum MHI_STATUS get_element_addr(struct mhi_ring *ring,
+				uintptr_t index, void **address)
+>>>>>>> 2617302... source
 {
 	uintptr_t ring_size = 0;
 	if (NULL == ring || NULL == address)

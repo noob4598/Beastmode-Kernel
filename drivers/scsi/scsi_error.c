@@ -899,9 +899,13 @@ static int scsi_request_sense(struct scsi_cmnd *scmd)
 void scsi_eh_finish_cmd(struct scsi_cmnd *scmd, struct list_head *done_q)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	scmd->device->host->host_failed--;
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	scmd->device->host->host_failed--;
+>>>>>>> 2617302... source
 	scmd->eh_eflags = 0;
 	list_move_tail(&scmd->eh_entry, done_q);
 }
@@ -1657,10 +1661,13 @@ static void scsi_eh_lock_door(struct scsi_device *sdev)
 	req = blk_get_request(sdev->request_queue, READ, GFP_KERNEL);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	blk_rq_set_block_pc(req);
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	req->cmd[0] = ALLOW_MEDIUM_REMOVAL;
 	req->cmd[1] = 0;
 	req->cmd[2] = 0;
@@ -1671,9 +1678,13 @@ static void scsi_eh_lock_door(struct scsi_device *sdev)
 	req->cmd_len = COMMAND_SIZE(req->cmd[0]);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	req->cmd_type = REQ_TYPE_BLOCK_PC;
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	req->cmd_type = REQ_TYPE_BLOCK_PC;
+>>>>>>> 2617302... source
 	req->cmd_flags |= REQ_QUIET;
 	req->timeout = 10 * HZ;
 	req->retries = 5;
@@ -1701,6 +1712,7 @@ static void scsi_restart_operations(struct Scsi_Host *shost)
 	 */
 	shost_for_each_device(sdev, shost) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (scsi_device_online(sdev) && sdev->locked)
 			scsi_eh_lock_door(sdev);
 =======
@@ -1709,6 +1721,10 @@ static void scsi_restart_operations(struct Scsi_Host *shost)
 			sdev->was_reset = 0;
 		}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		if (scsi_device_online(sdev) && sdev->locked)
+			scsi_eh_lock_door(sdev);
+>>>>>>> 2617302... source
 	}
 
 	/*
@@ -1866,6 +1882,7 @@ int scsi_error_handler(void *data)
 	 * disables signal delivery for the created thread.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	while (!kthread_should_stop()) {
 		set_current_state(TASK_INTERRUPTIBLE);
 =======
@@ -1881,6 +1898,10 @@ int scsi_error_handler(void *data)
 			break;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	while (!kthread_should_stop()) {
+		set_current_state(TASK_INTERRUPTIBLE);
+>>>>>>> 2617302... source
 		if ((shost->host_failed == 0 && shost->host_eh_scheduled == 0) ||
 		    shost->host_failed != shost->host_busy) {
 			SCSI_LOG_ERROR_RECOVERY(1,
@@ -1914,11 +1935,14 @@ int scsi_error_handler(void *data)
 			scsi_unjam_host(shost);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		/* All scmds have been handled */
 		shost->host_failed = 0;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		/*
 		 * Note - if the above fails completely, the action is to take
 		 * individual devices offline and flush the queue of any

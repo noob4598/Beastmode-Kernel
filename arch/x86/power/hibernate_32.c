@@ -14,19 +14,28 @@
 #include <asm/pgtable.h>
 #include <asm/mmzone.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <asm/sections.h>
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 /* Defined in hibernate_asm_32.S */
 extern int restore_image(void);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /* References to section boundaries */
 extern const void __nosave_begin, __nosave_end;
 
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+/* References to section boundaries */
+extern const void __nosave_begin, __nosave_end;
+
+>>>>>>> 2617302... source
 /* Pointer to the temporary resume page tables */
 pgd_t *resume_pg_dir;
 

@@ -773,11 +773,15 @@ int msm_post_event(struct v4l2_event *event, int timeout)
 			pr_err("%s: Timed out\n", __func__);
 			msm_print_event_error(event);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			rc = -ETIMEDOUT;
 =======
 			mutex_unlock(&session->lock);
 			return -ETIMEDOUT;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			rc = -ETIMEDOUT;
+>>>>>>> 2617302... source
 		}
 		if (rc < 0) {
 			msm_print_event_error(event);
@@ -973,20 +977,27 @@ static struct v4l2_subdev *msm_sd_find(const char *name)
 	unsigned long flags;
 	struct v4l2_subdev *subdev = NULL;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct v4l2_subdev *subdev_out = NULL;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	spin_lock_irqsave(&msm_v4l2_dev->lock, flags);
 	if (!list_empty(&msm_v4l2_dev->subdevs)) {
 		list_for_each_entry(subdev, &msm_v4l2_dev->subdevs, list)
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 			if (!strcmp(name, subdev->name))
 				break;
 	}
 	spin_unlock_irqrestore(&msm_v4l2_dev->lock, flags);
 
 	return subdev;
+<<<<<<< HEAD
 =======
 			if (!strcmp(name, subdev->name)) {
 				subdev_out = subdev;
@@ -997,6 +1008,8 @@ static struct v4l2_subdev *msm_sd_find(const char *name)
 
 	return subdev_out;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 }
 
 static void msm_sd_notify(struct v4l2_subdev *sd,

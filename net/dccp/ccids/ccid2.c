@@ -750,9 +750,12 @@ static void ccid2_hc_tx_exit(struct sock *sk)
 		kfree(hc->tx_seqbuf[i]);
 	hc->tx_seqbufc = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	dccp_ackvec_parsed_cleanup(&hc->tx_av_chunks);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 }
 
 static void ccid2_hc_rx_packet_recv(struct sock *sk, struct sk_buff *skb)

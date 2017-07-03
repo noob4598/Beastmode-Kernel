@@ -445,9 +445,13 @@ spc_emulate_evpd_b0(struct se_cmd *cmd, unsigned char *buf)
 {
 	struct se_device *dev = cmd->se_dev;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u32 max_sectors;
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	u32 max_sectors;
+>>>>>>> 2617302... source
 	int have_tp = 0;
 
 	/*
@@ -473,12 +477,18 @@ spc_emulate_evpd_b0(struct se_cmd *cmd, unsigned char *buf)
 	 * Set MAXIMUM TRANSFER LENGTH
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	max_sectors = min(dev->dev_attrib.fabric_max_sectors,
 			  dev->dev_attrib.hw_max_sectors);
 	put_unaligned_be32(max_sectors, &buf[8]);
 =======
 	put_unaligned_be32(dev->dev_attrib.hw_max_sectors, &buf[8]);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	max_sectors = min(dev->dev_attrib.fabric_max_sectors,
+			  dev->dev_attrib.hw_max_sectors);
+	put_unaligned_be32(max_sectors, &buf[8]);
+>>>>>>> 2617302... source
 
 	/*
 	 * Set OPTIMAL TRANSFER LENGTH
@@ -636,9 +646,12 @@ spc_emulate_inquiry(struct se_cmd *cmd)
 	sense_reason_t ret;
 	int p;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	int len = 0;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	memset(buf, 0, SE_INQUIRY_BUF);
 
@@ -657,9 +670,12 @@ spc_emulate_inquiry(struct se_cmd *cmd)
 
 		ret = spc_emulate_inquiry_std(cmd, buf);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		len = buf[4] + 5;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		goto out;
 	}
 
@@ -668,9 +684,12 @@ spc_emulate_inquiry(struct se_cmd *cmd)
 			buf[1] = cdb[2];
 			ret = evpd_handlers[p].emulate(cmd, buf);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 			len = get_unaligned_be16(&buf[2]) + 4;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 			goto out;
 		}
 	}
@@ -687,10 +706,14 @@ out:
 
 	if (!ret)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		target_complete_cmd(cmd, GOOD);
 =======
 		target_complete_cmd_with_length(cmd, GOOD, len);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		target_complete_cmd(cmd, GOOD);
+>>>>>>> 2617302... source
 	return ret;
 }
 
@@ -1009,10 +1032,14 @@ set_length:
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	target_complete_cmd(cmd, GOOD);
 =======
 	target_complete_cmd_with_length(cmd, GOOD, length);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	target_complete_cmd(cmd, GOOD);
+>>>>>>> 2617302... source
 	return 0;
 }
 
@@ -1190,10 +1217,14 @@ done:
 	transport_kunmap_data_sg(cmd);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	target_complete_cmd(cmd, GOOD);
 =======
 	target_complete_cmd_with_length(cmd, GOOD, 8 + lun_count * 8);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	target_complete_cmd(cmd, GOOD);
+>>>>>>> 2617302... source
 	return 0;
 }
 EXPORT_SYMBOL(spc_emulate_report_luns);

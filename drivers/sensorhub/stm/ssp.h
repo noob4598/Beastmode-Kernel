@@ -61,13 +61,19 @@
 
 #define FACTORY_DATA_MAX	100
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 
 #undef pr_info
 #define pr_info(fmt, ...) \
 	no_printk(KERN_INFO pr_fmt(fmt), ##__VA_ARGS__)
 
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 #undef SAVE_MAG_LOG/* Magnetic sensor data logging flag */
 
 #ifdef SAVE_MAG_LOG/*normal mode = 0, logging mode = 1*/
@@ -86,10 +92,14 @@
 
 #define ssp_dbg(dev, format, ...) do { \
 <<<<<<< HEAD
+<<<<<<< HEAD
 	no_printk(KERN_DEBUG dev, format, ##__VA_ARGS__); \
 =======
 	printk(KERN_INFO dev, format, ##__VA_ARGS__); \
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	no_printk(KERN_DEBUG dev, format, ##__VA_ARGS__); \
+>>>>>>> 2617302... source
 	} while (0)
 #else
 #define ssp_dbg(dev, format, ...)

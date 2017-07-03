@@ -1,8 +1,12 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* Copyright (c) 2010-2013, The Linux Foundation. All rights reserved.
 =======
 /* Copyright (c) 2010-2016, The Linux Foundation. All rights reserved.
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+/* Copyright (c) 2010-2013, The Linux Foundation. All rights reserved.
+>>>>>>> 2617302... source
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -447,10 +451,14 @@ void apr_cb_func(void *buf, int len, void *priv)
 
 	if (!buf || len <= APR_HDR_SIZE) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("APR: Improper apr pkt received:%p %d\n", buf, len);
 =======
 		pr_err("APR: Improper apr pkt received:%pK %d\n", buf, len);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		pr_err("APR: Improper apr pkt received:%p %d\n", buf, len);
+>>>>>>> 2617302... source
 		return;
 	}
 	hdr = buf;
@@ -537,10 +545,14 @@ void apr_cb_func(void *buf, int len, void *priv)
 	}
 	pr_debug("svc_idx = %d\n", i);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_debug("%x %x %x %p %p\n", c_svc->id, c_svc->dest_id,
 =======
 	pr_debug("%x %x %x %pK %pK\n", c_svc->id, c_svc->dest_id,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	pr_debug("%x %x %x %p %p\n", c_svc->id, c_svc->dest_id,
+>>>>>>> 2617302... source
 		 c_svc->client_id, c_svc->fn, c_svc->priv);
 	data.payload_size = hdr->pkt_size - hdr_size;
 	data.opcode = hdr->opcode;
@@ -605,10 +617,14 @@ static void apr_reset_deregister(struct work_struct *work)
 
 	handle = apr_reset->handle;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_debug("%s:handle[%p]\n", __func__, handle);
 =======
 	pr_debug("%s:handle[%pK]\n", __func__, handle);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	pr_debug("%s:handle[%p]\n", __func__, handle);
+>>>>>>> 2617302... source
 	apr_deregister(handle);
 	kfree(apr_reset);
 }
@@ -642,10 +658,14 @@ int apr_deregister(void *handle)
 		if (!client[dest_id][client_id].svc_cnt) {
 			svc->need_reset = 0x0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 			pr_debug("%s: service is reset %p\n", __func__, svc);
 =======
 			pr_debug("%s: service is reset %pK\n", __func__, svc);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			pr_debug("%s: service is reset %p\n", __func__, svc);
+>>>>>>> 2617302... source
 		}
 	}
 
@@ -674,10 +694,14 @@ void apr_reset(void *handle)
 	if (!handle)
 		return;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_debug("%s: handle[%p]\n", __func__, handle);
 =======
 	pr_debug("%s: handle[%pK]\n", __func__, handle);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	pr_debug("%s: handle[%p]\n", __func__, handle);
+>>>>>>> 2617302... source
 
 	if (apr_reset_workqueue == NULL) {
 		pr_err("%s: apr_reset_workqueue is NULL\n", __func__);

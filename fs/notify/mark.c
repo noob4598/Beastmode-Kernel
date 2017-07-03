@@ -300,6 +300,9 @@ void fsnotify_clear_marks_by_group_flags(struct fsnotify_group *group,
 {
 	struct fsnotify_mark *lmark, *mark;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 
 	mutex_lock_nested(&group->mark_mutex, SINGLE_DEPTH_NESTING);
 	list_for_each_entry_safe(mark, lmark, &group->marks_list, g_list) {
@@ -310,6 +313,7 @@ void fsnotify_clear_marks_by_group_flags(struct fsnotify_group *group,
 		}
 	}
 	mutex_unlock(&group->mark_mutex);
+<<<<<<< HEAD
 =======
 	LIST_HEAD(to_free);
 
@@ -342,6 +346,8 @@ void fsnotify_clear_marks_by_group_flags(struct fsnotify_group *group,
 		fsnotify_put_mark(mark);
 	}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 }
 
 /*

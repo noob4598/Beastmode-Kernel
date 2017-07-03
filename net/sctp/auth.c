@@ -394,9 +394,13 @@ nomem:
 int sctp_auth_asoc_init_active_key(struct sctp_association *asoc, gfp_t gfp)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct net *net = sock_net(asoc->base.sk);
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	struct net *net = sock_net(asoc->base.sk);
+>>>>>>> 2617302... source
 	struct sctp_auth_bytes	*secret;
 	struct sctp_shared_key *ep_key;
 
@@ -404,10 +408,14 @@ int sctp_auth_asoc_init_active_key(struct sctp_association *asoc, gfp_t gfp)
 	 * we don't need to do anything.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!net->sctp.auth_enable || !asoc->peer.auth_capable)
 =======
 	if (!asoc->ep->auth_enable || !asoc->peer.auth_capable)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (!net->sctp.auth_enable || !asoc->peer.auth_capable)
+>>>>>>> 2617302... source
 		return 0;
 
 	/* If the key_id is non-zero and we couldn't find an
@@ -455,12 +463,16 @@ struct sctp_shared_key *sctp_auth_get_shkey(
 int sctp_auth_init_hmacs(struct sctp_endpoint *ep, gfp_t gfp)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	struct net *net = sock_net(ep->base.sk);
 	struct crypto_hash *tfm = NULL;
 	__u16   id;
 
 	/* if the transforms are already allocted, we are done */
 	if (!net->sctp.auth_enable) {
+<<<<<<< HEAD
 =======
 	struct crypto_hash *tfm = NULL;
 	__u16   id;
@@ -468,14 +480,19 @@ int sctp_auth_init_hmacs(struct sctp_endpoint *ep, gfp_t gfp)
 	/* If AUTH extension is disabled, we are done */
 	if (!ep->auth_enable) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		ep->auth_hmacs = NULL;
 		return 0;
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/* If the transforms are already allocated, we are done */
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	if (ep->auth_hmacs)
 		return 0;
 
@@ -697,18 +714,24 @@ static int __sctp_auth_cid(sctp_cid_t chunk, struct sctp_chunks_param *param)
 int sctp_auth_send_cid(sctp_cid_t chunk, const struct sctp_association *asoc)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	struct net  *net;
 	if (!asoc)
 		return 0;
 
 	net = sock_net(asoc->base.sk);
 	if (!net->sctp.auth_enable || !asoc->peer.auth_capable)
+<<<<<<< HEAD
 =======
 	if (!asoc)
 		return 0;
 
 	if (!asoc->ep->auth_enable || !asoc->peer.auth_capable)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		return 0;
 
 	return __sctp_auth_cid(chunk, asoc->peer.peer_chunks);
@@ -718,18 +741,24 @@ int sctp_auth_send_cid(sctp_cid_t chunk, const struct sctp_association *asoc)
 int sctp_auth_recv_cid(sctp_cid_t chunk, const struct sctp_association *asoc)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	struct net *net;
 	if (!asoc)
 		return 0;
 
 	net = sock_net(asoc->base.sk);
 	if (!net->sctp.auth_enable)
+<<<<<<< HEAD
 =======
 	if (!asoc)
 		return 0;
 
 	if (!asoc->ep->auth_enable)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		return 0;
 
 	return __sctp_auth_cid(chunk,
@@ -851,12 +880,17 @@ int sctp_auth_ep_set_hmacs(struct sctp_endpoint *ep,
 		return -EINVAL;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	memcpy(ep->auth_hmacs_list->hmac_ids, &hmacs->shmac_idents[0],
 		hmacs->shmac_num_idents * sizeof(__u16));
 =======
 	for (i = 0; i < hmacs->shmac_num_idents; i++)
 		ep->auth_hmacs_list->hmac_ids[i] = htons(hmacs->shmac_idents[i]);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	memcpy(ep->auth_hmacs_list->hmac_ids, &hmacs->shmac_idents[0],
+		hmacs->shmac_num_idents * sizeof(__u16));
+>>>>>>> 2617302... source
 	ep->auth_hmacs_list->param_hdr.length = htons(sizeof(sctp_paramhdr_t) +
 				hmacs->shmac_num_idents * sizeof(__u16));
 	return 0;
@@ -918,10 +952,15 @@ int sctp_auth_set_key(struct sctp_endpoint *ep,
 
 	cur_key->key = key;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	sctp_auth_key_hold(key);
 
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	sctp_auth_key_hold(key);
+
+>>>>>>> 2617302... source
 	return 0;
 nomem:
 	if (!replace)

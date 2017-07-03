@@ -34,12 +34,16 @@
 /*
  * To make EFI call EFI runtime service in physical addressing mode we need
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
  * prelog/epilog before/after the invocation to disable interrupt, to
  * claim EFI runtime service handler exclusively and to duplicate a memory in
  * low memory space say 0 - 3G.
  */
 
 static unsigned long efi_rt_eflags;
+<<<<<<< HEAD
 =======
  * prolog/epilog before/after the invocation to claim the EFI runtime service
  * handler exclusively and to duplicate a memory mapping in low memory space,
@@ -47,16 +51,23 @@ static unsigned long efi_rt_eflags;
  */
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 void efi_call_phys_prelog(void)
 {
 	struct desc_ptr gdt_descr;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	local_irq_save(efi_rt_eflags);
 
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	local_irq_save(efi_rt_eflags);
+
+>>>>>>> 2617302... source
 	load_cr3(initial_page_table);
 	__flush_tlb_all();
 
@@ -76,8 +87,13 @@ void efi_call_phys_epilog(void)
 	load_cr3(swapper_pg_dir);
 	__flush_tlb_all();
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	local_irq_restore(efi_rt_eflags);
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+
+	local_irq_restore(efi_rt_eflags);
+>>>>>>> 2617302... source
 }

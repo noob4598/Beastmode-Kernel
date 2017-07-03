@@ -1,8 +1,12 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* Copyright (c) 2013-2014, The Linux Foundation. All rights reserved.
 =======
 /* Copyright (c) 2013-2015, The Linux Foundation. All rights reserved.
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+/* Copyright (c) 2013-2014, The Linux Foundation. All rights reserved.
+>>>>>>> 2617302... source
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -291,9 +295,12 @@ static int msm_dt_node_to_map(struct pinctrl_dev *pctldev,
 	u32 val;
 	unsigned long *cfg;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	unsigned int fn_name_len = 0;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	int cfg_cnt = 0, map_cnt = 0, func_cnt = 0, ret = 0;
 
 	dd = pinctrl_dev_get_drvdata(pctldev);
@@ -342,6 +349,7 @@ static int msm_dt_node_to_map(struct pinctrl_dev *pctldev,
 	/* Get function mapping */
 	of_property_read_u32(parent, "qcom,pin-func", &val);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	fn_name = kzalloc(strlen(grp_name) + strlen("-func"),
 						GFP_KERNEL);
 =======
@@ -349,16 +357,25 @@ static int msm_dt_node_to_map(struct pinctrl_dev *pctldev,
 	fn_name_len = strlen(grp_name) + strlen("-func") + 1;
 	fn_name = kzalloc(fn_name_len, GFP_KERNEL);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	fn_name = kzalloc(strlen(grp_name) + strlen("-func"),
+						GFP_KERNEL);
+>>>>>>> 2617302... source
 	if (!fn_name) {
 		ret = -ENOMEM;
 		goto func_err;
 	}
+<<<<<<< HEAD
 <<<<<<< HEAD
 	snprintf(fn_name, strlen(grp_name) + strlen("-func") + 1, "%s%s",
 						grp_name, "-func");
 =======
 	snprintf(fn_name, fn_name_len, "%s-func", grp_name);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	snprintf(fn_name, strlen(grp_name) + strlen("-func") + 1, "%s%s",
+						grp_name, "-func");
+>>>>>>> 2617302... source
 	map[*nmaps].data.mux.group = grp_name;
 	map[*nmaps].data.mux.function = fn_name;
 	map[*nmaps].type = PIN_MAP_TYPE_MUX_GROUP;

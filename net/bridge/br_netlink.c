@@ -439,6 +439,7 @@ static int br_validate(struct nlattr *tb[], struct nlattr *data[])
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 static int br_dev_newlink(struct net *src_net, struct net_device *dev,
 			  struct nlattr *tb[], struct nlattr *data[])
@@ -455,6 +456,8 @@ static int br_dev_newlink(struct net *src_net, struct net_device *dev,
 }
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 static size_t br_get_link_af_size(const struct net_device *dev)
 {
 	struct net_port_vlans *pv;
@@ -484,9 +487,12 @@ struct rtnl_link_ops br_link_ops __read_mostly = {
 	.setup		= br_dev_setup,
 	.validate	= br_validate,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	.newlink	= br_dev_newlink,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	.dellink	= br_dev_delete,
 };
 

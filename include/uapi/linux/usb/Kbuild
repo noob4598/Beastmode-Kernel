@@ -2,9 +2,12 @@
 header-y += audio.h
 header-y += cdc.h
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 header-y += cdc-wdm.h
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 header-y += ch11.h
 header-y += ch9.h
 header-y += functionfs.h

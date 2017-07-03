@@ -649,6 +649,9 @@ static __initconst const struct x86_pmu amd_pmu = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 static int setup_event_constraints(void)
 {
 	if (boot_cpu_data.x86 == 0x15)
@@ -671,6 +674,7 @@ static int setup_perfctr_core(void)
 	 * If core performance counter extensions exists, we must use
 	 * MSR_F15H_PERF_CTL/MSR_F15H_PERF_CTR msrs. See also
 	 * x86_pmu_addr_offset().
+<<<<<<< HEAD
 =======
 static int __init amd_core_pmu_init(void)
 {
@@ -693,33 +697,44 @@ static int __init amd_core_pmu_init(void)
 	 * MSR_F15H_PERF_CTL/MSR_F15H_PERF_CTR msrs. See also
 	 * amd_pmu_addr_offset().
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	 */
 	x86_pmu.eventsel	= MSR_F15H_PERF_CTL;
 	x86_pmu.perfctr		= MSR_F15H_PERF_CTR;
 	x86_pmu.num_counters	= AMD64_NUM_COUNTERS_CORE;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	printk(KERN_INFO "perf: AMD core performance counters detected\n");
 
 =======
 	pr_cont("core perfctr, ");
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	printk(KERN_INFO "perf: AMD core performance counters detected\n");
+
+>>>>>>> 2617302... source
 	return 0;
 }
 
 __init int amd_pmu_init(void)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	int ret;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	/* Performance-monitoring supported from K7 and later: */
 	if (boot_cpu_data.x86 < 6)
 		return -ENODEV;
 
 	x86_pmu = amd_pmu;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	setup_event_constraints();
 	setup_perfctr_core();
@@ -728,6 +743,10 @@ __init int amd_pmu_init(void)
 	if (ret)
 		return ret;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	setup_event_constraints();
+	setup_perfctr_core();
+>>>>>>> 2617302... source
 
 	/* Events are common for all AMDs */
 	memcpy(hw_cache_event_ids, amd_hw_cache_event_ids,

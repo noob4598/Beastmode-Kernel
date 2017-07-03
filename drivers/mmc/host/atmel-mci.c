@@ -1296,10 +1296,14 @@ static void atmci_set_ios(struct mmc_host *mmc, struct mmc_ios *ios)
 	if (ios->clock) {
 		unsigned int clock_min = ~0U;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		u32 clkdiv;
 =======
 		int clkdiv;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		u32 clkdiv;
+>>>>>>> 2617302... source
 
 		spin_lock_bh(&host->lock);
 		if (!host->mode_reg) {
@@ -1325,6 +1329,7 @@ static void atmci_set_ios(struct mmc_host *mmc, struct mmc_ios *ios)
 		if (host->caps.has_odd_clk_div) {
 			clkdiv = DIV_ROUND_UP(host->bus_hz, clock_min) - 2;
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (clkdiv > 511) {
 =======
 			if (clkdiv < 0) {
@@ -1334,6 +1339,9 @@ static void atmci_set_ios(struct mmc_host *mmc, struct mmc_ios *ios)
 				clkdiv = 0;
 			} else if (clkdiv > 511) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			if (clkdiv > 511) {
+>>>>>>> 2617302... source
 				dev_warn(&mmc->class_dev,
 				         "clock %u too slow; using %lu\n",
 				         clock_min, host->bus_hz / (511 + 2));

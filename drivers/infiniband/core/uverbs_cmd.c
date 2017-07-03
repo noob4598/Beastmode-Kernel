@@ -2107,6 +2107,7 @@ ssize_t ib_uverbs_post_send(struct ib_uverbs_file *file,
 
 		if (is_ud) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 			if (next->opcode != IB_WR_SEND &&
 			    next->opcode != IB_WR_SEND_WITH_IMM) {
@@ -2115,6 +2116,8 @@ ssize_t ib_uverbs_post_send(struct ib_uverbs_file *file,
 			}
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 			next->wr.ud.ah = idr_read_ah(user_wr->wr.ud.ah,
 						     file->ucontext);
 			if (!next->wr.ud.ah) {
@@ -2152,6 +2155,7 @@ ssize_t ib_uverbs_post_send(struct ib_uverbs_file *file,
 				next->wr.atomic.swap = user_wr->wr.atomic.swap;
 				next->wr.atomic.rkey = user_wr->wr.atomic.rkey;
 <<<<<<< HEAD
+<<<<<<< HEAD
 				break;
 			default:
 				break;
@@ -2162,6 +2166,11 @@ ssize_t ib_uverbs_post_send(struct ib_uverbs_file *file,
 				ret = -EINVAL;
 				goto out_put;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+				break;
+			default:
+				break;
+>>>>>>> 2617302... source
 			}
 		}
 

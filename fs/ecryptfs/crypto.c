@@ -1222,11 +1222,14 @@ static void ecryptfs_set_default_crypt_stat_vals(
 	crypt_stat->engine_id = -1;
 #endif
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #ifdef CONFIG_DLP
 	memset(&crypt_stat->expiry, 0, sizeof(struct knox_dlp_data));
 #endif
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 }
 
 /**

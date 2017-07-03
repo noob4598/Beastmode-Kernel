@@ -90,10 +90,14 @@ static int crush_decode_tree_bucket(void **p, void *end,
 	int j;
 	dout("crush_decode_tree_bucket %p to %p\n", *p, end);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ceph_decode_32_safe(p, end, b->num_nodes, bad);
 =======
 	ceph_decode_8_safe(p, end, b->num_nodes, bad);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	ceph_decode_32_safe(p, end, b->num_nodes, bad);
+>>>>>>> 2617302... source
 	b->node_weights = kcalloc(b->num_nodes, sizeof(u32), GFP_NOFS);
 	if (b->node_weights == NULL)
 		return -ENOMEM;
@@ -803,6 +807,7 @@ bad:
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
  * Encoding order is (new_up_client, new_state, new_weight).  Need to
  * apply in the (new_weight, new_state, new_up_client) order, because
@@ -908,6 +913,8 @@ e_inval:
 
 /*
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
  * decode and apply an incremental map update.
  */
 struct ceph_osdmap *osdmap_apply_incremental(void **p, void *end,
@@ -1023,6 +1030,9 @@ struct ceph_osdmap *osdmap_apply_incremental(void **p, void *end,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	/* new_up */
 	err = -EINVAL;
 	ceph_decode_32_safe(p, end, len, bad);
@@ -1067,12 +1077,15 @@ struct ceph_osdmap *osdmap_apply_incremental(void **p, void *end,
 		if (osd < map->max_osd)
 			map->osd_weight[osd] = off;
 	}
+<<<<<<< HEAD
 =======
 	/* new_up_client, new_state, new_weight */
 	err = decode_new_up_state_weight(p, end, map);
 	if (err)
 		goto bad;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	/* new_pg_temp */
 	ceph_decode_32_safe(p, end, len, bad);

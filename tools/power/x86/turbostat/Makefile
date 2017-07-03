@@ -1,9 +1,13 @@
 CC		= $(CROSS_COMPILE)gcc
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 BUILD_OUTPUT	:= $(PWD)
 PREFIX		:= /usr
 DESTDIR		:=
 
+<<<<<<< HEAD
 =======
 BUILD_OUTPUT	:= $(CURDIR)
 PREFIX		:= /usr
@@ -14,6 +18,8 @@ ifeq ("$(origin O)", "command line")
 endif
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 turbostat : turbostat.c
 CFLAGS +=	-Wall
 CFLAGS +=	-DMSRHEADER='"../../../../arch/x86/include/uapi/asm/msr-index.h"'

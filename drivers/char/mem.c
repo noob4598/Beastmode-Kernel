@@ -67,12 +67,15 @@ static inline int valid_mmap_phys_addr_range(unsigned long pfn, size_t size)
 #if defined(CONFIG_DEVMEM) || defined(CONFIG_DEVKMEM)
 #ifdef CONFIG_STRICT_DEVMEM
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 static inline int page_is_allowed(unsigned long pfn)
 {
 	return devmem_is_allowed(pfn);
 }
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 static inline int range_is_allowed(unsigned long pfn, unsigned long size)
 {
 	u64 from = ((u64)pfn) << PAGE_SHIFT;
@@ -81,16 +84,22 @@ static inline int range_is_allowed(unsigned long pfn, unsigned long size)
 
 	while (cursor < to) {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		if (!devmem_is_allowed(pfn)) {
 			printk(KERN_INFO
 		"Program %s tried to access /dev/mem between %Lx->%Lx.\n",
 				current->comm, from, to);
 			return 0;
 		}
+<<<<<<< HEAD
 =======
 		if (!devmem_is_allowed(pfn))
 			return 0;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		cursor += PAGE_SIZE;
 		pfn++;
 	}
@@ -98,12 +107,15 @@ static inline int range_is_allowed(unsigned long pfn, unsigned long size)
 }
 #else
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 static inline int page_is_allowed(unsigned long pfn)
 {
 	return 1;
 }
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 static inline int range_is_allowed(unsigned long pfn, unsigned long size)
 {
 	return 1;
@@ -148,6 +160,9 @@ static ssize_t read_mem(struct file *file, char __user *buf,
 	while (count > 0) {
 		unsigned long remaining;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 
 		sz = size_inside_page(p, count);
 
@@ -165,6 +180,7 @@ static ssize_t read_mem(struct file *file, char __user *buf,
 
 		remaining = copy_to_user(buf, ptr, sz);
 		unxlate_dev_mem_ptr(p, ptr);
+<<<<<<< HEAD
 =======
 		int allowed;
 
@@ -192,6 +208,8 @@ static ssize_t read_mem(struct file *file, char __user *buf,
 		}
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		if (remaining)
 			return -EFAULT;
 
@@ -232,6 +250,9 @@ static ssize_t write_mem(struct file *file, const char __user *buf,
 
 	while (count > 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		sz = size_inside_page(p, count);
 
 		if (!range_is_allowed(p >> PAGE_SHIFT, sz))
@@ -256,6 +277,7 @@ static ssize_t write_mem(struct file *file, const char __user *buf,
 			if (written)
 				break;
 			return -EFAULT;
+<<<<<<< HEAD
 =======
 		int allowed;
 
@@ -288,6 +310,8 @@ static ssize_t write_mem(struct file *file, const char __user *buf,
 				return -EFAULT;
 			}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		}
 
 		buf += sz;

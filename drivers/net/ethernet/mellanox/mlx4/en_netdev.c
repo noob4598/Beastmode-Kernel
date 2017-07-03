@@ -1191,21 +1191,31 @@ static void mlx4_en_netpoll(struct net_device *dev)
 	struct mlx4_en_priv *priv = netdev_priv(dev);
 	struct mlx4_en_cq *cq;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned long flags;
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	unsigned long flags;
+>>>>>>> 2617302... source
 	int i;
 
 	for (i = 0; i < priv->rx_ring_num; i++) {
 		cq = &priv->rx_cq[i];
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		spin_lock_irqsave(&cq->lock, flags);
 		napi_synchronize(&cq->napi);
 		mlx4_en_process_rx_cq(dev, cq, 0);
 		spin_unlock_irqrestore(&cq->lock, flags);
+<<<<<<< HEAD
 =======
 		napi_schedule(&cq->napi);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	}
 }
 #endif
@@ -2039,10 +2049,14 @@ static int mlx4_en_set_vf_mac(struct net_device *dev, int queue, u8 *mac)
 	u64 mac_u64 = mlx4_en_mac_to_u64(mac);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!is_valid_ether_addr(mac))
 =======
 	if (is_multicast_ether_addr(mac))
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (!is_valid_ether_addr(mac))
+>>>>>>> 2617302... source
 		return -EINVAL;
 
 	return mlx4_set_vf_mac(mdev->dev, en_priv->port, queue, mac_u64);

@@ -385,6 +385,7 @@ int ext4_bio_write_page(struct ext4_io_submit *io,
 
 	/*
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	 * Comments copied from block_write_full_page_endio:
 	 *
@@ -398,6 +399,8 @@ int ext4_bio_write_page(struct ext4_io_submit *io,
 		zero_user_segment(page, len, PAGE_CACHE_SIZE);
 	/*
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	 * In the first loop we prepare and mark buffers to submit. We have to
 	 * mark all buffers in the page before submitting so that
 	 * end_page_writeback() cannot be called from ext4_bio_end_io() when IO
@@ -409,6 +412,9 @@ int ext4_bio_write_page(struct ext4_io_submit *io,
 		block_start = bh_offset(bh);
 		if (block_start >= len) {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 			/*
 			 * Comments copied from block_write_full_page_endio:
 			 *
@@ -422,8 +428,11 @@ int ext4_bio_write_page(struct ext4_io_submit *io,
 			 */
 			zero_user_segment(page, block_start,
 					  block_start + blocksize);
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 			clear_buffer_dirty(bh);
 			set_buffer_uptodate(bh);
 			continue;

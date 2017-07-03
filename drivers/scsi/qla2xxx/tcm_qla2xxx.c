@@ -763,6 +763,7 @@ static void tcm_qla2xxx_clear_nacl_from_fcport_map(struct qla_tgt_sess *sess)
 
 	node = btree_remove32(&lport->lport_fcport_map, nacl->nport_id);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	WARN_ON(node && (node != se_nacl));
 =======
 	if (WARN_ON(node && (node != se_nacl))) {
@@ -776,6 +777,9 @@ static void tcm_qla2xxx_clear_nacl_from_fcport_map(struct qla_tgt_sess *sess)
 			       node, GFP_ATOMIC);
 	}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	WARN_ON(node && (node != se_nacl));
+>>>>>>> 2617302... source
 
 	pr_debug("Removed from fcport_map: %p for WWNN: 0x%016LX, port_id: 0x%06x\n",
 	    se_nacl, nacl->nport_wwnn, nacl->nport_id);
@@ -1470,10 +1474,14 @@ static int tcm_qla2xxx_check_initiator_node_acl(
 	 * Finally register the new FC Nexus with TCM
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	__transport_register_session(se_nacl->se_tpg, se_nacl, se_sess, sess);
 =======
 	transport_register_session(se_nacl->se_tpg, se_nacl, se_sess, sess);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	__transport_register_session(se_nacl->se_tpg, se_nacl, se_sess, sess);
+>>>>>>> 2617302... source
 
 	return 0;
 }

@@ -534,10 +534,14 @@ int fib_nh_match(struct fib_config *cfg, struct fib_info *fi)
 
 		attrlen = rtnh_attrlen(rtnh);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (attrlen < 0) {
 =======
 		if (attrlen > 0) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		if (attrlen < 0) {
+>>>>>>> 2617302... source
 			struct nlattr *nla, *attrs = rtnh_attrs(rtnh);
 
 			nla = nla_find(attrs, attrlen, RTA_GATEWAY);
@@ -824,9 +828,12 @@ struct fib_info *fib_create_info(struct fib_config *cfg)
 	if (fi == NULL)
 		goto failure;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	fib_info_cnt++;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	if (cfg->fc_mx) {
 		fi->fib_metrics = kzalloc(sizeof(u32) * RTAX_MAX, GFP_KERNEL);
 		if (!fi->fib_metrics)
@@ -834,9 +841,13 @@ struct fib_info *fib_create_info(struct fib_config *cfg)
 	} else
 		fi->fib_metrics = (u32 *) dst_default_metrics;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	fib_info_cnt++;
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	fib_info_cnt++;
+>>>>>>> 2617302... source
 
 	fi->fib_net = hold_net(net);
 	fi->fib_protocol = cfg->fc_protocol;

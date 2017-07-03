@@ -5,6 +5,9 @@
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
    History:
     Started: Aug 9 by Lawrence Foard (entropy@world.std.com), to allow user
      process control of SCSI devices.
@@ -70,6 +73,7 @@ Major new features in SG 3.x driver (cf SG 2.x drivers)
  packaged as sg3_utils (for the lk 2.4 and 2.6 series) and sg_utils
  (for the lk 2.2 series).
 */
+<<<<<<< HEAD
 =======
  * History:
  *  Started: Aug 9 by Lawrence Foard (entropy@world.std.com), to allow user
@@ -95,15 +99,21 @@ Major new features in SG 3.x driver (cf SG 2.x drivers)
  * For utility and test programs see: http://sg.danny.cz/sg/sg3_utils.html
  */
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 #ifdef __KERNEL__
 extern int sg_big_buff; /* for sysctl */
 #endif
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* New interface introduced in the 3.x SG drivers follows */
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+/* New interface introduced in the 3.x SG drivers follows */
+>>>>>>> 2617302... source
 
 typedef struct sg_iovec /* same structure as used by readv() Linux system */
 {                       /* call. It defines one scatter-gather element. */
@@ -117,10 +127,14 @@ typedef struct sg_io_hdr
     int interface_id;           /* [i] 'S' for SCSI generic (required) */
     int dxfer_direction;        /* [i] data transfer direction  */
 <<<<<<< HEAD
+<<<<<<< HEAD
     unsigned char cmd_len;      /* [i] SCSI command length ( <= 16 bytes) */
 =======
     unsigned char cmd_len;      /* [i] SCSI command length */
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+    unsigned char cmd_len;      /* [i] SCSI command length ( <= 16 bytes) */
+>>>>>>> 2617302... source
     unsigned char mx_sb_len;    /* [i] max length to write to sbp */
     unsigned short iovec_count; /* [i] 0 implies no scatter gather */
     unsigned int dxfer_len;     /* [i] byte count of data transfer */

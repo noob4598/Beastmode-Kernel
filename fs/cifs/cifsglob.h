@@ -75,13 +75,19 @@
 #define SERVER_NAME_LEN_WITH_NULL     (SERVER_NAME_LENGTH + 1)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 /* used to define string lengths for reversing unicode strings */
 /*         (256+1)*2 = 514                                     */
 /*           (max path length + 1 for null) * 2 for unicode    */
 #define MAX_NAME 514
 
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 /* SMB echo "timeout" -- FIXME: tunable? */
 #define SMB_ECHO_INTERVAL (60 * HZ)
 
@@ -384,10 +390,13 @@ struct smb_version_operations {
 	int (*set_acl)(struct cifs_ntsd *, __u32, struct inode *, const char *,
 			int);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/* check if we need to issue closedir */
 	bool (*dir_needs_close)(struct cifsFileInfo *);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 };
 
 struct smb_version_values {
@@ -588,10 +597,13 @@ struct TCP_Server_Info {
 	unsigned int	max_read;
 	unsigned int	max_write;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct delayed_work reconnect; /* reconnect workqueue job */
 	struct mutex reconnect_mutex; /* prevent simultaneous reconnects */
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 #endif /* CONFIG_CIFS_SMB2 */
 };
 
@@ -767,9 +779,12 @@ struct cifs_tcon {
 	struct list_head tcon_list;
 	int tc_count;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct list_head rlist; /* reconnect list */
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	struct list_head openFileList;
 	struct cifs_ses *ses;	/* pointer to session associated with */
 	char treeName[MAX_TREE_SIZE + 1]; /* UNC name of resource in ASCII */
@@ -844,9 +859,13 @@ struct cifs_tcon {
 #ifdef CONFIG_CIFS_SMB2
 	bool print:1;		/* set if connection to printer share */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	bool bad_network_name:1; /* set if ret status STATUS_BAD_NETWORK_NAME */
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	bool bad_network_name:1; /* set if ret status STATUS_BAD_NETWORK_NAME */
+>>>>>>> 2617302... source
 	__u32 capabilities;
 	__u32 share_flags;
 	__u32 maximal_access;

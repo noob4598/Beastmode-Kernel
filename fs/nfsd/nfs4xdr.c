@@ -554,6 +554,7 @@ nfsd4_decode_create(struct nfsd4_compoundargs *argp, struct nfsd4_create *create
 		READ32(create->cr_linklen);
 		READ_BUF(create->cr_linklen);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		SAVEMEM(create->cr_linkname, create->cr_linklen);
 =======
 		/*
@@ -569,6 +570,9 @@ nfsd4_decode_create(struct nfsd4_compoundargs *argp, struct nfsd4_create *create
 		create->cr_linkname[create->cr_linklen] = '\0';
 		defer_free(argp, kfree, create->cr_linkname);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		SAVEMEM(create->cr_linkname, create->cr_linklen);
+>>>>>>> 2617302... source
 		break;
 	case NF4BLK:
 	case NF4CHR:
@@ -1748,11 +1752,14 @@ static __be32 nfsd4_encode_components_esc(char sep, char *components,
 		else
 			end++;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		if (found_esc)
 			end = next;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		str = end;
 	}
 	*pp = p;
@@ -2057,12 +2064,17 @@ nfsd4_encode_fattr(struct svc_fh *fhp, struct svc_export *exp,
 	if (err)
 		goto out_nfserr;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if ((bmval0 & (FATTR4_WORD0_FILES_FREE | FATTR4_WORD0_FILES_TOTAL |
 			FATTR4_WORD0_MAXNAME)) ||
 =======
 	if ((bmval0 & (FATTR4_WORD0_FILES_AVAIL | FATTR4_WORD0_FILES_FREE |
 			FATTR4_WORD0_FILES_TOTAL | FATTR4_WORD0_MAXNAME)) ||
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if ((bmval0 & (FATTR4_WORD0_FILES_FREE | FATTR4_WORD0_FILES_TOTAL |
+			FATTR4_WORD0_MAXNAME)) ||
+>>>>>>> 2617302... source
 	    (bmval1 & (FATTR4_WORD1_SPACE_AVAIL | FATTR4_WORD1_SPACE_FREE |
 		       FATTR4_WORD1_SPACE_TOTAL))) {
 		err = vfs_statfs(&path, &statfs);

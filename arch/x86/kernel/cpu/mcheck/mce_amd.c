@@ -52,10 +52,14 @@ static const char * const th_names[] = {
 	"insn_fetch",
 	"combined_unit",
 <<<<<<< HEAD
+<<<<<<< HEAD
 	"",
 =======
 	"decode_unit",
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	"",
+>>>>>>> 2617302... source
 	"northbridge",
 	"execution_unit",
 };

@@ -199,10 +199,14 @@ static int klsi_105_get_line_state(struct usb_serial_port *port,
 			     10000
 			     );
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	if (rc < 0)
 		dev_err(&port->dev, "Reading line status failed (error = %d)\n",
 			rc);
 	else {
+<<<<<<< HEAD
 =======
 	if (rc != KLSI_STATUSBUF_LEN) {
 		dev_err(&port->dev, "reading line status failed: %d\n", rc);
@@ -210,6 +214,8 @@ static int klsi_105_get_line_state(struct usb_serial_port *port,
 			rc = -EIO;
 	} else {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		status = get_unaligned_le16(status_buf);
 
 		dev_info(&port->serial->dev->dev, "read status %x %x",
@@ -313,10 +319,14 @@ static int  klsi_105_open(struct tty_struct *tty, struct usb_serial_port *port)
 	if (rc) {
 		retval = rc;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		goto exit;
 =======
 		goto err_free_cfg;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		goto exit;
+>>>>>>> 2617302... source
 	}
 
 	rc = usb_control_msg(port->serial->dev,
@@ -332,14 +342,20 @@ static int  klsi_105_open(struct tty_struct *tty, struct usb_serial_port *port)
 		dev_err(&port->dev, "Enabling read failed (error = %d)\n", rc);
 		retval = rc;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		goto err_generic_close;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	} else
 		dev_dbg(&port->dev, "%s - enabled reading\n", __func__);
 
 	rc = klsi_105_get_line_state(port, &line_state);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	if (rc >= 0) {
 		spin_lock_irqsave(&priv->lock, flags);
 		priv->line_state = line_state;
@@ -351,6 +367,7 @@ static int  klsi_105_open(struct tty_struct *tty, struct usb_serial_port *port)
 
 exit:
 	kfree(cfg);
+<<<<<<< HEAD
 =======
 	if (rc < 0) {
 		retval = rc;
@@ -380,6 +397,8 @@ err_free_cfg:
 	kfree(cfg);
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	return retval;
 }
 

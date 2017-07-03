@@ -444,6 +444,7 @@ int iwl_mvm_up(struct iwl_mvm *mvm)
 		goto error;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (mvm->trans->ltr_enabled) {
 		struct iwl_ltr_config_cmd cmd = {
@@ -455,6 +456,8 @@ int iwl_mvm_up(struct iwl_mvm *mvm)
 	}
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	IWL_DEBUG_INFO(mvm, "RT uCode started.\n");
 
 	return 0;

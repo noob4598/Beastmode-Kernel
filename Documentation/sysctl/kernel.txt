@@ -52,6 +52,7 @@ show up in /proc/sys/kernel:
 - panic
 - panic_on_oops
 <<<<<<< HEAD
+<<<<<<< HEAD
 - panic_on_unrecovered_nmi
 - panic_on_stackoverflow
 =======
@@ -59,6 +60,10 @@ show up in /proc/sys/kernel:
 - panic_on_unrecovered_nmi
 - perf_event_paranoid
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+- panic_on_unrecovered_nmi
+- panic_on_stackoverflow
+>>>>>>> 2617302... source
 - pid_max
 - powersave-nap               [ PPC only ]
 - printk
@@ -434,6 +439,9 @@ the recommended setting is 60.
 ==============================================================
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 panic_on_unrecovered_nmi:
 
 The default Linux behaviour on an NMI of either memory or unknown is
@@ -447,8 +455,11 @@ the existing panic controls already in that directory.
 
 ==============================================================
 
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 panic_on_oops:
 
 Controls the kernel's behaviour when an oops or BUG is encountered.
@@ -472,6 +483,7 @@ This file shows up if CONFIG_DEBUG_STACKOVERFLOW is enabled.
 
 ==============================================================
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 panic_on_unrecovered_nmi:
@@ -527,6 +539,8 @@ allowed to execute.
 
 ==============================================================
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 pid_max:
 

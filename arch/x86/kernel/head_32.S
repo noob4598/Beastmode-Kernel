@@ -500,6 +500,9 @@ __INIT
 setup_once:
 	/*
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	 * Set up a idt with 256 entries pointing to ignore_int,
 	 * interrupt gates. It doesn't actually load idt - that needs
 	 * to be done on each CPU. Interrupts are enabled elsewhere,
@@ -508,6 +511,7 @@ setup_once:
 
 	movl $idt_table,%edi
 	movl $early_idt_handlers,%eax
+<<<<<<< HEAD
 =======
 	 * Set up a idt with 256 interrupt gates that push zero if there
 	 * is no error code and then jump to early_idt_handler_common.
@@ -519,6 +523,8 @@ setup_once:
 	movl $idt_table,%edi
 	movl $early_idt_handler_array,%eax
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	movl $NUM_EXCEPTION_VECTORS,%ecx
 1:
 	movl %eax,(%edi)
@@ -526,10 +532,14 @@ setup_once:
 	/* interrupt gate, dpl=0, present */
 	movl $(0x8E000000 + __KERNEL_CS),2(%edi)
 <<<<<<< HEAD
+<<<<<<< HEAD
 	addl $9,%eax
 =======
 	addl $EARLY_IDT_HANDLER_SIZE,%eax
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	addl $9,%eax
+>>>>>>> 2617302... source
 	addl $8,%edi
 	loop 1b
 
@@ -562,10 +572,14 @@ setup_once:
 	ret
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 ENTRY(early_idt_handlers)
 =======
 ENTRY(early_idt_handler_array)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+ENTRY(early_idt_handlers)
+>>>>>>> 2617302... source
 	# 36(%esp) %eflags
 	# 32(%esp) %cs
 	# 28(%esp) %eip
@@ -573,6 +587,9 @@ ENTRY(early_idt_handler_array)
 	i = 0
 	.rept NUM_EXCEPTION_VECTORS
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	.if (EXCEPTION_ERRCODE_MASK >> i) & 1
 	ASM_NOP2
 	.else
@@ -586,6 +603,7 @@ ENDPROC(early_idt_handlers)
 	
 	/* This is global to keep gas from relaxing the jumps */
 ENTRY(early_idt_handler)
+<<<<<<< HEAD
 =======
 	.ifeq (EXCEPTION_ERRCODE_MASK >> i) & 1
 	pushl $0		# Dummy error code, to make stack frame uniform
@@ -603,6 +621,8 @@ early_idt_handler_common:
 	 * vector number.
 	 */
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	cld
 
 	cmpl $2,(%esp)		# X86_TRAP_NMI
@@ -622,10 +642,14 @@ early_idt_handler_common:
 	movl %eax,%es
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	cmpl $(__KERNEL_CS),32(%esp)
 =======
 	cmpw $(__KERNEL_CS),32(%esp)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	cmpl $(__KERNEL_CS),32(%esp)
+>>>>>>> 2617302... source
 	jne 10f
 
 	leal 28(%esp),%eax	# Pointer to %eip
@@ -667,10 +691,14 @@ is_nmi:
 	addl $8,%esp		/* drop vector number and error code */
 	iret
 <<<<<<< HEAD
+<<<<<<< HEAD
 ENDPROC(early_idt_handler)
 =======
 ENDPROC(early_idt_handler_common)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+ENDPROC(early_idt_handler)
+>>>>>>> 2617302... source
 
 /* This is the default interrupt "handler" :-) */
 	ALIGN

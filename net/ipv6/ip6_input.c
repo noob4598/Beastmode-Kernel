@@ -326,16 +326,22 @@ int ip6_mc_input(struct sk_buff *skb)
 					goto out;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 				if (!ipv6_is_mld(skb, nexthdr, offset))
 					goto out;
 
 				deliver = true;
+<<<<<<< HEAD
 =======
 				if (ipv6_is_mld(skb, nexthdr, offset))
 					deliver = true;
 
 				goto out;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 			}
 			/* unknown RA - process it normally */
 		}

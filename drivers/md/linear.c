@@ -98,6 +98,7 @@ static int linear_mergeable_bvec(struct request_queue *q,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 /*
  * In linear_congested() conf->raid_disks is used as a copy of
@@ -106,6 +107,8 @@ static int linear_mergeable_bvec(struct request_queue *q,
  * consitent with each other, but mddev->raid_disks does not.
  */
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 static int linear_congested(void *data, int bits)
 {
 	struct mddev *mddev = data;
@@ -119,10 +122,14 @@ static int linear_congested(void *data, int bits)
 	conf = rcu_dereference(mddev->private);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	for (i = 0; i < mddev->raid_disks && !ret ; i++) {
 =======
 	for (i = 0; i < conf->raid_disks && !ret ; i++) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	for (i = 0; i < mddev->raid_disks && !ret ; i++) {
+>>>>>>> 2617302... source
 		struct request_queue *q = bdev_get_queue(conf->disks[i].rdev->bdev);
 		ret |= bdi_congested(&q->backing_dev_info, bits);
 	}
@@ -210,6 +217,7 @@ static struct linear_conf *linear_conf(struct mddev *mddev, int raid_disks)
 			conf->disks[i].rdev->sectors;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/*
 	 * conf->raid_disks is copy of mddev->raid_disks. The reason to
@@ -225,6 +233,8 @@ static struct linear_conf *linear_conf(struct mddev *mddev, int raid_disks)
 	conf->raid_disks = raid_disks;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	return conf;
 
 out:
@@ -282,6 +292,7 @@ static int linear_add(struct mddev *mddev, struct md_rdev *rdev)
 		return -ENOMEM;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/* newconf->raid_disks already keeps a copy of * the increased
 	 * value of mddev->raid_disks, WARN_ONCE() is just used to make
@@ -290,15 +301,20 @@ static int linear_add(struct mddev *mddev, struct md_rdev *rdev)
 	 * oldconf until no one uses it anymore.
 	 */
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	oldconf = rcu_dereference_protected(mddev->private,
 					    lockdep_is_held(
 						    &mddev->reconfig_mutex));
 	mddev->raid_disks++;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	WARN_ONCE(mddev->raid_disks != newconf->raid_disks,
 		"copied raid_disks doesn't match mddev->raid_disks");
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	rcu_assign_pointer(mddev->private, newconf);
 	md_set_array_sectors(mddev, linear_size(mddev, 0, 0));
 	set_capacity(mddev->gendisk, mddev->array_sectors);

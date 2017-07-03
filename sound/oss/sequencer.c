@@ -684,6 +684,9 @@ static int seq_timing_event(unsigned char *event_rec)
 
 		case TMR_ECHO:
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 			if (seq_mode == SEQ_2)
 				seq_copy_to_input(event_rec, 8);
 			else
@@ -691,10 +694,13 @@ static int seq_timing_event(unsigned char *event_rec)
 				parm = (parm << 8 | SEQ_ECHO);
 				seq_copy_to_input((unsigned char *) &parm, 4);
 			}
+<<<<<<< HEAD
 =======
 			parm = (parm << 8 | SEQ_ECHO);
 			seq_copy_to_input((unsigned char *) &parm, 4);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 			break;
 
 		default:;
@@ -1338,9 +1344,13 @@ int sequencer_ioctl(int dev, struct file *file, unsigned int cmd, void __user *a
 	struct synth_info inf;
 	struct seq_event_rec event_rec;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned long flags;
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	unsigned long flags;
+>>>>>>> 2617302... source
 	int __user *p = arg;
 
 	orig_dev = dev = dev >> 4;
@@ -1496,12 +1506,18 @@ int sequencer_ioctl(int dev, struct file *file, unsigned int cmd, void __user *a
 			if (copy_from_user(&event_rec, arg, sizeof(event_rec)))
 				return -EFAULT;
 <<<<<<< HEAD
+<<<<<<< HEAD
 			spin_lock_irqsave(&lock,flags);
 			play_event(event_rec.arr);
 			spin_unlock_irqrestore(&lock,flags);
 =======
 			play_event(event_rec.arr);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			spin_lock_irqsave(&lock,flags);
+			play_event(event_rec.arr);
+			spin_unlock_irqrestore(&lock,flags);
+>>>>>>> 2617302... source
 			return 0;
 
 		case SNDCTL_MIDI_INFO:

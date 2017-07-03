@@ -233,11 +233,14 @@ static ssize_t set_fan_div(struct device *dev,
 	reg = (reg & 0x3F) | (val << 6);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/* Update the cache */
 	data->fan_div[attr->index] = reg;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	/* Write value */
 	i2c_smbus_write_byte_data(client,
 				  ADM1029_REG_FAN_DIV[attr->index], reg);

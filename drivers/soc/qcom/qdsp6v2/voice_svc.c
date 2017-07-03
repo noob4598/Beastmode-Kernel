@@ -1,8 +1,12 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* Copyright (c) 2014, The Linux Foundation. All rights reserved.
 =======
 /* Copyright (c) 2014-2017, The Linux Foundation. All rights reserved.
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+/* Copyright (c) 2014, The Linux Foundation. All rights reserved.
+>>>>>>> 2617302... source
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -47,6 +51,7 @@ struct voice_svc_prvt {
 	wait_queue_head_t response_wait;
 	spinlock_t response_lock;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/*
 	 * This mutex ensures responses are processed in sequential order and
@@ -55,6 +60,8 @@ struct voice_svc_prvt {
 	 */
 	struct mutex response_mutex_lock;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 };
 
 struct apr_data {
@@ -182,11 +189,15 @@ static int voice_svc_send_req(struct voice_svc_cmd_request *apr_request,
 	void *apr_handle = NULL;
 	struct apr_data *aprdata = NULL;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	uint32_t user_payload_size = 0;
 =======
 	uint32_t user_payload_size;
 	uint32_t payload_size;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	uint32_t user_payload_size = 0;
+>>>>>>> 2617302... source
 
 	pr_debug("%s\n", __func__);
 
@@ -199,6 +210,9 @@ static int voice_svc_send_req(struct voice_svc_cmd_request *apr_request,
 
 	user_payload_size = apr_request->payload_size;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 
 	aprdata = kmalloc(sizeof(struct apr_data) + user_payload_size,
 			  GFP_KERNEL);
@@ -208,6 +222,7 @@ static int voice_svc_send_req(struct voice_svc_cmd_request *apr_request,
 
 		ret = -ENOMEM;
 		goto done;
+<<<<<<< HEAD
 =======
 	payload_size = sizeof(struct apr_data) + user_payload_size;
 
@@ -223,6 +238,8 @@ static int voice_svc_send_req(struct voice_svc_cmd_request *apr_request,
 			goto done;
 		}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	}
 
 	voice_svc_update_hdr(apr_request, aprdata);
@@ -233,12 +250,17 @@ static int voice_svc_send_req(struct voice_svc_cmd_request *apr_request,
 		apr_handle = prtd->apr_q6_mvm;
 	} else {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("%s: Invalid service %s\n", __func__,
 			apr_request->svc_name);
 =======
 		pr_err("%s: Invalid service %.*s\n", __func__,
 			MAX_APR_SERVICE_NAME_LEN, apr_request->svc_name);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		pr_err("%s: Invalid service %s\n", __func__,
+			apr_request->svc_name);
+>>>>>>> 2617302... source
 
 		ret = -EINVAL;
 		goto done;
@@ -346,12 +368,17 @@ static int process_reg_cmd(struct voice_svc_register *apr_reg_svc,
 		handle = &prtd->apr_q6_cvs;
 	} else {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("%s: Invalid Service: %s\n", __func__,
 		       apr_reg_svc->svc_name);
 =======
 		pr_err("%s: Invalid Service: %.*s\n", __func__,
 			MAX_APR_SERVICE_NAME_LEN, apr_reg_svc->svc_name);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		pr_err("%s: Invalid Service: %s\n", __func__,
+		       apr_reg_svc->svc_name);
+>>>>>>> 2617302... source
 		ret = -EINVAL;
 		goto done;
 	}
@@ -375,10 +402,14 @@ static ssize_t voice_svc_write(struct file *file, const char __user *buf,
 	struct voice_svc_write_msg *data = NULL;
 	uint32_t cmd;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 
 	pr_debug("%s\n", __func__);
 
 	data = kmalloc(count, GFP_KERNEL);
+<<<<<<< HEAD
 =======
 	struct voice_svc_register *register_data = NULL;
 	struct voice_svc_cmd_request *request_data = NULL;
@@ -398,6 +429,8 @@ static ssize_t voice_svc_write(struct file *file, const char __user *buf,
 		goto done;
 	}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	if (data == NULL) {
 		pr_err("%s: data kmalloc failed.\n", __func__);
@@ -416,10 +449,14 @@ static ssize_t voice_svc_write(struct file *file, const char __user *buf,
 
 	cmd = data->msg_type;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	prtd = (struct voice_svc_prvt *)file->private_data;
 =======
 	prtd = (struct voice_svc_prvt *) file->private_data;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	prtd = (struct voice_svc_prvt *)file->private_data;
+>>>>>>> 2617302... source
 	if (prtd == NULL) {
 		pr_err("%s: prtd is NULL\n", __func__);
 
@@ -430,6 +467,9 @@ static ssize_t voice_svc_write(struct file *file, const char __user *buf,
 	switch (cmd) {
 	case MSG_REGISTER:
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		ret = process_reg_cmd(
 			(struct voice_svc_register *)data->payload, prtd);
 		if (!ret)
@@ -442,6 +482,7 @@ static ssize_t voice_svc_write(struct file *file, const char __user *buf,
 		if (!ret)
 			ret = count;
 
+<<<<<<< HEAD
 =======
 		/*
 		 * Check that count reflects the expected size to ensure
@@ -506,6 +547,8 @@ static ssize_t voice_svc_write(struct file *file, const char __user *buf,
 			goto done;
 		}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		break;
 	default:
 		pr_debug("%s: Invalid command: %u\n", __func__, cmd);
@@ -537,9 +580,12 @@ static ssize_t voice_svc_read(struct file *file, char __user *arg,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	mutex_lock(&prtd->response_mutex_lock);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	spin_lock_irqsave(&prtd->response_lock, spin_flags);
 
 	if (list_empty(&prtd->response_queue)) {
@@ -554,10 +600,14 @@ static ssize_t voice_svc_read(struct file *file, char __user *arg,
 
 			ret = -ETIMEDOUT;
 <<<<<<< HEAD
+<<<<<<< HEAD
 			goto done;
 =======
 			goto unlock;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			goto done;
+>>>>>>> 2617302... source
 		} else if (ret > 0 && !list_empty(&prtd->response_queue)) {
 			pr_debug("%s: Interrupt recieved for response\n",
 				 __func__);
@@ -566,10 +616,14 @@ static ssize_t voice_svc_read(struct file *file, char __user *arg,
 				 __func__, ret);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 			goto done;
 =======
 			goto unlock;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			goto done;
+>>>>>>> 2617302... source
 		}
 
 		spin_lock_irqsave(&prtd->response_lock, spin_flags);
@@ -589,10 +643,14 @@ static ssize_t voice_svc_read(struct file *file, char __user *arg,
 
 		ret = -ENOMEM;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		goto done;
 =======
 		goto unlock;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		goto done;
+>>>>>>> 2617302... source
 	}
 
 	if (!access_ok(VERIFY_WRITE, arg, size)) {
@@ -601,10 +659,14 @@ static ssize_t voice_svc_read(struct file *file, char __user *arg,
 
 		ret = -EPERM;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		goto done;
 =======
 		goto unlock;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		goto done;
+>>>>>>> 2617302... source
 	}
 
 	ret = copy_to_user(arg, &resp->resp,
@@ -615,10 +677,14 @@ static ssize_t voice_svc_read(struct file *file, char __user *arg,
 
 		ret = -EPERM;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		goto done;
 =======
 		goto unlock;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		goto done;
+>>>>>>> 2617302... source
 	}
 
 	spin_lock_irqsave(&prtd->response_lock, spin_flags);
@@ -633,10 +699,13 @@ static ssize_t voice_svc_read(struct file *file, char __user *arg,
 	ret = count;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 unlock:
 	mutex_unlock(&prtd->response_mutex_lock);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 done:
 	return ret;
 }
@@ -662,19 +731,26 @@ static int voice_svc_open(struct inode *inode, struct file *file)
 	init_waitqueue_head(&prtd->response_wait);
 	spin_lock_init(&prtd->response_lock);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	mutex_init(&prtd->response_mutex_lock);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	file->private_data = (void *)prtd;
 
 	return 0;
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int voice_svc_flush(struct file *file, fl_owner_t id)
 =======
 static int voice_svc_release(struct inode *inode, struct file *file)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+static int voice_svc_flush(struct file *file, fl_owner_t id)
+>>>>>>> 2617302... source
 {
 	int ret = 0;
 	struct apr_response_list *resp = NULL;
@@ -710,9 +786,12 @@ static int voice_svc_release(struct inode *inode, struct file *file)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	mutex_lock(&prtd->response_mutex_lock);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	spin_lock_irqsave(&prtd->response_lock, spin_flags);
 
 	while (!list_empty(&prtd->response_queue)) {
@@ -727,6 +806,9 @@ static int voice_svc_release(struct inode *inode, struct file *file)
 
 	spin_unlock_irqrestore(&prtd->response_lock, spin_flags);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 
 done:
 	return ret;
@@ -735,21 +817,28 @@ done:
 static int voice_svc_release(struct inode *inode, struct file *file)
 {
 	pr_debug("%s\n", __func__);
+<<<<<<< HEAD
 =======
 	mutex_unlock(&prtd->response_mutex_lock);
 
 	mutex_destroy(&prtd->response_mutex_lock);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	kfree(file->private_data);
 	file->private_data = NULL;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	return 0;
 =======
 done:
 	return ret;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	return 0;
+>>>>>>> 2617302... source
 }
 
 static const struct file_operations voice_svc_fops = {
@@ -758,9 +847,13 @@ static const struct file_operations voice_svc_fops = {
 	.read =                 voice_svc_read,
 	.write =                voice_svc_write,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.flush =                voice_svc_flush,
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	.flush =                voice_svc_flush,
+>>>>>>> 2617302... source
 	.release =              voice_svc_release,
 };
 

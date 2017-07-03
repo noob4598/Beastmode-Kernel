@@ -76,12 +76,15 @@ enum tis_defaults {
 #define	TPM_RID(l)			(0x0F04 | ((l) << 12))
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 struct priv_data {
 	bool irq_tested;
 };
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 static LIST_HEAD(tis_chips);
 static DEFINE_MUTEX(tis_lock);
 
@@ -346,6 +349,7 @@ out_err:
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 static void disable_interrupts(struct tpm_chip *chip)
 {
@@ -363,16 +367,22 @@ static void disable_interrupts(struct tpm_chip *chip)
 }
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 /*
  * If interrupts are used (signaled by an irq set in the vendor structure)
  * tpm.c can skip polling for the data to be available as the interrupt is
  * waited for here
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int tpm_tis_send(struct tpm_chip *chip, u8 *buf, size_t len)
 =======
 static int tpm_tis_send_main(struct tpm_chip *chip, u8 *buf, size_t len)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+static int tpm_tis_send(struct tpm_chip *chip, u8 *buf, size_t len)
+>>>>>>> 2617302... source
 {
 	int rc;
 	u32 ordinal;
@@ -402,6 +412,7 @@ out_err:
 	return rc;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 static int tpm_tis_send(struct tpm_chip *chip, u8 *buf, size_t len)
@@ -459,6 +470,8 @@ static bool tpm_tis_update_timeouts(struct tpm_chip *chip,
 }
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 /*
  * Early probing for iTPM with STS_DATA_EXPECT flaw.
  * Try sending command without itpm flag set and if that
@@ -562,9 +575,12 @@ static struct tpm_vendor_specific tpm_tis = {
 	.send = tpm_tis_send,
 	.cancel = tpm_tis_ready,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	.update_timeouts = tpm_tis_update_timeouts,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	.req_complete_mask = TPM_STS_DATA_AVAIL | TPM_STS_VALID,
 	.req_complete_val = TPM_STS_DATA_AVAIL | TPM_STS_VALID,
 	.req_canceled = tpm_tis_req_canceled,
@@ -606,9 +622,12 @@ static irqreturn_t tis_int_handler(int dummy, void *dev_id)
 		return IRQ_NONE;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	((struct priv_data *)chip->vendor.priv)->irq_tested = true;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	if (interrupt & TPM_INTF_DATA_AVAIL_INT)
 		wake_up_interruptible(&chip->vendor.read_queue);
 	if (interrupt & TPM_INTF_LOCALITY_CHANGE_INT)
@@ -639,6 +658,7 @@ static int tpm_tis_init(struct device *dev, resource_size_t start,
 	int rc, i, irq_s, irq_e, probe;
 	struct tpm_chip *chip;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	if (!(chip = tpm_register_hardware(dev, &tpm_tis)))
 		return -ENODEV;
@@ -652,6 +672,11 @@ static int tpm_tis_init(struct device *dev, resource_size_t start,
 		return -ENODEV;
 	chip->vendor.priv = priv;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+
+	if (!(chip = tpm_register_hardware(dev, &tpm_tis)))
+		return -ENODEV;
+>>>>>>> 2617302... source
 
 	chip->vendor.iobase = ioremap(start, len);
 	if (!chip->vendor.iobase) {
@@ -721,6 +746,9 @@ static int tpm_tis_init(struct device *dev, resource_size_t start,
 		dev_dbg(dev, "\tData Avail Int Support\n");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	/* get the timeouts before testing for irqs */
 	if (tpm_get_timeouts(chip)) {
 		dev_err(dev, "Could not get TPM timeouts and durations\n");
@@ -734,8 +762,11 @@ static int tpm_tis_init(struct device *dev, resource_size_t start,
 		goto out_err;
 	}
 
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	/* INTERRUPT Setup */
 	init_waitqueue_head(&chip->vendor.read_queue);
 	init_waitqueue_head(&chip->vendor.int_queue);
@@ -838,6 +869,7 @@ static int tpm_tis_init(struct device *dev, resource_size_t start,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (tpm_get_timeouts(chip)) {
 		dev_err(dev, "Could not get TPM timeouts and durations\n");
@@ -852,6 +884,8 @@ static int tpm_tis_init(struct device *dev, resource_size_t start,
 	}
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	INIT_LIST_HEAD(&chip->vendor.list);
 	mutex_lock(&tis_lock);
 	list_add(&chip->vendor.list, &tis_chips);

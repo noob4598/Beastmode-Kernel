@@ -657,11 +657,16 @@ static int perf_session_queue_event(struct perf_session *s, union perf_event *ev
 
 	if (timestamp < s->ordered_samples.last_flush) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		printf("Warning: Timestamp below last timeslice flush\n");
 		return -EINVAL;
 =======
 		s->stats.nr_unordered_events++;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		printf("Warning: Timestamp below last timeslice flush\n");
+		return -EINVAL;
+>>>>>>> 2617302... source
 	}
 
 	if (!list_empty(sc)) {
@@ -1062,10 +1067,13 @@ static void perf_session__warn_about_errors(const struct perf_session *session,
 			    session->stats.nr_unprocessable_samples);
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (session->stats.nr_unordered_events != 0)
 		ui__warning("%u out of order events recorded.\n", session->stats.nr_unordered_events);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 }
 
 #define session_done()	(*(volatile int *)(&session_done))

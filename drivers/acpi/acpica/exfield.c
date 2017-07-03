@@ -179,6 +179,7 @@ acpi_ex_read_data_from_field(struct acpi_walk_state *walk_state,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if ((obj_desc->common.type == ACPI_TYPE_LOCAL_REGION_FIELD) &&
 	    (obj_desc->field.region_obj->region.space_id ==
@@ -212,6 +213,8 @@ acpi_ex_read_data_from_field(struct acpi_walk_state *walk_state,
 	}
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	ACPI_DEBUG_PRINT((ACPI_DB_BFIELD,
 			  "FieldRead [TO]:   Obj %p, Type %X, Buf %p, ByteLen %X\n",
 			  obj_desc, obj_desc->common.type, buffer,
@@ -360,6 +363,7 @@ acpi_ex_write_data_to_field(union acpi_operand_object *source_desc,
 		*result_desc = buffer_desc;
 		return_ACPI_STATUS(status);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	} else if ((obj_desc->common.type == ACPI_TYPE_LOCAL_REGION_FIELD) &&
 		   (obj_desc->field.region_obj->region.space_id ==
@@ -398,6 +402,8 @@ acpi_ex_write_data_to_field(union acpi_operand_object *source_desc,
 		acpi_ex_release_global_lock(obj_desc->common_field.field_flags);
 		return_ACPI_STATUS(status);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	}
 
 	/* Get a pointer to the data to be written */

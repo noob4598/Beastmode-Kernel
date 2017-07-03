@@ -25,6 +25,9 @@
 #include <linux/regulator/consumer.h>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 #ifdef CONFIG_FB
 #include <linux/notifier.h>
 #include <linux/fb.h>
@@ -32,6 +35,7 @@
 #include <linux/earlysuspend.h>
 #endif
 
+<<<<<<< HEAD
 =======
 #ifdef CONFIG_HAS_EARLYSUSPEND
 #include <linux/earlysuspend.h>
@@ -42,6 +46,8 @@
 #endif
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 #ifdef CONFIG_INPUT_BOOSTER
 #include <linux/input/input_booster.h>
 #endif
@@ -58,10 +64,14 @@
 
 /* feature define */
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 #define USE_OPEN_CLOSE	/* Use when CONFIG_HAS_EARLYSUSPEND is disabled */
 #define REPORT_2D_W
 #define REDUCE_I2C_DATA_LENGTH
 #define USE_SENSOR_SLEEP
+<<<<<<< HEAD
 =======
 #ifdef CONFIG_POWERSUSPEND
 #undef USE_OPEN_CLOSE
@@ -73,6 +83,8 @@
 #define REPORT_2D_W
 #define REDUCE_I2C_DATA_LENGTH
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 
 
@@ -88,9 +100,13 @@
 #define USE_ACTIVE_REPORT_RATE
 #define USE_F51_OFFSET_CALCULATE
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define USE_STYLUS
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+#define USE_STYLUS
+>>>>>>> 2617302... source
 #define USE_DETECTION_FLAG2
 #define USE_EDGE_EXCLUSION
 
@@ -119,9 +135,13 @@
 #define USE_ACTIVE_REPORT_RATE
 #define USE_F51_OFFSET_CALCULATE
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define USE_STYLUS
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+#define USE_STYLUS
+>>>>>>> 2617302... source
 #define USE_DETECTION_FLAG2
 #define USE_EDGE_EXCLUSION
 
@@ -470,10 +490,14 @@
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 extern int system_rev;
 =======
 extern unsigned int system_rev;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+extern int system_rev;
+>>>>>>> 2617302... source
 
 struct synaptics_rmi4_f01_device_status {
 	union {
@@ -1033,12 +1057,16 @@ struct synaptics_rmi4_data {
 	struct mutex rmi4_reflash_mutex;
 	struct timer_list f51_finger_timer;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 #ifdef CONFIG_FB
 	struct notifier_block fb_notif;
 #else
 #ifdef CONFIG_HAS_EARLYSUSPEND
 	struct early_suspend early_suspend;
 #endif
+<<<<<<< HEAD
 =======
 
 #ifdef CONFIG_HAS_EARLYSUSPEND
@@ -1046,6 +1074,8 @@ struct synaptics_rmi4_data {
 #elif defined(CONFIG_POWERSUSPEND)
 	struct power_suspend power_suspend;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 #endif
 	const char *firmware_name;
 

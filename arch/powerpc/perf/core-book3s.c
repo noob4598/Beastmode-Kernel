@@ -113,6 +113,7 @@ static inline void power_pmu_bhrb_read(struct cpu_hw_events *cpuhw) {}
 static bool regs_use_siar(struct pt_regs *regs)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return !!regs->result;
 =======
 	/*
@@ -126,6 +127,9 @@ static bool regs_use_siar(struct pt_regs *regs)
 	 */
 	return ((TRAP(regs) == 0xf00) && regs->result);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	return !!regs->result;
+>>>>>>> 2617302... source
 }
 
 /*
@@ -763,6 +767,7 @@ static void power_pmu_read(struct perf_event *event)
 
 	local64_add(delta, &event->count);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	local64_sub(delta, &event->hw.period_left);
 =======
 
@@ -782,6 +787,9 @@ static void power_pmu_read(struct perf_event *event)
 			val = 1;
 	} while (local64_cmpxchg(&event->hw.period_left, prev, val) != prev);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	local64_sub(delta, &event->hw.period_left);
+>>>>>>> 2617302... source
 }
 
 /*
@@ -1360,11 +1368,14 @@ static int can_go_on_limited_pmc(struct perf_event *event, u64 ev,
 		return 1;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (ppmu->flags & PPMU_ARCH_207S)
 		mtspr(SPRN_MMCR2, 0);
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	/*
 	 * The requested event_id isn't on a limited PMC already;
 	 * see if any alternative code goes on a limited PMC.
@@ -1460,10 +1471,14 @@ static int power_pmu_event_init(struct perf_event *event)
 	if (has_branch_stack(event)) {
 	        /* PMU has BHRB enabled */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (!(ppmu->flags & PPMU_BHRB))
 =======
 		if (!(ppmu->flags & PPMU_ARCH_207S))
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		if (!(ppmu->flags & PPMU_BHRB))
+>>>>>>> 2617302... source
 			return -EOPNOTSUPP;
 	}
 

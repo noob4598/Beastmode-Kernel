@@ -1,8 +1,12 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* Copyright (c) 2012,The Linux Foundation. All rights reserved.
 =======
 /* Copyright (c) 2012-2013,The Linux Foundation. All rights reserved.
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+/* Copyright (c) 2012,The Linux Foundation. All rights reserved.
+>>>>>>> 2617302... source
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -50,9 +54,12 @@ int msm_jpeg_core_reset(struct msm_jpeg_device *pgmn_dev, uint8_t op_mode,
 	spin_lock_irqsave(&pgmn_dev->reset_lock, flags);
 	pgmn_dev->reset_done_ack = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	pgmn_dev->state = MSM_JPEG_RESET;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	spin_unlock_irqrestore(&pgmn_dev->reset_lock, flags);
 
 	return 0;
@@ -205,6 +212,7 @@ irqreturn_t msm_jpeg_core_irq(int irq_num, void *context)
 
 	/*For reset and framedone IRQs, clear all bits*/
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (jpeg_irq_status & 0x10000000) {
 =======
 	if (pgmn_dev->state == MSM_JPEG_IDLE) {
@@ -217,6 +225,9 @@ irqreturn_t msm_jpeg_core_irq(int irq_num, void *context)
 		return IRQ_HANDLED;
 	} else if (jpeg_irq_status & 0x10000000) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (jpeg_irq_status & 0x10000000) {
+>>>>>>> 2617302... source
 		msm_jpeg_hw_irq_clear(JPEG_IRQ_CLEAR_BMSK,
 			JPEG_IRQ_CLEAR_ALL, pgmn_dev->base);
 	} else if (jpeg_irq_status & 0x1) {
@@ -260,6 +271,9 @@ irqreturn_t msm_jpeg_core_irq(int irq_num, void *context)
 	/* Unexpected/unintended HW interrupt */
 	if (msm_jpeg_hw_irq_is_err(jpeg_irq_status)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		if (pgmn_dev->decode_flag)
 			msm_jpeg_decode_status(pgmn_dev->base);
 		msm_jpeg_core_return_buffers(pgmn_dev, jpeg_irq_status);
@@ -267,6 +281,7 @@ irqreturn_t msm_jpeg_core_irq(int irq_num, void *context)
 		if (msm_jpeg_irq_handler)
 			msm_jpeg_irq_handler(MSM_JPEG_HW_MASK_COMP_ERR,
 				context, data);
+<<<<<<< HEAD
 =======
 		if (pgmn_dev->state != MSM_JPEG_EXECUTING) {
 			/*Clear all the bits and ignore the IRQ*/
@@ -288,6 +303,8 @@ irqreturn_t msm_jpeg_core_irq(int irq_num, void *context)
 			}
 		}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	}
 
 	return IRQ_HANDLED;

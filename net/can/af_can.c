@@ -263,11 +263,14 @@ int can_send(struct sk_buff *skb, int loop)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	skb->ip_summed = CHECKSUM_UNNECESSARY;
 
 	skb_reset_mac_header(skb);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	skb_reset_network_header(skb);
 	skb_reset_transport_header(skb);
 
@@ -429,9 +432,12 @@ static struct hlist_head *find_rcv_list(canid_t *can_id, canid_t *mask,
  * @data: returned parameter for callback function
  * @ident: string for calling module indentification
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
  * @sk: socket pointer (might be NULL)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
  *
  * Description:
  *  Invokes the callback function with the received sk_buff and the given
@@ -456,10 +462,14 @@ static struct hlist_head *find_rcv_list(canid_t *can_id, canid_t *mask,
 int can_rx_register(struct net_device *dev, canid_t can_id, canid_t mask,
 		    void (*func)(struct sk_buff *, void *), void *data,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		    char *ident)
 =======
 		    char *ident, struct sock *sk)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		    char *ident)
+>>>>>>> 2617302... source
 {
 	struct receiver *r;
 	struct hlist_head *rl;
@@ -488,9 +498,12 @@ int can_rx_register(struct net_device *dev, canid_t can_id, canid_t mask,
 		r->data    = data;
 		r->ident   = ident;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		r->sk      = sk;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 		hlist_add_head_rcu(&r->list, rl);
 		d->entries++;
@@ -516,6 +529,7 @@ static void can_rx_delete_receiver(struct rcu_head *rp)
 {
 	struct receiver *r = container_of(rp, struct receiver, rcu);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	kmem_cache_free(rcv_cache, r);
 =======
@@ -525,6 +539,10 @@ static void can_rx_delete_receiver(struct rcu_head *rp)
 	if (sk)
 		sock_put(sk);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+
+	kmem_cache_free(rcv_cache, r);
+>>>>>>> 2617302... source
 }
 
 /**
@@ -600,6 +618,7 @@ void can_rx_unregister(struct net_device *dev, canid_t can_id, canid_t mask,
 
 	/* schedule the receiver item for deletion */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (r)
 		call_rcu(&r->rcu, can_rx_delete_receiver);
 =======
@@ -609,6 +628,10 @@ void can_rx_unregister(struct net_device *dev, canid_t can_id, canid_t mask,
 		call_rcu(&r->rcu, can_rx_delete_receiver);
 	}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (r)
+		call_rcu(&r->rcu, can_rx_delete_receiver);
+>>>>>>> 2617302... source
 }
 EXPORT_SYMBOL(can_rx_unregister);
 

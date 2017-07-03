@@ -583,11 +583,15 @@ find_cifs_entry(const unsigned int xid, struct cifs_tcon *tcon,
 		cifs_dbg(FYI, "search backing up - close and restart search\n");
 		spin_lock(&cifs_file_list_lock);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		if (!cfile->srch_inf.endOfSearch && !cfile->invalidHandle) {
 			cfile->invalidHandle = true;
 			spin_unlock(&cifs_file_list_lock);
 			if (server->ops->close)
 				server->ops->close(xid, tcon, &cfile->fid);
+<<<<<<< HEAD
 =======
 		if (server->ops->dir_needs_close(cfile)) {
 			cfile->invalidHandle = true;
@@ -595,6 +599,8 @@ find_cifs_entry(const unsigned int xid, struct cifs_tcon *tcon,
 			if (server->ops->close_dir)
 				server->ops->close_dir(xid, tcon, &cfile->fid);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		} else
 			spin_unlock(&cifs_file_list_lock);
 		if (cfile->srch_inf.ntwrk_buf_start) {

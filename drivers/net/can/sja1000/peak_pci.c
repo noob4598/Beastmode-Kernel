@@ -552,10 +552,14 @@ static int peak_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
 	struct sja1000_priv *priv;
 	struct peak_pci_chan *chan;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct net_device *dev;
 =======
 	struct net_device *dev, *prev_dev;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	struct net_device *dev;
+>>>>>>> 2617302... source
 	void __iomem *cfg_base, *reg_base;
 	u16 sub_sys_id, icr;
 	int i, err, channels;
@@ -692,11 +696,15 @@ failure_remove_channels:
 
 	chan = NULL;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	for (dev = pci_get_drvdata(pdev); dev; dev = chan->prev_dev) {
 		unregister_sja1000dev(dev);
 		free_sja1000dev(dev);
 		priv = netdev_priv(dev);
 		chan = priv->priv;
+<<<<<<< HEAD
 =======
 	for (dev = pci_get_drvdata(pdev); dev; dev = prev_dev) {
 		priv = netdev_priv(dev);
@@ -706,6 +714,8 @@ failure_remove_channels:
 		unregister_sja1000dev(dev);
 		free_sja1000dev(dev);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	}
 
 	/* free any PCIeC resources too */
@@ -740,10 +750,14 @@ static void peak_pci_remove(struct pci_dev *pdev)
 	/* Loop over all registered devices */
 	while (1) {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		dev_info(&pdev->dev, "removing device %s\n", dev->name);
 		unregister_sja1000dev(dev);
 		free_sja1000dev(dev);
 		dev = chan->prev_dev;
+<<<<<<< HEAD
 =======
 		struct net_device *prev_dev = chan->prev_dev;
 
@@ -752,6 +766,8 @@ static void peak_pci_remove(struct pci_dev *pdev)
 		free_sja1000dev(dev);
 		dev = prev_dev;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 		if (!dev) {
 			/* do that only for first channel */

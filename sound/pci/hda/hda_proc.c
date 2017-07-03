@@ -130,6 +130,9 @@ static void print_amp_caps(struct snd_info_buffer *buffer,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 static void print_amp_vals(struct snd_info_buffer *buffer,
 			   struct hda_codec *codec, hda_nid_t nid,
 			   int dir, int stereo, int indices)
@@ -137,6 +140,7 @@ static void print_amp_vals(struct snd_info_buffer *buffer,
 	unsigned int val;
 	int i;
 
+<<<<<<< HEAD
 =======
 /* is this a stereo widget or a stereo-to-mono mix? */
 static bool is_stereo_amps(struct hda_codec *codec, hda_nid_t nid,
@@ -171,6 +175,8 @@ static void print_amp_vals(struct snd_info_buffer *buffer,
 	stereo = is_stereo_amps(codec, nid, dir, wcaps, indices);
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	dir = dir == HDA_OUTPUT ? AC_AMP_GET_OUTPUT : AC_AMP_GET_INPUT;
 	for (i = 0; i < indices; i++) {
 		snd_iprintf(buffer, " [");
@@ -718,18 +724,24 @@ static void print_codec_info(struct snd_info_entry *entry,
 			     wid_type == AC_WID_AUD_IN))
 				print_amp_vals(buffer, codec, nid, HDA_INPUT,
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 					       wid_caps & AC_WCAP_STEREO,
 					       1);
 			else
 				print_amp_vals(buffer, codec, nid, HDA_INPUT,
 					       wid_caps & AC_WCAP_STEREO,
 					       conn_len);
+<<<<<<< HEAD
 =======
 					       wid_caps, 1);
 			else
 				print_amp_vals(buffer, codec, nid, HDA_INPUT,
 					       wid_caps, conn_len);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		}
 		if (wid_caps & AC_WCAP_OUT_AMP) {
 			snd_iprintf(buffer, "  Amp-Out caps: ");
@@ -739,17 +751,23 @@ static void print_codec_info(struct snd_info_entry *entry,
 			    codec->pin_amp_workaround)
 				print_amp_vals(buffer, codec, nid, HDA_OUTPUT,
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 					       wid_caps & AC_WCAP_STEREO,
 					       conn_len);
 			else
 				print_amp_vals(buffer, codec, nid, HDA_OUTPUT,
 					       wid_caps & AC_WCAP_STEREO, 1);
+<<<<<<< HEAD
 =======
 					       wid_caps, conn_len);
 			else
 				print_amp_vals(buffer, codec, nid, HDA_OUTPUT,
 					       wid_caps, 1);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		}
 
 		switch (wid_type) {

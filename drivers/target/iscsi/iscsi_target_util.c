@@ -723,9 +723,12 @@ void iscsit_free_cmd(struct iscsi_cmd *cmd, bool shutdown)
 	struct se_cmd *se_cmd = NULL;
 	int rc;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	bool op_scsi = false;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	/*
 	 * Determine if a struct se_cmd is associated with
 	 * this struct iscsi_cmd.
@@ -733,15 +736,21 @@ void iscsit_free_cmd(struct iscsi_cmd *cmd, bool shutdown)
 	switch (cmd->iscsi_opcode) {
 	case ISCSI_OP_SCSI_CMD:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		se_cmd = &cmd->se_cmd;
 		__iscsit_free_cmd(cmd, true, shutdown);
 =======
 		op_scsi = true;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		se_cmd = &cmd->se_cmd;
+		__iscsit_free_cmd(cmd, true, shutdown);
+>>>>>>> 2617302... source
 		/*
 		 * Fallthrough
 		 */
 	case ISCSI_OP_SCSI_TMFUNC:
+<<<<<<< HEAD
 <<<<<<< HEAD
 		rc = transport_generic_free_cmd(&cmd->se_cmd, shutdown);
 		if (!rc && shutdown && se_cmd && se_cmd->se_sess) {
@@ -753,6 +762,11 @@ void iscsit_free_cmd(struct iscsi_cmd *cmd, bool shutdown)
 		if (!rc && shutdown && se_cmd->se_sess) {
 			__iscsit_free_cmd(cmd, op_scsi, shutdown);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		rc = transport_generic_free_cmd(&cmd->se_cmd, shutdown);
+		if (!rc && shutdown && se_cmd && se_cmd->se_sess) {
+			__iscsit_free_cmd(cmd, true, shutdown);
+>>>>>>> 2617302... source
 			target_put_sess_cmd(se_cmd->se_sess, se_cmd);
 		}
 		break;
@@ -1305,10 +1319,13 @@ int iscsit_tx_login_rsp(struct iscsi_conn *conn, u8 status_class, u8 status_deta
 	iscsit_collect_login_stats(conn, status_class, status_detail);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	memset(&login->rsp[0], 0, ISCSI_HDR_LEN);
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	hdr	= (struct iscsi_login_rsp *)&login->rsp[0];
 	hdr->opcode		= ISCSI_OP_LOGIN_RSP;
 	hdr->status_class	= status_class;
@@ -1369,10 +1386,14 @@ static int iscsit_do_tx_data(
 	struct iscsi_data_count *count)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int data = count->data_length, total_tx = 0, tx_loop = 0, iov_len;
 =======
 	int ret, iov_len;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	int data = count->data_length, total_tx = 0, tx_loop = 0, iov_len;
+>>>>>>> 2617302... source
 	struct kvec *iov_p;
 	struct msghdr msg;
 
@@ -1380,12 +1401,17 @@ static int iscsit_do_tx_data(
 		return -1;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (data <= 0) {
 		pr_err("Data length is: %d\n", data);
 =======
 	if (count->data_length <= 0) {
 		pr_err("Data length is: %d\n", count->data_length);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (data <= 0) {
+		pr_err("Data length is: %d\n", data);
+>>>>>>> 2617302... source
 		return -1;
 	}
 
@@ -1395,6 +1421,9 @@ static int iscsit_do_tx_data(
 	iov_len = count->iov_count;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	while (total_tx < data) {
 		tx_loop = kernel_sendmsg(conn->sock, &msg, iov_p, iov_len,
 					(data - total_tx));
@@ -1409,6 +1438,7 @@ static int iscsit_do_tx_data(
 	}
 
 	return total_tx;
+<<<<<<< HEAD
 =======
 	ret = kernel_sendmsg(conn->sock, &msg, iov_p, iov_len,
 			     count->data_length);
@@ -1421,6 +1451,8 @@ static int iscsit_do_tx_data(
 
 	return ret;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 }
 
 int rx_data(

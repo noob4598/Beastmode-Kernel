@@ -7053,6 +7053,7 @@ static void do_intel_finish_page_flip(struct drm_device *dev,
 	wake_up_all(&dev_priv->pending_flip_queue);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	queue_work(dev_priv->wq, &work->work);
 
 	trace_i915_flip_complete(intel_crtc->plane, work->pending_flip_obj);
@@ -7061,6 +7062,11 @@ static void do_intel_finish_page_flip(struct drm_device *dev,
 
 	queue_work(dev_priv->wq, &work->work);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	queue_work(dev_priv->wq, &work->work);
+
+	trace_i915_flip_complete(intel_crtc->plane, work->pending_flip_obj);
+>>>>>>> 2617302... source
 }
 
 void intel_finish_page_flip(struct drm_device *dev, int pipe)
@@ -9130,6 +9136,9 @@ void intel_modeset_init(struct drm_device *dev)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 static void
 intel_connector_break_all_links(struct intel_connector *connector)
 {
@@ -9139,8 +9148,11 @@ intel_connector_break_all_links(struct intel_connector *connector)
 	connector->encoder->base.crtc = NULL;
 }
 
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 static void intel_enable_pipe_a(struct drm_device *dev)
 {
 	struct intel_connector *connector;
@@ -9223,6 +9235,7 @@ static void intel_sanitize_crtc(struct intel_crtc *crtc)
 				continue;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 			intel_connector_break_all_links(connector);
 		}
 =======
@@ -9238,6 +9251,10 @@ static void intel_sanitize_crtc(struct intel_crtc *crtc)
 				connector->encoder->connectors_active = false;
 			}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			intel_connector_break_all_links(connector);
+		}
+>>>>>>> 2617302... source
 
 		WARN_ON(crtc->active);
 		crtc->base.enabled = false;
@@ -9309,10 +9326,13 @@ static void intel_sanitize_encoder(struct intel_encoder *encoder)
 			encoder->disable(encoder);
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		encoder->base.crtc = NULL;
 		encoder->connectors_active = false;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 		/* Inconsistent output/port/pipe state happens presumably due to
 		 * a bug in one of the get_hw_state functions. Or someplace else
@@ -9324,12 +9344,17 @@ static void intel_sanitize_encoder(struct intel_encoder *encoder)
 			if (connector->encoder != encoder)
 				continue;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 			intel_connector_break_all_links(connector);
 =======
 			connector->base.dpms = DRM_MODE_DPMS_OFF;
 			connector->base.encoder = NULL;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+
+			intel_connector_break_all_links(connector);
+>>>>>>> 2617302... source
 		}
 	}
 	/* Enabled encoders without active connectors will be fixed in

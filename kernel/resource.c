@@ -154,10 +154,14 @@ static int __init ioresources_init(void)
 {
 	proc_create("ioports", 0, NULL, &proc_ioports_operations);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	proc_create("iomem", 0, NULL, &proc_iomem_operations);
 =======
 	proc_create("iomem", S_IRUSR, NULL, &proc_iomem_operations);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	proc_create("iomem", 0, NULL, &proc_iomem_operations);
+>>>>>>> 2617302... source
 	return 0;
 }
 __initcall(ioresources_init);
@@ -990,6 +994,7 @@ struct resource * __request_region(struct resource *parent,
 			break;
 		if (conflict != parent) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			parent = conflict;
 			if (!(conflict->flags & IORESOURCE_BUSY))
 				continue;
@@ -999,6 +1004,11 @@ struct resource * __request_region(struct resource *parent,
 				continue;
 			}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			parent = conflict;
+			if (!(conflict->flags & IORESOURCE_BUSY))
+				continue;
+>>>>>>> 2617302... source
 		}
 		if (conflict->flags & flags & IORESOURCE_MUXED) {
 			add_wait_queue(&muxed_resource_wait, &wait);

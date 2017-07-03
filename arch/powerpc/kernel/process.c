@@ -949,6 +949,7 @@ int arch_dup_task_struct(struct task_struct *dst, struct task_struct *src)
 	flush_vsx_to_thread(src);
 	flush_spe_to_thread(src);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/*
 	* Flush TM state out so we can copy it.  __switch_to_tm() does this
@@ -961,6 +962,8 @@ int arch_dup_task_struct(struct task_struct *dst, struct task_struct *src)
 	tm_recheckpoint_new_task(src);
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	*dst = *src;
 	return 0;
 }

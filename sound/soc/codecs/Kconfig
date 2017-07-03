@@ -602,12 +602,18 @@ config SND_SOC_MSM_HDMI_CODEC_RX
         supports hdmi panel.
         
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 config SOUND_CONTROL_HAX_3_GPL
 	tristate "new wcd93xx sound control hax"
 	default y
 	help
 	  FauxSound WCD93xx chipset sound control hacks 3.0 for deeper hax
 
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 source "sound/soc/codecs/dbmd2/Kconfig"

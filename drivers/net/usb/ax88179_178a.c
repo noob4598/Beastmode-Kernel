@@ -696,9 +696,12 @@ static int ax88179_set_mac_addr(struct net_device *net, void *p)
 	struct usbnet *dev = netdev_priv(net);
 	struct sockaddr *addr = p;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	int ret;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	if (netif_running(net))
 		return -EBUSY;
@@ -708,6 +711,7 @@ static int ax88179_set_mac_addr(struct net_device *net, void *p)
 	memcpy(net->dev_addr, addr->sa_data, ETH_ALEN);
 
 	/* Set the MAC address */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	return ax88179_write_cmd(dev, AX_ACCESS_MAC, AX_NODE_ID, ETH_ALEN,
 				 ETH_ALEN, net->dev_addr);
@@ -719,6 +723,10 @@ static int ax88179_set_mac_addr(struct net_device *net, void *p)
 
 	return 0;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	return ax88179_write_cmd(dev, AX_ACCESS_MAC, AX_NODE_ID, ETH_ALEN,
+				 ETH_ALEN, net->dev_addr);
+>>>>>>> 2617302... source
 }
 
 static const struct net_device_ops ax88179_netdev_ops = {

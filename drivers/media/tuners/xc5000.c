@@ -56,10 +56,14 @@ struct xc5000_priv {
 	u32 if_khz;
 	u16 xtal_khz;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u32 freq_hz;
 =======
 	u32 freq_hz, freq_offset;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	u32 freq_hz;
+>>>>>>> 2617302... source
 	u32 bandwidth;
 	u8  video_standard;
 	u8  rf_mode;
@@ -760,20 +764,28 @@ static int xc5000_set_params(struct dvb_frontend *fe)
 		dprintk(1, "%s() VSB modulation\n", __func__);
 		priv->rf_mode = XC_RF_MODE_AIR;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		priv->freq_hz = freq - 1750000;
 =======
 		priv->freq_offset = 1750000;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		priv->freq_hz = freq - 1750000;
+>>>>>>> 2617302... source
 		priv->video_standard = DTV6;
 		break;
 	case SYS_DVBC_ANNEX_B:
 		dprintk(1, "%s() QAM modulation\n", __func__);
 		priv->rf_mode = XC_RF_MODE_CABLE;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		priv->freq_hz = freq - 1750000;
 =======
 		priv->freq_offset = 1750000;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		priv->freq_hz = freq - 1750000;
+>>>>>>> 2617302... source
 		priv->video_standard = DTV6;
 		break;
 	case SYS_ISDBT:
@@ -789,6 +801,9 @@ static int xc5000_set_params(struct dvb_frontend *fe)
 		case 6000000:
 			priv->video_standard = DTV6;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 			priv->freq_hz = freq - 1750000;
 			break;
 		case 7000000:
@@ -798,6 +813,7 @@ static int xc5000_set_params(struct dvb_frontend *fe)
 		case 8000000:
 			priv->video_standard = DTV8;
 			priv->freq_hz = freq - 2750000;
+<<<<<<< HEAD
 =======
 			priv->freq_offset = 1750000;
 			break;
@@ -809,6 +825,8 @@ static int xc5000_set_params(struct dvb_frontend *fe)
 			priv->video_standard = DTV8;
 			priv->freq_offset = 2750000;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 			break;
 		default:
 			printk(KERN_ERR "xc5000 bandwidth not set!\n");
@@ -823,6 +841,9 @@ static int xc5000_set_params(struct dvb_frontend *fe)
 		if (bw <= 6000000) {
 			priv->video_standard = DTV6;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 			priv->freq_hz = freq - 1750000;
 			b = 6;
 		} else if (bw <= 7000000) {
@@ -832,6 +853,7 @@ static int xc5000_set_params(struct dvb_frontend *fe)
 		} else {
 			priv->video_standard = DTV7_8;
 			priv->freq_hz = freq - 2750000;
+<<<<<<< HEAD
 =======
 			priv->freq_offset = 1750000;
 			b = 6;
@@ -843,6 +865,8 @@ static int xc5000_set_params(struct dvb_frontend *fe)
 			priv->video_standard = DTV7_8;
 			priv->freq_offset = 2750000;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 			b = 8;
 		}
 		dprintk(1, "%s() Bandwidth %dMHz (%d)\n", __func__,
@@ -854,10 +878,13 @@ static int xc5000_set_params(struct dvb_frontend *fe)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	priv->freq_hz = freq - priv->freq_offset;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	dprintk(1, "%s() frequency=%d (compensated to %d)\n",
 		__func__, freq, priv->freq_hz);
 
@@ -1109,10 +1136,14 @@ static int xc5000_get_frequency(struct dvb_frontend *fe, u32 *freq)
 	struct xc5000_priv *priv = fe->tuner_priv;
 	dprintk(1, "%s()\n", __func__);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	*freq = priv->freq_hz;
 =======
 	*freq = priv->freq_hz + priv->freq_offset;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	*freq = priv->freq_hz;
+>>>>>>> 2617302... source
 	return 0;
 }
 

@@ -91,6 +91,7 @@ __acquires(ohci->lock)
 	finish_unlinks (ohci, ohci_frame_no(ohci));
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/*
 	 * Some controllers don't handle "global" suspend properly if
@@ -111,6 +112,8 @@ __acquires(ohci->lock)
 	}
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	/* maybe resume can wake root hub */
 	if (ohci_to_hcd(ohci)->self.root_hub->do_remote_wakeup || autostop) {
 		ohci->hc_control |= OHCI_CTRL_RWE;

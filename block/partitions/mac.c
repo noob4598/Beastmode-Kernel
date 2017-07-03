@@ -33,10 +33,14 @@ int mac_partition(struct parsed_partitions *state)
 	unsigned char *data;
 	int slot, blocks_in_map;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned secsize;
 =======
 	unsigned secsize, datasize, partoffset;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	unsigned secsize;
+>>>>>>> 2617302... source
 #ifdef CONFIG_PPC_PMAC
 	int found_root = 0;
 	int found_root_goodness = 0;
@@ -55,10 +59,14 @@ int mac_partition(struct parsed_partitions *state)
 	secsize = be16_to_cpu(md->block_size);
 	put_dev_sector(sect);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	data = read_part_sector(state, secsize/512, &sect);
 	if (!data)
 		return -1;
 	part = (struct mac_partition *) (data + secsize%512);
+<<<<<<< HEAD
 =======
 	datasize = round_down(secsize, 512);
 	data = read_part_sector(state, datasize / 512, &sect);
@@ -69,6 +77,8 @@ int mac_partition(struct parsed_partitions *state)
 		return -1;
 	part = (struct mac_partition *) (data + partoffset);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	if (be16_to_cpu(part->signature) != MAC_PARTITION_MAGIC) {
 		put_dev_sector(sect);
 		return 0;		/* not a MacOS disk */

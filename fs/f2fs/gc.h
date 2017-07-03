@@ -14,6 +14,7 @@
 						 * or not
 						 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define GC_THREAD_MIN_SLEEP_TIME	30000	/* milliseconds */
 #define GC_THREAD_MAX_SLEEP_TIME	60000
 #define GC_THREAD_NOGC_SLEEP_TIME	300000	/* wait 5 min */
@@ -22,25 +23,38 @@
 #define DEF_GC_THREAD_MAX_SLEEP_TIME	60000
 #define DEF_GC_THREAD_NOGC_SLEEP_TIME	300000	/* wait 5 min */
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+#define GC_THREAD_MIN_SLEEP_TIME	30000	/* milliseconds */
+#define GC_THREAD_MAX_SLEEP_TIME	60000
+#define GC_THREAD_NOGC_SLEEP_TIME	300000	/* wait 5 min */
+>>>>>>> 2617302... source
 #define LIMIT_INVALID_BLOCK	40 /* percentage over total user space */
 #define LIMIT_FREE_BLOCK	40 /* percentage over invalid + free space */
 
 /* Search max. number of dirty segments to select a victim segment */
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define MAX_VICTIM_SEARCH	20
 =======
 #define DEF_MAX_VICTIM_SEARCH 4096 /* covers 8GB */
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+#define MAX_VICTIM_SEARCH	20
+>>>>>>> 2617302... source
 
 struct f2fs_gc_kthread {
 	struct task_struct *f2fs_gc_task;
 	wait_queue_head_t gc_wait_queue_head;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 };
 
 struct inode_entry {
 	struct list_head list;
 	struct inode *inode;
+<<<<<<< HEAD
 =======
 
 	/* for gc sleep time */
@@ -56,6 +70,8 @@ struct gc_inode_list {
 	struct list_head ilist;
 	struct radix_tree_root iroot;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 };
 
 /*
@@ -83,6 +99,9 @@ static inline block_t limit_free_user_blocks(struct f2fs_sb_info *sbi)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 static inline long increase_sleep_time(long wait)
 {
 	if (wait == GC_THREAD_NOGC_SLEEP_TIME)
@@ -103,6 +122,7 @@ static inline long decrease_sleep_time(long wait)
 	if (wait <= GC_THREAD_MIN_SLEEP_TIME)
 		wait = GC_THREAD_MIN_SLEEP_TIME;
 	return wait;
+<<<<<<< HEAD
 =======
 static inline void increase_sleep_time(struct f2fs_gc_kthread *gc_th,
 								long *wait)
@@ -125,6 +145,8 @@ static inline void decrease_sleep_time(struct f2fs_gc_kthread *gc_th,
 	if (*wait <= gc_th->min_sleep_time)
 		*wait = gc_th->min_sleep_time;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 }
 
 static inline bool has_enough_invalid_blocks(struct f2fs_sb_info *sbi)
@@ -133,10 +155,14 @@ static inline bool has_enough_invalid_blocks(struct f2fs_sb_info *sbi)
 					written_block_count(sbi);
 	/*
 <<<<<<< HEAD
+<<<<<<< HEAD
 	 * Background GC is triggered with the following condition.
 =======
 	 * Background GC is triggered with the following conditions.
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	 * Background GC is triggered with the following condition.
+>>>>>>> 2617302... source
 	 * 1. There are a number of invalid blocks.
 	 * 2. There is not enough free space.
 	 */
@@ -146,6 +172,9 @@ static inline bool has_enough_invalid_blocks(struct f2fs_sb_info *sbi)
 	return false;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 
 static inline int is_idle(struct f2fs_sb_info *sbi)
 {
@@ -154,5 +183,8 @@ static inline int is_idle(struct f2fs_sb_info *sbi)
 	struct request_list *rl = &q->root_rl;
 	return !(rl->count[BLK_RW_SYNC]) && !(rl->count[BLK_RW_ASYNC]);
 }
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source

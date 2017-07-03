@@ -3075,10 +3075,14 @@ ieee80211_rx_mgmt_beacon(struct ieee80211_sub_if_data *sdata,
 	if (ifmgd->rssi_min_thold != ifmgd->rssi_max_thold &&
 	    ifmgd->count_beacon_signal >= IEEE80211_SIGNAL_AVE_MIN_COUNT) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		int sig = ifmgd->ave_beacon_signal;
 =======
 		int sig = ifmgd->ave_beacon_signal / 16;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		int sig = ifmgd->ave_beacon_signal;
+>>>>>>> 2617302... source
 		int last_sig = ifmgd->last_ave_beacon_signal;
 
 		/*
@@ -3759,6 +3763,7 @@ static void ieee80211_restart_sta_timer(struct ieee80211_sub_if_data *sdata)
 
 #ifdef CONFIG_PM
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 void ieee80211_mgd_quiesce(struct ieee80211_sub_if_data *sdata)
 {
@@ -3787,6 +3792,8 @@ void ieee80211_mgd_quiesce(struct ieee80211_sub_if_data *sdata)
 }
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 void ieee80211_sta_restart(struct ieee80211_sub_if_data *sdata)
 {
 	struct ieee80211_if_managed *ifmgd = &sdata->u.mgd;
@@ -4403,11 +4410,16 @@ int ieee80211_mgd_assoc(struct ieee80211_sub_if_data *sdata,
 
 	if (bss->wmm_used && bss->uapsd_supported &&
 <<<<<<< HEAD
+<<<<<<< HEAD
 	    (sdata->local->hw.flags & IEEE80211_HW_SUPPORTS_UAPSD) &&
 	    sdata->wmm_acm != 0xff) {
 =======
 	    (sdata->local->hw.flags & IEEE80211_HW_SUPPORTS_UAPSD)) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	    (sdata->local->hw.flags & IEEE80211_HW_SUPPORTS_UAPSD) &&
+	    sdata->wmm_acm != 0xff) {
+>>>>>>> 2617302... source
 		assoc_data->uapsd = true;
 		ifmgd->flags |= IEEE80211_STA_UAPSD_ENABLED;
 	} else {

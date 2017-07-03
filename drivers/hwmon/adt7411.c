@@ -31,9 +31,12 @@
 #define ADT7411_REG_CFG1			0x18
 #define ADT7411_CFG1_START_MONITOR		(1 << 0)
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define ADT7411_CFG1_RESERVED_BIT3		(1 << 3)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 #define ADT7411_REG_CFG2			0x19
 #define ADT7411_CFG2_DISABLE_AVG		(1 << 5)
@@ -297,6 +300,7 @@ static int adt7411_probe(struct i2c_client *client,
 	mutex_init(&data->update_lock);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = adt7411_modify_bit(client, ADT7411_REG_CFG1,
 				 ADT7411_CFG1_START_MONITOR, 1);
 =======
@@ -305,6 +309,10 @@ static int adt7411_probe(struct i2c_client *client,
 				 ADT7411_CFG1_RESERVED_BIT3
 				 | ADT7411_CFG1_START_MONITOR, 1);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	ret = adt7411_modify_bit(client, ADT7411_REG_CFG1,
+				 ADT7411_CFG1_START_MONITOR, 1);
+>>>>>>> 2617302... source
 	if (ret < 0)
 		return ret;
 

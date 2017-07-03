@@ -363,10 +363,14 @@ static inline int apic_find_highest_irr(struct kvm_lapic *apic)
 static inline void apic_clear_irr(int vec, struct kvm_lapic *apic)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	apic->irr_pending = false;
 	apic_clear_vector(vec, apic->regs + APIC_IRR);
 	if (apic_search_irr(apic) != -1)
 		apic->irr_pending = true;
+<<<<<<< HEAD
 =======
 	struct kvm_vcpu *vcpu;
 
@@ -381,11 +385,16 @@ static inline void apic_clear_irr(int vec, struct kvm_lapic *apic)
 		apic->irr_pending = (vec != -1);
 	}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 }
 
 static inline void apic_set_isr(int vec, struct kvm_lapic *apic)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	if (!__apic_test_and_set_vector(vec, apic->regs + APIC_ISR))
 		++apic->isr_count;
 	BUG_ON(apic->isr_count > MAX_APIC_VECTOR);
@@ -395,6 +404,7 @@ static inline void apic_set_isr(int vec, struct kvm_lapic *apic)
 	 * the highest bit in ISR.
 	 */
 	apic->highest_isr_cache = vec;
+<<<<<<< HEAD
 =======
 	struct kvm_vcpu *vcpu;
 
@@ -440,15 +450,21 @@ static inline int apic_find_highest_isr(struct kvm_lapic *apic)
 
 	return result;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 }
 
 static inline void apic_clear_isr(int vec, struct kvm_lapic *apic)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	if (__apic_test_and_clear_vector(vec, apic->regs + APIC_ISR))
 		--apic->isr_count;
 	BUG_ON(apic->isr_count < 0);
 	apic->highest_isr_cache = -1;
+<<<<<<< HEAD
 =======
 	struct kvm_vcpu *vcpu;
 	if (!__apic_test_and_clear_vector(vec, apic->regs + APIC_ISR))
@@ -472,6 +488,8 @@ static inline void apic_clear_isr(int vec, struct kvm_lapic *apic)
 		apic->highest_isr_cache = -1;
 	}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 }
 
 int kvm_lapic_find_highest_irr(struct kvm_vcpu *vcpu)
@@ -552,6 +570,9 @@ static void pv_eoi_clr_pending(struct kvm_vcpu *vcpu)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 static inline int apic_find_highest_isr(struct kvm_lapic *apic)
 {
 	int result;
@@ -568,8 +589,11 @@ static inline int apic_find_highest_isr(struct kvm_lapic *apic)
 	return result;
 }
 
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 void kvm_apic_update_tmr(struct kvm_vcpu *vcpu, u32 *tmr)
 {
 	struct kvm_lapic *apic = vcpu->arch.apic;
@@ -1169,16 +1193,22 @@ static void apic_manage_nmi_watchdog(struct kvm_lapic *apic, u32 lvt0_val)
 			apic_debug("Receive NMI setting on APIC_LVT0 "
 				   "for cpu %d\n", apic->vcpu->vcpu_id);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 			apic->vcpu->kvm->arch.vapics_in_nmi_mode++;
 		}
 	} else if (nmi_wd_enabled)
 		apic->vcpu->kvm->arch.vapics_in_nmi_mode--;
+<<<<<<< HEAD
 =======
 			atomic_inc(&apic->vcpu->kvm->arch.vapics_in_nmi_mode);
 		}
 	} else if (nmi_wd_enabled)
 		atomic_dec(&apic->vcpu->kvm->arch.vapics_in_nmi_mode);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 }
 
 static int apic_reg_write(struct kvm_lapic *apic, u32 reg, u32 val)
@@ -1718,6 +1748,7 @@ int kvm_get_apic_interrupt(struct kvm_vcpu *vcpu)
 		return -1;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/*
 	 * We get here even with APIC virtualization enabled, if doing
@@ -1727,6 +1758,8 @@ int kvm_get_apic_interrupt(struct kvm_vcpu *vcpu)
 	 */
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	apic_set_isr(vector, apic);
 	apic_update_ppr(apic);
 	apic_clear_irr(vector, apic);

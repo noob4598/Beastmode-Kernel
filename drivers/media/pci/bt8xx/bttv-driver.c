@@ -2377,6 +2377,7 @@ static int bttv_g_fmt_vid_overlay(struct file *file, void *priv,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 static void bttv_get_width_mask_vid_cap(const struct bttv_format *fmt,
 					unsigned int *width_mask,
@@ -2392,6 +2393,8 @@ static void bttv_get_width_mask_vid_cap(const struct bttv_format *fmt,
 }
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 static int bttv_try_fmt_vid_cap(struct file *file, void *priv,
 						struct v4l2_format *f)
 {
@@ -2402,9 +2405,12 @@ static int bttv_try_fmt_vid_cap(struct file *file, void *priv,
 	__s32 width, height;
 	__s32 height2;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	unsigned int width_mask, width_bias;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	int rc;
 
 	fmt = format_by_fourcc(f->fmt.pix.pixelformat);
@@ -2438,6 +2444,7 @@ static int bttv_try_fmt_vid_cap(struct file *file, void *priv,
 	height = f->fmt.pix.height;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	rc = limit_scaled_size_lock(fh, &width, &height, field,
 			       /* width_mask: 4 pixels */ ~3,
 			       /* width_bias: nearest */ 2,
@@ -2446,6 +2453,11 @@ static int bttv_try_fmt_vid_cap(struct file *file, void *priv,
 	rc = limit_scaled_size_lock(fh, &width, &height, field,
 			       width_mask, width_bias,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	rc = limit_scaled_size_lock(fh, &width, &height, field,
+			       /* width_mask: 4 pixels */ ~3,
+			       /* width_bias: nearest */ 2,
+>>>>>>> 2617302... source
 			       /* adjust_size */ 1,
 			       /* adjust_crop */ 0);
 	if (0 != rc)
@@ -2479,9 +2491,12 @@ static int bttv_s_fmt_vid_cap(struct file *file, void *priv,
 	struct bttv *btv = fh->btv;
 	__s32 width, height;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	unsigned int width_mask, width_bias;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	enum v4l2_field field;
 
 	retval = bttv_switch_type(fh, f->type);
@@ -2497,6 +2512,7 @@ static int bttv_s_fmt_vid_cap(struct file *file, void *priv,
 	field = f->fmt.pix.field;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	retval = limit_scaled_size_lock(fh, &width, &height, f->fmt.pix.field,
 			       /* width_mask: 4 pixels */ ~3,
 			       /* width_bias: nearest */ 2,
@@ -2506,6 +2522,11 @@ static int bttv_s_fmt_vid_cap(struct file *file, void *priv,
 	retval = limit_scaled_size_lock(fh, &width, &height, f->fmt.pix.field,
 			       width_mask, width_bias,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	retval = limit_scaled_size_lock(fh, &width, &height, f->fmt.pix.field,
+			       /* width_mask: 4 pixels */ ~3,
+			       /* width_bias: nearest */ 2,
+>>>>>>> 2617302... source
 			       /* adjust_size */ 1,
 			       /* adjust_crop */ 1);
 	if (0 != retval)
@@ -2514,10 +2535,15 @@ static int bttv_s_fmt_vid_cap(struct file *file, void *priv,
 	f->fmt.pix.field = field;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	fmt = format_by_fourcc(f->fmt.pix.pixelformat);
 
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	fmt = format_by_fourcc(f->fmt.pix.pixelformat);
+
+>>>>>>> 2617302... source
 	/* update our state informations */
 	fh->fmt              = fmt;
 	fh->cap.field        = f->fmt.pix.field;

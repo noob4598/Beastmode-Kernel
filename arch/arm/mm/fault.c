@@ -405,9 +405,12 @@ int tima_is_pg_protected(unsigned long va)
 }
 #endif	/* CONFIG_TIMA_RKP_30 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 EXPORT_SYMBOL(tima_is_pg_protected);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 #endif
 
 #ifdef	CONFIG_TIMA_RKP_30
@@ -632,12 +635,18 @@ do_page_fault(unsigned long addr, unsigned int fsr, struct pt_regs *regs)
 	struct mm_struct *mm;
 	int fault, sig, code;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int write = fsr & FSR_WRITE;
 	unsigned int flags = FAULT_FLAG_ALLOW_RETRY | FAULT_FLAG_KILLABLE |
 				(write ? FAULT_FLAG_WRITE : 0);
 =======
 	unsigned int flags = FAULT_FLAG_ALLOW_RETRY | FAULT_FLAG_KILLABLE;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	int write = fsr & FSR_WRITE;
+	unsigned int flags = FAULT_FLAG_ALLOW_RETRY | FAULT_FLAG_KILLABLE |
+				(write ? FAULT_FLAG_WRITE : 0);
+>>>>>>> 2617302... source
 
 	if (notify_page_fault(regs, fsr))
 		return 0;
@@ -657,6 +666,7 @@ do_page_fault(unsigned long addr, unsigned int fsr, struct pt_regs *regs)
 		goto no_context;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (user_mode(regs))
 		flags |= FAULT_FLAG_USER;
@@ -664,6 +674,8 @@ do_page_fault(unsigned long addr, unsigned int fsr, struct pt_regs *regs)
 		flags |= FAULT_FLAG_WRITE;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	/*
 	 * As per x86, we may deadlock here.  However, since the kernel only
 	 * validly references user space from well defined areas of the code,
@@ -732,6 +744,7 @@ retry:
 		return 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/*
 	 * If we are in kernel mode at this point, we
@@ -741,6 +754,8 @@ retry:
 		goto no_context;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	if (fault & VM_FAULT_OOM) {
 		/*
 		 * We ran out of memory, call the OOM killer, and return to
@@ -752,6 +767,9 @@ retry:
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	/*
 	 * If we are in kernel mode at this point, we
 	 * have no context to handle this fault with.
@@ -759,8 +777,11 @@ retry:
 	if (!user_mode(regs))
 		goto no_context;
 
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	if (fault & VM_FAULT_SIGBUS) {
 		/*
 		 * We had some memory, but were unable to

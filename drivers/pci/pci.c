@@ -3667,10 +3667,14 @@ int pci_set_vga_state(struct pci_dev *dev, bool decode,
 	int rc;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	WARN_ON((flags & PCI_VGA_STATE_CHANGE_DECODES) & (command_bits & ~(PCI_COMMAND_IO|PCI_COMMAND_MEMORY)));
 =======
 	WARN_ON((flags & PCI_VGA_STATE_CHANGE_DECODES) && (command_bits & ~(PCI_COMMAND_IO|PCI_COMMAND_MEMORY)));
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	WARN_ON((flags & PCI_VGA_STATE_CHANGE_DECODES) & (command_bits & ~(PCI_COMMAND_IO|PCI_COMMAND_MEMORY)));
+>>>>>>> 2617302... source
 
 	/* ARCH specific VGA enables */
 	rc = pci_set_vga_state_arch(dev, decode, command_bits, flags);

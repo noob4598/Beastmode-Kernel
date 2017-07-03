@@ -147,12 +147,17 @@ static void omap_plane_pre_apply(struct omap_drm_apply *apply)
 			info->out_width, info->out_height,
 			info->screen_width);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	DBG("%d,%d %08x %08x", info->pos_x, info->pos_y,
 			info->paddr, info->p_uv_addr);
 =======
 	DBG("%d,%d %pad %pad", info->pos_x, info->pos_y,
 			&info->paddr, &info->p_uv_addr);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	DBG("%d,%d %08x %08x", info->pos_x, info->pos_y,
+			info->paddr, info->p_uv_addr);
+>>>>>>> 2617302... source
 
 	/* TODO: */
 	ilace = false;

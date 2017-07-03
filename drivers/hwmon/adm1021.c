@@ -186,10 +186,14 @@ static ssize_t set_temp_max(struct device *dev,
 	struct adm1021_data *data = i2c_get_clientdata(client);
 	long temp;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int err;
 =======
 	int reg_val, err;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	int err;
+>>>>>>> 2617302... source
 
 	err = kstrtol(buf, 10, &temp);
 	if (err)
@@ -198,10 +202,14 @@ static ssize_t set_temp_max(struct device *dev,
 
 	mutex_lock(&data->update_lock);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	data->temp_max[index] = clamp_val(temp, -128, 127);
 	if (!read_only)
 		i2c_smbus_write_byte_data(client, ADM1021_REG_TOS_W(index),
 					  data->temp_max[index]);
+<<<<<<< HEAD
 =======
 	reg_val = clamp_val(temp, -128, 127);
 	data->temp_max[index] = reg_val * 1000;
@@ -209,6 +217,8 @@ static ssize_t set_temp_max(struct device *dev,
 		i2c_smbus_write_byte_data(client, ADM1021_REG_TOS_W(index),
 					  reg_val);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	mutex_unlock(&data->update_lock);
 
 	return count;
@@ -223,10 +233,14 @@ static ssize_t set_temp_min(struct device *dev,
 	struct adm1021_data *data = i2c_get_clientdata(client);
 	long temp;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int err;
 =======
 	int reg_val, err;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	int err;
+>>>>>>> 2617302... source
 
 	err = kstrtol(buf, 10, &temp);
 	if (err)
@@ -235,10 +249,14 @@ static ssize_t set_temp_min(struct device *dev,
 
 	mutex_lock(&data->update_lock);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	data->temp_min[index] = clamp_val(temp, -128, 127);
 	if (!read_only)
 		i2c_smbus_write_byte_data(client, ADM1021_REG_THYST_W(index),
 					  data->temp_min[index]);
+<<<<<<< HEAD
 =======
 	reg_val = clamp_val(temp, -128, 127);
 	data->temp_min[index] = reg_val * 1000;
@@ -246,6 +264,8 @@ static ssize_t set_temp_min(struct device *dev,
 		i2c_smbus_write_byte_data(client, ADM1021_REG_THYST_W(index),
 					  reg_val);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	mutex_unlock(&data->update_lock);
 
 	return count;

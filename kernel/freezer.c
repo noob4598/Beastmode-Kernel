@@ -43,11 +43,14 @@ bool freezing_slow_path(struct task_struct *p)
 		return false;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (test_thread_flag(TIF_MEMDIE))
 		return false;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	if (pm_nosig_freezing || cgroup_freezing(p))
 		return true;
 

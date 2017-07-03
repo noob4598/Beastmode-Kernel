@@ -22,10 +22,14 @@
 #include "pnpbios.h"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct {
 =======
 __visible struct {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+static struct {
+>>>>>>> 2617302... source
 	u16 offset;
 	u16 segment;
 } pnp_bios_callpoint;
@@ -46,9 +50,12 @@ asmlinkage void pnp_bios_callfunc(void);
 __asm__(".text			\n"
 	__ALIGN_STR "\n"
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	".globl pnp_bios_callfunc\n"
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	"pnp_bios_callfunc:\n"
 	"	pushl %edx	\n"
 	"	pushl %ecx	\n"
@@ -75,6 +82,7 @@ static struct desc_struct bad_bios_desc = GDT_ENTRY_INIT(0x4092,
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 u32 pnp_bios_fault_esp;
 u32 pnp_bios_fault_eip;
 u32 pnp_bios_is_utter_crap = 0;
@@ -83,6 +91,11 @@ __visible u32 pnp_bios_fault_esp;
 __visible u32 pnp_bios_fault_eip;
 __visible u32 pnp_bios_is_utter_crap = 0;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+u32 pnp_bios_fault_esp;
+u32 pnp_bios_fault_eip;
+u32 pnp_bios_is_utter_crap = 0;
+>>>>>>> 2617302... source
 
 static spinlock_t pnp_bios_lock;
 

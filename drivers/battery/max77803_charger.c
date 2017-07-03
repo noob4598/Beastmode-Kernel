@@ -131,11 +131,15 @@ static void max77803_dump_reg(struct max77803_charger_data *charger)
 	u8 reg_data;
 	u32 reg_addr;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	pr_info("%s\n", __func__);
 
 	for (reg_addr = 0xB0; reg_addr <= 0xC5; reg_addr++) {
 		max77803_read_reg(charger->max77803->i2c, reg_addr, &reg_data);
 		pr_info("max77803: c: 0x%02x(0x%02x)\n", reg_addr, reg_data);
+<<<<<<< HEAD
 =======
 	pr_debug("%s\n", __func__);
 
@@ -143,6 +147,8 @@ static void max77803_dump_reg(struct max77803_charger_data *charger)
 		max77803_read_reg(charger->max77803->i2c, reg_addr, &reg_data);
 		pr_debug("max77803: c: 0x%02x(0x%02x)\n", reg_addr, reg_data);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	}
 }
 */
@@ -286,10 +292,14 @@ static void max77803_check_slow_charging(struct max77803_charger_data *charger, 
 			(charger->cable_type != POWER_SUPPLY_TYPE_BATTERY)) {
 		charger->aicl_on = true;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_info("%s: slow charging on : set_current_reg(0x%02x), cable type(%d)\n", __func__, set_current_reg, charger->cable_type);
 =======
 		pr_debug("%s: slow charging on : set_current_reg(0x%02x), cable type(%d)\n", __func__, set_current_reg, charger->cable_type);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		pr_info("%s: slow charging on : set_current_reg(0x%02x), cable type(%d)\n", __func__, set_current_reg, charger->cable_type);
+>>>>>>> 2617302... source
 	}
 	else
 		charger->aicl_on = false;
@@ -358,16 +368,22 @@ static void max77803_set_input_current(struct max77803_charger_data *charger,
 
 	set_current_reg = cur / charger->input_curr_limit_step;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	if (charger->cable_type == POWER_SUPPLY_TYPE_BATTERY) {
 		if (charger->status != POWER_SUPPLY_STATUS_CHARGING)
 			goto set_input_current;
 		else
 			goto exit;
 	}
+<<<<<<< HEAD
 =======
 	if (charger->cable_type == POWER_SUPPLY_TYPE_BATTERY)
 		goto set_input_current;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	max77803_read_reg(charger->max77803->i2c,
 		set_reg, &reg_data);
@@ -384,10 +400,14 @@ static void max77803_set_input_current(struct max77803_charger_data *charger,
 				max77803_write_reg(charger->max77803->i2c,
 						set_reg, set_current_reg);
 <<<<<<< HEAD
+<<<<<<< HEAD
 				pr_info("%s: set_current_reg(0x%02x)\n", __func__, set_current_reg);
 =======
 				pr_debug("%s: set_current_reg(0x%02x)\n", __func__, set_current_reg);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+				pr_info("%s: set_current_reg(0x%02x)\n", __func__, set_current_reg);
+>>>>>>> 2617302... source
 				chg_state = max77803_get_charger_state(charger);
 				if ((chg_state != POWER_SUPPLY_STATUS_CHARGING) &&
 						(chg_state != POWER_SUPPLY_STATUS_FULL))
@@ -437,10 +457,14 @@ static void max77803_set_input_current(struct max77803_charger_data *charger,
 			max77803_write_reg(charger->max77803->i2c,
 					set_reg, now_current_reg);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			pr_info("%s: now_current_reg(0x%02x)\n", __func__, now_current_reg);
 =======
 			pr_debug("%s: now_current_reg(0x%02x)\n", __func__, now_current_reg);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			pr_info("%s: now_current_reg(0x%02x)\n", __func__, now_current_reg);
+>>>>>>> 2617302... source
 			chg_state = max77803_get_charger_state(charger);
 			if ((chg_state != POWER_SUPPLY_STATUS_CHARGING) &&
 					(chg_state != POWER_SUPPLY_STATUS_FULL))
@@ -455,10 +479,14 @@ static void max77803_set_input_current(struct max77803_charger_data *charger,
 
 set_input_current:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_info("%s: reg_data(0x%02x), input(%d)\n",
 =======
 	pr_debug("%s: reg_data(0x%02x), input(%d)\n",
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	pr_info("%s: reg_data(0x%02x), input(%d)\n",
+>>>>>>> 2617302... source
 		__func__, set_current_reg, cur);
 	max77803_write_reg(charger->max77803->i2c,
 		set_reg, set_current_reg);
@@ -485,10 +513,14 @@ static int max77803_get_input_current(struct max77803_charger_data *charger)
 		max77803_read_reg(charger->max77803->i2c,
 				MAX77803_CHG_REG_CHG_CNFG_10, &reg_data);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_info("%s: CHG_CNFG_10(0x%02x)\n", __func__, reg_data);
 =======
 		pr_debug("%s: CHG_CNFG_10(0x%02x)\n", __func__, reg_data);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		pr_info("%s: CHG_CNFG_10(0x%02x)\n", __func__, reg_data);
+>>>>>>> 2617302... source
 		/* AND operation for removing the formal 2bit  */
 		reg_data = reg_data & 0x3F;
 		charger->input_curr_limit_step = 20;
@@ -496,10 +528,14 @@ static int max77803_get_input_current(struct max77803_charger_data *charger)
 		max77803_read_reg(charger->max77803->i2c,
 				MAX77803_CHG_REG_CHG_CNFG_09, &reg_data);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_info("%s: CHG_CNFG_09(0x%02x)\n", __func__, reg_data);
 =======
 		pr_debug("%s: CHG_CNFG_09(0x%02x)\n", __func__, reg_data);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		pr_info("%s: CHG_CNFG_09(0x%02x)\n", __func__, reg_data);
+>>>>>>> 2617302... source
 		/* AND operation for removing the formal 1bit  */
 		reg_data = reg_data & 0x7F;
 		if (charger->pmic_ver == 0x04)
@@ -539,10 +575,14 @@ static void max77803_set_topoff_current(struct max77803_charger_data *charger,
 	timeout = timeout / 60;
 	reg_data |= ((timeout / 10) << 3);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_info("%s: reg_data(0x%02x), topoff(%d)\n", __func__, reg_data, cur);
 =======
 	pr_debug("%s: reg_data(0x%02x), topoff(%d)\n", __func__, reg_data, cur);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	pr_info("%s: reg_data(0x%02x), topoff(%d)\n", __func__, reg_data, cur);
+>>>>>>> 2617302... source
 
 	max77803_write_reg(charger->max77803->i2c,
 		MAX77803_CHG_REG_CHG_CNFG_03, reg_data);
@@ -567,10 +607,14 @@ static void max77803_set_charge_current(struct max77803_charger_data *charger,
 				MAX77803_CHG_REG_CHG_CNFG_02, reg_data);
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_info("%s: reg_data(0x%02x), charge(%d)\n",
 =======
 	pr_debug("%s: reg_data(0x%02x), charge(%d)\n",
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	pr_info("%s: reg_data(0x%02x), charge(%d)\n",
+>>>>>>> 2617302... source
 			__func__, reg_data, cur);
 }
 
@@ -624,11 +668,15 @@ static void max77803_recovery_work(struct work_struct *work)
 	if ((chg_data->soft_reg_recovery_cnt < RECOVERY_CNT) && (
 		(chgin_dtls == 0x3) && (chg_dtls != 0x8) && (byp_dtls == 0x0))) {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		pr_info("%s: try to recovery, cnt(%d)\n", __func__,
 				(chg_data->soft_reg_recovery_cnt + 1));
 		if (chg_data->siop_level < 100 &&
 			chg_data->cable_type == POWER_SUPPLY_TYPE_MAINS) {
 			pr_info("%s : LCD on status and recover current\n", __func__);
+<<<<<<< HEAD
 =======
 		pr_debug("%s: try to recovery, cnt(%d)\n", __func__,
 				(chg_data->soft_reg_recovery_cnt + 1));
@@ -636,6 +684,8 @@ static void max77803_recovery_work(struct work_struct *work)
 			chg_data->cable_type == POWER_SUPPLY_TYPE_MAINS) {
 			pr_debug("%s : LCD on status and recover current\n", __func__);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 			max77803_set_input_current(chg_data,
 					SIOP_INPUT_LIMIT_CURRENT);
 		} else {
@@ -644,16 +694,22 @@ static void max77803_recovery_work(struct work_struct *work)
 		}
 	} else {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		pr_info("%s: fail to recovery, cnt(%d)\n", __func__,
 				(chg_data->soft_reg_recovery_cnt + 1));
 
 		pr_info("%s:  CHGIN(0x%x), CHG(0x%x), BYP(0x%x)\n",
+<<<<<<< HEAD
 =======
 		pr_debug("%s: fail to recovery, cnt(%d)\n", __func__,
 				(chg_data->soft_reg_recovery_cnt + 1));
 
 		pr_debug("%s:  CHGIN(0x%x), CHG(0x%x), BYP(0x%x)\n",
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 				__func__, chgin_dtls, chg_dtls, byp_dtls);
 
 		/* schedule softreg recovery wq */
@@ -663,10 +719,14 @@ static void max77803_recovery_work(struct work_struct *work)
 				msecs_to_jiffies(RECOVERY_DELAY));
 		} else {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			pr_info("%s: recovery cnt(%d) is over\n",
 =======
 			pr_debug("%s: recovery cnt(%d) is over\n",
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			pr_info("%s: recovery cnt(%d) is over\n",
+>>>>>>> 2617302... source
 				__func__, RECOVERY_CNT);
 		}
 	}
@@ -702,10 +762,14 @@ static void reduce_input_current(struct max77803_charger_data *charger, int cur)
 		max77803_write_reg(charger->max77803->i2c,
 				set_reg, set_value);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_info("%s: set current: reg:(0x%x), val:(0x%x)\n",
 =======
 		pr_debug("%s: set current: reg:(0x%x), val:(0x%x)\n",
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		pr_info("%s: set current: reg:(0x%x), val:(0x%x)\n",
+>>>>>>> 2617302... source
 				__func__, set_reg, set_value);
 	}
 	if(charger->cable_type == POWER_SUPPLY_TYPE_MAINS) {
@@ -733,6 +797,9 @@ static int max77803_get_vbus_state(struct max77803_charger_data *charger)
 	switch (reg_data) {
 	case 0x00:
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		pr_info("%s: VBUS is invalid. CHGIN < CHGIN_UVLO\n",
 			__func__);
 		break;
@@ -742,6 +809,7 @@ static int max77803_get_vbus_state(struct max77803_charger_data *charger)
 		break;
 	case 0x02:
 		pr_info("%s: VBUS is invalid. CHGIN > CHGIN_OVLO",
+<<<<<<< HEAD
 =======
 		pr_debug("%s: VBUS is invalid. CHGIN < CHGIN_UVLO\n",
 			__func__);
@@ -753,6 +821,8 @@ static int max77803_get_vbus_state(struct max77803_charger_data *charger)
 	case 0x02:
 		pr_debug("%s: VBUS is invalid. CHGIN > CHGIN_OVLO",
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 			__func__);
 		break;
 	case 0x03:
@@ -773,10 +843,14 @@ static int max77803_get_charger_state(struct max77803_charger_data *charger)
 		MAX77803_CHG_REG_CHG_DTLS_01, &reg_data);
 	reg_data = ((reg_data & MAX77803_CHG_DTLS) >> MAX77803_CHG_DTLS_SHIFT);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_info("%s: CHG_DTLS : 0x%2x\n", __func__, reg_data);
 =======
 	pr_debug("%s: CHG_DTLS : 0x%2x\n", __func__, reg_data);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	pr_info("%s: CHG_DTLS : 0x%2x\n", __func__, reg_data);
+>>>>>>> 2617302... source
 
 	switch (reg_data) {
 	case 0x0:
@@ -819,34 +893,48 @@ static int max77803_get_health_state(struct max77803_charger_data *charger)
 	reg_data = ((reg_data & MAX77803_BAT_DTLS) >> MAX77803_BAT_DTLS_SHIFT);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	pr_info("%s: reg_data(0x%x)\n", __func__, reg_data);
 	switch (reg_data) {
 	case 0x00:
 		pr_info("%s: No battery and the charger is suspended\n",
+<<<<<<< HEAD
 =======
 	pr_debug("%s: reg_data(0x%x)\n", __func__, reg_data);
 	switch (reg_data) {
 	case 0x00:
 		pr_debug("%s: No battery and the charger is suspended\n",
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 			__func__);
 		state = POWER_SUPPLY_HEALTH_UNSPEC_FAILURE;
 		break;
 	case 0x01:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_info("%s: battery is okay "
 =======
 		pr_debug("%s: battery is okay "
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		pr_info("%s: battery is okay "
+>>>>>>> 2617302... source
 			"but its voltage is low(~VPQLB)\n", __func__);
 		state = POWER_SUPPLY_HEALTH_GOOD;
 		break;
 	case 0x02:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_info("%s: battery dead\n", __func__);
 =======
 		pr_debug("%s: battery dead\n", __func__);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		pr_info("%s: battery dead\n", __func__);
+>>>>>>> 2617302... source
 		state = POWER_SUPPLY_HEALTH_DEAD;
 		break;
 	case 0x03:
@@ -854,20 +942,28 @@ static int max77803_get_health_state(struct max77803_charger_data *charger)
 		break;
 	case 0x04:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_info("%s: battery is okay" \
 =======
 		pr_debug("%s: battery is okay" \
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		pr_info("%s: battery is okay" \
+>>>>>>> 2617302... source
 			"but its voltage is low\n", __func__);
 		state = POWER_SUPPLY_HEALTH_GOOD;
 		break;
 	case 0x05:
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		pr_info("%s: battery ovp\n", __func__);
 		state = POWER_SUPPLY_HEALTH_OVERVOLTAGE;
 		break;
 	default:
 		pr_info("%s: battery unknown : 0x%d\n", __func__, reg_data);
+<<<<<<< HEAD
 =======
 		pr_debug("%s: battery ovp\n", __func__);
 		state = POWER_SUPPLY_HEALTH_OVERVOLTAGE;
@@ -875,6 +971,8 @@ static int max77803_get_health_state(struct max77803_charger_data *charger)
 	default:
 		pr_debug("%s: battery unknown : 0x%d\n", __func__, reg_data);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		state = POWER_SUPPLY_HEALTH_UNKNOWN;
 		break;
 	}
@@ -909,6 +1007,9 @@ static int max77803_get_health_state(struct max77803_charger_data *charger)
 					MAX77803_CHG_REG_CHG_CNFG_12, &chg_cnfg_12);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 			pr_info("%s: CHG_DTLS_00(0x%x), CHG_DTLS_01(0x%x), CHG_CNFG_00(0x%x)\n",
 					__func__, chg_dtls_00, chg_dtls, chg_cnfg_00);
 			pr_info("%s:  CHG_CNFG_01(0x%x), CHG_CNFG_02(0x%x), CHG_CNFG_04(0x%x)\n",
@@ -921,6 +1022,7 @@ static int max77803_get_health_state(struct max77803_charger_data *charger)
 		/*  OVP is higher priority */
 		if (vbus_state == 0x02) { /*  CHGIN_OVLO */
 			pr_info("%s: vbus ovp\n", __func__);
+<<<<<<< HEAD
 =======
 			pr_debug("%s: CHG_DTLS_00(0x%x), CHG_DTLS_01(0x%x), CHG_CNFG_00(0x%x)\n",
 					__func__, chg_dtls_00, chg_dtls, chg_cnfg_00);
@@ -935,6 +1037,8 @@ static int max77803_get_health_state(struct max77803_charger_data *charger)
 		if (vbus_state == 0x02) { /*  CHGIN_OVLO */
 			pr_debug("%s: vbus ovp\n", __func__);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 			state = POWER_SUPPLY_HEALTH_OVERVOLTAGE;
 			if (charger->cable_type == POWER_SUPPLY_TYPE_WIRELESS) {
 				retry_cnt = 0;
@@ -945,10 +1049,14 @@ static int max77803_get_health_state(struct max77803_charger_data *charger)
 				if (vbus_state == 0x02) {
 					state = POWER_SUPPLY_HEALTH_OVERVOLTAGE;
 <<<<<<< HEAD
+<<<<<<< HEAD
 					pr_info("%s: wpc and over-voltage\n", __func__);
 =======
 					pr_debug("%s: wpc and over-voltage\n", __func__);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+					pr_info("%s: wpc and over-voltage\n", __func__);
+>>>>>>> 2617302... source
 				} else
 					state = POWER_SUPPLY_HEALTH_GOOD;
 			}
@@ -957,10 +1065,14 @@ static int max77803_get_health_state(struct max77803_charger_data *charger)
 				(chg_cnfg_00 & MAX77803_MODE_CHGR) && \
 				(charger->cable_type != POWER_SUPPLY_TYPE_WIRELESS)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			pr_info("%s: vbus is under\n", __func__);
 =======
 			pr_debug("%s: vbus is under\n", __func__);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			pr_info("%s: vbus is under\n", __func__);
+>>>>>>> 2617302... source
 			state = POWER_SUPPLY_HEALTH_UNDERVOLTAGE;
 		} else if((value.intval == POWER_SUPPLY_HEALTH_UNDERVOLTAGE) && \
 				!((vbus_state == 0x0) || (vbus_state == 0x01))){
@@ -986,10 +1098,14 @@ static int sec_chg_get_property(struct power_supply *psy,
 		if (max77803_read_reg(charger->max77803->i2c,
 			MAX77803_CHG_REG_CHG_INT_OK, &reg_data) == 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			pr_info("%s: reg_data(%d)\n", __func__, reg_data);
 =======
 			pr_debug("%s: reg_data(%d)\n", __func__, reg_data);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			pr_info("%s: reg_data(%d)\n", __func__, reg_data);
+>>>>>>> 2617302... source
 			if (reg_data & MAX77803_WCIN_OK) {
 				val->intval = POWER_SUPPLY_TYPE_WIRELESS;
 				charger->wc_w_state = 1;
@@ -1020,10 +1136,14 @@ static int sec_chg_get_property(struct power_supply *psy,
 		{
 			val->intval = POWER_SUPPLY_CHARGE_TYPE_SLOW;
 <<<<<<< HEAD
+<<<<<<< HEAD
 			pr_info("%s: slow-charging mode\n", __func__);
 =======
 			pr_debug("%s: slow-charging mode\n", __func__);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			pr_info("%s: slow-charging mode\n", __func__);
+>>>>>>> 2617302... source
 		}
 		else
 			val->intval = POWER_SUPPLY_CHARGE_TYPE_FAST;
@@ -1212,12 +1332,17 @@ static int sec_chg_set_property(struct power_supply *psy,
 				CHG_CNFG_12_CHGINSEL_MASK);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_info("%s: ctrl3 : (0x%02x)\n", __func__, ctrl3);
 		pr_info("%s: set CNFG_12: 0x%x\n", __func__, cnfg12);
 =======
 		pr_debug("%s: ctrl3 : (0x%02x)\n", __func__, ctrl3);
 		pr_debug("%s: set CNFG_12: 0x%x\n", __func__, cnfg12);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		pr_info("%s: ctrl3 : (0x%02x)\n", __func__, ctrl3);
+		pr_info("%s: set CNFG_12: 0x%x\n", __func__, cnfg12);
+>>>>>>> 2617302... source
 		break;
 	}
 #endif
@@ -1298,10 +1423,14 @@ static void max77803_charger_initialize(struct max77803_charger_data *charger)
 	max77803_read_reg(charger->max77803->i2c,
 			MAX77803_CHG_REG_CHG_CNFG_04, &reg_data);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_info("%s: battery cv voltage 0x%x\n", __func__, reg_data);
 =======
 	pr_debug("%s: battery cv voltage 0x%x\n", __func__, reg_data);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	pr_info("%s: battery cv voltage 0x%x\n", __func__, reg_data);
+>>>>>>> 2617302... source
 }
 
 static void sec_chg_isr_work(struct work_struct *work)
@@ -1385,10 +1514,14 @@ static irqreturn_t sec_chg_irq_thread(int irq, void *irq_data)
 	struct max77803_charger_data *charger = irq_data;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_info("%s: Charger interrupt occured\n", __func__);
 =======
 	pr_debug("%s: Charger interrupt occured\n", __func__);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	pr_info("%s: Charger interrupt occured\n", __func__);
+>>>>>>> 2617302... source
 
 	if ((charger->pdata->full_check_type ==
 				SEC_BATTERY_FULLCHARGED_CHGINT) ||
@@ -1441,10 +1574,14 @@ static void wpc_detect_work(struct work_struct *work)
 
 #endif
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_info("%s: wpc activated, set V_INT as PN\n",
 =======
 		pr_debug("%s: wpc activated, set V_INT as PN\n",
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		pr_info("%s: wpc activated, set V_INT as PN\n",
+>>>>>>> 2617302... source
 				__func__);
 	} else if ((chg_data->wc_w_state == 1) && (wc_w_state == 0)) {
 		if (!chg_data->is_charging)
@@ -1459,10 +1596,14 @@ static void wpc_detect_work(struct work_struct *work)
 			msleep(50);
 		} while((retry_cnt++ < 2) && (reg_data == 0x8));
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_info("%s: reg_data: 0x%x, charging: %d\n", __func__,
 =======
 		pr_debug("%s: reg_data: 0x%x, charging: %d\n", __func__,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		pr_info("%s: reg_data: 0x%x, charging: %d\n", __func__,
+>>>>>>> 2617302... source
 					reg_data, chg_data->is_charging);
 
 		if (!chg_data->is_charging)
@@ -1470,10 +1611,14 @@ static void wpc_detect_work(struct work_struct *work)
 		if ((reg_data != 0x08)
 				&& (chg_data->cable_type == POWER_SUPPLY_TYPE_WIRELESS)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			pr_info("%s: wpc uvlo, but charging\n", __func__);
 =======
 			pr_debug("%s: wpc uvlo, but charging\n", __func__);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			pr_info("%s: wpc uvlo, but charging\n", __func__);
+>>>>>>> 2617302... source
 			queue_delayed_work(chg_data->wqueue, &chg_data->wpc_work,
 					msecs_to_jiffies(500));
 			return;
@@ -1488,11 +1633,15 @@ static void wpc_detect_work(struct work_struct *work)
 					POWER_SUPPLY_PROP_ONLINE, value);
 #endif
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 			pr_info("%s: wpc deactivated, set V_INT as PD\n",
 					__func__);
 		}
 	}
 	pr_info("%s: w(%d to %d)\n", __func__,
+<<<<<<< HEAD
 =======
 			pr_debug("%s: wpc deactivated, set V_INT as PD\n",
 					__func__);
@@ -1500,6 +1649,8 @@ static void wpc_detect_work(struct work_struct *work)
 	}
 	pr_debug("%s: w(%d to %d)\n", __func__,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 			chg_data->wc_w_state, wc_w_state);
 
 	chg_data->wc_w_state = wc_w_state;
@@ -1539,10 +1690,14 @@ static irqreturn_t wpc_charger_irq(int irq, void *data)
 	int wc_w_state;
 	union power_supply_propval value;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_info("%s: irq(%d)\n", __func__, irq);
 =======
 	pr_debug("%s: irq(%d)\n", __func__, irq);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	pr_info("%s: irq(%d)\n", __func__, irq);
+>>>>>>> 2617302... source
 
 	/* check and unlock */
 	check_charger_unlock_state(chg_data);
@@ -1554,10 +1709,14 @@ static irqreturn_t wpc_charger_irq(int irq, void *data)
 		psy_do_property("battery", set,
 				POWER_SUPPLY_PROP_ONLINE, value);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_info("%s: wpc activated, set V_INT as PN\n",
 =======
 		pr_debug("%s: wpc activated, set V_INT as PN\n",
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		pr_info("%s: wpc activated, set V_INT as PN\n",
+>>>>>>> 2617302... source
 				__func__);
 	} else if ((chg_data->wc_w_state == 1) && (wc_w_state == 0)) {
 		value.intval =
@@ -1565,16 +1724,22 @@ static irqreturn_t wpc_charger_irq(int irq, void *data)
 		psy_do_property("battery", set,
 				POWER_SUPPLY_PROP_ONLINE, value);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		pr_info("%s: wpc deactivated, set V_INT as PD\n",
 				__func__);
 	}
 	pr_info("%s: w(%d to %d)\n", __func__,
+<<<<<<< HEAD
 =======
 		pr_debug("%s: wpc deactivated, set V_INT as PD\n",
 				__func__);
 	}
 	pr_debug("%s: w(%d to %d)\n", __func__,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 			chg_data->wc_w_state, wc_w_state);
 
 	chg_data->wc_w_state = wc_w_state;
@@ -1593,10 +1758,14 @@ static irqreturn_t max77803_bypass_irq(int irq, void *data)
 	u8 vbus_state;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_info("%s: irq(%d)\n", __func__, irq);
 =======
 	pr_debug("%s: irq(%d)\n", __func__, irq);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	pr_info("%s: irq(%d)\n", __func__, irq);
+>>>>>>> 2617302... source
 
 	/* check and unlock */
 	check_charger_unlock_state(chg_data);
@@ -1608,11 +1777,15 @@ static irqreturn_t max77803_bypass_irq(int irq, void *data)
 	byp_dtls = ((dtls_02 & MAX77803_BYP_DTLS) >>
 				MAX77803_BYP_DTLS_SHIFT);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	pr_info("%s: BYP_DTLS(0x%02x)\n", __func__, byp_dtls);
 	vbus_state = max77803_get_vbus_state(chg_data);
 
 	if (byp_dtls & 0x1) {
 		pr_info("%s: bypass overcurrent limit\n", __func__);
+<<<<<<< HEAD
 =======
 	pr_debug("%s: BYP_DTLS(0x%02x)\n", __func__, byp_dtls);
 	vbus_state = max77803_get_vbus_state(chg_data);
@@ -1620,6 +1793,8 @@ static irqreturn_t max77803_bypass_irq(int irq, void *data)
 	if (byp_dtls & 0x1) {
 		pr_debug("%s: bypass overcurrent limit\n", __func__);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		send_otg_notify(n, NOTIFY_EVENT_OVERCURRENT, 0);
 
 		/* disable the register values just related to OTG and
@@ -1680,20 +1855,28 @@ static void max77803_chgin_isr_work(struct work_struct *work)
 			stable_count = 0;
 		if (stable_count > 10) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			pr_info("%s: irq(%d), chgin(0x%x), chg_dtls(0x%x) prev 0x%x\n",
 =======
 			pr_debug("%s: irq(%d), chgin(0x%x), chg_dtls(0x%x) prev 0x%x\n",
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			pr_info("%s: irq(%d), chgin(0x%x), chg_dtls(0x%x) prev 0x%x\n",
+>>>>>>> 2617302... source
 					__func__, charger->irq_chgin,
 					chgin_dtls, chg_dtls, prev_chgin_dtls);
 			if (charger->is_charging) {
 				if ((chgin_dtls == 0x02) && \
 					(battery_health != POWER_SUPPLY_HEALTH_OVERVOLTAGE)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 					pr_info("%s: charger is over voltage\n",
 =======
 					pr_debug("%s: charger is over voltage\n",
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+					pr_info("%s: charger is over voltage\n",
+>>>>>>> 2617302... source
 							__func__);
 					value.intval = POWER_SUPPLY_HEALTH_OVERVOLTAGE;
 					psy_do_property("battery", set,
@@ -1704,12 +1887,17 @@ static void max77803_chgin_isr_work(struct work_struct *work)
 						(battery_health != POWER_SUPPLY_HEALTH_UNDERVOLTAGE) && \
 						(charger->cable_type != POWER_SUPPLY_TYPE_WIRELESS)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 					pr_info("%s, vbus_state : 0x%d, chg_state : 0x%d\n", __func__, chgin_dtls, chg_dtls);
 					pr_info("%s: vBus is undervoltage\n", __func__);
 =======
 					pr_debug("%s, vbus_state : 0x%d, chg_state : 0x%d\n", __func__, chgin_dtls, chg_dtls);
 					pr_debug("%s: vBus is undervoltage\n", __func__);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+					pr_info("%s, vbus_state : 0x%d, chg_state : 0x%d\n", __func__, chgin_dtls, chg_dtls);
+					pr_info("%s: vBus is undervoltage\n", __func__);
+>>>>>>> 2617302... source
 					value.intval = POWER_SUPPLY_HEALTH_UNDERVOLTAGE;
 					psy_do_property("battery", set,
 							POWER_SUPPLY_PROP_HEALTH, value);
@@ -1719,12 +1907,17 @@ static void max77803_chgin_isr_work(struct work_struct *work)
 							POWER_SUPPLY_HEALTH_OVERVOLTAGE) &&
 						(chgin_dtls != 0x02)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 					pr_info("%s: vbus_state : 0x%d, chg_state : 0x%d\n", __func__, chgin_dtls, chg_dtls);
 					pr_info("%s: overvoltage->normal\n", __func__);
 =======
 					pr_debug("%s: vbus_state : 0x%d, chg_state : 0x%d\n", __func__, chgin_dtls, chg_dtls);
 					pr_debug("%s: overvoltage->normal\n", __func__);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+					pr_info("%s: vbus_state : 0x%d, chg_state : 0x%d\n", __func__, chgin_dtls, chg_dtls);
+					pr_info("%s: overvoltage->normal\n", __func__);
+>>>>>>> 2617302... source
 					value.intval = POWER_SUPPLY_HEALTH_GOOD;
 					psy_do_property("battery", set,
 							POWER_SUPPLY_PROP_HEALTH, value);
@@ -1732,12 +1925,17 @@ static void max77803_chgin_isr_work(struct work_struct *work)
 							POWER_SUPPLY_HEALTH_UNDERVOLTAGE) &&
 						!((chgin_dtls == 0x0) || (chgin_dtls == 0x01))){
 <<<<<<< HEAD
+<<<<<<< HEAD
 					pr_info("%s: vbus_state : 0x%d, chg_state : 0x%d\n", __func__, chgin_dtls, chg_dtls);
 					pr_info("%s: undervoltage->normal\n", __func__);
 =======
 					pr_debug("%s: vbus_state : 0x%d, chg_state : 0x%d\n", __func__, chgin_dtls, chg_dtls);
 					pr_debug("%s: undervoltage->normal\n", __func__);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+					pr_info("%s: vbus_state : 0x%d, chg_state : 0x%d\n", __func__, chgin_dtls, chg_dtls);
+					pr_info("%s: undervoltage->normal\n", __func__);
+>>>>>>> 2617302... source
 					value.intval = POWER_SUPPLY_HEALTH_GOOD;
 					psy_do_property("battery", set,
 							POWER_SUPPLY_PROP_HEALTH, value);
@@ -1782,10 +1980,14 @@ static void max77803_chgin_init_work(struct work_struct *work)
 	int ret;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_info("%s \n", __func__);
 =======
 	pr_debug("%s \n", __func__);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	pr_info("%s \n", __func__);
+>>>>>>> 2617302... source
 	ret = request_threaded_irq(charger->irq_chgin, NULL,
 			max77803_chgin_irq, IRQF_ONESHOT, "chgin-irq", charger);
 	if (ret < 0) {
@@ -1866,10 +2068,14 @@ static int max77803_charger_probe(struct platform_device *pdev)
 	u8 reg_data;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_info("%s: MAX77803 Charger driver probe\n", __func__);
 =======
 	pr_debug("%s: MAX77803 Charger driver probe\n", __func__);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	pr_info("%s: MAX77803 Charger driver probe\n", __func__);
+>>>>>>> 2617302... source
 
 	charger = kzalloc(sizeof(*charger), GFP_KERNEL);
 	if (!charger)
@@ -1916,10 +2122,14 @@ static int max77803_charger_probe(struct platform_device *pdev)
 	} else {
 		charger->pmic_ver = (reg_data & 0xf);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_info("%s: device found: ver.0x%x\n", __func__,
 =======
 		pr_debug("%s: device found: ver.0x%x\n", __func__,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		pr_info("%s: device found: ver.0x%x\n", __func__,
+>>>>>>> 2617302... source
 				charger->pmic_ver);
 	}
 
@@ -2080,10 +2290,14 @@ static void max77803_charger_shutdown(struct device *dev)
 	max77803_write_reg(charger->max77803->i2c,
 		MAX77803_CHG_REG_CHG_CNFG_12, reg_data);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_info("func:%s \n", __func__);
 =======
 	pr_debug("func:%s \n", __func__);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	pr_info("func:%s \n", __func__);
+>>>>>>> 2617302... source
 }
 
 static SIMPLE_DEV_PM_OPS(max77803_charger_pm_ops, max77803_charger_suspend,
@@ -2103,10 +2317,14 @@ static struct platform_driver max77803_charger_driver = {
 static int __init max77803_charger_init(void)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_info("func:%s\n", __func__);
 =======
 	pr_debug("func:%s\n", __func__);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	pr_info("func:%s\n", __func__);
+>>>>>>> 2617302... source
 	return platform_driver_register(&max77803_charger_driver);
 }
 module_init(max77803_charger_init);

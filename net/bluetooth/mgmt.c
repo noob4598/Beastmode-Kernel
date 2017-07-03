@@ -2334,6 +2334,7 @@ static int user_pairing_resp(struct sock *sk, struct hci_dev *hdev,
 
 	if (addr->type == BDADDR_LE_PUBLIC || addr->type == BDADDR_LE_RANDOM) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		/* Continue with pairing via SMP */
 		err = smp_user_confirm_reply(conn, mgmt_op, passkey);
 =======
@@ -2345,6 +2346,10 @@ static int user_pairing_resp(struct sock *sk, struct hci_dev *hdev,
 		err = smp_user_confirm_reply(conn, mgmt_op, passkey);
 		hci_dev_lock(hdev);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		/* Continue with pairing via SMP */
+		err = smp_user_confirm_reply(conn, mgmt_op, passkey);
+>>>>>>> 2617302... source
 
 		if (!err)
 			err = cmd_complete(sk, hdev->id, mgmt_op,

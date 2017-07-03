@@ -366,6 +366,7 @@ static const struct pnp_device_id pnp_dev_table[] = {
 	   of it to prevent the legacy serial driver from probing it */
 	{	"WEC1022",		CIR_PORT	},
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/*
 	 * SMSC IrCC SIR/FIR port, should not be probed by serial driver
@@ -373,6 +374,8 @@ static const struct pnp_device_id pnp_dev_table[] = {
 	 */
 	{	"SMCF010",		CIR_PORT	},
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	{	"",			0	}
 };
 

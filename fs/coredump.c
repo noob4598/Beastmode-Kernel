@@ -2,9 +2,12 @@
 #include <linux/file.h>
 #include <linux/fdtable.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <linux/freezer.h>
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 #include <linux/mm.h>
 #include <linux/stat.h>
 #include <linux/fcntl.h>
@@ -304,10 +307,14 @@ static int zap_threads(struct task_struct *tsk, struct mm_struct *mm,
 		return nr;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	tsk->flags = PF_DUMPCORE;
 =======
 	tsk->flags |= PF_DUMPCORE;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	tsk->flags = PF_DUMPCORE;
+>>>>>>> 2617302... source
 	if (atomic_read(&mm->mm_users) == nr + 1)
 		goto done;
 	/*
@@ -384,12 +391,16 @@ static int coredump_wait(int exit_code, struct core_state *core_state)
 		struct core_thread *ptr;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		wait_for_completion(&core_state->startup);
 =======
 		freezer_do_not_count();
 		wait_for_completion(&core_state->startup);
 		freezer_count();
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		wait_for_completion(&core_state->startup);
+>>>>>>> 2617302... source
 		/*
 		 * Wait for all the threads to become inactive, so that
 		 * all the thread context (extended register state, like
@@ -506,16 +517,22 @@ void do_coredump(siginfo_t *siginfo)
 	struct cred *cred;
 	int retval = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	int flag = 0;
 	int ispipe;
 	struct files_struct *displaced;
 	bool need_nonrelative = false;
+<<<<<<< HEAD
 =======
 	int ispipe;
 	struct files_struct *displaced;
 	/* require nonrelative corefile path and be extra careful */
 	bool need_suid_safe = false;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	bool core_dumped = false;
 	static atomic_t core_dump_count = ATOMIC_INIT(0);
 	struct coredump_params cprm = {
@@ -550,6 +567,7 @@ void do_coredump(siginfo_t *siginfo)
 	if (__get_dumpable(cprm.mm_flags) == SUID_DUMP_ROOT) {
 		/* Setuid core dump mode */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		flag = O_EXCL;		/* Stop rewrite attacks */
 		cred->fsuid = GLOBAL_ROOT_UID;	/* Dump root private */
 		need_nonrelative = true;
@@ -557,6 +575,11 @@ void do_coredump(siginfo_t *siginfo)
 		cred->fsuid = GLOBAL_ROOT_UID;	/* Dump root private */
 		need_suid_safe = true;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		flag = O_EXCL;		/* Stop rewrite attacks */
+		cred->fsuid = GLOBAL_ROOT_UID;	/* Dump root private */
+		need_nonrelative = true;
+>>>>>>> 2617302... source
 	}
 
 	retval = coredump_wait(siginfo->si_signo, &core_state);
@@ -638,10 +661,14 @@ void do_coredump(siginfo_t *siginfo)
 			goto fail_unlock;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (need_nonrelative && cn.corename[0] != '/') {
 =======
 		if (need_suid_safe && cn.corename[0] != '/') {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		if (need_nonrelative && cn.corename[0] != '/') {
+>>>>>>> 2617302... source
 			printk(KERN_WARNING "Pid %d(%s) can only dump core "\
 				"to fully qualified path!\n",
 				task_tgid_vnr(current), current->comm);
@@ -649,6 +676,7 @@ void do_coredump(siginfo_t *siginfo)
 			goto fail_unlock;
 		}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 		cprm.file = filp_open(cn.corename,
 				 O_CREAT | 2 | O_NOFOLLOW | O_LARGEFILE | flag,
@@ -683,6 +711,10 @@ void do_coredump(siginfo_t *siginfo)
 				 O_CREAT | 2 | O_NOFOLLOW |
 				 O_LARGEFILE | O_EXCL,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		cprm.file = filp_open(cn.corename,
+				 O_CREAT | 2 | O_NOFOLLOW | O_LARGEFILE | flag,
+>>>>>>> 2617302... source
 				 0600);
 		if (IS_ERR(cprm.file))
 			goto fail_unlock;
@@ -707,10 +739,14 @@ void do_coredump(siginfo_t *siginfo)
 		if (!cprm.file->f_op || !cprm.file->f_op->write)
 			goto close_fail;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (do_truncate(cprm.file->f_path.dentry, 0, 0, cprm.file))
 =======
 		if (do_truncate2(cprm.file->f_path.mnt, cprm.file->f_path.dentry, 0, 0, cprm.file))
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		if (do_truncate(cprm.file->f_path.dentry, 0, 0, cprm.file))
+>>>>>>> 2617302... source
 			goto close_fail;
 	}
 

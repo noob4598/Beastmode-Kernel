@@ -73,17 +73,22 @@ static int vfe_probe(struct platform_device *pdev)
 	if (!vfe_dev) {
 		pr_err("%s: no enough memory\n", __func__);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return -ENOMEM;
 =======
 		rc = -ENOMEM;
 		goto end;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		return -ENOMEM;
+>>>>>>> 2617302... source
 	}
 	pr_err("%s: In probe\n", __func__);	
 	if (pdev->dev.of_node) {
 		of_property_read_u32((&pdev->dev)->of_node,
 			"cell-index", &pdev->id);
 		match_dev = of_match_device(msm_vfe_dt_match, &pdev->dev);
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 		if (!match_dev) {
@@ -92,6 +97,8 @@ static int vfe_probe(struct platform_device *pdev)
 			goto probe_fail;
 		}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		vfe_dev->hw_info =
 			(struct msm_vfe_hardware_info *) match_dev->data;
 		pr_err("%s: in checking of node %s\n", __func__, match_dev->compatible);
@@ -103,12 +110,17 @@ static int vfe_probe(struct platform_device *pdev)
 	if (!vfe_dev->hw_info) {
 		pr_err("%s: No vfe hardware info\n", __func__);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		kfree(vfe_dev);//prevent
 		return -EINVAL;
 =======
 		rc = -EINVAL;
 		goto probe_fail;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		kfree(vfe_dev);//prevent
+		return -EINVAL;
+>>>>>>> 2617302... source
 	}
 	pr_err("%s: device id = %d\n", __func__, pdev->id);
 
@@ -117,12 +129,17 @@ static int vfe_probe(struct platform_device *pdev)
 	if (rc < 0) {
 		pr_err("%s: failed to get platform resources\n", __func__);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		kfree(vfe_dev);
 		return -ENOMEM;
 =======
 		rc = -ENOMEM;
 		goto probe_fail;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		kfree(vfe_dev);
+		return -ENOMEM;
+>>>>>>> 2617302... source
 	}
 
 	INIT_LIST_HEAD(&vfe_dev->tasklet_q);
@@ -153,11 +170,16 @@ static int vfe_probe(struct platform_device *pdev)
 	if (rc != 0) {
 		pr_err("%s: msm_sd_register error = %d\n", __func__, rc);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		kfree(vfe_dev);
 		goto end;
 =======
 		goto probe_fail;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		kfree(vfe_dev);
+		goto end;
+>>>>>>> 2617302... source
 	}
 
 	vfe_dev->buf_mgr = &vfe_buf_mgr;
@@ -169,16 +191,22 @@ static int vfe_probe(struct platform_device *pdev)
 		pr_err("%s: Unable to create buffer manager\n", __func__);
 		msm_sd_unregister(&vfe_dev->subdev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		kfree(vfe_dev);
 		return -EINVAL;
 =======
 		rc = -EINVAL;
 		goto probe_fail;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		kfree(vfe_dev);
+		return -EINVAL;
+>>>>>>> 2617302... source
 	}
 	vfe_dev->buf_mgr->ops->register_ctx(vfe_dev->buf_mgr,
 		&vfe_dev->iommu_ctx[0], vfe_dev->hw_info->num_iommu_ctx);
 	vfe_dev->vfe_open_cnt = 0;
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 	return rc;
@@ -186,6 +214,8 @@ static int vfe_probe(struct platform_device *pdev)
 probe_fail:
 	kfree(vfe_dev);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 end:
 	return rc;
 }

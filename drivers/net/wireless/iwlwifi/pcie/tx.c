@@ -721,6 +721,7 @@ void iwl_trans_pcie_tx_reset(struct iwl_trans *trans)
 			   trans_pcie->kw.dma >> 4);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	iwl_pcie_tx_start(trans, trans_pcie->scd_base_addr);
 =======
 	/*
@@ -730,6 +731,9 @@ void iwl_trans_pcie_tx_reset(struct iwl_trans *trans)
 	 */
 	iwl_pcie_tx_start(trans, 0);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	iwl_pcie_tx_start(trans, trans_pcie->scd_base_addr);
+>>>>>>> 2617302... source
 }
 
 /*
@@ -1316,6 +1320,7 @@ static int iwl_pcie_enqueue_hcmd(struct iwl_trans *trans,
 	/* start the TFD with the scratchbuf */
 	scratch_size = min_t(int, copy_size, IWL_HCMD_SCRATCHBUF_SIZE);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	memcpy(&txq->scratchbufs[q->write_ptr], &out_cmd->hdr, scratch_size);
 	iwl_pcie_txq_build_tfd(trans, txq,
 			       iwl_pcie_get_scratchbuf_dma(txq, q->write_ptr),
@@ -1324,6 +1329,11 @@ static int iwl_pcie_enqueue_hcmd(struct iwl_trans *trans,
 	iwl_pcie_txq_build_tfd(trans, txq,
 			       iwl_pcie_get_scratchbuf_dma(txq, idx),
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	memcpy(&txq->scratchbufs[q->write_ptr], &out_cmd->hdr, scratch_size);
+	iwl_pcie_txq_build_tfd(trans, txq,
+			       iwl_pcie_get_scratchbuf_dma(txq, q->write_ptr),
+>>>>>>> 2617302... source
 			       scratch_size, 1);
 
 	/* map first command fragment, if any remains */

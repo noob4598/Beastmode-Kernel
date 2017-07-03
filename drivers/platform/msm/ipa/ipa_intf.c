@@ -266,6 +266,7 @@ int ipa_query_intf_tx_props(struct ipa_ioc_query_intf_tx_props *tx)
 	list_for_each_entry(entry, &ipa_ctx->intf_list, link) {
 		if (!strncmp(entry->name, tx->name, IPA_RESOURCE_NAME_MAX)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 			/* add the entry check */
 			if (entry->num_tx_props != tx->num_tx_props) {
@@ -276,6 +277,8 @@ int ipa_query_intf_tx_props(struct ipa_ioc_query_intf_tx_props *tx)
 				return result;
 			}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 			memcpy(tx->tx, entry->tx, entry->num_tx_props *
 			       sizeof(struct ipa_ioc_tx_intf_prop));
 			result = 0;
@@ -310,6 +313,7 @@ int ipa_query_intf_rx_props(struct ipa_ioc_query_intf_rx_props *rx)
 	list_for_each_entry(entry, &ipa_ctx->intf_list, link) {
 		if (!strncmp(entry->name, rx->name, IPA_RESOURCE_NAME_MAX)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 			/* add the entry check */
 			if (entry->num_rx_props != rx->num_rx_props) {
@@ -320,6 +324,8 @@ int ipa_query_intf_rx_props(struct ipa_ioc_query_intf_rx_props *rx)
 				return result;
 			}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 			memcpy(rx->rx, entry->rx, entry->num_rx_props *
 					sizeof(struct ipa_ioc_rx_intf_prop));
 			result = 0;
@@ -354,6 +360,7 @@ int ipa_query_intf_ext_props(struct ipa_ioc_query_intf_ext_props *ext)
 	list_for_each_entry(entry, &ipa_ctx->intf_list, link) {
 		if (!strcmp(entry->name, ext->name)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 			/* add the entry check */
 			if (entry->num_ext_props != ext->num_ext_props) {
@@ -364,6 +371,8 @@ int ipa_query_intf_ext_props(struct ipa_ioc_query_intf_ext_props *ext)
 				return result;
 			}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 			memcpy(ext->ext, entry->ext, entry->num_ext_props *
 					sizeof(struct ipa_ioc_ext_intf_prop));
 			result = 0;

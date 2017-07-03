@@ -651,6 +651,9 @@ static inline int ip_vs_gather_frags(struct sk_buff *skb, u_int32_t user)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 static int ip_vs_route_me_harder(int af, struct sk_buff *skb)
 {
 #ifdef CONFIG_IP_VS_IPV6
@@ -661,6 +664,7 @@ static int ip_vs_route_me_harder(int af, struct sk_buff *skb)
 #endif
 		if ((sysctl_snat_reroute(skb) ||
 		     skb_rtable(skb)->rt_flags & RTCF_LOCAL) &&
+<<<<<<< HEAD
 =======
 static int ip_vs_route_me_harder(int af, struct sk_buff *skb,
 				 unsigned int hooknum)
@@ -681,6 +685,8 @@ static int ip_vs_route_me_harder(int af, struct sk_buff *skb,
 #endif
 		if (!(skb_rtable(skb)->rt_flags & RTCF_LOCAL) &&
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		    ip_route_me_harder(skb, RTN_LOCAL) != 0)
 			return 1;
 
@@ -804,11 +810,15 @@ static int handle_response_icmp(int af, struct sk_buff *skb,
 				__u8 protocol, struct ip_vs_conn *cp,
 				struct ip_vs_protocol *pp,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				unsigned int offset, unsigned int ihl)
 =======
 				unsigned int offset, unsigned int ihl,
 				unsigned int hooknum)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+				unsigned int offset, unsigned int ihl)
+>>>>>>> 2617302... source
 {
 	unsigned int verdict = NF_DROP;
 
@@ -839,10 +849,14 @@ static int handle_response_icmp(int af, struct sk_buff *skb,
 		ip_vs_nat_icmp(skb, pp, cp, 1);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (ip_vs_route_me_harder(af, skb))
 =======
 	if (ip_vs_route_me_harder(af, skb, hooknum))
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (ip_vs_route_me_harder(af, skb))
+>>>>>>> 2617302... source
 		goto out;
 
 	/* do the statistics and put it back */
@@ -938,10 +952,14 @@ static int ip_vs_out_icmp(struct sk_buff *skb, int *related,
 	snet.ip = iph->saddr;
 	return handle_response_icmp(AF_INET, skb, &snet, cih->protocol, cp,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				    pp, ciph.len, ihl);
 =======
 				    pp, ciph.len, ihl, hooknum);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+				    pp, ciph.len, ihl);
+>>>>>>> 2617302... source
 }
 
 #ifdef CONFIG_IP_VS_IPV6
@@ -1007,11 +1025,15 @@ static int ip_vs_out_icmp_v6(struct sk_buff *skb, int *related,
 	writable = ciph.len;
 	return handle_response_icmp(AF_INET6, skb, &snet, ciph.protocol, cp,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				    pp, writable, sizeof(struct ipv6hdr));
 =======
 				    pp, writable, sizeof(struct ipv6hdr),
 				    hooknum);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+				    pp, writable, sizeof(struct ipv6hdr));
+>>>>>>> 2617302... source
 }
 #endif
 
@@ -1071,11 +1093,15 @@ static inline bool is_new_conn(const struct sk_buff *skb,
 static unsigned int
 handle_response(int af, struct sk_buff *skb, struct ip_vs_proto_data *pd,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		struct ip_vs_conn *cp, struct ip_vs_iphdr *iph)
 =======
 		struct ip_vs_conn *cp, struct ip_vs_iphdr *iph,
 		unsigned int hooknum)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		struct ip_vs_conn *cp, struct ip_vs_iphdr *iph)
+>>>>>>> 2617302... source
 {
 	struct ip_vs_protocol *pp = pd->pp;
 
@@ -1114,10 +1140,14 @@ handle_response(int af, struct sk_buff *skb, struct ip_vs_proto_data *pd,
 	 * the routing information.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (ip_vs_route_me_harder(af, skb))
 =======
 	if (ip_vs_route_me_harder(af, skb, hooknum))
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (ip_vs_route_me_harder(af, skb))
+>>>>>>> 2617302... source
 		goto drop;
 
 	IP_VS_DBG_PKT(10, af, pp, skb, 0, "After SNAT");
@@ -1221,10 +1251,14 @@ ip_vs_out(unsigned int hooknum, struct sk_buff *skb, int af)
 
 	if (likely(cp))
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return handle_response(af, skb, pd, cp, &iph);
 =======
 		return handle_response(af, skb, pd, cp, &iph, hooknum);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		return handle_response(af, skb, pd, cp, &iph);
+>>>>>>> 2617302... source
 	if (sysctl_nat_icmp_send(net) &&
 	    (pp->protocol == IPPROTO_TCP ||
 	     pp->protocol == IPPROTO_UDP ||
@@ -1437,16 +1471,20 @@ ip_vs_in_icmp(struct sk_buff *skb, int *related, unsigned int hooknum)
 	if (ipip) {
 		__be32 info = ic->un.gateway;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		__u8 type = ic->type;
 		__u8 code = ic->code;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 		/* Update the MTU */
 		if (ic->type == ICMP_DEST_UNREACH &&
 		    ic->code == ICMP_FRAG_NEEDED) {
 			struct ip_vs_dest *dest = cp->dest;
 			u32 mtu = ntohs(ic->un.frag.mtu);
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 			/* Strip outer IP and ICMP, go to IPIP header */
@@ -1458,6 +1496,11 @@ ip_vs_in_icmp(struct sk_buff *skb, int *related, unsigned int hooknum)
 			if (pskb_pull(skb, ihl + sizeof(_icmph)) == NULL)
 				goto ignore_ipip;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+
+			/* Strip outer IP and ICMP, go to IPIP header */
+			__skb_pull(skb, ihl + sizeof(_icmph));
+>>>>>>> 2617302... source
 			offset2 -= ihl + sizeof(_icmph);
 			skb_reset_network_header(skb);
 			IP_VS_DBG(12, "ICMP for IPIP %pI4->%pI4: mtu=%u\n",
@@ -1466,10 +1509,14 @@ ip_vs_in_icmp(struct sk_buff *skb, int *related, unsigned int hooknum)
 					 mtu, 0, 0, 0, 0);
 			/* Client uses PMTUD? */
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (!(cih->frag_off & htons(IP_DF)))
 =======
 			if (!(frag_off & htons(IP_DF)))
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			if (!(cih->frag_off & htons(IP_DF)))
+>>>>>>> 2617302... source
 				goto ignore_ipip;
 			/* Prefer the resulting PMTU */
 			if (dest) {
@@ -1489,12 +1536,16 @@ ip_vs_in_icmp(struct sk_buff *skb, int *related, unsigned int hooknum)
 		 * original request.
 		 */
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		__skb_pull(skb, offset2);
 		skb_reset_network_header(skb);
 		IP_VS_DBG(12, "Sending ICMP for %pI4->%pI4: t=%u, c=%u, i=%u\n",
 			&ip_hdr(skb)->saddr, &ip_hdr(skb)->daddr,
 			ic->type, ic->code, ntohl(info));
 		icmp_send(skb, ic->type, ic->code, info);
+<<<<<<< HEAD
 =======
 		if (pskb_pull(skb, offset2) == NULL)
 			goto ignore_ipip;
@@ -1504,6 +1555,8 @@ ip_vs_in_icmp(struct sk_buff *skb, int *related, unsigned int hooknum)
 			type, code, ntohl(info));
 		icmp_send(skb, type, code, info);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		/* ICMP can be shorter but anyways, account it */
 		ip_vs_out_stats(cp, skb);
 
@@ -1973,10 +2026,14 @@ static struct nf_hook_ops ip_vs_ops[] __read_mostly = {
 		.hook		= ip_vs_local_reply6,
 		.owner		= THIS_MODULE,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.pf		= NFPROTO_IPV4,
 =======
 		.pf		= NFPROTO_IPV6,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		.pf		= NFPROTO_IPV4,
+>>>>>>> 2617302... source
 		.hooknum	= NF_INET_LOCAL_OUT,
 		.priority	= NF_IP6_PRI_NAT_DST + 1,
 	},

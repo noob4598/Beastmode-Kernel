@@ -195,10 +195,14 @@ ncp_renew_dentries(struct dentry *parent)
 	next = parent->d_subdirs.next;
 	while (next != &parent->d_subdirs) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dentry = list_entry(next, struct dentry, d_u.d_child);
 =======
 		dentry = list_entry(next, struct dentry, d_child);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		dentry = list_entry(next, struct dentry, d_u.d_child);
+>>>>>>> 2617302... source
 
 		if (dentry->d_fsdata == NULL)
 			ncp_age_dentry(server, dentry);
@@ -221,10 +225,14 @@ ncp_invalidate_dircache_entries(struct dentry *parent)
 	next = parent->d_subdirs.next;
 	while (next != &parent->d_subdirs) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dentry = list_entry(next, struct dentry, d_u.d_child);
 =======
 		dentry = list_entry(next, struct dentry, d_child);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		dentry = list_entry(next, struct dentry, d_u.d_child);
+>>>>>>> 2617302... source
 		dentry->d_fsdata = NULL;
 		ncp_age_dentry(server, dentry);
 		next = next->next;

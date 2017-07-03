@@ -179,13 +179,19 @@ static void msm_actuator_parse_i2c_params(struct msm_actuator_ctrl_t *a_ctrl,
 	CDBG("Enter\n");
 	for (i = 0; i < size; i++) {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		/* check that the index into i2c_tbl cannot grow larger that
 		the allocated size of i2c_tbl */
 		if ((a_ctrl->total_steps + 1) < (a_ctrl->i2c_tbl_index)) {
 			break;
 		}
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		if (write_arr[i].reg_write_type == MSM_ACTUATOR_WRITE_DAC) {
 			value = (next_lens_position <<
 				write_arr[i].data_shift) |
@@ -200,6 +206,7 @@ static void msm_actuator_parse_i2c_params(struct msm_actuator_ctrl_t *a_ctrl,
 					CDBG("byte1:0x%x, byte2:0x%x\n",
 						i2c_byte1, i2c_byte2);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 					if (a_ctrl->i2c_tbl_index >
 						a_ctrl->total_steps) {
@@ -207,6 +214,8 @@ static void msm_actuator_parse_i2c_params(struct msm_actuator_ctrl_t *a_ctrl,
 						break;
 					}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 					i2c_tbl[a_ctrl->i2c_tbl_index].
 						reg_addr = i2c_byte1;
 					i2c_tbl[a_ctrl->i2c_tbl_index].
@@ -228,12 +237,15 @@ static void msm_actuator_parse_i2c_params(struct msm_actuator_ctrl_t *a_ctrl,
 				write_arr[i].hw_shift;
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		if (a_ctrl->i2c_tbl_index > a_ctrl->total_steps) {
 			pr_err("failed: i2c table index out of bound\n");
 			break;
 		}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		CDBG("i2c_byte1:0x%x, i2c_byte2:0x%x\n", i2c_byte1, i2c_byte2);
 		i2c_tbl[a_ctrl->i2c_tbl_index].reg_addr = i2c_byte1;
 		i2c_tbl[a_ctrl->i2c_tbl_index].reg_data = i2c_byte2;
@@ -249,6 +261,9 @@ static int32_t msm_actuator_init_focus(struct msm_actuator_ctrl_t *a_ctrl,
 	int32_t rc = -EFAULT;
 	int32_t i = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	CDBG("Enter\n");
 
 	for (i = 0; i < size; i++) {
@@ -299,6 +314,7 @@ static int32_t msm_actuator_init_focus(struct msm_actuator_ctrl_t *a_ctrl,
 		}
 		}
 
+<<<<<<< HEAD
 =======
 	enum msm_camera_i2c_reg_addr_type save_addr_type;
 	CDBG("Enter\n");
@@ -339,11 +355,14 @@ static int32_t msm_actuator_init_focus(struct msm_actuator_ctrl_t *a_ctrl,
 			break;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		if (0 != settings[i].delay)
 			msleep(settings[i].delay);
 
 		if (rc < 0)
 			break;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	}
 
@@ -357,6 +376,11 @@ static int32_t msm_actuator_init_focus(struct msm_actuator_ctrl_t *a_ctrl,
 	settings are written  */
 	a_ctrl->i2c_client.addr_type = save_addr_type;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	}
+
+	a_ctrl->curr_step_pos = 0;
+>>>>>>> 2617302... source
 	CDBG("Exit\n");
 	return rc;
 }
@@ -780,10 +804,14 @@ static int32_t msm_actuator_init_step_table(struct msm_actuator_ctrl_t *a_ctrl,
 	int16_t code_per_step = 0;
 	int16_t cur_code = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int16_t step_index = 0, region_index = 0;
 =======
 	uint16_t step_index = 0, region_index = 0;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	int16_t step_index = 0, region_index = 0;
+>>>>>>> 2617302... source
 	uint16_t step_boundary = 0;
 	uint32_t max_code_size = 1;
 	uint16_t data_size = set_info->actuator_params.data_size;
@@ -793,9 +821,12 @@ static int32_t msm_actuator_init_step_table(struct msm_actuator_ctrl_t *a_ctrl,
 		max_code_size *= 2;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/* free the step_position_table to allocate a new one */
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	if (a_ctrl->step_position_table) {
 		kfree(a_ctrl->step_position_table);
 		a_ctrl->step_position_table = NULL;
@@ -827,6 +858,7 @@ static int32_t msm_actuator_init_step_table(struct msm_actuator_ctrl_t *a_ctrl,
 			a_ctrl->region_params[region_index].
 			step_bound[MOVE_NEAR];
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		if (step_boundary >
 			set_info->af_tuning_params.total_steps) {
@@ -838,6 +870,8 @@ static int32_t msm_actuator_init_step_table(struct msm_actuator_ctrl_t *a_ctrl,
 			return -EINVAL;
 		}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		for (; step_index <= step_boundary;
 			step_index++) {
 			cur_code += code_per_step;
@@ -865,26 +899,36 @@ static int32_t msm_actuator_hvcm_init_step_table(struct msm_actuator_ctrl_t *a_c
 	int16_t code_per_step = 0;
 	int16_t cur_code = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int16_t step_index = 0, region_index = 0;
 =======
 	uint16_t step_index = 0, region_index = 0;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	int16_t step_index = 0, region_index = 0;
+>>>>>>> 2617302... source
 	uint16_t step_boundary = 0;
 	uint32_t max_code_size = 1;
 	uint16_t data_size = set_info->actuator_params.data_size;
 	CDBG("Enter\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	for (; data_size > 0; data_size--)
 		max_code_size *= 2;
 	max_code_size = 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/* free the step_position_table to allocate a new one */
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	if (a_ctrl->step_position_table) {
 		kfree(a_ctrl->step_position_table);
 		a_ctrl->step_position_table = NULL;
@@ -915,6 +959,7 @@ static int32_t msm_actuator_hvcm_init_step_table(struct msm_actuator_ctrl_t *a_c
 			a_ctrl->region_params[region_index].
 			step_bound[MOVE_NEAR];
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		if (step_boundary >
 			set_info->af_tuning_params.total_steps) {
@@ -926,6 +971,8 @@ static int32_t msm_actuator_hvcm_init_step_table(struct msm_actuator_ctrl_t *a_c
 			return -EINVAL;
 		}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		for (; step_index <= step_boundary;
 			step_index++) {
 			cur_code -= code_per_step;
@@ -1258,10 +1305,14 @@ static int32_t msm_actuator_set_param(struct msm_actuator_ctrl_t *a_ctrl,
 	if (set_info->actuator_params.init_setting_size &&
 		set_info->actuator_params.init_setting_size
 <<<<<<< HEAD
+<<<<<<< HEAD
 		<= MAX_ACTUATOR_REG_TBL_SIZE) {
 =======
 		<= MAX_ACTUATOR_INIT_SET) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		<= MAX_ACTUATOR_REG_TBL_SIZE) {
+>>>>>>> 2617302... source
 		if (a_ctrl->func_tbl->actuator_init_focus) {
 			init_settings = kmalloc(sizeof(struct reg_settings_t) *
 				(set_info->actuator_params.init_setting_size),
@@ -1331,10 +1382,14 @@ static int32_t msm_actuator_config(struct msm_actuator_ctrl_t *a_ctrl,
 	struct msm_actuator_cfg_data *cdata =
 		(struct msm_actuator_cfg_data *)argp;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int32_t rc = 0;
 =======
 	int32_t rc = -EINVAL;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	int32_t rc = 0;
+>>>>>>> 2617302... source
 	mutex_lock(a_ctrl->actuator_mutex);
 	CDBG("Enter\n");
 	CDBG("%s type %d\n", __func__, cdata->cfgtype);
@@ -1349,9 +1404,12 @@ static int32_t msm_actuator_config(struct msm_actuator_ctrl_t *a_ctrl,
 		cdata->cfg.cam_name = a_ctrl->cam_name;
 		CDBG("%s a_ctrl->cam_name = %d\n", __func__, a_ctrl->cam_name);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		rc = 0;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		break;
 
 	case CFG_SET_ACTUATOR_INFO:
@@ -1362,6 +1420,7 @@ static int32_t msm_actuator_config(struct msm_actuator_ctrl_t *a_ctrl,
 
 	case CFG_SET_DEFAULT_FOCUS:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		rc = a_ctrl->func_tbl->actuator_set_default_focus(a_ctrl,
 			&cdata->cfg.move);
 =======
@@ -1370,11 +1429,16 @@ static int32_t msm_actuator_config(struct msm_actuator_ctrl_t *a_ctrl,
 			rc = a_ctrl->func_tbl->actuator_set_default_focus(
 				a_ctrl,	&cdata->cfg.move);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		rc = a_ctrl->func_tbl->actuator_set_default_focus(a_ctrl,
+			&cdata->cfg.move);
+>>>>>>> 2617302... source
 		if (rc < 0)
 			pr_err("[%s::%d] move focus failed %d\n", __func__, __LINE__, rc);
 		break;
 
 	case CFG_MOVE_FOCUS:
+<<<<<<< HEAD
 <<<<<<< HEAD
 		rc = a_ctrl->func_tbl->actuator_move_focus(a_ctrl,
 			&cdata->cfg.move);
@@ -1384,6 +1448,10 @@ static int32_t msm_actuator_config(struct msm_actuator_ctrl_t *a_ctrl,
 			rc = a_ctrl->func_tbl->actuator_move_focus(a_ctrl,
 				&cdata->cfg.move);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		rc = a_ctrl->func_tbl->actuator_move_focus(a_ctrl,
+			&cdata->cfg.move);
+>>>>>>> 2617302... source
 		if (rc < 0)
 			pr_err("[%s::%d] move focus failed %d\n", __func__, __LINE__, rc);
 		break;
@@ -1395,6 +1463,7 @@ static int32_t msm_actuator_config(struct msm_actuator_ctrl_t *a_ctrl,
 
 	case CFG_SET_POSITION:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		rc = a_ctrl->func_tbl->actuator_set_position(a_ctrl,
 			&cdata->cfg.setpos);
 =======
@@ -1403,6 +1472,10 @@ static int32_t msm_actuator_config(struct msm_actuator_ctrl_t *a_ctrl,
 			rc = a_ctrl->func_tbl->actuator_set_position(a_ctrl,
 				&cdata->cfg.setpos);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		rc = a_ctrl->func_tbl->actuator_set_position(a_ctrl,
+			&cdata->cfg.setpos);
+>>>>>>> 2617302... source
 		if (rc < 0)
 			pr_err("[%s::%d] actuator_set_position failed %d\n", __func__, __LINE__, rc);
 		break;
@@ -1542,10 +1615,14 @@ static long msm_actuator_subdev_ioctl(struct v4l2_subdev *sd,
 	void __user *argp = (void __user *)arg;
 	CDBG("Enter\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
 	CDBG("%s:%d a_ctrl %p argp %p\n", __func__, __LINE__, a_ctrl, argp);
 =======
 	CDBG("%s:%d a_ctrl %pK argp %pK\n", __func__, __LINE__, a_ctrl, argp);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	CDBG("%s:%d a_ctrl %p argp %p\n", __func__, __LINE__, a_ctrl, argp);
+>>>>>>> 2617302... source
 	switch (cmd) {
 	case VIDIOC_MSM_SENSOR_GET_SUBDEV_ID:
 		return msm_actuator_get_subdev_id(a_ctrl, argp);
@@ -1782,10 +1859,14 @@ static int32_t msm_actuator_i2c_probe(struct i2c_client *client,
 		}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		CDBG("client = 0x%p\n",  client);
 =======
 		CDBG("client = 0x%pK\n",  client);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		CDBG("client = 0x%p\n",  client);
+>>>>>>> 2617302... source
 
 		rc = of_property_read_u32(client->dev.of_node, "cell-index",
 			&act_ctrl_t->subdev_id);
@@ -1954,9 +2035,12 @@ static int32_t msm_actuator_platform_probe(struct platform_device *pdev)
 	msm_actuator_t->msm_sd.close_seq = MSM_SD_CLOSE_2ND_CATEGORY | 0x2;
 	msm_sd_register(&msm_actuator_t->msm_sd);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	msm_actuator_t->actuator_state = ACTUATOR_POWER_DOWN;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 #if defined(CONFIG_OIS)
 	g_msm_actuator_t = msm_actuator_t;

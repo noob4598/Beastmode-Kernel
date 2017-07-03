@@ -449,6 +449,7 @@ static const struct dmi_system_id pciprobe_dmi_table[] = {
 		},
 	},
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
         {
                 .callback = set_scan_all,
@@ -467,6 +468,8 @@ static const struct dmi_system_id pciprobe_dmi_table[] = {
                 },
         },
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	{}
 };
 

@@ -24,6 +24,7 @@
 #include <linux/mmc/core.h>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 DECLARE_EVENT_CLASS(start_req,
 	TP_PROTO(const char * host, unsigned int cmd,
@@ -113,6 +114,8 @@ DEFINE_EVENT(req_done, mmc_req_done,
 );
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 /*
  * Unconditional logging of mmc block erase operations,
  * including cmd, address, size

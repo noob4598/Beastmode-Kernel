@@ -577,6 +577,9 @@ nfsd4_create(struct svc_rqst *rqstp, struct nfsd4_compound_state *cstate,
 	switch (create->cr_type) {
 	case NF4LNK:
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		/* ugh! we have to null-terminate the linktext, or
 		 * vfs_symlink() will choke.  it is always safe to
 		 * null-terminate by brute force, since at worst we
@@ -586,8 +589,11 @@ nfsd4_create(struct svc_rqst *rqstp, struct nfsd4_compound_state *cstate,
 		 */
 		create->cr_linkname[create->cr_linklen] = 0;
 
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		status = nfsd_symlink(rqstp, &cstate->current_fh,
 				      create->cr_name, create->cr_namelen,
 				      create->cr_linkname, create->cr_linklen,
@@ -1204,11 +1210,15 @@ static bool need_wrongsec_check(struct svc_rqst *rqstp)
 	if (argp->opcnt == resp->opcnt)
 		return false;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 	if (next->opnum == OP_ILLEGAL)
 		return false;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+
+>>>>>>> 2617302... source
 	nextd = OPDESC(next);
 	/*
 	 * Rest of 2.6.3.1.1: certain operations will return WRONGSEC

@@ -499,10 +499,14 @@ asmlinkage long sys_lchown(const char __user *filename,
 				uid_t user, gid_t group);
 asmlinkage long sys_fchown(unsigned int fd, uid_t user, gid_t group);
 <<<<<<< HEAD
+<<<<<<< HEAD
 #ifdef CONFIG_UID16
 =======
 #ifdef CONFIG_HAVE_UID16
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+#ifdef CONFIG_UID16
+>>>>>>> 2617302... source
 asmlinkage long sys_chown16(const char __user *filename,
 				old_uid_t user, old_gid_t group);
 asmlinkage long sys_lchown16(const char __user *filename,

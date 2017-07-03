@@ -4,10 +4,14 @@
  * Error Recovery Procedures (ERP).
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright IBM Corp. 2002, 2010
 =======
  * Copyright IBM Corp. 2002, 2016
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+ * Copyright IBM Corp. 2002, 2010
+>>>>>>> 2617302... source
  */
 
 #define KMSG_COMPONENT "zfcp"
@@ -1217,6 +1221,7 @@ static void zfcp_erp_action_dequeue(struct zfcp_erp_action *erp_action)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 /**
  * zfcp_erp_try_rport_unblock - unblock rport if no more/new recovery
@@ -1275,6 +1280,8 @@ static void zfcp_erp_try_rport_unblock(struct zfcp_port *port)
 }
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 static void zfcp_erp_action_cleanup(struct zfcp_erp_action *act, int result)
 {
 	struct zfcp_adapter *adapter = act->adapter;
@@ -1286,11 +1293,15 @@ static void zfcp_erp_action_cleanup(struct zfcp_erp_action *act, int result)
 		if (!(act->status & ZFCP_STATUS_ERP_NO_REF))
 			scsi_device_put(sdev);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		break;
 
 	case ZFCP_ERP_ACTION_REOPEN_PORT:
 		if (result == ZFCP_ERP_SUCCEEDED)
 			zfcp_scsi_schedule_rport_register(port);
+<<<<<<< HEAD
 =======
 		zfcp_erp_try_rport_unblock(port);
 		break;
@@ -1305,6 +1316,8 @@ static void zfcp_erp_action_cleanup(struct zfcp_erp_action *act, int result)
 			if (result == ZFCP_ERP_SUCCEEDED)
 				zfcp_erp_try_rport_unblock(port);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		/* fall through */
 	case ZFCP_ERP_ACTION_REOPEN_PORT_FORCED:
 		put_device(&port->dev);

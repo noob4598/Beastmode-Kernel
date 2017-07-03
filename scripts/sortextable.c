@@ -61,10 +61,14 @@ fail_file(void)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void __attribute__((noreturn))
 =======
 static void __attribute__((noreturn,used))
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+static void __attribute__((noreturn))
+>>>>>>> 2617302... source
 succeed_file(void)
 {
 	cleanup();

@@ -1333,10 +1333,14 @@ static int register_memory(void)
 	acdb_data.mem_len = mem_len;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_debug("%s done! paddr = 0x%pa, kvaddr = 0x%p, len = 0x%llx\n",
 =======
 	pr_debug("%s done! paddr = 0x%pa, kvaddr = 0x%pK, len = 0x%llx\n",
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	pr_debug("%s done! paddr = 0x%pa, kvaddr = 0x%p, len = 0x%llx\n",
+>>>>>>> 2617302... source
 		 __func__, &acdb_data.paddr, acdb_data.kvaddr,
 		 acdb_data.mem_len);
 

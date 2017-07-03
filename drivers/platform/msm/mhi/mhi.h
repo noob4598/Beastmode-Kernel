@@ -1,8 +1,12 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* Copyright (c) 2014, The Linux Foundation. All rights reserved.
 =======
 /* Copyright (c) 2013-2014, The Linux Foundation. All rights reserved.
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+/* Copyright (c) 2014, The Linux Foundation. All rights reserved.
+>>>>>>> 2617302... source
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -18,6 +22,9 @@
 #define _H_MHI
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 #include "mhi_macros.h"
 #include <linux/msm_mhi.h>
 #include <linux/types.h>
@@ -38,6 +45,7 @@ enum MHI_DEBUG_CLASS {
 };
 
 enum MHI_DEBUG_LEVEL {
+<<<<<<< HEAD
 =======
 #include <mach/msm_pcie.h>
 #include <linux/msm_mhi.h>
@@ -67,6 +75,8 @@ typedef enum MHI_DEBUG_CLASS {
 
 typedef enum MHI_DEBUG_LEVEL {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	MHI_MSG_VERBOSE = 0x1,
 	MHI_MSG_INFO = 0x2,
 	MHI_MSG_DBG = 0x4,
@@ -75,6 +85,9 @@ typedef enum MHI_DEBUG_LEVEL {
 	MHI_MSG_CRITICAL = 0x20,
 	MHI_MSG_reserved = 0x80000000
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 };
 
 struct pcie_core_info {
@@ -93,6 +106,7 @@ struct pcie_core_info {
 
 struct bhi_ctxt_t {
 	void __iomem *bhi_base;
+<<<<<<< HEAD
 =======
 } MHI_DEBUG_LEVEL;
 
@@ -113,11 +127,16 @@ typedef struct pcie_core_info {
 typedef struct bhi_ctxt_t {
 	uintptr_t bhi_base;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	void *image_loc;
 	dma_addr_t phy_image_loc;
 	size_t image_size;
 	void *unaligned_image_loc;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	dev_t bhi_dev;
 	struct cdev cdev;
 	struct class *bhi_class;
@@ -125,6 +144,7 @@ typedef struct bhi_ctxt_t {
 };
 
 enum MHI_CHAN_TYPE {
+<<<<<<< HEAD
 =======
 } bhi_ctxt_t;
 
@@ -148,10 +168,13 @@ typedef struct mhi_pcie_devices {
 
 typedef enum MHI_CHAN_TYPE {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	MHI_INVALID = 0x0,
 	MHI_OUT = 0x1,
 	MHI_IN = 0x2,
 	MHI_CHAN_TYPE_reserved = 0x80000000
+<<<<<<< HEAD
 <<<<<<< HEAD
 };
 
@@ -161,6 +184,11 @@ enum MHI_CHAN_STATE {
 
 typedef enum MHI_CHAN_STATE {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+};
+
+enum MHI_CHAN_STATE {
+>>>>>>> 2617302... source
 	MHI_CHAN_STATE_DISABLED = 0x0,
 	MHI_CHAN_STATE_ENABLED = 0x1,
 	MHI_CHAN_STATE_RUNNING = 0x2,
@@ -170,6 +198,7 @@ typedef enum MHI_CHAN_STATE {
 	MHI_CHAN_STATE_LIMIT = 0x6,
 	MHI_CHAN_STATE_reserved = 0x80000000
 <<<<<<< HEAD
+<<<<<<< HEAD
 };
 
 enum MHI_RING_TYPE {
@@ -178,11 +207,17 @@ enum MHI_RING_TYPE {
 
 typedef enum MHI_RING_TYPE {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+};
+
+enum MHI_RING_TYPE {
+>>>>>>> 2617302... source
 	MHI_RING_TYPE_CMD_RING = 0x0,
 	MHI_RING_TYPE_XFER_RING = 0x1,
 	MHI_RING_TYPE_EVENT_RING = 0x2,
 	MHI_RING_TYPE_MAX = 0x4,
 	MHI_RING_reserved = 0x80000000
+<<<<<<< HEAD
 <<<<<<< HEAD
 };
 
@@ -192,11 +227,19 @@ enum MHI_CHAIN {
 
 typedef enum MHI_CHAIN {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+};
+
+enum MHI_CHAIN {
+>>>>>>> 2617302... source
 	MHI_TRE_CHAIN_OFF = 0x0,
 	MHI_TRE_CHAIN_ON = 0x1,
 	MHI_TRE_CHAIN_LIMIT = 0x2,
 	MHI_TRE_CHAIN_reserved = 0x80000000
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 };
 
 enum MHI_EVENT_RING_STATE {
@@ -206,6 +249,7 @@ enum MHI_EVENT_RING_STATE {
 };
 
 enum MHI_STATE {
+<<<<<<< HEAD
 =======
 } MHI_CHAIN;
 
@@ -217,6 +261,8 @@ typedef enum MHI_EVENT_RING_STATE {
 
 typedef enum MHI_STATE {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	MHI_STATE_RESET = 0x0,
 	MHI_STATE_READY = 0x1,
 	MHI_STATE_M0 = 0x2,
@@ -227,6 +273,7 @@ typedef enum MHI_STATE {
 	MHI_STATE_LIMIT = 0x8,
 	MHI_STATE_reserved = 0x80000000
 <<<<<<< HEAD
+<<<<<<< HEAD
 };
 
 struct __packed mhi_event_ctxt {
@@ -236,12 +283,20 @@ struct __packed mhi_event_ctxt {
 #pragma pack(1)
 typedef struct mhi_event_ctxt {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+};
+
+struct __packed mhi_event_ctxt {
+>>>>>>> 2617302... source
 	u32 mhi_intmodt;
 	u32 mhi_event_er_type;
 	u32 mhi_msi_vector;
 	u64 mhi_event_ring_base_addr;
 	u64 mhi_event_ring_len;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	u64 mhi_event_read_ptr;
 	u64 mhi_event_write_ptr;
 };
@@ -249,6 +304,7 @@ typedef struct mhi_event_ctxt {
 struct __packed mhi_chan_ctxt {
 	enum MHI_CHAN_STATE mhi_chan_state;
 	enum MHI_CHAN_TYPE mhi_chan_type;
+<<<<<<< HEAD
 =======
 	volatile u64 mhi_event_read_ptr;
 	u64 mhi_event_write_ptr;
@@ -258,11 +314,14 @@ typedef struct mhi_chan_ctxt {
 	MHI_CHAN_STATE mhi_chan_state;
 	MHI_CHAN_TYPE mhi_chan_type;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	u32 mhi_event_ring_index;
 	u64 mhi_trb_ring_base_addr;
 	u64 mhi_trb_ring_len;
 	u64 mhi_trb_read_ptr;
 	u64 mhi_trb_write_ptr;
+<<<<<<< HEAD
 <<<<<<< HEAD
 };
 
@@ -272,6 +331,11 @@ struct __packed mhi_cmd_ctxt {
 
 typedef struct mhi_cmd_ctxt {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+};
+
+struct __packed mhi_cmd_ctxt {
+>>>>>>> 2617302... source
 	u32 mhi_cmd_ctxt_reserved1;
 	u32 mhi_cmd_ctxt_reserved2;
 	u32 mhi_cmd_ctxt_reserved3;
@@ -279,6 +343,7 @@ typedef struct mhi_cmd_ctxt {
 	u64 mhi_cmd_ring_len;
 	u64 mhi_cmd_ring_read_ptr;
 	u64 mhi_cmd_ring_write_ptr;
+<<<<<<< HEAD
 <<<<<<< HEAD
 };
 
@@ -290,6 +355,11 @@ enum MHI_COMMAND {
 
 typedef enum MHI_COMMAND {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+};
+
+enum MHI_COMMAND {
+>>>>>>> 2617302... source
 	MHI_COMMAND_NOOP = 0x0,
 	MHI_COMMAND_RESET_CHAN = 0x1,
 	MHI_COMMAND_STOP_CHAN = 0x2,
@@ -297,6 +367,7 @@ typedef enum MHI_COMMAND {
 	MHI_COMMAND_RESUME_CHAN = 0x4,
 	MHI_COMMAND_MAX_NR = 0x5,
 	MHI_COMMAND_reserved = 0x80000000
+<<<<<<< HEAD
 <<<<<<< HEAD
 };
 
@@ -306,6 +377,11 @@ enum MHI_PKT_TYPE {
 
 typedef enum MHI_PKT_TYPE {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+};
+
+enum MHI_PKT_TYPE {
+>>>>>>> 2617302... source
 	MHI_PKT_TYPE_RESERVED = 0x0,
 	MHI_PKT_TYPE_NOOP_CMD = 0x1,
 	MHI_PKT_TYPE_TRANSFER = 0x2,
@@ -317,6 +393,9 @@ typedef enum MHI_PKT_TYPE {
 	MHI_PKT_TYPE_TX_EVENT = 0x22,
 	MHI_PKT_TYPE_EE_EVENT = 0x40,
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 };
 
 struct __packed mhi_tx_pkt {
@@ -338,6 +417,7 @@ struct __packed mhi_noop_cmd_pkt {
 };
 
 struct __packed mhi_reset_chan_cmd_pkt {
+<<<<<<< HEAD
 =======
 } MHI_PKT_TYPE;
 
@@ -363,11 +443,16 @@ typedef struct mhi_noop_cmd_pkt {
 
 typedef struct mhi_reset_chan_cmd_pkt {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	u32 reserved1;
 	u32 reserved2;
 	u32 reserved3;
 	u32 info;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 };
 
 struct __packed mhi_stop_chan_cmd_pkt {
@@ -423,6 +508,7 @@ union __packed mhi_event_pkt {
 };
 
 enum MHI_EVENT_CCS {
+<<<<<<< HEAD
 =======
 } mhi_reset_chan_cmd_pkt;
 
@@ -479,6 +565,8 @@ typedef union mhi_event_pkt {
 #pragma pack()
 typedef enum MHI_EVENT_CCS {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	MHI_EVENT_CC_INVALID = 0x0,
 	MHI_EVENT_CC_SUCCESS = 0x1,
 	MHI_EVENT_CC_EOT = 0x2,
@@ -489,6 +577,9 @@ typedef enum MHI_EVENT_CCS {
 	MHI_EVENT_CC_UNDEFINED_ERR = 0x10,
 	MHI_EVENT_CC_RING_EL_ERR = 0x11,
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 };
 
 struct mhi_ring {
@@ -502,6 +593,7 @@ struct mhi_ring {
 };
 
 enum MHI_CMD_STATUS {
+<<<<<<< HEAD
 =======
 } MHI_EVENT_CCS;
 
@@ -518,11 +610,16 @@ typedef struct mhi_ring {
 
 typedef enum MHI_CMD_STATUS {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	MHI_CMD_NOT_PENDING = 0x0,
 	MHI_CMD_PENDING = 0x1,
 	MHI_CMD_RESET_PENDING = 0x2,
 	MHI_CMD_RESERVED = 0x80000000
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 };
 
 enum MHI_EVENT_RING_TYPE {
@@ -532,6 +629,7 @@ enum MHI_EVENT_RING_TYPE {
 };
 
 enum MHI_INIT_ERROR_STAGE {
+<<<<<<< HEAD
 =======
 } MHI_CMD_STATUS;
 
@@ -543,6 +641,8 @@ typedef enum MHI_EVENT_RING_TYPE {
 
 typedef enum MHI_INIT_ERROR_STAGE {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	MHI_INIT_ERROR_STAGE_UNWIND_ALL = 0x1,
 	MHI_INIT_ERROR_STAGE_DEVICE_CTRL = 0x2,
 	MHI_INIT_ERROR_STAGE_THREADS = 0x3,
@@ -551,17 +651,23 @@ typedef enum MHI_INIT_ERROR_STAGE {
 	MHI_INIT_ERROR_STAGE_SYNC = 0x6,
 	MHI_INIT_ERROR_STAGE_THREAD_QUEUES = 0x7,
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	MHI_INIT_ERROR_TIMERS = 0x8,
 	MHI_INIT_ERROR_STAGE_RESERVED = 0x80000000
 };
 
 enum STATE_TRANSITION {
+<<<<<<< HEAD
 =======
 	MHI_INIT_ERROR_STAGE_RESERVED = 0x80000000
 } MHI_INIT_ERROR_STAGE;
 
 typedef enum STATE_TRANSITION {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	STATE_TRANSITION_RESET = 0x0,
 	STATE_TRANSITION_READY = 0x1,
 	STATE_TRANSITION_M0 = 0x2,
@@ -576,6 +682,9 @@ typedef enum STATE_TRANSITION {
 	STATE_TRANSITION_SYS_ERR = 0xFF,
 	STATE_TRANSITION_reserved = 0x80000000
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 };
 
 enum MHI_EXEC_ENV {
@@ -593,6 +702,7 @@ struct mhi_client_handle {
 	void *user_data;
 	u32 chan;
 	struct mhi_result result;
+<<<<<<< HEAD
 =======
 } STATE_TRANSITION;
 
@@ -609,6 +719,8 @@ typedef struct mhi_client_handle {
 	u32 chan;
 	mhi_result result;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	u32 device_index;
 	u32 event_ring_index;
 	u32 msi_vec;
@@ -616,6 +728,9 @@ typedef struct mhi_client_handle {
 	u32 intmod_t;
 	u32 pkt_count;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	int magic;
 	int chan_status;
 };
@@ -650,6 +765,7 @@ struct mhi_chan_counters {
 };
 
 struct mhi_counters {
+<<<<<<< HEAD
 =======
 } mhi_client_handle;
 typedef enum MHI_EVENT_POLLING {
@@ -683,6 +799,8 @@ typedef struct mhi_chan_counters {
 
 typedef struct mhi_counters {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	u32 m0_m1;
 	u32 m1_m0;
 	u32 m1_m2;
@@ -699,6 +817,9 @@ typedef struct mhi_counters {
 	u32 nr_irq_migrations;
 	atomic_t outbound_acks;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 };
 
 struct mhi_flags {
@@ -707,6 +828,7 @@ struct mhi_flags {
 	u32 pending_M0;
 	u32 link_up;
 	u32 kill_threads;
+<<<<<<< HEAD
 =======
 } mhi_counters;
 
@@ -720,12 +842,17 @@ typedef struct mhi_flags {
 	volatile u32 kill_threads;
 	atomic_t mhi_link_off;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	atomic_t data_pending;
 	atomic_t events_pending;
 	atomic_t m0_work_enabled;
 	atomic_t m3_work_enabled;
 	atomic_t pending_resume;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	atomic_t pending_ssr;
 	atomic_t pending_powerup;
 	int stop_threads;
@@ -750,6 +877,7 @@ struct mhi_device_ctxt {
 	struct mhi_ring mhi_local_chan_ctxt[MHI_MAX_CHANNELS];
 	struct mhi_ring mhi_local_event_ctxt[MHI_MAX_CHANNELS];
 	struct mhi_ring mhi_local_cmd_ctxt[NR_OF_CMD_RINGS];
+<<<<<<< HEAD
 =======
 	volatile int stop_threads;
 	u32 ssr;
@@ -773,16 +901,22 @@ struct mhi_device_ctxt {
 	mhi_ring mhi_local_event_ctxt[MHI_MAX_CHANNELS];
 	mhi_ring mhi_local_cmd_ctxt[NR_OF_CMD_RINGS];
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	struct mutex *mhi_chan_mutex;
 	struct mutex mhi_link_state;
 	spinlock_t *mhi_ev_spinlock_list;
 	struct mutex *mhi_cmd_mutex_list;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	struct mhi_client_handle *client_handle_list[MHI_MAX_CHANNELS];
 	struct task_struct *event_thread_handle;
 	struct task_struct *st_thread_handle;
 	u32 ev_thread_stopped;
 	u32 st_thread_stopped;
+<<<<<<< HEAD
 =======
 	mhi_client_handle *client_handle_list[MHI_MAX_CHANNELS];
 	struct task_struct *event_thread_handle;
@@ -790,14 +924,20 @@ struct mhi_device_ctxt {
 	volatile u32 ev_thread_stopped;
 	volatile u32 st_thread_stopped;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	wait_queue_head_t *event_handle;
 	wait_queue_head_t *state_change_event_handle;
 	wait_queue_head_t *M0_event;
 	wait_queue_head_t *M3_event;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	wait_queue_head_t *bhi_event;
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	wait_queue_head_t *bhi_event;
+>>>>>>> 2617302... source
 	wait_queue_head_t *chan_start_complete;
 
 	u32 mhi_chan_db_order[MHI_MAX_CHANNELS];
@@ -809,6 +949,7 @@ struct mhi_device_ctxt {
 	atomic_t link_ops_flag;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct mhi_state_work_queue state_change_work_item_list;
 	enum MHI_CMD_STATUS mhi_chan_pend_cmd_ack[MHI_MAX_CHANNELS];
 
@@ -818,6 +959,11 @@ struct mhi_device_ctxt {
 
 	atomic_t start_cmd_pending_ack;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	struct mhi_state_work_queue state_change_work_item_list;
+	enum MHI_CMD_STATUS mhi_chan_pend_cmd_ack[MHI_MAX_CHANNELS];
+
+>>>>>>> 2617302... source
 	u32 cmd_ring_order;
 	u32 alloced_ev_rings[EVENT_RINGS_ALLOCATED];
 	u32 ev_ring_props[EVENT_RINGS_ALLOCATED];
@@ -827,11 +973,15 @@ struct mhi_device_ctxt {
 	u32 hw_intmod_rate;
 	u32 outbound_evmod_rate;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	struct mhi_counters counters;
 	struct mhi_flags flags;
 
 	rwlock_t xfer_lock;
 	struct hrtimer m1_timer;
+<<<<<<< HEAD
 =======
 	mhi_counters counters;
 	mhi_flags flags;
@@ -839,12 +989,17 @@ struct mhi_device_ctxt {
 	rwlock_t xfer_lock;
 	hrtimer m1_timer;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	ktime_t m1_timeout;
 	struct delayed_work m3_work;
 	struct work_struct m0_work;
 
 	struct workqueue_struct *work_queue;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	struct mhi_chan_counters mhi_chan_cntr[MHI_MAX_CHANNELS];
 	u32 ev_counter[MHI_MAX_CHANNELS];
 	u32 bus_client;
@@ -973,6 +1128,7 @@ void mhi_reg_write(struct mhi_device_ctxt *mhi_dev_ctxt,
 u32 mhi_reg_read(void __iomem *io_addr, uintptr_t io_offset);
 u32 mhi_reg_read_field(void __iomem *io_addr, uintptr_t io_offset,
 			 u32 mask, u32 shift);
+<<<<<<< HEAD
 =======
 	mhi_chan_counters mhi_chan_cntr[MHI_MAX_CHANNELS];
 	u32 ev_counter[MHI_MAX_CHANNELS];
@@ -1160,5 +1316,7 @@ int mhi_set_bus_request(struct mhi_device_ctxt *mhi_dev_ctxt,
 void mhi_wake_relax(struct mhi_device_ctxt *mhi_dev_ctxt);
 void mhi_wake(struct mhi_device_ctxt *mhi_dev_ctxt);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 #endif

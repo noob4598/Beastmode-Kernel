@@ -130,12 +130,15 @@ static int uhci_pci_init(struct usb_hcd *hcd)
 		uhci->wait_for_hp = 1;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/* Intel controllers use non-PME wakeup signalling */
 	if (to_pci_dev(uhci_dev(uhci))->vendor == PCI_VENDOR_ID_INTEL)
 		device_set_run_wake(uhci_dev(uhci), 1);
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	/* Set up pointers to PCI-specific functions */
 	uhci->reset_hc = uhci_pci_reset_hc;
 	uhci->check_and_reset_hc = uhci_pci_check_and_reset_hc;

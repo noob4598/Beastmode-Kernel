@@ -238,7 +238,11 @@ MODULE_LICENSE("GPL");
 MODULE_DESCRIPTION("SHA1 Secure Hash Algorithm, Supplemental SSE3 accelerated");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 MODULE_ALIAS("sha1");
 =======
 MODULE_ALIAS_CRYPTO("sha1");
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+MODULE_ALIAS("sha1");
+>>>>>>> 2617302... source

@@ -412,6 +412,7 @@ int snd_seq_pool_init(struct snd_seq_pool *pool)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 /* refuse the further insertion to the pool */
 void snd_seq_pool_mark_closing(struct snd_seq_pool *pool)
@@ -426,21 +427,30 @@ void snd_seq_pool_mark_closing(struct snd_seq_pool *pool)
 }
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 /* remove events */
 int snd_seq_pool_done(struct snd_seq_pool *pool)
 {
 	unsigned long flags;
 	struct snd_seq_event_cell *ptr;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int max_count = 5 * HZ;
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	int max_count = 5 * HZ;
+>>>>>>> 2617302... source
 
 	if (snd_BUG_ON(!pool))
 		return -EINVAL;
 
 	/* wait for closing all threads */
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	spin_lock_irqsave(&pool->lock, flags);
 	pool->closing = 1;
 	spin_unlock_irqrestore(&pool->lock, flags);
@@ -456,6 +466,7 @@ int snd_seq_pool_done(struct snd_seq_pool *pool)
 		schedule_timeout_uninterruptible(1);
 		max_count--;
 	}
+<<<<<<< HEAD
 =======
 	if (waitqueue_active(&pool->output_sleep))
 		wake_up(&pool->output_sleep);
@@ -463,6 +474,8 @@ int snd_seq_pool_done(struct snd_seq_pool *pool)
 	while (atomic_read(&pool->counter) > 0)
 		schedule_timeout_uninterruptible(1);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	
 	/* release all resources */
 	spin_lock_irqsave(&pool->lock, flags);
@@ -517,9 +530,12 @@ int snd_seq_pool_delete(struct snd_seq_pool **ppool)
 	if (pool == NULL)
 		return 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	snd_seq_pool_mark_closing(pool);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	snd_seq_pool_done(pool);
 	kfree(pool);
 	return 0;

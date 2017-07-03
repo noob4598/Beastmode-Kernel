@@ -281,11 +281,15 @@ struct l2tp_session *l2tp_session_find(struct net *net, struct l2tp_tunnel *tunn
 EXPORT_SYMBOL_GPL(l2tp_session_find);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 struct l2tp_session *l2tp_session_find_nth(struct l2tp_tunnel *tunnel, int nth)
 =======
 struct l2tp_session *l2tp_session_get_nth(struct l2tp_tunnel *tunnel, int nth,
 					  bool do_ref)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+struct l2tp_session *l2tp_session_find_nth(struct l2tp_tunnel *tunnel, int nth)
+>>>>>>> 2617302... source
 {
 	int hash;
 	struct l2tp_session *session;
@@ -296,11 +300,14 @@ struct l2tp_session *l2tp_session_get_nth(struct l2tp_tunnel *tunnel, int nth,
 		hlist_for_each_entry(session, &tunnel->session_hlist[hash], hlist) {
 			if (++count > nth) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 				l2tp_session_inc_refcount(session);
 				if (do_ref && session->ref)
 					session->ref(session);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 				read_unlock_bh(&tunnel->hlist_lock);
 				return session;
 			}
@@ -312,10 +319,14 @@ struct l2tp_session *l2tp_session_get_nth(struct l2tp_tunnel *tunnel, int nth,
 	return NULL;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 EXPORT_SYMBOL_GPL(l2tp_session_find_nth);
 =======
 EXPORT_SYMBOL_GPL(l2tp_session_get_nth);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+EXPORT_SYMBOL_GPL(l2tp_session_find_nth);
+>>>>>>> 2617302... source
 
 /* Lookup a session by interface name.
  * This is very inefficient but is only used by management interfaces.
@@ -1397,10 +1408,14 @@ static void l2tp_tunnel_del_work(struct work_struct *work)
 	sk = l2tp_tunnel_sock_lookup(tunnel);
 	if (!sk)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return;
 =======
 		goto out;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		return;
+>>>>>>> 2617302... source
 
 	sock = sk->sk_socket;
 
@@ -1422,10 +1437,13 @@ static void l2tp_tunnel_del_work(struct work_struct *work)
 
 	l2tp_tunnel_sock_put(sk);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 out:
 	l2tp_tunnel_dec_refcount(tunnel);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 }
 
 /* Create a socket for the tunnel, if one isn't set up by
@@ -1756,6 +1774,7 @@ EXPORT_SYMBOL_GPL(l2tp_tunnel_create);
 int l2tp_tunnel_delete(struct l2tp_tunnel *tunnel)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	l2tp_tunnel_closeall(tunnel);
 	return (false == queue_work(l2tp_wq, &tunnel->del_work));
 =======
@@ -1767,6 +1786,10 @@ int l2tp_tunnel_delete(struct l2tp_tunnel *tunnel)
 	}
 	return 0;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	l2tp_tunnel_closeall(tunnel);
+	return (false == queue_work(l2tp_wq, &tunnel->del_work));
+>>>>>>> 2617302... source
 }
 EXPORT_SYMBOL_GPL(l2tp_tunnel_delete);
 

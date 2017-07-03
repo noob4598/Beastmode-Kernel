@@ -661,9 +661,12 @@ static int inv_mpu_probe(struct i2c_client *client,
 	struct inv_mpu6050_state *st;
 	struct iio_dev *indio_dev;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct inv_mpu6050_platform_data *pdata;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	int result;
 
 	if (!i2c_check_functionality(client->adapter,
@@ -680,6 +683,7 @@ static int inv_mpu_probe(struct i2c_client *client,
 	st = iio_priv(indio_dev);
 	st->client = client;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	st->plat_data = *(struct inv_mpu6050_platform_data
 				*)dev_get_platdata(&client->dev);
 =======
@@ -688,6 +692,10 @@ static int inv_mpu_probe(struct i2c_client *client,
 	if (pdata)
 		st->plat_data = *pdata;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	st->plat_data = *(struct inv_mpu6050_platform_data
+				*)dev_get_platdata(&client->dev);
+>>>>>>> 2617302... source
 	/* power is turned on inside check chip type*/
 	result = inv_check_and_setup_chip(st, id);
 	if (result)

@@ -213,11 +213,15 @@ int aa_audit(int type, struct aa_profile *profile, gfp_t gfp,
 	if (sa->aad->type == AUDIT_APPARMOR_KILL)
 		(void)send_sig_info(SIGKILL, NULL,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				    sa->aad->tsk ?  sa->aad->tsk : current);
 =======
 			sa->type == LSM_AUDIT_DATA_TASK && sa->aad->tsk ?
 				    sa->aad->tsk : current);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+				    sa->aad->tsk ?  sa->aad->tsk : current);
+>>>>>>> 2617302... source
 
 	if (sa->aad->type == AUDIT_APPARMOR_ALLOWED)
 		return complain_error(sa->aad->error);

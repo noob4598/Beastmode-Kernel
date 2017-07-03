@@ -47,11 +47,17 @@
 #endif
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #undef dev_info
 #define dev_info(dev, fmt, arg...) dev_dbg(dev, fmt, ##arg)
 
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+#undef dev_info
+#define dev_info(dev, fmt, arg...) dev_dbg(dev, fmt, ##arg)
+
+>>>>>>> 2617302... source
 /*
 #define CYPRESS_GEN		0X00
 #define CYPRESS_FW_VER		0X01

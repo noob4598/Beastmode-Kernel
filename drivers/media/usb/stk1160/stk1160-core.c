@@ -68,6 +68,9 @@ int stk1160_read_reg(struct stk1160 *dev, u16 reg, u8 *value)
 	int ret;
 	int pipe = usb_rcvctrlpipe(dev->udev, 0);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 
 	*value = 0;
 	ret = usb_control_msg(dev->udev, pipe, 0x00,
@@ -79,6 +82,7 @@ int stk1160_read_reg(struct stk1160 *dev, u16 reg, u8 *value)
 		return ret;
 	}
 
+<<<<<<< HEAD
 =======
 	u8 *buf;
 
@@ -100,6 +104,8 @@ int stk1160_read_reg(struct stk1160 *dev, u16 reg, u8 *value)
 	*value = *buf;
 	kfree(buf);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	return 0;
 }
 

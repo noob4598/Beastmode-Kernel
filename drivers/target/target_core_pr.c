@@ -519,6 +519,7 @@ static int core_scsi3_pr_seq_non_holder(
 			return 0;
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
        } else if (we && registered_nexus) {
                /*
@@ -533,6 +534,8 @@ static int core_scsi3_pr_seq_non_holder(
                        return 0;
                }
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	}
 	pr_debug("%s Conflict for %sregistered nexus %s CDB: 0x%2x"
 		" for %s reservation\n", transport_dump_cmd_direction(cmd),
@@ -961,16 +964,22 @@ int core_scsi3_check_aptpl_registration(
 	struct se_portal_group *tpg,
 	struct se_lun *lun,
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	struct se_lun_acl *lun_acl)
 {
 	struct se_node_acl *nacl = lun_acl->se_lun_nacl;
 	struct se_dev_entry *deve = nacl->device_list[lun_acl->mapped_lun];
+<<<<<<< HEAD
 =======
 	struct se_node_acl *nacl,
 	u32 mapped_lun)
 {
 	struct se_dev_entry *deve = nacl->device_list[mapped_lun];
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	if (dev->dev_reservation_flags & DRF_SPC2_RESERVATIONS)
 		return 0;
@@ -2420,9 +2429,12 @@ core_scsi3_pro_reserve(struct se_cmd *cmd, int type, int scope, u64 res_key)
 	pr_res_holder = dev->dev_pr_res_holder;
 	if (pr_res_holder) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		int pr_res_type = pr_res_holder->pr_res_type;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		/*
 		 * From spc4r17 Section 5.7.9: Reserving:
 		 *
@@ -2434,12 +2446,16 @@ core_scsi3_pro_reserve(struct se_cmd *cmd, int type, int scope, u64 res_key)
 		 * RESERVATION CONFLICT status.
 		 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (pr_res_holder != pr_reg) {
 =======
 		if ((pr_res_holder != pr_reg) &&
 		    (pr_res_type != PR_TYPE_WRITE_EXCLUSIVE_ALLREG) &&
 		    (pr_res_type != PR_TYPE_EXCLUSIVE_ACCESS_ALLREG)) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		if (pr_res_holder != pr_reg) {
+>>>>>>> 2617302... source
 			struct se_node_acl *pr_res_nacl = pr_res_holder->pr_reg_nacl;
 			pr_err("SPC-3 PR: Attempted RESERVE from"
 				" [%s]: %s while reservation already held by"
@@ -4045,11 +4061,15 @@ core_scsi3_pri_read_full_status(struct se_cmd *cmd)
 	u32 add_desc_len = 0, add_len = 0, desc_len, exp_desc_len;
 	u32 off = 8; /* off into first Full Status descriptor */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int format_code = 0;
 =======
 	int format_code = 0, pr_res_type = 0, pr_res_scope = 0;
 	bool all_reg = false;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	int format_code = 0;
+>>>>>>> 2617302... source
 
 	if (cmd->data_length < 8) {
 		pr_err("PRIN SA READ_FULL_STATUS SCSI Data Length: %u"
@@ -4067,6 +4087,7 @@ core_scsi3_pri_read_full_status(struct se_cmd *cmd)
 	buf[3] = (dev->t10_pr.pr_generation & 0xff);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	spin_lock(&dev->dev_reservation_lock);
 	if (dev->dev_pr_res_holder) {
@@ -4082,6 +4103,8 @@ core_scsi3_pri_read_full_status(struct se_cmd *cmd)
 	spin_unlock(&dev->dev_reservation_lock);
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	spin_lock(&pr_tmpl->registration_lock);
 	list_for_each_entry_safe(pr_reg, pr_reg_tmp,
 			&pr_tmpl->registration_list, pr_reg_list) {
@@ -4132,16 +4155,21 @@ core_scsi3_pri_read_full_status(struct se_cmd *cmd)
 		 *
 		 * Also, if this registration is the reservation
 <<<<<<< HEAD
+<<<<<<< HEAD
 		 * holder, fill in SCOPE and TYPE in the next byte.
 =======
 		 * holder or there is an All Registrants reservation
 		 * active, fill in SCOPE and TYPE in the next byte.
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		 * holder, fill in SCOPE and TYPE in the next byte.
+>>>>>>> 2617302... source
 		 */
 		if (pr_reg->pr_res_holder) {
 			buf[off++] |= 0x01;
 			buf[off++] = (pr_reg->pr_res_scope & 0xf0) |
 				     (pr_reg->pr_res_type & 0x0f);
+<<<<<<< HEAD
 <<<<<<< HEAD
 		} else
 			off += 2;
@@ -4154,6 +4182,10 @@ core_scsi3_pri_read_full_status(struct se_cmd *cmd)
 			off += 2;
 		}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		} else
+			off += 2;
+>>>>>>> 2617302... source
 
 		off += 4; /* Skip over reserved area */
 		/*

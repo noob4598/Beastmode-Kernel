@@ -4380,11 +4380,14 @@ static void ca0132_download_dsp(struct hda_codec *codec)
 #endif
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (spec->dsp_state == DSP_DOWNLOAD_FAILED)
 		return; /* don't retry failures */
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	chipio_enable_clocks(codec);
 	spec->dsp_state = DSP_DOWNLOADING;
 	if (!ca0132_download_dsp_images(codec))
@@ -4562,11 +4565,15 @@ static int ca0132_init(struct hda_codec *codec)
 	int i;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	spec->dsp_state = DSP_DOWNLOAD_INIT;
 =======
 	if (spec->dsp_state != DSP_DOWNLOAD_FAILED)
 		spec->dsp_state = DSP_DOWNLOAD_INIT;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	spec->dsp_state = DSP_DOWNLOAD_INIT;
+>>>>>>> 2617302... source
 	spec->curr_chip_addx = INVALID_CHIP_ADDRESS;
 
 	snd_hda_power_up(codec);
@@ -4678,9 +4685,12 @@ static int patch_ca0132(struct hda_codec *codec)
 	spec->codec = codec;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	spec->dsp_state = DSP_DOWNLOAD_INIT;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	spec->num_mixers = 1;
 	spec->mixers[0] = ca0132_mixer;
 

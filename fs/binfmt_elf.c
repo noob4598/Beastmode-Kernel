@@ -553,11 +553,15 @@ out:
 static unsigned long randomize_stack_top(unsigned long stack_top)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	unsigned int random_variable = 0;
 
 	if ((current->flags & PF_RANDOMIZE) &&
 		!(current->personality & ADDR_NO_RANDOMIZE)) {
 		random_variable = get_random_int() & STACK_RND_MASK;
+<<<<<<< HEAD
 =======
 	unsigned long random_variable = 0;
 
@@ -566,6 +570,8 @@ static unsigned long randomize_stack_top(unsigned long stack_top)
 		random_variable = (unsigned long) get_random_int();
 		random_variable &= STACK_RND_MASK;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		random_variable <<= PAGE_SHIFT;
 	}
 #ifdef CONFIG_STACK_GROWSUP
@@ -691,6 +697,7 @@ static int load_elf_binary(struct linux_binprm *bprm)
 			would_dump(bprm, interpreter);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 			retval = kernel_read(interpreter, 0, bprm->buf,
 					     BINPRM_BUF_SIZE);
 			if (retval != BINPRM_BUF_SIZE) {
@@ -701,16 +708,26 @@ static int load_elf_binary(struct linux_binprm *bprm)
 					     sizeof(loc->interp_elf_ex));
 			if (retval != sizeof(loc->interp_elf_ex)) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			retval = kernel_read(interpreter, 0, bprm->buf,
+					     BINPRM_BUF_SIZE);
+			if (retval != BINPRM_BUF_SIZE) {
+>>>>>>> 2617302... source
 				if (retval >= 0)
 					retval = -EIO;
 				goto out_free_dentry;
 			}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 			/* Get the exec headers */
 			loc->interp_elf_ex = *((struct elfhdr *)bprm->buf);
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			/* Get the exec headers */
+			loc->interp_elf_ex = *((struct elfhdr *)bprm->buf);
+>>>>>>> 2617302... source
 			break;
 		}
 		elf_ppnt++;
@@ -776,9 +793,12 @@ static int load_elf_binary(struct linux_binprm *bprm)
 		int elf_prot = 0, elf_flags;
 		unsigned long k, vaddr;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		unsigned long total_size = 0;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 		if (elf_ppnt->p_type != PT_LOAD)
 			continue;
@@ -844,10 +864,14 @@ static int load_elf_binary(struct linux_binprm *bprm)
 			load_bias = ELF_PAGESTART(ELF_ET_DYN_BASE - vaddr);
 #endif
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		}
 
 		error = elf_map(bprm->file, load_bias + vaddr, elf_ppnt,
 				elf_prot, elf_flags, 0);
+<<<<<<< HEAD
 =======
 			total_size = total_mapping_size(elf_phdata,
 							loc->elf_ex.e_phnum);
@@ -860,6 +884,8 @@ static int load_elf_binary(struct linux_binprm *bprm)
 		error = elf_map(bprm->file, load_bias + vaddr, elf_ppnt,
 				elf_prot, elf_flags, total_size);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		if (BAD_ADDR(error)) {
 			send_sig(SIGKILL, current, 0);
 			retval = IS_ERR((void *)error) ?

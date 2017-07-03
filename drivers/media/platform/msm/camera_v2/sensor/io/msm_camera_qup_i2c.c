@@ -1,8 +1,12 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* Copyright (c) 2011, 2013, The Linux Foundation. All rights reserved.
 =======
 /* Copyright (c) 2011, 2016, The Linux Foundation. All rights reserved.
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+/* Copyright (c) 2011, 2013, The Linux Foundation. All rights reserved.
+>>>>>>> 2617302... source
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -84,10 +88,14 @@ int32_t msm_camera_qup_i2c_read(struct msm_camera_i2c_client *client,
 {
 	int32_t rc = -EFAULT;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned char buf[client->addr_type+data_type];
 =======
 	unsigned char *buf = NULL;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	unsigned char buf[client->addr_type+data_type];
+>>>>>>> 2617302... source
 
 	if ((client->addr_type != MSM_CAMERA_I2C_BYTE_ADDR
 		&& client->addr_type != MSM_CAMERA_I2C_WORD_ADDR)
@@ -95,6 +103,7 @@ int32_t msm_camera_qup_i2c_read(struct msm_camera_i2c_client *client,
 		&& data_type != MSM_CAMERA_I2C_WORD_DATA))
 		return rc;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 	if (client->addr_type > UINT_MAX - data_type) {
@@ -109,6 +118,8 @@ int32_t msm_camera_qup_i2c_read(struct msm_camera_i2c_client *client,
 	}
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	if (client->addr_type == MSM_CAMERA_I2C_BYTE_ADDR) {
 		buf[0] = addr;
 	} else if (client->addr_type == MSM_CAMERA_I2C_WORD_ADDR) {
@@ -119,10 +130,13 @@ int32_t msm_camera_qup_i2c_read(struct msm_camera_i2c_client *client,
 	if (rc < 0) {
 		S_I2C_DBG("%s fail\n", __func__);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		kfree(buf);
 		buf = NULL;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		return rc;
 	}
 
@@ -133,10 +147,13 @@ int32_t msm_camera_qup_i2c_read(struct msm_camera_i2c_client *client,
 
 	S_I2C_DBG("%s addr = 0x%x data: 0x%x\n", __func__, addr, *data);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	kfree(buf);
 	buf = NULL;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	return rc;
 }
 
@@ -145,10 +162,14 @@ int32_t msm_camera_qup_i2c_read_seq(struct msm_camera_i2c_client *client,
 {
 	int32_t rc = -EFAULT;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned char buf[client->addr_type+num_byte];
 =======
 	unsigned char *buf = NULL;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	unsigned char buf[client->addr_type+num_byte];
+>>>>>>> 2617302... source
 	int i;
 
 	if ((client->addr_type != MSM_CAMERA_I2C_BYTE_ADDR
@@ -156,6 +177,7 @@ int32_t msm_camera_qup_i2c_read_seq(struct msm_camera_i2c_client *client,
 		|| num_byte == 0)
 		return rc;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 	if (num_byte > I2C_REG_DATA_MAX) {
@@ -175,6 +197,8 @@ int32_t msm_camera_qup_i2c_read_seq(struct msm_camera_i2c_client *client,
 	}
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	if (client->addr_type == MSM_CAMERA_I2C_BYTE_ADDR) {
 		buf[0] = addr;
 	} else if (client->addr_type == MSM_CAMERA_I2C_WORD_ADDR) {
@@ -185,10 +209,13 @@ int32_t msm_camera_qup_i2c_read_seq(struct msm_camera_i2c_client *client,
 	if (rc < 0) {
 		S_I2C_DBG("%s fail\n", __func__);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		kfree(buf);
 		buf = NULL;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		return rc;
 	}
 
@@ -199,10 +226,13 @@ int32_t msm_camera_qup_i2c_read_seq(struct msm_camera_i2c_client *client,
 		S_I2C_DBG("Data: 0x%x\n", data[i]);
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	kfree(buf);
 	buf = NULL;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	return rc;
 }
 
@@ -283,6 +313,7 @@ int32_t msm_camera_qup_i2c_write_seq(struct msm_camera_i2c_client *client,
 		len = 2;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (num_byte > I2C_SEQ_REG_DATA_MAX) {
 		pr_err("%s: num_byte=%d clamped to max supported %d\n",
@@ -290,6 +321,8 @@ int32_t msm_camera_qup_i2c_write_seq(struct msm_camera_i2c_client *client,
 		num_byte = I2C_SEQ_REG_DATA_MAX;
 	}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	for (i = 0; i < num_byte; i++) {
 		buf[i+len] = data[i];
 		S_I2C_DBG("Byte %d: 0x%x\n", i+len, buf[i+len]);
@@ -365,6 +398,7 @@ int32_t msm_camera_qup_i2c_write_seq_table(struct msm_camera_i2c_client *client,
 	client->addr_type = write_setting->addr_type;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (reg_setting->reg_data_size > I2C_SEQ_REG_DATA_MAX) {
 		pr_err("%s: number of bytes %u exceeding the max supported %d\n",
@@ -373,6 +407,8 @@ int32_t msm_camera_qup_i2c_write_seq_table(struct msm_camera_i2c_client *client,
 	}
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	for (i = 0; i < write_setting->size; i++) {
 		rc = msm_camera_qup_i2c_write_seq(client, reg_setting->reg_addr,
 			reg_setting->reg_data, reg_setting->reg_data_size);
@@ -429,9 +465,12 @@ static int32_t msm_camera_qup_i2c_compare(struct msm_camera_i2c_client *client,
 	uint16_t reg_data = 0;
 	int data_len = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	switch (data_type) {
 	case MSM_CAMERA_I2C_BYTE_DATA:
 	case MSM_CAMERA_I2C_WORD_DATA:
@@ -488,9 +527,12 @@ int32_t msm_camera_qup_i2c_poll(struct msm_camera_i2c_client *client,
 	int32_t rc;
 	int i;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	S_I2C_DBG("%s: addr: 0x%x data: 0x%x dt: %d\n",
 		__func__, addr, data, data_type);
 
@@ -540,9 +582,12 @@ static int32_t msm_camera_qup_i2c_set_write_mask_data(
 	int32_t rc;
 	uint16_t reg_data;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	CDBG("%s\n", __func__);
 	if (mask == -1)
 		return 0;
@@ -574,6 +619,7 @@ int32_t msm_camera_qup_i2c_write_conf_tbl(
 	int i;
 	int32_t rc = -EFAULT;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_err("%s, E. ", __func__);
 	for (i = 0; i < size; i++) {
 		enum msm_camera_i2c_data_type dt;
@@ -584,6 +630,11 @@ int32_t msm_camera_qup_i2c_write_conf_tbl(
 		enum msm_camera_i2c_data_type dt;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	pr_err("%s, E. ", __func__);
+	for (i = 0; i < size; i++) {
+		enum msm_camera_i2c_data_type dt;
+>>>>>>> 2617302... source
 		if (reg_conf_tbl->cmd_type == MSM_CAMERA_I2C_CMD_POLL) {
 			rc = msm_camera_qup_i2c_poll(client,
 				reg_conf_tbl->reg_addr,

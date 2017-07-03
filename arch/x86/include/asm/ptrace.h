@@ -233,6 +233,7 @@ static inline unsigned long regs_get_kernel_stack_nth(struct pt_regs *regs,
 #define ARCH_HAS_USER_SINGLE_STEP_INFO
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 /*
  * When hitting ptrace_stop(), we cannot return using SYSRET because
@@ -251,6 +252,8 @@ static inline unsigned long regs_get_kernel_stack_nth(struct pt_regs *regs,
 })
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 struct user_desc;
 extern int do_get_thread_area(struct task_struct *p, int idx,
 			      struct user_desc __user *info);

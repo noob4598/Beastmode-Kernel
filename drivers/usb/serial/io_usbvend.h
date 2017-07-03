@@ -595,10 +595,14 @@ struct edge_boot_descriptor {
 struct ti_i2c_desc {
 	__u8	Type;			// Type of descriptor
 <<<<<<< HEAD
+<<<<<<< HEAD
 	__u16	Size;			// Size of data only not including header
 =======
 	__le16	Size;			// Size of data only not including header
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	__u16	Size;			// Size of data only not including header
+>>>>>>> 2617302... source
 	__u8	CheckSum;		// Checksum (8 bit sum of data only)
 	__u8	Data[0];		// Data starts here
 } __attribute__((packed));

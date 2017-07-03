@@ -3,10 +3,14 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 #include <asm/kexec.h>
 
 	.globl relocate_new_kernel
 relocate_new_kernel:
+<<<<<<< HEAD
 =======
 #include <linux/linkage.h>
 #include <asm/kexec.h>
@@ -15,6 +19,8 @@ relocate_new_kernel:
 
 ENTRY(relocate_new_kernel)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	ldr	r0,kexec_indirection_page
 	ldr	r1,kexec_start_address
@@ -89,10 +95,13 @@ kexec_boot_atags:
 	.long	0x0
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 ENDPROC(relocate_new_kernel)
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 relocate_new_kernel_end:
 
 	.globl relocate_new_kernel_size

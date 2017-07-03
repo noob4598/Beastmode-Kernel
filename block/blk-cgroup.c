@@ -721,6 +721,7 @@ int blkg_conf_prep(struct blkcg *blkcg, const struct blkcg_policy *pol,
 
 	disk = get_gendisk(MKDEV(major, minor), &part);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!disk || part)
 		return -EINVAL;
 =======
@@ -731,6 +732,10 @@ int blkg_conf_prep(struct blkcg *blkcg, const struct blkcg_policy *pol,
 		return -EINVAL;
 	}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (!disk || part)
+		return -EINVAL;
+>>>>>>> 2617302... source
 
 	rcu_read_lock();
 	spin_lock_irq(disk->queue->queue_lock);
@@ -886,6 +891,7 @@ void blkcg_drain_queue(struct request_queue *q)
 	lockdep_assert_held(q->queue_lock);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/*
 	 * @q could be exiting and already have destroyed all blkgs as
@@ -902,6 +908,8 @@ void blkcg_drain_queue(struct request_queue *q)
 		return;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	blk_throtl_drain(q);
 }
 

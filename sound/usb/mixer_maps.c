@@ -323,11 +323,15 @@ static struct usbmix_name_map hercules_usb51_map[] = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 static const struct usbmix_name_map kef_x300a_map[] = {
 	{ 10, NULL }, /* firmware locks up (?) when we try to access this FU */
 	{ 0 }
 };
 
+<<<<<<< HEAD
 =======
 /* some (all?) SCMS USB3318 devices are affected by a firmware lock up
  * when anything attempts to access FU 10 (control)
@@ -352,6 +356,8 @@ static struct usbmix_name_map dragonfly_1_2_map[] = {
 };
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 /*
  * Control map entries
  */
@@ -441,6 +447,7 @@ static struct usbmix_ctl_map usbmix_ctl_maps[] = {
 	},
 	{
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.id = USB_ID(0x27ac, 0x1000),
 		.map = kef_x300a_map,
 =======
@@ -468,6 +475,10 @@ static struct usbmix_ctl_map usbmix_ctl_maps[] = {
 		.id = USB_ID(0x21b4, 0x0081),
 		.map = dragonfly_1_2_map,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		.id = USB_ID(0x27ac, 0x1000),
+		.map = kef_x300a_map,
+>>>>>>> 2617302... source
 	},
 	{ 0 } /* terminator */
 };

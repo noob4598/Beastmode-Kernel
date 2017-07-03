@@ -565,10 +565,13 @@ static int bitmap_read_sb(struct bitmap *bitmap)
 		return err;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	err = -EINVAL;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	sb = kmap_atomic(sb_page);
 
 	chunksize = le32_to_cpu(sb->chunksize);
@@ -889,9 +892,13 @@ void bitmap_unplug(struct bitmap *bitmap)
 	unsigned long i;
 	int dirty, need_write;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int wait = 0;
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	int wait = 0;
+>>>>>>> 2617302... source
 
 	if (!bitmap || !bitmap->storage.filemap ||
 	    test_bit(BITMAP_STALE, &bitmap->flags))
@@ -910,6 +917,9 @@ void bitmap_unplug(struct bitmap *bitmap)
 			write_page(bitmap, bitmap->storage.filemap[i], 0);
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		if (dirty)
 			wait = 1;
 	}
@@ -920,6 +930,7 @@ void bitmap_unplug(struct bitmap *bitmap)
 		else
 			md_super_wait(bitmap->mddev);
 	}
+<<<<<<< HEAD
 =======
 	}
 	if (bitmap->storage.file)
@@ -929,6 +940,8 @@ void bitmap_unplug(struct bitmap *bitmap)
 		md_super_wait(bitmap->mddev);
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	if (test_bit(BITMAP_WRITE_ERROR, &bitmap->flags))
 		bitmap_file_kick(bitmap);
 }

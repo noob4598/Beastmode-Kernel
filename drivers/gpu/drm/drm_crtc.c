@@ -1956,6 +1956,7 @@ int drm_mode_setcrtc(struct drm_device *dev, void *data,
 		return -EINVAL;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* For some reason crtc x/y offsets are signed internally. */
 	if (crtc_req->x > INT_MAX || crtc_req->y > INT_MAX)
 =======
@@ -1965,6 +1966,10 @@ int drm_mode_setcrtc(struct drm_device *dev, void *data,
 	 */
 	if (crtc_req->x & 0xffff0000 || crtc_req->y & 0xffff0000)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	/* For some reason crtc x/y offsets are signed internally. */
+	if (crtc_req->x > INT_MAX || crtc_req->y > INT_MAX)
+>>>>>>> 2617302... source
 		return -ERANGE;
 
 	drm_modeset_lock_all(dev);
@@ -3428,11 +3433,14 @@ int drm_mode_page_flip_ioctl(struct drm_device *dev,
 	int ret = -EINVAL;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (!drm_core_check_feature(dev, DRIVER_MODESET))
 		return -EINVAL;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	if (page_flip->flags & ~DRM_MODE_PAGE_FLIP_FLAGS ||
 	    page_flip->reserved != 0)
 		return -EINVAL;

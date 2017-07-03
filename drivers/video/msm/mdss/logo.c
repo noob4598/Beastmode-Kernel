@@ -205,10 +205,14 @@ static int samsung_copy_bootloader_screen(void *virt)
 #endif
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_info("%s:%d addr:%p->%p, splash_height=%d splash_width=%d Buffer size=%d\n",
 =======
 	pr_info("%s:%d addr:%pK->%pK, splash_height=%d splash_width=%d Buffer size=%d\n",
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	pr_info("%s:%d addr:%p->%p, splash_height=%d splash_width=%d Buffer size=%d\n",
+>>>>>>> 2617302... source
 			__func__, __LINE__, (void *)bl_fb_addr,(void *)bl_fb_addr_va,
 			 height, width, size);
 
@@ -242,10 +246,14 @@ static int  samsung_mdss_allocate_framebuffer(struct fb_info *info){
 			ION_HEAP(ION_QSECOM_HEAP_ID), 0);
 	if (IS_ERR_OR_NULL(ihdl)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("unable to alloc fbmem from ion (%p)\n", ihdl);
 =======
 		pr_err("unable to alloc fbmem from ion (%pK)\n", ihdl);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		pr_err("unable to alloc fbmem from ion (%p)\n", ihdl);
+>>>>>>> 2617302... source
 		return -ENOMEM;
 	}
 

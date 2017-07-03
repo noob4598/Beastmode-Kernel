@@ -93,10 +93,14 @@ static int dt_remember_or_free_map(struct pinctrl *p, const char *statename,
 	list_add_tail(&dt_map->node, &p->dt_maps);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return pinctrl_register_map(map, num_maps, false, true);
 =======
 	return pinctrl_register_map(map, num_maps, false);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	return pinctrl_register_map(map, num_maps, false, true);
+>>>>>>> 2617302... source
 }
 
 struct pinctrl_dev *of_pinctrl_get(struct device_node *np)

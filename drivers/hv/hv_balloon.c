@@ -20,9 +20,12 @@
 
 #include <linux/kernel.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <linux/jiffies.h>
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 #include <linux/mman.h>
 #include <linux/delay.h>
 #include <linux/init.h>
@@ -464,6 +467,7 @@ static bool do_hot_add;
 static uint pressure_report_delay = 45;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 /*
  * The last time we posted a pressure report to host.
@@ -471,6 +475,8 @@ static uint pressure_report_delay = 45;
 static unsigned long last_post_time;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 module_param(hot_add, bool, (S_IRUGO | S_IWUSR));
 MODULE_PARM_DESC(hot_add, "If set attempt memory hot_add");
 
@@ -555,9 +561,12 @@ struct hv_dynmem_device {
 static struct hv_dynmem_device dm_device;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 static void post_status(struct hv_dynmem_device *dm);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 #ifdef CONFIG_MEMORY_HOTPLUG
 
 static void hv_bring_pgs_online(unsigned long start_pfn, unsigned long size)
@@ -629,10 +638,14 @@ static void hv_mem_hot_add(unsigned long start, unsigned long size,
 		 */
 		wait_for_completion_timeout(&dm_device.ol_waitevent, 5*HZ);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 		post_status(&dm_device);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+
+>>>>>>> 2617302... source
 	}
 
 	return;
@@ -687,10 +700,14 @@ static bool pfn_covered(unsigned long start_pfn, unsigned long pfn_cnt)
 		 * "hot add block", move on.
 		 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if ((start_pfn >= has->end_pfn))
 =======
 		if (start_pfn < has->start_pfn || start_pfn >= has->end_pfn)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		if ((start_pfn >= has->end_pfn))
+>>>>>>> 2617302... source
 			continue;
 		/*
 		 * If the current hot add-request extends beyond
@@ -746,10 +763,14 @@ static unsigned long handle_pg_range(unsigned long pg_start,
 		 * "hot add block", move on.
 		 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if ((start_pfn >= has->end_pfn))
 =======
 		if (start_pfn < has->start_pfn || start_pfn >= has->end_pfn)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		if ((start_pfn >= has->end_pfn))
+>>>>>>> 2617302... source
 			continue;
 
 		old_covered_state = has->covered_end_pfn;
@@ -980,15 +1001,19 @@ static void post_status(struct hv_dynmem_device *dm)
 	struct dm_status status;
 	struct sysinfo val;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	unsigned long now = jiffies;
 	unsigned long last_post = last_post_time;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	if (pressure_report_delay > 0) {
 		--pressure_report_delay;
 		return;
 	}
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 
@@ -996,6 +1021,8 @@ static void post_status(struct hv_dynmem_device *dm)
 		return;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	si_meminfo(&val);
 	memset(&status, 0, sizeof(struct dm_status));
 	status.hdr.type = DM_STATUS_REPORT;
@@ -1024,6 +1051,7 @@ static void post_status(struct hv_dynmem_device *dm)
 		return;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/*
 	 * If the last post time that we sampled has changed,
@@ -1034,6 +1062,8 @@ static void post_status(struct hv_dynmem_device *dm)
 
 	last_post_time = jiffies;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	vmbus_sendpacket(dm->dev->channel, &status,
 				sizeof(struct dm_status),
 				(unsigned long)NULL,
@@ -1169,10 +1199,14 @@ static void balloon_up(struct work_struct *dummy)
 			if (ret == -EAGAIN)
 				msleep(20);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 			post_status(&dm_device);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+
+>>>>>>> 2617302... source
 		} while (ret == -EAGAIN);
 
 		if (ret) {
@@ -1200,6 +1234,7 @@ static void balloon_down(struct hv_dynmem_device *dm,
 	int i;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	for (i = 0; i < range_count; i++)
 		free_balloon_pages(dm, &range_array[i]);
 =======
@@ -1208,6 +1243,10 @@ static void balloon_down(struct hv_dynmem_device *dm,
 		post_status(&dm_device);
 	}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	for (i = 0; i < range_count; i++)
+		free_balloon_pages(dm, &range_array[i]);
+>>>>>>> 2617302... source
 
 	if (req->more_pages == 1)
 		return;

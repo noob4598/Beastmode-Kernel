@@ -391,6 +391,7 @@ static int ext4_alloc_branch(handle_t *handle, struct inode *inode,
 failed:
 	for (; i >= 0; i--) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (i != indirect_blks && branch[i].bh)
 =======
 		/*
@@ -401,6 +402,9 @@ failed:
 		 */
 		if (i > 0 && i != indirect_blks && branch[i].bh)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		if (i != indirect_blks && branch[i].bh)
+>>>>>>> 2617302... source
 			ext4_forget(handle, 1, inode, branch[i].bh,
 				    branch[i].bh->b_blocknr);
 		ext4_free_blocks(handle, inode, NULL, new_blocks[i],
@@ -582,10 +586,14 @@ int ext4_ind_map_blocks(handle_t *handle, struct inode *inode,
 		EXT4_ERROR_INODE(inode, "Can't allocate blocks for "
 				 "non-extent mapped inodes with bigalloc");
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return -ENOSPC;
 =======
 		return -EUCLEAN;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		return -ENOSPC;
+>>>>>>> 2617302... source
 	}
 
 	goal = ext4_find_goal(inode, map->m_lblk, partial);
@@ -1340,10 +1348,13 @@ static int free_hole_blocks(handle_t *handle, struct inode *inode,
 		if (level > 0) {
 			ext4_lblk_t first2;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 			ext4_lblk_t count2;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 			bh = sb_bread(inode->i_sb, le32_to_cpu(blk));
 			if (!bh) {
 				EXT4_ERROR_INODE_BLOCK(inode, le32_to_cpu(blk),
@@ -1351,10 +1362,14 @@ static int free_hole_blocks(handle_t *handle, struct inode *inode,
 				return -EIO;
 			}
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 			first2 = (first > offset) ? first - offset : 0;
 			ret = free_hole_blocks(handle, inode, bh,
 					       (__le32 *)bh->b_data, level - 1,
 					       first2, count - offset,
+<<<<<<< HEAD
 =======
 			if (first > offset) {
 				first2 = first - offset;
@@ -1367,6 +1382,8 @@ static int free_hole_blocks(handle_t *handle, struct inode *inode,
 					       (__le32 *)bh->b_data, level - 1,
 					       first2, count2,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 					       inode->i_sb->s_blocksize >> 2);
 			if (ret) {
 				brelse(bh);

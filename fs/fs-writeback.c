@@ -46,9 +46,13 @@ struct wb_writeback_work {
 	unsigned int range_cyclic:1;
 	unsigned int for_background:1;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned int for_sync:1;	/* sync(2) WB_SYNC_ALL writeback */
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	unsigned int for_sync:1;	/* sync(2) WB_SYNC_ALL writeback */
+>>>>>>> 2617302... source
 	enum wb_reason reason;		/* why was writeback initiated? */
 
 	struct list_head list;		/* pending work list */
@@ -73,10 +77,14 @@ static inline struct backing_dev_info *inode_to_bdi(struct inode *inode)
 	struct super_block *sb = inode->i_sb;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (sb_is_blkdev_sb(sb))
 =======
 	if (strcmp(sb->s_type->name, "bdev") == 0)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (sb_is_blkdev_sb(sb))
+>>>>>>> 2617302... source
 		return inode->i_mapping->backing_dev_info;
 
 	return sb->s_bdi;
@@ -272,6 +280,9 @@ static int move_expired_inodes(struct list_head *delaying_queue,
 		    inode_dirtied_after(inode, *work->older_than_this))
 			break;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		list_move(&inode->i_wb_list, &tmp);
 		moved++;
 		if (sb_is_blkdev_sb(inode->i_sb))
@@ -279,6 +290,7 @@ static int move_expired_inodes(struct list_head *delaying_queue,
 		if (sb && sb != inode->i_sb)
 			do_sb_sort = 1;
 		sb = inode->i_sb;
+<<<<<<< HEAD
 =======
 		if (sb && sb != inode->i_sb)
 			do_sb_sort = 1;
@@ -286,6 +298,8 @@ static int move_expired_inodes(struct list_head *delaying_queue,
 		list_move(&inode->i_wb_list, &tmp);
 		moved++;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	}
 
 	/* just one sb in list, splice to dispatch_queue and we're done */
@@ -475,16 +489,22 @@ __writeback_single_inode(struct inode *inode, struct writeback_control *wbc)
 	 * Make sure to wait on the data before writing out the metadata.
 	 * This is important for filesystems that modify metadata on data
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	 * I/O completion. We don't do it for sync(2) writeback because it has a
 	 * separate, external IO completion path and ->sync_fs for guaranteeing
 	 * inode metadata is written back correctly.
 	 */
 	if (wbc->sync_mode == WB_SYNC_ALL && !wbc->for_sync) {
+<<<<<<< HEAD
 =======
 	 * I/O completion.
 	 */
 	if (wbc->sync_mode == WB_SYNC_ALL) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		int err = filemap_fdatawait(mapping);
 		if (ret == 0)
 			ret = err;
@@ -497,12 +517,16 @@ __writeback_single_inode(struct inode *inode, struct writeback_control *wbc)
 	 */
 	spin_lock(&inode->i_lock);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	/* Clear I_DIRTY_PAGES if we've written out all dirty pages */
 	if (!mapping_tagged(mapping, PAGECACHE_TAG_DIRTY))
 		inode->i_state &= ~I_DIRTY_PAGES;
 	dirty = inode->i_state & I_DIRTY;
 	inode->i_state &= ~(I_DIRTY_SYNC | I_DIRTY_DATASYNC);
 	spin_unlock(&inode->i_lock);
+<<<<<<< HEAD
 =======
 
 	dirty = inode->i_state & I_DIRTY;
@@ -527,6 +551,8 @@ __writeback_single_inode(struct inode *inode, struct writeback_control *wbc)
 	spin_unlock(&inode->i_lock);
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	/* Don't write the inode if only I_DIRTY_PAGES was set */
 	if (dirty & (I_DIRTY_SYNC | I_DIRTY_DATASYNC)) {
 		int err = write_inode(inode, wbc);
@@ -646,9 +672,13 @@ static long writeback_sb_inodes(struct super_block *sb,
 		.for_kupdate		= work->for_kupdate,
 		.for_background		= work->for_background,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.for_sync		= work->for_sync,
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		.for_sync		= work->for_sync,
+>>>>>>> 2617302... source
 		.range_cyclic		= work->range_cyclic,
 		.range_start		= 0,
 		.range_end		= LLONG_MAX,
@@ -1123,6 +1153,7 @@ void wakeup_flusher_threads(long nr_pages, enum wb_reason reason)
 	struct backing_dev_info *bdi;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   if (!nr_pages)
     	nr_pages = get_nr_dirty_pages();
 =======
@@ -1131,6 +1162,10 @@ void wakeup_flusher_threads(long nr_pages, enum wb_reason reason)
 				global_page_state(NR_UNSTABLE_NFS);
 	}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+  if (!nr_pages)
+    	nr_pages = get_nr_dirty_pages();
+>>>>>>> 2617302... source
 
 	rcu_read_lock();
 	list_for_each_entry_rcu(bdi, &bdi_list, bdi_list) {
@@ -1207,12 +1242,16 @@ void __mark_inode_dirty(struct inode *inode, int flags)
 
 	/*
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	 * make sure that changes are seen by all cpus before we test i_state
 	 * -- mikulas
 	 */
 	smp_mb();
 
 	/* avoid the locking if we can */
+<<<<<<< HEAD
 =======
 	 * Paired with smp_mb() in __writeback_single_inode() for the
 	 * following lockless i_state test.  See there for details.
@@ -1220,6 +1259,8 @@ void __mark_inode_dirty(struct inode *inode, int flags)
 	smp_mb();
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	if ((inode->i_state & flags) == flags)
 		return;
 
@@ -1260,10 +1301,15 @@ void __mark_inode_dirty(struct inode *inode, int flags)
 			bdi = inode_to_bdi(inode);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 			spin_unlock(&inode->i_lock);
  			spin_lock(&bdi->wb.list_lock);
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			spin_unlock(&inode->i_lock);
+ 			spin_lock(&bdi->wb.list_lock);
+>>>>>>> 2617302... source
 			if (bdi_cap_writeback_dirty(bdi)) {
 				WARN(!test_bit(BDI_registered, &bdi->state),
 				     "bdi-%s not registered\n", bdi->name);
@@ -1279,10 +1325,13 @@ void __mark_inode_dirty(struct inode *inode, int flags)
 			}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 			spin_unlock(&inode->i_lock);
 			spin_lock(&bdi->wb.list_lock);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 			inode->dirtied_when = jiffies;
 			list_move(&inode->i_wb_list, &bdi->wb.b_dirty);
 			spin_unlock(&bdi->wb.list_lock);
@@ -1455,9 +1504,13 @@ void sync_inodes_sb(struct super_block *sb)
 		.done		= &done,
 		.reason		= WB_REASON_SYNC,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.for_sync	= 1,
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		.for_sync	= 1,
+>>>>>>> 2617302... source
 	};
 
 	/* Nothing to do? */

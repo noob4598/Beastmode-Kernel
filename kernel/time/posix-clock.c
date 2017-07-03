@@ -70,16 +70,22 @@ static unsigned int posix_clock_poll(struct file *fp, poll_table *wait)
 {
 	struct posix_clock *clk = get_posix_clock(fp);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	int result = 0;
 
 	if (!clk)
 		return -ENODEV;
+<<<<<<< HEAD
 =======
 	unsigned int result = 0;
 
 	if (!clk)
 		return POLLERR;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	if (clk->ops.poll)
 		result = clk->ops.poll(clk, fp, wait);

@@ -496,6 +496,7 @@ static void skip_emulated_instruction(struct kvm_vcpu *vcpu)
 	struct vcpu_svm *svm = to_svm(vcpu);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (svm->vmcb->control.next_rip != 0)
 		svm->next_rip = svm->vmcb->control.next_rip;
 =======
@@ -504,6 +505,10 @@ static void skip_emulated_instruction(struct kvm_vcpu *vcpu)
 		svm->next_rip = svm->vmcb->control.next_rip;
 	}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (svm->vmcb->control.next_rip != 0)
+		svm->next_rip = svm->vmcb->control.next_rip;
+>>>>>>> 2617302... source
 
 	if (!svm->next_rip) {
 		if (emulate_instruction(vcpu, EMULTYPE_SKIP) !=
@@ -3204,10 +3209,14 @@ static int wrmsr_interception(struct vcpu_svm *svm)
 
 	svm->next_rip = kvm_rip_read(&svm->vcpu) + 2;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (svm_set_msr(&svm->vcpu, &msr)) {
 =======
 	if (kvm_set_msr(&svm->vcpu, &msr)) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (svm_set_msr(&svm->vcpu, &msr)) {
+>>>>>>> 2617302... source
 		trace_kvm_msr_write_ex(ecx, data);
 		kvm_inject_gp(&svm->vcpu, 0);
 	} else {
@@ -3490,6 +3499,7 @@ static int handle_exit(struct kvm_vcpu *vcpu)
 	if (exit_code >= ARRAY_SIZE(svm_exit_handlers)
 	    || !svm_exit_handlers[exit_code]) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		kvm_run->exit_reason = KVM_EXIT_UNKNOWN;
 		kvm_run->hw.hardware_exit_reason = exit_code;
 		return 0;
@@ -3498,6 +3508,11 @@ static int handle_exit(struct kvm_vcpu *vcpu)
 		kvm_queue_exception(vcpu, UD_VECTOR);
 		return 1;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		kvm_run->exit_reason = KVM_EXIT_UNKNOWN;
+		kvm_run->hw.hardware_exit_reason = exit_code;
+		return 0;
+>>>>>>> 2617302... source
 	}
 
 	return svm_exit_handlers[exit_code](svm);
@@ -4247,12 +4262,16 @@ static int svm_check_intercept(struct kvm_vcpu *vcpu,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	vmcb->control.next_rip  = info->next_rip;
 =======
 	/* TODO: Advertise NRIPS to guest hypervisor unconditionally */
 	if (static_cpu_has(X86_FEATURE_NRIPS))
 		vmcb->control.next_rip  = info->next_rip;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	vmcb->control.next_rip  = info->next_rip;
+>>>>>>> 2617302... source
 	vmcb->control.exit_code = icpt_info.exit_code;
 	vmexit = nested_svm_exit_handled(svm);
 

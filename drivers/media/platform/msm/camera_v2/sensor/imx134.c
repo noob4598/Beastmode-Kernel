@@ -1,9 +1,14 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 /* Copyright (c) 2013, The Linux Foundation. All rights reserved.
 =======
 /* Copyright (c) 2013-2014, The Linux Foundation. All rights reserved.
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+
+/* Copyright (c) 2013, The Linux Foundation. All rights reserved.
+>>>>>>> 2617302... source
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -129,6 +134,7 @@ static int32_t imx134_platform_probe(struct platform_device *pdev)
 	    pr_err("failed to create device cam_dev_rear!\n");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	rc = msm_sensor_platform_probe(pdev, match->data);
 =======
 	if (match)
@@ -138,6 +144,9 @@ static int32_t imx134_platform_probe(struct platform_device *pdev)
 		rc = -EINVAL;
 	}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	rc = msm_sensor_platform_probe(pdev, match->data);
+>>>>>>> 2617302... source
 	printk("%s00:%d\n", __func__, __LINE__);
 
 	printk("%s01:%d\n", __func__, __LINE__);

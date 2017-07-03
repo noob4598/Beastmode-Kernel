@@ -698,23 +698,31 @@ static int ads7846_no_filter(void *ads, int data_idx, int *val)
 static int ads7846_get_value(struct ads7846 *ts, struct spi_message *m)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	int value;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	struct spi_transfer *t =
 		list_entry(m->transfers.prev, struct spi_transfer, transfer_list);
 
 	if (ts->model == 7845) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return be16_to_cpup((__be16 *)&(((char*)t->rx_buf)[1])) >> 3;
 =======
 		value = be16_to_cpup((__be16 *)&(((char *)t->rx_buf)[1]));
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		return be16_to_cpup((__be16 *)&(((char*)t->rx_buf)[1])) >> 3;
+>>>>>>> 2617302... source
 	} else {
 		/*
 		 * adjust:  on-wire is a must-ignore bit, a BE12 value, then
 		 * padding; built from two 8 bit values written msb-first.
 		 */
+<<<<<<< HEAD
 <<<<<<< HEAD
 		return be16_to_cpup((__be16 *)t->rx_buf) >> 3;
 	}
@@ -725,6 +733,10 @@ static int ads7846_get_value(struct ads7846 *ts, struct spi_message *m)
 	/* enforce ADC output is 12 bits width */
 	return (value >> 3) & 0xfff;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		return be16_to_cpup((__be16 *)t->rx_buf) >> 3;
+	}
+>>>>>>> 2617302... source
 }
 
 static void ads7846_update_value(struct spi_message *m, int val)

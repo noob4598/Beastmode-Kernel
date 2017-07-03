@@ -789,11 +789,15 @@ static int au0828_i2s_init(struct au0828_dev *dev)
 /*
  * Auvitek au0828 analog stream enable
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
  * Please set interface0 to AS5 before enable the stream
  */
 static int au0828_analog_stream_enable(struct au0828_dev *d)
 {
 	dprintk(1, "au0828_analog_stream_enable called\n");
+<<<<<<< HEAD
 =======
  */
 static int au0828_analog_stream_enable(struct au0828_dev *d)
@@ -817,6 +821,8 @@ static int au0828_analog_stream_enable(struct au0828_dev *d)
 	/* FIXME: size should be calculated using d->width, d->height */
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	au0828_writereg(d, AU0828_SENSORCTRL_VBI_103, 0x00);
 	au0828_writereg(d, 0x106, 0x00);
 	/* set x position */
@@ -1028,6 +1034,9 @@ static int au0828_v4l2_open(struct file *filp)
 	}
 	if (dev->users == 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		/* set au0828 interface0 to AS5 here again */
 		ret = usb_set_interface(dev->usbdev, 0, 5);
 		if (ret < 0) {
@@ -1037,8 +1046,11 @@ static int au0828_v4l2_open(struct file *filp)
 			return -EBUSY;
 		}
 
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		au0828_analog_stream_enable(dev);
 		au0828_analog_stream_reset(dev);
 
@@ -1281,6 +1293,9 @@ static int au0828_set_format(struct au0828_dev *dev, unsigned int cmd,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	/* set au0828 interface0 to AS5 here again */
 	ret = usb_set_interface(dev->usbdev, 0, 5);
 	if (ret < 0) {
@@ -1288,8 +1303,11 @@ static int au0828_set_format(struct au0828_dev *dev, unsigned int cmd,
 		return -EBUSY;
 	}
 
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	au0828_analog_stream_enable(dev);
 
 	return 0;

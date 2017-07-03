@@ -88,11 +88,14 @@ struct gadget_config_name {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define MAX_USB_STRING_LEN	126
 #define MAX_USB_STRING_WITH_NULL_LEN	(MAX_USB_STRING_LEN+1)
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 static int usb_string_copy(const char *s, char **s_copy)
 {
 	int ret;
@@ -100,6 +103,9 @@ static int usb_string_copy(const char *s, char **s_copy)
 	char *copy = *s_copy;
 	ret = strlen(s);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	if (ret > 126)
 		return -EOVERFLOW;
 
@@ -109,6 +115,7 @@ static int usb_string_copy(const char *s, char **s_copy)
 	if (str[ret - 1] == '\n')
 		str[ret - 1] = '\0';
 	kfree(copy);
+<<<<<<< HEAD
 =======
 	if (ret > MAX_USB_STRING_LEN)
 		return -EOVERFLOW;
@@ -124,6 +131,8 @@ static int usb_string_copy(const char *s, char **s_copy)
 	if (str[ret - 1] == '\n')
 		str[ret - 1] = '\0';
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	*s_copy = str;
 	return 0;
 }
@@ -780,9 +789,12 @@ static void purge_configs_funcs(struct gadget_info *gi)
 		}
 		c->next_interface_id = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		memset(c->interface, 0, sizeof(c->interface));
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		c->superspeed = 0;
 		c->highspeed = 0;
 		c->fullspeed = 0;

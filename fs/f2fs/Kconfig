@@ -1,5 +1,6 @@
 config F2FS_FS
 <<<<<<< HEAD
+<<<<<<< HEAD
 	tristate "F2FS filesystem support (EXPERIMENTAL)"
 	depends on BLOCK
 =======
@@ -8,6 +9,10 @@ config F2FS_FS
 	select CRYPTO
 	select CRYPTO_CRC32
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	tristate "F2FS filesystem support (EXPERIMENTAL)"
+	depends on BLOCK
+>>>>>>> 2617302... source
 	help
 	  F2FS is based on Log-structured File System (LFS), which supports
 	  versatile "flash-friendly" features. The design has been focused on
@@ -31,10 +36,14 @@ config F2FS_STAT_FS
 
 	  /sys/kernel/debug/f2fs/status includes:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	    - major file system information managed by f2fs currently
 =======
 	    - major filesystem information managed by f2fs currently
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	    - major file system information managed by f2fs currently
+>>>>>>> 2617302... source
 	    - average SIT information about whole segments
 	    - current memory footprint consumed by f2fs.
 
@@ -57,10 +66,14 @@ config F2FS_FS_POSIX_ACL
 	help
 	  Posix Access Control Lists (ACLs) support permissions for users and
 <<<<<<< HEAD
+<<<<<<< HEAD
 	  gourps beyond the owner/group/world scheme.
 =======
 	  groups beyond the owner/group/world scheme.
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	  gourps beyond the owner/group/world scheme.
+>>>>>>> 2617302... source
 
 	  To learn more about Access Control Lists, visit the POSIX ACLs for
 	  Linux website <http://acl.bestbits.at/>.
@@ -78,6 +91,7 @@ config F2FS_FS_SECURITY
 	  the extended attribute support in advance.
 
 	  If you are not using a security module, say N.
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 
@@ -118,3 +132,5 @@ config F2FS_FAULT_INJECTION
 
 	  If unsure, say N.
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source

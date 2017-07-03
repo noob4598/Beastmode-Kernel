@@ -709,9 +709,12 @@ enum rt2x00_capability_flags {
 	REQUIRE_HT_TX_DESC,
 	REQUIRE_PS_AUTOWAKE,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	REQUIRE_DELAYED_RFKILL,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	/*
 	 * Capabilities

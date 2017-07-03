@@ -524,6 +524,7 @@ qla2x00_async_event(scsi_qla_host_t *vha, struct rsp_que *rsp, uint16_t *mb)
 	struct device_reg_24xx __iomem *reg24 = &ha->iobase->isp24;
 	struct device_reg_82xx __iomem *reg82 = &ha->iobase->isp82;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	uint32_t	rscn_entry, host_pid;
 	unsigned long	flags;
 =======
@@ -531,6 +532,10 @@ qla2x00_async_event(scsi_qla_host_t *vha, struct rsp_que *rsp, uint16_t *mb)
 	unsigned long	flags;
 	fc_port_t	*fcport = NULL;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	uint32_t	rscn_entry, host_pid;
+	unsigned long	flags;
+>>>>>>> 2617302... source
 
 	/* Setup to process RIO completion. */
 	handle_cnt = 0;
@@ -925,6 +930,7 @@ skip_rio:
 			break;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		/*
 		 * Search for the rport related to this RSCN entry and mark it
@@ -941,6 +947,8 @@ skip_rio:
 		}
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		atomic_set(&vha->loop_down_timer, 0);
 		vha->flags.management_server_logged_in = 0;
 

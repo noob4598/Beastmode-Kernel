@@ -1,8 +1,12 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* Copyright (c) 2012-2014, The Linux Foundation. All rights reserved.
 =======
 /* Copyright (c) 2012-2017, The Linux Foundation. All rights reserved.
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+/* Copyright (c) 2012-2014, The Linux Foundation. All rights reserved.
+>>>>>>> 2617302... source
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License version 2 and
@@ -386,10 +390,14 @@ static int msm_afe_open(struct snd_pcm_substream *substream)
 		return -ENOMEM;
 	} else
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_debug("prtd %p\n", prtd);
 =======
 		pr_debug("prtd %pK\n", prtd);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		pr_debug("prtd %p\n", prtd);
+>>>>>>> 2617302... source
 
 	mutex_init(&prtd->lock);
 	spin_lock_init(&prtd->dsp_lock);
@@ -502,9 +510,12 @@ done:
 	prtd->prepared--;
 	kfree(prtd);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	runtime->private_data = NULL;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	return 0;
 }
 static int msm_afe_prepare(struct snd_pcm_substream *substream)
@@ -613,10 +624,14 @@ static int msm_afe_hw_params(struct snd_pcm_substream *substream,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_debug("%s:buf = %p\n", __func__, buf);
 =======
 	pr_debug("%s:buf = %pK\n", __func__, buf);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	pr_debug("%s:buf = %p\n", __func__, buf);
+>>>>>>> 2617302... source
 	dma_buf->dev.type = SNDRV_DMA_TYPE_DEV;
 	dma_buf->dev.dev = substream->pcm->card->dev;
 	dma_buf->private_data = NULL;

@@ -753,14 +753,20 @@ static int qdisc_graft(struct net_device *dev, struct Qdisc *parent,
 			dev_deactivate(dev);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		if (new && new->ops->attach) {
 			new->ops->attach(new);
 			num_q = 0;
 		}
+<<<<<<< HEAD
 =======
 		if (new && new->ops->attach)
 			goto skip;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 		for (i = 0; i < num_q; i++) {
 			struct netdev_queue *dev_queue = dev_ingress_queue(dev);
@@ -777,9 +783,12 @@ static int qdisc_graft(struct net_device *dev, struct Qdisc *parent,
 		}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 skip:
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		if (!ingress) {
 			notify_and_destroy(net, skb, n, classid,
 					   dev->qdisc, new);
@@ -787,11 +796,14 @@ skip:
 				atomic_inc(&new->refcnt);
 			dev->qdisc = new ? : &noop_qdisc;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 			if (new && new->ops->attach)
 				new->ops->attach(new);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		} else {
 			notify_and_destroy(net, skb, n, classid, old, new);
 		}

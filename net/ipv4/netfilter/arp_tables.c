@@ -356,11 +356,15 @@ unsigned int arpt_do_table(struct sk_buff *skb,
 
 /* All zeroes == unconditional rule. */
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 static inline bool unconditional(const struct arpt_arp *arp)
 {
 	static const struct arpt_arp uncond;
 
 	return memcmp(arp, &uncond, sizeof(uncond)) == 0;
+<<<<<<< HEAD
 =======
 static inline bool unconditional(const struct arpt_entry *e)
 {
@@ -369,6 +373,8 @@ static inline bool unconditional(const struct arpt_entry *e)
 	return e->target_offset == sizeof(struct arpt_entry) &&
 	       memcmp(&e->arp, &uncond, sizeof(uncond)) == 0;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 }
 
 /* Figures out from what hook each rule can be called: returns 0 if
@@ -408,17 +414,23 @@ static int mark_source_chains(const struct xt_table_info *newinfo,
 
 			/* Unconditional return/END. */
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 			if ((e->target_offset == sizeof(struct arpt_entry) &&
 			     (strcmp(t->target.u.user.name,
 				     XT_STANDARD_TARGET) == 0) &&
 			     t->verdict < 0 && unconditional(&e->arp)) ||
 			    visited) {
+<<<<<<< HEAD
 =======
 			if ((unconditional(e) &&
 			     (strcmp(t->target.u.user.name,
 				     XT_STANDARD_TARGET) == 0) &&
 			     t->verdict < 0) || visited) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 				unsigned int oldpos, size;
 
 				if ((strcmp(t->target.u.user.name,
@@ -452,10 +464,13 @@ static int mark_source_chains(const struct xt_table_info *newinfo,
 				e = (struct arpt_entry *)
 					(entry0 + pos + size);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 				if (pos + size >= newinfo->size)
 					return 0;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 				e->counters.pcnt = pos;
 				pos += size;
 			} else {
@@ -479,10 +494,13 @@ static int mark_source_chains(const struct xt_table_info *newinfo,
 					/* ... this is a fallthru */
 					newpos = pos + e->next_offset;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 					if (newpos >= newinfo->size)
 						return 0;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 				}
 				e = (struct arpt_entry *)
 					(entry0 + newpos);
@@ -497,6 +515,9 @@ static int mark_source_chains(const struct xt_table_info *newinfo,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 static inline int check_entry(const struct arpt_entry *e, const char *name)
 {
 	const struct xt_entry_target *t;
@@ -516,8 +537,11 @@ static inline int check_entry(const struct arpt_entry *e, const char *name)
 	return 0;
 }
 
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 static inline int check_target(struct arpt_entry *e, const char *name)
 {
 	struct xt_entry_target *t = arpt_get_target(e);
@@ -548,12 +572,18 @@ find_check_entry(struct arpt_entry *e, const char *name, unsigned int size)
 	int ret;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	ret = check_entry(e, name);
 	if (ret)
 		return ret;
 
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	t = arpt_get_target(e);
 	target = xt_request_find_target(NFPROTO_ARP, t->u.user.name,
 					t->u.user.revision);
@@ -580,10 +610,14 @@ static bool check_underflow(const struct arpt_entry *e)
 	unsigned int verdict;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!unconditional(&e->arp))
 =======
 	if (!unconditional(e))
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (!unconditional(&e->arp))
+>>>>>>> 2617302... source
 		return false;
 	t = arpt_get_target_c(e);
 	if (strcmp(t->u.user.name, XT_STANDARD_TARGET) != 0)
@@ -603,6 +637,7 @@ static inline int check_entry_size_and_hooks(struct arpt_entry *e,
 {
 	unsigned int h;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	if ((unsigned long)e % __alignof__(struct arpt_entry) != 0 ||
 	    (unsigned char *)e + sizeof(struct arpt_entry) >= limit) {
@@ -613,6 +648,11 @@ static inline int check_entry_size_and_hooks(struct arpt_entry *e,
 	    (unsigned char *)e + sizeof(struct arpt_entry) >= limit ||
 	    (unsigned char *)e + e->next_offset > limit) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+
+	if ((unsigned long)e % __alignof__(struct arpt_entry) != 0 ||
+	    (unsigned char *)e + sizeof(struct arpt_entry) >= limit) {
+>>>>>>> 2617302... source
 		duprintf("Bad offset %p\n", e);
 		return -EINVAL;
 	}
@@ -625,6 +665,7 @@ static inline int check_entry_size_and_hooks(struct arpt_entry *e,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (!arp_checkentry(&e->arp))
 		return -EINVAL;
@@ -635,6 +676,8 @@ static inline int check_entry_size_and_hooks(struct arpt_entry *e,
 		return err;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	/* Check hooks & underflows */
 	for (h = 0; h < NF_ARP_NUMHOOKS; h++) {
 		if (!(valid_hooks & (1 << h)))
@@ -644,6 +687,7 @@ static inline int check_entry_size_and_hooks(struct arpt_entry *e,
 		if ((unsigned char *)e - base == underflows[h]) {
 			if (!check_underflow(e)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 				pr_err("Underflows must be unconditional and "
 				       "use the STANDARD target with "
 				       "ACCEPT/DROP\n");
@@ -652,6 +696,11 @@ static inline int check_entry_size_and_hooks(struct arpt_entry *e,
 					 "use the STANDARD target with "
 					 "ACCEPT/DROP\n");
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+				pr_err("Underflows must be unconditional and "
+				       "use the STANDARD target with "
+				       "ACCEPT/DROP\n");
+>>>>>>> 2617302... source
 				return -EINVAL;
 			}
 			newinfo->underflow[h] = underflows[h];
@@ -742,14 +791,20 @@ static int translate_table(struct xt_table_info *newinfo, void *entry0,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	if (!mark_source_chains(newinfo, repl->valid_hooks, entry0)) {
 		duprintf("Looping hook\n");
 		return -ELOOP;
 	}
+<<<<<<< HEAD
 =======
 	if (!mark_source_chains(newinfo, repl->valid_hooks, entry0))
 		return -ELOOP;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	/* Finally, each sanity check must pass */
 	i = 0;
@@ -1111,6 +1166,7 @@ static int __do_replace(struct net *net, const char *name,
 	xt_free_table_info(oldinfo);
 	if (copy_to_user(counters_ptr, counters,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			 sizeof(struct xt_counters) * num_counters) != 0)
 		ret = -EFAULT;
 =======
@@ -1119,6 +1175,10 @@ static int __do_replace(struct net *net, const char *name,
 		net_warn_ratelimited("arptables: counters copy to user failed while replacing table\n");
 	}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			 sizeof(struct xt_counters) * num_counters) != 0)
+		ret = -EFAULT;
+>>>>>>> 2617302... source
 	vfree(counters);
 	xt_table_unlock(t);
 	return ret;
@@ -1148,11 +1208,14 @@ static int do_replace(struct net *net, const void __user *user,
 	if (tmp.num_counters >= INT_MAX / sizeof(struct xt_counters))
 		return -ENOMEM;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (tmp.num_counters == 0)
 		return -EINVAL;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	tmp.name[sizeof(tmp.name)-1] = 0;
 
 	newinfo = xt_alloc_table_info(tmp.size);
@@ -1194,12 +1257,18 @@ static int do_add_counters(struct net *net, const void __user *user,
 	struct xt_counters_info tmp;
 	struct xt_counters *paddc;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	unsigned int num_counters;
 	const char *name;
 	int size;
 	void *ptmp;
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	struct xt_table *t;
 	const struct xt_table_info *private;
 	int ret = 0;
@@ -1207,6 +1276,9 @@ static int do_add_counters(struct net *net, const void __user *user,
 	struct arpt_entry *iter;
 	unsigned int addend;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 #ifdef CONFIG_COMPAT
 	struct compat_xt_counters_info compat_tmp;
 
@@ -1247,6 +1319,7 @@ static int do_add_counters(struct net *net, const void __user *user,
 	}
 
 	t = xt_find_table_lock(net, NFPROTO_ARP, name);
+<<<<<<< HEAD
 =======
 
 	paddc = xt_copy_counters_from_user(user, len, &tmp, compat);
@@ -1255,6 +1328,8 @@ static int do_add_counters(struct net *net, const void __user *user,
 
 	t = xt_find_table_lock(net, NFPROTO_ARP, tmp.name);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	if (IS_ERR_OR_NULL(t)) {
 		ret = t ? PTR_ERR(t) : -ENOENT;
 		goto free;
@@ -1263,10 +1338,14 @@ static int do_add_counters(struct net *net, const void __user *user,
 	local_bh_disable();
 	private = t->private;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (private->number != num_counters) {
 =======
 	if (private->number != tmp.num_counters) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (private->number != num_counters) {
+>>>>>>> 2617302... source
 		ret = -EINVAL;
 		goto unlock_up_free;
 	}
@@ -1293,6 +1372,7 @@ static int do_add_counters(struct net *net, const void __user *user,
 
 #ifdef CONFIG_COMPAT
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 struct compat_arpt_replace {
 	char				name[XT_TABLE_MAXNAMELEN];
@@ -1307,6 +1387,8 @@ struct compat_arpt_replace {
 };
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 static inline void compat_release_entry(struct compat_arpt_entry *e)
 {
 	struct xt_entry_target *t;
@@ -1316,32 +1398,46 @@ static inline void compat_release_entry(struct compat_arpt_entry *e)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static inline int
 =======
 static int
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+static inline int
+>>>>>>> 2617302... source
 check_compat_entry_size_and_hooks(struct compat_arpt_entry *e,
 				  struct xt_table_info *newinfo,
 				  unsigned int *size,
 				  const unsigned char *base,
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 				  const unsigned char *limit,
 				  const unsigned int *hook_entries,
 				  const unsigned int *underflows,
 				  const char *name)
+<<<<<<< HEAD
 =======
 				  const unsigned char *limit)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 {
 	struct xt_entry_target *t;
 	struct xt_target *target;
 	unsigned int entry_offset;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	int ret, off, h;
 
 	duprintf("check_compat_entry_size_and_hooks %p\n", e);
 	if ((unsigned long)e % __alignof__(struct compat_arpt_entry) != 0 ||
 	    (unsigned char *)e + sizeof(struct compat_arpt_entry) >= limit) {
+<<<<<<< HEAD
 =======
 	int ret, off;
 
@@ -1350,6 +1446,8 @@ check_compat_entry_size_and_hooks(struct compat_arpt_entry *e,
 	    (unsigned char *)e + sizeof(struct compat_arpt_entry) >= limit ||
 	    (unsigned char *)e + e->next_offset > limit) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		duprintf("Bad offset %p, limit = %p\n", e, limit);
 		return -EINVAL;
 	}
@@ -1362,6 +1460,7 @@ check_compat_entry_size_and_hooks(struct compat_arpt_entry *e,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* For purposes of check_entry casting the compat entry is fine */
 	ret = check_entry((struct arpt_entry *)e, name);
 =======
@@ -1371,6 +1470,10 @@ check_compat_entry_size_and_hooks(struct compat_arpt_entry *e,
 	ret = xt_compat_check_entry_offsets(e, e->elems, e->target_offset,
 					    e->next_offset);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	/* For purposes of check_entry casting the compat entry is fine */
+	ret = check_entry((struct arpt_entry *)e, name);
+>>>>>>> 2617302... source
 	if (ret)
 		return ret;
 
@@ -1395,6 +1498,9 @@ check_compat_entry_size_and_hooks(struct compat_arpt_entry *e,
 		goto release_target;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	/* Check hooks & underflows */
 	for (h = 0; h < NF_ARP_NUMHOOKS; h++) {
 		if ((unsigned char *)e - base == hook_entries[h])
@@ -1406,8 +1512,11 @@ check_compat_entry_size_and_hooks(struct compat_arpt_entry *e,
 	/* Clear counters and comefrom */
 	memset(&e->counters, 0, sizeof(e->counters));
 	e->comefrom = 0;
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	return 0;
 
 release_target:
@@ -1417,6 +1526,7 @@ out:
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int
 compat_copy_entry_from_user(struct compat_arpt_entry *e, void **dstptr,
 			    unsigned int *size, const char *name,
@@ -1425,12 +1535,18 @@ static void
 compat_copy_entry_from_user(struct compat_arpt_entry *e, void **dstptr,
 			    unsigned int *size,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+static int
+compat_copy_entry_from_user(struct compat_arpt_entry *e, void **dstptr,
+			    unsigned int *size, const char *name,
+>>>>>>> 2617302... source
 			    struct xt_table_info *newinfo, unsigned char *base)
 {
 	struct xt_entry_target *t;
 	struct xt_target *target;
 	struct arpt_entry *de;
 	unsigned int origsize;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	int ret, h;
 
@@ -1439,6 +1555,11 @@ compat_copy_entry_from_user(struct compat_arpt_entry *e, void **dstptr,
 	int h;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	int ret, h;
+
+	ret = 0;
+>>>>>>> 2617302... source
 	origsize = *size;
 	de = (struct arpt_entry *)*dstptr;
 	memcpy(de, e, sizeof(struct arpt_entry));
@@ -1460,6 +1581,9 @@ compat_copy_entry_from_user(struct compat_arpt_entry *e, void **dstptr,
 			newinfo->underflow[h] -= origsize - *size;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	return ret;
 }
 
@@ -1471,6 +1595,7 @@ static int translate_compat_table(const char *name,
 				  unsigned int number,
 				  unsigned int *hook_entries,
 				  unsigned int *underflows)
+<<<<<<< HEAD
 =======
 }
 
@@ -1478,22 +1603,31 @@ static int translate_compat_table(struct xt_table_info **pinfo,
 				  void **pentry0,
 				  const struct compat_arpt_replace *compatr)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 {
 	unsigned int i, j;
 	struct xt_table_info *newinfo, *info;
 	void *pos, *entry0, *entry1;
 	struct compat_arpt_entry *iter0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct arpt_entry *iter1;
 =======
 	struct arpt_replace repl;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	struct arpt_entry *iter1;
+>>>>>>> 2617302... source
 	unsigned int size;
 	int ret = 0;
 
 	info = *pinfo;
 	entry0 = *pentry0;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	size = total_size;
 	info->number = number;
 
@@ -1502,15 +1636,21 @@ static int translate_compat_table(struct xt_table_info **pinfo,
 		info->hook_entry[i] = 0xFFFFFFFF;
 		info->underflow[i] = 0xFFFFFFFF;
 	}
+<<<<<<< HEAD
 =======
 	size = compatr->size;
 	info->number = compatr->num_entries;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	duprintf("translate_compat_table: size %u\n", info->size);
 	j = 0;
 	xt_compat_lock(NFPROTO_ARP);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	xt_compat_init_offsets(NFPROTO_ARP, number);
 	/* Walk through entries, checking offsets. */
 	xt_entry_foreach(iter0, entry0, total_size) {
@@ -1520,6 +1660,7 @@ static int translate_compat_table(struct xt_table_info **pinfo,
 							hook_entries,
 							underflows,
 							name);
+<<<<<<< HEAD
 =======
 	xt_compat_init_offsets(NFPROTO_ARP, compatr->num_entries);
 	/* Walk through entries, checking offsets. */
@@ -1528,6 +1669,8 @@ static int translate_compat_table(struct xt_table_info **pinfo,
 							entry0,
 							entry0 + compatr->size);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		if (ret != 0)
 			goto out_unlock;
 		++j;
@@ -1535,6 +1678,9 @@ static int translate_compat_table(struct xt_table_info **pinfo,
 
 	ret = -EINVAL;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	if (j != number) {
 		duprintf("translate_compat_table: %u not %u entries\n",
 			 j, number);
@@ -1558,6 +1704,7 @@ static int translate_compat_table(struct xt_table_info **pinfo,
 		}
 	}
 
+<<<<<<< HEAD
 =======
 	if (j != compatr->num_entries) {
 		duprintf("translate_compat_table: %u not %u entries\n",
@@ -1566,12 +1713,17 @@ static int translate_compat_table(struct xt_table_info **pinfo,
 	}
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	ret = -ENOMEM;
 	newinfo = xt_alloc_table_info(size);
 	if (!newinfo)
 		goto out_unlock;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	newinfo->number = number;
 	for (i = 0; i < NF_ARP_NUMHOOKS; i++) {
 		newinfo->hook_entry[i] = info->hook_entry[i];
@@ -1633,6 +1785,7 @@ static int translate_compat_table(struct xt_table_info **pinfo,
 	for_each_possible_cpu(i)
 		if (newinfo->entries[i] && newinfo->entries[i] != entry1)
 			memcpy(newinfo->entries[i], entry1, newinfo->size);
+<<<<<<< HEAD
 =======
 	newinfo->number = compatr->num_entries;
 	for (i = 0; i < NF_ARP_NUMHOOKS; i++) {
@@ -1665,6 +1818,8 @@ static int translate_compat_table(struct xt_table_info **pinfo,
 	if (ret)
 		goto free_newinfo;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	*pinfo = newinfo;
 	*pentry0 = entry1;
@@ -1673,6 +1828,7 @@ static int translate_compat_table(struct xt_table_info **pinfo,
 
 free_newinfo:
 	xt_free_table_info(newinfo);
+<<<<<<< HEAD
 <<<<<<< HEAD
 out:
 	xt_entry_foreach(iter0, entry0, total_size) {
@@ -1683,12 +1839,19 @@ out_unlock:
 	xt_compat_unlock(NFPROTO_ARP);
 	xt_entry_foreach(iter0, entry0, compatr->size) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+out:
+	xt_entry_foreach(iter0, entry0, total_size) {
+>>>>>>> 2617302... source
 		if (j-- == 0)
 			break;
 		compat_release_entry(iter0);
 	}
 	return ret;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 out_unlock:
 	xt_compat_flush_offsets(NFPROTO_ARP);
 	xt_compat_unlock(NFPROTO_ARP);
@@ -1707,10 +1870,13 @@ struct compat_arpt_replace {
 	struct compat_arpt_entry	entries[0];
 };
 
+<<<<<<< HEAD
 =======
 }
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 static int compat_do_replace(struct net *net, void __user *user,
 			     unsigned int len)
 {
@@ -1729,11 +1895,14 @@ static int compat_do_replace(struct net *net, void __user *user,
 	if (tmp.num_counters >= INT_MAX / sizeof(struct xt_counters))
 		return -ENOMEM;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (tmp.num_counters == 0)
 		return -EINVAL;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	tmp.name[sizeof(tmp.name)-1] = 0;
 
 	newinfo = xt_alloc_table_info(tmp.size);
@@ -1748,13 +1917,19 @@ static int compat_do_replace(struct net *net, void __user *user,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	ret = translate_compat_table(tmp.name, tmp.valid_hooks,
 				     &newinfo, &loc_cpu_entry, tmp.size,
 				     tmp.num_entries, tmp.hook_entry,
 				     tmp.underflow);
+<<<<<<< HEAD
 =======
 	ret = translate_compat_table(&newinfo, &loc_cpu_entry, &tmp);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	if (ret != 0)
 		goto free_newinfo;
 

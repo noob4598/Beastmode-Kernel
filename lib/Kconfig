@@ -190,6 +190,7 @@ config LZO_DECOMPRESS
 	tristate
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 config LZ4_COMPRESS
 	tristate
@@ -201,6 +202,8 @@ config LZ4_DECOMPRESS
 	tristate
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 source "lib/xz/Kconfig"
 
 #

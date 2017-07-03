@@ -956,12 +956,15 @@ bytes respectively. Such letter suffixes can also be entirely omitted.
 			debugfs files are removed at module unload time.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	goldfish	[X86] Enable the goldfish android emulator platform.
 			Don't use this when you are not running on the
 			android emulator
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	gpt		[EFI] Forces disk with valid GPT signature but
 			invalid Protective MBR to be treated as GPT.
 
@@ -1069,9 +1072,12 @@ bytes respectively. Such letter suffixes can also be entirely omitted.
 	i8042.reset	[HW] Reset the controller during init and cleanup
 	i8042.unlock	[HW] Unlock (ignore) the keylock
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	i8042.kbdreset  [HW] Reset device connected to KBD port
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	i810=		[HW,DRM]
 
@@ -2900,6 +2906,7 @@ bytes respectively. Such letter suffixes can also be entirely omitted.
 	spia_peddr=
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	stack_guard_gap=	[MM]
 			override the default stack gap protection. The value
@@ -2909,6 +2916,8 @@ bytes respectively. Such letter suffixes can also be entirely omitted.
 			mapping. Default value is 256 pages.
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	stacktrace	[FTRACE]
 			Enabled the stack tracer on boot up.
 

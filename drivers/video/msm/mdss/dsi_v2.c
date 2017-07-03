@@ -64,10 +64,14 @@ static int dsi_panel_handler(struct mdss_panel_data *pdata, int enable)
 				panel_data);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (enable) {
 =======
 	if (enable && pdata->panel_info.panel_power_on == 0) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (enable) {
+>>>>>>> 2617302... source
 		dsi_ctrl_gpio_request(ctrl_pdata);
 		mdss_dsi_panel_reset(pdata, 1);
 		pdata->panel_info.panel_power_on = MDSS_PANEL_POWER_ON;
@@ -75,10 +79,14 @@ static int dsi_panel_handler(struct mdss_panel_data *pdata, int enable)
 		if (rc)
 			pr_err("dsi_panel_handler panel on failed %d\n", rc);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	} else {
 =======
 	} else if (!enable && pdata->panel_info.panel_power_on == 1) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	} else {
+>>>>>>> 2617302... source
 		if (dsi_intf.op_mode_config)
 			dsi_intf.op_mode_config(DSI_CMD_MODE, pdata);
 		rc = ctrl_pdata->off(pdata);

@@ -1,8 +1,12 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* Copyright (c) 2012-2014, The Linux Foundation. All rights reserved.
 =======
 /* Copyright (c) 2012-2013, 2017, The Linux Foundation. All rights reserved.
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+/* Copyright (c) 2012-2014, The Linux Foundation. All rights reserved.
+>>>>>>> 2617302... source
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -137,10 +141,14 @@ static void event_handler(uint32_t opcode,
 				__func__, prtd->pcm_count, prtd->out_head);
 		temp = buf[0].phys + (prtd->out_head * prtd->pcm_count);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_debug("%s:writing buffer[%d] from 0x%pa\n",
 =======
 		pr_debug("%s:writing buffer[%d] from 0x%pK\n",
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		pr_debug("%s:writing buffer[%d] from 0x%pa\n",
+>>>>>>> 2617302... source
 				__func__, prtd->out_head, &temp);
 		if (prtd->meta_data_mode) {
 			memcpy(&output_meta_data, (char *)(buf->data +
@@ -499,9 +507,12 @@ static int msm_pcm_playback_close(struct snd_pcm_substream *substream)
 	pr_debug("%s\n", __func__);
 	kfree(prtd);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	runtime->private_data = NULL;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	return 0;
 }
@@ -629,10 +640,14 @@ static int msm_pcm_hw_params(struct snd_pcm_substream *substream,
 		return -ENOMEM;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_debug("%s:buf = %p\n", __func__, buf);
 =======
 	pr_debug("%s:buf = %pK\n", __func__, buf);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	pr_debug("%s:buf = %p\n", __func__, buf);
+>>>>>>> 2617302... source
 	dma_buf->dev.type = SNDRV_DMA_TYPE_DEV;
 	dma_buf->dev.dev = substream->pcm->card->dev;
 	dma_buf->private_data = NULL;

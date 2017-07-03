@@ -197,9 +197,13 @@ static int blk_fill_sgv4_hdr_rq(struct request_queue *q, struct request *rq,
 	 */
 	rq->cmd_len = hdr->request_len;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	rq->cmd_type = REQ_TYPE_BLOCK_PC;
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	rq->cmd_type = REQ_TYPE_BLOCK_PC;
+>>>>>>> 2617302... source
 
 	rq->timeout = msecs_to_jiffies(hdr->timeout);
 	if (!rq->timeout)
@@ -277,10 +281,13 @@ bsg_map_hdr(struct bsg_device *bd, struct sg_io_v4 *hdr, fmode_t has_write_perm,
 	if (!rq)
 		return ERR_PTR(-ENOMEM);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	blk_rq_set_block_pc(rq);
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	ret = blk_fill_sgv4_hdr_rq(q, rq, hdr, bd, has_write_perm);
 	if (ret)
 		goto out;
@@ -684,11 +691,14 @@ bsg_write(struct file *file, const char __user *buf, size_t count, loff_t *ppos)
 	dprintk("%s: write %Zd bytes\n", bd->name, count);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (unlikely(segment_eq(get_fs(), KERNEL_DS)))
 		return -EINVAL;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	bsg_set_block(bd, file);
 
 	bytes_written = 0;

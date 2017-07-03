@@ -171,15 +171,21 @@ static void od_check_cpu(int cpu, unsigned int load)
 	} else {
 		/* Calculate the next frequency proportional to load */
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		unsigned int freq_next, min_f, max_f;
 
 		min_f = policy->cpuinfo.min_freq;
 		max_f = policy->cpuinfo.max_freq;
 		freq_next = min_f + load * (max_f - min_f) / 100;
+<<<<<<< HEAD
 =======
 		unsigned int freq_next;
 		freq_next = load * policy->cpuinfo.max_freq / 100;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 		/* No longer fully busy, reset rate_mult */
 		dbs_info->rate_mult = 1;
@@ -187,14 +193,19 @@ static void od_check_cpu(int cpu, unsigned int load)
 		if (!od_tuners->powersave_bias) {
 			__cpufreq_driver_target(policy, freq_next,
 <<<<<<< HEAD
+<<<<<<< HEAD
 					CPUFREQ_RELATION_C);
 =======
 					CPUFREQ_RELATION_L);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+					CPUFREQ_RELATION_C);
+>>>>>>> 2617302... source
 			return;
 		}
 
 		freq_next = od_ops.powersave_bias_target(policy, freq_next,
+<<<<<<< HEAD
 <<<<<<< HEAD
 					CPUFREQ_RELATION_C);
 		__cpufreq_driver_target(policy, freq_next, CPUFREQ_RELATION_C);
@@ -202,6 +213,10 @@ static void od_check_cpu(int cpu, unsigned int load)
 					CPUFREQ_RELATION_L);
 		__cpufreq_driver_target(policy, freq_next, CPUFREQ_RELATION_L);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+					CPUFREQ_RELATION_C);
+		__cpufreq_driver_target(policy, freq_next, CPUFREQ_RELATION_C);
+>>>>>>> 2617302... source
 	}
 }
 

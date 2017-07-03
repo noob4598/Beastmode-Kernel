@@ -191,10 +191,14 @@ static irqreturn_t cryp_interrupt_handler(int irq, void *param)
 {
 	struct cryp_ctx *ctx;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int i;
 =======
 	int count;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	int i;
+>>>>>>> 2617302... source
 	struct cryp_device_data *device_data;
 
 	if (param == NULL) {
@@ -220,12 +224,16 @@ static irqreturn_t cryp_interrupt_handler(int irq, void *param)
 				 CRYP_IRQ_SRC_OUTPUT_FIFO)) {
 		if (ctx->outlen / ctx->blocksize > 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 			for (i = 0; i < ctx->blocksize / 4; i++) {
 				*(ctx->outdata) = readl_relaxed(
 						&device_data->base->dout);
 				ctx->outdata += 4;
 				ctx->outlen -= 4;
 			}
+<<<<<<< HEAD
 =======
 			count = ctx->blocksize / 4;
 
@@ -233,6 +241,8 @@ static irqreturn_t cryp_interrupt_handler(int irq, void *param)
 			ctx->outdata += count;
 			ctx->outlen -= count;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 			if (ctx->outlen == 0) {
 				cryp_disable_irq_src(device_data,
@@ -243,12 +253,16 @@ static irqreturn_t cryp_interrupt_handler(int irq, void *param)
 					CRYP_IRQ_SRC_INPUT_FIFO)) {
 		if (ctx->datalen / ctx->blocksize > 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 			for (i = 0 ; i < ctx->blocksize / 4; i++) {
 				writel_relaxed(ctx->indata,
 						&device_data->base->din);
 				ctx->indata += 4;
 				ctx->datalen -= 4;
 			}
+<<<<<<< HEAD
 =======
 			count = ctx->blocksize / 4;
 
@@ -257,6 +271,8 @@ static irqreturn_t cryp_interrupt_handler(int irq, void *param)
 			ctx->indata += count;
 			ctx->datalen -= count;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 			if (ctx->datalen == 0)
 				cryp_disable_irq_src(device_data,
@@ -1798,11 +1814,16 @@ module_param(cryp_mode, int, 0);
 
 MODULE_DESCRIPTION("Driver for ST-Ericsson UX500 CRYP crypto engine.");
 <<<<<<< HEAD
+<<<<<<< HEAD
 MODULE_ALIAS("aes-all");
 MODULE_ALIAS("des-all");
 =======
 MODULE_ALIAS_CRYPTO("aes-all");
 MODULE_ALIAS_CRYPTO("des-all");
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+MODULE_ALIAS("aes-all");
+MODULE_ALIAS("des-all");
+>>>>>>> 2617302... source
 
 MODULE_LICENSE("GPL");

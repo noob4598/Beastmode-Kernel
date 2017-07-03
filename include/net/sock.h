@@ -79,9 +79,12 @@
 #include <net/dst.h>
 #include <net/checksum.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <net/tcp_states.h>
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 struct cgroup;
 struct cgroup_subsys;
@@ -691,10 +694,13 @@ enum sock_flags {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define SK_FLAGS_TIMESTAMP ((1UL << SOCK_TIMESTAMP) | (1UL << SOCK_TIMESTAMPING_RX_SOFTWARE))
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 static inline void sock_copy_flags(struct sock *nsk, struct sock *osk)
 {
 	nsk->sk_flags = osk->sk_flags;
@@ -806,6 +812,7 @@ static inline __must_check int sk_add_backlog(struct sock *sk, struct sk_buff *s
 		return -ENOBUFS;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/*
 	 * If the skb was allocated from pfmemalloc reserves, only
@@ -816,6 +823,8 @@ static inline __must_check int sk_add_backlog(struct sock *sk, struct sk_buff *s
 		return -ENOMEM;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	__sk_add_backlog(sk, skb);
 	sk->sk_backlog.len += skb->truesize;
 	return 0;
@@ -967,9 +976,13 @@ struct proto {
 
 	void		(*release_cb)(struct sock *sk);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	void		(*mtu_reduced)(struct sock *sk);
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	void		(*mtu_reduced)(struct sock *sk);
+>>>>>>> 2617302... source
 
 	/* Keeping track of sk's, looking them up, and port selection methods. */
 	void			(*hash)(struct sock *sk);
@@ -1036,9 +1049,12 @@ struct proto {
 	struct cg_proto		*(*proto_cgroup)(struct mem_cgroup *memcg);
 #endif
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	int			(*diag_destroy)(struct sock *sk, int err);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 };
 
 /*
@@ -1390,10 +1406,14 @@ static inline struct inode *SOCK_INODE(struct socket *socket)
  */
 extern int __sk_mem_schedule(struct sock *sk, int size, int kind);
 <<<<<<< HEAD
+<<<<<<< HEAD
 extern void __sk_mem_reclaim(struct sock *sk);
 =======
 void __sk_mem_reclaim(struct sock *sk, int amount);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+extern void __sk_mem_reclaim(struct sock *sk);
+>>>>>>> 2617302... source
 
 #define SK_MEM_QUANTUM ((int)PAGE_SIZE)
 #define SK_MEM_QUANTUM_SHIFT ilog2(SK_MEM_QUANTUM)
@@ -1435,10 +1455,14 @@ static inline void sk_mem_reclaim(struct sock *sk)
 		return;
 	if (sk->sk_forward_alloc >= SK_MEM_QUANTUM)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		__sk_mem_reclaim(sk);
 =======
 		__sk_mem_reclaim(sk, sk->sk_forward_alloc);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		__sk_mem_reclaim(sk);
+>>>>>>> 2617302... source
 }
 
 static inline void sk_mem_reclaim_partial(struct sock *sk)
@@ -1447,10 +1471,14 @@ static inline void sk_mem_reclaim_partial(struct sock *sk)
 		return;
 	if (sk->sk_forward_alloc > SK_MEM_QUANTUM)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		__sk_mem_reclaim(sk);
 =======
 		__sk_mem_reclaim(sk, sk->sk_forward_alloc - 1);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		__sk_mem_reclaim(sk);
+>>>>>>> 2617302... source
 }
 
 static inline void sk_mem_charge(struct sock *sk, int size)
@@ -1466,6 +1494,7 @@ static inline void sk_mem_uncharge(struct sock *sk, int size)
 		return;
 	sk->sk_forward_alloc += size;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 	/* Avoid a possible overflow.
@@ -1478,6 +1507,8 @@ static inline void sk_mem_uncharge(struct sock *sk, int size)
 	if (unlikely(sk->sk_forward_alloc >= 1 << 21))
 		__sk_mem_reclaim(sk, 1 << 20);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 }
 
 static inline void sk_wmem_free_skb(struct sock *sk, struct sk_buff *skb)
@@ -1578,9 +1609,12 @@ extern struct sk_buff		*sock_rmalloc(struct sock *sk,
 extern void			sock_wfree(struct sk_buff *skb);
 extern void			sock_rfree(struct sk_buff *skb);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 extern void			sock_efree(struct sk_buff *skb);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 extern void			sock_edemux(struct sk_buff *skb);
 
 extern int			sock_setsockopt(struct socket *sock, int level,
@@ -1798,12 +1832,17 @@ sk_dst_get(struct sock *sk)
 	rcu_read_lock();
 	dst = rcu_dereference(sk->sk_dst_cache);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (dst)
 		dst_hold(dst);
 =======
 	if (dst && !atomic_inc_not_zero(&dst->__refcnt))
 		dst = NULL;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (dst)
+		dst_hold(dst);
+>>>>>>> 2617302... source
 	rcu_read_unlock();
 	return dst;
 }
@@ -1843,6 +1882,7 @@ static inline void
 sk_dst_set(struct sock *sk, struct dst_entry *dst)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	spin_lock(&sk->sk_dst_lock);
 	__sk_dst_set(sk, dst);
 	spin_unlock(&sk->sk_dst_lock);
@@ -1853,6 +1893,11 @@ sk_dst_set(struct sock *sk, struct dst_entry *dst)
 	old_dst = xchg((__force struct dst_entry **)&sk->sk_dst_cache, dst);
 	dst_release(old_dst);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	spin_lock(&sk->sk_dst_lock);
+	__sk_dst_set(sk, dst);
+	spin_unlock(&sk->sk_dst_lock);
+>>>>>>> 2617302... source
 }
 
 static inline void
@@ -1865,12 +1910,18 @@ static inline void
 sk_dst_reset(struct sock *sk)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	spin_lock(&sk->sk_dst_lock);
 	__sk_dst_reset(sk);
 	spin_unlock(&sk->sk_dst_lock);
 =======
 	sk_dst_set(sk, NULL);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	spin_lock(&sk->sk_dst_lock);
+	__sk_dst_reset(sk);
+	spin_unlock(&sk->sk_dst_lock);
+>>>>>>> 2617302... source
 }
 
 extern struct dst_entry *__sk_dst_check(struct sock *sk, u32 cookie);
@@ -2332,6 +2383,7 @@ static inline struct sock *skb_steal_sock(struct sk_buff *skb)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 /* This helper checks if a socket is a full socket,
  * ie _not_ a timewait or request socket.
@@ -2343,11 +2395,14 @@ static inline bool sk_fullsock(const struct sock *sk)
 }
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 extern void sock_enable_timestamp(struct sock *sk, int flag);
 extern int sock_get_timestamp(struct sock *, struct timeval __user *);
 extern int sock_get_timestampns(struct sock *, struct timespec __user *);
 
 bool sk_ns_capable(const struct sock *sk,
+<<<<<<< HEAD
 <<<<<<< HEAD
 		struct user_namespace *user_ns, int cap);
 bool sk_capable(const struct sock *sk, int cap);
@@ -2358,6 +2413,11 @@ bool sk_capable(const struct sock *sk, int cap);
 bool sk_net_capable(const struct sock *sk, int cap);
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		struct user_namespace *user_ns, int cap);
+bool sk_capable(const struct sock *sk, int cap);
+bool sk_net_capable(const struct sock *sk, int cap);
+>>>>>>> 2617302... source
 /*
  *	Enable debug/info messages
  */

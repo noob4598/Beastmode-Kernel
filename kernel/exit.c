@@ -772,6 +772,7 @@ void do_exit(long code)
 
 	exit_signals(tsk);  /* sets PF_EXITING */
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 	if (tsk->flags & PF_SU) {
@@ -779,6 +780,8 @@ void do_exit(long code)
 	}
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	/*
 	 * tsk->flags are checked in the futex code to protect against
 	 * an exiting task cleaning up the robust pi futexes.

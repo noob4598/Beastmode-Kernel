@@ -617,6 +617,7 @@ static int msm_pcm_playback_copy(struct snd_pcm_substream *substream, int a,
 				ret = copy_from_user(&buf_node->frame,
 							buf, count);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 			if (ret) {
 				pr_err("%s: copy from user failed %d\n",
@@ -624,6 +625,8 @@ static int msm_pcm_playback_copy(struct snd_pcm_substream *substream, int a,
 				return -EFAULT;
 			}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 			spin_lock_irqsave(&prtd->dsp_lock, dsp_flags);
 			list_add_tail(&buf_node->list, &prtd->in_queue);
 			spin_unlock_irqrestore(&prtd->dsp_lock, dsp_flags);

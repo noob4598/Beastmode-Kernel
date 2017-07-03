@@ -164,6 +164,7 @@ t32_decode_ldmstm(kprobe_opcode_t insn, struct arch_specific_insn *asi)
 
 	/* Fixup modified instruction to have halfwords in correct order...*/
 <<<<<<< HEAD
+<<<<<<< HEAD
 	insn = asi->insn[0];
 	((u16 *)asi->insn)[0] = insn >> 16;
 	((u16 *)asi->insn)[1] = insn & 0xffff;
@@ -172,6 +173,11 @@ t32_decode_ldmstm(kprobe_opcode_t insn, struct arch_specific_insn *asi)
 	((u16 *)asi->insn)[0] = __opcode_to_mem_thumb16(insn >> 16);
 	((u16 *)asi->insn)[1] = __opcode_to_mem_thumb16(insn & 0xffff);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	insn = asi->insn[0];
+	((u16 *)asi->insn)[0] = insn >> 16;
+	((u16 *)asi->insn)[1] = insn & 0xffff;
+>>>>>>> 2617302... source
 
 	return ret;
 }
@@ -1160,10 +1166,14 @@ t16_decode_hiregs(kprobe_opcode_t insn, struct arch_specific_insn *asi)
 	insn &= ~0x00ff;
 	insn |= 0x001; /* Set Rdn = R1 and Rm = R0 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	((u16 *)asi->insn)[0] = insn;
 =======
 	((u16 *)asi->insn)[0] = __opcode_to_mem_thumb16(insn);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	((u16 *)asi->insn)[0] = insn;
+>>>>>>> 2617302... source
 	asi->insn_handler = t16_emulate_hiregs;
 	return INSN_GOOD;
 }
@@ -1193,6 +1203,7 @@ t16_decode_push(kprobe_opcode_t insn, struct arch_specific_insn *asi)
 	 * by R8.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	((u16 *)asi->insn)[0] = 0xe929;		/* 1st half STMDB R9!,{} */
 	((u16 *)asi->insn)[1] = insn & 0x1ff;	/* 2nd half (register list) */
 =======
@@ -1201,6 +1212,10 @@ t16_decode_push(kprobe_opcode_t insn, struct arch_specific_insn *asi)
 	/* 2nd half (register list) */
 	((u16 *)asi->insn)[1] = __opcode_to_mem_thumb16(insn & 0x1ff);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	((u16 *)asi->insn)[0] = 0xe929;		/* 1st half STMDB R9!,{} */
+	((u16 *)asi->insn)[1] = insn & 0x1ff;	/* 2nd half (register list) */
+>>>>>>> 2617302... source
 	asi->insn_handler = t16_emulate_push;
 	return INSN_GOOD;
 }
@@ -1250,6 +1265,7 @@ t16_decode_pop(kprobe_opcode_t insn, struct arch_specific_insn *asi)
 	 * by R8.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	((u16 *)asi->insn)[0] = 0xe8b9;		/* 1st half LDMIA R9!,{} */
 	((u16 *)asi->insn)[1] = insn & 0x1ff;	/* 2nd half (register list) */
 =======
@@ -1258,6 +1274,10 @@ t16_decode_pop(kprobe_opcode_t insn, struct arch_specific_insn *asi)
 	/* 2nd half (register list) */
 	((u16 *)asi->insn)[1] = __opcode_to_mem_thumb16(insn & 0x1ff);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	((u16 *)asi->insn)[0] = 0xe8b9;		/* 1st half LDMIA R9!,{} */
+	((u16 *)asi->insn)[1] = insn & 0x1ff;	/* 2nd half (register list) */
+>>>>>>> 2617302... source
 	asi->insn_handler = insn & 0x100 ? t16_emulate_pop_pc
 					 : t16_emulate_pop_nopc;
 	return INSN_GOOD;

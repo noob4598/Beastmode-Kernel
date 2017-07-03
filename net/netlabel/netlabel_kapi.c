@@ -701,6 +701,7 @@ socket_setattr_return:
 void netlbl_sock_delattr(struct sock *sk)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	cipso_v4_sock_delattr(sk);
 =======
 	switch (sk->sk_family) {
@@ -709,6 +710,9 @@ void netlbl_sock_delattr(struct sock *sk)
 		break;
 	}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	cipso_v4_sock_delattr(sk);
+>>>>>>> 2617302... source
 }
 
 /**
@@ -888,6 +892,7 @@ req_setattr_return:
 void netlbl_req_delattr(struct request_sock *req)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	cipso_v4_req_delattr(req);
 =======
 	switch (req->rsk_ops->family) {
@@ -896,6 +901,9 @@ void netlbl_req_delattr(struct request_sock *req)
 		break;
 	}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	cipso_v4_req_delattr(req);
+>>>>>>> 2617302... source
 }
 
 /**

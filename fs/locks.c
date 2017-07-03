@@ -1853,9 +1853,13 @@ int fcntl_setlk(unsigned int fd, struct file *filp, unsigned int cmd,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 again:
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+again:
+>>>>>>> 2617302... source
 	error = flock_to_posix_lock(filp, file_lock, &flock);
 	if (error)
 		goto out;
@@ -1887,6 +1891,9 @@ again:
 	 * releasing the lock that was just acquired.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	/*
 	 * we need that spin_lock here - it prevents reordering between
 	 * update of inode->i_flock and check for it done in close().
@@ -1900,6 +1907,7 @@ again:
 		goto again;
 	}
 
+<<<<<<< HEAD
 =======
 	if (!error && file_lock->fl_type != F_UNLCK) {
 		/*
@@ -1918,6 +1926,8 @@ again:
 		}
 	}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 out:
 	locks_free_lock(file_lock);
 	return error;
@@ -1993,9 +2003,13 @@ int fcntl_setlk64(unsigned int fd, struct file *filp, unsigned int cmd,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 again:
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+again:
+>>>>>>> 2617302... source
 	error = flock64_to_posix_lock(filp, file_lock, &flock);
 	if (error)
 		goto out;
@@ -2027,6 +2041,9 @@ again:
 	 * releasing the lock that was just acquired.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	spin_lock(&current->files->file_lock);
 	f = fcheck(fd);
 	spin_unlock(&current->files->file_lock);
@@ -2035,6 +2052,7 @@ again:
 		goto again;
 	}
 
+<<<<<<< HEAD
 =======
 	if (!error && file_lock->fl_type != F_UNLCK) {
 		/*
@@ -2053,6 +2071,8 @@ again:
 		}
 	}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 out:
 	locks_free_lock(file_lock);
 	return error;

@@ -126,26 +126,36 @@ enum {
 	__register_cpu_notifier(&fn##_nb);			\
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 #else /* #if defined(CONFIG_HOTPLUG_CPU) || !defined(MODULE) */
 #define cpu_notifier(fn, pri)	do { (void)(fn); } while (0)
 #define __cpu_notifier(fn, pri)	do { (void)(fn); } while (0)
 #endif /* #else #if defined(CONFIG_HOTPLUG_CPU) || !defined(MODULE) */
 
 #ifdef CONFIG_HOTPLUG_CPU
+<<<<<<< HEAD
 =======
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 extern int register_cpu_notifier(struct notifier_block *nb);
 extern int __register_cpu_notifier(struct notifier_block *nb);
 extern void unregister_cpu_notifier(struct notifier_block *nb);
 extern void __unregister_cpu_notifier(struct notifier_block *nb);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 #else
 
 #ifndef MODULE
 extern int register_cpu_notifier(struct notifier_block *nb);
 extern int __register_cpu_notifier(struct notifier_block *nb);
 #else
+<<<<<<< HEAD
 =======
 
 #else /* #if defined(CONFIG_HOTPLUG_CPU) || !defined(MODULE) */
@@ -153,6 +163,8 @@ extern int __register_cpu_notifier(struct notifier_block *nb);
 #define __cpu_notifier(fn, pri)	do { (void)(fn); } while (0)
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 static inline int register_cpu_notifier(struct notifier_block *nb)
 {
 	return 0;
@@ -163,9 +175,13 @@ static inline int __register_cpu_notifier(struct notifier_block *nb)
 	return 0;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 #endif
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+#endif
+>>>>>>> 2617302... source
 
 static inline void unregister_cpu_notifier(struct notifier_block *nb)
 {

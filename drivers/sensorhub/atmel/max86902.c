@@ -3537,10 +3537,13 @@ static ssize_t eol_test_result_store(struct device *dev,
 		buf_len = MAX_EOL_RESULT;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	mutex_lock(&data->storelock);	
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	if (data->eol_test_result != NULL)
 		kfree(data->eol_test_result);
 
@@ -3548,6 +3551,7 @@ static ssize_t eol_test_result_store(struct device *dev,
 	if (data->eol_test_result == NULL) {
 		pr_err("max86900_%s - couldn't allocate memory\n",
 			__func__);
+<<<<<<< HEAD
 <<<<<<< HEAD
 		return -ENOMEM;
 	}
@@ -3561,6 +3565,11 @@ static ssize_t eol_test_result_store(struct device *dev,
 	mutex_unlock(&data->storelock);
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		return -ENOMEM;
+	}
+	strncpy(data->eol_test_result, buf, buf_len);
+>>>>>>> 2617302... source
 	pr_info("max86900_%s - result = %s, buf_len(%u)\n",
 		__func__, data->eol_test_result, buf_len);
 	data->eol_test_status = 1;
@@ -3659,16 +3668,20 @@ static ssize_t max86900_lib_ver_store(struct device *dev,
 		buf_len = MAX_LIB_VER;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	mutex_lock(&data->storelock);	
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	if (data->lib_ver != NULL)
 		kfree(data->lib_ver);
 
 	data->lib_ver = kzalloc(sizeof(char) * buf_len, GFP_KERNEL);
 	if (data->lib_ver == NULL) {
 		pr_err("%s - couldn't allocate memory\n", __func__);
+<<<<<<< HEAD
 <<<<<<< HEAD
 		return -ENOMEM;
 	}
@@ -3681,6 +3694,11 @@ static ssize_t max86900_lib_ver_store(struct device *dev,
 
 	mutex_unlock(&data->storelock);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		return -ENOMEM;
+	}
+	strncpy(data->lib_ver, buf, buf_len);
+>>>>>>> 2617302... source
 	pr_info("%s - lib_ver = %s\n", __func__, data->lib_ver);
 	return size;
 }
@@ -3936,16 +3954,20 @@ static ssize_t max86900_uv_lib_ver_store(struct device *dev,
 		buf_len = MAX_LIB_VER;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	mutex_lock(&data->storelock);
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	if (data->uv_lib_ver != NULL)
 		kfree(data->uv_lib_ver);
 
 	data->uv_lib_ver = kzalloc(sizeof(char) * buf_len, GFP_KERNEL);
 	if (data->uv_lib_ver == NULL) {
 		pr_err("%s - couldn't allocate memory\n", __func__);
+<<<<<<< HEAD
 <<<<<<< HEAD
 		return -ENOMEM;
 	}
@@ -3959,6 +3981,11 @@ static ssize_t max86900_uv_lib_ver_store(struct device *dev,
 	mutex_unlock(&data->storelock);
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		return -ENOMEM;
+	}
+	strncpy(data->uv_lib_ver, buf, buf_len);
+>>>>>>> 2617302... source
 	pr_info("%s - uv_lib_ver = %s\n", __func__, data->uv_lib_ver);
 	return size;
 }
@@ -4418,9 +4445,12 @@ int max86900_probe(struct i2c_client *client, const struct i2c_device_id *id)
 	mutex_init(&data->i2clock);
 	mutex_init(&data->activelock);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	mutex_init(&data->storelock);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	data->irq_state = 0;
 	data->hr_range = 0;
 	data->skip_i2c_msleep = 1;

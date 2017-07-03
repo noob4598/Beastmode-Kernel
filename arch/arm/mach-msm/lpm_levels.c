@@ -27,9 +27,13 @@
 #include <linux/suspend.h>
 #include <linux/pm_qos.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/quickwakeup.h>
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+#include <linux/quickwakeup.h>
+>>>>>>> 2617302... source
 #include <linux/of_platform.h>
 #include <mach/gpiomux.h>
 #include <soc/qcom/spm.h>
@@ -107,10 +111,14 @@ static struct notifier_block __refdata lpm_cpu_nblk = {
 
 static uint32_t allowed_l2_mode;
 <<<<<<< HEAD
+<<<<<<< HEAD
 static uint32_t sysfs_dbg_l2_mode = MSM_SPM_L2_MODE_POWER_COLLAPSE;
 =======
 static uint32_t sysfs_dbg_l2_mode __refdata = MSM_SPM_L2_MODE_POWER_COLLAPSE;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+static uint32_t sysfs_dbg_l2_mode = MSM_SPM_L2_MODE_POWER_COLLAPSE;
+>>>>>>> 2617302... source
 static uint32_t default_l2_mode;
 
 
@@ -896,9 +904,13 @@ static const struct platform_suspend_ops lpm_suspend_ops = {
 	.prepare_late = lpm_suspend_prepare,
 	.wake = lpm_suspend_wake,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.suspend_again = quickwakeup_suspend_again,
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	.suspend_again = quickwakeup_suspend_again,
+>>>>>>> 2617302... source
 };
 
 static void setup_broadcast_timer(void *arg)

@@ -435,10 +435,14 @@ static struct dm_cache_policy_type wb_policy_type = {
 	.name = "cleaner",
 	.version = {1, 0, 0},
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.hint_size = 0,
 =======
 	.hint_size = 4,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	.hint_size = 0,
+>>>>>>> 2617302... source
 	.owner = THIS_MODULE,
 	.create = wb_create
 };

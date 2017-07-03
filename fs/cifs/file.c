@@ -736,10 +736,14 @@ int cifs_closedir(struct inode *inode, struct file *file)
 	cifs_dbg(FYI, "Freeing private data in close dir\n");
 	spin_lock(&cifs_file_list_lock);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!cfile->srch_inf.endOfSearch && !cfile->invalidHandle) {
 =======
 	if (server->ops->dir_needs_close(cfile)) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (!cfile->srch_inf.endOfSearch && !cfile->invalidHandle) {
+>>>>>>> 2617302... source
 		cfile->invalidHandle = true;
 		spin_unlock(&cifs_file_list_lock);
 		if (server->ops->close_dir)
@@ -1794,9 +1798,12 @@ refind_writable:
 			spin_lock(&cifs_file_list_lock);
 			++refind;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 			inv_file = NULL;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 			goto refind_writable;
 		}
 	}
@@ -2818,10 +2825,14 @@ cifs_uncached_read_into_pages(struct TCP_Server_Info *server,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return total_read > 0 ? total_read : result;
 =======
 	return total_read > 0 && result != -EAGAIN ? total_read : result;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	return total_read > 0 ? total_read : result;
+>>>>>>> 2617302... source
 }
 
 static ssize_t
@@ -3245,10 +3256,14 @@ cifs_readpages_read_into_pages(struct TCP_Server_Info *server,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return total_read > 0 ? total_read : result;
 =======
 	return total_read > 0 && result != -EAGAIN ? total_read : result;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	return total_read > 0 ? total_read : result;
+>>>>>>> 2617302... source
 }
 
 static int cifs_readpages(struct file *file, struct address_space *mapping,

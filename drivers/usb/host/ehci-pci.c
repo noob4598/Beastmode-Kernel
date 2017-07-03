@@ -36,6 +36,7 @@ static const char hcd_name[] = "ehci-pci";
 
 /*-------------------------------------------------------------------------*/
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define PCI_DEVICE_ID_INTEL_QUARK_X1000_SOC		0x0939
 static inline bool is_intel_quark_x1000(struct pci_dev *pdev)
@@ -53,6 +54,8 @@ static inline bool is_intel_quark_x1000(struct pci_dev *pdev)
 /* Maximum usable threshold value is 0x7f dwords for both IN and OUT */
 #define INTEL_QUARK_X1000_EHCI_MAX_THRESHOLD	0x007f007f
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 /* called after powerup, by probe or system-pm "wakeup" */
 static int ehci_pci_reinit(struct ehci_hcd *ehci, struct pci_dev *pdev)
@@ -69,6 +72,7 @@ static int ehci_pci_reinit(struct ehci_hcd *ehci, struct pci_dev *pdev)
 		ehci_dbg(ehci, "MWI active\n");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/* Reset the threshold limit */
 	if (is_intel_quark_x1000(pdev)) {
@@ -81,6 +85,8 @@ static int ehci_pci_reinit(struct ehci_hcd *ehci, struct pci_dev *pdev)
 	}
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	return 0;
 }
 

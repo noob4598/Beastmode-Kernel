@@ -811,10 +811,14 @@ static int _rmnet_vnd_update_flow_map(uint8_t action,
 				itm->tc_flow_id[i] = tc_flow;
 				rc = RMNET_VND_UPDATE_FLOW_OK;
 <<<<<<< HEAD
+<<<<<<< HEAD
 				LOGD("{%p}->tc_flow_id[%d]=%08X",
 =======
 				LOGD("{%pK}->tc_flow_id[%d]=%08X",
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+				LOGD("{%p}->tc_flow_id[%d]=%08X",
+>>>>>>> 2617302... source
 				     itm, i, tc_flow);
 				break;
 			}
@@ -831,10 +835,14 @@ static int _rmnet_vnd_update_flow_map(uint8_t action,
 					itm->tc_flow_id[i] = 0;
 					j++;
 <<<<<<< HEAD
+<<<<<<< HEAD
 					LOGD("{%p}->tc_flow_id[%d]=0", itm, i);
 =======
 					LOGD("{%pK}->tc_flow_id[%d]=0", itm, i);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+					LOGD("{%p}->tc_flow_id[%d]=0", itm, i);
+>>>>>>> 2617302... source
 				}
 			} else {
 				j++;
@@ -980,10 +988,14 @@ int rmnet_vnd_del_tc_flow(uint32_t id, uint32_t map_flow, uint32_t tc_flow)
 	if (r ==  RMNET_VND_UPDATE_FLOW_NO_VALID_LEFT) {
 		if (itm)
 <<<<<<< HEAD
+<<<<<<< HEAD
 			LOGD("Removed flow mapping [%s][0x%08X]@%p",
 =======
 			LOGD("Removed flow mapping [%s][0x%08X]@%pK",
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			LOGD("Removed flow mapping [%s][0x%08X]@%p",
+>>>>>>> 2617302... source
 			     dev->name, itm->map_flow_id, itm);
 		kfree(itm);
 	}

@@ -61,9 +61,13 @@
  * @status: current status of wdt
  * @load_val: load value to be set for current timeout
 <<<<<<< HEAD
+<<<<<<< HEAD
  * @timeout: current programmed timeout
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+ * @timeout: current programmed timeout
+>>>>>>> 2617302... source
  */
 struct sp805_wdt {
 	struct watchdog_device		wdd;
@@ -73,9 +77,13 @@ struct sp805_wdt {
 	struct amba_device		*adev;
 	unsigned int			load_val;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned int			timeout;
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	unsigned int			timeout;
+>>>>>>> 2617302... source
 };
 
 static bool nowayout = WATCHDOG_NOWAYOUT;
@@ -106,10 +114,14 @@ static int wdt_setload(struct watchdog_device *wdd, unsigned int timeout)
 	wdt->load_val = load;
 	/* roundup timeout to closest positive integer value */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	wdt->timeout = div_u64((load + 1) * 2 + (rate / 2), rate);
 =======
 	wdd->timeout = div_u64((load + 1) * 2 + (rate / 2), rate);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	wdt->timeout = div_u64((load + 1) * 2 + (rate / 2), rate);
+>>>>>>> 2617302... source
 	spin_unlock(&wdt->lock);
 
 	return 0;

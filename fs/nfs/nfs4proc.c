@@ -1006,9 +1006,12 @@ static void __update_open_stateid(struct nfs4_state *state, nfs4_stateid *open_s
 	 * serialise the stateid update
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	spin_lock(&state->owner->so_lock);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	write_seqlock(&state->seqlock);
 	if (deleg_stateid != NULL) {
 		nfs4_stateid_copy(&state->stateid, deleg_stateid);
@@ -1018,9 +1021,13 @@ static void __update_open_stateid(struct nfs4_state *state, nfs4_stateid *open_s
 		nfs_set_open_stateid_locked(state, open_stateid, fmode);
 	write_sequnlock(&state->seqlock);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	spin_lock(&state->owner->so_lock);
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	spin_lock(&state->owner->so_lock);
+>>>>>>> 2617302... source
 	update_open_stateflags(state, fmode);
 	spin_unlock(&state->owner->so_lock);
 }
@@ -1424,10 +1431,14 @@ static int nfs4_handle_delegation_recall_error(struct nfs_server *server, struct
 					stateid);
 			nfs4_schedule_stateid_recovery(server, state);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			return 0;
 =======
 			return -EAGAIN;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			return 0;
+>>>>>>> 2617302... source
 		case -NFS4ERR_DELAY:
 		case -NFS4ERR_GRACE:
 			set_bit(NFS_DELEGATED_STATE, &state->flags);
@@ -1857,6 +1868,7 @@ static int nfs4_open_expired(struct nfs4_state_owner *sp, struct nfs4_state *sta
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 static void nfs_finish_clear_delegation_stateid(struct nfs4_state *state)
 {
@@ -1881,6 +1893,8 @@ static int nfs40_open_expired(struct nfs4_state_owner *sp, struct nfs4_state *st
 }
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 #if defined(CONFIG_NFS_V4_1)
 static void nfs41_clear_delegation_stateid(struct nfs4_state *state)
 {
@@ -2058,10 +2072,14 @@ static int _nfs4_do_open(struct inode *dir,
 		goto err_opendata_put;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if ((opendata->o_arg.open_flags & O_EXCL) &&
 =======
 	if ((opendata->o_arg.open_flags & (O_CREAT|O_EXCL)) == (O_CREAT|O_EXCL) &&
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if ((opendata->o_arg.open_flags & O_EXCL) &&
+>>>>>>> 2617302... source
 	    (opendata->o_arg.createmode != NFS4_CREATE_GUARDED)) {
 		nfs4_exclusive_attrset(opendata, sattr);
 
@@ -2328,9 +2346,12 @@ static void nfs4_close_prepare(struct rpc_task *task, void *data)
 	struct nfs4_state *state = calldata->state;
 	struct inode *inode = calldata->inode;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	bool is_rdonly, is_wronly, is_rdwr;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	int call_close = 0;
 
 	dprintk("%s: begin!\n", __func__);
@@ -2339,6 +2360,9 @@ static void nfs4_close_prepare(struct rpc_task *task, void *data)
 
 	task->tk_msg.rpc_proc = &nfs4_procedures[NFSPROC4_CLNT_OPEN_DOWNGRADE];
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	calldata->arg.fmode = FMODE_READ|FMODE_WRITE;
 	spin_lock(&state->owner->so_lock);
 	/* Calculate the change in open mode */
@@ -2354,6 +2378,7 @@ static void nfs4_close_prepare(struct rpc_task *task, void *data)
 			calldata->arg.fmode &= ~FMODE_WRITE;
 		}
 	}
+<<<<<<< HEAD
 =======
 	spin_lock(&state->owner->so_lock);
 	is_rdwr = test_bit(NFS_O_RDWR_STATE, &state->flags);
@@ -2376,6 +2401,8 @@ static void nfs4_close_prepare(struct rpc_task *task, void *data)
 		calldata->arg.fmode |= FMODE_READ|FMODE_WRITE;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	if (!nfs4_valid_open_stateid(state))
 		call_close = 0;
 	spin_unlock(&state->owner->so_lock);
@@ -4087,10 +4114,14 @@ out:
 static ssize_t __nfs4_get_acl_uncached(struct inode *inode, void *buf, size_t buflen)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct page *pages[NFS4ACL_MAXPAGES] = {NULL, };
 =======
 	struct page *pages[NFS4ACL_MAXPAGES + 1] = {NULL, };
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	struct page *pages[NFS4ACL_MAXPAGES] = {NULL, };
+>>>>>>> 2617302... source
 	struct nfs_getaclargs args = {
 		.fh = NFS_FH(inode),
 		.acl_pages = pages,
@@ -4105,6 +4136,9 @@ static ssize_t __nfs4_get_acl_uncached(struct inode *inode, void *buf, size_t bu
 		.rpc_resp = &res,
 	};
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	unsigned int npages = DIV_ROUND_UP(buflen, PAGE_SIZE);
 	int ret = -ENOMEM, i;
 
@@ -4112,11 +4146,14 @@ static ssize_t __nfs4_get_acl_uncached(struct inode *inode, void *buf, size_t bu
 	 * let's be prepared for a page of acl data. */
 	if (npages == 0)
 		npages = 1;
+<<<<<<< HEAD
 =======
 	unsigned int npages = DIV_ROUND_UP(buflen, PAGE_SIZE) + 1;
 	int ret = -ENOMEM, i;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	if (npages > ARRAY_SIZE(pages))
 		return -ERANGE;
 
@@ -6138,10 +6175,14 @@ static int nfs41_proc_async_sequence(struct nfs_client *clp, struct rpc_cred *cr
 
 	if ((renew_flags & NFS4_RENEW_TIMEOUT) == 0)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return 0;
 =======
 		return -EAGAIN;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		return 0;
+>>>>>>> 2617302... source
 	task = _nfs41_proc_sequence(clp, cred, false);
 	if (IS_ERR(task))
 		ret = PTR_ERR(task);
@@ -6471,11 +6512,14 @@ nfs4_proc_layoutget(struct nfs4_layoutget *lgp, gfp_t gfp_flags)
 	dprintk("--> %s\n", __func__);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/* nfs4_layoutget_release calls pnfs_put_layout_hdr */
 	pnfs_get_layout_hdr(NFS_I(inode)->layout);
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	lgp->args.layout.pages = nfs4_alloc_pages(max_pages, gfp_flags);
 	if (!lgp->args.layout.pages) {
 		nfs4_layoutget_release(lgp);
@@ -6489,11 +6533,17 @@ nfs4_proc_layoutget(struct nfs4_layoutget *lgp, gfp_t gfp_flags)
 	nfs41_init_sequence(&lgp->args.seq_args, &lgp->res.seq_res, 0);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* nfs4_layoutget_release calls pnfs_put_layout_hdr */
 	pnfs_get_layout_hdr(NFS_I(inode)->layout);
 
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	/* nfs4_layoutget_release calls pnfs_put_layout_hdr */
+	pnfs_get_layout_hdr(NFS_I(inode)->layout);
+
+>>>>>>> 2617302... source
 	task = rpc_run_task(&task_setup_data);
 	if (IS_ERR(task))
 		return ERR_CAST(task);
@@ -7058,10 +7108,14 @@ static const struct nfs4_state_recovery_ops nfs40_nograce_recovery_ops = {
 	.owner_flag_bit = NFS_OWNER_RECLAIM_NOGRACE,
 	.state_flag_bit	= NFS_STATE_RECLAIM_NOGRACE,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.recover_open	= nfs4_open_expired,
 =======
 	.recover_open	= nfs40_open_expired,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	.recover_open	= nfs4_open_expired,
+>>>>>>> 2617302... source
 	.recover_lock	= nfs4_lock_expired,
 	.establish_clid = nfs4_init_clientid,
 	.get_clid_cred	= nfs4_get_setclientid_cred,

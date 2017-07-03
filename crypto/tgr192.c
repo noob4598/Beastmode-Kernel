@@ -677,6 +677,7 @@ static void __exit tgr192_mod_fini(void)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 MODULE_ALIAS("tgr160");
 MODULE_ALIAS("tgr128");
 =======
@@ -684,6 +685,10 @@ MODULE_ALIAS_CRYPTO("tgr192");
 MODULE_ALIAS_CRYPTO("tgr160");
 MODULE_ALIAS_CRYPTO("tgr128");
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+MODULE_ALIAS("tgr160");
+MODULE_ALIAS("tgr128");
+>>>>>>> 2617302... source
 
 module_init(tgr192_mod_init);
 module_exit(tgr192_mod_fini);

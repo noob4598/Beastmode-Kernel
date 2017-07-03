@@ -864,6 +864,7 @@ int jbd2_journal_get_log_tail(journal_t *journal, tid_t *tid,
  * Requires j_checkpoint_mutex
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 void __jbd2_update_log_tail(journal_t *journal, tid_t tid, unsigned long block)
 {
 	unsigned long freed;
@@ -873,6 +874,11 @@ int __jbd2_update_log_tail(journal_t *journal, tid_t tid, unsigned long block)
 	unsigned long freed;
 	int ret;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+void __jbd2_update_log_tail(journal_t *journal, tid_t tid, unsigned long block)
+{
+	unsigned long freed;
+>>>>>>> 2617302... source
 
 	BUG_ON(!mutex_is_locked(&journal->j_checkpoint_mutex));
 
@@ -883,6 +889,7 @@ int __jbd2_update_log_tail(journal_t *journal, tid_t tid, unsigned long block)
 	 * old transaction with possibly newly overwritten data.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	jbd2_journal_update_sb_log_tail(journal, tid, block, WRITE_FUA);
 =======
 	ret = jbd2_journal_update_sb_log_tail(journal, tid, block, WRITE_FUA);
@@ -890,6 +897,9 @@ int __jbd2_update_log_tail(journal_t *journal, tid_t tid, unsigned long block)
 		goto out;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	jbd2_journal_update_sb_log_tail(journal, tid, block, WRITE_FUA);
+>>>>>>> 2617302... source
 	write_lock(&journal->j_state_lock);
 	freed = block - journal->j_tail;
 	if (block < journal->j_tail)
@@ -906,11 +916,14 @@ int __jbd2_update_log_tail(journal_t *journal, tid_t tid, unsigned long block)
 	journal->j_tail = block;
 	write_unlock(&journal->j_state_lock);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 out:
 	return ret;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 }
 
 /*
@@ -1330,10 +1343,14 @@ static int journal_reset(journal_t *journal)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void jbd2_write_superblock(journal_t *journal, int write_op)
 =======
 static int jbd2_write_superblock(journal_t *journal, int write_op)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+static void jbd2_write_superblock(journal_t *journal, int write_op)
+>>>>>>> 2617302... source
 {
 	struct buffer_head *bh = journal->j_sb_buffer;
 	journal_superblock_t *sb = journal->j_superblock;
@@ -1373,6 +1390,7 @@ static int jbd2_write_superblock(journal_t *journal, int write_op)
 		       "journal superblock for %s.\n", ret,
 		       journal->j_devname);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	}
 =======
 		jbd2_journal_abort(journal, ret);
@@ -1380,6 +1398,9 @@ static int jbd2_write_superblock(journal_t *journal, int write_op)
 
 	return ret;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	}
+>>>>>>> 2617302... source
 }
 
 /**
@@ -1393,10 +1414,14 @@ static int jbd2_write_superblock(journal_t *journal, int write_op)
  * disk, waiting for the IO to complete.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 void jbd2_journal_update_sb_log_tail(journal_t *journal, tid_t tail_tid,
 				     unsigned long tail_block, int write_op)
 {
 	journal_superblock_t *sb = journal->j_superblock;
+<<<<<<< HEAD
 =======
 int jbd2_journal_update_sb_log_tail(journal_t *journal, tid_t tail_tid,
 				     unsigned long tail_block, int write_op)
@@ -1404,6 +1429,8 @@ int jbd2_journal_update_sb_log_tail(journal_t *journal, tid_t tail_tid,
 	journal_superblock_t *sb = journal->j_superblock;
 	int ret;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	BUG_ON(!mutex_is_locked(&journal->j_checkpoint_mutex));
 	jbd_debug(1, "JBD2: updating superblock (start %lu, seq %u)\n",
@@ -1413,12 +1440,16 @@ int jbd2_journal_update_sb_log_tail(journal_t *journal, tid_t tail_tid,
 	sb->s_start    = cpu_to_be32(tail_block);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	jbd2_write_superblock(journal, write_op);
 =======
 	ret = jbd2_write_superblock(journal, write_op);
 	if (ret)
 		goto out;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	jbd2_write_superblock(journal, write_op);
+>>>>>>> 2617302... source
 
 	/* Log is no longer empty */
 	write_lock(&journal->j_state_lock);
@@ -1426,29 +1457,39 @@ int jbd2_journal_update_sb_log_tail(journal_t *journal, tid_t tail_tid,
 	journal->j_flags &= ~JBD2_FLUSHED;
 	write_unlock(&journal->j_state_lock);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 out:
 	return ret;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 }
 
 /**
  * jbd2_mark_journal_empty() - Mark on disk journal as empty.
  * @journal: The journal to update.
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
  * @write_op: With which operation should we write the journal sb
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
  *
  * Update a journal's dynamic superblock fields to show that journal is empty.
  * Write updated superblock to disk waiting for IO to complete.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void jbd2_mark_journal_empty(journal_t *journal)
 =======
 static void jbd2_mark_journal_empty(journal_t *journal, int write_op)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+static void jbd2_mark_journal_empty(journal_t *journal)
+>>>>>>> 2617302... source
 {
 	journal_superblock_t *sb = journal->j_superblock;
 
@@ -1467,10 +1508,14 @@ static void jbd2_mark_journal_empty(journal_t *journal, int write_op)
 	read_unlock(&journal->j_state_lock);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	jbd2_write_superblock(journal, WRITE_FUA);
 =======
 	jbd2_write_superblock(journal, write_op);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	jbd2_write_superblock(journal, WRITE_FUA);
+>>>>>>> 2617302... source
 
 	/* Log is no longer empty */
 	write_lock(&journal->j_state_lock);
@@ -1497,10 +1542,14 @@ void jbd2_journal_update_sb_errno(journal_t *journal)
 	read_unlock(&journal->j_state_lock);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	jbd2_write_superblock(journal, WRITE_SYNC);
 =======
 	jbd2_write_superblock(journal, WRITE_FUA);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	jbd2_write_superblock(journal, WRITE_SYNC);
+>>>>>>> 2617302... source
 }
 EXPORT_SYMBOL(jbd2_journal_update_sb_errno);
 
@@ -1743,6 +1792,7 @@ int jbd2_journal_destroy(journal_t *journal)
 		if (!is_journal_aborted(journal)) {
 			mutex_lock(&journal->j_checkpoint_mutex);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			jbd2_mark_journal_empty(journal);
 =======
 
@@ -1753,6 +1803,9 @@ int jbd2_journal_destroy(journal_t *journal)
 
 			jbd2_mark_journal_empty(journal, WRITE_FLUSH_FUA);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			jbd2_mark_journal_empty(journal);
+>>>>>>> 2617302... source
 			mutex_unlock(&journal->j_checkpoint_mutex);
 		} else
 			err = -EIO;
@@ -1994,6 +2047,7 @@ int jbd2_journal_flush(journal_t *journal)
 
 	mutex_lock(&journal->j_checkpoint_mutex);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	jbd2_cleanup_journal_tail(journal);
 =======
 	if (!err) {
@@ -2005,6 +2059,9 @@ int jbd2_journal_flush(journal_t *journal)
 		err = 0;
 	}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	jbd2_cleanup_journal_tail(journal);
+>>>>>>> 2617302... source
 
 	/* Finally, mark the journal as really needing no recovery.
 	 * This sets s_start==0 in the underlying superblock, which is
@@ -2012,10 +2069,14 @@ int jbd2_journal_flush(journal_t *journal)
 	 * commits of data to the journal will restore the current
 	 * s_start value. */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	jbd2_mark_journal_empty(journal);
 =======
 	jbd2_mark_journal_empty(journal, WRITE_FUA);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	jbd2_mark_journal_empty(journal);
+>>>>>>> 2617302... source
 	mutex_unlock(&journal->j_checkpoint_mutex);
 	write_lock(&journal->j_state_lock);
 	J_ASSERT(!journal->j_running_transaction);
@@ -2025,11 +2086,15 @@ int jbd2_journal_flush(journal_t *journal)
 	J_ASSERT(journal->j_tail_sequence == journal->j_transaction_sequence);
 	write_unlock(&journal->j_state_lock);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return 0;
 =======
 out:
 	return err;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	return 0;
+>>>>>>> 2617302... source
 }
 
 /**
@@ -2066,10 +2131,14 @@ int jbd2_journal_wipe(journal_t *journal, int write)
 		/* Lock to make assertions happy... */
 		mutex_lock(&journal->j_checkpoint_mutex);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		jbd2_mark_journal_empty(journal);
 =======
 		jbd2_mark_journal_empty(journal, WRITE_FUA);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		jbd2_mark_journal_empty(journal);
+>>>>>>> 2617302... source
 		mutex_unlock(&journal->j_checkpoint_mutex);
 	}
 
@@ -2121,6 +2190,7 @@ static void __journal_abort_soft (journal_t *journal, int errno)
 	__jbd2_journal_abort_hard(journal);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (errno)
 		jbd2_journal_update_sb_errno(journal);
 =======
@@ -2131,6 +2201,10 @@ static void __journal_abort_soft (journal_t *journal, int errno)
 		write_unlock(&journal->j_state_lock);
 	}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (errno)
+		jbd2_journal_update_sb_errno(journal);
+>>>>>>> 2617302... source
 }
 
 /**

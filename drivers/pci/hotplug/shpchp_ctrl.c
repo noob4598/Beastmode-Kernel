@@ -283,12 +283,17 @@ static int board_added(struct slot *p_slot)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	bsp = ctrl->pci_dev->bus->cur_bus_speed;
 	msp = ctrl->pci_dev->bus->max_bus_speed;
 =======
 	bsp = ctrl->pci_dev->subordinate->cur_bus_speed;
 	msp = ctrl->pci_dev->subordinate->max_bus_speed;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	bsp = ctrl->pci_dev->bus->cur_bus_speed;
+	msp = ctrl->pci_dev->bus->max_bus_speed;
+>>>>>>> 2617302... source
 
 	/* Check if there are other slots or devices on the same bus */
 	if (!list_empty(&ctrl->pci_dev->subordinate->devices))

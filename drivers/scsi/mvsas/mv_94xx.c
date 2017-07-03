@@ -622,10 +622,14 @@ static void mvs_94xx_command_active(struct mvs_info *mvi, u32 slot_idx)
 	u32 tmp;
 	tmp = mvs_cr32(mvi, MVS_COMMAND_ACTIVE+(slot_idx >> 3));
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (tmp && 1 << (slot_idx % 32)) {
 =======
 	if (tmp & 1 << (slot_idx % 32)) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (tmp && 1 << (slot_idx % 32)) {
+>>>>>>> 2617302... source
 		mv_printk("command active %08X,  slot [%x].\n", tmp, slot_idx);
 		mvs_cw32(mvi, MVS_COMMAND_ACTIVE + (slot_idx >> 3),
 			1 << (slot_idx % 32));

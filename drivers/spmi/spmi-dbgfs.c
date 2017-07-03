@@ -1,8 +1,12 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* Copyright (c) 2012-2014, The Linux Foundation. All rights reserved.
 =======
 /* Copyright (c) 2012-2014, 2017, The Linux Foundation. All rights reserved.
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+/* Copyright (c) 2012-2014, The Linux Foundation. All rights reserved.
+>>>>>>> 2617302... source
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -74,9 +78,12 @@ struct spmi_trans {
 	u32 offset;	/* Offset of last read data */
 	bool raw_data;	/* Set to true for raw data dump */
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct mutex spmi_dfs_lock; /* Prevent thread concurrency */
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	struct spmi_controller *ctrl;
 	struct spmi_log_buffer *log; /* log buffer */
 };
@@ -177,9 +184,12 @@ static int spmi_dfs_open(struct spmi_ctrl_data *ctrl_data, struct file *file)
 	trans->ctrl = ctrl_data->ctrl;
 	trans->offset = trans->addr;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	mutex_init(&trans->spmi_dfs_lock);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	file->private_data = trans;
 	return 0;
@@ -210,9 +220,12 @@ static int spmi_dfs_close(struct inode *inode, struct file *file)
 	if (trans && trans->log) {
 		file->private_data = NULL;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		mutex_destroy(&trans->spmi_dfs_lock);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		kfree(trans->log);
 		kfree(trans);
 	}
@@ -490,6 +503,9 @@ static ssize_t spmi_dfs_reg_write(struct file *file, const char __user *buf,
 	u8  *values;
 	size_t ret = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 
 	struct spmi_trans *trans = file->private_data;
 	u32 offset = trans->offset;
@@ -498,6 +514,7 @@ static ssize_t spmi_dfs_reg_write(struct file *file, const char __user *buf,
 	char *kbuf = kmalloc(count + 1, GFP_KERNEL);
 	if (!kbuf)
 		return -ENOMEM;
+<<<<<<< HEAD
 =======
 	u32 offset;
 	char *kbuf;
@@ -515,6 +532,8 @@ static ssize_t spmi_dfs_reg_write(struct file *file, const char __user *buf,
 		goto unlock_mutex;
 	}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	ret = copy_from_user(kbuf, buf, count);
 	if (ret == count) {
@@ -552,10 +571,13 @@ static ssize_t spmi_dfs_reg_write(struct file *file, const char __user *buf,
 free_buf:
 	kfree(kbuf);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 unlock_mutex:
 	mutex_unlock(&trans->spmi_dfs_lock);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	return ret;
 }
 
@@ -577,10 +599,14 @@ static ssize_t spmi_dfs_reg_read(struct file *file, char __user *buf,
 	size_t len;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	/* Is the the log buffer empty */
 	if (log->rpos >= log->wpos) {
 		if (get_log_data(trans) <= 0)
 			return 0;
+<<<<<<< HEAD
 =======
 	mutex_lock(&trans->spmi_dfs_lock);
 	/* Is the the log buffer empty */
@@ -590,6 +616,8 @@ static ssize_t spmi_dfs_reg_read(struct file *file, char __user *buf,
 			goto unlock_mutex;
 		}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	}
 
 	len = min(count, log->wpos - log->rpos);
@@ -598,11 +626,15 @@ static ssize_t spmi_dfs_reg_read(struct file *file, char __user *buf,
 	if (ret == len) {
 		pr_err("error copy SPMI register values to user\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return -EFAULT;
 =======
 		len = -EFAULT;
 		goto unlock_mutex;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		return -EFAULT;
+>>>>>>> 2617302... source
 	}
 
 	/* 'ret' is the number of bytes not copied */
@@ -611,11 +643,14 @@ static ssize_t spmi_dfs_reg_read(struct file *file, char __user *buf,
 	*ppos += len;
 	log->rpos += len;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 unlock_mutex:
 	mutex_unlock(&trans->spmi_dfs_lock);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	return len;
 }
 

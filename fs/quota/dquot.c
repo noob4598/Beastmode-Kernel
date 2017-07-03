@@ -638,10 +638,14 @@ int dquot_writeback_dquots(struct super_block *sb, int type)
 			err = sb->dq_op->write_dquot(dquot);
 			if (!ret && err)
 <<<<<<< HEAD
+<<<<<<< HEAD
 				err = ret;
 =======
 				ret = err;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+				err = ret;
+>>>>>>> 2617302... source
 			dqput(dquot);
 			spin_lock(&dq_list_lock);
 		}
@@ -1107,6 +1111,7 @@ static void dquot_claim_reserved_space(struct dquot *dquot, qsize_t number)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 static void dquot_reclaim_reserved_space(struct dquot *dquot, qsize_t number)
 {
@@ -1117,6 +1122,8 @@ static void dquot_reclaim_reserved_space(struct dquot *dquot, qsize_t number)
 }
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 static inline
 void dquot_free_reserved_space(struct dquot *dquot, qsize_t number)
 {
@@ -1552,6 +1559,7 @@ void inode_claim_rsv_space(struct inode *inode, qsize_t number)
 EXPORT_SYMBOL(inode_claim_rsv_space);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 void inode_reclaim_rsv_space(struct inode *inode, qsize_t number)
 {
@@ -1563,6 +1571,8 @@ void inode_reclaim_rsv_space(struct inode *inode, qsize_t number)
 EXPORT_SYMBOL(inode_reclaim_rsv_space);
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 void inode_sub_rsv_space(struct inode *inode, qsize_t number)
 {
 	spin_lock(&inode->i_lock);
@@ -1738,6 +1748,7 @@ EXPORT_SYMBOL(dquot_claim_space_nodirty);
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
  * Convert allocated space back to in-memory reserved quotas
  */
@@ -1769,6 +1780,8 @@ EXPORT_SYMBOL(dquot_reclaim_space_nodirty);
 
 /*
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
  * This operation can block, but only after everything is updated
  */
 void __dquot_free_space(struct inode *inode, qsize_t number, int flags)

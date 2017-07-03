@@ -61,12 +61,17 @@ void nfs_set_pgio_error(struct nfs_pgio_header *hdr, int error, loff_t pos)
 {
 	spin_lock(&hdr->lock);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (pos < hdr->io_start + hdr->good_bytes) {
 		set_bit(NFS_IOHDR_ERROR, &hdr->flags);
 =======
 	if (!test_and_set_bit(NFS_IOHDR_ERROR, &hdr->flags)
 	    || pos < hdr->io_start + hdr->good_bytes) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (pos < hdr->io_start + hdr->good_bytes) {
+		set_bit(NFS_IOHDR_ERROR, &hdr->flags);
+>>>>>>> 2617302... source
 		clear_bit(NFS_IOHDR_EOF, &hdr->flags);
 		hdr->good_bytes = pos - hdr->io_start;
 		hdr->error = error;

@@ -269,10 +269,15 @@ int save_xstate_sig(void __user *buf, void __user *buf_fx, int size)
 		return -1;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	drop_init_fpu(tsk);	/* trigger finit */
 
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	drop_init_fpu(tsk);	/* trigger finit */
+
+>>>>>>> 2617302... source
 	return 0;
 }
 
@@ -382,10 +387,14 @@ int __restore_xstate_sig(void __user *buf, void __user *buf_fx, int size)
 		 * header. Sanitize the copied state etc.
 		 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		struct xsave_struct *xsave = &tsk->thread.fpu.state->xsave;
 =======
 		struct fpu *fpu = &tsk->thread.fpu;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		struct xsave_struct *xsave = &tsk->thread.fpu.state->xsave;
+>>>>>>> 2617302... source
 		struct user_i387_ia32_struct env;
 		int err = 0;
 
@@ -400,6 +409,9 @@ int __restore_xstate_sig(void __user *buf, void __user *buf_fx, int size)
 		drop_fpu(tsk);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		if (__copy_from_user(xsave, buf_fx, state_size) ||
 		    __copy_from_user(&env, buf, sizeof(env))) {
 			err = -1;
@@ -410,6 +422,7 @@ int __restore_xstate_sig(void __user *buf, void __user *buf_fx, int size)
 
 		if (use_eager_fpu())
 			math_state_restore();
+<<<<<<< HEAD
 =======
 		if (__copy_from_user(&fpu->state->xsave, buf_fx, state_size) ||
 		    __copy_from_user(&env, buf, sizeof(env))) {
@@ -426,6 +439,8 @@ int __restore_xstate_sig(void __user *buf, void __user *buf_fx, int size)
 			preempt_enable();
 		}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 		return err;
 	} else {

@@ -2265,6 +2265,7 @@ static ssize_t cmd_store(struct device *dev, struct device_attribute *attr,
 	struct synaptics_rmi4_data *rmi4_data = f54->rmi4_data;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (strlen(buf) >= CMD_STR_LEN) {		
 		dev_err(&rmi4_data->i2c_client->dev, "%s: cmd length is over (%s,%d)!!\n", __func__, buf, (int)strlen(buf));
@@ -2272,6 +2273,8 @@ static ssize_t cmd_store(struct device *dev, struct device_attribute *attr,
 	}
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	if (data->cmd_is_running == true) {
 		dev_err(&rmi4_data->i2c_client->dev, "%s: Still servicing previous command. Skip cmd :%s\n",
 				__func__, buf);
@@ -2334,10 +2337,14 @@ static ssize_t cmd_store(struct device *dev, struct device_attribute *attr,
 			}
 			pos++;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		} while (pos - buf <= length);
 =======
 		} while ((pos - buf <= length) && (param_cnt < CMD_PARAM_NUM));
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		} while (pos - buf <= length);
+>>>>>>> 2617302... source
 	}
 
 	dev_info(&rmi4_data->i2c_client->dev, "%s: Command = %s\n",
@@ -2405,20 +2412,28 @@ static ssize_t cmd_list_show(struct device *dev,
 {
 	int ii = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	char buffer[CMD_RESULT_STR_LEN];
 =======
 	char buffer[CMD_RESULT_STR_LEN + 30];
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	char buffer[CMD_RESULT_STR_LEN];
+>>>>>>> 2617302... source
 	char buffer_name[CMD_STR_LEN];
 
 	snprintf(buffer, 30, "++factory command list++\n");
 	while (strncmp(ft_cmds[ii].cmd_name, "not_support_cmd", 16) != 0) {
 		snprintf(buffer_name, CMD_STR_LEN, "%s\n", ft_cmds[ii].cmd_name);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		strcat(buffer, buffer_name);
 =======
 		strncat(buffer, buffer_name, (int)strlen(buffer_name));
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		strcat(buffer, buffer_name);
+>>>>>>> 2617302... source
 		ii++;
 		if (strlen(buffer) > (CMD_RESULT_STR_LEN - CMD_STR_LEN)) {
 			dev_info(&f54->rmi4_data->i2c_client->dev,

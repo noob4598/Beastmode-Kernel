@@ -333,9 +333,13 @@ static void scsi_device_dev_release_usercontext(struct work_struct *work)
 	struct scsi_device *sdev;
 	struct device *parent;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct scsi_target *starget;
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	struct scsi_target *starget;
+>>>>>>> 2617302... source
 	struct list_head *this, *tmp;
 	unsigned long flags;
 
@@ -343,14 +347,20 @@ static void scsi_device_dev_release_usercontext(struct work_struct *work)
 
 	parent = sdev->sdev_gendev.parent;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	starget = to_scsi_target(parent);
 
 	spin_lock_irqsave(sdev->host->host_lock, flags);
 	starget->reap_ref++;
+<<<<<<< HEAD
 =======
 
 	spin_lock_irqsave(sdev->host->host_lock, flags);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	list_del(&sdev->siblings);
 	list_del(&sdev->same_target_siblings);
 	list_del(&sdev->starved_entry);
@@ -371,10 +381,15 @@ static void scsi_device_dev_release_usercontext(struct work_struct *work)
 	sdev->request_queue = NULL;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	scsi_target_reap(scsi_target(sdev));
 
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	scsi_target_reap(scsi_target(sdev));
+
+>>>>>>> 2617302... source
 	kfree(sdev->inquiry);
 	kfree(sdev);
 
@@ -806,10 +821,14 @@ sdev_store_queue_ramp_up_period(struct device *dev,
 
 	sdev->queue_ramp_up_period = msecs_to_jiffies(period);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return period;
 =======
 	return count;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	return period;
+>>>>>>> 2617302... source
 }
 
 static struct device_attribute sdev_attr_queue_ramp_up_period =
@@ -886,12 +905,18 @@ int scsi_sysfs_add_sdev(struct scsi_device *sdev)
 	struct scsi_target *starget = sdev->sdev_target;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	error = scsi_device_set_state(sdev, SDEV_RUNNING);
 	if (error)
 		return error;
 
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	error = scsi_target_add(starget);
 	if (error)
 		return error;
@@ -1005,6 +1030,7 @@ void __scsi_remove_device(struct scsi_device *sdev)
 	transport_destroy_device(dev);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/*
 	 * Paired with the kref_get() in scsi_sysfs_initialize().  We have
@@ -1014,6 +1040,8 @@ void __scsi_remove_device(struct scsi_device *sdev)
 	scsi_target_reap(scsi_target(sdev));
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	put_device(dev);
 }
 
@@ -1065,6 +1093,9 @@ void scsi_remove_target(struct device *dev)
 {
 	struct Scsi_Host *shost = dev_to_shost(dev->parent);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	struct scsi_target *starget, *last = NULL;
 	unsigned long flags;
 
@@ -1090,6 +1121,7 @@ void scsi_remove_target(struct device *dev)
 
 	if (last)
 		scsi_target_reap(last);
+<<<<<<< HEAD
 =======
 	struct scsi_target *starget, *last_target = NULL;
 	unsigned long flags;
@@ -1111,6 +1143,8 @@ restart:
 	}
 	spin_unlock_irqrestore(shost->host_lock, flags);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 }
 EXPORT_SYMBOL(scsi_remove_target);
 
@@ -1183,6 +1217,7 @@ void scsi_sysfs_device_initialize(struct scsi_device *sdev)
 	list_add_tail(&sdev->siblings, &shost->__devices);
 	spin_unlock_irqrestore(shost->host_lock, flags);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/*
 	 * device can now only be removed via __scsi_remove_device() so hold
@@ -1191,6 +1226,8 @@ void scsi_sysfs_device_initialize(struct scsi_device *sdev)
 	 */
 	kref_get(&starget->reap_ref);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 }
 
 int scsi_is_sdev_device(const struct device *dev)

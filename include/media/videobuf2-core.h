@@ -321,11 +321,14 @@ struct v4l2_fh;
  * @alloc_ctx:	memory type/allocator-specific contexts for each plane
  * @streaming:	current streaming state
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
  * @waiting_for_buffers: used in poll() to check if vb2 is still waiting for
  *		buffers. Only set for capture queues if qbuf has not yet been
  *		called since poll() needs to return POLLERR in that situation.
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
  * @fileio:	file io emulator internal data, used only if emulator is active
  */
 struct vb2_queue {
@@ -359,9 +362,12 @@ struct vb2_queue {
 
 	unsigned int			streaming:1;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	unsigned int			waiting_for_buffers:1;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	struct vb2_fileio_data		*fileio;
 };

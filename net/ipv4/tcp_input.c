@@ -69,9 +69,12 @@
 #include <linux/sysctl.h>
 #include <linux/kernel.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <linux/reciprocal_div.h>
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 #include <net/dst.h>
 #include <net/tcp.h>
 #include <net/inet_common.h>
@@ -92,10 +95,14 @@ EXPORT_SYMBOL(sysctl_tcp_adv_win_scale);
 
 /* rfc5961 challenge ack rate limiting */
 <<<<<<< HEAD
+<<<<<<< HEAD
 int sysctl_tcp_challenge_ack_limit = 100;
 =======
 int sysctl_tcp_challenge_ack_limit = 1000;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+int sysctl_tcp_challenge_ack_limit = 100;
+>>>>>>> 2617302... source
 
 int sysctl_tcp_stdurg __read_mostly;
 int sysctl_tcp_rfc1337 __read_mostly;
@@ -1085,10 +1092,14 @@ static bool tcp_check_dsack(struct sock *sk, const struct sk_buff *ack_skb,
 
 	/* D-SACK for already forgotten data... Do dumb counting. */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (dup_sack && tp->undo_marker && tp->undo_retrans &&
 =======
 	if (dup_sack && tp->undo_marker && tp->undo_retrans > 0 &&
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (dup_sack && tp->undo_marker && tp->undo_retrans &&
+>>>>>>> 2617302... source
 	    !after(end_seq_0, prior_snd_una) &&
 	    after(end_seq_0, tp->undo_marker))
 		tp->undo_retrans--;
@@ -1144,10 +1155,14 @@ static int tcp_match_skb_to_sack(struct sock *sk, struct sk_buff *skb,
 			if (!in_sack && new_len < pkt_len) {
 				new_len += mss;
 <<<<<<< HEAD
+<<<<<<< HEAD
 				if (new_len > skb->len)
 =======
 				if (new_len >= skb->len)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+				if (new_len > skb->len)
+>>>>>>> 2617302... source
 					return 0;
 			}
 			pkt_len = new_len;
@@ -1172,10 +1187,14 @@ static u8 tcp_sacktag_one(struct sock *sk,
 	/* Account D-SACK for retransmitted packet. */
 	if (dup_sack && (sacked & TCPCB_RETRANS)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (tp->undo_marker && tp->undo_retrans &&
 =======
 		if (tp->undo_marker && tp->undo_retrans > 0 &&
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		if (tp->undo_marker && tp->undo_retrans &&
+>>>>>>> 2617302... source
 		    after(end_seq, tp->undo_marker))
 			tp->undo_retrans--;
 		if (sacked & TCPCB_SACKED_ACKED)
@@ -1872,10 +1891,14 @@ static void tcp_clear_retrans_partial(struct tcp_sock *tp)
 
 	tp->undo_marker = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	tp->undo_retrans = 0;
 =======
 	tp->undo_retrans = -1;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	tp->undo_retrans = 0;
+>>>>>>> 2617302... source
 }
 
 void tcp_clear_retrans(struct tcp_sock *tp)
@@ -2726,10 +2749,14 @@ static void tcp_enter_recovery(struct sock *sk, bool ece_ack)
 	tp->prior_ssthresh = 0;
 	tp->undo_marker = tp->snd_una;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	tp->undo_retrans = tp->retrans_out;
 =======
 	tp->undo_retrans = tp->retrans_out ? : -1;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	tp->undo_retrans = tp->retrans_out;
+>>>>>>> 2617302... source
 
 	if (inet_csk(sk)->icsk_ca_state < TCP_CA_CWR) {
 		if (!ece_ack)
@@ -2750,6 +2777,9 @@ static void tcp_process_loss(struct sock *sk, int flag, bool is_dupack)
 
 	if (tp->frto) { /* F-RTO RFC5682 sec 3.1 (sack enhanced version). */
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		if (flag & FLAG_ORIG_SACK_ACKED) {
 			/* Step 3.b. A timeout is spurious if not all data are
 			 * lost, i.e., never-retransmitted data are (s)acked.
@@ -2757,6 +2787,7 @@ static void tcp_process_loss(struct sock *sk, int flag, bool is_dupack)
 			tcp_try_undo_loss(sk, true);
 			return;
 		}
+<<<<<<< HEAD
 =======
 		/* Step 3.b. A timeout is spurious if not all data are
 		 * lost, i.e., never-retransmitted data are (s)acked.
@@ -2765,6 +2796,8 @@ static void tcp_process_loss(struct sock *sk, int flag, bool is_dupack)
 			return;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		if (after(tp->snd_nxt, tp->high_seq) &&
 		    (flag & FLAG_DATA_SACKED || is_dupack)) {
 			tp->frto = 0; /* Loss was real: 2nd part of step 3.a */
@@ -3116,10 +3149,14 @@ static int tcp_clean_rtx_queue(struct sock *sk, int prior_fackets,
 				seq_rtt = ca_seq_rtt;
 			}
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 			if (!(sacked & TCPCB_SACKED_ACKED))
 				reord = min(pkts_acked, reord);
 			if (!after(scb->end_seq, tp->high_seq))
 				flag |= FLAG_ORIG_SACK_ACKED;
+<<<<<<< HEAD
 =======
 			if (!(sacked & TCPCB_SACKED_ACKED)) {
 				reord = min(pkts_acked, reord);
@@ -3127,6 +3164,8 @@ static int tcp_clean_rtx_queue(struct sock *sk, int prior_fackets,
 					flag |= FLAG_ORIG_SACK_ACKED;
 			}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		}
 
 		if (sacked & TCPCB_SACKED_ACKED)
@@ -3335,12 +3374,16 @@ static void tcp_send_challenge_ack(struct sock *sk)
 	static unsigned int challenge_count;
 	u32 now = jiffies / HZ;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 
 	if (now != challenge_timestamp) {
 		challenge_timestamp = now;
 		challenge_count = 0;
 	}
 	if (++challenge_count <= sysctl_tcp_challenge_ack_limit) {
+<<<<<<< HEAD
 =======
 	u32 count;
 
@@ -3356,6 +3399,8 @@ static void tcp_send_challenge_ack(struct sock *sk)
 	if (count > 0) {
 		ACCESS_ONCE(challenge_count) = count - 1;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		NET_INC_STATS_BH(sock_net(sk), LINUX_MIB_TCPCHALLENGEACK);
 		tcp_send_ack(sk);
 	}
@@ -4995,10 +5040,14 @@ static int tcp_copy_to_iovec(struct sock *sk, struct sk_buff *skb, int hlen)
 	else
 		err = skb_copy_and_csum_datagram_iovec(skb, hlen,
 <<<<<<< HEAD
+<<<<<<< HEAD
 						       tp->ucopy.iov);
 =======
 						       tp->ucopy.iov, chunk);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+						       tp->ucopy.iov);
+>>>>>>> 2617302... source
 
 	if (!err) {
 		tp->ucopy.len -= chunk;
@@ -5395,9 +5444,12 @@ void tcp_finish_connect(struct sock *sk, struct sk_buff *skb)
 
 	tcp_set_state(sk, TCP_ESTABLISHED);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	icsk->icsk_ack.lrcvtime = tcp_time_stamp;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	if (skb != NULL) {
 		icsk->icsk_af_ops->sk_rx_dst_set(sk, skb);
@@ -5599,9 +5651,13 @@ static int tcp_rcv_synsent_state_process(struct sock *sk, struct sk_buff *skb,
 			 */
 			inet_csk_schedule_ack(sk);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			icsk->icsk_ack.lrcvtime = tcp_time_stamp;
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			icsk->icsk_ack.lrcvtime = tcp_time_stamp;
+>>>>>>> 2617302... source
 			tcp_enter_quickack_mode(sk);
 			inet_csk_reset_xmit_timer(sk, ICSK_TIME_DACK,
 						  TCP_DELACK_MAX, TCP_RTO_MAX);
@@ -5650,9 +5706,12 @@ discard:
 
 		tp->rcv_nxt = TCP_SKB_CB(skb)->seq + 1;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		tp->copied_seq = tp->rcv_nxt;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		tp->rcv_wup = TCP_SKB_CB(skb)->seq + 1;
 
 		/* RFC1323: The window in SYN & SYN/ACK segments is

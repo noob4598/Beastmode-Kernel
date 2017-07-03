@@ -125,6 +125,7 @@ int printk(const char *fmt, ...);
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Special printk facility for scheduler use only, _DO_NOT_USE_ !
  */
 __printf(1, 2) __cold int printk_sched(const char *fmt, ...);
@@ -133,6 +134,11 @@ __printf(1, 2) __cold int printk_sched(const char *fmt, ...);
  */
 __printf(1, 2) __cold int printk_deferred(const char *fmt, ...);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+ * Special printk facility for scheduler use only, _DO_NOT_USE_ !
+ */
+__printf(1, 2) __cold int printk_sched(const char *fmt, ...);
+>>>>>>> 2617302... source
 
 /*
  * Please don't use printk_ratelimit(), because it shares ratelimiting state
@@ -168,10 +174,14 @@ int printk(const char *s, ...)
 }
 static inline __printf(1, 2) __cold
 <<<<<<< HEAD
+<<<<<<< HEAD
 int printk_sched(const char *s, ...)
 =======
 int printk_deferred(const char *s, ...)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+int printk_sched(const char *s, ...)
+>>>>>>> 2617302... source
 {
 	return 0;
 }

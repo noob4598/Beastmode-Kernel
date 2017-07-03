@@ -566,9 +566,12 @@ static void init_prb_bdqc(struct packet_sock *po,
 	p1->blk_sizeof_priv = req_u->req3.tp_sizeof_priv;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	p1->max_frame_len = p1->kblk_size - BLK_PLUS_PRIV(p1->blk_sizeof_priv);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	prb_init_ft_ops(p1, req_u);
 	prb_setup_retire_blk_timer(po, tx_ring);
 	prb_open_block(p1, pbd);
@@ -1154,6 +1157,9 @@ static void packet_sock_destruct(struct sock *sk)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 static int fanout_rr_next(struct packet_fanout *f, unsigned int num)
 {
 	int x = atomic_read(&f->rr_cur) + 1;
@@ -1164,8 +1170,11 @@ static int fanout_rr_next(struct packet_fanout *f, unsigned int num)
 	return x;
 }
 
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 static unsigned int fanout_demux_hash(struct packet_fanout *f,
 				      struct sk_buff *skb,
 				      unsigned int num)
@@ -1178,6 +1187,9 @@ static unsigned int fanout_demux_lb(struct packet_fanout *f,
 				    unsigned int num)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	int cur, old;
 
 	cur = atomic_read(&f->rr_cur);
@@ -1185,11 +1197,14 @@ static unsigned int fanout_demux_lb(struct packet_fanout *f,
 				     fanout_rr_next(f, num))) != cur)
 		cur = old;
 	return cur;
+<<<<<<< HEAD
 =======
 	unsigned int val = atomic_inc_return(&f->rr_cur);
 
 	return val % num;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 }
 
 static unsigned int fanout_demux_cpu(struct packet_fanout *f,
@@ -1230,10 +1245,14 @@ static int packet_rcv_fanout(struct sk_buff *skb, struct net_device *dev,
 {
 	struct packet_fanout *f = pt->af_packet_priv;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned int num = f->num_members;
 =======
 	unsigned int num = ACCESS_ONCE(f->num_members);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	unsigned int num = f->num_members;
+>>>>>>> 2617302... source
 	struct packet_sock *po;
 	unsigned int idx;
 
@@ -1288,10 +1307,13 @@ static void __fanout_link(struct sock *sk, struct packet_sock *po)
 	smp_wmb();
 	f->num_members++;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (f->num_members == 1)
 		dev_add_pack(&f->prot_hook);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	spin_unlock(&f->lock);
 }
 
@@ -1309,10 +1331,13 @@ static void __fanout_unlink(struct sock *sk, struct packet_sock *po)
 	f->arr[i] = f->arr[f->num_members - 1];
 	f->num_members--;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (f->num_members == 0)
 		__dev_remove_pack(&f->prot_hook);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	spin_unlock(&f->lock);
 }
 
@@ -1345,6 +1370,9 @@ static int fanout_add(struct sock *sk, u16 id, u16 type_flags)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	if (!po->running)
 		return -EINVAL;
 
@@ -1352,6 +1380,7 @@ static int fanout_add(struct sock *sk, u16 id, u16 type_flags)
 		return -EALREADY;
 
 	mutex_lock(&fanout_mutex);
+<<<<<<< HEAD
 =======
 	mutex_lock(&fanout_mutex);
 
@@ -1364,6 +1393,8 @@ static int fanout_add(struct sock *sk, u16 id, u16 type_flags)
 		goto out;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	match = NULL;
 	list_for_each_entry(f, &fanout_list, list) {
 		if (f->id == id &&
@@ -1394,9 +1425,13 @@ static int fanout_add(struct sock *sk, u16 id, u16 type_flags)
 		match->prot_hook.af_packet_priv = match;
 		match->prot_hook.id_match = match_fanout_group;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev_add_pack(&match->prot_hook);
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		dev_add_pack(&match->prot_hook);
+>>>>>>> 2617302... source
 		list_add(&match->list, &fanout_list);
 	}
 	err = -EINVAL;
@@ -1418,6 +1453,7 @@ out:
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void fanout_release(struct sock *sk)
 =======
 /* If pkt_sk(sk)->fanout->sk_ref is zero, this function removes
@@ -1427,11 +1463,17 @@ static void fanout_release(struct sock *sk)
  */
 static struct packet_fanout *fanout_release(struct sock *sk)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+static void fanout_release(struct sock *sk)
+>>>>>>> 2617302... source
 {
 	struct packet_sock *po = pkt_sk(sk);
 	struct packet_fanout *f;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	f = po->fanout;
 	if (!f)
 		return;
@@ -1445,6 +1487,7 @@ static struct packet_fanout *fanout_release(struct sock *sk)
 		kfree(f);
 	}
 	mutex_unlock(&fanout_mutex);
+<<<<<<< HEAD
 =======
 	mutex_lock(&fanout_mutex);
 	f = po->fanout;
@@ -1460,6 +1503,8 @@ static struct packet_fanout *fanout_release(struct sock *sk)
 
 	return f;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 }
 
 static const struct proto_ops packet_ops;
@@ -1872,6 +1917,7 @@ static int tpacket_rcv(struct sk_buff *skb, struct net_device *dev,
 				snaplen = 0;
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	} else if (unlikely(macoff + snaplen >
 			    GET_PBDQC_FROM_RB(&po->rx_ring)->max_frame_len)) {
@@ -1886,6 +1932,8 @@ static int tpacket_rcv(struct sk_buff *skb, struct net_device *dev,
 			macoff = GET_PBDQC_FROM_RB(&po->rx_ring)->max_frame_len;
 		}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	}
 	spin_lock(&sk->sk_receive_queue.lock);
 	h.raw = packet_current_rx_frame(po, skb,
@@ -2316,10 +2364,14 @@ static int packet_snd(struct socket *sock,
 	struct packet_sock *po = pkt_sk(sk);
 	unsigned short gso_type = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int hlen, tlen;
 =======
 	int hlen, tlen, linear;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	int hlen, tlen;
+>>>>>>> 2617302... source
 	int extra_len = 0;
 
 	/*
@@ -2414,12 +2466,16 @@ static int packet_snd(struct socket *sock,
 	hlen = LL_RESERVED_SPACE(dev);
 	tlen = dev->needed_tailroom;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	skb = packet_alloc_skb(sk, hlen + tlen, hlen, len, vnet_hdr.hdr_len,
 =======
 	linear = vnet_hdr.hdr_len;
 	linear = max(linear, min_t(int, len, dev->hard_header_len));
 	skb = packet_alloc_skb(sk, hlen + tlen, hlen, len, linear,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	skb = packet_alloc_skb(sk, hlen + tlen, hlen, len, vnet_hdr.hdr_len,
+>>>>>>> 2617302... source
 			       msg->msg_flags & MSG_DONTWAIT, &err);
 	if (skb == NULL)
 		goto out_unlock;
@@ -2523,9 +2579,12 @@ static int packet_release(struct socket *sock)
 	struct sock *sk = sock->sk;
 	struct packet_sock *po;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct packet_fanout *f;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	struct net *net;
 	union tpacket_req_u req_u;
 
@@ -2566,6 +2625,7 @@ static int packet_release(struct socket *sock)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	fanout_release(sk);
 
 	synchronize_net();
@@ -2578,6 +2638,11 @@ static int packet_release(struct socket *sock)
 		kfree(f);
 	}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	fanout_release(sk);
+
+	synchronize_net();
+>>>>>>> 2617302... source
 	/*
 	 *	Now the socket is dead. No more input will appear.
 	 */
@@ -2649,10 +2714,14 @@ static int packet_bind_spkt(struct socket *sock, struct sockaddr *uaddr,
 {
 	struct sock *sk = sock->sk;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	char name[15];
 =======
 	char name[sizeof(uaddr->sa_data) + 1];
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	char name[15];
+>>>>>>> 2617302... source
 	struct net_device *dev;
 	int err = -ENODEV;
 
@@ -2663,6 +2732,7 @@ static int packet_bind_spkt(struct socket *sock, struct sockaddr *uaddr,
 	if (addr_len != sizeof(struct sockaddr))
 		return -EINVAL;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	strlcpy(name, uaddr->sa_data, sizeof(name));
 =======
 	/* uaddr->sa_data comes from the userspace, it's not guaranteed to be
@@ -2671,6 +2741,9 @@ static int packet_bind_spkt(struct socket *sock, struct sockaddr *uaddr,
 	memcpy(name, uaddr->sa_data, sizeof(uaddr->sa_data));
 	name[sizeof(uaddr->sa_data)] = 0;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	strlcpy(name, uaddr->sa_data, sizeof(name));
+>>>>>>> 2617302... source
 
 	dev = dev_get_by_name(sock_net(sk), name);
 	if (dev)
@@ -3118,9 +3191,12 @@ static int packet_mc_add(struct sock *sk, struct packet_mreq_max *mreq)
 	i->alen = mreq->mr_alen;
 	memcpy(i->addr, mreq->mr_address, i->alen);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	memset(i->addr + i->alen, 0, sizeof(i->addr) - i->alen);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	i->count = 1;
 	i->next = po->mclist;
 	po->mclist = i;
@@ -3259,10 +3335,15 @@ packet_setsockopt(struct socket *sock, int level, int optname, char __user *optv
 		if (optlen != sizeof(val))
 			return -EINVAL;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (po->rx_ring.pg_vec || po->tx_ring.pg_vec)
 			return -EBUSY;
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		if (po->rx_ring.pg_vec || po->tx_ring.pg_vec)
+			return -EBUSY;
+>>>>>>> 2617302... source
 		if (copy_from_user(&val, optval, sizeof(val)))
 			return -EFAULT;
 		switch (val) {
@@ -3270,11 +3351,15 @@ packet_setsockopt(struct socket *sock, int level, int optname, char __user *optv
 		case TPACKET_V2:
 		case TPACKET_V3:
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 			po->tp_version = val;
 			return 0;
 		default:
 			return -EINVAL;
 		}
+<<<<<<< HEAD
 =======
 			break;
 		default:
@@ -3290,6 +3375,8 @@ packet_setsockopt(struct socket *sock, int level, int optname, char __user *optv
 		release_sock(sk);
 		return ret;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	}
 	case PACKET_RESERVE:
 	{
@@ -3302,10 +3389,13 @@ packet_setsockopt(struct socket *sock, int level, int optname, char __user *optv
 		if (copy_from_user(&val, optval, sizeof(val)))
 			return -EFAULT;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		if (val > INT_MAX)
 			return -EINVAL;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		po->tp_reserve = val;
 		return 0;
 	}
@@ -3750,9 +3840,12 @@ static int packet_set_ring(struct sock *sk, union tpacket_req_u *req_u,
 	struct tpacket_req *req = &req_u->req;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	lock_sock(sk);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	/* Opening a Tx-ring is NOT supported in TPACKET_V3 */
 	if (!closing && tx_ring && (po->tp_version > TPACKET_V2)) {
 		WARN(1, "Tx-ring is not supported.\n");
@@ -3794,12 +3887,15 @@ static int packet_set_ring(struct sock *sk, union tpacket_req_u *req_u,
 		if (unlikely(req->tp_block_size & (PAGE_SIZE - 1)))
 			goto out;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		if (po->tp_version >= TPACKET_V3 &&
 		    req->tp_block_size <=
 			  BLK_PLUS_PRIV((u64)req_u->req3.tp_sizeof_priv))
 			goto out;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		if (unlikely(req->tp_frame_size < po->tp_hdrlen +
 					po->tp_reserve))
 			goto out;
@@ -3810,10 +3906,13 @@ static int packet_set_ring(struct sock *sk, union tpacket_req_u *req_u,
 		if (unlikely(rb->frames_per_block <= 0))
 			goto out;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		if (unlikely(req->tp_block_size > UINT_MAX / req->tp_block_nr))
 			goto out;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		if (unlikely((rb->frames_per_block * req->tp_block_nr) !=
 					req->tp_frame_nr))
 			goto out;
@@ -3831,10 +3930,14 @@ static int packet_set_ring(struct sock *sk, union tpacket_req_u *req_u,
 			if (!tx_ring)
 				init_prb_bdqc(po, rb, pg_vec, req_u, tx_ring);
 <<<<<<< HEAD
+<<<<<<< HEAD
 				break;
 =======
 			break;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+				break;
+>>>>>>> 2617302... source
 		default:
 			break;
 		}
@@ -3847,9 +3950,13 @@ static int packet_set_ring(struct sock *sk, union tpacket_req_u *req_u,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	lock_sock(sk);
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	lock_sock(sk);
+>>>>>>> 2617302... source
 
 	/* Detach socket from network */
 	spin_lock(&po->bind_lock);
@@ -3899,17 +4006,24 @@ static int packet_set_ring(struct sock *sk, union tpacket_req_u *req_u,
 			prb_shutdown_retire_blk_timer(po, tx_ring, rb_queue);
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	release_sock(sk);
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	release_sock(sk);
+>>>>>>> 2617302... source
 
 	if (pg_vec)
 		free_pg_vec(pg_vec, order, req->tp_block_nr);
 out:
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	release_sock(sk);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	return err;
 }
 

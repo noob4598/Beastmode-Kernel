@@ -952,12 +952,17 @@ static void extract_buf(struct entropy_store *r, __u8 *out)
 	 */
 	sha_transform(hash.w, extract, workspace);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	memset(extract, 0, sizeof(extract));
 	memset(workspace, 0, sizeof(workspace));
 =======
 	memzero_explicit(extract, sizeof(extract));
 	memzero_explicit(workspace, sizeof(workspace));
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	memset(extract, 0, sizeof(extract));
+	memset(workspace, 0, sizeof(workspace));
+>>>>>>> 2617302... source
 
 	/*
 	 * In case the hash function has some recognizable output
@@ -981,10 +986,14 @@ static void extract_buf(struct entropy_store *r, __u8 *out)
 
 	memcpy(out, &hash, EXTRACT_SIZE);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	memset(&hash, 0, sizeof(hash));
 =======
 	memzero_explicit(&hash, sizeof(hash));
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	memset(&hash, 0, sizeof(hash));
+>>>>>>> 2617302... source
 }
 
 static ssize_t extract_entropy(struct entropy_store *r, void *buf,
@@ -1033,10 +1042,14 @@ static ssize_t extract_entropy(struct entropy_store *r, void *buf,
 
 	/* Wipe data just returned from memory */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	memset(tmp, 0, sizeof(tmp));
 =======
 	memzero_explicit(tmp, sizeof(tmp));
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	memset(tmp, 0, sizeof(tmp));
+>>>>>>> 2617302... source
 
 	return ret;
 }
@@ -1075,10 +1088,14 @@ static ssize_t extract_entropy_user(struct entropy_store *r, void __user *buf,
 
 	/* Wipe data just returned from memory */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	memset(tmp, 0, sizeof(tmp));
 =======
 	memzero_explicit(tmp, sizeof(tmp));
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	memset(tmp, 0, sizeof(tmp));
+>>>>>>> 2617302... source
 
 	return ret;
 }
@@ -1531,6 +1548,7 @@ EXPORT_SYMBOL(get_random_int);
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
  * Same as get_random_int(), but returns unsigned long.
  */
@@ -1555,6 +1573,8 @@ EXPORT_SYMBOL(get_random_long);
 
 /*
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
  * randomize_range() returns a start address such that
  *
  *    [...... <range> .....]

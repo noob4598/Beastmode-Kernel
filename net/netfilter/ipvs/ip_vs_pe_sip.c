@@ -89,10 +89,14 @@ ip_vs_sip_fill_param(struct ip_vs_conn_param *p, struct sk_buff *skb)
 	datalen = skb->len - dataoff;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (get_callid(dptr, dataoff, datalen, &matchoff, &matchlen))
 =======
 	if (get_callid(dptr, 0, datalen, &matchoff, &matchlen))
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (get_callid(dptr, dataoff, datalen, &matchoff, &matchlen))
+>>>>>>> 2617302... source
 		return -EINVAL;
 
 	/* N.B: pe_data is only set on success,

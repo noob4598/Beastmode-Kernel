@@ -264,6 +264,7 @@ lpfc_sli4_eq_get(struct lpfc_queue *q)
 
 	q->hba_index = idx;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 	/*
@@ -276,6 +277,8 @@ lpfc_sli4_eq_get(struct lpfc_queue *q)
 	 */
 	mb();
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	return eqe;
 }
 
@@ -382,6 +385,7 @@ lpfc_sli4_cq_get(struct lpfc_queue *q)
 	cqe = q->qe[q->hba_index].cqe;
 	q->hba_index = idx;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 	/*
@@ -395,6 +399,8 @@ lpfc_sli4_cq_get(struct lpfc_queue *q)
 	 */
 	mb();
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	return cqe;
 }
 

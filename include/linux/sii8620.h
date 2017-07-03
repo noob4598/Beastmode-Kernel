@@ -144,10 +144,14 @@ struct sii8620_platform_data {
 #endif
 };
 <<<<<<< HEAD
+<<<<<<< HEAD
 extern int system_rev;
 =======
 extern unsigned int system_rev;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+extern int system_rev;
+>>>>>>> 2617302... source
 int acc_register_notifier(struct notifier_block *nb);
 #if defined(CONFIG_MACH_TRLTE_LDU) || defined(CONFIG_MACH_TBLTE_LDU)
 bool sii8620_hmt_connect(void);

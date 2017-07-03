@@ -371,9 +371,12 @@ int udpv6_recvmsg(struct kiocb *iocb, struct sock *sk,
 	int err;
 	int is_udplite = IS_UDPLITE(sk);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	bool checksum_valid = false;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	int is_udp4;
 	bool slow;
 
@@ -406,6 +409,9 @@ try_again:
 
 	if (copied < ulen || UDP_SKB_CB(skb)->partial_cov) {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		if (udp_lib_checksum_complete(skb))
 			goto csum_copy_err;
 	}
@@ -415,6 +421,7 @@ try_again:
 					      msg->msg_iov, copied);
 	else {
 		err = skb_copy_and_csum_datagram_iovec(skb, sizeof(struct udphdr), msg->msg_iov);
+<<<<<<< HEAD
 =======
 		checksum_valid = !udp_lib_checksum_complete(skb);
 		if (!checksum_valid)
@@ -428,6 +435,8 @@ try_again:
 		err = skb_copy_and_csum_datagram_iovec(skb, sizeof(struct udphdr),
 						       msg->msg_iov, copied);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		if (err == -EINVAL)
 			goto csum_copy_err;
 	}
@@ -858,16 +867,22 @@ int __udp6_lib_rcv(struct sk_buff *skb, struct udp_table *udptable,
 		sock_put(sk);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		/* a return value > 0 means to resubmit the input, but
 		 * it wants the return to be -protocol, or 0
 		 */
 		if (ret > 0)
 			return -ret;
+<<<<<<< HEAD
 =======
 		/* a return value > 0 means to resubmit the input */
 		if (ret > 0)
 			return ret;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 		return 0;
 	}
@@ -1040,9 +1055,12 @@ int udpv6_sendmsg(struct kiocb *iocb, struct sock *sk,
 	struct in6_addr *daddr, *final_p, final;
 	struct ipv6_txoptions *opt = NULL;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct ipv6_txoptions *opt_to_free = NULL;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	struct ip6_flowlabel *flowlabel = NULL;
 	struct flowi6 fl6;
 	struct dst_entry *dst;
@@ -1198,6 +1216,7 @@ do_udp_sendmsg:
 		connected = 0;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (opt == NULL)
 		opt = np->opt;
 =======
@@ -1206,6 +1225,10 @@ do_udp_sendmsg:
 		opt_to_free = opt;
 	}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (opt == NULL)
+		opt = np->opt;
+>>>>>>> 2617302... source
 	if (flowlabel)
 		opt = fl6_merge_options(&opt_space, flowlabel, opt);
 	opt = ipv6_fixup_options(&opt_space, opt);
@@ -1307,9 +1330,12 @@ out:
 	dst_release(dst);
 	fl6_sock_release(flowlabel);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	txopt_put(opt_to_free);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	if (!err)
 		return len;
 	/*
@@ -1515,9 +1541,12 @@ struct proto udpv6_prot = {
 #endif
 	.clear_sk	   = udp_v6_clear_sk,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	.diag_destroy      = udp_abort,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 };
 
 static struct inet_protosw udpv6_protosw = {

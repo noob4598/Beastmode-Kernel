@@ -1,9 +1,13 @@
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright (c) 2013-2014, The Linux Foundation. All rights reserved.
 =======
  * Copyright (c) 2013-2014,2017 The Linux Foundation. All rights reserved.
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+ * Copyright (c) 2013-2014, The Linux Foundation. All rights reserved.
+>>>>>>> 2617302... source
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -23,9 +27,12 @@
 #define QSEECOM_KEY_ID_SIZE   32
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define QSEOS_RESULT_FAIL_SEND_CMD_NO_THREAD  -19   /*0xFFFFFFED*/
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 #define QSEOS_RESULT_FAIL_UNSUPPORTED_CE_PIPE -63
 #define QSEOS_RESULT_FAIL_KS_OP               -64
 #define QSEOS_RESULT_FAIL_KEY_ID_EXISTS       -65
@@ -65,12 +72,15 @@ enum qseecom_qceos_cmd_id {
 	QSEOS_SET_KEY,
 	QSEOS_UPDATE_KEY_USERINFO,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	QSEOS_CLIENT_SEND_DATA_COMMAND_WHITELIST = 0x1C,
 	QSEOS_TEE_OPEN_SESSION_WHITELIST = 0x1D,
 	QSEOS_TEE_INVOKE_COMMAND_WHITELIST = 0x1E,
 	QSEOS_LISTENER_DATA_RSP_COMMAND_WHITELIST = 0x1F,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	QSEOS_CMD_MAX     = 0xEFFFFFFF
 };
 
@@ -142,10 +152,13 @@ __packed struct qseecom_client_send_data_ireq {
 	void *rsp_ptr;   /* First 4 bytes should always be the return status */
 	uint32_t rsp_len;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	uint32_t sglistinfo_ptr;
 	uint32_t sglistinfo_len;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 };
 
 __packed struct qseecom_reg_log_buf_ireq {
@@ -160,10 +173,13 @@ __packed struct qseecom_client_listener_data_irsp {
 	uint32_t listener_id;
 	uint32_t status;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	uint32_t sglistinfo_ptr;
 	uint32_t sglistinfo_len;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 };
 
 /*

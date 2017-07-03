@@ -2048,16 +2048,22 @@ static int w1_ds28e15_add_slave(struct w1_slave *sl)
 	if(!verification)
 	{
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		pr_info("%s:uevent send 1\n", __func__);
 		input_report_switch(sl->master->bus_master->input, SW_W1, 1);
 		input_sync(sl->master->bus_master->input);
 		w1_ds28e15_update_slave_info(sl);
+<<<<<<< HEAD
 =======
 		w1_ds28e15_update_slave_info(sl);
 		pr_info("%s:uevent send 1\n", __func__);
 		input_report_switch(sl->master->bus_master->input, SW_W1, 1);
 		input_sync(sl->master->bus_master->input);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	}
 
 	printk(KERN_ERR "w1_ds28e15_add_slave end, skip_setup=%d, err=%d\n", skip_setup, err);

@@ -221,18 +221,27 @@ DO_ERROR(X86_TRAP_OLD_MF, SIGFPE, "coprocessor segment overrun",
 DO_ERROR(X86_TRAP_TS, SIGSEGV, "invalid TSS", invalid_TSS)
 DO_ERROR(X86_TRAP_NP, SIGBUS, "segment not present", segment_not_present)
 <<<<<<< HEAD
+<<<<<<< HEAD
 #ifdef CONFIG_X86_32
 DO_ERROR(X86_TRAP_SS, SIGBUS, "stack segment", stack_segment)
 #endif
 =======
 DO_ERROR(X86_TRAP_SS, SIGBUS, "stack segment", stack_segment)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+#ifdef CONFIG_X86_32
+DO_ERROR(X86_TRAP_SS, SIGBUS, "stack segment", stack_segment)
+#endif
+>>>>>>> 2617302... source
 DO_ERROR_INFO(X86_TRAP_AC, SIGBUS, "alignment check", alignment_check,
 		BUS_ADRALN, 0)
 
 #ifdef CONFIG_X86_64
 /* Runs on IST stack */
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 dotraplinkage void do_stack_segment(struct pt_regs *regs, long error_code)
 {
 	enum ctx_state prev_state;
@@ -247,13 +256,17 @@ dotraplinkage void do_stack_segment(struct pt_regs *regs, long error_code)
 	exception_exit(prev_state);
 }
 
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 dotraplinkage void do_double_fault(struct pt_regs *regs, long error_code)
 {
 	static const char str[] = "double fault";
 	struct task_struct *tsk = current;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 #ifdef CONFIG_X86_ESPFIX64
@@ -281,6 +294,8 @@ dotraplinkage void do_double_fault(struct pt_regs *regs, long error_code)
 #endif
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	exception_enter();
 	/* Return not checked because double check cannot be ignored */
 	notify_die(DIE_TRAP, str, regs, error_code, X86_TRAP_DF, SIGSEGV);
@@ -389,10 +404,14 @@ exit:
  * entry.S
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 asmlinkage __kprobes struct pt_regs *sync_regs(struct pt_regs *eregs)
 =======
 asmlinkage notrace __kprobes struct pt_regs *sync_regs(struct pt_regs *eregs)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+asmlinkage __kprobes struct pt_regs *sync_regs(struct pt_regs *eregs)
+>>>>>>> 2617302... source
 {
 	struct pt_regs *regs = eregs;
 	/* Did already sync */
@@ -411,6 +430,7 @@ asmlinkage notrace __kprobes struct pt_regs *sync_regs(struct pt_regs *eregs)
 		*regs = *eregs;
 	return regs;
 }
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 
@@ -443,6 +463,8 @@ struct bad_iret_stack *fixup_bad_iret(struct bad_iret_stack *s)
 	return new_stack;
 }
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 #endif
 
 /*
@@ -816,10 +838,14 @@ void __init trap_init(void)
 	set_intr_gate(X86_TRAP_TS, &invalid_TSS);
 	set_intr_gate(X86_TRAP_NP, &segment_not_present);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	set_intr_gate_ist(X86_TRAP_SS, &stack_segment, STACKFAULT_STACK);
 =======
 	set_intr_gate(X86_TRAP_SS, stack_segment);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	set_intr_gate_ist(X86_TRAP_SS, &stack_segment, STACKFAULT_STACK);
+>>>>>>> 2617302... source
 	set_intr_gate(X86_TRAP_GP, &general_protection);
 	set_intr_gate(X86_TRAP_SPURIOUS, &spurious_interrupt_bug);
 	set_intr_gate(X86_TRAP_MF, &coprocessor_error);

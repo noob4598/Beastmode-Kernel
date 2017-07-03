@@ -106,9 +106,12 @@ static int exynos_rng_probe(struct platform_device *pdev)
 	struct exynos_rng *exynos_rng;
 	struct resource *res;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	int ret;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	exynos_rng = devm_kzalloc(&pdev->dev, sizeof(struct exynos_rng),
 					GFP_KERNEL);
@@ -137,6 +140,7 @@ static int exynos_rng_probe(struct platform_device *pdev)
 	pm_runtime_enable(&pdev->dev);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return hwrng_register(&exynos_rng->rng);
 =======
 	ret = hwrng_register(&exynos_rng->rng);
@@ -147,6 +151,9 @@ static int exynos_rng_probe(struct platform_device *pdev)
 
 	return ret;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	return hwrng_register(&exynos_rng->rng);
+>>>>>>> 2617302... source
 }
 
 static int exynos_rng_remove(struct platform_device *pdev)

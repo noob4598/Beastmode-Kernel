@@ -36,9 +36,12 @@
 #include <linux/blkdev.h>
 #include <linux/compat.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <linux/personality.h>
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 #include <asm/kmap_types.h>
 #include <asm/uaccess.h>
@@ -158,11 +161,14 @@ static int aio_setup_ring(struct kioctx *ctx)
 	int nr_pages;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (current->personality & READ_IMPLIES_EXEC)
 		return -EPERM;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	/* Compensate for the ring buffer's head/tail overlap entry */
 	nr_events += 2;	/* 1 is required, 2 for good luck */
 
@@ -321,9 +327,13 @@ static void free_ioctx(struct kioctx *ctx)
 		avail = (head <= ctx->tail ? ctx->tail : ctx->nr_events) - head;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		atomic_sub(avail, &ctx->reqs_active);
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		atomic_sub(avail, &ctx->reqs_active);
+>>>>>>> 2617302... source
 		head += avail;
 		head %= ctx->nr_events;
 	}
@@ -692,9 +702,12 @@ put_rq:
 	/* everything turned out well, dispose of the aiocb. */
 	aio_put_req(iocb);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	atomic_dec(&ctx->reqs_active);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	/*
 	 * We have to order our ring_info tail store above and test
@@ -735,10 +748,13 @@ static long aio_read_events_ring(struct kioctx *ctx,
 		goto out;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	head %= ctx->nr_events;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	while (ret < nr) {
 		long avail;
 		struct io_event *ev;
@@ -778,10 +794,15 @@ static long aio_read_events_ring(struct kioctx *ctx,
 
 	pr_debug("%li  h%u t%u\n", ret, head, ctx->tail);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	atomic_sub(ret, &ctx->reqs_active);
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+
+	atomic_sub(ret, &ctx->reqs_active);
+>>>>>>> 2617302... source
 out:
 	mutex_unlock(&ctx->ring_lock);
 
@@ -1003,12 +1024,16 @@ static ssize_t aio_setup_vectored_rw(int rw, struct kiocb *kiocb, bool compat)
 static ssize_t aio_setup_single_vector(int rw, struct kiocb *kiocb)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	if (unlikely(!access_ok(!rw, kiocb->ki_buf, kiocb->ki_nbytes)))
 		return -EFAULT;
 
 	kiocb->ki_iovec = &kiocb->ki_inline_vec;
 	kiocb->ki_iovec->iov_base = kiocb->ki_buf;
 	kiocb->ki_iovec->iov_len = kiocb->ki_nbytes;
+<<<<<<< HEAD
 =======
 	size_t len = kiocb->ki_nbytes;
 
@@ -1022,6 +1047,8 @@ static ssize_t aio_setup_single_vector(int rw, struct kiocb *kiocb)
 	kiocb->ki_iovec->iov_base = kiocb->ki_buf;
 	kiocb->ki_iovec->iov_len = len;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	kiocb->ki_nr_segs = 1;
 	return 0;
 }

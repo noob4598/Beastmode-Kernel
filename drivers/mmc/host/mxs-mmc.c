@@ -313,11 +313,14 @@ static void mxs_mmc_ac(struct mxs_mmc_host *host)
 	cmd1 = cmd->arg;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (cmd->opcode == MMC_STOP_TRANSMISSION)
 		cmd0 |= BM_SSP_CMD0_APPEND_8CYC;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	if (host->sdio_irq_en) {
 		ctrl0 |= BM_SSP_CTRL0_SDIO_IRQ_CHECK;
 		cmd0 |= BM_SSP_CMD0_CONT_CLKING_EN | BM_SSP_CMD0_SLOW_CLKING_EN;
@@ -427,11 +430,16 @@ static void mxs_mmc_adtc(struct mxs_mmc_host *host)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if ((cmd->opcode == MMC_STOP_TRANSMISSION) ||
 	    (cmd->opcode == SD_IO_RW_EXTENDED))
 =======
 	if (cmd->opcode == SD_IO_RW_EXTENDED)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if ((cmd->opcode == MMC_STOP_TRANSMISSION) ||
+	    (cmd->opcode == SD_IO_RW_EXTENDED))
+>>>>>>> 2617302... source
 		cmd0 |= BM_SSP_CMD0_APPEND_8CYC;
 
 	cmd1 = cmd->arg;
@@ -685,20 +693,28 @@ static int mxs_mmc_probe(struct platform_device *pdev)
 	platform_set_drvdata(pdev, mmc);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	spin_lock_init(&host->lock);
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	ret = devm_request_irq(&pdev->dev, irq_err, mxs_mmc_irq_handler, 0,
 			       DRIVER_NAME, host);
 	if (ret)
 		goto out_free_dma;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	spin_lock_init(&host->lock);
 
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	spin_lock_init(&host->lock);
+
+>>>>>>> 2617302... source
 	ret = mmc_add_host(mmc);
 	if (ret)
 		goto out_free_dma;

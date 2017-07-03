@@ -1,8 +1,12 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* Copyright (c) 2014, The Linux Foundation. All rights reserved.
 =======
 /* Copyright (c) 2013-2014, The Linux Foundation. All rights reserved.
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+/* Copyright (c) 2014, The Linux Foundation. All rights reserved.
+>>>>>>> 2617302... source
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -19,6 +23,9 @@
 #include "mhi_hwio.h"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 #include <linux/hrtimer.h>
 #include <linux/cpu.h>
 #include <linux/kthread.h>
@@ -70,6 +77,7 @@ enum MHI_STATUS mhi_clean_init_stage(struct mhi_device_ctxt *mhi_dev_ctxt,
 	switch (cleanup_stage) {
 	case MHI_INIT_ERROR_STAGE_UNWIND_ALL:
 	case MHI_INIT_ERROR_TIMERS:
+<<<<<<< HEAD
 =======
 MHI_STATUS mhi_clean_init_stage(mhi_device_ctxt *mhi_dev_ctxt,
 		MHI_INIT_ERROR_STAGE cleanup_stage)
@@ -78,6 +86,8 @@ MHI_STATUS mhi_clean_init_stage(mhi_device_ctxt *mhi_dev_ctxt,
 	switch (cleanup_stage) {
 	case MHI_INIT_ERROR_STAGE_UNWIND_ALL:
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	case MHI_INIT_ERROR_STAGE_DEVICE_CTRL:
 		mhi_freememregion(mhi_dev_ctxt->mhi_ctrl_seg_info);
 	case MHI_INIT_ERROR_STAGE_THREAD_QUEUES:
@@ -101,6 +111,7 @@ MHI_STATUS mhi_clean_init_stage(mhi_device_ctxt *mhi_dev_ctxt,
 	return ret_val;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static enum MHI_STATUS mhi_init_sync(struct mhi_device_ctxt *mhi_dev_ctxt)
 =======
@@ -246,6 +257,9 @@ MHI_STATUS mhi_create_ctxt(mhi_device_ctxt **mhi_device)
  */
 MHI_STATUS mhi_init_sync(mhi_device_ctxt *mhi_dev_ctxt)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+static enum MHI_STATUS mhi_init_sync(struct mhi_device_ctxt *mhi_dev_ctxt)
+>>>>>>> 2617302... source
 {
 	u32 i = 0;
 
@@ -291,10 +305,14 @@ ev_mutex_free:
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 static enum MHI_STATUS mhi_init_ctrl_zone(struct mhi_pcie_dev_info *dev_info,
 				struct mhi_device_ctxt *mhi_dev_ctxt)
 {
 	mhi_dev_ctxt->mhi_ctrl_seg_info = kmalloc(sizeof(struct mhi_meminfo),
+<<<<<<< HEAD
 =======
 /**
  * @brief Initialize the memory zone structures which hold the virt/phys
@@ -310,6 +328,8 @@ MHI_STATUS mhi_init_ctrl_zone(mhi_pcie_dev_info *dev_info,
 {
 	mhi_dev_ctxt->mhi_ctrl_seg_info = kmalloc(sizeof(mhi_meminfo),
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 							GFP_KERNEL);
 	if (NULL == mhi_dev_ctxt->mhi_ctrl_seg_info)
 		return MHI_STATUS_ALLOC_ERROR;
@@ -317,6 +337,7 @@ MHI_STATUS mhi_init_ctrl_zone(mhi_pcie_dev_info *dev_info,
 	return MHI_STATUS_SUCCESS;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static enum MHI_STATUS mhi_init_events(struct mhi_device_ctxt *mhi_dev_ctxt)
 =======
@@ -351,6 +372,9 @@ MHI_STATUS mhi_spawn_threads(mhi_device_ctxt *mhi_dev_ctxt)
  */
 MHI_STATUS mhi_init_events(mhi_device_ctxt *mhi_dev_ctxt)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+static enum MHI_STATUS mhi_init_events(struct mhi_device_ctxt *mhi_dev_ctxt)
+>>>>>>> 2617302... source
 {
 
 	mhi_dev_ctxt->event_handle = kmalloc(sizeof(wait_queue_head_t),
@@ -366,26 +390,37 @@ MHI_STATUS mhi_init_events(mhi_device_ctxt *mhi_dev_ctxt)
 		goto error_event_handle_alloc;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* Initialize the event which signals M0 */
 =======
 	/* Initialize the event which signals M0*/
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	/* Initialize the event which signals M0 */
+>>>>>>> 2617302... source
 	mhi_dev_ctxt->M0_event = kmalloc(sizeof(wait_queue_head_t), GFP_KERNEL);
 	if (NULL == mhi_dev_ctxt->M0_event) {
 		mhi_log(MHI_MSG_ERROR, "Failed to init event");
 		goto error_state_change_event_handle;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* Initialize the event which signals M0 */
 =======
 	/* Initialize the event which signals M0*/
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	/* Initialize the event which signals M0 */
+>>>>>>> 2617302... source
 	mhi_dev_ctxt->M3_event = kmalloc(sizeof(wait_queue_head_t), GFP_KERNEL);
 	if (NULL == mhi_dev_ctxt->M3_event) {
 		mhi_log(MHI_MSG_ERROR, "Failed to init event");
 		goto error_M0_event;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	/* Initialize the event which signals M0 */
 	mhi_dev_ctxt->bhi_event = kmalloc(sizeof(wait_queue_head_t),
 								GFP_KERNEL);
@@ -398,18 +433,24 @@ MHI_STATUS mhi_init_events(mhi_device_ctxt *mhi_dev_ctxt)
 	if (NULL == mhi_dev_ctxt->chan_start_complete) {
 		mhi_log(MHI_MSG_ERROR, "Failed to init event");
 		goto error_chan_complete;
+<<<<<<< HEAD
 =======
 	mhi_dev_ctxt->chan_start_complete= kmalloc(sizeof(wait_queue_head_t), GFP_KERNEL);
 	if (NULL == mhi_dev_ctxt->chan_start_complete) {
 		mhi_log(MHI_MSG_ERROR, "Failed to init event");
 		goto error_M3_event;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	}
 	/* Initialize the event which starts the event parsing thread */
 	init_waitqueue_head(mhi_dev_ctxt->event_handle);
 	/* Initialize the event which starts the state change thread */
 	init_waitqueue_head(mhi_dev_ctxt->state_change_event_handle);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	/* Initialize the event which triggers clients waiting to send */
 	init_waitqueue_head(mhi_dev_ctxt->M0_event);
 	/* Initialize the event which triggers D3hot */
@@ -421,6 +462,7 @@ MHI_STATUS mhi_init_events(mhi_device_ctxt *mhi_dev_ctxt)
 error_chan_complete:
 	kfree(mhi_dev_ctxt->bhi_event);
 error_bhi_event:
+<<<<<<< HEAD
 =======
 	/* Initialize the event which triggers clients waiting to send*/
 	init_waitqueue_head(mhi_dev_ctxt->M0_event);
@@ -431,6 +473,8 @@ error_bhi_event:
 	return MHI_STATUS_SUCCESS;
 error_M3_event:
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	kfree(mhi_dev_ctxt->M3_event);
 error_M0_event:
 	kfree(mhi_dev_ctxt->M0_event);
@@ -441,6 +485,9 @@ error_event_handle_alloc:
 	return MHI_STATUS_ERROR;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 
 static enum MHI_STATUS mhi_init_state_change_thread_work_queue(
 			struct mhi_state_work_queue *q)
@@ -448,6 +495,7 @@ static enum MHI_STATUS mhi_init_state_change_thread_work_queue(
 	bool lock_acquired = 0;
 	unsigned long flags;
 
+<<<<<<< HEAD
 =======
 /**
  * @brief Initialize the work item list for the state change thread
@@ -463,6 +511,8 @@ MHI_STATUS mhi_init_state_change_thread_work_queue(mhi_state_work_queue *q)
 	u32 mutex_acquired = 0;
 	unsigned long flags = 0;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	if (NULL == q->q_lock) {
 		q->q_lock = kmalloc(sizeof(spinlock_t), GFP_KERNEL);
 		if (NULL == q->q_lock)
@@ -471,30 +521,41 @@ MHI_STATUS mhi_init_state_change_thread_work_queue(mhi_state_work_queue *q)
 	} else {
 		spin_lock_irqsave(q->q_lock, flags);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		lock_acquired = 1;
 =======
 		mutex_acquired = 1;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		lock_acquired = 1;
+>>>>>>> 2617302... source
 	}
 	q->queue_full_cntr = 0;
 	q->q_info.base = q->buf;
 	q->q_info.rp = q->buf;
 	q->q_info.wp = q->buf;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	q->q_info.len = MHI_WORK_Q_MAX_SIZE * sizeof(enum STATE_TRANSITION);
 	q->q_info.el_size = sizeof(enum STATE_TRANSITION);
 	q->q_info.overwrite_en = 0;
 	if (lock_acquired)
+<<<<<<< HEAD
 =======
 	q->q_info.len = MHI_WORK_Q_MAX_SIZE * sizeof(STATE_TRANSITION);
 	q->q_info.el_size = sizeof(STATE_TRANSITION);
 	q->q_info.overwrite_en = 0;
 	if (mutex_acquired)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		spin_unlock_irqrestore(q->q_lock, flags);
 
 	return MHI_STATUS_SUCCESS;
 }
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 static enum MHI_STATUS mhi_init_device_ctrl(struct mhi_device_ctxt
@@ -553,12 +614,20 @@ MHI_STATUS mhi_init_event_ring(mhi_device_ctxt *mhi_dev_ctxt, u32 nr_ev_el,
  */
 MHI_STATUS mhi_init_device_ctrl(mhi_device_ctxt *mhi_device)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+
+static enum MHI_STATUS mhi_init_device_ctrl(struct mhi_device_ctxt
+								*mhi_dev_ctxt)
+>>>>>>> 2617302... source
 {
 	size_t ctrl_seg_size = 0;
 	size_t ctrl_seg_offset = 0;
 	u32 i = 0;
 	u32 align_len = sizeof(u64)*2;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	enum MHI_STATUS ret_val = MHI_STATUS_SUCCESS;
 
 	mhi_dev_ctxt->enable_lpm = 1;
@@ -568,6 +637,7 @@ MHI_STATUS mhi_init_device_ctrl(mhi_device_ctxt *mhi_device)
 
 	mhi_log(MHI_MSG_INFO, "Allocating control segment.\n");
 	ctrl_seg_size += sizeof(struct mhi_control_seg);
+<<<<<<< HEAD
 =======
 	MHI_STATUS ret_val = MHI_STATUS_SUCCESS;
 
@@ -579,27 +649,38 @@ MHI_STATUS mhi_init_device_ctrl(mhi_device_ctxt *mhi_device)
 	mhi_log(MHI_MSG_INFO, "Allocating control segment.\n");
 	ctrl_seg_size += sizeof(mhi_control_seg);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	/* Calculate the size of the control segment needed */
 	ctrl_seg_size += align_len - (ctrl_seg_size % align_len);
 	for (i = 0; i < MHI_MAX_CHANNELS; ++i) {
 		if (IS_HARDWARE_CHANNEL(i))
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 			ctrl_seg_size += sizeof(union mhi_xfer_pkt) *
 				(MAX_NR_TRBS_PER_HARD_CHAN + ELEMENT_GAP);
 		else if (IS_SOFTWARE_CHANNEL(i))
 			ctrl_seg_size += sizeof(union mhi_xfer_pkt) *
+<<<<<<< HEAD
 =======
 			ctrl_seg_size += sizeof(mhi_xfer_pkt) *
 				(MAX_NR_TRBS_PER_HARD_CHAN + ELEMENT_GAP);
 		else if (IS_SOFTWARE_CHANNEL(i))
 			ctrl_seg_size += sizeof(mhi_xfer_pkt) *
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 				(MAX_NR_TRBS_PER_SOFT_CHAN + ELEMENT_GAP);
 	}
 	ctrl_seg_size += align_len - (ctrl_seg_size % align_len);
 
 	for (i = 0; i < EVENT_RINGS_ALLOCATED; ++i)
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		ctrl_seg_size += sizeof(union mhi_event_pkt)*
 					(EV_EL_PER_RING + ELEMENT_GAP);
 
@@ -617,6 +698,7 @@ MHI_STATUS mhi_init_device_ctrl(mhi_device_ctxt *mhi_device)
 	/* Set the channel contexts, event contexts and cmd context */
 	ctrl_seg_offset = (uintptr_t)mhi_dev_ctxt->mhi_ctrl_seg +
 						sizeof(struct mhi_control_seg);
+<<<<<<< HEAD
 =======
 		ctrl_seg_size += sizeof(mhi_event_pkt)*
 					(EV_EL_PER_RING + ELEMENT_GAP);
@@ -636,11 +718,16 @@ MHI_STATUS mhi_init_device_ctrl(mhi_device_ctxt *mhi_device)
 	ctrl_seg_offset = (uintptr_t)mhi_device->mhi_ctrl_seg +
 						sizeof(mhi_control_seg);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	ctrl_seg_offset += align_len - (ctrl_seg_offset % align_len);
 	/* Set the TRB lists */
 	for (i = 0; i < MHI_MAX_CHANNELS; ++i) {
 		if (IS_HARDWARE_CHANNEL(i)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 			mhi_dev_ctxt->mhi_ctrl_seg->xfer_trb_list[i] =
 				(union mhi_xfer_pkt *)ctrl_seg_offset;
 			ctrl_seg_offset += sizeof(union mhi_xfer_pkt) *
@@ -650,6 +737,7 @@ MHI_STATUS mhi_init_device_ctrl(mhi_device_ctxt *mhi_device)
 			mhi_dev_ctxt->mhi_ctrl_seg->xfer_trb_list[i] =
 				(union mhi_xfer_pkt *)ctrl_seg_offset;
 			ctrl_seg_offset += sizeof(union mhi_xfer_pkt) *
+<<<<<<< HEAD
 =======
 			mhi_device->mhi_ctrl_seg->xfer_trb_list[i] =
 				(mhi_xfer_pkt *)ctrl_seg_offset;
@@ -661,12 +749,15 @@ MHI_STATUS mhi_init_device_ctrl(mhi_device_ctxt *mhi_device)
 				(mhi_xfer_pkt *)ctrl_seg_offset;
 			ctrl_seg_offset += sizeof(mhi_xfer_pkt) *
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 				(MAX_NR_TRBS_PER_SOFT_CHAN + ELEMENT_GAP);
 		}
 	}
 
 	ctrl_seg_offset += align_len - (ctrl_seg_offset % align_len);
 	for (i = 0; i < EVENT_RINGS_ALLOCATED; ++i) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		mhi_dev_ctxt->mhi_ctrl_seg->ev_trb_list[i] =
 			(union mhi_event_pkt *)ctrl_seg_offset;
@@ -676,11 +767,19 @@ MHI_STATUS mhi_init_device_ctrl(mhi_device_ctxt *mhi_device)
 			(mhi_event_pkt *)ctrl_seg_offset;
 		ctrl_seg_offset += sizeof(mhi_event_pkt) *
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		mhi_dev_ctxt->mhi_ctrl_seg->ev_trb_list[i] =
+			(union mhi_event_pkt *)ctrl_seg_offset;
+		ctrl_seg_offset += sizeof(union mhi_event_pkt) *
+>>>>>>> 2617302... source
 			(EV_EL_PER_RING + ELEMENT_GAP);
 	}
 	return MHI_STATUS_SUCCESS;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 /**
  * mhi_event_ring_init - Initialize an event ring
  *
@@ -771,6 +870,7 @@ static enum MHI_STATUS mhi_init_contexts(struct mhi_device_ctxt *mhi_dev_ctxt)
 	union mhi_xfer_pkt *trb_list = NULL;
 	struct mhi_chan_ctxt *chan_ctxt = NULL;
 	struct mhi_ring *local_event_ctxt = NULL;
+<<<<<<< HEAD
 =======
 
 /**
@@ -794,6 +894,8 @@ MHI_STATUS mhi_init_contexts(mhi_device_ctxt *mhi_device)
 	mhi_chan_ctxt *chan_ctxt = NULL;
 	mhi_ring *local_event_ctxt = NULL;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	u32 msi_vec = 0;
 	u32 intmod_t = 0;
 	uintptr_t ev_ring_addr;
@@ -801,10 +903,14 @@ MHI_STATUS mhi_init_contexts(mhi_device_ctxt *mhi_device)
 	for (i = 0; i < EVENT_RINGS_ALLOCATED; ++i) {
 		MHI_GET_EVENT_RING_INFO(EVENT_RING_MSI_VEC,
 <<<<<<< HEAD
+<<<<<<< HEAD
 					mhi_dev_ctxt->ev_ring_props[i],
 =======
 					mhi_device->ev_ring_props[i],
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+					mhi_dev_ctxt->ev_ring_props[i],
+>>>>>>> 2617302... source
 					msi_vec);
 		switch (i) {
 		case IPA_OUT_EV_RING:
@@ -815,12 +921,16 @@ MHI_STATUS mhi_init_contexts(mhi_device_ctxt *mhi_device)
 			break;
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		event_ring_index = mhi_dev_ctxt->alloced_ev_rings[i];
 		event_ctxt = &mhi_ctrl->mhi_ec_list[event_ring_index];
 		local_event_ctxt =
 			&mhi_dev_ctxt->mhi_local_event_ctxt[event_ring_index];
 
 		ev_ring_addr = mhi_v2p_addr(mhi_dev_ctxt->mhi_ctrl_seg_info,
+<<<<<<< HEAD
 =======
 		event_ring_index = mhi_device->alloced_ev_rings[i];
 		event_ctxt = &mhi_ctrl->mhi_ec_list[event_ring_index];
@@ -829,6 +939,8 @@ MHI_STATUS mhi_init_contexts(mhi_device_ctxt *mhi_device)
 
 		ev_ring_addr = mhi_v2p_addr(mhi_device->mhi_ctrl_seg_info,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 					(uintptr_t)mhi_ctrl->ev_trb_list[i]);
 		mhi_log(MHI_MSG_VERBOSE,
 			"Setting msi_vec 0x%x, for ev ring ctxt 0x%x\n",
@@ -842,11 +954,15 @@ MHI_STATUS mhi_init_contexts(mhi_device_ctxt *mhi_device)
 	/* Init Command Ring */
 	mhi_cmd_ring_init(&mhi_ctrl->mhi_cmd_ctxt_list[PRIMARY_CMD_RING],
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 			mhi_v2p_addr(mhi_dev_ctxt->mhi_ctrl_seg_info,
 			(uintptr_t)mhi_ctrl->cmd_trb_list[PRIMARY_CMD_RING]),
 			(uintptr_t)mhi_ctrl->cmd_trb_list[PRIMARY_CMD_RING],
 			CMD_EL_PER_RING,
 			&mhi_dev_ctxt->mhi_local_cmd_ctxt[PRIMARY_CMD_RING]);
+<<<<<<< HEAD
 =======
 			mhi_v2p_addr(mhi_device->mhi_ctrl_seg_info,
 			(uintptr_t)mhi_ctrl->cmd_trb_list[PRIMARY_CMD_RING]),
@@ -854,16 +970,22 @@ MHI_STATUS mhi_init_contexts(mhi_device_ctxt *mhi_device)
 			CMD_EL_PER_RING,
 			&mhi_device->mhi_local_cmd_ctxt[PRIMARY_CMD_RING]);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	mhi_log(MHI_MSG_INFO, "Initializing contexts\n");
 	/* Initialize Channel Contexts */
 	for (i = 0; i < MHI_MAX_CHANNELS; ++i) {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		trb_list = mhi_dev_ctxt->mhi_ctrl_seg->xfer_trb_list[i];
 		chan_ctxt = &mhi_dev_ctxt->mhi_ctrl_seg->mhi_cc_list[i];
 		if (IS_SOFTWARE_CHANNEL(i)) {
 			mhi_init_chan_ctxt(chan_ctxt,
 				mhi_v2p_addr(mhi_dev_ctxt->mhi_ctrl_seg_info,
+<<<<<<< HEAD
 =======
 		trb_list = mhi_device->mhi_ctrl_seg->xfer_trb_list[i];
 		chan_ctxt = &mhi_device->mhi_ctrl_seg->mhi_cc_list[i];
@@ -871,16 +993,22 @@ MHI_STATUS mhi_init_contexts(mhi_device_ctxt *mhi_device)
 			mhi_init_chan_ctxt(chan_ctxt,
 				mhi_v2p_addr(mhi_device->mhi_ctrl_seg_info,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 					(uintptr_t)trb_list),
 				(uintptr_t)trb_list,
 				MAX_NR_TRBS_PER_SOFT_CHAN,
 				(i % 2) ? MHI_IN : MHI_OUT,
 				0,
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 				&mhi_dev_ctxt->mhi_local_chan_ctxt[i]);
 		} else if (IS_HARDWARE_CHANNEL(i)) {
 			mhi_init_chan_ctxt(chan_ctxt,
 				mhi_v2p_addr(mhi_dev_ctxt->mhi_ctrl_seg_info,
+<<<<<<< HEAD
 =======
 				&mhi_device->mhi_local_chan_ctxt[i]);
 		} else if (IS_HARDWARE_CHANNEL(i)) {
@@ -888,27 +1016,38 @@ MHI_STATUS mhi_init_contexts(mhi_device_ctxt *mhi_device)
 			mhi_init_chan_ctxt(chan_ctxt,
 				mhi_v2p_addr(mhi_device->mhi_ctrl_seg_info,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 					(uintptr_t)trb_list),
 				(uintptr_t)trb_list,
 				MAX_NR_TRBS_PER_HARD_CHAN,
 				(i % 2) ? MHI_IN : MHI_OUT,
 				i,
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 				&mhi_dev_ctxt->mhi_local_chan_ctxt[i]);
 		}
 	}
 	mhi_dev_ctxt->mhi_state = MHI_STATE_RESET;
+<<<<<<< HEAD
 =======
 				&mhi_device->mhi_local_chan_ctxt[i]);
 		}
 	}
 	mhi_device->mhi_state = MHI_STATE_RESET;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	return MHI_STATUS_SUCCESS;
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 static enum MHI_STATUS mhi_init_work_queues(
 		struct mhi_device_ctxt *mhi_dev_ctxt)
 {
@@ -943,6 +1082,7 @@ static enum MHI_STATUS mhi_spawn_threads(struct mhi_device_ctxt *mhi_dev_ctxt)
 							"mhi_st_thrd");
 	if (-ENOMEM == (int)mhi_dev_ctxt->event_thread_handle)
 		return MHI_STATUS_ERROR;
+<<<<<<< HEAD
 =======
 /**
  * @brief Initialize the channel context and shadow context
@@ -977,11 +1117,16 @@ MHI_STATUS mhi_init_chan_ctxt(mhi_chan_ctxt *cc_list,
 	ring->el_size = sizeof(mhi_tx_pkt);
 	ring->overwrite_en = 0;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	return MHI_STATUS_SUCCESS;
 }
 
 /**
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
  * @brief Main initialization function for a mhi struct device context
  *	 All threads, events mutexes, mhi specific data structures
  *	 are initialized here
@@ -1145,6 +1290,7 @@ enum MHI_STATUS mhi_reset_all_thread_queues(
 		struct mhi_device_ctxt *mhi_dev_ctxt)
 {
 	enum MHI_STATUS ret_val = MHI_STATUS_SUCCESS;
+<<<<<<< HEAD
 =======
  * @brief Initialize an event ring context
  *
@@ -1210,6 +1356,8 @@ MHI_STATUS mhi_reset_all_thread_queues(mhi_device_ctxt *mhi_dev_ctxt)
 {
 	MHI_STATUS ret_val = MHI_STATUS_SUCCESS;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	mhi_init_state_change_thread_work_queue(
 				&mhi_dev_ctxt->state_change_work_item_list);
@@ -1220,6 +1368,7 @@ MHI_STATUS mhi_reset_all_thread_queues(mhi_device_ctxt *mhi_dev_ctxt)
 	return ret_val;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 enum MHI_STATUS mhi_reg_notifiers(struct mhi_device_ctxt *mhi_dev_ctxt)
 =======
@@ -1249,6 +1398,9 @@ MHI_STATUS mhi_init_work_queues(mhi_device_ctxt *mhi_dev_ctxt)
 }
 MHI_STATUS mhi_reg_notifiers(mhi_device_ctxt *mhi_dev_ctxt)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+enum MHI_STATUS mhi_reg_notifiers(struct mhi_device_ctxt *mhi_dev_ctxt)
+>>>>>>> 2617302... source
 {
 	u32 ret_val;
 	if (NULL == mhi_dev_ctxt)
@@ -1261,6 +1413,7 @@ MHI_STATUS mhi_reg_notifiers(mhi_device_ctxt *mhi_dev_ctxt)
 		return MHI_STATUS_SUCCESS;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 MHI_STATUS mhi_init_wakelock(mhi_device_ctxt *mhi_dev_ctxt)
@@ -1269,3 +1422,6 @@ MHI_STATUS mhi_init_wakelock(mhi_device_ctxt *mhi_dev_ctxt)
 	return MHI_STATUS_SUCCESS;
 }
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+
+>>>>>>> 2617302... source

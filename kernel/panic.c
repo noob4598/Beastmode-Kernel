@@ -23,9 +23,12 @@
 #include <linux/init.h>
 #include <linux/nmi.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <linux/console.h>
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 #include <linux/coresight.h>
 #ifdef CONFIG_SEC_DEBUG
 #include <mach/sec_debug.h>
@@ -157,10 +160,13 @@ void panic(const char *fmt, ...)
 	bust_spinlocks(0);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	console_flush_on_panic();
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	if (!panic_blink)
 		panic_blink = no_blink;
 

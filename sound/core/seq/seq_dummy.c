@@ -83,6 +83,9 @@ static int my_client = -1;
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
  * unuse callback - send ALL_SOUNDS_OFF and RESET_CONTROLLERS events
  * to subscribers.
  * Note: this callback is called only after all subscribers are removed.
@@ -113,8 +116,11 @@ dummy_unuse(void *private_data, struct snd_seq_port_subscribe *info)
 }
 
 /*
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
  * event input callback - just redirect events to subscribers
  */
 static int
@@ -179,9 +185,13 @@ create_port(int idx, int type)
 	memset(&pcb, 0, sizeof(pcb));
 	pcb.owner = THIS_MODULE;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pcb.unuse = dummy_unuse;
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	pcb.unuse = dummy_unuse;
+>>>>>>> 2617302... source
 	pcb.event_input = dummy_input;
 	pcb.private_free = dummy_free;
 	pcb.private_data = rec;

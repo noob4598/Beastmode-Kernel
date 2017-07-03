@@ -1489,10 +1489,14 @@ static int isp116x_bus_resume(struct usb_hcd *hcd)
 
 	hcd->state = HC_STATE_RESUMING;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	msleep(20);
 =======
 	msleep(USB_RESUME_TIMEOUT);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	msleep(20);
+>>>>>>> 2617302... source
 
 	/* Go operational */
 	spin_lock_irq(&isp116x->lock);

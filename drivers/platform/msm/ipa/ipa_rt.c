@@ -104,10 +104,14 @@ static int ipa_generate_rt_hw_rule(enum ipa_ip_type ip,
  * @max_rt_idx: maximal index
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Returns:	0 on success, negative on failure
 =======
  * Returns:	size on success, negative on failure
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+ * Returns:	0 on success, negative on failure
+>>>>>>> 2617302... source
  *
  * caller needs to hold any needed locks to ensure integrity
  *
@@ -227,6 +231,7 @@ static int ipa_generate_rt_hw_tbl_common(enum ipa_ip_type ip, u8 *base, u8 *hdr,
 					      IPA_RT_ENTRY_MEMORY_ALLIGNMENT));
 		} else {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			WARN_ON(tbl->sz == 0);
 =======
 			if (tbl->sz == 0) {
@@ -235,6 +240,9 @@ static int ipa_generate_rt_hw_tbl_common(enum ipa_ip_type ip, u8 *base, u8 *hdr,
 			}
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			WARN_ON(tbl->sz == 0);
+>>>>>>> 2617302... source
 			/* allocate memory for the RT tbl */
 			rt_tbl_mem.size = tbl->sz;
 			rt_tbl_mem.base =
@@ -305,6 +313,7 @@ static int ipa_generate_rt_hw_tbl_v1(enum ipa_ip_type ip,
 	int max_rt_idx;
 	int i;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	mem->size = ipa_get_rt_hw_tbl_size(ip, &hdr_sz, &max_rt_idx);
 =======
@@ -318,6 +327,10 @@ static int ipa_generate_rt_hw_tbl_v1(enum ipa_ip_type ip,
 
 	mem->size = res;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+
+	mem->size = ipa_get_rt_hw_tbl_size(ip, &hdr_sz, &max_rt_idx);
+>>>>>>> 2617302... source
 	mem->size = (mem->size + IPA_RT_TABLE_MEMORY_ALLIGNMENT) &
 				~IPA_RT_TABLE_MEMORY_ALLIGNMENT;
 
@@ -491,9 +504,12 @@ static int ipa_generate_rt_hw_tbl_v2(enum ipa_ip_type ip,
 	u32 body_start_offset;
 	u32 apps_start_idx;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	int res;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	if (ip == IPA_IP_v4) {
 		num_index = IPA_v2_V4_APPS_RT_INDEX_HI -
@@ -524,6 +540,7 @@ static int ipa_generate_rt_hw_tbl_v2(enum ipa_ip_type ip,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mem->size = ipa_get_rt_hw_tbl_size(ip, &hdr_sz, &max_rt_idx);
 =======
 	res = ipa_get_rt_hw_tbl_size(ip, &hdr_sz, &max_rt_idx);
@@ -534,6 +551,9 @@ static int ipa_generate_rt_hw_tbl_v2(enum ipa_ip_type ip,
 
 	mem->size = res;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	mem->size = ipa_get_rt_hw_tbl_size(ip, &hdr_sz, &max_rt_idx);
+>>>>>>> 2617302... source
 	mem->size -= hdr_sz;
 	mem->size = (mem->size + IPA_RT_TABLE_MEMORY_ALLIGNMENT) &
 				~IPA_RT_TABLE_MEMORY_ALLIGNMENT;

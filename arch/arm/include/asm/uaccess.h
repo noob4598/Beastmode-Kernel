@@ -165,6 +165,7 @@ extern int __put_user_8(void *, unsigned long long);
 	({								\
 		unsigned long __limit = current_thread_info()->addr_limit - 1; \
 <<<<<<< HEAD
+<<<<<<< HEAD
 		register const typeof(*(p)) __r2 asm("r2") = (x);	\
 		register const typeof(*(p)) __user *__p asm("r0") = (p);\
 =======
@@ -172,6 +173,10 @@ extern int __put_user_8(void *, unsigned long long);
 		register const typeof(*(p)) __r2 asm("r2") = (x);	\
 		register const typeof(*(p)) __user *__p asm("r0") = __tmp_p; \
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		register const typeof(*(p)) __r2 asm("r2") = (x);	\
+		register const typeof(*(p)) __user *__p asm("r0") = (p);\
+>>>>>>> 2617302... source
 		register unsigned long __l asm("r1") = __limit;		\
 		register int __e asm("r0");				\
 		switch (sizeof(*(__p))) {				\

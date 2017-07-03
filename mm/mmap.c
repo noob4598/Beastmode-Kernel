@@ -53,6 +53,7 @@
 #endif
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #ifdef CONFIG_HAVE_ARCH_MMAP_RND_BITS
 const int mmap_rnd_bits_min = CONFIG_ARCH_MMAP_RND_BITS_MIN;
@@ -67,6 +68,8 @@ int mmap_rnd_compat_bits __read_mostly = CONFIG_ARCH_MMAP_RND_COMPAT_BITS;
 
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 static void unmap_region(struct mm_struct *mm,
 		struct vm_area_struct *vma, struct vm_area_struct *prev,
 		unsigned long start, unsigned long end);
@@ -143,10 +146,14 @@ EXPORT_SYMBOL_GPL(vm_memory_committed);
 int __vm_enough_memory(struct mm_struct *mm, long pages, int cap_sys_admin)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned long free, allowed, reserve;
 =======
 	long free, allowed, reserve;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	unsigned long free, allowed, reserve;
+>>>>>>> 2617302... source
 
 	vm_acct_memory(pages);
 
@@ -213,10 +220,14 @@ int __vm_enough_memory(struct mm_struct *mm, long pages, int cap_sys_admin)
 	if (mm) {
 		reserve = sysctl_user_reserve_kbytes >> (PAGE_SHIFT - 10);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		allowed -= min(mm->total_vm / 32, reserve);
 =======
 		allowed -= min_t(long, mm->total_vm / 32, reserve);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		allowed -= min(mm->total_vm / 32, reserve);
+>>>>>>> 2617302... source
 	}
 
 	if (percpu_counter_read_positive(&vm_committed_as) < allowed)
@@ -287,9 +298,12 @@ SYSCALL_DEFINE1(brk, unsigned long, brk)
 	unsigned long newbrk, oldbrk;
 	struct mm_struct *mm = current->mm;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct vm_area_struct *next;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	unsigned long min_brk;
 	bool populate;
 
@@ -336,11 +350,15 @@ SYSCALL_DEFINE1(brk, unsigned long, brk)
 
 	/* Check against existing mmap mappings. */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (find_vma_intersection(mm, oldbrk, newbrk+PAGE_SIZE))
 =======
 	next = find_vma(mm, oldbrk);
 	if (next && newbrk + PAGE_SIZE > vm_start_gap(next))
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (find_vma_intersection(mm, oldbrk, newbrk+PAGE_SIZE))
+>>>>>>> 2617302... source
 		goto out;
 
 	/* Ok, looks good - let it rip. */
@@ -364,10 +382,14 @@ out:
 static long vma_compute_subtree_gap(struct vm_area_struct *vma)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	unsigned long max, subtree_gap;
 	max = vma->vm_start;
 	if (vma->vm_prev)
 		max -= vma->vm_prev->vm_end;
+<<<<<<< HEAD
 =======
 	unsigned long max, prev_end, subtree_gap;
 
@@ -386,6 +408,8 @@ static long vma_compute_subtree_gap(struct vm_area_struct *vma)
 			max = 0;
 	}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	if (vma->vm_rb.rb_left) {
 		subtree_gap = rb_entry(vma->vm_rb.rb_left,
 				struct vm_area_struct, vm_rb)->rb_subtree_gap;
@@ -470,10 +494,14 @@ void validate_mm(struct mm_struct *mm)
 			anon_vma_interval_tree_verify(avc);
 		vma_unlock_anon_vma(vma);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		highest_address = vma->vm_end;
 =======
 		highest_address = vm_end_gap(vma);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		highest_address = vma->vm_end;
+>>>>>>> 2617302... source
 		vma = vma->vm_next;
 		i++;
 	}
@@ -642,10 +670,14 @@ void __vma_link_rb(struct mm_struct *mm, struct vm_area_struct *vma,
 		vma_gap_update(vma->vm_next);
 	else
 <<<<<<< HEAD
+<<<<<<< HEAD
 		mm->highest_vm_end = vma->vm_end;
 =======
 		mm->highest_vm_end = vm_end_gap(vma);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		mm->highest_vm_end = vma->vm_end;
+>>>>>>> 2617302... source
 
 	/*
 	 * vma->vm_prev wasn't known when we followed the rbtree to find the
@@ -895,10 +927,14 @@ again:			remove_next = 1 + (end > next->vm_end);
 		if (end_changed) {
 			if (!next)
 <<<<<<< HEAD
+<<<<<<< HEAD
 				mm->highest_vm_end = end;
 =======
 				mm->highest_vm_end = vm_end_gap(vma);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+				mm->highest_vm_end = end;
+>>>>>>> 2617302... source
 			else if (!adjust_next)
 				vma_gap_update(next);
 		}
@@ -942,10 +978,14 @@ again:			remove_next = 1 + (end > next->vm_end);
 			vma_gap_update(next);
 		else
 <<<<<<< HEAD
+<<<<<<< HEAD
 			mm->highest_vm_end = end;
 =======
 			WARN_ON(mm->highest_vm_end != vm_end_gap(vma));
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			mm->highest_vm_end = end;
+>>>>>>> 2617302... source
 	}
 	if (insert && file)
 		uprobe_mmap(insert);
@@ -1778,10 +1818,14 @@ unsigned long unmapped_area(struct vm_unmapped_area_info *info)
 	while (true) {
 		/* Visit left subtree if it looks promising */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		gap_end = vma->vm_start;
 =======
 		gap_end = vm_start_gap(vma);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		gap_end = vma->vm_start;
+>>>>>>> 2617302... source
 		if (gap_end >= low_limit && vma->vm_rb.rb_left) {
 			struct vm_area_struct *left =
 				rb_entry(vma->vm_rb.rb_left,
@@ -1793,20 +1837,28 @@ unsigned long unmapped_area(struct vm_unmapped_area_info *info)
 		}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		gap_start = vma->vm_prev ? vma->vm_prev->vm_end : 0;
 =======
 		gap_start = vma->vm_prev ? vm_end_gap(vma->vm_prev) : 0;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		gap_start = vma->vm_prev ? vma->vm_prev->vm_end : 0;
+>>>>>>> 2617302... source
 check_current:
 		/* Check if current node has a suitable gap */
 		if (gap_start > high_limit)
 			return -ENOMEM;
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if (gap_end >= low_limit && gap_end - gap_start >= length)
 =======
 		if (gap_end >= low_limit &&
 		    gap_end > gap_start && gap_end - gap_start >= length)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		if (gap_end >= low_limit && gap_end - gap_start >= length)
+>>>>>>> 2617302... source
 			goto found;
 
 		/* Visit right subtree if it looks promising */
@@ -1829,12 +1881,17 @@ check_current:
 				       struct vm_area_struct, vm_rb);
 			if (prev == vma->vm_rb.rb_left) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 				gap_start = vma->vm_prev->vm_end;
 				gap_end = vma->vm_start;
 =======
 				gap_start = vm_end_gap(vma->vm_prev);
 				gap_end = vm_start_gap(vma);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+				gap_start = vma->vm_prev->vm_end;
+				gap_end = vma->vm_start;
+>>>>>>> 2617302... source
 				goto check_current;
 			}
 		}
@@ -1899,10 +1956,14 @@ unsigned long unmapped_area_topdown(struct vm_unmapped_area_info *info)
 	while (true) {
 		/* Visit right subtree if it looks promising */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		gap_start = vma->vm_prev ? vma->vm_prev->vm_end : 0;
 =======
 		gap_start = vma->vm_prev ? vm_end_gap(vma->vm_prev) : 0;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		gap_start = vma->vm_prev ? vma->vm_prev->vm_end : 0;
+>>>>>>> 2617302... source
 		if (gap_start <= high_limit && vma->vm_rb.rb_right) {
 			struct vm_area_struct *right =
 				rb_entry(vma->vm_rb.rb_right,
@@ -1916,10 +1977,14 @@ unsigned long unmapped_area_topdown(struct vm_unmapped_area_info *info)
 check_current:
 		/* Check if current node has a suitable gap */
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		gap_end = vma->vm_start;
 		if (gap_end < low_limit)
 			return -ENOMEM;
 		if (gap_start <= high_limit && gap_end - gap_start >= length)
+<<<<<<< HEAD
 =======
 		gap_end = vm_start_gap(vma);
 		if (gap_end < low_limit)
@@ -1927,6 +1992,8 @@ check_current:
 		if (gap_start <= high_limit &&
 		    gap_end > gap_start && gap_end - gap_start >= length)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 			goto found;
 
 		/* Visit left subtree if it looks promising */
@@ -1950,10 +2017,14 @@ check_current:
 			if (prev == vma->vm_rb.rb_right) {
 				gap_start = vma->vm_prev ?
 <<<<<<< HEAD
+<<<<<<< HEAD
 					vma->vm_prev->vm_end : 0;
 =======
 					vm_end_gap(vma->vm_prev) : 0;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+					vma->vm_prev->vm_end : 0;
+>>>>>>> 2617302... source
 				goto check_current;
 			}
 		}
@@ -1992,10 +2063,14 @@ arch_get_unmapped_area(struct file *filp, unsigned long addr,
 {
 	struct mm_struct *mm = current->mm;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct vm_area_struct *vma;
 =======
 	struct vm_area_struct *vma, *prev;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	struct vm_area_struct *vma;
+>>>>>>> 2617302... source
 	struct vm_unmapped_area_info info;
 
 	if (len > TASK_SIZE - mmap_min_addr)
@@ -2007,6 +2082,7 @@ arch_get_unmapped_area(struct file *filp, unsigned long addr,
 	if (addr) {
 		addr = PAGE_ALIGN(addr);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		vma = find_vma(mm, addr);
 		if (TASK_SIZE - len >= addr && addr >= mmap_min_addr &&
 		    (!vma || addr + len <= vma->vm_start))
@@ -2016,6 +2092,11 @@ arch_get_unmapped_area(struct file *filp, unsigned long addr,
 		    (!vma || addr + len <= vm_start_gap(vma)) &&
 		    (!prev || addr >= vm_end_gap(prev)))
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		vma = find_vma(mm, addr);
+		if (TASK_SIZE - len >= addr && addr >= mmap_min_addr &&
+		    (!vma || addr + len <= vma->vm_start))
+>>>>>>> 2617302... source
 			return addr;
 	}
 
@@ -2048,10 +2129,14 @@ arch_get_unmapped_area_topdown(struct file *filp, const unsigned long addr0,
 			  const unsigned long flags)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct vm_area_struct *vma;
 =======
 	struct vm_area_struct *vma, *prev;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	struct vm_area_struct *vma;
+>>>>>>> 2617302... source
 	struct mm_struct *mm = current->mm;
 	unsigned long addr = addr0;
 	struct vm_unmapped_area_info info;
@@ -2067,6 +2152,7 @@ arch_get_unmapped_area_topdown(struct file *filp, const unsigned long addr0,
 	if (addr) {
 		addr = PAGE_ALIGN(addr);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		vma = find_vma(mm, addr);
 		if (TASK_SIZE - len >= addr && addr >= mmap_min_addr &&
 				(!vma || addr + len <= vma->vm_start))
@@ -2076,6 +2162,11 @@ arch_get_unmapped_area_topdown(struct file *filp, const unsigned long addr0,
 				(!vma || addr + len <= vm_start_gap(vma)) &&
 				(!prev || addr >= vm_end_gap(prev)))
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		vma = find_vma(mm, addr);
+		if (TASK_SIZE - len >= addr && addr >= mmap_min_addr &&
+				(!vma || addr + len <= vma->vm_start))
+>>>>>>> 2617302... source
 			return addr;
 	}
 
@@ -2216,11 +2307,15 @@ find_vma_prev(struct mm_struct *mm, unsigned long addr,
  * grow-up and grow-down cases.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int acct_stack_growth(struct vm_area_struct *vma, unsigned long size, unsigned long grow)
 =======
 static int acct_stack_growth(struct vm_area_struct *vma,
 			     unsigned long size, unsigned long grow)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+static int acct_stack_growth(struct vm_area_struct *vma, unsigned long size, unsigned long grow)
+>>>>>>> 2617302... source
 {
 	struct mm_struct *mm = vma->vm_mm;
 	struct rlimit *rlim = current->signal->rlim;
@@ -2273,17 +2368,24 @@ static int acct_stack_growth(struct vm_area_struct *vma,
 int expand_upwards(struct vm_area_struct *vma, unsigned long address)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int error;
 =======
 	struct vm_area_struct *next;
 	unsigned long gap_addr;
 	int error = 0;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	int error;
+>>>>>>> 2617302... source
 
 	if (!(vma->vm_flags & VM_GROWSUP))
 		return -EFAULT;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	/*
 	 * We must make sure the anon_vma is allocated
 	 * so that the anon_vma locking is not a noop.
@@ -2291,6 +2393,7 @@ int expand_upwards(struct vm_area_struct *vma, unsigned long address)
 	if (unlikely(anon_vma_prepare(vma)))
 		return -ENOMEM;
 	vma_lock_anon_vma(vma);
+<<<<<<< HEAD
 =======
 	/* Guard against exceeding limits of the address space. */
 	address &= PAGE_MASK;
@@ -2316,12 +2419,17 @@ int expand_upwards(struct vm_area_struct *vma, unsigned long address)
 	if (unlikely(anon_vma_prepare(vma)))
 		return -ENOMEM;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	/*
 	 * vma->vm_start/vm_end cannot change under us because the caller
 	 * is required to hold the mmap_sem in read mode.  We need the
 	 * anon_vma lock to serialize against concurrent expand_stacks.
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	 * Also guard against wrapping around to address 0.
 	 */
 	if (address < PAGE_ALIGN(address+4))
@@ -2331,10 +2439,13 @@ int expand_upwards(struct vm_area_struct *vma, unsigned long address)
 		return -ENOMEM;
 	}
 	error = 0;
+<<<<<<< HEAD
 =======
 	 */
 	vma_lock_anon_vma(vma);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	/* Somebody else might have raced and expanded it already */
 	if (address > vma->vm_end) {
@@ -2366,10 +2477,14 @@ int expand_upwards(struct vm_area_struct *vma, unsigned long address)
 					vma_gap_update(vma->vm_next);
 				else
 <<<<<<< HEAD
+<<<<<<< HEAD
 					vma->vm_mm->highest_vm_end = address;
 =======
 					vma->vm_mm->highest_vm_end = vm_end_gap(vma);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+					vma->vm_mm->highest_vm_end = address;
+>>>>>>> 2617302... source
 				spin_unlock(&vma->vm_mm->page_table_lock);
 
 				perf_event_mmap(vma);
@@ -2390,6 +2505,9 @@ int expand_downwards(struct vm_area_struct *vma,
 				   unsigned long address)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	int error;
 
 	/*
@@ -2399,17 +2517,21 @@ int expand_downwards(struct vm_area_struct *vma,
 	if (unlikely(anon_vma_prepare(vma)))
 		return -ENOMEM;
 
+<<<<<<< HEAD
 =======
 	struct vm_area_struct *prev;
 	unsigned long gap_addr;
 	int error;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	address &= PAGE_MASK;
 	error = security_mmap_addr(address);
 	if (error)
 		return error;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	vma_lock_anon_vma(vma);
 =======
@@ -2428,6 +2550,9 @@ int expand_downwards(struct vm_area_struct *vma,
 	if (unlikely(anon_vma_prepare(vma)))
 		return -ENOMEM;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	vma_lock_anon_vma(vma);
+>>>>>>> 2617302... source
 
 	/*
 	 * vma->vm_start/vm_end cannot change under us because the caller
@@ -2435,9 +2560,12 @@ int expand_downwards(struct vm_area_struct *vma,
 	 * anon_vma lock to serialize against concurrent expand_stacks.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	vma_lock_anon_vma(vma);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	/* Somebody else might have raced and expanded it already */
 	if (address < vma->vm_start) {
@@ -2480,6 +2608,9 @@ int expand_downwards(struct vm_area_struct *vma,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 /*
  * Note how expand_stack() refuses to expand the stack all the way to
  * abut the next virtual mapping, *unless* that mapping itself is also
@@ -2502,6 +2633,7 @@ int expand_stack(struct vm_area_struct *vma, unsigned long address)
 		if (!(next->vm_flags & VM_GROWSUP))
 			return -ENOMEM;
 	}
+<<<<<<< HEAD
 =======
 /* enforced gap between the expanding stack and other mappings. */
 unsigned long stack_guard_gap = 256UL<<PAGE_SHIFT;
@@ -2523,6 +2655,8 @@ __setup("stack_guard_gap=", cmdline_parse_stack_guard_gap);
 int expand_stack(struct vm_area_struct *vma, unsigned long address)
 {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	return expand_upwards(vma, address);
 }
 
@@ -2545,6 +2679,9 @@ find_extend_vma(struct mm_struct *mm, unsigned long addr)
 int expand_stack(struct vm_area_struct *vma, unsigned long address)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	struct vm_area_struct *prev;
 
 	address &= PAGE_MASK;
@@ -2553,8 +2690,11 @@ int expand_stack(struct vm_area_struct *vma, unsigned long address)
 		if (!(prev->vm_flags & VM_GROWSDOWN))
 			return -ENOMEM;
 	}
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	return expand_downwards(vma, address);
 }
 
@@ -2652,10 +2792,14 @@ detach_vmas_to_be_unmapped(struct mm_struct *mm, struct vm_area_struct *vma,
 		vma_gap_update(vma);
 	} else
 <<<<<<< HEAD
+<<<<<<< HEAD
 		mm->highest_vm_end = prev ? prev->vm_end : 0;
 =======
 		mm->highest_vm_end = prev ? vm_end_gap(prev) : 0;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		mm->highest_vm_end = prev ? prev->vm_end : 0;
+>>>>>>> 2617302... source
 	tail_vma->vm_next = NULL;
 	if (mm->unmap_area == arch_unmap_area)
 		addr = prev ? prev->vm_end : mm->mmap_base;

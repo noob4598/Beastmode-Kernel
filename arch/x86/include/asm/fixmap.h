@@ -124,6 +124,9 @@ enum fixed_addresses {
 
 	/*
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	 * 256 temporary boot-time mappings, used by early_ioremap(),
 	 * before ioremap() is functional.
 	 *
@@ -132,6 +135,7 @@ enum fixed_addresses {
 	 */
 #define NR_FIX_BTMAPS		64
 #define FIX_BTMAPS_SLOTS	4
+<<<<<<< HEAD
 =======
 	 * 512 temporary boot-time mappings, used by early_ioremap(),
 	 * before ioremap() is functional.
@@ -142,6 +146,8 @@ enum fixed_addresses {
 #define NR_FIX_BTMAPS		64
 #define FIX_BTMAPS_SLOTS	8
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 #define TOTAL_FIX_BTMAPS	(NR_FIX_BTMAPS * FIX_BTMAPS_SLOTS)
 	FIX_BTMAP_END =
 	 (__end_of_permanent_fixed_addresses ^

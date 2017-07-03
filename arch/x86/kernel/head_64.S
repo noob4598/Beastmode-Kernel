@@ -66,11 +66,14 @@ startup_64:
 	 */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/* Sanitize CPU configuration */
 	call verify_cpu
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	/*
 	 * Compute the delta between the address I am compiled to run at and the
 	 * address I am actually running at.
@@ -181,11 +184,14 @@ ENTRY(secondary_startup_64)
 	 */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/* Sanitize CPU configuration */
 	call verify_cpu
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	movq	$(init_level4_pgt - __START_KERNEL_map), %rax
 1:
 
@@ -301,10 +307,13 @@ ENTRY(secondary_startup_64)
 	lretq
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include "verify_cpu.S"
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 #ifdef CONFIG_HOTPLUG_CPU
 /*
  * Boot CPU0 entry point. It's called from play_dead(). Everything has been set
@@ -339,11 +348,16 @@ bad_address:
 
 	__INIT
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.globl early_idt_handlers
 early_idt_handlers:
 =======
 ENTRY(early_idt_handler_array)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	.globl early_idt_handlers
+early_idt_handlers:
+>>>>>>> 2617302... source
 	# 104(%rsp) %rflags
 	#  96(%rsp) %cs
 	#  88(%rsp) %rip
@@ -351,6 +365,9 @@ ENTRY(early_idt_handler_array)
 	i = 0
 	.rept NUM_EXCEPTION_VECTORS
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	.if (EXCEPTION_ERRCODE_MASK >> i) & 1
 	ASM_NOP2
 	.else
@@ -363,6 +380,7 @@ ENTRY(early_idt_handler_array)
 
 /* This is global to keep gas from relaxing the jumps */
 ENTRY(early_idt_handler)
+<<<<<<< HEAD
 =======
 	.ifeq (EXCEPTION_ERRCODE_MASK >> i) & 1
 	pushq $0		# Dummy error code, to make stack frame uniform
@@ -380,6 +398,8 @@ early_idt_handler_common:
 	 * vector number.
 	 */
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	cld
 
 	cmpl $2,(%rsp)		# X86_TRAP_NMI
@@ -452,10 +472,14 @@ is_nmi:
 	addq $16,%rsp		# drop vector number and error code
 	INTERRUPT_RETURN
 <<<<<<< HEAD
+<<<<<<< HEAD
 ENDPROC(early_idt_handler)
 =======
 ENDPROC(early_idt_handler_common)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+ENDPROC(early_idt_handler)
+>>>>>>> 2617302... source
 
 	__INITDATA
 

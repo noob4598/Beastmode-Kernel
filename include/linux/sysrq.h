@@ -46,9 +46,12 @@ struct sysrq_key_op {
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 bool sysrq_on(void);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 void handle_sysrq(int key);
 void __handle_sysrq(int key, bool check_mask);
 int register_sysrq_key(int key, struct sysrq_key_op *op);

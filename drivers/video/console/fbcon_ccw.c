@@ -198,6 +198,7 @@ static void ccw_clear_margins(struct vc_data *vc, struct fb_info *info,
 	unsigned int bs = vc->vc_rows*ch;
 	struct fb_fillrect region;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int bgshift = (vc->vc_hi_font_mask) ? 13 : 12;
 
 	region.color = attr_bgcol_ec(bgshift,vc,info);
@@ -205,6 +206,11 @@ static void ccw_clear_margins(struct vc_data *vc, struct fb_info *info,
 
 	region.color = 0;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	int bgshift = (vc->vc_hi_font_mask) ? 13 : 12;
+
+	region.color = attr_bgcol_ec(bgshift,vc,info);
+>>>>>>> 2617302... source
 	region.rop = ROP_COPY;
 
 	if (rw && !bottom_only) {

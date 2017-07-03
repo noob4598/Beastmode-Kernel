@@ -230,6 +230,9 @@ static int write_ldt(void __user *ptr, unsigned long bytecount, int oldmode)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	/*
 	 * On x86-64 we do not support 16-bit segments due to
 	 * IRET leaking the high bits of the kernel stack address.
@@ -240,12 +243,15 @@ static int write_ldt(void __user *ptr, unsigned long bytecount, int oldmode)
 		goto out_unlock;
 	}
 #endif
+<<<<<<< HEAD
 =======
 	if (!IS_ENABLED(CONFIG_X86_16BIT) && !ldt_info.seg_32bit) {
 		error = -EINVAL;
 		goto out_unlock;
 	}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	fill_ldt(&ldt, &ldt_info);
 	if (oldmode)

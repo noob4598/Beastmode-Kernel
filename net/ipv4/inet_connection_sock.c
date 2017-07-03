@@ -182,6 +182,7 @@ have_snum:
 				hashinfo->bhash_size)];
 		spin_lock(&head->lock);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 		if (inet_is_reserved_local_port(snum) &&
@@ -191,6 +192,8 @@ have_snum:
 		}
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		inet_bind_bucket_for_each(tb, &head->chain)
 			if (net_eq(ib_net(tb), net) && tb->port == snum)
 				goto tb_found;
@@ -703,10 +706,13 @@ struct sock *inet_csk_clone_lock(const struct sock *sk,
 		newsk->sk_mark = inet_rsk(req)->ir_mark;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		inet_sk(newsk)->mc_list = NULL;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		newicsk->icsk_retransmits = 0;
 		newicsk->icsk_backoff	  = 0;
 		newicsk->icsk_probes_out  = 0;

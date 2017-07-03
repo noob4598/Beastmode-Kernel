@@ -13,9 +13,12 @@
 #include <linux/atomic.h>
 #include <media/v4l2-subdev.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <media/msmb_isp.h>
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 #include "msm_isp_util.h"
 #include "msm_isp_stats_util.h"
 
@@ -29,10 +32,14 @@ static int msm_isp_stats_cfg_ping_pong_address(struct vfe_device *vfe_dev,
 	uint32_t bufq_handle = stream_info->bufq_handle;
 	uint32_t stats_pingpong_offset;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	if (STATS_IDX(stream_info->stream_handle) >=
 		vfe_dev->hw_info->stats_hw_info->num_stats_type) {
 		pr_err("%s: Invalid stats index %d\n", __func__,
 			STATS_IDX(stream_info->stream_handle));
+<<<<<<< HEAD
 =======
 	uint32_t stats_idx = STATS_IDX(stream_info->stream_handle);
 
@@ -40,27 +47,38 @@ static int msm_isp_stats_cfg_ping_pong_address(struct vfe_device *vfe_dev,
 		stats_idx > MSM_ISP_STATS_MAX) {
 		pr_err("%s Invalid stats index %d", __func__, stats_idx);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		return -EINVAL;
 	}
 
 	stats_pingpong_offset =
 		vfe_dev->hw_info->stats_hw_info->stats_ping_pong_offset[
 <<<<<<< HEAD
+<<<<<<< HEAD
 		STATS_IDX(stream_info->stream_handle)];
 =======
 		stats_idx];
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		STATS_IDX(stream_info->stream_handle)];
+>>>>>>> 2617302... source
 	pingpong_bit = (~(pingpong_status >> stats_pingpong_offset) & 0x1);
 	rc = vfe_dev->buf_mgr->ops->get_buf(vfe_dev->buf_mgr,
 			vfe_dev->pdev->id, bufq_handle, &buf);
 	if (rc < 0) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		vfe_dev->error_info.stats_framedrop_count[
 			STATS_IDX(stream_info->stream_handle)]++;
 =======
 		vfe_dev->error_info.stats_framedrop_count[stats_idx]++;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		vfe_dev->error_info.stats_framedrop_count[
+			STATS_IDX(stream_info->stream_handle)]++;
+>>>>>>> 2617302... source
 		return rc;
 	}
 
@@ -98,10 +116,14 @@ static int32_t msm_isp_stats_buf_divert(struct vfe_device *vfe_dev,
 	if (!vfe_dev || !done_buf || !ts || !buf_event || !stream_info ||
 		!comp_stats_type_mask) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("%s:%d failed: invalid params %p %p %p %p %p %p\n",
 =======
 		pr_err("%s:%d failed: invalid params %pK %pK %pK %pK %pK %pK\n",
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		pr_err("%s:%d failed: invalid params %p %p %p %p %p %p\n",
+>>>>>>> 2617302... source
 			__func__, __LINE__, vfe_dev, done_buf, ts, buf_event,
 			stream_info, comp_stats_type_mask);
 		return -EINVAL;

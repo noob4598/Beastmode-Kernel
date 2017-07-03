@@ -60,10 +60,14 @@
 			  | X86_CR4_PSE | X86_CR4_PAE | X86_CR4_MCE     \
 			  | X86_CR4_PGE | X86_CR4_PCE | X86_CR4_OSFXSR | X86_CR4_PCIDE \
 <<<<<<< HEAD
+<<<<<<< HEAD
 			  | X86_CR4_OSXSAVE | X86_CR4_SMEP | X86_CR4_RDWRGSFS \
 =======
 			  | X86_CR4_OSXSAVE | X86_CR4_SMEP | X86_CR4_FSGSBASE \
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			  | X86_CR4_OSXSAVE | X86_CR4_SMEP | X86_CR4_RDWRGSFS \
+>>>>>>> 2617302... source
 			  | X86_CR4_OSXMMEXCPT | X86_CR4_VMXE))
 
 #define CR8_RESERVED_BITS (~(unsigned long)X86_CR8_TPR)
@@ -450,10 +454,14 @@ struct kvm_vcpu_arch {
 
 	struct mtrr_state_type mtrr_state;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u32 pat;
 =======
 	u64 pat;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	u32 pat;
+>>>>>>> 2617302... source
 
 	int switch_db_regs;
 	unsigned long db[KVM_NR_DB_REGS];
@@ -472,9 +480,12 @@ struct kvm_vcpu_arch {
 	unsigned access;
 	gfn_t mmio_gfn;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	u64 mmio_gen;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	struct kvm_pmu pmu;
 
@@ -553,10 +564,14 @@ struct kvm_arch {
 	struct kvm_ioapic *vioapic;
 	struct kvm_pit *vpit;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int vapics_in_nmi_mode;
 =======
 	atomic_t vapics_in_nmi_mode;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	int vapics_in_nmi_mode;
+>>>>>>> 2617302... source
 	struct mutex apic_map_lock;
 	struct kvm_apic_map *apic_map;
 
@@ -969,6 +984,7 @@ static inline void kvm_inject_gp(struct kvm_vcpu *vcpu, u32 error_code)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 static inline u64 get_canonical(u64 la)
 {
@@ -985,6 +1001,8 @@ static inline bool is_noncanonical_address(u64 la)
 }
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 #define TSS_IOPB_BASE_OFFSET 0x66
 #define TSS_BASE_SIZE 0x68
 #define TSS_IOPB_SIZE (65536 / 8)
@@ -1044,10 +1062,14 @@ void kvm_vcpu_reset(struct kvm_vcpu *vcpu);
 
 void kvm_define_shared_msr(unsigned index, u32 msr);
 <<<<<<< HEAD
+<<<<<<< HEAD
 void kvm_set_shared_msr(unsigned index, u64 val, u64 mask);
 =======
 int kvm_set_shared_msr(unsigned index, u64 val, u64 mask);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+void kvm_set_shared_msr(unsigned index, u64 val, u64 mask);
+>>>>>>> 2617302... source
 
 bool kvm_is_linear_rip(struct kvm_vcpu *vcpu, unsigned long linear_rip);
 

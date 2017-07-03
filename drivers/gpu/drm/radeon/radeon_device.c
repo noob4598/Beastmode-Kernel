@@ -450,6 +450,7 @@ void radeon_gtt_location(struct radeon_device *rdev, struct radeon_mc *mc)
  * GPU helpers function.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 /**
@@ -469,6 +470,8 @@ static bool radeon_device_is_virtual(void)
 }
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 /**
  * radeon_card_posted - check if the hw has already been initialized
  *
@@ -483,12 +486,15 @@ bool radeon_card_posted(struct radeon_device *rdev)
 	uint32_t reg;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/* for pass through, always force asic_init */
 	if (radeon_device_is_virtual())
 		return false;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	/* required for EFI mode on macbook2,1 which uses an r5xx asic */
 	if (efi_enabled(EFI_BOOT) &&
 	    (rdev->pdev->subsystem_vendor == PCI_VENDOR_ID_APPLE) &&

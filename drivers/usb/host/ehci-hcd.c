@@ -985,10 +985,15 @@ rescan:
 
 	qh->exception = 1;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (ehci->rh_state < EHCI_RH_RUNNING)
 		qh->qh_state = QH_STATE_IDLE;
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (ehci->rh_state < EHCI_RH_RUNNING)
+		qh->qh_state = QH_STATE_IDLE;
+>>>>>>> 2617302... source
 	switch (qh->qh_state) {
 	case QH_STATE_LINKED:
 	case QH_STATE_COMPLETING:

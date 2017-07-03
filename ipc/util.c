@@ -293,12 +293,15 @@ int ipc_addid(struct ipc_ids* ids, struct kern_ipc_perm* new, int size)
 	spin_lock(&new->lock);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	current_euid_egid(&euid, &egid);
 	new->cuid = new->uid = euid;
 	new->gid = new->cgid = egid;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	id = idr_alloc(&ids->ipcs_idr, new,
 		       (next_id < 0) ? 0 : ipcid_to_idx(next_id), 0,
 		       GFP_NOWAIT);
@@ -312,12 +315,18 @@ int ipc_addid(struct ipc_ids* ids, struct kern_ipc_perm* new, int size)
 	ids->in_use++;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	current_euid_egid(&euid, &egid);
 	new->cuid = new->uid = euid;
 	new->gid = new->cgid = egid;
 
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	if (next_id < 0) {
 		new->seq = ids->seq++;
 		if (ids->seq > ids->seq_max)

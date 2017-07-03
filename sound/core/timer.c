@@ -74,10 +74,14 @@ struct snd_timer_user {
 	wait_queue_head_t qchange_sleep;
 	struct fasync_struct *fasync;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct mutex tread_sem;
 =======
 	struct mutex ioctl_lock;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	struct mutex tread_sem;
+>>>>>>> 2617302... source
 };
 
 /* list of timers */
@@ -220,18 +224,24 @@ static void snd_timer_check_master(struct snd_timer_instance *master)
 			list_move_tail(&slave->open_list, &master->slave_list_head);
 			spin_lock_irq(&slave_active_lock);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 			spin_lock(&master->timer->lock);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 			slave->master = master;
 			slave->timer = master->timer;
 			if (slave->flags & SNDRV_TIMER_IFLG_RUNNING)
 				list_add_tail(&slave->active_list,
 					      &master->slave_active_head);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 			spin_unlock(&master->timer->lock);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 			spin_unlock_irq(&slave_active_lock);
 		}
 	}
@@ -302,6 +312,7 @@ int snd_timer_open(struct snd_timer_instance **ti,
 	timeri->slave_class = tid->dev_sclass;
 	timeri->slave_id = slave_id;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (list_empty(&timer->open_list_head) && timer->hw.open)
 		timer->hw.open(timer);
 =======
@@ -319,6 +330,10 @@ int snd_timer_open(struct snd_timer_instance **ti,
 	}
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (list_empty(&timer->open_list_head) && timer->hw.open)
+		timer->hw.open(timer);
+>>>>>>> 2617302... source
 	list_add_tail(&timeri->open_list, &timer->open_list_head);
 	snd_timer_check_master(timeri);
 	mutex_unlock(&register_mutex);
@@ -327,11 +342,16 @@ int snd_timer_open(struct snd_timer_instance **ti,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int _snd_timer_stop(struct snd_timer_instance *timeri,
 			   int keep_flag, int event);
 =======
 static int _snd_timer_stop(struct snd_timer_instance *timeri, int event);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+static int _snd_timer_stop(struct snd_timer_instance *timeri,
+			   int keep_flag, int event);
+>>>>>>> 2617302... source
 
 /*
  * close a timer instance
@@ -374,6 +394,9 @@ int snd_timer_close(struct snd_timer_instance *timeri)
 		mutex_lock(&register_mutex);
 		list_del(&timeri->open_list);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		if (timer && list_empty(&timer->open_list_head) &&
 		    timer->hw.close)
 			timer->hw.close(timer);
@@ -387,6 +410,7 @@ int snd_timer_close(struct snd_timer_instance *timeri)
 			slave->timer = NULL;
 			spin_unlock_irq(&slave_active_lock);
 		}
+<<<<<<< HEAD
 =======
 		if (list_empty(&timer->open_list_head) &&
 		    timer->hw.close)
@@ -405,6 +429,8 @@ int snd_timer_close(struct snd_timer_instance *timeri)
 		spin_unlock(&timer->lock);
 		spin_unlock_irq(&slave_active_lock);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		mutex_unlock(&register_mutex);
 	}
  out:
@@ -462,10 +488,14 @@ static void snd_timer_notify1(struct snd_timer_instance *ti, int event)
 	list_for_each_entry(ts, &ti->slave_active_head, active_list)
 		if (ts->ccallback)
 <<<<<<< HEAD
+<<<<<<< HEAD
 			ts->ccallback(ti, event + 100, &tstamp, resolution);
 =======
 			ts->ccallback(ts, event + 100, &tstamp, resolution);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			ts->ccallback(ti, event + 100, &tstamp, resolution);
+>>>>>>> 2617302... source
 	spin_unlock_irqrestore(&timer->lock, flags);
 }
 
@@ -495,10 +525,14 @@ static int snd_timer_start_slave(struct snd_timer_instance *timeri)
 
 	spin_lock_irqsave(&slave_active_lock, flags);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	timeri->flags |= SNDRV_TIMER_IFLG_RUNNING;
 	if (timeri->master)
 		list_add_tail(&timeri->active_list,
 			      &timeri->master->slave_active_head);
+<<<<<<< HEAD
 =======
 	if (timeri->flags & SNDRV_TIMER_IFLG_RUNNING) {
 		spin_unlock_irqrestore(&slave_active_lock, flags);
@@ -512,6 +546,8 @@ static int snd_timer_start_slave(struct snd_timer_instance *timeri)
 		spin_unlock(&timeri->timer->lock);
 	}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	spin_unlock_irqrestore(&slave_active_lock, flags);
 	return 1; /* delayed start */
 }
@@ -530,11 +566,15 @@ int snd_timer_start(struct snd_timer_instance *timeri, unsigned int ticks)
 	if (timeri->flags & SNDRV_TIMER_IFLG_SLAVE) {
 		result = snd_timer_start_slave(timeri);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		snd_timer_notify1(timeri, SNDRV_TIMER_EVENT_START);
 =======
 		if (result >= 0)
 			snd_timer_notify1(timeri, SNDRV_TIMER_EVENT_START);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		snd_timer_notify1(timeri, SNDRV_TIMER_EVENT_START);
+>>>>>>> 2617302... source
 		return result;
 	}
 	timer = timeri->timer;
@@ -542,6 +582,9 @@ int snd_timer_start(struct snd_timer_instance *timeri, unsigned int ticks)
 		return -EINVAL;
 	spin_lock_irqsave(&timer->lock, flags);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	timeri->ticks = timeri->cticks = ticks;
 	timeri->pticks = 0;
 	result = snd_timer_start1(timer, timeri, ticks);
@@ -552,6 +595,7 @@ int snd_timer_start(struct snd_timer_instance *timeri, unsigned int ticks)
 
 static int _snd_timer_stop(struct snd_timer_instance * timeri,
 			   int keep_flag, int event)
+<<<<<<< HEAD
 =======
 	if (timeri->flags & (SNDRV_TIMER_IFLG_RUNNING |
 			     SNDRV_TIMER_IFLG_START)) {
@@ -570,6 +614,8 @@ static int _snd_timer_stop(struct snd_timer_instance * timeri,
 
 static int _snd_timer_stop(struct snd_timer_instance *timeri, int event)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 {
 	struct snd_timer *timer;
 	unsigned long flags;
@@ -579,11 +625,15 @@ static int _snd_timer_stop(struct snd_timer_instance *timeri, int event)
 
 	if (timeri->flags & SNDRV_TIMER_IFLG_SLAVE) {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		if (!keep_flag) {
 			spin_lock_irqsave(&slave_active_lock, flags);
 			timeri->flags &= ~SNDRV_TIMER_IFLG_RUNNING;
 			spin_unlock_irqrestore(&slave_active_lock, flags);
 		}
+<<<<<<< HEAD
 =======
 		spin_lock_irqsave(&slave_active_lock, flags);
 		if (!(timeri->flags & SNDRV_TIMER_IFLG_RUNNING)) {
@@ -599,12 +649,15 @@ static int _snd_timer_stop(struct snd_timer_instance *timeri, int event)
 			spin_unlock(&timeri->timer->lock);
 		spin_unlock_irqrestore(&slave_active_lock, flags);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		goto __end;
 	}
 	timer = timeri->timer;
 	if (!timer)
 		return -EINVAL;
 	spin_lock_irqsave(&timer->lock, flags);
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 	if (!(timeri->flags & (SNDRV_TIMER_IFLG_RUNNING |
@@ -613,6 +666,8 @@ static int _snd_timer_stop(struct snd_timer_instance *timeri, int event)
 		return -EBUSY;
 	}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	list_del_init(&timeri->ack_list);
 	list_del_init(&timeri->active_list);
 	if ((timeri->flags & SNDRV_TIMER_IFLG_RUNNING) &&
@@ -628,12 +683,18 @@ static int _snd_timer_stop(struct snd_timer_instance *timeri, int event)
 		}
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!keep_flag)
 		timeri->flags &=
 			~(SNDRV_TIMER_IFLG_RUNNING | SNDRV_TIMER_IFLG_START);
 =======
 	timeri->flags &= ~(SNDRV_TIMER_IFLG_RUNNING | SNDRV_TIMER_IFLG_START);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (!keep_flag)
+		timeri->flags &=
+			~(SNDRV_TIMER_IFLG_RUNNING | SNDRV_TIMER_IFLG_START);
+>>>>>>> 2617302... source
 	spin_unlock_irqrestore(&timer->lock, flags);
       __end:
 	if (event != SNDRV_TIMER_EVENT_RESOLUTION)
@@ -653,10 +714,14 @@ int snd_timer_stop(struct snd_timer_instance *timeri)
 	int err;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	err = _snd_timer_stop(timeri, 0, SNDRV_TIMER_EVENT_STOP);
 =======
 	err = _snd_timer_stop(timeri, SNDRV_TIMER_EVENT_STOP);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	err = _snd_timer_stop(timeri, 0, SNDRV_TIMER_EVENT_STOP);
+>>>>>>> 2617302... source
 	if (err < 0)
 		return err;
 	timer = timeri->timer;
@@ -687,20 +752,26 @@ int snd_timer_continue(struct snd_timer_instance *timeri)
 		return -EINVAL;
 	spin_lock_irqsave(&timer->lock, flags);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (timeri->flags & SNDRV_TIMER_IFLG_RUNNING) {
 		result = -EBUSY;
 		goto unlock;
 	}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	if (!timeri->cticks)
 		timeri->cticks = 1;
 	timeri->pticks = 0;
 	result = snd_timer_start1(timer, timeri, timer->sticks);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
  unlock:
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	spin_unlock_irqrestore(&timer->lock, flags);
 	snd_timer_notify1(timeri, SNDRV_TIMER_EVENT_CONTINUE);
 	return result;
@@ -712,10 +783,14 @@ int snd_timer_continue(struct snd_timer_instance *timeri)
 int snd_timer_pause(struct snd_timer_instance * timeri)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return _snd_timer_stop(timeri, 0, SNDRV_TIMER_EVENT_PAUSE);
 =======
 	return _snd_timer_stop(timeri, SNDRV_TIMER_EVENT_PAUSE);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	return _snd_timer_stop(timeri, 0, SNDRV_TIMER_EVENT_PAUSE);
+>>>>>>> 2617302... source
 }
 
 /*
@@ -833,12 +908,17 @@ void snd_timer_interrupt(struct snd_timer * timer, unsigned long ticks_left)
 		} else {
 			ti->flags &= ~SNDRV_TIMER_IFLG_RUNNING;
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (--timer->running)
 				list_del(&ti->active_list);
 =======
 			--timer->running;
 			list_del_init(&ti->active_list);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			if (--timer->running)
+				list_del(&ti->active_list);
+>>>>>>> 2617302... source
 		}
 		if ((timer->hw.flags & SNDRV_TIMER_HW_TASKLET) ||
 		    (ti->flags & SNDRV_TIMER_IFLG_FAST))
@@ -929,9 +1009,12 @@ int snd_timer_new(struct snd_card *card, char *id, struct snd_timer_id *tid,
 	if (id)
 		strlcpy(timer->id, id, sizeof(timer->id));
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	timer->sticks = 1;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	INIT_LIST_HEAD(&timer->device_list);
 	INIT_LIST_HEAD(&timer->open_list_head);
 	INIT_LIST_HEAD(&timer->active_list_head);
@@ -1128,12 +1211,17 @@ static int snd_timer_s_start(struct snd_timer * timer)
 		priv->correction = 0;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	priv->last_expires = priv->tlist.expires = njiff;
 	add_timer(&priv->tlist);
 =======
 	priv->last_expires = njiff;
 	mod_timer(&priv->tlist, njiff);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	priv->last_expires = priv->tlist.expires = njiff;
+	add_timer(&priv->tlist);
+>>>>>>> 2617302... source
 	return 0;
 }
 
@@ -1329,9 +1417,12 @@ static void snd_timer_user_ccallback(struct snd_timer_instance *timeri,
 	if ((tu->filter & (1 << event)) == 0 || !tu->tread)
 		return;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	memset(&r1, 0, sizeof(r1));
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	r1.event = event;
 	r1.tstamp = *tstamp;
 	r1.val = resolution;
@@ -1367,9 +1458,12 @@ static void snd_timer_user_tinterrupt(struct snd_timer_instance *timeri,
 	if ((tu->filter & (1 << SNDRV_TIMER_EVENT_RESOLUTION)) &&
 	    tu->last_resolution != resolution) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		memset(&r1, 0, sizeof(r1));
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		r1.event = SNDRV_TIMER_EVENT_RESOLUTION;
 		r1.tstamp = tstamp;
 		r1.val = resolution;
@@ -1419,10 +1513,14 @@ static int snd_timer_user_open(struct inode *inode, struct file *file)
 	spin_lock_init(&tu->qlock);
 	init_waitqueue_head(&tu->qchange_sleep);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mutex_init(&tu->tread_sem);
 =======
 	mutex_init(&tu->ioctl_lock);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	mutex_init(&tu->tread_sem);
+>>>>>>> 2617302... source
 	tu->ticks = 1;
 	tu->queue_size = 128;
 	tu->queue = kmalloc(tu->queue_size * sizeof(struct snd_timer_read),
@@ -1443,6 +1541,7 @@ static int snd_timer_user_release(struct inode *inode, struct file *file)
 		tu = file->private_data;
 		file->private_data = NULL;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (tu->timeri)
 			snd_timer_close(tu->timeri);
 =======
@@ -1451,6 +1550,10 @@ static int snd_timer_user_release(struct inode *inode, struct file *file)
 			snd_timer_close(tu->timeri);
 		mutex_unlock(&tu->ioctl_lock);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		if (tu->timeri)
+			snd_timer_close(tu->timeri);
+>>>>>>> 2617302... source
 		kfree(tu->queue);
 		kfree(tu->tqueue);
 		kfree(tu);
@@ -1689,9 +1792,13 @@ static int snd_timer_user_tselect(struct file *file,
 
 	tu = file->private_data;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mutex_lock(&tu->tread_sem);
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	mutex_lock(&tu->tread_sem);
+>>>>>>> 2617302... source
 	if (tu->timeri) {
 		snd_timer_close(tu->timeri);
 		tu->timeri = NULL;
@@ -1708,9 +1815,12 @@ static int snd_timer_user_tselect(struct file *file,
 		goto __err;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	tu->qhead = tu->qtail = tu->qused = 0;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	kfree(tu->queue);
 	tu->queue = NULL;
 	kfree(tu->tqueue);
@@ -1740,9 +1850,13 @@ static int snd_timer_user_tselect(struct file *file,
 
       __err:
 <<<<<<< HEAD
+<<<<<<< HEAD
       	mutex_unlock(&tu->tread_sem);
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+      	mutex_unlock(&tu->tread_sem);
+>>>>>>> 2617302... source
 	return err;
 }
 
@@ -1795,6 +1909,7 @@ static int snd_timer_user_params(struct file *file,
 	if (copy_from_user(&params, _params, sizeof(params)))
 		return -EFAULT;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!(t->hw.flags & SNDRV_TIMER_HW_SLAVE) && params.ticks < 1) {
 		err = -EINVAL;
 		goto _end;
@@ -1815,6 +1930,11 @@ static int snd_timer_user_params(struct file *file,
 			goto _end;
 		}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (!(t->hw.flags & SNDRV_TIMER_HW_SLAVE) && params.ticks < 1) {
+		err = -EINVAL;
+		goto _end;
+>>>>>>> 2617302... source
 	}
 	if (params.queue_size > 0 &&
 	    (params.queue_size < 32 || params.queue_size > 1024)) {
@@ -1875,9 +1995,12 @@ static int snd_timer_user_params(struct file *file,
 		if (tu->tread) {
 			struct snd_timer_tread tread;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 			memset(&tread, 0, sizeof(tread));
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 			tread.event = SNDRV_TIMER_EVENT_EARLY;
 			tread.tstamp.tv_sec = 0;
 			tread.tstamp.tv_nsec = 0;
@@ -1978,10 +2101,14 @@ enum {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static long snd_timer_user_ioctl(struct file *file, unsigned int cmd,
 =======
 static long __snd_timer_user_ioctl(struct file *file, unsigned int cmd,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+static long snd_timer_user_ioctl(struct file *file, unsigned int cmd,
+>>>>>>> 2617302... source
 				 unsigned long arg)
 {
 	struct snd_timer_user *tu;
@@ -1999,6 +2126,9 @@ static long __snd_timer_user_ioctl(struct file *file, unsigned int cmd,
 		int xarg;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		mutex_lock(&tu->tread_sem);
 		if (tu->timeri)	{	/* too late */
 			mutex_unlock(&tu->tread_sem);
@@ -2010,6 +2140,7 @@ static long __snd_timer_user_ioctl(struct file *file, unsigned int cmd,
 		}
 		tu->tread = xarg ? 1 : 0;
 		mutex_unlock(&tu->tread_sem);
+<<<<<<< HEAD
 =======
 		if (tu->timeri)	/* too late */
 			return -EBUSY;
@@ -2017,6 +2148,8 @@ static long __snd_timer_user_ioctl(struct file *file, unsigned int cmd,
 			return -EFAULT;
 		tu->tread = xarg ? 1 : 0;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		return 0;
 	}
 	case SNDRV_TIMER_IOCTL_GINFO:
@@ -2050,6 +2183,7 @@ static long __snd_timer_user_ioctl(struct file *file, unsigned int cmd,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 static long snd_timer_user_ioctl(struct file *file, unsigned int cmd,
 				 unsigned long arg)
@@ -2064,6 +2198,8 @@ static long snd_timer_user_ioctl(struct file *file, unsigned int cmd,
 }
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 static int snd_timer_user_fasync(int fd, struct file * file, int on)
 {
 	struct snd_timer_user *tu;
@@ -2078,17 +2214,23 @@ static ssize_t snd_timer_user_read(struct file *file, char __user *buffer,
 	struct snd_timer_user *tu;
 	long result = 0, unit;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	int qhead;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	int err = 0;
 
 	tu = file->private_data;
 	unit = tu->tread ? sizeof(struct snd_timer_tread) : sizeof(struct snd_timer_read);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	mutex_lock(&tu->ioctl_lock);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	spin_lock_irq(&tu->qlock);
 	while ((long)count - result >= unit) {
 		while (!tu->qused) {
@@ -2097,10 +2239,14 @@ static ssize_t snd_timer_user_read(struct file *file, char __user *buffer,
 			if ((file->f_flags & O_NONBLOCK) != 0 || result > 0) {
 				err = -EAGAIN;
 <<<<<<< HEAD
+<<<<<<< HEAD
 				break;
 =======
 				goto _error;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+				break;
+>>>>>>> 2617302... source
 			}
 
 			set_current_state(TASK_INTERRUPTIBLE);
@@ -2109,12 +2255,16 @@ static ssize_t snd_timer_user_read(struct file *file, char __user *buffer,
 
 			spin_unlock_irq(&tu->qlock);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			schedule();
 =======
 			mutex_unlock(&tu->ioctl_lock);
 			schedule();
 			mutex_lock(&tu->ioctl_lock);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			schedule();
+>>>>>>> 2617302... source
 			spin_lock_irq(&tu->qlock);
 
 			remove_wait_queue(&tu->qchange_sleep, &wait);
@@ -2122,6 +2272,9 @@ static ssize_t snd_timer_user_read(struct file *file, char __user *buffer,
 			if (signal_pending(current)) {
 				err = -ERESTARTSYS;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 				break;
 			}
 		}
@@ -2154,6 +2307,7 @@ static ssize_t snd_timer_user_read(struct file *file, char __user *buffer,
 	}
 	spin_unlock_irq(&tu->qlock);
  _error:
+<<<<<<< HEAD
 =======
 				goto _error;
 			}
@@ -2184,6 +2338,8 @@ static ssize_t snd_timer_user_read(struct file *file, char __user *buffer,
 	spin_unlock_irq(&tu->qlock);
 	mutex_unlock(&tu->ioctl_lock);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	return result > 0 ? result : err;
 }
 

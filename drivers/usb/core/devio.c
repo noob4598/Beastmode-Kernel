@@ -502,9 +502,12 @@ static void async_completed(struct urb *urb)
 	signr = as->signr;
 	if (signr) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		memset(&sinfo, 0, sizeof(sinfo));
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		sinfo.si_signo = as->signr;
 		sinfo.si_errno = as->status;
 		sinfo.si_code = SI_ASYNCIO;
@@ -517,10 +520,14 @@ static void async_completed(struct urb *urb)
 	snoop_urb(urb->dev, as->userurb, urb->pipe, urb->actual_length,
 			as->status, COMPLETE, NULL, 0);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if ((urb->transfer_flags & URB_DIR_MASK) == USB_DIR_IN)
 =======
 	if ((urb->transfer_flags & URB_DIR_MASK) == URB_DIR_IN)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if ((urb->transfer_flags & URB_DIR_MASK) == USB_DIR_IN)
+>>>>>>> 2617302... source
 		snoop_urb_data(urb, urb->actual_length);
 
 	if (as->status < 0 && as->bulk_addr && as->status != -ECONNRESET &&
@@ -1114,10 +1121,14 @@ static int proc_getdriver(struct dev_state *ps, void __user *arg)
 static int proc_connectinfo(struct dev_state *ps, void __user *arg)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	struct usbdevfs_connectinfo ci = {
 		.devnum = ps->dev->devnum,
 		.slow = ps->dev->speed == USB_SPEED_LOW
 	};
+<<<<<<< HEAD
 =======
 	struct usbdevfs_connectinfo ci;
 
@@ -1125,6 +1136,8 @@ static int proc_connectinfo(struct dev_state *ps, void __user *arg)
 	ci.devnum = ps->dev->devnum;
 	ci.slow = ps->dev->speed == USB_SPEED_LOW;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	if (copy_to_user(arg, &ci, sizeof(ci)))
 		return -EFAULT;
@@ -1609,10 +1622,14 @@ static struct async *reap_as(struct dev_state *ps)
 		__set_current_state(TASK_INTERRUPTIBLE);
 		as = async_getcompleted(ps);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (as)
 =======
 		if (as || !connected(ps))
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		if (as)
+>>>>>>> 2617302... source
 			break;
 		if (signal_pending(current))
 			break;
@@ -1636,10 +1653,14 @@ static int proc_reapurb(struct dev_state *ps, void __user *arg)
 	if (signal_pending(current))
 		return -EINTR;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return -EIO;
 =======
 	return -ENODEV;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	return -EIO;
+>>>>>>> 2617302... source
 }
 
 static int proc_reapurbnonblock(struct dev_state *ps, void __user *arg)
@@ -1649,10 +1670,14 @@ static int proc_reapurbnonblock(struct dev_state *ps, void __user *arg)
 
 	as = async_getcompleted(ps);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	retval = -EAGAIN;
 	if (as) {
 		retval = processcompl(as, (void __user * __user *)arg);
 		free_async(as);
+<<<<<<< HEAD
 =======
 	if (as) {
 		retval = processcompl(as, (void __user * __user *)arg);
@@ -1660,6 +1685,8 @@ static int proc_reapurbnonblock(struct dev_state *ps, void __user *arg)
 	} else {
 		retval = (connected(ps) ? -EAGAIN : -ENODEV);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	}
 	return retval;
 }
@@ -1790,10 +1817,14 @@ static int proc_reapurb_compat(struct dev_state *ps, void __user *arg)
 	if (signal_pending(current))
 		return -EINTR;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return -EIO;
 =======
 	return -ENODEV;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	return -EIO;
+>>>>>>> 2617302... source
 }
 
 static int proc_reapurbnonblock_compat(struct dev_state *ps, void __user *arg)
@@ -1802,18 +1833,25 @@ static int proc_reapurbnonblock_compat(struct dev_state *ps, void __user *arg)
 	struct async *as;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	retval = -EAGAIN;
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	retval = -EAGAIN;
+>>>>>>> 2617302... source
 	as = async_getcompleted(ps);
 	if (as) {
 		retval = processcompl_compat(as, (void __user * __user *)arg);
 		free_async(as);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	} else {
 		retval = (connected(ps) ? -EAGAIN : -ENODEV);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	}
 	return retval;
 }
@@ -1985,11 +2023,15 @@ static int proc_get_capabilities(struct dev_state *ps, void __user *arg)
 	__u32 caps;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	caps = USBDEVFS_CAP_ZERO_PACKET | USBDEVFS_CAP_NO_PACKET_SIZE_LIM;
 =======
 	caps = USBDEVFS_CAP_ZERO_PACKET | USBDEVFS_CAP_NO_PACKET_SIZE_LIM |
 			USBDEVFS_CAP_REAP_AFTER_DISCONNECT;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	caps = USBDEVFS_CAP_ZERO_PACKET | USBDEVFS_CAP_NO_PACKET_SIZE_LIM;
+>>>>>>> 2617302... source
 	if (!ps->dev->bus->no_stop_on_short)
 		caps |= USBDEVFS_CAP_BULK_CONTINUATION;
 	if (ps->dev->bus->sg_tablesize)
@@ -2051,6 +2093,7 @@ static long usbdev_do_ioctl(struct file *file, unsigned int cmd,
 
 	usb_lock_device(dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 	/* Reap operations are allowed even after disconnection */
@@ -2079,6 +2122,8 @@ static long usbdev_do_ioctl(struct file *file, unsigned int cmd,
 	}
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	if (!connected(ps)) {
 		usb_unlock_device(dev);
 		return -ENODEV;
@@ -2173,6 +2218,9 @@ static long usbdev_do_ioctl(struct file *file, unsigned int cmd,
 		break;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	case USBDEVFS_REAPURB32:
 		snoop(&dev->dev, "%s: REAPURB32\n", __func__);
 		ret = proc_reapurb_compat(ps, p);
@@ -2183,8 +2231,11 @@ static long usbdev_do_ioctl(struct file *file, unsigned int cmd,
 		ret = proc_reapurbnonblock_compat(ps, p);
 		break;
 
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	case USBDEVFS_IOCTL32:
 		snoop(&dev->dev, "%s: IOCTL32\n", __func__);
 		ret = proc_ioctl_compat(ps, ptr_to_compat(p));
@@ -2197,6 +2248,9 @@ static long usbdev_do_ioctl(struct file *file, unsigned int cmd,
 		break;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	case USBDEVFS_REAPURB:
 		snoop(&dev->dev, "%s: REAPURB\n", __func__);
 		ret = proc_reapurb(ps, p);
@@ -2207,8 +2261,11 @@ static long usbdev_do_ioctl(struct file *file, unsigned int cmd,
 		ret = proc_reapurbnonblock(ps, p);
 		break;
 
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	case USBDEVFS_DISCSIGNAL:
 		snoop(&dev->dev, "%s: DISCSIGNAL\n", __func__);
 		ret = proc_disconnectsignal(ps, p);
@@ -2246,10 +2303,13 @@ static long usbdev_do_ioctl(struct file *file, unsigned int cmd,
 		break;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
  done:
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	usb_unlock_device(dev);
 	if (ret >= 0)
 		inode->i_atime = CURRENT_TIME;
@@ -2318,9 +2378,12 @@ static void usbdev_remove(struct usb_device *udev)
 		list_del_init(&ps->list);
 		if (ps->discsignr) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 			memset(&sinfo, 0, sizeof(sinfo));
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 			sinfo.si_signo = ps->discsignr;
 			sinfo.si_errno = EPIPE;
 			sinfo.si_code = SI_ASYNCIO;

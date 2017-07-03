@@ -1301,10 +1301,14 @@ filelayout_alloc_layout_hdr(struct inode *inode, gfp_t gfp_flags)
 
 	flo = kzalloc(sizeof(*flo), gfp_flags);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return &flo->generic_hdr;
 =======
 	return flo != NULL ? &flo->generic_hdr : NULL;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	return &flo->generic_hdr;
+>>>>>>> 2617302... source
 }
 
 static void

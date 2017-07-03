@@ -70,9 +70,12 @@ size_t pci_get_rom_size(struct pci_dev *pdev, void __iomem *rom, size_t size)
 	void __iomem *image;
 	int last_image;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	unsigned length;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	image = rom;
 	do {
@@ -96,6 +99,7 @@ size_t pci_get_rom_size(struct pci_dev *pdev, void __iomem *rom, size_t size)
 			break;
 		last_image = readb(pds + 21) & 0x80;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		/* this length is reliable */
 		image += readw(pds + 16) * 512;
 	} while (!last_image);
@@ -104,6 +108,11 @@ size_t pci_get_rom_size(struct pci_dev *pdev, void __iomem *rom, size_t size)
 		image += length * 512;
 	} while (length && !last_image);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		/* this length is reliable */
+		image += readw(pds + 16) * 512;
+	} while (!last_image);
+>>>>>>> 2617302... source
 
 	/* never return a size larger than the PCI resource window */
 	/* there are known ROMs that get the size wrong */

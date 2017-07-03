@@ -35,10 +35,14 @@
 
 verify_cpu:
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	pushfl				# Save caller passed flags
 	pushl	$0			# Kill any dangerous flags
 	popfl
 
+<<<<<<< HEAD
 =======
 	pushf				# Save caller passed flags
 	push	$0			# Kill any dangerous flags
@@ -46,6 +50,8 @@ verify_cpu:
 
 #ifndef __x86_64__
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	pushfl				# standard way to check for cpuid
 	popl	%eax
 	movl	%eax,%ebx
@@ -57,9 +63,12 @@ verify_cpu:
 	cmpl	%eax,%ebx
 	jz	verify_cpu_no_longmode	# cpu has no cpuid
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #endif
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	movl	$0x0,%eax		# See if cpuid 1 is implemented
 	cpuid
@@ -143,11 +152,15 @@ verify_cpu_sse_test:
 
 verify_cpu_no_longmode:
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	popfl				# Restore caller passed flags
 	movl $1,%eax
 	ret
 verify_cpu_sse_ok:
 	popfl				# Restore caller passed flags
+<<<<<<< HEAD
 =======
 	popf				# Restore caller passed flags
 	movl $1,%eax
@@ -155,5 +168,7 @@ verify_cpu_sse_ok:
 verify_cpu_sse_ok:
 	popf				# Restore caller passed flags
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	xorl %eax, %eax
 	ret

@@ -45,11 +45,17 @@ static DEFINE_MUTEX(scm_lock);
 #define SCM_EBUSY_MAX_RETRY 20
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define SCM_BUF_LEN(__cmd_size, __resp_size)	\
 	(sizeof(struct scm_command) + sizeof(struct scm_response) + \
 		__cmd_size + __resp_size)
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+#define SCM_BUF_LEN(__cmd_size, __resp_size)	\
+	(sizeof(struct scm_command) + sizeof(struct scm_response) + \
+		__cmd_size + __resp_size)
+>>>>>>> 2617302... source
 /**
  * struct scm_command - one SCM command buffer
  * @len: total available memory for command and response
@@ -119,6 +125,7 @@ struct scm_response {
 #endif
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 /* Calculate size for buffer given cmd_size and resp_size.
  * Returns 0 in case the result would overflow size_t.
@@ -136,6 +143,8 @@ static size_t scm_get_buf_len(size_t cmd_size, size_t resp_size)
 }
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 /**
  * scm_command_to_response() - Get a pointer to a scm_response
  * @cmd: command
@@ -396,15 +405,21 @@ int scm_call_noalloc(u32 svc_id, u32 cmd_id, const void *cmd_buf,
 {
 	int ret;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	size_t len = SCM_BUF_LEN(cmd_len, resp_len);
 
 	if (cmd_len > scm_buf_len || resp_len > scm_buf_len ||
 	    len > scm_buf_len)
+<<<<<<< HEAD
 =======
 	size_t len = scm_get_buf_len(cmd_len, resp_len);
 
 	if (len == 0 || len > scm_buf_len)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		return -EINVAL;
 
 	if (!IS_ALIGNED((unsigned long)scm_buf, PAGE_SIZE))
@@ -442,6 +457,7 @@ int scm_call(u32 svc_id, u32 cmd_id, const void *cmd_buf, size_t cmd_len,
 	struct scm_command *cmd;
 	int ret;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	size_t len = SCM_BUF_LEN(cmd_len, resp_len);
 
 	if (cmd_len > len || resp_len > len)
@@ -450,6 +466,11 @@ int scm_call(u32 svc_id, u32 cmd_id, const void *cmd_buf, size_t cmd_len,
 
 	if (len == 0 || PAGE_ALIGN(len) < len)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	size_t len = SCM_BUF_LEN(cmd_len, resp_len);
+
+	if (cmd_len > len || resp_len > len)
+>>>>>>> 2617302... source
 		return -EINVAL;
 
 	cmd = kzalloc(PAGE_ALIGN(len), GFP_KERNEL);

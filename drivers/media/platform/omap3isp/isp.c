@@ -2250,9 +2250,12 @@ static int isp_probe(struct platform_device *pdev)
 	if (ret) {
 		dev_err(&pdev->dev, "can't attach iommu device: %d\n", ret);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		ret = -EPROBE_DEFER;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		goto free_domain;
 	}
 
@@ -2292,9 +2295,12 @@ detach_dev:
 free_domain:
 	iommu_domain_free(isp->domain);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	isp->domain = NULL;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 error_isp:
 	isp_xclk_cleanup(isp);
 	omap3isp_put(isp);

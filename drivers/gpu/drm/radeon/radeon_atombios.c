@@ -453,12 +453,16 @@ static bool radeon_atom_apply_quirks(struct drm_device *dev,
 
 	/* Fujitsu D3003-S2 board lists DVI-I as DVI-D and VGA */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (((dev->pdev->device == 0x9802) || (dev->pdev->device == 0x9806)) &&
 =======
 	if (((dev->pdev->device == 0x9802) ||
 	     (dev->pdev->device == 0x9805) ||
 	     (dev->pdev->device == 0x9806)) &&
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (((dev->pdev->device == 0x9802) || (dev->pdev->device == 0x9806)) &&
+>>>>>>> 2617302... source
 	    (dev->pdev->subsystem_vendor == 0x1734) &&
 	    (dev->pdev->subsystem_device == 0x11bd)) {
 		if (*connector_type == DRM_MODE_CONNECTOR_VGA) {
@@ -470,9 +474,13 @@ static bool radeon_atom_apply_quirks(struct drm_device *dev,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+
+>>>>>>> 2617302... source
 	return true;
 }
 
@@ -1153,10 +1161,14 @@ bool radeon_atom_get_clock_info(struct drm_device *dev)
 		p1pll->reference_div = 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (crev < 2)
 =======
 		if ((frev < 2) && (crev < 2))
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		if (crev < 2)
+>>>>>>> 2617302... source
 			p1pll->pll_out_min =
 				le16_to_cpu(firmware_info->info.usMinPixelClockPLL_Output);
 		else
@@ -1166,10 +1178,14 @@ bool radeon_atom_get_clock_info(struct drm_device *dev)
 		    le32_to_cpu(firmware_info->info.ulMaxPixelClockPLL_Output);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (crev >= 4) {
 =======
 		if (((frev < 2) && (crev >= 4)) || (frev >= 2)) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		if (crev >= 4) {
+>>>>>>> 2617302... source
 			p1pll->lcd_pll_out_min =
 				le16_to_cpu(firmware_info->info_14.usLcdMinPixelClockPLL_Output) * 100;
 			if (p1pll->lcd_pll_out_min == 0)
@@ -1926,10 +1942,14 @@ static const char *thermal_controller_names[] = {
 	"adm1030",
 	"max6649",
 <<<<<<< HEAD
+<<<<<<< HEAD
 	"lm64",
 =======
 	"lm63", /* lm64 */
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	"lm64",
+>>>>>>> 2617302... source
 	"f75375",
 	"asc7xxx",
 };
@@ -1941,10 +1961,14 @@ static const char *pp_lib_thermal_controller_names[] = {
 	"adm1030",
 	"max6649",
 <<<<<<< HEAD
+<<<<<<< HEAD
 	"lm64",
 =======
 	"lm63", /* lm64 */
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	"lm64",
+>>>>>>> 2617302... source
 	"f75375",
 	"RV6xx",
 	"RV770",

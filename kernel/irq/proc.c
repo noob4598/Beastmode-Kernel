@@ -13,9 +13,12 @@
 #include <linux/interrupt.h>
 #include <linux/kernel_stat.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <linux/mutex.h>
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 #include "internals.h"
 
@@ -353,11 +356,15 @@ void register_handler_proc(unsigned int irq, struct irqaction *action)
 void register_irq_proc(unsigned int irq, struct irq_desc *desc)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	char name [MAX_NAMELEN];
 
 	if (!root_irq_dir || (desc->irq_data.chip == &no_irq_chip) || desc->dir)
 		return;
 
+<<<<<<< HEAD
 =======
 	static DEFINE_MUTEX(register_lock);
 	char name [MAX_NAMELEN];
@@ -376,6 +383,8 @@ void register_irq_proc(unsigned int irq, struct irq_desc *desc)
 		goto out_unlock;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	memset(name, 0, MAX_NAMELEN);
 	sprintf(name, "%d", irq);
 
@@ -383,10 +392,14 @@ void register_irq_proc(unsigned int irq, struct irq_desc *desc)
 	desc->dir = proc_mkdir(name, root_irq_dir);
 	if (!desc->dir)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return;
 =======
 		goto out_unlock;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		return;
+>>>>>>> 2617302... source
 
 #ifdef CONFIG_SMP
 	/* create /proc/irq/<irq>/smp_affinity */
@@ -408,19 +421,25 @@ void register_irq_proc(unsigned int irq, struct irq_desc *desc)
 	proc_create_data("spurious", 0444, desc->dir,
 			 &irq_spurious_proc_fops, (void *)(long)irq);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	proc_create_data("disable_depth", 0444, desc->dir,
 			 &irq_disable_depth_proc_fops, (void *)(long)irq);
 	proc_create_data("wake_depth", 0444, desc->dir,
 			 &irq_wake_depth_proc_fops, (void *)(long)irq);
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 
 out_unlock:
 	mutex_unlock(&register_lock);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 }
 
 void unregister_irq_proc(unsigned int irq, struct irq_desc *desc)

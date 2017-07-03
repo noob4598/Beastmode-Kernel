@@ -89,11 +89,14 @@ struct cache_disk_superblock {
 
 struct dm_cache_metadata {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	atomic_t ref_count;
 	struct list_head list;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	struct block_device *bdev;
 	struct dm_block_manager *bm;
 	struct dm_space_map *metadata_sm;
@@ -391,6 +394,7 @@ static int __open_metadata(struct dm_cache_metadata *cmd)
 	disk_super = dm_block_data(sblock);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/* Verify the data block size hasn't changed */
 	if (le32_to_cpu(disk_super->data_block_size) != cmd->data_block_size) {
@@ -402,6 +406,8 @@ static int __open_metadata(struct dm_cache_metadata *cmd)
 	}
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	r = __check_incompat_features(disk_super, cmd);
 	if (r < 0)
 		goto bad;
@@ -644,16 +650,22 @@ static void unpack_value(__le64 value_le, dm_oblock_t *block, unsigned *flags)
 /*----------------------------------------------------------------*/
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 struct dm_cache_metadata *dm_cache_metadata_open(struct block_device *bdev,
 						 sector_t data_block_size,
 						 bool may_format_device,
 						 size_t policy_hint_size)
+<<<<<<< HEAD
 =======
 static struct dm_cache_metadata *metadata_open(struct block_device *bdev,
 					       sector_t data_block_size,
 					       bool may_format_device,
 					       size_t policy_hint_size)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 {
 	int r;
 	struct dm_cache_metadata *cmd;
@@ -661,6 +673,7 @@ static struct dm_cache_metadata *metadata_open(struct block_device *bdev,
 	cmd = kzalloc(sizeof(*cmd), GFP_KERNEL);
 	if (!cmd) {
 		DMERR("could not allocate metadata struct");
+<<<<<<< HEAD
 <<<<<<< HEAD
 		return NULL;
 	}
@@ -671,6 +684,11 @@ static struct dm_cache_metadata *metadata_open(struct block_device *bdev,
 
 	atomic_set(&cmd->ref_count, 1);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		return NULL;
+	}
+
+>>>>>>> 2617302... source
 	init_rwsem(&cmd->root_lock);
 	cmd->bdev = bdev;
 	cmd->data_block_size = data_block_size;
@@ -694,10 +712,14 @@ static struct dm_cache_metadata *metadata_open(struct block_device *bdev,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 void dm_cache_metadata_close(struct dm_cache_metadata *cmd)
 {
 	__destroy_persistent_data_objects(cmd);
 	kfree(cmd);
+<<<<<<< HEAD
 =======
 /*
  * We keep a little list of ref counted metadata objects to prevent two
@@ -790,6 +812,8 @@ void dm_cache_metadata_close(struct dm_cache_metadata *cmd)
 		kfree(cmd);
 	}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 }
 
 int dm_cache_resize(struct dm_cache_metadata *cmd, dm_cblock_t new_cache_size)

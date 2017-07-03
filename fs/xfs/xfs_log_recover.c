@@ -3383,9 +3383,12 @@ xlog_recover_clear_agi_bucket(
 	offset = offsetof(xfs_agi_t, agi_unlinked) +
 		 (sizeof(xfs_agino_t) * bucket);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	xfs_trans_buf_set_type(tp, agibp, XFS_BLFT_AGI_BUF);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	xfs_trans_log_buf(tp, agibp, offset,
 			  (offset + sizeof(xfs_agino_t) - 1));
 

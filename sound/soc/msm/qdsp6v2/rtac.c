@@ -1,8 +1,12 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* Copyright (c) 2012-2014, The Linux Foundation. All rights reserved.
 =======
 /* Copyright (c) 2012-2016, The Linux Foundation. All rights reserved.
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+/* Copyright (c) 2012-2014, The Linux Foundation. All rights reserved.
+>>>>>>> 2617302... source
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -190,10 +194,14 @@ int rtac_allocate_cal_buffer(uint32_t cal_type)
 
 	if (rtac_cal[cal_type].cal_data.paddr != 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("%s: memory already allocated! cal_type %d, paddr 0x%pa\n",
 =======
 		pr_err("%s: memory already allocated! cal_type %d, paddr 0x%pK\n",
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		pr_err("%s: memory already allocated! cal_type %d, paddr 0x%pa\n",
+>>>>>>> 2617302... source
 		       __func__, cal_type, &rtac_cal[cal_type].cal_data.paddr);
 		result = -EPERM;
 		goto done;
@@ -213,10 +221,14 @@ int rtac_allocate_cal_buffer(uint32_t cal_type)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_debug("%s: cal_type %d, paddr 0x%pa, kvaddr 0x%p, map_size 0x%x\n",
 =======
 	pr_debug("%s: cal_type %d, paddr 0x%pK, kvaddr 0x%pK, map_size 0x%x\n",
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	pr_debug("%s: cal_type %d, paddr 0x%pa, kvaddr 0x%p, map_size 0x%x\n",
+>>>>>>> 2617302... source
 		__func__, cal_type,
 		&rtac_cal[cal_type].cal_data.paddr,
 		rtac_cal[cal_type].cal_data.kvaddr,
@@ -247,10 +259,14 @@ int rtac_free_cal_buffer(uint32_t cal_type)
 				rtac_cal[cal_type].map_data.ion_handle);
 	if (result < 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("%s: ION free for RTAC failed! cal_type %d, paddr 0x%pa\n",
 =======
 		pr_err("%s: ION free for RTAC failed! cal_type %d, paddr 0x%pK\n",
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		pr_err("%s: ION free for RTAC failed! cal_type %d, paddr 0x%pa\n",
+>>>>>>> 2617302... source
 		       __func__, cal_type, &rtac_cal[cal_type].cal_data.paddr);
 		goto done;
 	}
@@ -807,10 +823,14 @@ static int get_voice_index(u32 mode, u32 handle)
 void rtac_set_adm_handle(void *handle)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_debug("%s: handle = %d\n", __func__, (unsigned int)handle);
 =======
 	pr_debug("%s: handle = %pK\n", __func__, handle);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	pr_debug("%s: handle = %d\n", __func__, (unsigned int)handle);
+>>>>>>> 2617302... source
 
 	mutex_lock(&rtac_adm_apr_mutex);
 	rtac_adm_apr_data.apr_handle = handle;
@@ -868,12 +888,17 @@ u32 send_adm_apr(void *buf, u32 opcode)
 	if (copy_from_user(&user_buf_size, (void *)buf,
 						sizeof(user_buf_size))) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("%s: Copy from user failed! buf = 0x%x\n",
 		       __func__, (unsigned int)buf);
 =======
 		pr_err("%s: Copy from user failed! buf = 0x%pK\n",
 		       __func__, buf);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		pr_err("%s: Copy from user failed! buf = 0x%x\n",
+		       __func__, (unsigned int)buf);
+>>>>>>> 2617302... source
 		goto done;
 	}
 	if (user_buf_size <= 0) {
@@ -973,10 +998,14 @@ u32 send_adm_apr(void *buf, u32 opcode)
 	atomic_set(&rtac_adm_apr_data.cmd_state, 1);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_debug("%s: Sending RTAC command ioctl 0x%x, paddr 0x%pa\n",
 =======
 	pr_debug("%s: Sending RTAC command ioctl 0x%x, paddr 0x%pK\n",
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	pr_debug("%s: Sending RTAC command ioctl 0x%x, paddr 0x%pa\n",
+>>>>>>> 2617302... source
 		__func__, opcode,
 		&rtac_cal[ADM_RTAC_CAL].cal_data.paddr);
 
@@ -1092,12 +1121,17 @@ u32 send_rtac_asm_apr(void *buf, u32 opcode)
 	if (copy_from_user(&user_buf_size, (void *)buf,
 						sizeof(user_buf_size))) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("%s: Copy from user failed! buf = 0x%x\n",
 		       __func__, (unsigned int)buf);
 =======
 		pr_err("%s: Copy from user failed! buf = 0x%pK\n",
 		       __func__, buf);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		pr_err("%s: Copy from user failed! buf = 0x%x\n",
+		       __func__, (unsigned int)buf);
+>>>>>>> 2617302... source
 		goto done;
 	}
 	if (user_buf_size <= 0) {
@@ -1190,10 +1224,14 @@ u32 send_rtac_asm_apr(void *buf, u32 opcode)
 	atomic_set(&rtac_asm_apr_data[session_id].cmd_state, 1);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_debug("%s: Sending RTAC command ioctl 0x%x, paddr 0x%pa\n",
 =======
 	pr_debug("%s: Sending RTAC command ioctl 0x%x, paddr 0x%pK\n",
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	pr_debug("%s: Sending RTAC command ioctl 0x%x, paddr 0x%pa\n",
+>>>>>>> 2617302... source
 		__func__, opcode,
 		&rtac_cal[ASM_RTAC_CAL].cal_data.paddr);
 
@@ -1309,12 +1347,17 @@ u32 send_voice_apr(u32 mode, void *buf, u32 opcode)
 	if (copy_from_user(&user_buf_size, (void *)buf,
 						sizeof(user_buf_size))) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("%s: Copy from user failed! buf = 0x%x\n",
 		       __func__, (unsigned int)buf);
 =======
 		pr_err("%s: Copy from user failed! buf = 0x%pK\n",
 		       __func__, buf);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		pr_err("%s: Copy from user failed! buf = 0x%x\n",
+		       __func__, (unsigned int)buf);
+>>>>>>> 2617302... source
 		goto done;
 	}
 	if (user_buf_size <= 0) {
@@ -1408,10 +1451,14 @@ u32 send_voice_apr(u32 mode, void *buf, u32 opcode)
 	atomic_set(&rtac_voice_apr_data[mode].cmd_state, 1);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_debug("%s: Sending RTAC command ioctl 0x%x, paddr 0x%pa\n",
 =======
 	pr_debug("%s: Sending RTAC command ioctl 0x%x, paddr 0x%pK\n",
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	pr_debug("%s: Sending RTAC command ioctl 0x%x, paddr 0x%pa\n",
+>>>>>>> 2617302... source
 		__func__, opcode,
 		&rtac_cal[VOICE_RTAC_CAL].cal_data.paddr);
 

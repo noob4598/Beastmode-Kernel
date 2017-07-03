@@ -835,6 +835,7 @@ static int vmw_cmd_dma(struct vmw_private *dev_priv,
 	} *cmd;
 	int ret;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	cmd = container_of(header, struct vmw_dma_cmd, header);
 =======
@@ -852,12 +853,17 @@ static int vmw_cmd_dma(struct vmw_private *dev_priv,
 	}
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+
+	cmd = container_of(header, struct vmw_dma_cmd, header);
+>>>>>>> 2617302... source
 	ret = vmw_translate_guest_ptr(dev_priv, sw_context,
 				      &cmd->dma.guest.ptr,
 				      &vmw_bo);
 	if (unlikely(ret != 0))
 		return ret;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 	/* Make sure DMA doesn't cross BO boundaries. */
@@ -872,6 +878,8 @@ static int vmw_cmd_dma(struct vmw_private *dev_priv,
 		suffix->maximumOffset = bo_size;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	ret = vmw_cmd_res_check(dev_priv, sw_context, vmw_res_surface,
 				user_surface_converter, &cmd->dma.host.sid,
 				NULL);

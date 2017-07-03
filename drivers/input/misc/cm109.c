@@ -670,12 +670,15 @@ static int cm109_usb_probe(struct usb_interface *intf,
 
 	interface = intf->cur_altsetting;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 	if (interface->desc.bNumEndpoints < 1)
 		return -ENODEV;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	endpoint = &interface->endpoint[0].desc;
 
 	if (!usb_endpoint_is_int_in(endpoint))

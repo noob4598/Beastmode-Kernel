@@ -595,12 +595,17 @@ static void put_tag_ref_tree(tag_t full_tag, struct uid_tag_data *utd_entry)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int read_proc_u64(struct file *file, char __user *buf,
 			 size_t size, loff_t *ppos)
 =======
 static ssize_t read_proc_u64(struct file *file, char __user *buf,
 			     size_t size, loff_t *ppos)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+static int read_proc_u64(struct file *file, char __user *buf,
+			 size_t size, loff_t *ppos)
+>>>>>>> 2617302... source
 {
 	uint64_t *valuep = PDE_DATA(file_inode(file));
 	char tmp[24];
@@ -611,12 +616,17 @@ static ssize_t read_proc_u64(struct file *file, char __user *buf,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int read_proc_bool(struct file *file, char __user *buf,
 			  size_t size, loff_t *ppos)
 =======
 static ssize_t read_proc_bool(struct file *file, char __user *buf,
 			      size_t size, loff_t *ppos)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+static int read_proc_bool(struct file *file, char __user *buf,
+			  size_t size, loff_t *ppos)
+>>>>>>> 2617302... source
 {
 	bool *valuep = PDE_DATA(file_inode(file));
 	char tmp[24];
@@ -1200,6 +1210,9 @@ static void iface_stat_update_from_skb(const struct sk_buff *skb,
 	int proto;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	if (!skb->dev) {
 		MT_DEBUG("qtaguid[%d]: no skb->dev\n", par->hooknum);
 		el_dev = par->in ? : par->out;
@@ -1213,6 +1226,7 @@ static void iface_stat_update_from_skb(const struct sk_buff *skb,
 				 par->hooknum, el_dev, el_dev->name, other_dev,
 				 other_dev->name);
 		}
+<<<<<<< HEAD
 =======
 	MT_DEBUG("qtaguid[%d]: no skb->dev\n", par->hooknum);
 	el_dev = par->in ? : par->out;
@@ -1223,6 +1237,8 @@ static void iface_stat_update_from_skb(const struct sk_buff *skb,
 			par->hooknum, skb->dev, skb->dev->name, el_dev,
 			el_dev->name);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	}
 
 	if (unlikely(!el_dev)) {
@@ -1513,10 +1529,14 @@ static int proc_iface_stat_fmt_open(struct inode *inode, struct file *file)
 		return -ENOMEM;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	s->fmt = (int)PDE_DATA(inode);
 =======
 	s->fmt = (int)(long)PDE_DATA(inode);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	s->fmt = (int)PDE_DATA(inode);
+>>>>>>> 2617302... source
 	return 0;
 }
 
@@ -1961,10 +1981,14 @@ static int qtaguid_ctrl_proc_show(struct seq_file *m, void *v)
 		f_count = atomic_long_read(
 			&sock_tag_entry->socket->file->f_count);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		seq_printf(m, "sock=%p tag=0x%llx (uid=%u) pid=%u "
 =======
 		seq_printf(m, "sock=%pK tag=0x%llx (uid=%u) pid=%u "
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		seq_printf(m, "sock=%p tag=0x%llx (uid=%u) pid=%u "
+>>>>>>> 2617302... source
 			   "f_count=%lu\n",
 			   sock_tag_entry->sk,
 			   sock_tag_entry->tag, uid,
@@ -2512,6 +2536,7 @@ err:
 
 #define MAX_QTAGUID_CTRL_INPUT_LEN 255
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int qtaguid_ctrl_proc_write(struct file *file, const char __user *buffer,
 				   size_t count, loff_t *offp)
 =======
@@ -2520,6 +2545,10 @@ static ssize_t qtaguid_ctrl_proc_write(struct file *file,
 				       size_t count,
 				       loff_t *offp)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+static int qtaguid_ctrl_proc_write(struct file *file, const char __user *buffer,
+				   size_t count, loff_t *offp)
+>>>>>>> 2617302... source
 {
 	char input_buf[MAX_QTAGUID_CTRL_INPUT_LEN];
 
@@ -2568,10 +2597,14 @@ static int pp_stats_line(struct seq_file *m, struct tag_stat *ts_entry,
 	struct proc_print_info *ppi = m->private;
 	/* Detailed tags are not available to everybody */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (get_atag_from_tag(tag) && !can_read_other_uid_stats(stat_uid)) {
 =======
 	if (!can_read_other_uid_stats(stat_uid)) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (get_atag_from_tag(tag) && !can_read_other_uid_stats(stat_uid)) {
+>>>>>>> 2617302... source
 		CT_DEBUG("qtaguid: stats line: "
 			 "%s 0x%llx %u: insufficient priv "
 			 "from pid=%u tgid=%u uid=%u stats.gid=%u\n",

@@ -118,10 +118,14 @@ subsys_initcall(init_vdso);
 struct linux_binprm;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 /* Put the vdso above the (randomized) stack with another randomized offset.
    This way there is no hole in the middle of address space.
    To save memory make sure it is still in the same PTE as the stack top.
    This doesn't give that many random bits */
+<<<<<<< HEAD
 =======
 /*
  * Put the vdso above the (randomized) stack with another randomized
@@ -135,11 +139,16 @@ struct linux_binprm;
  * Only used for the 64-bit and x32 vdsos.
  */
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 static unsigned long vdso_addr(unsigned long start, unsigned len)
 {
 	unsigned long addr, end;
 	unsigned offset;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	end = (start + PMD_SIZE - 1) & PMD_MASK;
 	if (end >= TASK_SIZE_MAX)
 		end = TASK_SIZE_MAX;
@@ -156,6 +165,7 @@ static unsigned long vdso_addr(unsigned long start, unsigned len)
 	 * unaligned here as a result of stack start randomization.
 	 */
 	addr = PAGE_ALIGN(addr);
+<<<<<<< HEAD
 =======
 
 	/*
@@ -182,6 +192,8 @@ static unsigned long vdso_addr(unsigned long start, unsigned len)
 	 * issue that requires alignment for performance reasons.
 	 */
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	addr = align_vdso_addr(addr);
 
 	return addr;

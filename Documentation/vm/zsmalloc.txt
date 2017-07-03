@@ -1,4 +1,7 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 zsmalloc Memory Allocator
 
 Overview
@@ -67,6 +70,7 @@ zs_free(pool, handle);
 
 /* destroy the pool */
 zs_destroy_pool(pool);
+<<<<<<< HEAD
 =======
 zsmalloc
 --------
@@ -139,3 +143,5 @@ Similarly, we assign zspage to:
       ZS_EMPTY        when n == 0
       ZS_FULL         when n == N
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source

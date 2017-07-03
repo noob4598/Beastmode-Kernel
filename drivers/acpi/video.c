@@ -1264,11 +1264,14 @@ static int acpi_video_device_enumerate(struct acpi_video_bus *video)
 	union acpi_object *obj;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (!video->cap._DOD)
 		return AE_NOT_EXIST;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	status = acpi_evaluate_object(video->device->handle, "_DOD", NULL, &buffer);
 	if (!ACPI_SUCCESS(status)) {
 		ACPI_EXCEPTION((AE_INFO, status, "Evaluating _DOD"));
@@ -1960,6 +1963,7 @@ EXPORT_SYMBOL(acpi_video_unregister);
 static int __init acpi_video_init(void)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/*
 	 * Let the module load even if ACPI is disabled (e.g. due to
@@ -1973,6 +1977,8 @@ static int __init acpi_video_init(void)
 		return 0;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	dmi_check_system(video_dmi_table);
 
 	if (intel_opregion_present())

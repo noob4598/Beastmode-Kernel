@@ -522,9 +522,12 @@ static int msm_pcm_playback_close(struct snd_pcm_substream *substream)
 	q6asm_audio_client_free(prtd->audio_client);
 	kfree(prtd);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	runtime->private_data = NULL;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	return 0;
 }
 
@@ -562,10 +565,14 @@ static int msm_pcm_capture_copy(struct snd_pcm_substream *substream,
 		return 0;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_debug("Checking if valid buffer is available...%p\n", data);
 =======
 	pr_debug("Checking if valid buffer is available...%pK\n", data);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	pr_debug("Checking if valid buffer is available...%p\n", data);
+>>>>>>> 2617302... source
 	data = q6asm_is_cpu_buf_avail(OUT, prtd->audio_client, &size, &idx);
 	bufptr = data;
 	pr_debug("Size = %d\n", size);
@@ -621,9 +628,12 @@ static int msm_pcm_capture_close(struct snd_pcm_substream *substream)
 	q6asm_audio_client_free(prtd->audio_client);
 	kfree(prtd);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	runtime->private_data = NULL;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	return 0;
 }
@@ -723,10 +733,14 @@ static int msm_pcm_hw_params(struct snd_pcm_substream *substream,
 	buf = prtd->audio_client->port[dir].buf;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_debug("%s:buf = %p\n", __func__, buf);
 =======
 	pr_debug("%s:buf = %pK\n", __func__, buf);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	pr_debug("%s:buf = %p\n", __func__, buf);
+>>>>>>> 2617302... source
 	dma_buf->dev.type = SNDRV_DMA_TYPE_DEV;
 	dma_buf->dev.dev = substream->pcm->card->dev;
 	dma_buf->private_data = NULL;

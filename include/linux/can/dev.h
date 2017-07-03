@@ -32,9 +32,12 @@ enum can_mode {
  */
 struct can_priv {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct net_device *dev;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	struct can_device_stats can_stats;
 
 	struct can_bittiming bittiming;
@@ -47,10 +50,14 @@ struct can_priv {
 
 	int restart_ms;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct timer_list restart_timer;
 =======
 	struct delayed_work restart_work;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	struct timer_list restart_timer;
+>>>>>>> 2617302... source
 
 	int (*do_set_bittiming)(struct net_device *dev);
 	int (*do_set_mode)(struct net_device *dev, enum can_mode mode);

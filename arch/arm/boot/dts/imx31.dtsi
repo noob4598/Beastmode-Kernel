@@ -21,11 +21,15 @@
 	};
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	avic: avic-interrupt-controller@60000000 {
 		compatible = "fsl,imx31-avic", "fsl,avic";
 		interrupt-controller;
 		#interrupt-cells = <1>;
 		reg = <0x60000000 0x100000>;
+<<<<<<< HEAD
 =======
 	avic: interrupt-controller@68000000 {
 		compatible = "fsl,imx31-avic", "fsl,avic";
@@ -33,6 +37,8 @@
 		#interrupt-cells = <1>;
 		reg = <0x68000000 0x100000>;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	};
 
 	soc {
@@ -102,6 +108,9 @@
 				status = "disabled";
 			};
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 
 			clks: ccm@53f80000{
 				compatible = "fsl,imx31-ccm";
@@ -109,8 +118,11 @@
 				interrupts = <0 31 0x04 0 53 0x04>;
 				#clock-cells = <1>;
 			};
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		};
 
 		aips@53f00000 { /* AIPS2 */
@@ -121,6 +133,7 @@
 			ranges;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 			clks: ccm@53f80000{
 				compatible = "fsl,imx31-ccm";
@@ -130,6 +143,8 @@
 			};
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 			gpt: timer@53f90000 {
 				compatible = "fsl,imx31-gpt";
 				reg = <0x53f90000 0x4000>;

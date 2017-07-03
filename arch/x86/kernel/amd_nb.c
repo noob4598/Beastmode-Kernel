@@ -68,12 +68,17 @@ int amd_cache_northbridges(void)
 		i++;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (i == 0)
 		return 0;
 =======
 	if (!i)
 		return -ENODEV;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (i == 0)
+		return 0;
+>>>>>>> 2617302... source
 
 	nb = kzalloc(i * sizeof(struct amd_northbridge), GFP_KERNEL);
 	if (!nb)

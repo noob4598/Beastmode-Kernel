@@ -216,10 +216,14 @@ int update_dsi_tcon_mdnie_register(struct samsung_display_driver_data *vdd)
                 }
         } else
 <<<<<<< HEAD
+<<<<<<< HEAD
 		DPRINT("Command Tx Fail,  tune_data_dsi0=%p, vdd=%p, mdnie_tune_state=%p \n", tune_data_dsi0, vdd, mdnie_tune_state);
 =======
 		DPRINT("Command Tx Fail,  tune_data_dsi0=%pK, vdd=%pK, mdnie_tune_state=%pK \n", tune_data_dsi0, vdd, mdnie_tune_state);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		DPRINT("Command Tx Fail,  tune_data_dsi0=%p, vdd=%p, mdnie_tune_state=%p \n", tune_data_dsi0, vdd, mdnie_tune_state);
+>>>>>>> 2617302... source
 	return 0;
 }
 #endif
@@ -628,10 +632,14 @@ static ssize_t sensorRGB_store(struct device *dev,
                 }
 	} else
 <<<<<<< HEAD
+<<<<<<< HEAD
 		DPRINT("Command Tx Fail,  tune_data_dsi0=%p, vdd=%p, mdnie_tune_state=%p \n", tune_data_dsi0, vdd, mdnie_tune_state);
 =======
 		DPRINT("Command Tx Fail,  tune_data_dsi0=%pK, vdd=%pK, mdnie_tune_state=%pK \n", tune_data_dsi0, vdd, mdnie_tune_state);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		DPRINT("Command Tx Fail,  tune_data_dsi0=%p, vdd=%p, mdnie_tune_state=%p \n", tune_data_dsi0, vdd, mdnie_tune_state);
+>>>>>>> 2617302... source
 #endif
 	return size;
 }

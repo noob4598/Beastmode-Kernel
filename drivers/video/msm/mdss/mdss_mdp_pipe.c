@@ -625,10 +625,14 @@ static struct mdss_mdp_pipe *mdss_mdp_pipe_init(struct mdss_mdp_mixer *mixer,
 		pr_debug("pipe sharing for pipe=%d\n", pipe->num);
 	} else {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("no %d type pipes available\n", type);
 =======
 		pr_err_ratelimited("no %d type pipes available\n", type);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		pr_err("no %d type pipes available\n", type);
+>>>>>>> 2617302... source
 	}
 
 	return pipe;
@@ -1300,6 +1304,7 @@ static int mdss_mdp_pipe_solidfill_setup(struct mdss_mdp_pipe *pipe)
 	mdss_mdp_pipe_write(pipe, MDSS_MDP_REG_SSPP_SRC_UNPACK_PATTERN, unpack);
 	mdss_mdp_pipe_write(pipe, MDSS_MDP_REG_SSPP_SRC_ADDR_SW_STATUS, secure);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	mdss_mdp_pipe_write(pipe, MDSS_MDP_REG_SSPP_SRC_OP_MODE, 0);
 
@@ -1309,6 +1314,8 @@ static int mdss_mdp_pipe_solidfill_setup(struct mdss_mdp_pipe *pipe)
 			mdss_mdp_pipe_write(pipe, MDSS_MDP_REG_VIG_OP_MODE, 0);
 	}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	return 0;
 }
@@ -1390,10 +1397,14 @@ int mdss_mdp_pipe_queue_data(struct mdss_mdp_pipe *pipe,
 
 	if (src_data == NULL) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_debug("src_data=%p pipe num=%dx\n",
 =======
 		pr_debug("src_data=%pK pipe num=%dx\n",
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		pr_debug("src_data=%p pipe num=%dx\n",
+>>>>>>> 2617302... source
 				src_data, pipe->num);
 		goto update_nobuf;
 	}

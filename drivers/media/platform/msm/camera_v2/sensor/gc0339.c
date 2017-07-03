@@ -674,6 +674,7 @@ static int32_t gc0339_platform_probe(struct platform_device *pdev)
 
 	match = of_match_device(gc0339_dt_match, &pdev->dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	rc = msm_sensor_platform_probe(pdev, match->data);
 =======
 	if (match)
@@ -683,6 +684,9 @@ static int32_t gc0339_platform_probe(struct platform_device *pdev)
 		rc = -EINVAL;
 	}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	rc = msm_sensor_platform_probe(pdev, match->data);
+>>>>>>> 2617302... source
 	return rc;
 }
 

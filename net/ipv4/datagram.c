@@ -21,10 +21,14 @@
 #include <net/tcp_states.h>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 int ip4_datagram_connect(struct sock *sk, struct sockaddr *uaddr, int addr_len)
 =======
 int __ip4_datagram_connect(struct sock *sk, struct sockaddr *uaddr, int addr_len)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+int ip4_datagram_connect(struct sock *sk, struct sockaddr *uaddr, int addr_len)
+>>>>>>> 2617302... source
 {
 	struct inet_sock *inet = inet_sk(sk);
 	struct sockaddr_in *usin = (struct sockaddr_in *) uaddr;
@@ -44,10 +48,15 @@ int __ip4_datagram_connect(struct sock *sk, struct sockaddr *uaddr, int addr_len
 	sk_dst_reset(sk);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	lock_sock(sk);
 
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	lock_sock(sk);
+
+>>>>>>> 2617302... source
 	oif = sk->sk_bound_dev_if;
 	saddr = inet->inet_saddr;
 	if (ipv4_is_multicast(usin->sin_addr.s_addr)) {
@@ -89,11 +98,15 @@ int __ip4_datagram_connect(struct sock *sk, struct sockaddr *uaddr, int addr_len
 	err = 0;
 out:
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	release_sock(sk);
 	return err;
 }
 EXPORT_SYMBOL(ip4_datagram_connect);
 
+<<<<<<< HEAD
 =======
 	return err;
 }
@@ -115,12 +128,17 @@ EXPORT_SYMBOL(ip4_datagram_connect);
  * even if we own the socket lock.
  */
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 void ip4_datagram_release_cb(struct sock *sk)
 {
 	const struct inet_sock *inet = inet_sk(sk);
 	const struct ip_options_rcu *inet_opt;
 	__be32 daddr = inet->inet_daddr;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	struct flowi4 fl4;
 	struct rtable *rt;
 
@@ -128,6 +146,7 @@ void ip4_datagram_release_cb(struct sock *sk)
 		return;
 
 	rcu_read_lock();
+<<<<<<< HEAD
 =======
 	struct dst_entry *dst;
 	struct flowi4 fl4;
@@ -141,6 +160,8 @@ void ip4_datagram_release_cb(struct sock *sk)
 		return;
 	}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	inet_opt = rcu_dereference(inet->inet_opt);
 	if (inet_opt && inet_opt->opt.srr)
 		daddr = inet_opt->opt.faddr;
@@ -148,6 +169,7 @@ void ip4_datagram_release_cb(struct sock *sk)
 				   inet->inet_saddr, inet->inet_dport,
 				   inet->inet_sport, sk->sk_protocol,
 				   RT_CONN_FLAGS(sk), sk->sk_bound_dev_if);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (!IS_ERR(rt))
 		__sk_dst_set(sk, &rt->dst);
@@ -157,6 +179,10 @@ void ip4_datagram_release_cb(struct sock *sk)
 	sk_dst_set(sk, dst);
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (!IS_ERR(rt))
+		__sk_dst_set(sk, &rt->dst);
+>>>>>>> 2617302... source
 	rcu_read_unlock();
 }
 EXPORT_SYMBOL_GPL(ip4_datagram_release_cb);

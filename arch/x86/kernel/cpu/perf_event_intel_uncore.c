@@ -2658,6 +2658,7 @@ static struct intel_uncore_box *uncore_event_to_box(struct perf_event *event)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 /*
  * Using uncore_pmu_event_init pmu event_init callback
@@ -2671,6 +2672,8 @@ static bool is_uncore_event(struct perf_event *event)
 }
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 static int
 uncore_collect_events(struct intel_uncore_box *box, struct perf_event *leader, bool dogrp)
 {
@@ -2686,6 +2689,7 @@ uncore_collect_events(struct intel_uncore_box *box, struct perf_event *leader, b
 
 	n = box->n_events;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	box->event_list[n] = leader;
 	n++;
 =======
@@ -2696,16 +2700,24 @@ uncore_collect_events(struct intel_uncore_box *box, struct perf_event *leader, b
 	}
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	box->event_list[n] = leader;
+	n++;
+>>>>>>> 2617302... source
 	if (!dogrp)
 		return n;
 
 	list_for_each_entry(event, &leader->sibling_list, group_entry) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if (event->state <= PERF_EVENT_STATE_OFF)
 =======
 		if (!is_uncore_event(event) ||
 		    event->state <= PERF_EVENT_STATE_OFF)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		if (event->state <= PERF_EVENT_STATE_OFF)
+>>>>>>> 2617302... source
 			continue;
 
 		if (n >= max_count)

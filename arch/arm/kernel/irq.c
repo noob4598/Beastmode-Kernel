@@ -177,10 +177,14 @@ static bool migrate_one_irq(struct irq_desc *desc)
 	if (!c->irq_set_affinity)
 		pr_debug("IRQ%u: unable to set affinity\n", d->irq);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	else if (c->irq_set_affinity(d, affinity, true) == IRQ_SET_MASK_OK && ret)
 =======
 	else if (c->irq_set_affinity(d, affinity, false) == IRQ_SET_MASK_OK && ret)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	else if (c->irq_set_affinity(d, affinity, true) == IRQ_SET_MASK_OK && ret)
+>>>>>>> 2617302... source
 		cpumask_copy(d->affinity, affinity);
 
 	return ret;
@@ -210,6 +214,7 @@ void migrate_irqs(void)
 		raw_spin_unlock(&desc->lock);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (affinity_broken && printk_ratelimit())
 			pr_warning("IRQ%u no longer affine to CPU%u\n", i,
 				smp_processor_id());
@@ -220,6 +225,11 @@ void migrate_irqs(void)
 				smp_processor_id());
 #endif
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		if (affinity_broken && printk_ratelimit())
+			pr_warning("IRQ%u no longer affine to CPU%u\n", i,
+				smp_processor_id());
+>>>>>>> 2617302... source
 	}
 
 	local_irq_restore(flags);

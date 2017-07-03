@@ -490,10 +490,13 @@ int rt2x00mac_set_key(struct ieee80211_hw *hw, enum set_key_cmd cmd,
 	if (crypto.cipher == CIPHER_NONE)
 		return -EOPNOTSUPP;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (crypto.cipher == CIPHER_TKIP && rt2x00_is_usb(rt2x00dev))
 		return -EOPNOTSUPP;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	crypto.cmd = cmd;
 
@@ -629,6 +632,9 @@ void rt2x00mac_bss_info_changed(struct ieee80211_hw *hw,
 
 	/*
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	 * Update the beacon. This is only required on USB devices. PCI
 	 * devices fetch beacons periodically.
 	 */
@@ -636,12 +642,16 @@ void rt2x00mac_bss_info_changed(struct ieee80211_hw *hw,
 		rt2x00queue_update_beacon(rt2x00dev, vif);
 
 	/*
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	 * Start/stop beaconing.
 	 */
 	if (changes & BSS_CHANGED_BEACON_ENABLED) {
 		if (!bss_conf->enable_beacon && intf->enable_beacon) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 			rt2x00queue_clear_beacon(rt2x00dev, vif);
 			rt2x00dev->intf_beaconing--;
@@ -656,6 +666,11 @@ void rt2x00mac_bss_info_changed(struct ieee80211_hw *hw,
 			 */
 			rt2x00queue_clear_beacon(rt2x00dev, vif);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			rt2x00queue_clear_beacon(rt2x00dev, vif);
+			rt2x00dev->intf_beaconing--;
+			intf->enable_beacon = false;
+>>>>>>> 2617302... source
 
 			if (rt2x00dev->intf_beaconing == 0) {
 				/*
@@ -667,11 +682,15 @@ void rt2x00mac_bss_info_changed(struct ieee80211_hw *hw,
 				mutex_unlock(&intf->beacon_skb_mutex);
 			}
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 
 
 		} else if (bss_conf->enable_beacon && !intf->enable_beacon) {
 			rt2x00dev->intf_beaconing++;
 			intf->enable_beacon = true;
+<<<<<<< HEAD
 =======
 		} else if (bss_conf->enable_beacon && !intf->enable_beacon) {
 			rt2x00dev->intf_beaconing++;
@@ -683,6 +702,8 @@ void rt2x00mac_bss_info_changed(struct ieee80211_hw *hw,
 			if (rt2x00_is_usb(rt2x00dev))
 				rt2x00queue_update_beacon(rt2x00dev, vif);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 			if (rt2x00dev->intf_beaconing == 1) {
 				/*

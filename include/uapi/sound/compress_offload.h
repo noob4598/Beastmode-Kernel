@@ -82,10 +82,14 @@ struct snd_compr_avail {
 	__u64 avail;
 	struct snd_compr_tstamp tstamp;
 <<<<<<< HEAD
+<<<<<<< HEAD
 };
 =======
 } __attribute__((packed));
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+};
+>>>>>>> 2617302... source
 
 enum snd_compr_direction {
 	SND_COMPRESS_PLAYBACK = 0,

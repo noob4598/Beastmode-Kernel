@@ -393,6 +393,7 @@ int vga_get(struct pci_dev *pdev, unsigned int rsrc, int interruptible)
 				  TASK_INTERRUPTIBLE :
 				  TASK_UNINTERRUPTIBLE);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (signal_pending(current)) {
 			rc = -EINTR;
 =======
@@ -401,6 +402,10 @@ int vga_get(struct pci_dev *pdev, unsigned int rsrc, int interruptible)
 			remove_wait_queue(&vga_wait_queue, &wait);
 			rc = -ERESTARTSYS;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		if (signal_pending(current)) {
+			rc = -EINTR;
+>>>>>>> 2617302... source
 			break;
 		}
 		schedule();

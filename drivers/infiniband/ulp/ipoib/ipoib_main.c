@@ -235,11 +235,16 @@ int ipoib_set_mode(struct net_device *dev, const char *buf)
 
 		ipoib_flush_paths(dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		rtnl_lock();
 		return 0;
 =======
 		return (!rtnl_trylock()) ? -EBUSY : 0;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		rtnl_lock();
+		return 0;
+>>>>>>> 2617302... source
 	}
 
 	if (!strcmp(buf, "datagram\n")) {
@@ -249,21 +254,30 @@ int ipoib_set_mode(struct net_device *dev, const char *buf)
 		rtnl_unlock();
 		ipoib_flush_paths(dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		rtnl_lock();
 		return 0;
 =======
 		return (!rtnl_trylock()) ? -EBUSY : 0;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		rtnl_lock();
+		return 0;
+>>>>>>> 2617302... source
 	}
 
 	return -EINVAL;
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static struct ipoib_path *__path_find(struct net_device *dev, void *gid)
 =======
 struct ipoib_path *__path_find(struct net_device *dev, void *gid)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+static struct ipoib_path *__path_find(struct net_device *dev, void *gid)
+>>>>>>> 2617302... source
 {
 	struct ipoib_dev_priv *priv = netdev_priv(dev);
 	struct rb_node *n = priv->path_tree.rb_node;
@@ -900,12 +914,16 @@ struct ipoib_neigh *ipoib_neigh_get(struct net_device *dev, u8 *daddr)
 				goto out_unlock;
 			}
 <<<<<<< HEAD
+<<<<<<< HEAD
 			neigh->alive = jiffies;
 =======
 
 			if (likely(skb_queue_len(&neigh->queue) < IPOIB_MAX_PATH_REC_QUEUE))
 				neigh->alive = jiffies;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			neigh->alive = jiffies;
+>>>>>>> 2617302... source
 			goto out_unlock;
 		}
 	}

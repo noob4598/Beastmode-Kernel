@@ -46,9 +46,12 @@
 #include <linux/msm_rtb.h>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <asm/cputype.h>
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 #include <asm/irq.h>
 #include <asm/exception.h>
 #include <asm/smp_plat.h>
@@ -418,10 +421,14 @@ static int gic_set_affinity(struct irq_data *d, const struct cpumask *mask_val,
 {
 	void __iomem *reg = gic_dist_base(d) + GIC_DIST_TARGET + (gic_irq(d) & ~3);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	unsigned int shift = (gic_irq(d) % 4) * 8;
 	unsigned int cpu = cpumask_any_and(mask_val, cpu_online_mask);
 	u32 val, mask, bit;
 
+<<<<<<< HEAD
 =======
 	unsigned int cpu, shift = (gic_irq(d) % 4) * 8;
 	u32 val, mask, bit;
@@ -432,6 +439,8 @@ static int gic_set_affinity(struct irq_data *d, const struct cpumask *mask_val,
 		cpu = cpumask_first(mask_val);
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	if (cpu >= NR_GIC_CPU_IF || cpu >= nr_cpu_ids)
 		return -EINVAL;
 
@@ -1023,12 +1032,16 @@ void __init gic_init_bases(unsigned int gic_nr, int irq_start,
 
 		for_each_possible_cpu(cpu) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			unsigned long offset = percpu_offset * cpu_logical_map(cpu);
 =======
 			u32 mpidr = cpu_logical_map(cpu);
 			u32 core_id = MPIDR_AFFINITY_LEVEL(mpidr, 0);
 			unsigned long offset = percpu_offset * core_id;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			unsigned long offset = percpu_offset * cpu_logical_map(cpu);
+>>>>>>> 2617302... source
 			*per_cpu_ptr(gic->dist_base.percpu_base, cpu) = dist_base + offset;
 			*per_cpu_ptr(gic->cpu_base.percpu_base, cpu) = cpu_base + offset;
 		}
@@ -1133,9 +1146,12 @@ int __init gic_of_init(struct device_node *node, struct device_node *parent)
 IRQCHIP_DECLARE(cortex_a15_gic, "arm,cortex-a15-gic", gic_of_init);
 IRQCHIP_DECLARE(cortex_a9_gic, "arm,cortex-a9-gic", gic_of_init);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 IRQCHIP_DECLARE(cortex_a7_gic, "arm,cortex-a7-gic", gic_of_init);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 IRQCHIP_DECLARE(msm_8660_qgic, "qcom,msm-8660-qgic", gic_of_init);
 IRQCHIP_DECLARE(msm_qgic2, "qcom,msm-qgic2", gic_of_init);
 

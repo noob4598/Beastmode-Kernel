@@ -1001,6 +1001,7 @@ static int match_child(struct device *dev, void *data)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 static void s5p_mfc_memdev_release(struct device *dev)
 {
@@ -1008,6 +1009,8 @@ static void s5p_mfc_memdev_release(struct device *dev)
 }
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 static void *mfc_get_drv_data(struct platform_device *pdev);
 
 static int s5p_mfc_alloc_memdevs(struct s5p_mfc_dev *dev)
@@ -1021,11 +1024,14 @@ static int s5p_mfc_alloc_memdevs(struct s5p_mfc_dev *dev)
 		return -ENOMEM;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 	dev_set_name(dev->mem_dev_l, "%s", "s5p-mfc-l");
 	dev->mem_dev_l->release = s5p_mfc_memdev_release;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	device_initialize(dev->mem_dev_l);
 	of_property_read_u32_array(dev->plat_dev->dev.of_node,
 			"samsung,mfc-l", mem_info, 2);
@@ -1044,11 +1050,14 @@ static int s5p_mfc_alloc_memdevs(struct s5p_mfc_dev *dev)
 		return -ENOMEM;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 	dev_set_name(dev->mem_dev_r, "%s", "s5p-mfc-r");
 	dev->mem_dev_r->release = s5p_mfc_memdev_release;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	device_initialize(dev->mem_dev_r);
 	of_property_read_u32_array(dev->plat_dev->dev.of_node,
 			"samsung,mfc-r", mem_info, 2);

@@ -695,10 +695,14 @@ static const struct drm_encoder_funcs intel_lvds_enc_funcs = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int __init intel_no_lvds_dmi_callback(const struct dmi_system_id *id)
 =======
 static int intel_no_lvds_dmi_callback(const struct dmi_system_id *id)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+static int __init intel_no_lvds_dmi_callback(const struct dmi_system_id *id)
+>>>>>>> 2617302... source
 {
 	DRM_INFO("Skipping LVDS initialization for %s\n", id->ident);
 	return 1;
@@ -1012,6 +1016,7 @@ static const struct dmi_system_id intel_dual_link_lvds[] = {
 	{
 		.callback = intel_dual_link_lvds_callback,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.ident = "Apple MacBook Pro (Core i5/i7 Series)",
 =======
 		.ident = "Apple MacBook Pro 15\" (2010)",
@@ -1024,11 +1029,15 @@ static const struct dmi_system_id intel_dual_link_lvds[] = {
 		.callback = intel_dual_link_lvds_callback,
 		.ident = "Apple MacBook Pro 15\" (2011)",
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		.ident = "Apple MacBook Pro (Core i5/i7 Series)",
+>>>>>>> 2617302... source
 		.matches = {
 			DMI_MATCH(DMI_SYS_VENDOR, "Apple Inc."),
 			DMI_MATCH(DMI_PRODUCT_NAME, "MacBookPro8,2"),
 		},
 	},
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 	{
@@ -1040,6 +1049,8 @@ static const struct dmi_system_id intel_dual_link_lvds[] = {
 		},
 	},
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	{ }	/* terminating entry */
 };
 
@@ -1125,6 +1136,7 @@ bool intel_lvds_init(struct drm_device *dev)
 	u8 pin;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/*
 	 * Unlock registers and just leave them unlocked. Do this before
@@ -1138,6 +1150,8 @@ bool intel_lvds_init(struct drm_device *dev)
 			   I915_READ(PP_CONTROL) | PANEL_UNLOCK_REGS);
 	}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	if (!intel_lvds_supported(dev))
 		return false;
 
@@ -1322,6 +1336,9 @@ out:
 		      lvds_encoder->is_dual_link ? "dual" : "single");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	/*
 	 * Unlock registers and just
 	 * leave them unlocked
@@ -1333,8 +1350,11 @@ out:
 		I915_WRITE(PP_CONTROL,
 			   I915_READ(PP_CONTROL) | PANEL_UNLOCK_REGS);
 	}
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	lvds_connector->lid_notifier.notifier_call = intel_lid_notify;
 	if (acpi_lid_notifier_register(&lvds_connector->lid_notifier)) {
 		DRM_DEBUG_KMS("lid notifier registration failed\n");

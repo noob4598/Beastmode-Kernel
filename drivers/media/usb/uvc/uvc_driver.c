@@ -1534,6 +1534,7 @@ static const char *uvc_print_chain(struct uvc_video_chain *chain)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 static struct uvc_video_chain *uvc_alloc_chain(struct uvc_device *dev)
 {
@@ -1644,6 +1645,8 @@ error:
 }
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 /*
  * Scan the device for video chains and register video devices.
  *
@@ -1667,6 +1670,9 @@ static int uvc_scan_device(struct uvc_device *dev)
 			continue;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		chain = kzalloc(sizeof(*chain), GFP_KERNEL);
 		if (chain == NULL)
 			return -ENOMEM;
@@ -1676,12 +1682,15 @@ static int uvc_scan_device(struct uvc_device *dev)
 		chain->dev = dev;
 		v4l2_prio_init(&chain->prio);
 
+<<<<<<< HEAD
 =======
 		chain = uvc_alloc_chain(dev);
 		if (chain == NULL)
 			return -ENOMEM;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		term->flags |= UVC_ENTITY_FLAG_DEFAULT;
 
 		if (uvc_scan_chain(chain, term) < 0) {
@@ -1696,11 +1705,14 @@ static int uvc_scan_device(struct uvc_device *dev)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (list_empty(&dev->chains))
 		uvc_scan_fallback(dev);
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	if (list_empty(&dev->chains)) {
 		uvc_printk(KERN_INFO, "No valid video chain found.\n");
 		return -1;
@@ -1728,12 +1740,16 @@ static void uvc_delete(struct uvc_device *dev)
 	struct list_head *p, *n;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	usb_put_intf(dev->intf);
 	usb_put_dev(dev->udev);
 
 	uvc_status_cleanup(dev);
 	uvc_ctrl_cleanup_device(dev);
 
+<<<<<<< HEAD
 =======
 	uvc_status_cleanup(dev);
 	uvc_ctrl_cleanup_device(dev);
@@ -1742,6 +1758,8 @@ static void uvc_delete(struct uvc_device *dev)
 	usb_put_dev(dev->udev);
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	if (dev->vdev.dev)
 		v4l2_device_unregister(&dev->vdev);
 #ifdef CONFIG_MEDIA_CONTROLLER

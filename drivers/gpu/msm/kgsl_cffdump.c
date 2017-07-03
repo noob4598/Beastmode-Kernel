@@ -1,8 +1,12 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* Copyright (c) 2010-2014, The Linux Foundation. All rights reserved.
 =======
 /* Copyright (c) 2010-2016, The Linux Foundation. All rights reserved.
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+/* Copyright (c) 2010-2014, The Linux Foundation. All rights reserved.
+>>>>>>> 2617302... source
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -426,12 +430,18 @@ void kgsl_cffdump_syncmem(struct kgsl_device *device,
 	src = kgsl_gpuaddr_to_vaddr(memdesc, gpuaddr);
 	if (memdesc->hostptr == NULL) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		KGSL_CORE_ERR(
 		"no kernel map for gpuaddr: 0x%08x, m->host: 0x%p, phys: %pa\n",
 		gpuaddr, memdesc->hostptr, &memdesc->physaddr);
 =======
 		KGSL_CORE_ERR("no kernel map for gpuaddr: 0x%08x\n", gpuaddr);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		KGSL_CORE_ERR(
+		"no kernel map for gpuaddr: 0x%08x, m->host: 0x%p, phys: %pa\n",
+		gpuaddr, memdesc->hostptr, &memdesc->physaddr);
+>>>>>>> 2617302... source
 		return;
 	}
 
@@ -521,12 +531,18 @@ static int subbuf_start_handler(struct rchan_buf *buf,
 	void *subbuf, void *prev_subbuf, size_t prev_padding)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	pr_debug("kgsl: cffdump: subbuf_start_handler(subbuf=%p, prev_subbuf"
 		"=%p, prev_padding=%08zx)\n", subbuf, prev_subbuf,
 		 prev_padding);
 
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	if (relay_buf_full(buf)) {
 		if (!suspended) {
 			suspended = 1;
@@ -584,11 +600,17 @@ static struct rchan *create_channel(unsigned subbuf_size, unsigned n_subbufs)
 	struct rchan *chan;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_info("kgsl: cffdump: relay: create_channel: subbuf_size %u, "
 		"n_subbufs %u, dir 0x%p\n", subbuf_size, n_subbufs, dir);
 
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	pr_info("kgsl: cffdump: relay: create_channel: subbuf_size %u, "
+		"n_subbufs %u, dir 0x%p\n", subbuf_size, n_subbufs, dir);
+
+>>>>>>> 2617302... source
 	chan = relay_open("cpu", dir, subbuf_size,
 			  n_subbufs, &relay_callbacks, NULL);
 	if (!chan) {

@@ -155,6 +155,7 @@ static void __cpuinit early_init_intel(struct cpuinfo_x86 *c)
 		}
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 	/*
@@ -172,6 +173,8 @@ static void __cpuinit early_init_intel(struct cpuinfo_x86 *c)
 		setup_clear_cpu_cap(X86_FEATURE_PGE);
 	}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 }
 
 #ifdef CONFIG_X86_32

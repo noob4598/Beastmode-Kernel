@@ -1138,10 +1138,14 @@ static int rtsx_pci_probe(struct pci_dev *pcidev,
 	if (pcr->msi_en) {
 		ret = pci_enable_msi(pcidev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (ret < 0)
 =======
 		if (ret)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		if (ret < 0)
+>>>>>>> 2617302... source
 			pcr->msi_en = false;
 	}
 

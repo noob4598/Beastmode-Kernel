@@ -35,9 +35,12 @@
 #include "control.h"
 #include "common.h"
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include "soc.h"
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 /* Mach specific information to be recorded in the C-state driver_data */
 struct omap3_idle_statedata {
@@ -327,6 +330,7 @@ static struct cpuidle_driver omap3_idle_driver = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 /*
  * Numbers based on measurements made in October 2009 for PM optimized kernel
@@ -392,6 +396,8 @@ static struct cpuidle_driver omap3430_idle_driver = {
 };
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 /* Public functions */
 
 /**
@@ -411,6 +417,7 @@ int __init omap3_idle_init(void)
 		return -ENODEV;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return cpuidle_register(&omap3_idle_driver, NULL);
 =======
 	if (cpu_is_omap3430())
@@ -418,4 +425,7 @@ int __init omap3_idle_init(void)
 	else
 		return cpuidle_register(&omap3_idle_driver, NULL);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	return cpuidle_register(&omap3_idle_driver, NULL);
+>>>>>>> 2617302... source
 }

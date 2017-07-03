@@ -134,9 +134,12 @@ static int tcp_v6_connect(struct sock *sk, struct sockaddr *uaddr,
 	struct tcp_sock *tp = tcp_sk(sk);
 	struct in6_addr *saddr = NULL, *final_p, final;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct ipv6_txoptions *opt;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	struct rt6_info *rt;
 	struct flowi6 fl6;
 	struct dst_entry *dst;
@@ -259,11 +262,15 @@ static int tcp_v6_connect(struct sock *sk, struct sockaddr *uaddr,
 	fl6.flowi6_uid = sock_i_uid(sk);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	final_p = fl6_update_dst(&fl6, np->opt, &final);
 =======
 	opt = rcu_dereference_protected(np->opt, sock_owned_by_user(sk));
 	final_p = fl6_update_dst(&fl6, opt, &final);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	final_p = fl6_update_dst(&fl6, np->opt, &final);
+>>>>>>> 2617302... source
 
 	security_sk_classify_flow(sk, flowi6_to_flowi(&fl6));
 
@@ -293,6 +300,7 @@ static int tcp_v6_connect(struct sock *sk, struct sockaddr *uaddr,
 
 	icsk->icsk_ext_hdr_len = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (np->opt)
 		icsk->icsk_ext_hdr_len = (np->opt->opt_flen +
 					  np->opt->opt_nflen);
@@ -301,6 +309,11 @@ static int tcp_v6_connect(struct sock *sk, struct sockaddr *uaddr,
 		icsk->icsk_ext_hdr_len = opt->opt_flen +
 					 opt->opt_nflen;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (np->opt)
+		icsk->icsk_ext_hdr_len = (np->opt->opt_flen +
+					  np->opt->opt_nflen);
+>>>>>>> 2617302... source
 
 	tp->rx_opt.mss_clamp = IPV6_MIN_MTU - sizeof(struct tcphdr) - sizeof(struct ipv6hdr);
 
@@ -399,10 +412,14 @@ static void tcp_v6_err(struct sk_buff *skb, struct inet6_skb_parm *opt,
 
 	if (type == NDISC_REDIRECT) {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		struct dst_entry *dst = __sk_dst_check(sk, np->dst_cookie);
 
 		if (dst)
 			dst->ops->redirect(dst, sk, skb);
+<<<<<<< HEAD
 =======
 		if (!sock_owned_by_user(sk)) {
 			struct dst_entry *dst = __sk_dst_check(sk, np->dst_cookie);
@@ -411,6 +428,8 @@ static void tcp_v6_err(struct sk_buff *skb, struct inet6_skb_parm *opt,
 				dst->ops->redirect(dst, sk, skb);
 		}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		goto out;
 	}
 
@@ -506,11 +525,15 @@ static int tcp_v6_send_synack(struct sock *sk, struct dst_entry *dst,
 		fl6->daddr = treq->rmt_addr;
 		skb_set_queue_mapping(skb, queue_mapping);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		err = ip6_xmit(sk, skb, fl6, np->opt, np->tclass);
 =======
 		err = ip6_xmit(sk, skb, fl6, rcu_dereference(np->opt),
 			       np->tclass);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		err = ip6_xmit(sk, skb, fl6, np->opt, np->tclass);
+>>>>>>> 2617302... source
 		err = net_xmit_eval(err);
 	}
 
@@ -934,6 +957,7 @@ static void tcp_v6_reqsk_send_ack(struct sock *sk, struct sk_buff *skb,
 				  struct request_sock *req)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	tcp_v6_send_ack(skb, tcp_rsk(req)->snt_isn + 1, tcp_rsk(req)->rcv_isn + 1,
 			req->rcv_wnd, tcp_time_stamp, req->ts_recent,
 =======
@@ -946,6 +970,10 @@ static void tcp_v6_reqsk_send_ack(struct sock *sk, struct sk_buff *skb,
 			req->rcv_wnd >> inet_rsk(req)->rcv_wscale,
 			tcp_time_stamp, req->ts_recent,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	tcp_v6_send_ack(skb, tcp_rsk(req)->snt_isn + 1, tcp_rsk(req)->rcv_isn + 1,
+			req->rcv_wnd, tcp_time_stamp, req->ts_recent,
+>>>>>>> 2617302... source
 			tcp_v6_md5_do_lookup(sk, &ipv6_hdr(skb)->daddr), 0);
 }
 
@@ -1131,9 +1159,12 @@ static struct sock * tcp_v6_syn_recv_sock(struct sock *sk, struct sk_buff *skb,
 	struct ipv6_pinfo *newnp, *np = inet6_sk(sk);
 	struct tcp6_sock *newtcp6sk;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct ipv6_txoptions *opt;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	struct inet_sock *newinet;
 	struct tcp_sock *newtp;
 	struct sock *newsk;
@@ -1174,9 +1205,12 @@ static struct sock * tcp_v6_syn_recv_sock(struct sock *sk, struct sk_buff *skb,
 #endif
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		newnp->ipv6_mc_list = NULL;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		newnp->ipv6_ac_list = NULL;
 		newnp->ipv6_fl_list = NULL;
 		newnp->pktoptions  = NULL;
@@ -1245,9 +1279,12 @@ static struct sock * tcp_v6_syn_recv_sock(struct sock *sk, struct sk_buff *skb,
 	 */
 	newinet->inet_opt = NULL;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	newnp->ipv6_mc_list = NULL;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	newnp->ipv6_ac_list = NULL;
 	newnp->ipv6_fl_list = NULL;
 
@@ -1276,6 +1313,9 @@ static struct sock * tcp_v6_syn_recv_sock(struct sock *sk, struct sk_buff *skb,
 	   to newsk.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	if (np->opt)
 		newnp->opt = ipv6_dup_options(newsk, np->opt);
 
@@ -1283,6 +1323,7 @@ static struct sock * tcp_v6_syn_recv_sock(struct sock *sk, struct sk_buff *skb,
 	if (newnp->opt)
 		inet_csk(newsk)->icsk_ext_hdr_len = (newnp->opt->opt_nflen +
 						     newnp->opt->opt_flen);
+<<<<<<< HEAD
 =======
 	opt = rcu_dereference(np->opt);
 	if (opt) {
@@ -1294,6 +1335,8 @@ static struct sock * tcp_v6_syn_recv_sock(struct sock *sk, struct sk_buff *skb,
 		inet_csk(newsk)->icsk_ext_hdr_len = opt->opt_nflen +
 						    opt->opt_flen;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	tcp_mtup_init(newsk);
 	tcp_sync_mss(newsk, dst_mtu(dst));
@@ -1363,10 +1406,14 @@ static __sum16 tcp_v6_checksum_init(struct sk_buff *skb)
 
 /* The socket must have it's spinlock held when we get
 <<<<<<< HEAD
+<<<<<<< HEAD
  * here.
 =======
  * here, unless it is a TCP_LISTEN socket.
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+ * here.
+>>>>>>> 2617302... source
  *
  * We have a potential double-lock case here, so even when
  * doing backlog processing we use the BH locking scheme.
@@ -1396,10 +1443,14 @@ static int tcp_v6_do_rcv(struct sock *sk, struct sk_buff *skb)
 #endif
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (sk_filter(sk, skb))
 =======
 	if (tcp_filter(sk, skb))
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (sk_filter(sk, skb))
+>>>>>>> 2617302... source
 		goto discard;
 
 	/*
@@ -1571,11 +1622,15 @@ process:
 		goto discard_and_relse;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	if (sk_filter(sk, skb))
 		goto discard_and_relse;
 
 	skb->dev = NULL;
 
+<<<<<<< HEAD
 =======
 	if (tcp_filter(sk, skb))
 		goto discard_and_relse;
@@ -1590,6 +1645,8 @@ process:
 	}
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	bh_lock_sock_nested(sk);
 	ret = 0;
 	if (!sock_owned_by_user(sk)) {
@@ -1614,9 +1671,12 @@ process:
 	bh_unlock_sock(sk);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 put_and_return:
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	sock_put(sk);
 	return ret ? -1 : 0;
 
@@ -1711,10 +1771,14 @@ static void tcp_v6_early_demux(struct sk_buff *skb)
 		skb->destructor = sock_edemux;
 		if (sk->sk_state != TCP_TIME_WAIT) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			struct dst_entry *dst = sk->sk_rx_dst;
 =======
 			struct dst_entry *dst = ACCESS_ONCE(sk->sk_rx_dst);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			struct dst_entry *dst = sk->sk_rx_dst;
+>>>>>>> 2617302... source
 
 			if (dst)
 				dst = dst_check(dst, inet6_sk(sk)->rx_dst_cookie);
@@ -1750,9 +1814,12 @@ static const struct inet_connection_sock_af_ops ipv6_specific = {
 	.compat_getsockopt = compat_ipv6_getsockopt,
 #endif
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	.mtu_reduced	   = tcp_v6_mtu_reduced,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 };
 
 #ifdef CONFIG_TCP_MD5SIG
@@ -1785,9 +1852,12 @@ static const struct inet_connection_sock_af_ops ipv6_mapped = {
 	.compat_getsockopt = compat_ipv6_getsockopt,
 #endif
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	.mtu_reduced	   = tcp_v4_mtu_reduced,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 };
 
 #ifdef CONFIG_TCP_MD5SIG
@@ -1872,12 +1942,16 @@ static void get_tcp6_sock(struct seq_file *seq, struct sock *sp, int i)
 	srcp  = ntohs(inet->inet_sport);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (icsk->icsk_pending == ICSK_TIME_RETRANS) {
 =======
 	if (icsk->icsk_pending == ICSK_TIME_RETRANS ||
 	    icsk->icsk_pending == ICSK_TIME_EARLY_RETRANS ||
 	    icsk->icsk_pending == ICSK_TIME_LOSS_PROBE) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (icsk->icsk_pending == ICSK_TIME_RETRANS) {
+>>>>>>> 2617302... source
 		timer_active	= 1;
 		timer_expires	= icsk->icsk_timeout;
 	} else if (icsk->icsk_pending == ICSK_TIME_PROBE0) {
@@ -2032,9 +2106,13 @@ struct proto tcpv6_prot = {
 	.backlog_rcv		= tcp_v6_do_rcv,
 	.release_cb		= tcp_release_cb,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.mtu_reduced		= tcp_v6_mtu_reduced,
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	.mtu_reduced		= tcp_v6_mtu_reduced,
+>>>>>>> 2617302... source
 	.hash			= tcp_v6_hash,
 	.unhash			= inet_unhash,
 	.get_port		= inet_csk_get_port,
@@ -2061,9 +2139,12 @@ struct proto tcpv6_prot = {
 #endif
 	.clear_sk		= tcp_v6_clear_sk,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	.diag_destroy		= tcp_abort,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 };
 
 static const struct inet6_protocol tcpv6_protocol = {

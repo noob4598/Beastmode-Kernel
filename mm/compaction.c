@@ -664,21 +664,29 @@ static void isolate_freepages(struct zone *zone,
 {
 	struct page *page;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned long high_pfn, low_pfn, pfn, z_end_pfn, end_pfn;
 =======
 	unsigned long high_pfn, low_pfn, pfn, z_end_pfn;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	unsigned long high_pfn, low_pfn, pfn, z_end_pfn, end_pfn;
+>>>>>>> 2617302... source
 	int nr_freepages = cc->nr_freepages;
 	struct list_head *freelist = &cc->freepages;
 
 	/*
 	 * Initialise the free scanner. The starting point is where we last
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	 * scanned from (or the end of the zone if starting). The low point
 	 * is the end of the pageblock the migration scanner is using.
 	 */
 	pfn = cc->free_pfn;
 	low_pfn = cc->migrate_pfn + pageblock_nr_pages;
+<<<<<<< HEAD
 =======
 	 * successfully isolated from, zone-cached value, or the end of the
 	 * zone when isolating for the first time. We need this aligned to
@@ -690,6 +698,8 @@ static void isolate_freepages(struct zone *zone,
 	pfn = cc->free_pfn & ~(pageblock_nr_pages-1);
 	low_pfn = ALIGN(cc->migrate_pfn + 1, pageblock_nr_pages);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	/*
 	 * Take care that if the migration scanner is at the end of the zone
@@ -706,6 +716,7 @@ static void isolate_freepages(struct zone *zone,
 	 * and free page scanners meet or enough free pages are isolated.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	for (; pfn > low_pfn && cc->nr_migratepages > nr_freepages;
 					pfn -= pageblock_nr_pages) {
 		unsigned long isolated;
@@ -715,6 +726,11 @@ static void isolate_freepages(struct zone *zone,
 		unsigned long isolated;
 		unsigned long end_pfn;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	for (; pfn > low_pfn && cc->nr_migratepages > nr_freepages;
+					pfn -= pageblock_nr_pages) {
+		unsigned long isolated;
+>>>>>>> 2617302... source
 
 		if (!pfn_valid(pfn))
 			continue;
@@ -743,6 +759,9 @@ static void isolate_freepages(struct zone *zone,
 
 		/*
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		 * As pfn may not start aligned, pfn+pageblock_nr_page
 		 * may cross a MAX_ORDER_NR_PAGES boundary and miss
 		 * a pfn_valid check. Ensure isolate_freepages_block()
@@ -750,12 +769,15 @@ static void isolate_freepages(struct zone *zone,
 		 */
 		end_pfn = ALIGN(pfn + 1, pageblock_nr_pages);
 		end_pfn = min(end_pfn, z_end_pfn);
+<<<<<<< HEAD
 =======
 		 * Take care when isolating in last pageblock of a zone which
 		 * ends in the middle of a pageblock.
 		 */
 		end_pfn = min(pfn + pageblock_nr_pages, z_end_pfn);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		isolated = isolate_freepages_block(cc, pfn, end_pfn,
 						   freelist, false);
 		nr_freepages += isolated;
@@ -775,6 +797,7 @@ static void isolate_freepages(struct zone *zone,
 	map_pages(freelist);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	cc->free_pfn = high_pfn;
 =======
 	/*
@@ -786,6 +809,9 @@ static void isolate_freepages(struct zone *zone,
 	else
 		cc->free_pfn = high_pfn;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	cc->free_pfn = high_pfn;
+>>>>>>> 2617302... source
 	cc->nr_freepages = nr_freepages;
 }
 
@@ -920,10 +946,14 @@ static int compact_finished(struct zone *zone,
 
 		/* Job done if allocation would set block type */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (cc->order >= pageblock_order && area->nr_free)
 =======
 		if (order >= pageblock_order && area->nr_free)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		if (cc->order >= pageblock_order && area->nr_free)
+>>>>>>> 2617302... source
 			return COMPACT_PARTIAL;
 	}
 
@@ -999,6 +1029,7 @@ static int compact_zone(struct zone *zone, struct compact_control *cc)
 
 	/*
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	 * Clear pageblock skip if there were failures recently and compaction
 	 * is about to be retried after being deferred. kswapd does not do
@@ -1009,6 +1040,8 @@ static int compact_zone(struct zone *zone, struct compact_control *cc)
 
 	/*
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	 * Setup to move all movable pages to the end of the zone. Used cached
 	 * information on where the scanners should start but check that it
 	 * is initialised by ensuring the values are within zone boundaries.
@@ -1025,6 +1058,9 @@ static int compact_zone(struct zone *zone, struct compact_control *cc)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	/*
 	 * Clear pageblock skip if there were failures recently and compaction
 	 * is about to be retried after being deferred. kswapd does not do
@@ -1033,8 +1069,11 @@ static int compact_zone(struct zone *zone, struct compact_control *cc)
 	if (compaction_restarting(zone, cc->order) && !current_is_kswapd())
 		__reset_isolation_suitable(zone);
 
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	migrate_prep_local();
 
 	while ((ret = compact_finished(zone, cc)) == COMPACT_CONTINUE) {
@@ -1069,6 +1108,7 @@ static int compact_zone(struct zone *zone, struct compact_control *cc)
 			putback_movable_pages(&cc->migratepages);
 			cc->nr_migratepages = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (err == -ENOMEM) {
 =======
 			/*
@@ -1077,6 +1117,9 @@ static int compact_zone(struct zone *zone, struct compact_control *cc)
 			 */
 			if (err == -ENOMEM && cc->free_pfn > cc->migrate_pfn) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			if (err == -ENOMEM) {
+>>>>>>> 2617302... source
 				ret = COMPACT_PARTIAL;
 				goto out;
 			}

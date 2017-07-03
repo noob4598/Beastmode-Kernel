@@ -127,11 +127,15 @@ int config_ep_by_speed(struct usb_gadget *g,
 ep_found:
 	/* commit results */
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	_ep->maxpacket = usb_endpoint_maxp(chosen_desc);
 	_ep->desc = chosen_desc;
 	_ep->comp_desc = NULL;
 	_ep->maxburst = 0;
 	_ep->mult = 0;
+<<<<<<< HEAD
 =======
 	_ep->maxpacket = usb_endpoint_maxp(chosen_desc) & 0x7ff;
 	_ep->desc = chosen_desc;
@@ -144,6 +148,8 @@ ep_found:
 		_ep->mult = ((usb_endpoint_maxp(_ep->desc) & 0x1800) >> 11) + 1;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	if (!want_comp_desc)
 		return 0;
 
@@ -161,10 +167,14 @@ ep_found:
 		case USB_ENDPOINT_XFER_ISOC:
 			/* mult: bits 1:0 of bmAttributes */
 <<<<<<< HEAD
+<<<<<<< HEAD
 			_ep->mult = comp_desc->bmAttributes & 0x3;
 =======
 			_ep->mult = (comp_desc->bmAttributes & 0x3) + 1;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			_ep->mult = comp_desc->bmAttributes & 0x3;
+>>>>>>> 2617302... source
 		case USB_ENDPOINT_XFER_BULK:
 		case USB_ENDPOINT_XFER_INT:
 			_ep->maxburst = comp_desc->bMaxBurst + 1;
@@ -577,10 +587,14 @@ static int bos_desc(struct usb_composite_dev *cdev)
 	usb_ext->bmAttributes = 0;
 #else
 <<<<<<< HEAD
+<<<<<<< HEAD
 	usb_ext->bmAttributes = cpu_to_le32(USB_LPM_SUPPORT);
 =======
 	usb_ext->bmAttributes = cpu_to_le32(USB_LPM_SUPPORT | USB_BESL_SUPPORT);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	usb_ext->bmAttributes = cpu_to_le32(USB_LPM_SUPPORT);
+>>>>>>> 2617302... source
 #endif
 
 	if (gadget_is_superspeed(cdev->gadget)) {
@@ -1348,10 +1362,14 @@ composite_setup(struct usb_gadget *gadget, const struct usb_ctrlrequest *ctrl)
 				}
 			} else if (gadget->l1_supported) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 				cdev->desc.bcdUSB = cpu_to_le16(0x0201);
 =======
 				cdev->desc.bcdUSB = cpu_to_le16(0x0210);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+				cdev->desc.bcdUSB = cpu_to_le16(0x0201);
+>>>>>>> 2617302... source
 				DBG(cdev, "Config HS device with LPM(L1)\n");
 			}
 
@@ -1448,12 +1466,18 @@ composite_setup(struct usb_gadget *gadget, const struct usb_ctrlrequest *ctrl)
 		break;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* function drivers must handle get/set altsetting; if there's
 	 * no get() method, we know only altsetting zero works.
 	 */
 =======
 	/* function drivers must handle get/set altsetting */
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	/* function drivers must handle get/set altsetting; if there's
+	 * no get() method, we know only altsetting zero works.
+	 */
+>>>>>>> 2617302... source
 	case USB_REQ_SET_INTERFACE:
 		if (ctrl->bRequestType != USB_RECIP_INTERFACE)
 			goto unknown;
@@ -1462,6 +1486,7 @@ composite_setup(struct usb_gadget *gadget, const struct usb_ctrlrequest *ctrl)
 		f = cdev->config->interface[intf];
 		if (!f)
 			break;
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if (w_value && !f->set_alt)
 =======
@@ -1473,6 +1498,9 @@ composite_setup(struct usb_gadget *gadget, const struct usb_ctrlrequest *ctrl)
 		 */
 		if (w_value && !f->get_alt)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		if (w_value && !f->set_alt)
+>>>>>>> 2617302... source
 			break;
 		/*
 		 * We put interfaces in default settings (alt 0)

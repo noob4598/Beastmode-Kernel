@@ -112,6 +112,7 @@ bool ip6_frag_match(struct inet_frag_queue *q, void *a)
 		fq->user == arg->user &&
 		ipv6_addr_equal(&fq->saddr, arg->src) &&
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ipv6_addr_equal(&fq->daddr, arg->dst);
 =======
 		ipv6_addr_equal(&fq->daddr, arg->dst) &&
@@ -119,6 +120,9 @@ bool ip6_frag_match(struct inet_frag_queue *q, void *a)
 		 !(ipv6_addr_type(arg->dst) & (IPV6_ADDR_MULTICAST |
 					       IPV6_ADDR_LINKLOCAL)));
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		ipv6_addr_equal(&fq->daddr, arg->dst);
+>>>>>>> 2617302... source
 }
 EXPORT_SYMBOL(ip6_frag_match);
 
@@ -188,10 +192,14 @@ static void ip6_frag_expire(unsigned long data)
 static __inline__ struct frag_queue *
 fq_find(struct net *net, __be32 id, const struct in6_addr *src,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	const struct in6_addr *dst, u8 ecn)
 =======
 	const struct in6_addr *dst, int iif, u8 ecn)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	const struct in6_addr *dst, u8 ecn)
+>>>>>>> 2617302... source
 {
 	struct inet_frag_queue *q;
 	struct ip6_create_arg arg;
@@ -202,9 +210,12 @@ fq_find(struct net *net, __be32 id, const struct in6_addr *src,
 	arg.src = src;
 	arg.dst = dst;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	arg.iif = iif;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	arg.ecn = ecn;
 
 	read_lock(&ip6_frags.lock);
@@ -568,11 +579,14 @@ static int ipv6_frag_rcv(struct sk_buff *skb)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (!net->ipv6.frags.high_thresh)
 		goto fail_mem;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	evicted = inet_frag_evictor(&net->ipv6.frags, &ip6_frags, false);
 	if (evicted)
 		IP6_ADD_STATS_BH(net, ip6_dst_idev(skb_dst(skb)),
@@ -580,10 +594,14 @@ static int ipv6_frag_rcv(struct sk_buff *skb)
 
 	fq = fq_find(net, fhdr->identification, &hdr->saddr, &hdr->daddr,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		     ip6_frag_ecn(hdr));
 =======
 		     skb->dev ? skb->dev->ifindex : 0, ip6_frag_ecn(hdr));
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		     ip6_frag_ecn(hdr));
+>>>>>>> 2617302... source
 	if (fq != NULL) {
 		int ret;
 
@@ -597,9 +615,12 @@ static int ipv6_frag_rcv(struct sk_buff *skb)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 fail_mem:
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	IP6_INC_STATS_BH(net, ip6_dst_idev(skb_dst(skb)), IPSTATS_MIB_REASMFAILS);
 	kfree_skb(skb);
 	return -1;

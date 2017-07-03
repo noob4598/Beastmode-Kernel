@@ -185,6 +185,7 @@ static void sja1000_start(struct net_device *dev)
 	priv->read_reg(priv, SJA1000_ECC);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/* clear interrupt flags */
 	priv->read_reg(priv, SJA1000_IR);
@@ -193,6 +194,8 @@ static void sja1000_start(struct net_device *dev)
 	priv->read_reg(priv, SJA1000_IR);
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	/* leave reset mode */
 	set_normal_mode(dev);
 }

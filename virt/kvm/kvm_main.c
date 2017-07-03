@@ -53,9 +53,12 @@
 #include <asm/processor.h>
 #include <asm/io.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <asm/ioctl.h>
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 #include <asm/uaccess.h>
 #include <asm/pgtable.h>
 
@@ -472,6 +475,7 @@ static struct kvm *kvm_create_vm(unsigned long type)
 		return ERR_PTR(-ENOMEM);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	spin_lock_init(&kvm->mmu_lock);
 	atomic_inc(&current->mm->mm_count);
@@ -484,6 +488,8 @@ static struct kvm *kvm_create_vm(unsigned long type)
 	INIT_LIST_HEAD(&kvm->devices);
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	r = kvm_arch_init_vm(kvm, type);
 	if (r)
 		goto out_err_nodisable;
@@ -514,6 +520,9 @@ static struct kvm *kvm_create_vm(unsigned long type)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	spin_lock_init(&kvm->mmu_lock);
 	kvm->mm = current->mm;
 	atomic_inc(&kvm->mm->mm_count);
@@ -524,8 +533,11 @@ static struct kvm *kvm_create_vm(unsigned long type)
 	atomic_set(&kvm->users_count, 1);
 	INIT_LIST_HEAD(&kvm->devices);
 
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	r = kvm_init_mmu_notifier(kvm);
 	if (r)
 		goto out_err;
@@ -546,9 +558,12 @@ out_err_nodisable:
 	kfree(kvm->memslots);
 	kvm_arch_free_vm(kvm);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	mmdrop(current->mm);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	return ERR_PTR(r);
 }
 
@@ -630,6 +645,7 @@ static void kvm_destroy_vm(struct kvm *kvm)
 	raw_spin_unlock(&kvm_lock);
 	kvm_free_irq_routing(kvm);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	for (i = 0; i < KVM_NR_BUSES; i++)
 		kvm_io_bus_destroy(kvm->buses[i]);
 =======
@@ -639,6 +655,10 @@ static void kvm_destroy_vm(struct kvm *kvm)
 		kvm->buses[i] = NULL;
 	}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	for (i = 0; i < KVM_NR_BUSES; i++)
+		kvm_io_bus_destroy(kvm->buses[i]);
+>>>>>>> 2617302... source
 	kvm_coalesced_mmio_free(kvm);
 #if defined(CONFIG_MMU_NOTIFIER) && defined(KVM_ARCH_WANT_MMU_NOTIFIER)
 	mmu_notifier_unregister(&kvm->mmu_notifier, kvm->mm);
@@ -1581,12 +1601,17 @@ int kvm_gfn_to_hva_cache_init(struct kvm *kvm, struct gfn_to_hva_cache *ghc,
 	ghc->len = len;
 	ghc->memslot = gfn_to_memslot(kvm, start_gfn);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ghc->hva = gfn_to_hva_many(ghc->memslot, start_gfn, &nr_pages_avail);
 	if (!kvm_is_error_hva(ghc->hva) && nr_pages_avail >= nr_pages_needed) {
 =======
 	ghc->hva = gfn_to_hva_many(ghc->memslot, start_gfn, NULL);
 	if (!kvm_is_error_hva(ghc->hva) && nr_pages_needed <= 1) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	ghc->hva = gfn_to_hva_many(ghc->memslot, start_gfn, &nr_pages_avail);
+	if (!kvm_is_error_hva(ghc->hva) && nr_pages_avail >= nr_pages_needed) {
+>>>>>>> 2617302... source
 		ghc->hva += offset;
 	} else {
 		/*
@@ -2019,11 +2044,14 @@ static long kvm_vcpu_ioctl(struct file *filp,
 		return -EIO;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (unlikely(_IOC_TYPE(ioctl) != KVMIO))
 		return -EINVAL;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 #if defined(CONFIG_S390) || defined(CONFIG_PPC) || defined(CONFIG_MIPS)
 	/*
 	 * Special cases: vcpu ioctls that are asynchronous to vcpu execution,
@@ -2486,10 +2514,14 @@ static long kvm_vm_ioctl(struct file *filp,
 			goto out;
 		r = -EINVAL;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (routing.nr >= KVM_MAX_IRQ_ROUTES)
 =======
 		if (routing.nr > KVM_MAX_IRQ_ROUTES)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		if (routing.nr >= KVM_MAX_IRQ_ROUTES)
+>>>>>>> 2617302... source
 			goto out;
 		if (routing.flags)
 			goto out;
@@ -2928,10 +2960,13 @@ int kvm_io_bus_write(struct kvm *kvm, enum kvm_bus bus_idx, gpa_t addr,
 
 	bus = srcu_dereference(kvm->buses[bus_idx], &kvm->srcu);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (!bus)
 		return -ENOMEM;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	idx = kvm_io_bus_get_first_dev(bus, addr, len);
 	if (idx < 0)
 		return -EOPNOTSUPP;
@@ -2961,10 +2996,13 @@ int kvm_io_bus_read(struct kvm *kvm, enum kvm_bus bus_idx, gpa_t addr,
 
 	bus = srcu_dereference(kvm->buses[bus_idx], &kvm->srcu);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (!bus)
 		return -ENOMEM;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	idx = kvm_io_bus_get_first_dev(bus, addr, len);
 	if (idx < 0)
 		return -EOPNOTSUPP;
@@ -2987,6 +3025,7 @@ int kvm_io_bus_register_dev(struct kvm *kvm, enum kvm_bus bus_idx, gpa_t addr,
 
 	bus = kvm->buses[bus_idx];
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (bus->dev_count > NR_IOBUS_DEVS - 1)
 =======
 	if (!bus)
@@ -2995,6 +3034,9 @@ int kvm_io_bus_register_dev(struct kvm *kvm, enum kvm_bus bus_idx, gpa_t addr,
 	/* exclude ioeventfd which is limited by maximum fd */
 	if (bus->dev_count - bus->ioeventfd_count > NR_IOBUS_DEVS - 1)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (bus->dev_count > NR_IOBUS_DEVS - 1)
+>>>>>>> 2617302... source
 		return -ENOSPC;
 
 	new_bus = kzalloc(sizeof(*bus) + ((bus->dev_count + 1) *
@@ -3013,6 +3055,9 @@ int kvm_io_bus_register_dev(struct kvm *kvm, enum kvm_bus bus_idx, gpa_t addr,
 
 /* Caller must hold slots_lock. */
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 int kvm_io_bus_unregister_dev(struct kvm *kvm, enum kvm_bus bus_idx,
 			      struct kvm_io_device *dev)
 {
@@ -3034,6 +3079,7 @@ int kvm_io_bus_unregister_dev(struct kvm *kvm, enum kvm_bus bus_idx,
 			  sizeof(struct kvm_io_range)), GFP_KERNEL);
 	if (!new_bus)
 		return -ENOMEM;
+<<<<<<< HEAD
 =======
 void kvm_io_bus_unregister_dev(struct kvm *kvm, enum kvm_bus bus_idx,
 			       struct kvm_io_device *dev)
@@ -3060,6 +3106,8 @@ void kvm_io_bus_unregister_dev(struct kvm *kvm, enum kvm_bus bus_idx,
 		goto broken;
 	}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	memcpy(new_bus, bus, sizeof(*bus) + i * sizeof(struct kvm_io_range));
 	new_bus->dev_count--;
@@ -3067,10 +3115,14 @@ void kvm_io_bus_unregister_dev(struct kvm *kvm, enum kvm_bus bus_idx,
 	       (new_bus->dev_count - i) * sizeof(struct kvm_io_range));
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	rcu_assign_pointer(kvm->buses[bus_idx], new_bus);
 	synchronize_srcu_expedited(&kvm->srcu);
 	kfree(bus);
 	return r;
+<<<<<<< HEAD
 =======
 broken:
 	rcu_assign_pointer(kvm->buses[bus_idx], new_bus);
@@ -3078,6 +3130,8 @@ broken:
 	kfree(bus);
 	return;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 }
 
 static struct notifier_block kvm_cpu_notifier = {

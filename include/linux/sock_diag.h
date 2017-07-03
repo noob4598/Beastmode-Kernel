@@ -12,9 +12,12 @@ struct sock_diag_handler {
 	__u8 family;
 	int (*dump)(struct sk_buff *skb, struct nlmsghdr *nlh);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	int (*destroy)(struct sk_buff *skb, struct nlmsghdr *nlh);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 };
 
 int sock_diag_register(const struct sock_diag_handler *h);
@@ -31,7 +34,10 @@ int sock_diag_put_filterinfo(bool may_report_filterinfo, struct sock *sk,
 			     struct sk_buff *skb, int attrtype);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 int sock_diag_destroy(struct sock *sk, int err);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 #endif

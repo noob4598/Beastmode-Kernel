@@ -64,12 +64,16 @@
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  * printf() format helpers
 =======
  * printf() format helper. This macros is a workaround for the difficulties
  * with emitting 64-bit integers and 64-bit pointers with the same code
  * for both 32-bit and 64-bit hosts.
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+ * printf() format helpers
+>>>>>>> 2617302... source
  */
 
 /* Split 64-bit integer into two 32-bit values. Use with %8.8X%8.8X */
@@ -77,14 +81,20 @@
 #define ACPI_FORMAT_UINT64(i)           ACPI_HIDWORD(i), ACPI_LODWORD(i)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 #if ACPI_MACHINE_WIDTH == 64
 #define ACPI_FORMAT_NATIVE_UINT(i)      ACPI_FORMAT_UINT64(i)
 #else
 #define ACPI_FORMAT_NATIVE_UINT(i)      0, (i)
 #endif
 
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 /*
  * Macros for moving data around to/from buffers that are possibly unaligned.
  * If the hardware supports the transfer of unaligned data, just do the store.

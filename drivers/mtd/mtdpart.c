@@ -645,6 +645,7 @@ int add_mtd_partitions(struct mtd_info *master,
 	for (i = 0; i < nbparts; i++) {
 		slave = allocate_partition(master, parts + i, i, cur_offset);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (IS_ERR(slave))
 			return PTR_ERR(slave);
 =======
@@ -653,6 +654,10 @@ int add_mtd_partitions(struct mtd_info *master,
 			return PTR_ERR(slave);
 		}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		if (IS_ERR(slave))
+			return PTR_ERR(slave);
+>>>>>>> 2617302... source
 
 		mutex_lock(&mtd_partitions_mutex);
 		list_add(&slave->list, &mtd_partitions);

@@ -4,10 +4,13 @@
 /* References to section boundaries */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <linux/compiler.h>
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 extern char _text[], _stext[], _etext[];
 extern char _data[], _sdata[], _edata[];
 extern char __bss_start[], __bss_stop[];
@@ -27,10 +30,13 @@ extern char __rkp_ro_start[], __rkp_ro_end[];
 extern char __ctors_start[], __ctors_end[];
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 extern __visible const void __nosave_begin, __nosave_end;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 /* function descriptor handling (if any).  Override
  * in asm/sections.h */
 #ifndef dereference_function_descriptor

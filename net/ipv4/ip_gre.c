@@ -653,9 +653,12 @@ static void ipgre_tunnel_setup(struct net_device *dev)
 {
 	dev->netdev_ops		= &ipgre_netdev_ops;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	dev->type		= ARPHRD_IPGRE;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	ip_tunnel_setup(dev, ipgre_net_id);
 }
 
@@ -695,9 +698,13 @@ static int ipgre_tunnel_init(struct net_device *dev)
 	memcpy(dev->broadcast, &iph->daddr, 4);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dev->type		= ARPHRD_IPGRE;
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	dev->type		= ARPHRD_IPGRE;
+>>>>>>> 2617302... source
 	dev->flags		= IFF_NOARP;
 	dev->priv_flags		&= ~IFF_XMIT_DST_RELEASE;
 	dev->addr_len		= 4;

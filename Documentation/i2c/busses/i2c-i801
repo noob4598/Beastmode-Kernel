@@ -26,10 +26,13 @@ Supported adapters:
   * Intel Wellsburg (PCH)
   * Intel Coleto Creek (PCH)
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
   * Intel Wildcat Point-LP (PCH)
   * Intel BayTrail (SOC)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
    Datasheets: Publicly available at the Intel website
 
 On Intel Patsburg and later chipsets, both the normal host SMBus controller

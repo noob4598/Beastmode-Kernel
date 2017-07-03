@@ -2533,10 +2533,14 @@ static int kdb_summary(int argc, const char **argv)
 	kdb_printf("\nMemTotal:       %8lu kB\nMemFree:        %8lu kB\n"
 		   "Buffers:        %8lu kB\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 		   val.totalram, val.freeram, val.bufferram);
 =======
 		   K(val.totalram), K(val.freeram), K(val.bufferram));
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		   val.totalram, val.freeram, val.bufferram);
+>>>>>>> 2617302... source
 	return 0;
 }
 

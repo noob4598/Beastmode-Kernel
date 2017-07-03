@@ -252,6 +252,7 @@ void radeon_gart_unbind(struct radeon_device *rdev, unsigned offset,
 		}
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mb();
 	radeon_gart_tlb_flush(rdev);
 =======
@@ -260,6 +261,10 @@ void radeon_gart_unbind(struct radeon_device *rdev, unsigned offset,
 		radeon_gart_tlb_flush(rdev);
 	}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	mb();
+	radeon_gart_tlb_flush(rdev);
+>>>>>>> 2617302... source
 }
 
 /**
@@ -302,6 +307,7 @@ int radeon_gart_bind(struct radeon_device *rdev, unsigned offset,
 		}
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mb();
 	radeon_gart_tlb_flush(rdev);
 =======
@@ -310,6 +316,10 @@ int radeon_gart_bind(struct radeon_device *rdev, unsigned offset,
 		radeon_gart_tlb_flush(rdev);
 	}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	mb();
+	radeon_gart_tlb_flush(rdev);
+>>>>>>> 2617302... source
 	return 0;
 }
 

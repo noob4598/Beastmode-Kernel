@@ -504,11 +504,15 @@ static void __init realtime_counter_init(void)
 	/* Numerator/denumerator values refer TRM Realtime Counter section */
 	switch (rate) {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	case 1200000:
 		num = 64;
 		den = 125;
 		break;
 	case 1300000:
+<<<<<<< HEAD
 =======
 	case 12000000:
 		num = 64;
@@ -516,6 +520,8 @@ static void __init realtime_counter_init(void)
 		break;
 	case 13000000:
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		num = 768;
 		den = 1625;
 		break;
@@ -524,11 +530,15 @@ static void __init realtime_counter_init(void)
 		den = 25;
 		break;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	case 2600000:
 		num = 384;
 		den = 1625;
 		break;
 	case 2700000:
+<<<<<<< HEAD
 =======
 	case 26000000:
 		num = 384;
@@ -536,6 +546,8 @@ static void __init realtime_counter_init(void)
 		break;
 	case 27000000:
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		num = 256;
 		den = 1125;
 		break;

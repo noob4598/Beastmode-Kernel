@@ -23,9 +23,13 @@
 #include <net/netfilter/nf_conntrack_zones.h>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* Returns new sk_buff, or NULL */
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+/* Returns new sk_buff, or NULL */
+>>>>>>> 2617302... source
 static int nf_ct_ipv4_gather_frags(struct sk_buff *skb, u_int32_t user)
 {
 	int err;
@@ -37,6 +41,7 @@ static int nf_ct_ipv4_gather_frags(struct sk_buff *skb, u_int32_t user)
 	local_bh_enable();
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!err)
 		ip_send_check(ip_hdr(skb));
 =======
@@ -45,6 +50,10 @@ static int nf_ct_ipv4_gather_frags(struct sk_buff *skb, u_int32_t user)
 		skb->local_df = 1;
 	}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (!err)
+		ip_send_check(ip_hdr(skb));
+>>>>>>> 2617302... source
 
 	return err;
 }

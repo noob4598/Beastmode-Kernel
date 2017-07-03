@@ -9,6 +9,7 @@
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
  * Set the prefetch distance in units of L1_CACHE_BYTES based on the
  * cache line size. The prefetch distance is used by the memcpy,
@@ -35,6 +36,8 @@
 
 /*
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
  * Memory returned by kmalloc() may be used for DMA, so we must make
  * sure that all such allocations are cache aligned. Otherwise,
  * unrelated code may cause parts of the buffer to be read into the

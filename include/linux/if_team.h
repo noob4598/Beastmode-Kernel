@@ -194,9 +194,12 @@ struct team {
 	bool queue_override_enabled;
 	struct list_head *qom_lists; /* array of queue override mapping lists */
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	bool port_mtu_change_allowed;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	long mode_priv[TEAM_MODE_PRIV_LONGS];
 };
 

@@ -359,11 +359,15 @@ static struct mvebu_mpp_mode mv88f6710_mpp_modes[] = {
 	   MPP_FUNCTION(0x0, "gpio", NULL),
 	   MPP_FUNCTION(0x1, "spi0", "miso"),
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	   MPP_FUNCTION(0x2, "spi0-1", "cs1")),
 	MPP_MODE(65,
 	   MPP_FUNCTION(0x0, "gpio", NULL),
 	   MPP_FUNCTION(0x1, "spi0", "mosi"),
 	   MPP_FUNCTION(0x2, "spi0-1", "cs2")),
+<<<<<<< HEAD
 =======
 	   MPP_FUNCTION(0x2, "spi0", "cs1")),
 	MPP_MODE(65,
@@ -371,6 +375,8 @@ static struct mvebu_mpp_mode mv88f6710_mpp_modes[] = {
 	   MPP_FUNCTION(0x1, "spi0", "mosi"),
 	   MPP_FUNCTION(0x2, "spi0", "cs2")),
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 };
 
 static struct mvebu_pinctrl_soc_info armada_370_pinctrl_info;

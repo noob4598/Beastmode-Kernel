@@ -197,6 +197,9 @@ struct ffs_data {
 	/* filled by __ffs_data_got_descs() */
 	/*
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	 * Real descriptors are 16 bytes after raw_descs (so you need
 	 * to skip 16 bytes (ie. ffs->raw_descs + 16) to get to the
 	 * first full speed descriptor).  raw_descs_length and
@@ -208,6 +211,7 @@ struct ffs_data {
 	unsigned			raw_fs_hs_descs_length;
 	unsigned			raw_ss_descs_offset;
 	unsigned			raw_ss_descs_length;
+<<<<<<< HEAD
 =======
 	 * raw_descs_data is what you kfree, raw_descs points inside of
 	 * raw_descs_data, where full speed, high speed and super speed
@@ -218,6 +222,8 @@ struct ffs_data {
 	const void			*raw_descs;
 	unsigned			raw_descs_length;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	unsigned			fs_descs_count;
 	unsigned			hs_descs_count;
 	unsigned			ss_descs_count;
@@ -1410,10 +1416,14 @@ static void ffs_data_clear(struct ffs_data *ffs)
 		ffs_epfiles_destroy(ffs->epfiles, ffs->eps_count);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	kfree(ffs->raw_descs);
 =======
 	kfree(ffs->raw_descs_data);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	kfree(ffs->raw_descs);
+>>>>>>> 2617302... source
 	kfree(ffs->raw_strings);
 	kfree(ffs->stringtabs);
 }
@@ -1426,20 +1436,29 @@ static void ffs_data_reset(struct ffs_data *ffs)
 
 	ffs->epfiles = NULL;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	ffs->raw_descs_data = NULL;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	ffs->raw_descs = NULL;
 	ffs->raw_strings = NULL;
 	ffs->stringtabs = NULL;
 
 	ffs->raw_descs_length = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ffs->raw_fs_hs_descs_length = 0;
 	ffs->raw_ss_descs_offset = 0;
 	ffs->raw_ss_descs_length = 0;
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	ffs->raw_fs_hs_descs_length = 0;
+	ffs->raw_ss_descs_offset = 0;
+	ffs->raw_ss_descs_length = 0;
+>>>>>>> 2617302... source
 	ffs->fs_descs_count = 0;
 	ffs->hs_descs_count = 0;
 	ffs->ss_descs_count = 0;
@@ -1482,6 +1501,9 @@ static int functionfs_bind(struct ffs_data *ffs, struct usb_composite_dev *cdev)
 
 	lang = ffs->stringtabs;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 #if defined (CONFIG_USB_ANDROID_SAMSUNG_COMPOSITE)
 	if(lang == NULL)
 		pr_info("%s: stringtabs is NULL\n", __func__);
@@ -1495,6 +1517,7 @@ static int functionfs_bind(struct ffs_data *ffs, struct usb_composite_dev *cdev)
 			str->id = id;
 	}
 #endif
+<<<<<<< HEAD
 =======
 	if (lang) {
 		for (; *lang; ++lang) {
@@ -1505,6 +1528,8 @@ static int functionfs_bind(struct ffs_data *ffs, struct usb_composite_dev *cdev)
 		}
 	}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	ffs->gadget = cdev->gadget;
 	ffs_data_get(ffs);
 	return 0;
@@ -1684,6 +1709,7 @@ static int ffs_func_eps_enable(struct ffs_function *func)
 			desc_idx = 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ds = ep->descs[desc_idx];
 =======
 		/* fall-back to lower speed if desc missing for current speed */
@@ -1692,6 +1718,9 @@ static int ffs_func_eps_enable(struct ffs_function *func)
 		} while (!ds && --desc_idx >= 0);
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		ds = ep->descs[desc_idx];
+>>>>>>> 2617302... source
 		if (!ds) {
 			ret = -EINVAL;
 			break;
@@ -1947,6 +1976,9 @@ static int __ffs_data_got_descs(struct ffs_data *ffs,
 				char *const _data, size_t len)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	unsigned fs_count, hs_count, ss_count = 0;
 	int fs_len, hs_len, ss_len, ss_magic, ret = -EINVAL;
 	char *data = _data;
@@ -1961,6 +1993,7 @@ static int __ffs_data_got_descs(struct ffs_data *ffs,
 
 	data += 16;
 	len  -= 16;
+<<<<<<< HEAD
 =======
 	unsigned fs_count = 0, hs_count = 0, ss_count = 0, flags = 0;
 	int fs_len = 0, hs_len = 0, ss_len = 0, ret = -EINVAL;
@@ -2014,6 +2047,8 @@ static int __ffs_data_got_descs(struct ffs_data *ffs,
 	/* Start of first descriptor. */
 	raw_descs = data;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	if (likely(fs_count)) {
 		fs_len = ffs_do_descs(fs_count, data, len,
@@ -2026,10 +2061,15 @@ static int __ffs_data_got_descs(struct ffs_data *ffs,
 		data += fs_len;
 		len  -= fs_len;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	} else {
 		fs_len = 0;
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	} else {
+		fs_len = 0;
+>>>>>>> 2617302... source
 	}
 
 	if (likely(hs_count)) {
@@ -2040,6 +2080,9 @@ static int __ffs_data_got_descs(struct ffs_data *ffs,
 			goto error;
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	} else {
 		hs_len = 0;
 	}
@@ -2054,20 +2097,29 @@ static int __ffs_data_got_descs(struct ffs_data *ffs,
 		data += hs_len + 8;
 		len  -= hs_len + 8;
 	} else {
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		data += hs_len;
 		len  -= hs_len;
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	if (!fs_count && !hs_count && !ss_count)
 		goto einval;
 
 	if (ss_count) {
+<<<<<<< HEAD
 =======
 	if (likely(ss_count)) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		ss_len = ffs_do_descs(ss_count, data, len,
 				   __ffs_data_do_entity, ffs);
 		if (unlikely(ss_len < 0)) {
@@ -2075,6 +2127,9 @@ static int __ffs_data_got_descs(struct ffs_data *ffs,
 			goto error;
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		ret = ss_len;
 	} else {
 		ss_len = 0;
@@ -2098,6 +2153,7 @@ static int __ffs_data_got_descs(struct ffs_data *ffs,
 
 einval:
 	ret = -EINVAL;
+<<<<<<< HEAD
 =======
 	}
 
@@ -2111,6 +2167,8 @@ einval:
 	return 0;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 error:
 	kfree(_data);
 	return ret;
@@ -2486,6 +2544,9 @@ static int ffs_func_bind(struct usb_configuration *c,
 	/* Zero */
 	memset(data->eps, 0, sizeof data->eps);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	/* Copy only raw (hs,fs) descriptors (until ss_magic and ss_count) */
 	memcpy(data->raw_descs, ffs->raw_descs + 16,
 				ffs->raw_fs_hs_descs_length);
@@ -2494,10 +2555,13 @@ static int ffs_func_bind(struct usb_configuration *c,
 		memcpy(data->raw_descs + ffs->raw_fs_hs_descs_length,
 			ffs->raw_descs + ffs->raw_ss_descs_offset,
 			ffs->raw_ss_descs_length);
+<<<<<<< HEAD
 =======
 	/* Copy descriptors */
 	memcpy(data->raw_descs, ffs->raw_descs, ffs->raw_descs_length);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	memset(data->inums, 0xff, sizeof data->inums);
 	for (ret = ffs->eps_count; ret; --ret)

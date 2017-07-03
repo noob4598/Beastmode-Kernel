@@ -254,9 +254,12 @@ static ssize_t snd_info_entry_write(struct file *file, const char __user *buffer
 	ssize_t size = 0;
 	loff_t pos;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	unsigned long realloc_size;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	data = file->private_data;
 	if (snd_BUG_ON(!data))
@@ -266,11 +269,15 @@ static ssize_t snd_info_entry_write(struct file *file, const char __user *buffer
 	if (pos < 0 || (long) pos != pos || (ssize_t) count < 0)
 		return -EIO;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if ((unsigned long) pos + (unsigned long) count < (unsigned long) pos)
 =======
 	realloc_size = (unsigned long) pos + (unsigned long) count;
 	if (realloc_size < (unsigned long) pos || realloc_size > UINT_MAX)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if ((unsigned long) pos + (unsigned long) count < (unsigned long) pos)
+>>>>>>> 2617302... source
 		return -EIO;
 	switch (entry->content) {
 	case SNDRV_INFO_CONTENT_TEXT:
@@ -689,10 +696,14 @@ int snd_info_card_free(struct snd_card *card)
  * @buffer: the procfs buffer
  * @line: the buffer to store
 <<<<<<< HEAD
+<<<<<<< HEAD
  * @len: the max. buffer size - 1
 =======
  * @len: the max. buffer size
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+ * @len: the max. buffer size - 1
+>>>>>>> 2617302... source
  *
  * Reads one line from the buffer and stores the string.
  *
@@ -713,10 +724,14 @@ int snd_info_get_line(struct snd_info_buffer *buffer, char *line, int len)
 		if (c == '\n')
 			break;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (len) {
 =======
 		if (len > 1) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		if (len) {
+>>>>>>> 2617302... source
 			len--;
 			*line++ = c;
 		}

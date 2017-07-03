@@ -124,10 +124,14 @@ int msm_camera_fill_vreg_params(struct camera_vreg_t *cam_vreg,
 	/* Validate input parameters */
 	if (!cam_vreg || !power_setting) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("%s:%d failed: cam_vreg %p power_setting %p", __func__,
 =======
 		pr_err("%s:%d failed: cam_vreg %pK power_setting %pK", __func__,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		pr_err("%s:%d failed: cam_vreg %p power_setting %p", __func__,
+>>>>>>> 2617302... source
 			__LINE__,  cam_vreg, power_setting);
 		return -EINVAL;
 	}
@@ -1640,10 +1644,14 @@ int msm_camera_power_up(struct msm_camera_power_ctrl_t *ctrl,
 
 	if (!ctrl || !sensor_i2c_client) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("failed ctrl %p sensor_i2c_client %p\n", ctrl,
 =======
 		pr_err("failed ctrl %pK sensor_i2c_client %pK\n", ctrl,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		pr_err("failed ctrl %p sensor_i2c_client %p\n", ctrl,
+>>>>>>> 2617302... source
 			sensor_i2c_client);
 		return -EINVAL;
 	}
@@ -1865,10 +1873,13 @@ power_up_failed:
 			break;
 		case SENSOR_GPIO:
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 			if (!ctrl->gpio_conf->gpio_num_info)
 				continue;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 			if (!ctrl->gpio_conf->gpio_num_info->valid
 				[power_setting->seq_val]) {
 				pr_warn("%s : Warning!! Check GPIO index %d\n",
@@ -1951,10 +1962,14 @@ int msm_camera_power_down(struct msm_camera_power_ctrl_t *ctrl,
 	CDBG("%s:%d\n", __func__, __LINE__);
 	if (!ctrl || !sensor_i2c_client) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("failed ctrl %p sensor_i2c_client %p\n", ctrl,
 =======
 		pr_err("failed ctrl %pK sensor_i2c_client %pK\n", ctrl,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		pr_err("failed ctrl %p sensor_i2c_client %p\n", ctrl,
+>>>>>>> 2617302... source
 			sensor_i2c_client);
 		return -EINVAL;
 	}

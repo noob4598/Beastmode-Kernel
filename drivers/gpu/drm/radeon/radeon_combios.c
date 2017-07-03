@@ -1272,10 +1272,14 @@ struct radeon_encoder_lvds *radeon_combios_get_lvds_info(struct radeon_encoder
 			if ((RBIOS16(tmp) == lvds->native_mode.hdisplay) &&
 			    (RBIOS16(tmp + 2) == lvds->native_mode.vdisplay)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 				lvds->native_mode.htotal = lvds->native_mode.hdisplay +
 					(RBIOS16(tmp + 17) - RBIOS16(tmp + 19)) * 8;
 				lvds->native_mode.hsync_start = lvds->native_mode.hdisplay +
 					(RBIOS16(tmp + 21) - RBIOS16(tmp + 19) - 1) * 8;
+<<<<<<< HEAD
 =======
 				u32 hss = (RBIOS16(tmp + 21) - RBIOS16(tmp + 19) - 1) * 8;
 
@@ -1287,6 +1291,8 @@ struct radeon_encoder_lvds *radeon_combios_get_lvds_info(struct radeon_encoder
 				lvds->native_mode.hsync_start = lvds->native_mode.hdisplay +
 					hss;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 				lvds->native_mode.hsync_end = lvds->native_mode.hsync_start +
 					(RBIOS8(tmp + 23) * 8);
 
@@ -3411,6 +3417,7 @@ void radeon_combios_asic_init(struct drm_device *dev)
 		return;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/* quirk for rs4xx HP Compaq dc5750 Small Form Factor to make it resume
 	 * - it hangs on resume inside the dynclk 1 table.
@@ -3421,6 +3428,8 @@ void radeon_combios_asic_init(struct drm_device *dev)
 		return;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	/* DYN CLK 1 */
 	table = combios_get_table_offset(dev, COMBIOS_DYN_CLK_1_TABLE);
 	if (table)

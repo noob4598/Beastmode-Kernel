@@ -32,6 +32,9 @@ struct sec_param_data {
 } ;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 struct sec_param_data_s {
 	struct work_struct sec_param_work;
 	struct completion work;
@@ -41,8 +44,11 @@ struct sec_param_data_s {
 	unsigned int direction;
 };
 
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 enum sec_param_index {
 	param_index_debuglevel,
 	param_index_uartsel,
@@ -67,8 +73,11 @@ enum sec_param_index {
 } ;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 extern bool sec_open_param(void);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 extern bool sec_get_param(enum sec_param_index index, void *value);
 extern bool sec_set_param(enum sec_param_index index, void *value);

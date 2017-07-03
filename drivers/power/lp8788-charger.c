@@ -418,6 +418,7 @@ static int lp8788_psy_register(struct platform_device *pdev,
 	pchg->battery.get_property = lp8788_battery_get_property;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (power_supply_register(&pdev->dev, &pchg->battery))
 		return -EPERM;
 =======
@@ -426,6 +427,10 @@ static int lp8788_psy_register(struct platform_device *pdev,
 		return -EPERM;
 	}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (power_supply_register(&pdev->dev, &pchg->battery))
+		return -EPERM;
+>>>>>>> 2617302... source
 
 	return 0;
 }

@@ -144,9 +144,13 @@ struct stk1160 {
 
 	struct stk1160_isoc_ctl isoc_ctl;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	char urb_buf[255];	 /* urb control msg buffer */
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	char urb_buf[255];	 /* urb control msg buffer */
+>>>>>>> 2617302... source
 
 	/* frame properties */
 	int width;		  /* current frame width */

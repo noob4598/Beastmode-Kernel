@@ -230,10 +230,14 @@ static int uio_dmem_genirq_probe(struct platform_device *pdev)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	priv->dmem_region_start = i;
 =======
 	priv->dmem_region_start = uiomem - &uioinfo->mem[0];
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	priv->dmem_region_start = i;
+>>>>>>> 2617302... source
 	priv->num_dmem_regions = pdata->num_dynamic_regions;
 
 	for (i = 0; i < pdata->num_dynamic_regions; ++i) {

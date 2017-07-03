@@ -1770,12 +1770,16 @@ static int _qcrypto_process_aead(struct  crypto_engine *pengine,
 			 * generated MAC, and CCM padding.
 			 */
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 			if ((MAX_ALIGN_SIZE * 2 > ULONG_MAX - req->assoclen) ||
 				((MAX_ALIGN_SIZE * 2 + req->assoclen) >
 						ULONG_MAX - qreq.ivsize) ||
 				((MAX_ALIGN_SIZE * 2 + req->assoclen
 					+ qreq.ivsize)
 						> ULONG_MAX - req->cryptlen)) {
+<<<<<<< HEAD
 =======
 			if ((MAX_ALIGN_SIZE * 2 > UINT_MAX - req->assoclen) ||
 				((MAX_ALIGN_SIZE * 2 + req->assoclen) >
@@ -1784,6 +1788,8 @@ static int _qcrypto_process_aead(struct  crypto_engine *pengine,
 					+ qreq.ivsize)
 						> UINT_MAX - req->cryptlen)) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 				pr_err("Integer overflow on aead req length.\n");
 				return -EINVAL;
 			}
@@ -1843,11 +1849,16 @@ static int _qcrypto_process_aead(struct  crypto_engine *pengine,
 	return ret;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define list_next_entry(pos, member) \
 		list_entry(pos->member.next, typeof(*pos), member)
 =======
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+#define list_next_entry(pos, member) \
+		list_entry(pos->member.next, typeof(*pos), member)
+>>>>>>> 2617302... source
 static struct crypto_engine *_qcrypto_static_assign_engine(
 					struct crypto_priv *cp)
 {
@@ -4790,6 +4801,7 @@ static ssize_t _debug_stats_read(struct file *file, char __user *buf,
 	len = _disp_stats(qcrypto);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	rc = simple_read_from_buffer((void __user *) buf, len,
 			ppos, (void *) _debug_read_buf, len);
 
@@ -4798,6 +4810,11 @@ static ssize_t _debug_stats_read(struct file *file, char __user *buf,
 		rc = simple_read_from_buffer((void __user *) buf, len,
 			ppos, (void *) _debug_read_buf, len);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	rc = simple_read_from_buffer((void __user *) buf, len,
+			ppos, (void *) _debug_read_buf, len);
+
+>>>>>>> 2617302... source
 	return rc;
 }
 

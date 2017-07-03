@@ -39,6 +39,7 @@ struct pstore_read_data {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 static inline u64 generic_id(unsigned long timestamp,
 			     unsigned int part, int count)
@@ -47,6 +48,8 @@ static inline u64 generic_id(unsigned long timestamp,
 }
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 static int efi_pstore_read_func(struct efivar_entry *entry, void *data)
 {
 	efi_guid_t vendor = LINUX_EFI_CRASH_GUID;
@@ -66,10 +69,14 @@ static int efi_pstore_read_func(struct efivar_entry *entry, void *data)
 	if (sscanf(name, "dump-type%u-%u-%d-%lu",
 		   cb_data->type, &part, &cnt, &time) == 4) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		*cb_data->id = part;
 =======
 		*cb_data->id = generic_id(time, part, cnt);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		*cb_data->id = part;
+>>>>>>> 2617302... source
 		*cb_data->count = cnt;
 		cb_data->timespec->tv_sec = time;
 		cb_data->timespec->tv_nsec = 0;
@@ -81,10 +88,14 @@ static int efi_pstore_read_func(struct efivar_entry *entry, void *data)
 		 * multiple logs, remains.
 		 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		*cb_data->id = part;
 =======
 		*cb_data->id = generic_id(time, part, 0);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		*cb_data->id = part;
+>>>>>>> 2617302... source
 		*cb_data->count = 0;
 		cb_data->timespec->tv_sec = time;
 		cb_data->timespec->tv_nsec = 0;
@@ -203,6 +214,7 @@ static int efi_pstore_erase(enum pstore_type_id type, u64 id, int count,
 	efi_char16_t efi_name[DUMP_NAME_LEN];
 	int found, i;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	sprintf(name, "dump-type%u-%u-%d-%lu", type, (unsigned int)id, count,
 		time.tv_sec);
@@ -213,15 +225,24 @@ static int efi_pstore_erase(enum pstore_type_id type, u64 id, int count,
 	part = do_div(id, 100);
 	sprintf(name, "dump-type%u-%u-%d-%lu", type, part, count, time.tv_sec);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+
+	sprintf(name, "dump-type%u-%u-%d-%lu", type, (unsigned int)id, count,
+		time.tv_sec);
+>>>>>>> 2617302... source
 
 	for (i = 0; i < DUMP_NAME_LEN; i++)
 		efi_name[i] = name[i];
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	edata.id = id;
 =======
 	edata.id = part;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	edata.id = id;
+>>>>>>> 2617302... source
 	edata.type = type;
 	edata.count = count;
 	edata.time = time;

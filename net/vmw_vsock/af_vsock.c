@@ -1805,6 +1805,9 @@ vsock_stream_recvmsg(struct kiocb *kiocb,
 		err = 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	if (copied > 0) {
 		/* We only do these additional bookkeeping/notification steps
 		 * if we actually copied something out of the queue pair
@@ -1826,10 +1829,13 @@ vsock_stream_recvmsg(struct kiocb *kiocb,
 		}
 		err = copied;
 	}
+<<<<<<< HEAD
 =======
 	if (copied > 0)
 		err = copied;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 out_wait:
 	finish_wait(sk_sleep(sk), &wait);

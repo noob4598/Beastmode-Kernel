@@ -95,6 +95,7 @@ struct ib_umem *ib_umem_get(struct ib_ucontext *context, unsigned long addr,
 		dma_set_attr(DMA_ATTR_WRITE_BARRIER, &attrs);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (!size)
 		return ERR_PTR(-EINVAL);
@@ -108,6 +109,8 @@ struct ib_umem *ib_umem_get(struct ib_ucontext *context, unsigned long addr,
 		return ERR_PTR(-EINVAL);
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	if (!can_do_mlock())
 		return ERR_PTR(-EPERM);
 

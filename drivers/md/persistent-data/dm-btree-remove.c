@@ -302,6 +302,9 @@ static void redistribute3(struct dm_btree_info *info, struct btree_node *parent,
 	int s;
 	uint32_t max_entries = le32_to_cpu(left->header.max_entries);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	unsigned target = (nr_left + nr_center + nr_right) / 3;
 	BUG_ON(target > max_entries);
 
@@ -312,6 +315,7 @@ static void redistribute3(struct dm_btree_info *info, struct btree_node *parent,
 			/* not enough in central node */
 			shift(left, center, nr_center);
 			s = nr_center - target;
+<<<<<<< HEAD
 =======
 	unsigned total = nr_left + nr_center + nr_right;
 	unsigned target_right = total / 3;
@@ -329,12 +333,17 @@ static void redistribute3(struct dm_btree_info *info, struct btree_node *parent,
 			shift(left, center, -nr_center);
 			s += nr_center;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 			shift(left, right, s);
 			nr_right += s;
 		} else
 			shift(left, center, s);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		shift(center, right, target - nr_right);
 
 	} else {
@@ -343,6 +352,7 @@ static void redistribute3(struct dm_btree_info *info, struct btree_node *parent,
 			/* not enough in central node */
 			shift(center, right, nr_center);
 			s = target - nr_center;
+<<<<<<< HEAD
 =======
 		shift(center, right, target_right - nr_right);
 
@@ -353,16 +363,22 @@ static void redistribute3(struct dm_btree_info *info, struct btree_node *parent,
 			shift(center, right, nr_center);
 			s -= nr_center;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 			shift(left, right, s);
 			nr_left -= s;
 		} else
 			shift(center, right, s);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		shift(left, center, nr_left - target);
 =======
 		shift(left, center, nr_left - target_left);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		shift(left, center, nr_left - target);
+>>>>>>> 2617302... source
 	}
 
 	*key_ptr(parent, c->index) = center->keys[0];
@@ -578,6 +594,9 @@ static int remove_raw(struct shadow_spine *s, struct dm_btree_info *info,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 static struct dm_btree_value_type le64_type = {
 	.context = NULL,
 	.size = sizeof(__le64),
@@ -586,8 +605,11 @@ static struct dm_btree_value_type le64_type = {
 	.equal = NULL
 };
 
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 int dm_btree_remove(struct dm_btree_info *info, dm_block_t root,
 		    uint64_t *keys, dm_block_t *new_root)
 {
@@ -596,21 +618,29 @@ int dm_btree_remove(struct dm_btree_info *info, dm_block_t root,
 	struct shadow_spine spine;
 	struct btree_node *n;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 	struct dm_btree_value_type le64_vt;
 
 	init_le64_type(info->tm, &le64_vt);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+
+>>>>>>> 2617302... source
 	init_shadow_spine(&spine, info);
 	for (level = 0; level < info->levels; level++) {
 		r = remove_raw(&spine, info,
 			       (level == last_level ?
 <<<<<<< HEAD
+<<<<<<< HEAD
 				&info->value_type : &le64_type),
 =======
 				&info->value_type : &le64_vt),
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+				&info->value_type : &le64_type),
+>>>>>>> 2617302... source
 			       root, keys[level], (unsigned *)&index);
 		if (r < 0)
 			break;

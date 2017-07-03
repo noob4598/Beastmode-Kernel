@@ -1,8 +1,12 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* Copyright (c) 2014, The Linux Foundation. All rights reserved.
 =======
 /* Copyright (c) 2013, The Linux Foundation. All rights reserved.
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+/* Copyright (c) 2014, The Linux Foundation. All rights reserved.
+>>>>>>> 2617302... source
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -15,10 +19,15 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #ifndef _MHI_HWIO_
 #define _MHI_HWIO_
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+#ifndef _MHI_HWIO_
+#define _MHI_HWIO_
+>>>>>>> 2617302... source
 #define MHIREGLEN (0x0)
 #define MHIREGLEN_MHIREGLEN_MASK 0xffffffff
 #define MHIREGLEN_MHIREGLEN_SHIFT 0x0
@@ -156,38 +165,54 @@
 #define MHIDATALIMIT_HIGHER_MHIDATALIMIT_HIGHER_SHIFT 0x0
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define CHDB_LOWER_n(n) (0x0400 + 0x8 * (n))
 =======
 #define CHDB_LOWER_n(n) ( 0x0400 + 0x8 * (n) )
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+#define CHDB_LOWER_n(n) (0x0400 + 0x8 * (n))
+>>>>>>> 2617302... source
 #define CHDB_LOWER_n_CHDB_LOWER_MASK 0xffffffff
 #define CHDB_LOWER_n_CHDB_LOWER_SHIFT 0x0
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define CHDB_HIGHER_n(n) (0x0404 + 0x8 * (n))
 =======
 #define CHDB_HIGHER_n(n) ( 0x0404 + 0x8 * (n) )
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+#define CHDB_HIGHER_n(n) (0x0404 + 0x8 * (n))
+>>>>>>> 2617302... source
 #define CHDB_HIGHER_n_CHDB_HIGHER_MASK 0xffffffff
 #define CHDB_HIGHER_n_CHDB_HIGHER_SHIFT 0x0
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define ERDB_LOWER_n(n) (0x0800 + 0x8 * (n))
 =======
 #define ERDB_LOWER_n(n) ( 0x0800 + 0x8 * (n) )
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+#define ERDB_LOWER_n(n) (0x0800 + 0x8 * (n))
+>>>>>>> 2617302... source
 #define ERDB_LOWER_n_ERDB_LOWER_MASK 0xffffffff
 #define ERDB_LOWER_n_ERDB_LOWER_SHIFT 0x0
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 #define ERDB_HIGHER_n(n) (0x0804 + 0x8 * (n))
 #define ERDB_HIGHER_n_ERDB_HIGHER_MASK 0xffffffff
 #define ERDB_HIGHER_n_ERDB_HIGHER_SHIFT 0x0
 
 #endif
+<<<<<<< HEAD
 =======
 #define ERDB_HIGHER_n(n) ( 0x0804 + 0x8 * (n) )
 #define ERDB_HIGHER_n_ERDB_HIGHER_MASK 0xffffffff
@@ -195,3 +220,5 @@
 
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source

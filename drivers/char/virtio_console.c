@@ -1130,10 +1130,13 @@ static int put_chars(u32 vtermno, const char *buf, int count)
 	struct port *port;
 	struct scatterlist sg[1];
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	void *data;
 	int ret;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	if (unlikely(early_put_chars))
 		return early_put_chars(vtermno, buf, count);
@@ -1142,6 +1145,7 @@ static int put_chars(u32 vtermno, const char *buf, int count)
 	if (!port)
 		return -EPIPE;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	sg_init_one(sg, buf, count);
 	return __send_to_port(port, sg, 1, count, (void *)buf, false);
@@ -1155,6 +1159,10 @@ static int put_chars(u32 vtermno, const char *buf, int count)
 	kfree(data);
 	return ret;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	sg_init_one(sg, buf, count);
+	return __send_to_port(port, sg, 1, count, (void *)buf, false);
+>>>>>>> 2617302... source
 }
 
 /*
@@ -2040,19 +2048,26 @@ static int virtcons_probe(struct virtio_device *vdev)
 	INIT_LIST_HEAD(&portdev->ports);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	INIT_WORK(&portdev->control_work, &control_work_handler);
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	if (multiport) {
 		unsigned int nr_added_bufs;
 
 		spin_lock_init(&portdev->c_ivq_lock);
 		spin_lock_init(&portdev->c_ovq_lock);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		INIT_WORK(&portdev->control_work, &control_work_handler);
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		INIT_WORK(&portdev->control_work, &control_work_handler);
+>>>>>>> 2617302... source
 
 		nr_added_bufs = fill_queue(portdev->c_ivq,
 					   &portdev->c_ivq_lock);

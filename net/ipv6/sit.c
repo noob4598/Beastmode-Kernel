@@ -102,30 +102,42 @@ static struct ip_tunnel *ipip6_tunnel_lookup(struct net *net,
 		if (local == t->parms.iph.saddr &&
 		    remote == t->parms.iph.daddr &&
 <<<<<<< HEAD
+<<<<<<< HEAD
 		    (!dev || !t->parms.link || dev->iflink == t->parms.link) &&
 =======
 		    (!dev || !t->parms.link || dev->ifindex == t->parms.link) &&
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		    (!dev || !t->parms.link || dev->iflink == t->parms.link) &&
+>>>>>>> 2617302... source
 		    (t->dev->flags & IFF_UP))
 			return t;
 	}
 	for_each_ip_tunnel_rcu(t, sitn->tunnels_r[h0]) {
 		if (remote == t->parms.iph.daddr &&
 <<<<<<< HEAD
+<<<<<<< HEAD
 		    (!dev || !t->parms.link || dev->iflink == t->parms.link) &&
 =======
 		    (!dev || !t->parms.link || dev->ifindex == t->parms.link) &&
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		    (!dev || !t->parms.link || dev->iflink == t->parms.link) &&
+>>>>>>> 2617302... source
 		    (t->dev->flags & IFF_UP))
 			return t;
 	}
 	for_each_ip_tunnel_rcu(t, sitn->tunnels_l[h1]) {
 		if (local == t->parms.iph.saddr &&
 <<<<<<< HEAD
+<<<<<<< HEAD
 		    (!dev || !t->parms.link || dev->iflink == t->parms.link) &&
 =======
 		    (!dev || !t->parms.link || dev->ifindex == t->parms.link) &&
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		    (!dev || !t->parms.link || dev->iflink == t->parms.link) &&
+>>>>>>> 2617302... source
 		    (t->dev->flags & IFF_UP))
 			return t;
 	}
@@ -543,14 +555,19 @@ static int ipip6_err(struct sk_buff *skb, u32 info)
 	if (type == ICMP_DEST_UNREACH && code == ICMP_FRAG_NEEDED) {
 		ipv4_update_pmtu(skb, dev_net(skb->dev), info,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				 t->dev->ifindex, 0, IPPROTO_IPV6, 0);
 =======
 				 t->parms.link, 0, iph->protocol, 0);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+				 t->dev->ifindex, 0, IPPROTO_IPV6, 0);
+>>>>>>> 2617302... source
 		err = 0;
 		goto out;
 	}
 	if (type == ICMP_REDIRECT) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		ipv4_redirect(skb, dev_net(skb->dev), t->dev->ifindex, 0,
 			      IPPROTO_IPV6, 0);
@@ -558,6 +575,10 @@ static int ipip6_err(struct sk_buff *skb, u32 info)
 		ipv4_redirect(skb, dev_net(skb->dev), t->parms.link, 0,
 			      iph->protocol, 0);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		ipv4_redirect(skb, dev_net(skb->dev), t->dev->ifindex, 0,
+			      IPPROTO_IPV6, 0);
+>>>>>>> 2617302... source
 		err = 0;
 		goto out;
 	}
@@ -941,10 +962,14 @@ static netdev_tx_t ipip6_tunnel_xmit(struct sk_buff *skb,
 
 	skb->ip_summed = CHECKSUM_NONE;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ip_select_ident(skb, skb_dst(skb), NULL);
 =======
 	ip_select_ident(skb, NULL);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	ip_select_ident(skb, skb_dst(skb), NULL);
+>>>>>>> 2617302... source
 	iptunnel_xmit(skb, dev);
 	return NETDEV_TX_OK;
 
@@ -1680,7 +1705,10 @@ module_init(sit_init);
 module_exit(sit_cleanup);
 MODULE_LICENSE("GPL");
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 MODULE_ALIAS_RTNL_LINK("sit");
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 MODULE_ALIAS_NETDEV("sit0");

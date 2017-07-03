@@ -2,6 +2,7 @@
 #define _TOOLS_LE_BYTESHIFT_H
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/types.h>
 
 static inline __u16 __get_unaligned_le16(const __u8 *p)
@@ -10,20 +11,32 @@ static inline __u16 __get_unaligned_le16(const __u8 *p)
 
 static inline uint16_t __get_unaligned_le16(const uint8_t *p)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+#include <linux/types.h>
+
+static inline __u16 __get_unaligned_le16(const __u8 *p)
+>>>>>>> 2617302... source
 {
 	return p[0] | p[1] << 8;
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static inline __u32 __get_unaligned_le32(const __u8 *p)
 =======
 static inline uint32_t __get_unaligned_le32(const uint8_t *p)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+static inline __u32 __get_unaligned_le32(const __u8 *p)
+>>>>>>> 2617302... source
 {
 	return p[0] | p[1] << 8 | p[2] << 16 | p[3] << 24;
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 static inline __u64 __get_unaligned_le64(const __u8 *p)
 {
 	return (__u64)__get_unaligned_le32(p + 4) << 32 |
@@ -31,6 +44,7 @@ static inline __u64 __get_unaligned_le64(const __u8 *p)
 }
 
 static inline void __put_unaligned_le16(__u16 val, __u8 *p)
+<<<<<<< HEAD
 =======
 static inline uint64_t __get_unaligned_le64(const uint8_t *p)
 {
@@ -40,32 +54,45 @@ static inline uint64_t __get_unaligned_le64(const uint8_t *p)
 
 static inline void __put_unaligned_le16(uint16_t val, uint8_t *p)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 {
 	*p++ = val;
 	*p++ = val >> 8;
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static inline void __put_unaligned_le32(__u32 val, __u8 *p)
 =======
 static inline void __put_unaligned_le32(uint32_t val, uint8_t *p)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+static inline void __put_unaligned_le32(__u32 val, __u8 *p)
+>>>>>>> 2617302... source
 {
 	__put_unaligned_le16(val >> 16, p + 2);
 	__put_unaligned_le16(val, p);
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static inline void __put_unaligned_le64(__u64 val, __u8 *p)
 =======
 static inline void __put_unaligned_le64(uint64_t val, uint8_t *p)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+static inline void __put_unaligned_le64(__u64 val, __u8 *p)
+>>>>>>> 2617302... source
 {
 	__put_unaligned_le32(val >> 32, p + 4);
 	__put_unaligned_le32(val, p);
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 static inline __u16 get_unaligned_le16(const void *p)
 {
 	return __get_unaligned_le16((const __u8 *)p);
@@ -82,6 +109,7 @@ static inline __u64 get_unaligned_le64(const void *p)
 }
 
 static inline void put_unaligned_le16(__u16 val, void *p)
+<<<<<<< HEAD
 =======
 static inline uint16_t get_unaligned_le16(const void *p)
 {
@@ -100,24 +128,34 @@ static inline uint64_t get_unaligned_le64(const void *p)
 
 static inline void put_unaligned_le16(uint16_t val, void *p)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 {
 	__put_unaligned_le16(val, p);
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static inline void put_unaligned_le32(__u32 val, void *p)
 =======
 static inline void put_unaligned_le32(uint32_t val, void *p)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+static inline void put_unaligned_le32(__u32 val, void *p)
+>>>>>>> 2617302... source
 {
 	__put_unaligned_le32(val, p);
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static inline void put_unaligned_le64(__u64 val, void *p)
 =======
 static inline void put_unaligned_le64(uint64_t val, void *p)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+static inline void put_unaligned_le64(__u64 val, void *p)
+>>>>>>> 2617302... source
 {
 	__put_unaligned_le64(val, p);
 }

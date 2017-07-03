@@ -1716,6 +1716,7 @@ static netdev_tx_t rtl8139_start_xmit (struct sk_buff *skb,
 			memset(tp->tx_buf[entry], 0, ETH_ZLEN);
 		skb_copy_and_csum_dev(skb, tp->tx_buf[entry]);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev_kfree_skb(skb);
 	} else {
 		dev_kfree_skb(skb);
@@ -1724,6 +1725,11 @@ static netdev_tx_t rtl8139_start_xmit (struct sk_buff *skb,
 	} else {
 		dev_kfree_skb_any(skb);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		dev_kfree_skb(skb);
+	} else {
+		dev_kfree_skb(skb);
+>>>>>>> 2617302... source
 		dev->stats.tx_dropped++;
 		return NETDEV_TX_OK;
 	}

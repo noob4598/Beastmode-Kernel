@@ -367,6 +367,7 @@ static struct dmi_system_id __initdata reboot_dmi_table[] = {
 		},
 	},
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	{	/* Handle problems with rebooting on the iMac10,1. */
 		.callback = set_pci_reboot,
@@ -377,6 +378,8 @@ static struct dmi_system_id __initdata reboot_dmi_table[] = {
 		},
 	},
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	{	/* Handle reboot issue on Acer Aspire one */
 		.callback = set_kbd_reboot,

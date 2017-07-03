@@ -33,10 +33,14 @@ TRACE_EVENT(net_dev_xmit,
 	),
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	TP_printk("dev=%s skbaddr=%p len=%u rc=%d",
 =======
 	TP_printk("dev=%s skbaddr=%pK len=%u rc=%d",
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	TP_printk("dev=%s skbaddr=%p len=%u rc=%d",
+>>>>>>> 2617302... source
 		__get_str(name), __entry->skbaddr, __entry->len, __entry->rc)
 );
 
@@ -59,10 +63,14 @@ DECLARE_EVENT_CLASS(net_dev_template,
 	),
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	TP_printk("dev=%s skbaddr=%p len=%u",
 =======
 	TP_printk("dev=%s skbaddr=%pK len=%u",
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	TP_printk("dev=%s skbaddr=%p len=%u",
+>>>>>>> 2617302... source
 		__get_str(name), __entry->skbaddr, __entry->len)
 )
 

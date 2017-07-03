@@ -23,10 +23,14 @@
 #include <scsi/scsi_cmnd.h>
 #include <scsi/scsi_host.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include "../sd.h"
 =======
 #include <../sd.h>
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+#include "../sd.h"
+>>>>>>> 2617302... source
 #include "ufshcd.h"
 #include "ufs.h"
 

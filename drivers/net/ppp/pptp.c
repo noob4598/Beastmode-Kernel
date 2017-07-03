@@ -282,10 +282,14 @@ static int pptp_xmit(struct ppp_channel *chan, struct sk_buff *skb)
 
 	skb->ip_summed = CHECKSUM_NONE;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ip_select_ident(skb, &rt->dst, NULL);
 =======
 	ip_select_ident(skb, NULL);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	ip_select_ident(skb, &rt->dst, NULL);
+>>>>>>> 2617302... source
 	ip_send_check(iph);
 
 	ip_local_out(skb);
@@ -517,12 +521,16 @@ static int pptp_getname(struct socket *sock, struct sockaddr *uaddr,
 	struct sockaddr_pppox sp;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	sp.sa_family	  = AF_PPPOX;
 =======
 	memset(&sp.sa_addr, 0, sizeof(sp.sa_addr));
 
 	sp.sa_family    = AF_PPPOX;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	sp.sa_family	  = AF_PPPOX;
+>>>>>>> 2617302... source
 	sp.sa_protocol  = PX_PROTO_PPTP;
 	sp.sa_addr.pptp = pppox_sk(sock->sk)->proto.pptp.src_addr;
 

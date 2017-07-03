@@ -37,6 +37,7 @@ config WAKELOCK
 	default y
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 config POWERSUSPEND
 	bool "Power suspend"
@@ -52,6 +53,8 @@ config POWERSUSPEND_DEBUG
 	  Output debugging info in dmesg [POWERSUSPEND] (Yank555.lu)
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 config HIBERNATE_CALLBACKS
 	bool
 
@@ -316,6 +319,9 @@ config SUSPEND_TIME
 	  keeps statistics on the time spent in suspend in
 	  /sys/kernel/debug/suspend_time
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 
 config QUICK_WAKEUP
 	bool "Quick wakeup"
@@ -324,5 +330,8 @@ config QUICK_WAKEUP
 	---help---
 	  Allow kernel driver to do periodic jobs without resuming the full system
 	  This option can increase battery life on android powered smartphone.
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source

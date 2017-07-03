@@ -461,14 +461,19 @@ int usb_driver_claim_interface(struct usb_driver *driver,
 				struct usb_interface *iface, void *priv)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct device *dev = &iface->dev;
 =======
 	struct device *dev;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	struct device *dev = &iface->dev;
+>>>>>>> 2617302... source
 	struct usb_device *udev;
 	int retval = 0;
 	int lpm_disable_error;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 	if (!iface)
@@ -476,6 +481,8 @@ int usb_driver_claim_interface(struct usb_driver *driver,
 
 	dev = &iface->dev;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	if (dev->driver)
 		return -EBUSY;
 
@@ -1847,10 +1854,14 @@ int usb_runtime_suspend(struct device *dev)
 		usb_mark_last_busy(udev);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	/* The PM core reacts badly unless the return code is 0,
 	 * -EAGAIN, or -EBUSY, so always return -EBUSY on an error.
 	 */
 	if (status != 0)
+<<<<<<< HEAD
 =======
 	/*
 	 * The PM core reacts badly unless the return code is 0,
@@ -1860,6 +1871,8 @@ int usb_runtime_suspend(struct device *dev)
 	 */
 	if (status != 0 && udev->parent)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		return -EBUSY;
 	return status;
 }

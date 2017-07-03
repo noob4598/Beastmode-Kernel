@@ -334,10 +334,14 @@ void ieee80211_sw_roc_work(struct work_struct *work)
 	struct ieee80211_sub_if_data *sdata = roc->sdata;
 	struct ieee80211_local *local = sdata->local;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	bool started;
 =======
 	bool started, on_channel;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	bool started;
+>>>>>>> 2617302... source
 
 	mutex_lock(&local->mtx);
 
@@ -359,6 +363,9 @@ void ieee80211_sw_roc_work(struct work_struct *work)
 		struct ieee80211_roc_work *dep;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		/* start this ROC */
 		ieee80211_offchannel_stop_vifs(local);
 
@@ -367,6 +374,7 @@ void ieee80211_sw_roc_work(struct work_struct *work)
 
 		local->tmp_channel = roc->chan;
 		ieee80211_hw_config(local, 0);
+<<<<<<< HEAD
 =======
 		WARN_ON(local->use_chanctx);
 
@@ -387,6 +395,8 @@ void ieee80211_sw_roc_work(struct work_struct *work)
 			ieee80211_hw_config(local, 0);
 		}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 		/* tell userspace or send frame */
 		ieee80211_handle_roc_started(roc);
@@ -406,6 +416,7 @@ void ieee80211_sw_roc_work(struct work_struct *work)
 		list_del(&roc->list);
 		started = roc->started;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ieee80211_roc_notify_destroy(roc, !roc->abort);
 
 		if (started) {
@@ -415,6 +426,11 @@ void ieee80211_sw_roc_work(struct work_struct *work)
 
 		if (started && !on_channel) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		ieee80211_roc_notify_destroy(roc, !roc->abort);
+
+		if (started) {
+>>>>>>> 2617302... source
 			ieee80211_flush_queues(local, NULL);
 
 			local->tmp_channel = NULL;

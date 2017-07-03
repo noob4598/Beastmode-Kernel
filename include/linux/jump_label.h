@@ -209,6 +209,7 @@ static inline bool static_key_enabled(struct static_key *key)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 static inline void static_key_enable(struct static_key *key)
 {
@@ -227,4 +228,6 @@ static inline void static_key_disable(struct static_key *key)
 }
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 #endif	/* _LINUX_JUMP_LABEL_H */

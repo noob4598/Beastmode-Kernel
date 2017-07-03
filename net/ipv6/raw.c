@@ -483,10 +483,14 @@ static int rawv6_recvmsg(struct kiocb *iocb, struct sock *sk,
 		err = skb_copy_datagram_iovec(skb, 0, msg->msg_iov, copied);
 	} else {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		err = skb_copy_and_csum_datagram_iovec(skb, 0, msg->msg_iov);
 =======
 		err = skb_copy_and_csum_datagram_iovec(skb, 0, msg->msg_iov, copied);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		err = skb_copy_and_csum_datagram_iovec(skb, 0, msg->msg_iov);
+>>>>>>> 2617302... source
 		if (err == -EINVAL)
 			goto csum_copy_err;
 	}
@@ -583,6 +587,7 @@ static int rawv6_push_pending_frames(struct sock *sk, struct flowi6 *fl6,
 
 	offset += skb_transport_offset(skb);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (skb_copy_bits(skb, offset, &csum, 2))
 		BUG();
 =======
@@ -592,6 +597,10 @@ static int rawv6_push_pending_frames(struct sock *sk, struct flowi6 *fl6,
 		goto out;
 	}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (skb_copy_bits(skb, offset, &csum, 2))
+		BUG();
+>>>>>>> 2617302... source
 
 	/* in case cksum was not initialized */
 	if (unlikely(csum))
@@ -739,9 +748,12 @@ static int rawv6_sendmsg(struct kiocb *iocb, struct sock *sk,
 		   struct msghdr *msg, size_t len)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct ipv6_txoptions *opt_to_free = NULL;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	struct ipv6_txoptions opt_space;
 	struct sockaddr_in6 * sin6 = (struct sockaddr_in6 *) msg->msg_name;
 	struct in6_addr *daddr, *final_p, final;
@@ -850,6 +862,7 @@ static int rawv6_sendmsg(struct kiocb *iocb, struct sock *sk,
 			opt = NULL;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (opt == NULL)
 		opt = np->opt;
 =======
@@ -858,6 +871,10 @@ static int rawv6_sendmsg(struct kiocb *iocb, struct sock *sk,
 		opt_to_free = opt;
 	}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (opt == NULL)
+		opt = np->opt;
+>>>>>>> 2617302... source
 	if (flowlabel)
 		opt = fl6_merge_options(&opt_space, flowlabel, opt);
 	opt = ipv6_fixup_options(&opt_space, opt);
@@ -925,9 +942,12 @@ done:
 out:
 	fl6_sock_release(flowlabel);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	txopt_put(opt_to_free);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	return err<0?err:len;
 do_confirm:
 	dst_confirm(dst);
@@ -1159,10 +1179,14 @@ static int rawv6_ioctl(struct sock *sk, int cmd, unsigned long arg)
 		skb = skb_peek(&sk->sk_receive_queue);
 		if (skb != NULL)
 <<<<<<< HEAD
+<<<<<<< HEAD
 			amount = skb->tail - skb->transport_header;
 =======
 			amount = skb->len;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			amount = skb->tail - skb->transport_header;
+>>>>>>> 2617302... source
 		spin_unlock_bh(&sk->sk_receive_queue.lock);
 		return put_user(amount, (int __user *)arg);
 	}

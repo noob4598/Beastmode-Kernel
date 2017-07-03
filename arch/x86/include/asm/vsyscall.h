@@ -35,10 +35,14 @@ static inline unsigned int __getcpu(void)
 	} else {
 		/* Load per CPU data from GDT */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		asm("lsl %1,%0" : "=r" (p) : "r" (__PER_CPU_SEG));
 =======
 		asm volatile ("lsl %1,%0" : "=r" (p) : "r" (__PER_CPU_SEG));
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		asm("lsl %1,%0" : "=r" (p) : "r" (__PER_CPU_SEG));
+>>>>>>> 2617302... source
 	}
 
 	return p;

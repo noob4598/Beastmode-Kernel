@@ -269,6 +269,9 @@ static int gfs2_xattr_system_set(struct dentry *dentry, const char *name,
 	if (type == ACL_TYPE_ACCESS) {
 		umode_t mode = inode->i_mode;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		error = posix_acl_equiv_mode(acl, &mode);
 
 		if (error <= 0) {
@@ -278,6 +281,7 @@ static int gfs2_xattr_system_set(struct dentry *dentry, const char *name,
 			if (error < 0)
 				return error;
 		}
+<<<<<<< HEAD
 =======
 		struct posix_acl *old_acl = acl;
 
@@ -287,6 +291,8 @@ static int gfs2_xattr_system_set(struct dentry *dentry, const char *name,
 		if (!acl)
 			posix_acl_release(old_acl);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 		error = gfs2_set_mode(inode, mode);
 		if (error)

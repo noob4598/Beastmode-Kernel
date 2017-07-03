@@ -291,6 +291,7 @@ enum dlm_status dlmconvert_remote(struct dlm_ctxt *dlm,
 		goto bail;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 	if (lock->ml.type == type && lock->ml.convert_type == LKM_IVMODE) {
@@ -306,6 +307,8 @@ enum dlm_status dlmconvert_remote(struct dlm_ctxt *dlm,
 	}
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	res->state |= DLM_LOCK_RES_IN_PROGRESS;
 	/* move lock to local convert queue */
 	/* do not alter lock refcount.  switching lists. */
@@ -335,6 +338,7 @@ enum dlm_status dlmconvert_remote(struct dlm_ctxt *dlm,
 	spin_lock(&res->spinlock);
 	res->state &= ~DLM_LOCK_RES_IN_PROGRESS;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	lock->convert_pending = 0;
 	/* if it failed, move it back to granted queue */
 =======
@@ -343,10 +347,15 @@ enum dlm_status dlmconvert_remote(struct dlm_ctxt *dlm,
 	 * it may have already been moved to granted queue, reset to
 	 * DLM_RECOVERING and retry convert */
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	lock->convert_pending = 0;
+	/* if it failed, move it back to granted queue */
+>>>>>>> 2617302... source
 	if (status != DLM_NORMAL) {
 		if (status != DLM_NOTQUEUED)
 			dlm_error(status);
 		dlm_revert_pending_convert(res, lock);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	}
 =======
@@ -359,6 +368,9 @@ enum dlm_status dlmconvert_remote(struct dlm_ctxt *dlm,
 
 	lock->convert_pending = 0;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	}
+>>>>>>> 2617302... source
 bail:
 	spin_unlock(&res->spinlock);
 

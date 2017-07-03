@@ -111,6 +111,9 @@ config MAXIMUM_CURRENT_THROTTLING
 	  credit/upper limit in the CPU registers.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 config MSM_LIMITER
 	bool "MSM Frequency Limiter Driver"
 	default y
@@ -127,8 +130,11 @@ config STATE_HELPER
 	depends on STATE_NOTIFIER
 default y
 
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 source "drivers/soc/qcom/memshare/Kconfig"
 
 endif # ARCH_MSM

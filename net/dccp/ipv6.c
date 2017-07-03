@@ -84,10 +84,14 @@ static void dccp_v6_err(struct sk_buff *skb, struct inet6_skb_parm *opt,
 {
 	const struct ipv6hdr *hdr = (const struct ipv6hdr *)skb->data;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	const struct dccp_hdr *dh = (struct dccp_hdr *)(skb->data + offset);
 =======
 	const struct dccp_hdr *dh;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	const struct dccp_hdr *dh = (struct dccp_hdr *)(skb->data + offset);
+>>>>>>> 2617302... source
 	struct dccp_sock *dp;
 	struct ipv6_pinfo *np;
 	struct sock *sk;
@@ -96,12 +100,16 @@ static void dccp_v6_err(struct sk_buff *skb, struct inet6_skb_parm *opt,
 	struct net *net = dev_net(skb->dev);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	if (skb->len < offset + sizeof(*dh) ||
 	    skb->len < offset + __dccp_basic_hdr_len(dh)) {
 		ICMP6_INC_STATS_BH(net, __in6_dev_get(skb->dev),
 				   ICMP6_MIB_INERRORS);
 		return;
 	}
+<<<<<<< HEAD
 =======
 	/* Only need dccph_dport & dccph_sport which are the first
 	 * 4 bytes in dccp header.
@@ -111,6 +119,8 @@ static void dccp_v6_err(struct sk_buff *skb, struct inet6_skb_parm *opt,
 	BUILD_BUG_ON(offsetofend(struct dccp_hdr, dccph_dport) > 8);
 	dh = (struct dccp_hdr *)(skb->data + offset);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	sk = inet6_lookup(net, &dccp_hashinfo,
 			&hdr->daddr, dh->dccph_dport,
@@ -146,10 +156,14 @@ static void dccp_v6_err(struct sk_buff *skb, struct inet6_skb_parm *opt,
 
 	if (type == NDISC_REDIRECT) {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		struct dst_entry *dst = __sk_dst_check(sk, np->dst_cookie);
 
 		if (dst)
 			dst->ops->redirect(dst, sk, skb);
+<<<<<<< HEAD
 =======
 		if (!sock_owned_by_user(sk)) {
 			struct dst_entry *dst = __sk_dst_check(sk, np->dst_cookie);
@@ -158,6 +172,8 @@ static void dccp_v6_err(struct sk_buff *skb, struct inet6_skb_parm *opt,
 				dst->ops->redirect(dst, sk, skb);
 		}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		goto out;
 	}
 
@@ -259,12 +275,16 @@ static int dccp_v6_send_response(struct sock *sk, struct request_sock *req)
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	final_p = fl6_update_dst(&fl6, np->opt, &final);
 =======
 	rcu_read_lock();
 	final_p = fl6_update_dst(&fl6, rcu_dereference(np->opt), &final);
 	rcu_read_unlock();
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	final_p = fl6_update_dst(&fl6, np->opt, &final);
+>>>>>>> 2617302... source
 
 	dst = ip6_dst_lookup_flow(sk, &fl6, final_p, false);
 	if (IS_ERR(dst)) {
@@ -282,6 +302,7 @@ static int dccp_v6_send_response(struct sock *sk, struct request_sock *req)
 							 &ireq6->rmt_addr);
 		fl6.daddr = ireq6->rmt_addr;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		err = ip6_xmit(sk, skb, &fl6, np->opt, np->tclass);
 =======
 		rcu_read_lock();
@@ -289,6 +310,9 @@ static int dccp_v6_send_response(struct sock *sk, struct request_sock *req)
 			       np->tclass);
 		rcu_read_unlock();
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		err = ip6_xmit(sk, skb, &fl6, np->opt, np->tclass);
+>>>>>>> 2617302... source
 		err = net_xmit_eval(err);
 	}
 
@@ -485,9 +509,12 @@ static struct sock *dccp_v6_request_recv_sock(struct sock *sk,
 	struct inet6_request_sock *ireq6 = inet6_rsk(req);
 	struct ipv6_pinfo *newnp, *np = inet6_sk(sk);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct ipv6_txoptions *opt;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	struct inet_sock *newinet;
 	struct dccp6_sock *newdp6;
 	struct sock *newsk;
@@ -518,11 +545,14 @@ static struct sock *dccp_v6_request_recv_sock(struct sock *sk,
 		newnp->pktoptions  = NULL;
 		newnp->opt	   = NULL;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		newnp->ipv6_mc_list = NULL;
 		newnp->ipv6_ac_list = NULL;
 		newnp->ipv6_fl_list = NULL;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		newnp->mcast_oif   = inet6_iif(skb);
 		newnp->mcast_hops  = ipv6_hdr(skb)->hop_limit;
 
@@ -599,12 +629,15 @@ static struct sock *dccp_v6_request_recv_sock(struct sock *sk,
 	newnp->rxopt.all = np->rxopt.all;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	newnp->ipv6_mc_list = NULL;
 	newnp->ipv6_ac_list = NULL;
 	newnp->ipv6_fl_list = NULL;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	/* Clone pktoptions received with SYN */
 	newnp->pktoptions = NULL;
 	if (ireq6->pktopts != NULL) {
@@ -625,6 +658,9 @@ static struct sock *dccp_v6_request_recv_sock(struct sock *sk,
 	 * one more one thing there: reattach optmem to newsk.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	if (np->opt != NULL)
 		newnp->opt = ipv6_dup_options(newsk, np->opt);
 
@@ -632,6 +668,7 @@ static struct sock *dccp_v6_request_recv_sock(struct sock *sk,
 	if (newnp->opt != NULL)
 		inet_csk(newsk)->icsk_ext_hdr_len = (newnp->opt->opt_nflen +
 						     newnp->opt->opt_flen);
+<<<<<<< HEAD
 =======
 	opt = rcu_dereference(np->opt);
 	if (opt) {
@@ -643,6 +680,8 @@ static struct sock *dccp_v6_request_recv_sock(struct sock *sk,
 		inet_csk(newsk)->icsk_ext_hdr_len = opt->opt_nflen +
 						    opt->opt_flen;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	dccp_sync_mss(newsk, dst_mtu(dst));
 
@@ -895,9 +934,12 @@ static int dccp_v6_connect(struct sock *sk, struct sockaddr *uaddr,
 	struct dccp_sock *dp = dccp_sk(sk);
 	struct in6_addr *saddr = NULL, *final_p, final;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct ipv6_txoptions *opt;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	struct flowi6 fl6;
 	struct dst_entry *dst;
 	int addr_type;
@@ -1001,11 +1043,15 @@ static int dccp_v6_connect(struct sock *sk, struct sockaddr *uaddr,
 	security_sk_classify_flow(sk, flowi6_to_flowi(&fl6));
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	final_p = fl6_update_dst(&fl6, np->opt, &final);
 =======
 	opt = rcu_dereference_protected(np->opt, sock_owned_by_user(sk));
 	final_p = fl6_update_dst(&fl6, opt, &final);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	final_p = fl6_update_dst(&fl6, np->opt, &final);
+>>>>>>> 2617302... source
 
 	dst = ip6_dst_lookup_flow(sk, &fl6, final_p, true);
 	if (IS_ERR(dst)) {
@@ -1026,6 +1072,7 @@ static int dccp_v6_connect(struct sock *sk, struct sockaddr *uaddr,
 
 	icsk->icsk_ext_hdr_len = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (np->opt != NULL)
 		icsk->icsk_ext_hdr_len = (np->opt->opt_flen +
 					  np->opt->opt_nflen);
@@ -1033,6 +1080,11 @@ static int dccp_v6_connect(struct sock *sk, struct sockaddr *uaddr,
 	if (opt)
 		icsk->icsk_ext_hdr_len = opt->opt_flen + opt->opt_nflen;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (np->opt != NULL)
+		icsk->icsk_ext_hdr_len = (np->opt->opt_flen +
+					  np->opt->opt_nflen);
+>>>>>>> 2617302... source
 
 	inet->inet_dport = usin->sin6_port;
 
@@ -1093,9 +1145,12 @@ static const struct inet_connection_sock_af_ops dccp_ipv6_mapped = {
 	.addr2sockaddr	   = inet6_csk_addr2sockaddr,
 	.sockaddr_len	   = sizeof(struct sockaddr_in6),
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	.bind_conflict	   = inet6_csk_bind_conflict,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 #ifdef CONFIG_COMPAT
 	.compat_setsockopt = compat_ipv6_setsockopt,
 	.compat_getsockopt = compat_ipv6_getsockopt,

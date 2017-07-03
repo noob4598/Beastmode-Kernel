@@ -28,10 +28,13 @@
 #define FALSE 0
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define CCI_NUM_CLK_MAX	16
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 enum cci_i2c_queue_t {
 	QUEUE_0,
 	QUEUE_1,
@@ -144,10 +147,14 @@ struct cci_device {
 	uint32_t num_clk;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct clk *cci_clk[5];
 =======
 	struct clk *cci_clk[CCI_NUM_CLK_MAX];
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	struct clk *cci_clk[5];
+>>>>>>> 2617302... source
 	struct msm_camera_cci_i2c_queue_info
 		cci_i2c_queue_info[NUM_MASTERS][NUM_QUEUES];
 	struct msm_camera_cci_master_info cci_master_info[NUM_MASTERS];

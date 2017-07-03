@@ -271,6 +271,7 @@ static const u32 correrrthrsld[] = {
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define NUM_CHANNELS	4
 #define MAX_DIMMS	3		/* Max DIMMS per channel */
 =======
@@ -278,6 +279,10 @@ static const u32 correrrthrsld[] = {
 #define MAX_DIMMS		3	/* Max DIMMS per channel */
 #define CHANNEL_UNSPECIFIED	0xf	/* Intel IA32 SDM 15-14 */
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+#define NUM_CHANNELS	4
+#define MAX_DIMMS	3		/* Max DIMMS per channel */
+>>>>>>> 2617302... source
 
 struct sbridge_info {
 	u32	mcmtr;
@@ -629,10 +634,14 @@ static void get_memory_layout(const struct mem_ctl_info *mci)
 	u64 limit, prv = 0;
 	u64 tmp_mb;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u32 mb, kb;
 =======
 	u32 gb, mb;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	u32 mb, kb;
+>>>>>>> 2617302... source
 	u32 rir_way;
 
 	/*
@@ -646,6 +655,7 @@ static void get_memory_layout(const struct mem_ctl_info *mci)
 	tmp_mb = (1 + pvt->tolm) >> 20;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mb = div_u64_rem(tmp_mb, 1000, &kb);
 	edac_dbg(0, "TOLM: %u.%03u GB (0x%016Lx)\n", mb, kb, (u64)pvt->tolm);
 =======
@@ -653,6 +663,10 @@ static void get_memory_layout(const struct mem_ctl_info *mci)
 	edac_dbg(0, "TOLM: %u.%03u GB (0x%016Lx)\n",
 		gb, (mb*1000)/1024, (u64)pvt->tolm);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	mb = div_u64_rem(tmp_mb, 1000, &kb);
+	edac_dbg(0, "TOLM: %u.%03u GB (0x%016Lx)\n", mb, kb, (u64)pvt->tolm);
+>>>>>>> 2617302... source
 
 	/* Address range is already 45:25 */
 	pci_read_config_dword(pvt->pci_sad1, TOHM,
@@ -661,6 +675,7 @@ static void get_memory_layout(const struct mem_ctl_info *mci)
 	tmp_mb = (1 + pvt->tohm) >> 20;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mb = div_u64_rem(tmp_mb, 1000, &kb);
 	edac_dbg(0, "TOHM: %u.%03u GB (0x%016Lx)\n", mb, kb, (u64)pvt->tohm);
 =======
@@ -668,6 +683,10 @@ static void get_memory_layout(const struct mem_ctl_info *mci)
 	edac_dbg(0, "TOHM: %u.%03u GB (0x%016Lx)\n",
 		gb, (mb*1000)/1024, (u64)pvt->tohm);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	mb = div_u64_rem(tmp_mb, 1000, &kb);
+	edac_dbg(0, "TOHM: %u.%03u GB (0x%016Lx)\n", mb, kb, (u64)pvt->tohm);
+>>>>>>> 2617302... source
 
 	/*
 	 * Step 2) Get SAD range and SAD Interleave list
@@ -690,11 +709,15 @@ static void get_memory_layout(const struct mem_ctl_info *mci)
 
 		tmp_mb = (limit + 1) >> 20;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		mb = div_u64_rem(tmp_mb, 1000, &kb);
 		edac_dbg(0, "SAD#%d %s up to %u.%03u GB (0x%016Lx) Interleave: %s reg=0x%08x\n",
 			 n_sads,
 			 get_dram_attr(reg),
 			 mb, kb,
+<<<<<<< HEAD
 =======
 		gb = div_u64_rem(tmp_mb, 1024, &mb);
 		edac_dbg(0, "SAD#%d %s up to %u.%03u GB (0x%016Lx) Interleave: %s reg=0x%08x\n",
@@ -702,6 +725,8 @@ static void get_memory_layout(const struct mem_ctl_info *mci)
 			 get_dram_attr(reg),
 			 gb, (mb*1000)/1024,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 			 ((u64)tmp_mb) << 20L,
 			 INTERLEAVE_MODE(reg) ? "8:6" : "[8:6]XOR[18:16]",
 			 reg);
@@ -732,6 +757,7 @@ static void get_memory_layout(const struct mem_ctl_info *mci)
 		tmp_mb = (limit + 1) >> 20;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		mb = div_u64_rem(tmp_mb, 1000, &kb);
 		edac_dbg(0, "TAD#%d: up to %u.%03u GB (0x%016Lx), socket interleave %d, memory interleave %d, TGT: %d, %d, %d, %d, reg=0x%08x\n",
 			 n_tads, mb, kb,
@@ -740,6 +766,11 @@ static void get_memory_layout(const struct mem_ctl_info *mci)
 		edac_dbg(0, "TAD#%d: up to %u.%03u GB (0x%016Lx), socket interleave %d, memory interleave %d, TGT: %d, %d, %d, %d, reg=0x%08x\n",
 			 n_tads, gb, (mb*1000)/1024,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		mb = div_u64_rem(tmp_mb, 1000, &kb);
+		edac_dbg(0, "TAD#%d: up to %u.%03u GB (0x%016Lx), socket interleave %d, memory interleave %d, TGT: %d, %d, %d, %d, reg=0x%08x\n",
+			 n_tads, mb, kb,
+>>>>>>> 2617302... source
 			 ((u64)tmp_mb) << 20L,
 			 (u32)TAD_SOCK(reg),
 			 (u32)TAD_CH(reg),
@@ -763,16 +794,22 @@ static void get_memory_layout(const struct mem_ctl_info *mci)
 					      &reg);
 			tmp_mb = TAD_OFFSET(reg) >> 20;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 			mb = div_u64_rem(tmp_mb, 1000, &kb);
 			edac_dbg(0, "TAD CH#%d, offset #%d: %u.%03u GB (0x%016Lx), reg=0x%08x\n",
 				 i, j,
 				 mb, kb,
+<<<<<<< HEAD
 =======
 			gb = div_u64_rem(tmp_mb, 1024, &mb);
 			edac_dbg(0, "TAD CH#%d, offset #%d: %u.%03u GB (0x%016Lx), reg=0x%08x\n",
 				 i, j,
 				 gb, (mb*1000)/1024,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 				 ((u64)tmp_mb) << 20L,
 				 reg);
 		}
@@ -795,16 +832,22 @@ static void get_memory_layout(const struct mem_ctl_info *mci)
 			tmp_mb = RIR_LIMIT(reg) >> 20;
 			rir_way = 1 << RIR_WAY(reg);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 			mb = div_u64_rem(tmp_mb, 1000, &kb);
 			edac_dbg(0, "CH#%d RIR#%d, limit: %u.%03u GB (0x%016Lx), way: %d, reg=0x%08x\n",
 				 i, j,
 				 mb, kb,
+<<<<<<< HEAD
 =======
 			gb = div_u64_rem(tmp_mb, 1024, &mb);
 			edac_dbg(0, "CH#%d RIR#%d, limit: %u.%03u GB (0x%016Lx), way: %d, reg=0x%08x\n",
 				 i, j,
 				 gb, (mb*1000)/1024,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 				 ((u64)tmp_mb) << 20L,
 				 rir_way,
 				 reg);
@@ -816,16 +859,22 @@ static void get_memory_layout(const struct mem_ctl_info *mci)
 				tmp_mb = RIR_OFFSET(reg) << 6;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 				mb = div_u64_rem(tmp_mb, 1000, &kb);
 				edac_dbg(0, "CH#%d RIR#%d INTL#%d, offset %u.%03u GB (0x%016Lx), tgt: %d, reg=0x%08x\n",
 					 i, j, k,
 					 mb, kb,
+<<<<<<< HEAD
 =======
 				gb = div_u64_rem(tmp_mb, 1024, &mb);
 				edac_dbg(0, "CH#%d RIR#%d INTL#%d, offset %u.%03u GB (0x%016Lx), tgt: %d, reg=0x%08x\n",
 					 i, j, k,
 					 gb, (mb*1000)/1024,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 					 ((u64)tmp_mb) << 20L,
 					 (u32)RIR_RNK_TGT(reg),
 					 reg);
@@ -863,10 +912,14 @@ static int get_memory_error_data(struct mem_ctl_info *mci,
 	u32			tad_offset;
 	u32			rir_way;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u32			mb, kb;
 =======
 	u32			mb, gb;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	u32			mb, kb;
+>>>>>>> 2617302... source
 	u64			ch_addr, offset, limit, prv = 0;
 
 
@@ -1083,16 +1136,22 @@ static int get_memory_error_data(struct mem_ctl_info *mci,
 
 		limit = RIR_LIMIT(reg);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		mb = div_u64_rem(limit >> 20, 1000, &kb);
 		edac_dbg(0, "RIR#%d, limit: %u.%03u GB (0x%016Lx), way: %d\n",
 			 n_rir,
 			 mb, kb,
+<<<<<<< HEAD
 =======
 		gb = div_u64_rem(limit >> 20, 1024, &mb);
 		edac_dbg(0, "RIR#%d, limit: %u.%03u GB (0x%016Lx), way: %d\n",
 			 n_rir,
 			 gb, (mb*1000)/1024,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 			 limit,
 			 1 << RIR_WAY(reg));
 		if  (ch_addr <= limit)
@@ -1520,11 +1579,14 @@ static void sbridge_mce_output_error(struct mem_ctl_info *mci,
 	/* FIXME: need support for channel mask */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (channel == CHANNEL_UNSPECIFIED)
 		channel = -1;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	/* Call the helper to output message */
 	edac_mc_handle_error(tp_event, mci, core_err_cnt,
 			     m->addr >> PAGE_SHIFT, m->addr & ~PAGE_MASK, 0,
@@ -1607,10 +1669,14 @@ static int sbridge_mce_check_error(struct notifier_block *nb, unsigned long val,
 	mci = get_mci_for_node_id(mce->socketid);
 	if (!mci)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return NOTIFY_BAD;
 =======
 		return NOTIFY_DONE;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		return NOTIFY_BAD;
+>>>>>>> 2617302... source
 	pvt = mci->pvt_info;
 
 	/*

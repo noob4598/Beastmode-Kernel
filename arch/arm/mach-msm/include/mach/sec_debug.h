@@ -56,13 +56,19 @@ static inline int sec_debug_init(void)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 #ifdef CONFIG_SEC_PERIPHERAL_SECURE_CHK
 static inline void sec_peripheral_secure_check_fail(void)
 {
 }
 #endif
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 static inline int sec_debug_dump_stack(void)  
 {
 	return 0;

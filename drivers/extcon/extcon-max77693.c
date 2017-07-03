@@ -1181,10 +1181,14 @@ static int max77693_muic_probe(struct platform_device *pdev)
 
 	/* Initialize MUIC register by using platform data or default data */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (pdata->muic_data) {
 =======
 	if (pdata && pdata->muic_data) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (pdata->muic_data) {
+>>>>>>> 2617302... source
 		init_data = pdata->muic_data->init_data;
 		num_init_data = pdata->muic_data->num_init_data;
 	} else {
@@ -1218,10 +1222,14 @@ static int max77693_muic_probe(struct platform_device *pdev)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (pdata->muic_data) {
 =======
 	if (pdata && pdata->muic_data) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (pdata->muic_data) {
+>>>>>>> 2617302... source
 		struct max77693_muic_platform_data *muic_pdata = pdata->muic_data;
 
 		/*

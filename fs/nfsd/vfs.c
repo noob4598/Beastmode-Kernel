@@ -509,11 +509,14 @@ set_nfsv4_acl_one(struct dentry *dentry, struct posix_acl *pacl, char *key)
 	int error = 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (!pacl)
 		return vfs_setxattr(dentry, key, NULL, 0, 0);
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	buflen = posix_acl_xattr_size(pacl->a_count);
 	buf = kmalloc(buflen, GFP_KERNEL);
 	error = -ENOMEM;
@@ -1954,9 +1957,12 @@ struct buffered_dirent {
 
 struct readdir_data {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct dir_context ctx;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	char		*dirent;
 	size_t		used;
 	int		full;
@@ -1989,13 +1995,18 @@ static __be32 nfsd_buffered_readdir(struct file *file, filldir_t func,
 				    struct readdir_cd *cdp, loff_t *offsetp)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct readdir_data buf;
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	struct readdir_data buf;
+>>>>>>> 2617302... source
 	struct buffered_dirent *de;
 	int host_err;
 	int size;
 	loff_t offset;
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	buf.dirent = (void *)__get_free_page(GFP_KERNEL);
@@ -2006,6 +2017,10 @@ static __be32 nfsd_buffered_readdir(struct file *file, filldir_t func,
 	};
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+
+	buf.dirent = (void *)__get_free_page(GFP_KERNEL);
+>>>>>>> 2617302... source
 	if (!buf.dirent)
 		return nfserrno(-ENOMEM);
 
@@ -2020,10 +2035,14 @@ static __be32 nfsd_buffered_readdir(struct file *file, filldir_t func,
 		buf.full = 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		host_err = vfs_readdir(file, nfsd_buffered_filldir, &buf);
 =======
 		host_err = iterate_dir(file, &buf.ctx);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		host_err = vfs_readdir(file, nfsd_buffered_filldir, &buf);
+>>>>>>> 2617302... source
 		if (buf.full)
 			host_err = 0;
 

@@ -56,9 +56,13 @@ int mlx4_en_create_cq(struct mlx4_en_priv *priv,
 	cq->ring = ring;
 	cq->is_tx = mode;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	spin_lock_init(&cq->lock);
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	spin_lock_init(&cq->lock);
+>>>>>>> 2617302... source
 
 	err = mlx4_alloc_hwq_res(mdev->dev, &cq->wqres,
 				cq->buf_size, 2 * PAGE_SIZE);

@@ -28,6 +28,9 @@ EXPORT_SYMBOL(blk_queue_find_tag);
 
 /**
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
  * __blk_free_tags - release a given set of tag maintenance info
  * @bqt:	the tag map to free
  *
@@ -40,6 +43,7 @@ static int __blk_free_tags(struct blk_queue_tag *bqt)
 
 	retval = atomic_dec_and_test(&bqt->refcnt);
 	if (retval) {
+<<<<<<< HEAD
 =======
  * blk_free_tags - release a given set of tag maintenance info
  * @bqt:	the tag map to free
@@ -51,6 +55,8 @@ void blk_free_tags(struct blk_queue_tag *bqt)
 {
 	if (atomic_dec_and_test(&bqt->refcnt)) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		BUG_ON(find_first_bit(bqt->tag_map, bqt->max_depth) <
 							bqt->max_depth);
 
@@ -63,6 +69,7 @@ void blk_free_tags(struct blk_queue_tag *bqt)
 		kfree(bqt);
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	return retval;
 }
@@ -70,6 +77,11 @@ void blk_free_tags(struct blk_queue_tag *bqt)
 }
 EXPORT_SYMBOL(blk_free_tags);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+
+	return retval;
+}
+>>>>>>> 2617302... source
 
 /**
  * __blk_queue_free_tags - release tag maintenance info
@@ -87,10 +99,14 @@ void __blk_queue_free_tags(struct request_queue *q)
 		return;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	__blk_free_tags(bqt);
 =======
 	blk_free_tags(bqt);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	__blk_free_tags(bqt);
+>>>>>>> 2617302... source
 
 	q->queue_tags = NULL;
 	queue_flag_clear_unlocked(QUEUE_FLAG_QUEUED, q);
@@ -98,6 +114,9 @@ void __blk_queue_free_tags(struct request_queue *q)
 
 /**
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
  * blk_free_tags - release a given set of tag maintenance info
  * @bqt:	the tag map to free
  *
@@ -113,8 +132,11 @@ void blk_free_tags(struct blk_queue_tag *bqt)
 EXPORT_SYMBOL(blk_free_tags);
 
 /**
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
  * blk_queue_free_tags - release tag maintenance info
  * @q:  the request queue for the device
  *

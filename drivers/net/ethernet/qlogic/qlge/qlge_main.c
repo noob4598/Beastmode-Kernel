@@ -1621,6 +1621,7 @@ static void ql_process_mac_rx_skb(struct ql_adapter *qdev,
 	}
 	skb_reserve(new_skb, NET_IP_ALIGN);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	memcpy(skb_put(new_skb, length), skb->data, length);
 =======
 
@@ -1636,6 +1637,9 @@ static void ql_process_mac_rx_skb(struct ql_adapter *qdev,
 				       dma_unmap_len(sbq_desc, maplen),
 				       PCI_DMA_FROMDEVICE);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	memcpy(skb_put(new_skb, length), skb->data, length);
+>>>>>>> 2617302... source
 	skb = new_skb;
 
 	/* Frame error, so drop the packet. */

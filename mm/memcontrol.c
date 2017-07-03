@@ -303,9 +303,12 @@ struct mem_cgroup {
 	bool		oom_lock;
 	atomic_t	under_oom;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	atomic_t	oom_wakeups;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	atomic_t	refcnt;
 
@@ -2080,6 +2083,9 @@ static int mem_cgroup_soft_reclaim(struct mem_cgroup *root_memcg,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 /*
  * Check OOM-Killer is already running under our hierarchy.
  * If someone is running, return false.
@@ -2089,6 +2095,7 @@ static bool mem_cgroup_oom_lock(struct mem_cgroup *memcg)
 {
 	struct mem_cgroup *iter, *failed = NULL;
 
+<<<<<<< HEAD
 =======
 static DEFINE_SPINLOCK(memcg_oom_lock);
 
@@ -2103,6 +2110,8 @@ static bool mem_cgroup_oom_trylock(struct mem_cgroup *memcg)
 	spin_lock(&memcg_oom_lock);
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	for_each_mem_cgroup_tree(iter, memcg) {
 		if (iter->oom_lock) {
 			/*
@@ -2117,6 +2126,9 @@ static bool mem_cgroup_oom_trylock(struct mem_cgroup *memcg)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	if (!failed)
 		return true;
 
@@ -2144,6 +2156,7 @@ static int mem_cgroup_oom_unlock(struct mem_cgroup *memcg)
 	for_each_mem_cgroup_tree(iter, memcg)
 		iter->oom_lock = false;
 	return 0;
+<<<<<<< HEAD
 =======
 	if (failed) {
 		/*
@@ -2173,6 +2186,8 @@ static void mem_cgroup_oom_unlock(struct mem_cgroup *memcg)
 		iter->oom_lock = false;
 	spin_unlock(&memcg_oom_lock);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 }
 
 static void mem_cgroup_mark_under_oom(struct mem_cgroup *memcg)
@@ -2197,9 +2212,13 @@ static void mem_cgroup_unmark_under_oom(struct mem_cgroup *memcg)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static DEFINE_SPINLOCK(memcg_oom_lock);
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+static DEFINE_SPINLOCK(memcg_oom_lock);
+>>>>>>> 2617302... source
 static DECLARE_WAIT_QUEUE_HEAD(memcg_oom_waitq);
 
 struct oom_wait_info {
@@ -2230,9 +2249,12 @@ static int memcg_oom_wake_function(wait_queue_t *wait,
 static void memcg_wakeup_oom(struct mem_cgroup *memcg)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	atomic_inc(&memcg->oom_wakeups);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	/* for filtering, pass "memcg" as argument. */
 	__wake_up(&memcg_oom_waitq, TASK_NORMAL, 0, memcg);
 }
@@ -2244,6 +2266,9 @@ static void memcg_oom_recover(struct mem_cgroup *memcg)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 /*
  * try to call OOM killer. returns false if we should exit memory-reclaim loop.
  */
@@ -2252,6 +2277,7 @@ static bool mem_cgroup_handle_oom(struct mem_cgroup *memcg, gfp_t mask,
 {
 	struct oom_wait_info owait;
 	bool locked, need_to_kill;
+<<<<<<< HEAD
 =======
 static void mem_cgroup_oom(struct mem_cgroup *memcg, gfp_t mask, int order)
 {
@@ -2307,6 +2333,8 @@ bool mem_cgroup_oom_synchronize(bool handle)
 	if (!handle)
 		goto cleanup;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	owait.memcg = memcg;
 	owait.wait.flags = 0;
@@ -2314,6 +2342,9 @@ bool mem_cgroup_oom_synchronize(bool handle)
 	owait.wait.private = current;
 	INIT_LIST_HEAD(&owait.wait.task_list);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	need_to_kill = true;
 	mem_cgroup_mark_under_oom(memcg);
 
@@ -2351,6 +2382,7 @@ bool mem_cgroup_oom_synchronize(bool handle)
 		return false;
 	/* Give chance to dying process */
 	schedule_timeout_uninterruptible(1);
+<<<<<<< HEAD
 =======
 
 	prepare_to_wait(&memcg_oom_waitq, &owait.wait, TASK_KILLABLE);
@@ -2385,6 +2417,8 @@ cleanup:
 	current->memcg_oom.memcg = NULL;
 	css_put(&memcg->css);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	return true;
 }
 
@@ -2698,18 +2732,26 @@ enum {
 	CHARGE_NOMEM,		/* we can't do more. return -ENOMEM */
 	CHARGE_WOULDBLOCK,	/* GFP_WAIT wasn't set and no enough res. */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	CHARGE_OOM_DIE,		/* the current is killed because of OOM */
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	CHARGE_OOM_DIE,		/* the current is killed because of OOM */
+>>>>>>> 2617302... source
 };
 
 static int mem_cgroup_do_charge(struct mem_cgroup *memcg, gfp_t gfp_mask,
 				unsigned int nr_pages, unsigned int min_pages,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				bool oom_check)
 =======
 				bool invoke_oom)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+				bool oom_check)
+>>>>>>> 2617302... source
 {
 	unsigned long csize = nr_pages * PAGE_SIZE;
 	struct mem_cgroup *mem_over_limit;
@@ -2767,6 +2809,9 @@ static int mem_cgroup_do_charge(struct mem_cgroup *memcg, gfp_t gfp_mask,
 		return CHARGE_RETRY;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	/* If we don't need to call oom-killer at el, return immediately */
 	if (!oom_check)
 		return CHARGE_NOMEM;
@@ -2775,12 +2820,15 @@ static int mem_cgroup_do_charge(struct mem_cgroup *memcg, gfp_t gfp_mask,
 		return CHARGE_OOM_DIE;
 
 	return CHARGE_RETRY;
+<<<<<<< HEAD
 =======
 	if (invoke_oom)
 		mem_cgroup_oom(mem_over_limit, gfp_mask, get_order(csize));
 
 	return CHARGE_NOMEM;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 }
 
 /*
@@ -2825,11 +2873,14 @@ static int __mem_cgroup_try_charge(struct mm_struct *mm,
 		goto bypass;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (unlikely(task_in_memcg_oom(current)))
 		goto bypass;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	/*
 	 * We always charge the cgroup the mm_struct belongs to.
 	 * The mm_struct's mem_cgroup changes on task migration if the
@@ -2890,10 +2941,14 @@ again:
 
 	do {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		bool oom_check;
 =======
 		bool invoke_oom = oom && !nr_oom_retries;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		bool oom_check;
+>>>>>>> 2617302... source
 
 		/* If killed, bypass charge */
 		if (fatal_signal_pending(current)) {
@@ -2902,6 +2957,9 @@ again:
 		}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		oom_check = false;
 		if (oom && !nr_oom_retries) {
 			oom_check = true;
@@ -2910,10 +2968,13 @@ again:
 
 		ret = mem_cgroup_do_charge(memcg, gfp_mask, batch, nr_pages,
 		    oom_check);
+<<<<<<< HEAD
 =======
 		ret = mem_cgroup_do_charge(memcg, gfp_mask, batch,
 					   nr_pages, invoke_oom);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		switch (ret) {
 		case CHARGE_OK:
 			break;
@@ -2927,6 +2988,9 @@ again:
 			goto nomem;
 		case CHARGE_NOMEM: /* OOM routine works */
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 			if (!oom) {
 				css_put(&memcg->css);
 				goto nomem;
@@ -2937,6 +3001,7 @@ again:
 		case CHARGE_OOM_DIE: /* Killed by OOM Killer */
 			css_put(&memcg->css);
 			goto bypass;
+<<<<<<< HEAD
 =======
 			if (!oom || invoke_oom) {
 				css_put(&memcg->css);
@@ -2945,6 +3010,8 @@ again:
 			nr_oom_retries--;
 			break;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		}
 	} while (ret != CHARGE_OK);
 
@@ -5944,18 +6011,25 @@ swap_buffers:
 	/* Swap primary and spare array */
 	thresholds->spare = thresholds->primary;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	/* If all events are unregistered, free the spare array */
 	if (!new) {
 		kfree(thresholds->spare);
 		thresholds->spare = NULL;
 	}
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	rcu_assign_pointer(thresholds->primary, new);
 
 	/* To be sure that nobody uses thresholds */
 	synchronize_rcu();
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 
@@ -5965,6 +6039,8 @@ swap_buffers:
 		thresholds->spare = NULL;
 	}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 unlock:
 	mutex_unlock(&memcg->thresholds_lock);
 }
@@ -6961,6 +7037,7 @@ static int mem_cgroup_can_attach(struct cgroup *cgroup,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 static int mem_cgroup_allow_attach(struct cgroup *cgroup,
 				   struct cgroup_taskset *tset)
@@ -6969,6 +7046,8 @@ static int mem_cgroup_allow_attach(struct cgroup *cgroup,
 }
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 static void mem_cgroup_cancel_attach(struct cgroup *cgroup,
 				     struct cgroup_taskset *tset)
 {
@@ -7138,6 +7217,7 @@ static int mem_cgroup_can_attach(struct cgroup *cgroup,
 	return 0;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 static int mem_cgroup_allow_attach(struct cgroup *cgroup,
 				   struct cgroup_taskset *tset)
@@ -7145,6 +7225,8 @@ static int mem_cgroup_allow_attach(struct cgroup *cgroup,
 	return 0;
 }
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 static void mem_cgroup_cancel_attach(struct cgroup *cgroup,
 				     struct cgroup_taskset *tset)
 {
@@ -7181,9 +7263,12 @@ struct cgroup_subsys mem_cgroup_subsys = {
 	.cancel_attach = mem_cgroup_cancel_attach,
 	.attach = mem_cgroup_move_task,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	.allow_attach = mem_cgroup_allow_attach,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	.bind = mem_cgroup_bind,
 	.base_cftypes = mem_cgroup_files,
 	.early_init = 0,

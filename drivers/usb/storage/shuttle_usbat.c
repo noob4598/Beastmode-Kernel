@@ -1852,10 +1852,14 @@ static int usbat_probe(struct usb_interface *intf,
 	us->transport = usbat_flash_transport;
 	us->transport_reset = usb_stor_CB_reset;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	us->max_lun = 1;
 =======
 	us->max_lun = 0;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	us->max_lun = 1;
+>>>>>>> 2617302... source
 
 	result = usb_stor_probe2(us);
 	return result;

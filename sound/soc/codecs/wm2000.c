@@ -606,10 +606,14 @@ static int wm2000_anc_mode_get(struct snd_kcontrol *kcontrol,
 	struct wm2000_priv *wm2000 = dev_get_drvdata(codec->dev);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ucontrol->value.enumerated.item[0] = wm2000->anc_active;
 =======
 	ucontrol->value.integer.value[0] = wm2000->anc_active;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	ucontrol->value.enumerated.item[0] = wm2000->anc_active;
+>>>>>>> 2617302... source
 
 	return 0;
 }
@@ -620,10 +624,14 @@ static int wm2000_anc_mode_put(struct snd_kcontrol *kcontrol,
 	struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
 	struct wm2000_priv *wm2000 = dev_get_drvdata(codec->dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int anc_active = ucontrol->value.enumerated.item[0];
 =======
 	int anc_active = ucontrol->value.integer.value[0];
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	int anc_active = ucontrol->value.enumerated.item[0];
+>>>>>>> 2617302... source
 	int ret;
 
 	if (anc_active > 1)
@@ -647,10 +655,14 @@ static int wm2000_speaker_get(struct snd_kcontrol *kcontrol,
 	struct wm2000_priv *wm2000 = dev_get_drvdata(codec->dev);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ucontrol->value.enumerated.item[0] = wm2000->spk_ena;
 =======
 	ucontrol->value.integer.value[0] = wm2000->spk_ena;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	ucontrol->value.enumerated.item[0] = wm2000->spk_ena;
+>>>>>>> 2617302... source
 
 	return 0;
 }
@@ -661,10 +673,14 @@ static int wm2000_speaker_put(struct snd_kcontrol *kcontrol,
 	struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
 	struct wm2000_priv *wm2000 = dev_get_drvdata(codec->dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int val = ucontrol->value.enumerated.item[0];
 =======
 	int val = ucontrol->value.integer.value[0];
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	int val = ucontrol->value.enumerated.item[0];
+>>>>>>> 2617302... source
 	int ret;
 
 	if (val > 1)

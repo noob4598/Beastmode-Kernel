@@ -1497,11 +1497,14 @@ static noinline int btrfs_ioctl_snap_create_transid(struct file *file,
 	int ret = 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (!S_ISDIR(file_inode(file)->i_mode))
 		return -ENOTDIR;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	ret = mnt_want_write_file(file);
 	if (ret)
 		goto out;
@@ -1560,11 +1563,14 @@ static noinline int btrfs_ioctl_snap_create(struct file *file,
 	int ret;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (!S_ISDIR(file_inode(file)->i_mode))
 		return -ENOTDIR;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	vol_args = memdup_user(arg, sizeof(*vol_args));
 	if (IS_ERR(vol_args))
 		return PTR_ERR(vol_args);
@@ -1589,11 +1595,14 @@ static noinline int btrfs_ioctl_snap_create_v2(struct file *file,
 	struct btrfs_qgroup_inherit *inherit = NULL;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (!S_ISDIR(file_inode(file)->i_mode))
 		return -ENOTDIR;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	vol_args = memdup_user(arg, sizeof(*vol_args));
 	if (IS_ERR(vol_args))
 		return PTR_ERR(vol_args);
@@ -2100,11 +2109,14 @@ static noinline int btrfs_ioctl_snap_destroy(struct file *file,
 	int err = 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (!S_ISDIR(dir->i_mode))
 		return -ENOTDIR;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	vol_args = memdup_user(arg, sizeof(*vol_args));
 	if (IS_ERR(vol_args))
 		return PTR_ERR(vol_args);
@@ -2597,6 +2609,7 @@ static noinline long btrfs_ioctl_clone(struct file *file, unsigned long srcfd,
 		len = ALIGN(src->i_size, bs) - off;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (len == 0) {
 		ret = 0;
@@ -2604,6 +2617,8 @@ static noinline long btrfs_ioctl_clone(struct file *file, unsigned long srcfd,
 	}
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	/* verify the end result is block aligned */
 	if (!IS_ALIGNED(off, bs) || !IS_ALIGNED(off + len, bs) ||
 	    !IS_ALIGNED(destoff, bs))

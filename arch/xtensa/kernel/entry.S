@@ -550,19 +550,26 @@ user_exception_exit:
 	 */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 2:
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 #if XCHAL_HAVE_THREADPTR
 	l32i	a3, a1, PT_THREADPTR
 	wur	a3, threadptr
 #endif
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 2:	j	common_exception_exit
 =======
 	j	common_exception_exit
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+2:	j	common_exception_exit
+>>>>>>> 2617302... source
 
 	/* This is the kernel exception exit.
 	 * We avoided to do a MOVSP when we entered the exception, but we
@@ -1130,6 +1137,7 @@ ENTRY(fast_syscall_xtensa)
 	access_ok a3, a7, a0, a2, .Leac	# a0: scratch reg, a2: sp
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	addi	a6, a6, -1		# assuming SYS_XTENSA_ATOMIC_SET = 1
 	_bgeui	a6, SYS_XTENSA_COUNT - 1, .Lill
 	_bnei	a6, SYS_XTENSA_ATOMIC_CMP_SWP - 1, .Lnswp
@@ -1137,6 +1145,11 @@ ENTRY(fast_syscall_xtensa)
 	_bgeui	a6, SYS_XTENSA_COUNT, .Lill
 	_bnei	a6, SYS_XTENSA_ATOMIC_CMP_SWP, .Lnswp
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	addi	a6, a6, -1		# assuming SYS_XTENSA_ATOMIC_SET = 1
+	_bgeui	a6, SYS_XTENSA_COUNT - 1, .Lill
+	_bnei	a6, SYS_XTENSA_ATOMIC_CMP_SWP - 1, .Lnswp
+>>>>>>> 2617302... source
 
 	/* Fall through for ATOMIC_CMP_SWP. */
 
@@ -1149,23 +1162,32 @@ TRY	s32i	a5, a3, 0		# different, modify value
 	l32i	a0, a2, PT_AREG0	# restore a0
 	movi	a2, 1			# and return 1
 <<<<<<< HEAD
+<<<<<<< HEAD
 	addi	a6, a6, 1		# restore a6 (really necessary?)
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	addi	a6, a6, 1		# restore a6 (really necessary?)
+>>>>>>> 2617302... source
 	rfe
 
 1:	l32i	a7, a2, PT_AREG7	# restore a7
 	l32i	a0, a2, PT_AREG0	# restore a0
 	movi	a2, 0			# return 0 (note that we cannot set
 <<<<<<< HEAD
+<<<<<<< HEAD
 	addi	a6, a6, 1		# restore a6 (really necessary?)
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	addi	a6, a6, 1		# restore a6 (really necessary?)
+>>>>>>> 2617302... source
 	rfe
 
 .Lnswp:	/* Atomic set, add, and exg_add. */
 
 TRY	l32i	a7, a3, 0		# orig
+<<<<<<< HEAD
 <<<<<<< HEAD
 	add	a0, a4, a7		# + arg
 	moveqz	a0, a4, a6		# set
@@ -1175,6 +1197,10 @@ TRY	l32i	a7, a3, 0		# orig
 	moveqz	a0, a4, a6		# set
 	addi	a6, a6, SYS_XTENSA_ATOMIC_SET
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	add	a0, a4, a7		# + arg
+	moveqz	a0, a4, a6		# set
+>>>>>>> 2617302... source
 TRY	s32i	a0, a3, 0		# write new value
 
 	mov	a0, a2
@@ -1182,9 +1208,13 @@ TRY	s32i	a0, a3, 0		# write new value
 	l32i	a7, a0, PT_AREG7	# restore a7
 	l32i	a0, a0, PT_AREG0	# restore a0
 <<<<<<< HEAD
+<<<<<<< HEAD
 	addi	a6, a6, 1		# restore a6 (really necessary?)
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	addi	a6, a6, 1		# restore a6 (really necessary?)
+>>>>>>> 2617302... source
 	rfe
 
 CATCH
@@ -1194,10 +1224,14 @@ CATCH
 	rfe
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 .Lill:	l32i	a7, a2, PT_AREG0	# restore a7
 =======
 .Lill:	l32i	a7, a2, PT_AREG7	# restore a7
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+.Lill:	l32i	a7, a2, PT_AREG0	# restore a7
+>>>>>>> 2617302... source
 	l32i	a0, a2, PT_AREG0	# restore a0
 	movi	a2, -EINVAL
 	rfe
@@ -1737,10 +1771,14 @@ ENTRY(fast_second_level_miss)
 	bltu	a0, a3, 2f
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	addi	a1, a0, -(2 << (DCACHE_ALIAS_ORDER + PAGE_SHIFT))
 =======
 	addi	a1, a0, -TLBTEMP_SIZE
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	addi	a1, a0, -(2 << (DCACHE_ALIAS_ORDER + PAGE_SHIFT))
+>>>>>>> 2617302... source
 	bgeu	a1, a3, 2f
 
 	/* Check if we have to restore an ITLB mapping. */
@@ -1973,10 +2011,14 @@ ENDPROC(system_call)
 	.endr
 #endif
 <<<<<<< HEAD
+<<<<<<< HEAD
 	_entry	a1, 48
 =======
 	_entry	a1, 16
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	_entry	a1, 48
+>>>>>>> 2617302... source
 #if XCHAL_NUM_AREGS % 12 == 0
 	mov	a8, a8
 #elif XCHAL_NUM_AREGS % 12 == 4
@@ -2001,6 +2043,7 @@ ENDPROC(system_call)
 ENTRY(_switch_to)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	entry	a1, 16
 
 	mov	a10, a2			# preserve 'prev' (a2)
@@ -2008,6 +2051,11 @@ ENTRY(_switch_to)
 	entry	a1, 48
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	entry	a1, 16
+
+	mov	a10, a2			# preserve 'prev' (a2)
+>>>>>>> 2617302... source
 	mov	a11, a3			# and 'next' (a3)
 
 	l32i	a4, a2, TASK_THREAD_INFO
@@ -2015,6 +2063,7 @@ ENTRY(_switch_to)
 
 	save_xtregs_user a4 a6 a8 a9 a12 a13 THREAD_XTREGS_USER
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	s32i	a0, a10, THREAD_RA	# save return address
 	s32i	a1, a10, THREAD_SP	# save stack pointer
@@ -2028,6 +2077,10 @@ ENTRY(_switch_to)
 	s32i	a1, a2, THREAD_SP	# save stack pointer
 #endif
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	s32i	a0, a10, THREAD_RA	# save return address
+	s32i	a1, a10, THREAD_SP	# save stack pointer
+>>>>>>> 2617302... source
 
 	/* Disable ints while we manipulate the stack pointer. */
 
@@ -2069,9 +2122,13 @@ ENTRY(_switch_to)
 
 	wsr	a14, ps
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mov	a2, a10			# return 'prev'
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	mov	a2, a10			# return 'prev'
+>>>>>>> 2617302... source
 	rsync
 
 	retw

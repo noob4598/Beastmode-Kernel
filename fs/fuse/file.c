@@ -129,9 +129,12 @@ static void fuse_file_put(struct fuse_file *ff, bool sync)
 
 		if (sync) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 			req->force = 1;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 			req->background = 0;
 			fuse_request_send(ff->fc, req);
 			path_put(&req->misc.release.path);
@@ -1035,9 +1038,12 @@ static ssize_t fuse_fill_write_pages(struct fuse_req *req,
 		mark_page_accessed(page);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		iov_iter_advance(ii, tmp);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		if (!tmp) {
 			unlock_page(page);
 			page_cache_release(page);
@@ -1051,9 +1057,13 @@ static ssize_t fuse_fill_write_pages(struct fuse_req *req,
 		req->num_pages++;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		iov_iter_advance(ii, tmp);
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		iov_iter_advance(ii, tmp);
+>>>>>>> 2617302... source
 		count += tmp;
 		pos += tmp;
 		offset += tmp;
@@ -2447,9 +2457,12 @@ fuse_direct_IO(int rw, struct kiocb *iocb, const struct iovec *iov,
 	size_t count = iov_length(iov, nr_segs);
 	struct fuse_io_priv *io;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	bool is_sync = is_sync_kiocb(iocb);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	pos = offset;
 	inode = file->f_mapping->host;
@@ -2486,10 +2499,14 @@ fuse_direct_IO(int rw, struct kiocb *iocb, const struct iovec *iov,
 	 * synchronously.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!is_sync_kiocb(iocb) && (offset + count > i_size) && rw == WRITE)
 =======
 	if (!is_sync && (offset + count > i_size) && rw == WRITE)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (!is_sync_kiocb(iocb) && (offset + count > i_size) && rw == WRITE)
+>>>>>>> 2617302... source
 		io->async = false;
 
 	if (rw == WRITE)
@@ -2502,10 +2519,14 @@ fuse_direct_IO(int rw, struct kiocb *iocb, const struct iovec *iov,
 
 		/* we have a non-extending, async request, so return */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (!is_sync_kiocb(iocb))
 =======
 		if (!is_sync)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		if (!is_sync_kiocb(iocb))
+>>>>>>> 2617302... source
 			return -EIOCBQUEUED;
 
 		ret = wait_on_sync_kiocb(iocb);

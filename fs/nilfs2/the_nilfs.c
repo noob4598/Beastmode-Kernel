@@ -432,10 +432,14 @@ static int nilfs_valid_sb(struct nilfs_super_block *sbp)
 		return 0;
 	bytes = le16_to_cpu(sbp->s_bytes);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (bytes > BLOCK_SIZE)
 =======
 	if (bytes < sumoff + 4 || bytes > BLOCK_SIZE)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (bytes > BLOCK_SIZE)
+>>>>>>> 2617302... source
 		return 0;
 	crc = crc32_le(le32_to_cpu(sbp->s_crc_seed), (unsigned char *)sbp,
 		       sumoff);

@@ -476,6 +476,9 @@ void __init init_mem_mapping(void)
  * is valid. The argument is a physical page number.
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
  *
  * On x86, access has to be given to the first megabyte of ram because that area
  * contains bios code and data regions used by X and dosemu and similar apps.
@@ -491,6 +494,7 @@ int devmem_is_allowed(unsigned long pagenr)
 	if (!page_is_ram(pagenr))
 		return 1;
 	return 0;
+<<<<<<< HEAD
 =======
  * On x86, access has to be given to the first megabyte of RAM because that
  * area traditionally contains BIOS code and data regions used by X, dosemu,
@@ -527,6 +531,8 @@ int devmem_is_allowed(unsigned long pagenr)
 
 	return 1;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 }
 
 void free_init_pages(char *what, unsigned long begin, unsigned long end)

@@ -590,39 +590,55 @@ static void fmbim_ctrl_response_available(struct f_mbim *dev)
 	int				ret;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_debug("dev:%p portno#%d\n", dev, dev->port_num);
 =======
 	pr_debug("dev:%pK portno#%d\n", dev, dev->port_num);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	pr_debug("dev:%p portno#%d\n", dev, dev->port_num);
+>>>>>>> 2617302... source
 
 	spin_lock_irqsave(&dev->lock, flags);
 
 	if (!atomic_read(&dev->online)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("dev:%p is not online\n", dev);
 =======
 		pr_err("dev:%pK is not online\n", dev);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		pr_err("dev:%p is not online\n", dev);
+>>>>>>> 2617302... source
 		spin_unlock_irqrestore(&dev->lock, flags);
 		return;
 	}
 
 	if (!req) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("dev:%p req is NULL\n", dev);
 =======
 		pr_err("dev:%pK req is NULL\n", dev);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		pr_err("dev:%p req is NULL\n", dev);
+>>>>>>> 2617302... source
 		spin_unlock_irqrestore(&dev->lock, flags);
 		return;
 	}
 
 	if (!req->buf) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("dev:%p req->buf is NULL\n", dev);
 =======
 		pr_err("dev:%pK req->buf is NULL\n", dev);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		pr_err("dev:%p req->buf is NULL\n", dev);
+>>>>>>> 2617302... source
 		spin_unlock_irqrestore(&dev->lock, flags);
 		return;
 	}
@@ -662,35 +678,49 @@ fmbim_send_cpkt_response(struct f_mbim *gr, struct ctrl_pkt *cpkt)
 
 	if (!gr || !cpkt) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("Invalid cpkt, dev:%p cpkt:%p\n",
 =======
 		pr_err("Invalid cpkt, dev:%pK cpkt:%pK\n",
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		pr_err("Invalid cpkt, dev:%p cpkt:%p\n",
+>>>>>>> 2617302... source
 				gr, cpkt);
 		return -ENODEV;
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	pr_debug("dev:%p port_num#%d\n", dev, dev->port_num);
 
 	if (!atomic_read(&dev->online)) {
 		pr_err("dev:%p is not connected\n", dev);
+<<<<<<< HEAD
 =======
 	pr_debug("dev:%pK port_num#%d\n", dev, dev->port_num);
 
 	if (!atomic_read(&dev->online)) {
 		pr_err("dev:%pK is not connected\n", dev);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		mbim_free_ctrl_pkt(cpkt);
 		return 0;
 	}
 
 	if (dev->not_port.notify_state != MBIM_NOTIFY_RESPONSE_AVAILABLE) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("dev:%p state=%d, recover!!\n", dev,
 =======
 		pr_err("dev:%pK state=%d, recover!!\n", dev,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		pr_err("dev:%p state=%d, recover!!\n", dev,
+>>>>>>> 2617302... source
 			dev->not_port.notify_state);
 		mbim_free_ctrl_pkt(cpkt);
 		return 0;
@@ -732,10 +762,14 @@ static int mbim_bam_connect(struct f_mbim *dev)
 							IPA_P_BAM : A2_P_BAM;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_info("dev:%p portno:%d\n", dev, dev->port_num);
 =======
 	pr_info("dev:%pK portno:%d\n", dev, dev->port_num);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	pr_info("dev:%p portno:%d\n", dev, dev->port_num);
+>>>>>>> 2617302... source
 
 	src_connection_idx = usb_bam_get_connection_idx(gadget->name, bam_name,
 		USB_TO_PEER_PERIPHERAL, USB_BAM_DEVICE, dev->port_num);
@@ -763,12 +797,16 @@ static int mbim_bam_connect(struct f_mbim *dev)
 static int mbim_bam_disconnect(struct f_mbim *dev)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_info("%s - dev:%p port:%d\n", __func__, dev, dev->port_num);
 =======
 	pr_info("dev:%pK port:%d. Do nothing.\n",
 			dev, dev->port_num);
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	pr_info("%s - dev:%p port:%d\n", __func__, dev, dev->port_num);
+>>>>>>> 2617302... source
 	bam_data_disconnect(&dev->bam_port, dev->port_num);
 
 	return 0;
@@ -904,10 +942,15 @@ static void mbim_notify_complete(struct usb_ep *ep, struct usb_request *req)
 	struct usb_cdc_notification	*event = req->buf;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_debug("dev:%p\n", mbim);
 
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	pr_debug("dev:%p\n", mbim);
+
+>>>>>>> 2617302... source
 	spin_lock(&mbim->lock);
 	switch (req->status) {
 	case 0:
@@ -937,10 +980,14 @@ static void mbim_notify_complete(struct usb_ep *ep, struct usb_request *req)
 	spin_unlock(&mbim->lock);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_debug("dev:%p Exit\n", mbim);
 =======
 	pr_debug("%s: Exit\n", __func__);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	pr_debug("dev:%p Exit\n", mbim);
+>>>>>>> 2617302... source
 }
 
 static void mbim_ep0out_complete(struct usb_ep *ep, struct usb_request *req)
@@ -952,10 +999,15 @@ static void mbim_ep0out_complete(struct usb_ep *ep, struct usb_request *req)
 	struct mbim_ntb_input_size *ntb = NULL;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_debug("dev:%p\n", mbim);
 
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	pr_debug("dev:%p\n", mbim);
+
+>>>>>>> 2617302... source
 	req->context = NULL;
 	if (req->status || req->actual != req->length) {
 		pr_err("Bad control-OUT transfer\n");
@@ -993,10 +1045,14 @@ invalid:
 	usb_ep_set_halt(ep);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_err("dev:%p Failed\n", mbim);
 =======
 	pr_err("%s: Failed\n", __func__);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	pr_err("dev:%p Failed\n", mbim);
+>>>>>>> 2617302... source
 
 	return;
 }
@@ -1019,10 +1075,14 @@ fmbim_cmd_complete(struct usb_ep *ep, struct usb_request *req)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_debug("dev:%p port#%d\n", dev, dev->port_num);
 =======
 	pr_debug("dev:%pK port#%d\n", dev, dev->port_num);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	pr_debug("dev:%p port#%d\n", dev, dev->port_num);
+>>>>>>> 2617302... source
 
 	cpkt = mbim_alloc_ctrl_pkt(len, GFP_ATOMIC);
 	if (!cpkt) {
@@ -1373,10 +1433,14 @@ static int mbim_set_alt(struct usb_function *f, unsigned intf, unsigned alt)
 				}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 				pr_info("Set mbim port in_desc = 0x%p",
 =======
 				pr_info("Set mbim port in_desc = 0x%pK",
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+				pr_info("Set mbim port in_desc = 0x%p",
+>>>>>>> 2617302... source
 					mbim->bam_port.in->desc);
 
 				ret = config_ep_by_speed(cdev->gadget, f,
@@ -1389,10 +1453,14 @@ static int mbim_set_alt(struct usb_function *f, unsigned intf, unsigned alt)
 				}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 				pr_info("Set mbim port out_desc = 0x%p",
 =======
 				pr_info("Set mbim port out_desc = 0x%pK",
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+				pr_info("Set mbim port out_desc = 0x%p",
+>>>>>>> 2617302... source
 					mbim->bam_port.out->desc);
 
 				if (mbim->xport == USB_GADGET_XPORT_BAM2BAM_IPA

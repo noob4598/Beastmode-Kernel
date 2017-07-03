@@ -242,6 +242,9 @@ static void snd_emu10k1_proc_spdif_read(struct snd_info_entry *entry,
 	u32 value;
 	u32 value2;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	unsigned long flags;
 	u32 rate;
 
@@ -254,6 +257,7 @@ static void snd_emu10k1_proc_spdif_read(struct snd_info_entry *entry,
 			snd_emu1010_fpga_read(emu, 0x2a, &value);
 			snd_emu1010_fpga_read(emu, 0x2b, &value2);
 			spin_unlock_irqrestore(&emu->emu_lock, flags);
+<<<<<<< HEAD
 =======
 	u32 rate;
 
@@ -263,12 +267,17 @@ static void snd_emu10k1_proc_spdif_read(struct snd_info_entry *entry,
 			snd_emu1010_fpga_read(emu, 0x2a, &value);
 			snd_emu1010_fpga_read(emu, 0x2b, &value2);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 			rate = 0x1770000 / (((value << 5) | value2)+1);	
 			snd_iprintf(buffer, "ADAT Locked : %u\n", rate);
 		} else {
 			snd_iprintf(buffer, "ADAT Unlocked\n");
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		spin_lock_irqsave(&emu->emu_lock, flags);
 		snd_emu1010_fpga_read(emu, 0x20, &value);
 		spin_unlock_irqrestore(&emu->emu_lock, flags);
@@ -277,12 +286,15 @@ static void snd_emu10k1_proc_spdif_read(struct snd_info_entry *entry,
 			snd_emu1010_fpga_read(emu, 0x28, &value);
 			snd_emu1010_fpga_read(emu, 0x29, &value2);
 			spin_unlock_irqrestore(&emu->emu_lock, flags);
+<<<<<<< HEAD
 =======
 		snd_emu1010_fpga_read(emu, 0x20, &value);
 		if ((value & 0x4) == 0) {
 			snd_emu1010_fpga_read(emu, 0x28, &value);
 			snd_emu1010_fpga_read(emu, 0x29, &value2);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 			rate = 0x1770000 / (((value << 5) | value2)+1);	
 			snd_iprintf(buffer, "SPDIF Locked : %d\n", rate);
 		} else {
@@ -428,13 +440,18 @@ static void snd_emu_proc_emu1010_reg_read(struct snd_info_entry *entry,
 	struct snd_emu10k1 *emu = entry->private_data;
 	u32 value;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned long flags;
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	unsigned long flags;
+>>>>>>> 2617302... source
 	int i;
 	snd_iprintf(buffer, "EMU1010 Registers:\n\n");
 
 	for(i = 0; i < 0x40; i+=1) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		spin_lock_irqsave(&emu->emu_lock, flags);
 		snd_emu1010_fpga_read(emu, i, &value);
@@ -442,6 +459,11 @@ static void snd_emu_proc_emu1010_reg_read(struct snd_info_entry *entry,
 =======
 		snd_emu1010_fpga_read(emu, i, &value);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		spin_lock_irqsave(&emu->emu_lock, flags);
+		snd_emu1010_fpga_read(emu, i, &value);
+		spin_unlock_irqrestore(&emu->emu_lock, flags);
+>>>>>>> 2617302... source
 		snd_iprintf(buffer, "%02X: %08X, %02X\n", i, value, (value >> 8) & 0x7f);
 	}
 }

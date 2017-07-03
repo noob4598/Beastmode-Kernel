@@ -37,9 +37,12 @@ int propagate_mnt(struct mount *, struct mountpoint *, struct mount *,
 int propagate_umount(struct list_head *);
 int propagate_mount_busy(struct mount *, int);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 int propagate_remount(struct mount *);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 void mnt_release_group_id(struct mount *);
 int get_dominating_id(struct mount *mnt, const struct path *root);
 unsigned int mnt_get_count(struct mount *mnt);

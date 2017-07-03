@@ -286,10 +286,14 @@ void rds_cong_set_bit(struct rds_cong_map *map, __be16 port)
 	off = be16_to_cpu(port) % RDS_CONG_MAP_PAGE_BITS;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	__set_bit_le(off, (void *)map->m_page_addrs[i]);
 =======
 	set_bit_le(off, (void *)map->m_page_addrs[i]);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	__set_bit_le(off, (void *)map->m_page_addrs[i]);
+>>>>>>> 2617302... source
 }
 
 void rds_cong_clear_bit(struct rds_cong_map *map, __be16 port)
@@ -304,10 +308,14 @@ void rds_cong_clear_bit(struct rds_cong_map *map, __be16 port)
 	off = be16_to_cpu(port) % RDS_CONG_MAP_PAGE_BITS;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	__clear_bit_le(off, (void *)map->m_page_addrs[i]);
 =======
 	clear_bit_le(off, (void *)map->m_page_addrs[i]);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	__clear_bit_le(off, (void *)map->m_page_addrs[i]);
+>>>>>>> 2617302... source
 }
 
 static int rds_cong_test_bit(struct rds_cong_map *map, __be16 port)

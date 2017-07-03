@@ -874,6 +874,7 @@ static psmouse_ret_t alps_process_byte(struct psmouse *psmouse)
 	struct alps_data *priv = psmouse->private;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if ((psmouse->packet[0] & 0xc8) == 0x08) { /* PS/2 packet */
 =======
 	/*
@@ -884,6 +885,9 @@ static psmouse_ret_t alps_process_byte(struct psmouse *psmouse)
 	 */
 	if (!psmouse->out_of_sync_cnt && (psmouse->packet[0] & 0xc8) == 0x08) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if ((psmouse->packet[0] & 0xc8) == 0x08) { /* PS/2 packet */
+>>>>>>> 2617302... source
 		if (psmouse->pktcnt == 3) {
 			alps_report_bare_ps2_packet(psmouse, psmouse->packet,
 						    true);
@@ -1827,11 +1831,14 @@ int alps_init(struct psmouse *psmouse)
 	psmouse->resync_time = 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/* Allow 2 invalid packets without resetting device */
 	psmouse->resetafter = psmouse->pktsize * 2;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	return 0;
 
 init_fail:

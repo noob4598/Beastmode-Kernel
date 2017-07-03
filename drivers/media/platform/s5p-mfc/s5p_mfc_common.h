@@ -30,10 +30,14 @@
 /* Offset base used to differentiate between CAPTURE and OUTPUT
 *  while mmaping */
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define DST_QUEUE_OFF_BASE      (TASK_SIZE / 2)
 =======
 #define DST_QUEUE_OFF_BASE	(1 << 30)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+#define DST_QUEUE_OFF_BASE      (TASK_SIZE / 2)
+>>>>>>> 2617302... source
 
 #define MFC_BANK1_ALLOC_CTX	0
 #define MFC_BANK2_ALLOC_CTX	1

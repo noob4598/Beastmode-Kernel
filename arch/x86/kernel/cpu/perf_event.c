@@ -1253,10 +1253,14 @@ static int __kprobes
 perf_event_nmi_handler(unsigned int cmd, struct pt_regs *regs)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	if (!atomic_read(&active_events))
 		return NMI_DONE;
 
 	return x86_pmu.handle_irq(regs);
+<<<<<<< HEAD
 =======
 	int ret;
 	u64 start_clock;
@@ -1273,6 +1277,8 @@ perf_event_nmi_handler(unsigned int cmd, struct pt_regs *regs)
 
 	return ret;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 }
 
 struct event_constraint emptyconstraint;

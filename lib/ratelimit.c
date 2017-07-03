@@ -50,10 +50,14 @@ int ___ratelimit(struct ratelimit_state *rs, const char *func)
 			printk(KERN_WARNING "%s: %d callbacks suppressed\n",
 				func, rs->missed);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		rs->begin   = 0;
 =======
 		rs->begin   = jiffies;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		rs->begin   = 0;
+>>>>>>> 2617302... source
 		rs->printed = 0;
 		rs->missed  = 0;
 	}

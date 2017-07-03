@@ -976,6 +976,7 @@ unknown:
 	}
 	/* host either stalls (value < 0) or reports success */
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (value >= 0) {
 		req->length = value;
@@ -987,6 +988,8 @@ unknown:
 		}
 	}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	return value;
 }
 

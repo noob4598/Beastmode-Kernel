@@ -2371,10 +2371,14 @@ static int mdss_dsi_panel_on(struct mdss_panel_data *pdata)
 
 	pr_debug("mdss_dsi_panel_on DSI_MODE = %d ++\n",msd.pdata->panel_info.mipi.mode);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_info("%s: ctrl=%p ndx=%d\n", __func__, ctrl, ctrl->ndx);
 =======
 	pr_info("%s: ctrl=%pK ndx=%d\n", __func__, ctrl, ctrl->ndx);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	pr_info("%s: ctrl=%p ndx=%d\n", __func__, ctrl, ctrl->ndx);
+>>>>>>> 2617302... source
 
 	if (mdss_dsi_sync_wait_enable(ctrl)) {
 		if (ctrl->ndx == DSI_CTRL_0) {
@@ -2571,10 +2575,14 @@ static int mdss_dsi_panel_off(struct mdss_panel_data *pdata)
 	msd.mfd->resume_state = MIPI_SUSPEND_STATE;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_info("%s: ctrl=%p ndx=%d\n", __func__, ctrl, ctrl->ndx);
 =======
 	pr_info("%s: ctrl=%pK ndx=%d\n", __func__, ctrl, ctrl->ndx);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	pr_info("%s: ctrl=%p ndx=%d\n", __func__, ctrl, ctrl->ndx);
+>>>>>>> 2617302... source
 
 	if (mdss_dsi_sync_wait_enable(ctrl)) {
 		if (ctrl->ndx == DSI_CTRL_0) {
@@ -2611,10 +2619,14 @@ static int mdss_dsi_panel_low_power_config(struct mdss_panel_data *pdata,
 				panel_data);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_debug("%s: ctrl=%p ndx=%d enable=%d\n", __func__, ctrl, ctrl->ndx,
 =======
 	pr_debug("%s: ctrl=%pK ndx=%d enable=%d\n", __func__, ctrl, ctrl->ndx,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	pr_debug("%s: ctrl=%p ndx=%d enable=%d\n", __func__, ctrl, ctrl->ndx,
+>>>>>>> 2617302... source
 		enable);
 
 	/* Any panel specific low power commands/config */
@@ -4338,10 +4350,14 @@ static void load_tuning_file(char *filename)
 	if (IS_ERR(filp)) {
 		printk(KERN_ERR "%s File open failed\n", __func__);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return;
 =======
 		goto err;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		return;
+>>>>>>> 2617302... source
 	}
 
 	l = filp->f_path.dentry->d_inode->i_size;
@@ -4352,10 +4368,14 @@ static void load_tuning_file(char *filename)
 		pr_info("Can't not alloc memory for tuning file load\n");
 		filp_close(filp, current->files);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return;
 =======
 		goto err;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		return;
+>>>>>>> 2617302... source
 	}
 	pos = 0;
 	memset(dp, 0, l);
@@ -4369,10 +4389,14 @@ static void load_tuning_file(char *filename)
 		kfree(dp);
 		filp_close(filp, current->files);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return;
 =======
 		goto err;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		return;
+>>>>>>> 2617302... source
 	}
 
 	filp_close(filp, current->files);
@@ -4383,12 +4407,15 @@ static void load_tuning_file(char *filename)
 
 	kfree(dp);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 	return;
 err:
 	set_fs(fs);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 }
 
 int mdnie_adb_test;

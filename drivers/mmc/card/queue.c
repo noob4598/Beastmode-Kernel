@@ -19,9 +19,12 @@
 #include <linux/mmc/card.h>
 #include <linux/mmc/host.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <linux/sched/rt.h>
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 #include "queue.h"
 
 #define MMC_QUEUE_BOUNCESZ	65536
@@ -49,10 +52,14 @@ static int mmc_prep_request(struct request_queue *q, struct request *req)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (mq && mmc_card_removed(mq->card))
 =======
 	if (mq && (mmc_card_removed(mq->card) || mmc_access_rpmb(mq)))
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (mq && mmc_card_removed(mq->card))
+>>>>>>> 2617302... source
 		return BLKPREP_KILL;
 
 	req->cmd_flags |= REQ_DONTPREP;
@@ -67,6 +74,7 @@ static int mmc_queue_thread(void *d)
 	struct mmc_card *card = mq->card;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
         struct sched_param scheduler_params = {0};
         scheduler_params.sched_priority = 1;
@@ -74,6 +82,8 @@ static int mmc_queue_thread(void *d)
         sched_setscheduler(current, SCHED_FIFO, &scheduler_params);
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	current->flags |= PF_MEMALLOC;
 
 	down(&mq->thread_sem);

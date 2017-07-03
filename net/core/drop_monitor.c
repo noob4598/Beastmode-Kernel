@@ -81,9 +81,12 @@ static struct sk_buff *reset_per_cpu_data(struct per_cpu_dm_data *data)
 	struct sk_buff *skb;
 	unsigned long flags;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	void *msg_header;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	al = sizeof(struct net_dm_alert_msg);
 	al += dm_hit_limit * sizeof(struct net_dm_drop_point);
@@ -92,6 +95,9 @@ static struct sk_buff *reset_per_cpu_data(struct per_cpu_dm_data *data)
 	skb = genlmsg_new(al, GFP_KERNEL);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	if (skb) {
 		genlmsg_put(skb, 0, 0, &net_drop_monitor_family,
 				0, NET_DM_CMD_ALERT);
@@ -103,6 +109,7 @@ static struct sk_buff *reset_per_cpu_data(struct per_cpu_dm_data *data)
 		mod_timer(&data->send_timer, jiffies + HZ / 10);
 	}
 
+<<<<<<< HEAD
 =======
 	if (!skb)
 		goto err;
@@ -129,10 +136,13 @@ err:
 	mod_timer(&data->send_timer, jiffies + HZ / 10);
 out:
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	spin_lock_irqsave(&data->lock, flags);
 	swap(data->skb, skb);
 	spin_unlock_irqrestore(&data->lock, flags);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 	if (skb) {
@@ -143,6 +153,8 @@ out:
 	}
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	return skb;
 }
 

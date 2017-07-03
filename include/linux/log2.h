@@ -17,14 +17,20 @@
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
  * deal with unrepresentable constant logarithms
  */
 extern __attribute__((const, noreturn))
 int ____ilog2_NaN(void);
 
 /*
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
  * non-constant log of base 2 calculators
  * - the arch may override these in asm/bitops.h if they can be implemented
  *   more efficiently than using fls() and fls64()
@@ -89,10 +95,14 @@ unsigned long __rounddown_pow_of_two(unsigned long n)
 (						\
 	__builtin_constant_p(n) ? (		\
 <<<<<<< HEAD
+<<<<<<< HEAD
 		(n) < 1 ? ____ilog2_NaN() :	\
 =======
 		(n) < 2 ? 0 :			\
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		(n) < 1 ? ____ilog2_NaN() :	\
+>>>>>>> 2617302... source
 		(n) & (1ULL << 63) ? 63 :	\
 		(n) & (1ULL << 62) ? 62 :	\
 		(n) & (1ULL << 61) ? 61 :	\
@@ -156,13 +166,19 @@ unsigned long __rounddown_pow_of_two(unsigned long n)
 		(n) & (1ULL <<  3) ?  3 :	\
 		(n) & (1ULL <<  2) ?  2 :	\
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		(n) & (1ULL <<  1) ?  1 :	\
 		(n) & (1ULL <<  0) ?  0 :	\
 		____ilog2_NaN()			\
 				   ) :		\
+<<<<<<< HEAD
 =======
 		1 ) :				\
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	(sizeof(n) <= 4) ?			\
 	__ilog2_u32(n) :			\
 	__ilog2_u64(n)				\

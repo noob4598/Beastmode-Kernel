@@ -189,10 +189,13 @@ tgafb_check_var(struct fb_var_screeninfo *var, struct fb_info *info)
 	if (var->xres_virtual != var->xres || var->yres_virtual != var->yres)
 		return -EINVAL;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (var->xres * var->yres * (var->bits_per_pixel >> 3) > info->fix.smem_len)
 		return -EINVAL;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	if (var->nonstd)
 		return -EINVAL;
 	if (1000000000 / var->pixclock > TGA_PLL_MAX_FREQ)
@@ -274,9 +277,12 @@ tgafb_set_par(struct fb_info *info)
 	par->pll_freq = pll_freq = 1000000000 / info->var.pixclock;
 	par->bits_per_pixel = info->var.bits_per_pixel;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	info->fix.line_length = par->xres * (par->bits_per_pixel >> 3);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	tga_type = par->tga_type;
 
@@ -1324,9 +1330,12 @@ tgafb_init_fix(struct fb_info *info)
 	u8 tga_type = par->tga_type;
 	const char *tga_type_name = NULL;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	unsigned memory_size;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	switch (tga_type) {
 	case TGA_TYPE_8PLANE:
@@ -1335,9 +1344,12 @@ tgafb_init_fix(struct fb_info *info)
 		if (tga_bus_tc)
 			tga_type_name = "Digital ZLX-E1";
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		memory_size = 2097152;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		break;
 	case TGA_TYPE_24PLANE:
 		if (tga_bus_pci)
@@ -1345,15 +1357,19 @@ tgafb_init_fix(struct fb_info *info)
 		if (tga_bus_tc)
 			tga_type_name = "Digital ZLX-E2";
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		memory_size = 8388608;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		break;
 	case TGA_TYPE_24PLUSZ:
 		if (tga_bus_pci)
 			tga_type_name = "Digital ZLXp-E3";
 		if (tga_bus_tc)
 			tga_type_name = "Digital ZLX-E3";
+<<<<<<< HEAD
 <<<<<<< HEAD
 		break;
 	default:
@@ -1365,6 +1381,11 @@ tgafb_init_fix(struct fb_info *info)
 		tga_type_name = "Unknown";
 		memory_size = 16777216;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		break;
+	default:
+		tga_type_name = "Unknown";
+>>>>>>> 2617302... source
 		break;
 	}
 
@@ -1377,6 +1398,7 @@ tgafb_init_fix(struct fb_info *info)
 			    : FB_VISUAL_DIRECTCOLOR);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	info->fix.line_length = par->xres * (par->bits_per_pixel >> 3);
 	info->fix.smem_start = (size_t) par->tga_fb_base;
 	info->fix.smem_len = info->fix.line_length * par->yres;
@@ -1384,6 +1406,11 @@ tgafb_init_fix(struct fb_info *info)
 	info->fix.smem_start = (size_t) par->tga_fb_base;
 	info->fix.smem_len = memory_size;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	info->fix.line_length = par->xres * (par->bits_per_pixel >> 3);
+	info->fix.smem_start = (size_t) par->tga_fb_base;
+	info->fix.smem_len = info->fix.line_length * par->yres;
+>>>>>>> 2617302... source
 	info->fix.mmio_start = (size_t) par->tga_regs_base;
 	info->fix.mmio_len = 512;
 
@@ -1508,11 +1535,14 @@ static int tgafb_register(struct device *dev)
 		modedbsize_tga = 1;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 	tgafb_init_fix(info);
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	ret = fb_find_mode(&info->var, info,
 			   mode_option ? mode_option : mode_option_tga,
 			   modedb_tga, modedbsize_tga, NULL,
@@ -1531,9 +1561,13 @@ static int tgafb_register(struct device *dev)
 
 	tgafb_set_par(info);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	tgafb_init_fix(info);
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	tgafb_init_fix(info);
+>>>>>>> 2617302... source
 
 	if (register_framebuffer(info) < 0) {
 		printk(KERN_ERR "tgafb: Could not register framebuffer\n");

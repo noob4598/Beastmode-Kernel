@@ -34,12 +34,17 @@ typedef s32		compat_time_t;
 typedef s32		compat_clock_t;
 typedef s32		compat_pid_t;
 <<<<<<< HEAD
+<<<<<<< HEAD
 typedef u32		__compat_uid_t;
 typedef u32		__compat_gid_t;
 =======
 typedef u16		__compat_uid_t;
 typedef u16		__compat_gid_t;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+typedef u32		__compat_uid_t;
+typedef u32		__compat_gid_t;
+>>>>>>> 2617302... source
 typedef u16		__compat_uid16_t;
 typedef u16		__compat_gid16_t;
 typedef u32		__compat_uid32_t;

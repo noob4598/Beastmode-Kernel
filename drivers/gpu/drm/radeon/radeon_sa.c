@@ -350,6 +350,7 @@ int radeon_sa_bo_new(struct radeon_device *rdev,
 		} while (radeon_sa_bo_next_hole(sa_manager, fences, tries));
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		spin_unlock(&sa_manager->wq.lock);
 		r = radeon_fence_wait_any(rdev, fences, false);
 =======
@@ -363,6 +364,10 @@ int radeon_sa_bo_new(struct radeon_device *rdev,
 		for (i = 0; i < RADEON_NUM_RINGS; ++i)
 			radeon_fence_unref(&fences[i]);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		spin_unlock(&sa_manager->wq.lock);
+		r = radeon_fence_wait_any(rdev, fences, false);
+>>>>>>> 2617302... source
 		spin_lock(&sa_manager->wq.lock);
 		/* if we have nothing to wait for block */
 		if (r == -ENOENT && block) {

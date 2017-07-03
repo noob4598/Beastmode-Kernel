@@ -170,10 +170,14 @@ enum {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define MIN_TOUCH_LOW_LIMIT	1574400
 =======
 #define MIN_TOUCH_LOW_LIMIT	1497600
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+#define MIN_TOUCH_LOW_LIMIT	1574400
+>>>>>>> 2617302... source
 #define MIN_TOUCH_LIMIT		1728000
 #define MIN_TOUCH_HIGH_LIMIT	2457600
 #define MIN_CAMERA_LIMIT	998400
@@ -204,10 +208,14 @@ enum {
 int set_freq_limit(unsigned long id, unsigned int freq);
 #endif
 <<<<<<< HEAD
+<<<<<<< HEAD
 	
 =======
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	
+>>>>>>> 2617302... source
 /*********************************************************************
  *                      CPUFREQ DRIVER INTERFACE                     *
  *********************************************************************/
@@ -215,9 +223,13 @@ int set_freq_limit(unsigned long id, unsigned int freq);
 #define CPUFREQ_RELATION_L 0  /* lowest frequency at or above target */
 #define CPUFREQ_RELATION_H 1  /* highest frequency below or at target */
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define CPUFREQ_RELATION_C 2  /* closest frequency to target */
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+#define CPUFREQ_RELATION_C 2  /* closest frequency to target */
+>>>>>>> 2617302... source
 
 struct freq_attr {
 	struct attribute attr;
@@ -275,10 +287,15 @@ struct cpufreq_driver {
 
 	/* optional */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned int (*getavg)	(struct cpufreq_policy *policy,
                             unsigned int cpu);
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	unsigned int (*getavg)	(struct cpufreq_policy *policy,
+                            unsigned int cpu);
+>>>>>>> 2617302... source
 	int	(*bios_limit)	(int cpu, unsigned int *limit);
 
 	int	(*exit)		(struct cpufreq_policy *policy);
@@ -369,10 +386,15 @@ int cpufreq_unregister_notifier(struct notifier_block *nb, unsigned int list);
 void cpufreq_notify_transition(struct cpufreq_policy *policy,
 		struct cpufreq_freqs *freqs, unsigned int state);
 <<<<<<< HEAD
+<<<<<<< HEAD
 void cpufreq_notify_utilization(struct cpufreq_policy *policy,
                                 unsigned int load);
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+void cpufreq_notify_utilization(struct cpufreq_policy *policy,
+                                unsigned int load);
+>>>>>>> 2617302... source
 
 #else /* CONFIG_CPU_FREQ */
 static inline int cpufreq_register_notifier(struct notifier_block *nb,
@@ -455,10 +477,15 @@ int __cpufreq_driver_target(struct cpufreq_policy *policy,
 				   unsigned int target_freq,
 				   unsigned int relation);
 <<<<<<< HEAD
+<<<<<<< HEAD
 extern int __cpufreq_driver_getavg(struct cpufreq_policy *policy,
                                    unsigned int cpu);
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+extern int __cpufreq_driver_getavg(struct cpufreq_policy *policy,
+                                   unsigned int cpu);
+>>>>>>> 2617302... source
 int cpufreq_register_governor(struct cpufreq_governor *governor);
 void cpufreq_unregister_governor(struct cpufreq_governor *governor);
 

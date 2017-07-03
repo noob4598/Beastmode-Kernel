@@ -143,6 +143,7 @@ static void check_smt_enabled(void)
 		}
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 	/*
@@ -154,6 +155,8 @@ static void check_smt_enabled(void)
 	if (cpu_has_feature(CPU_FTR_HVMODE) && !cpu_has_feature(CPU_FTR_TM_COMP))
 		mtspr(SPRN_HFSCR, mfspr(SPRN_HFSCR) & ~HFSCR_TM);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 }
 
 /* Look for smt-enabled= cmdline option */

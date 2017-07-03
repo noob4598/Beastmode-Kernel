@@ -396,6 +396,7 @@ static int dwc3_omap_remove(struct platform_device *pdev)
 
 	dwc3_omap_disable_irqs(omap);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pm_runtime_put_sync(&pdev->dev);
 	pm_runtime_disable(&pdev->dev);
 	device_for_each_child(&pdev->dev, NULL, dwc3_omap_remove_core);
@@ -404,6 +405,11 @@ static int dwc3_omap_remove(struct platform_device *pdev)
 	pm_runtime_put_sync(&pdev->dev);
 	pm_runtime_disable(&pdev->dev);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	pm_runtime_put_sync(&pdev->dev);
+	pm_runtime_disable(&pdev->dev);
+	device_for_each_child(&pdev->dev, NULL, dwc3_omap_remove_core);
+>>>>>>> 2617302... source
 
 	return 0;
 }

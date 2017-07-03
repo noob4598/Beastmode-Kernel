@@ -27,6 +27,7 @@
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
  * Autoloaded crypto modules should only use a prefixed name to avoid allowing
  * arbitrary modules to be loaded. Loading from userspace may still need the
@@ -42,6 +43,8 @@
 
 /*
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
  * Algorithm masks and types.
  */
 #define CRYPTO_ALG_TYPE_MASK		0x0000000f
@@ -358,9 +361,12 @@ struct ablkcipher_tfm {
 	unsigned int ivsize;
 	unsigned int reqsize;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	bool has_setkey;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 };
 
 struct aead_tfm {
@@ -672,6 +678,7 @@ static inline int crypto_ablkcipher_setkey(struct crypto_ablkcipher *tfm,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 static inline bool crypto_ablkcipher_has_setkey(struct crypto_ablkcipher *tfm)
 {
@@ -681,6 +688,8 @@ static inline bool crypto_ablkcipher_has_setkey(struct crypto_ablkcipher *tfm)
 }
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 static inline struct crypto_ablkcipher *crypto_ablkcipher_reqtfm(
 	struct ablkcipher_request *req)
 {

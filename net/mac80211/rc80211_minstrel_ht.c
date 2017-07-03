@@ -455,10 +455,14 @@ minstrel_aggr_check(struct ieee80211_sta *pubsta, struct sk_buff *skb)
 		return;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ieee80211_start_tx_ba_session(pubsta, tid, 5000);
 =======
 	ieee80211_start_tx_ba_session(pubsta, tid, 0);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	ieee80211_start_tx_ba_session(pubsta, tid, 5000);
+>>>>>>> 2617302... source
 }
 
 static void

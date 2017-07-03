@@ -167,20 +167,30 @@ static int do_commit(struct ubifs_info *c)
 	if (err)
 		goto out;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	old_ltail_lnum = c->ltail_lnum;
 	err = ubifs_log_end_commit(c, new_ltail_lnum);
 	if (err)
 		goto out;
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	err = dbg_check_old_index(c, &zroot);
 	if (err)
 		goto out;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mutex_lock(&c->mst_mutex);
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	mutex_lock(&c->mst_mutex);
+>>>>>>> 2617302... source
 	c->mst_node->cmt_no      = cpu_to_le64(c->cmt_no);
 	c->mst_node->log_lnum    = cpu_to_le32(new_ltail_lnum);
 	c->mst_node->root_lnum   = cpu_to_le32(zroot.lnum);
@@ -210,6 +220,7 @@ static int do_commit(struct ubifs_info *c)
 	else
 		c->mst_node->flags &= ~cpu_to_le32(UBIFS_MST_NO_ORPHS);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	err = ubifs_write_master(c);
 	mutex_unlock(&c->mst_mutex);
 =======
@@ -217,6 +228,10 @@ static int do_commit(struct ubifs_info *c)
 	old_ltail_lnum = c->ltail_lnum;
 	err = ubifs_log_end_commit(c, new_ltail_lnum);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	err = ubifs_write_master(c);
+	mutex_unlock(&c->mst_mutex);
+>>>>>>> 2617302... source
 	if (err)
 		goto out;
 

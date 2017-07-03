@@ -256,9 +256,12 @@ static bool max98090_volatile_register(struct device *dev, unsigned int reg)
 {
 	switch (reg) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	case M98090_REG_SOFTWARE_RESET:
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	case M98090_REG_DEVICE_STATUS:
 	case M98090_REG_JACK_STATUS:
 	case M98090_REG_REVISION_ID:
@@ -1368,12 +1371,17 @@ static const struct snd_soc_dapm_route max98090_dapm_routes[] = {
 	{"STENR Mux", "Sidetone Right", "ADCR"},
 	{"STENR Mux", "Sidetone Right", "DMICR"},
 <<<<<<< HEAD
+<<<<<<< HEAD
 	{"DACL", "NULL", "STENL Mux"},
 	{"DACR", "NULL", "STENL Mux"},
 =======
 	{"DACL", NULL, "STENL Mux"},
 	{"DACR", NULL, "STENL Mux"},
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	{"DACL", "NULL", "STENL Mux"},
+	{"DACR", "NULL", "STENL Mux"},
+>>>>>>> 2617302... source
 
 	{"AIFINL", NULL, "SHDN"},
 	{"AIFINR", NULL, "SHDN"},
@@ -2243,10 +2251,14 @@ static int max98090_probe(struct snd_soc_codec *codec)
 	dev_dbg(codec->dev, "irq = %d\n", max98090->irq);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = request_threaded_irq(max98090->irq, NULL,
 =======
 	ret = devm_request_threaded_irq(codec->dev, max98090->irq, NULL,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	ret = request_threaded_irq(max98090->irq, NULL,
+>>>>>>> 2617302... source
 		max98090_interrupt, IRQF_TRIGGER_FALLING | IRQF_ONESHOT,
 		"max98090_interrupt", codec);
 	if (ret < 0) {
@@ -2357,10 +2369,13 @@ static int max98090_runtime_resume(struct device *dev)
 	regcache_cache_only(max98090->regmap, false);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	max98090_reset(max98090);
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	regcache_sync(max98090->regmap);
 
 	return 0;

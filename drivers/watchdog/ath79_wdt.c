@@ -21,9 +21,12 @@
 
 #include <linux/bitops.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <linux/delay.h>
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 #include <linux/errno.h>
 #include <linux/fs.h>
 #include <linux/init.h>
@@ -96,6 +99,7 @@ static inline void ath79_wdt_enable(void)
 {
 	ath79_wdt_keepalive();
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 	/*
@@ -107,6 +111,8 @@ static inline void ath79_wdt_enable(void)
 	udelay(2);
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	ath79_wdt_wr(WDOG_REG_CTRL, WDOG_CTRL_ACTION_FCR);
 	/* flush write */
 	ath79_wdt_rr(WDOG_REG_CTRL);

@@ -1215,12 +1215,17 @@ static const struct max1363_chip_info max1363_chip_info_tbl[] = {
 		.default_mode = s0to11,
 		.info = &max1238_info,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.channels = max1238_channels,
 		.num_channels = ARRAY_SIZE(max1238_channels),
 =======
 		.channels = max1038_channels,
 		.num_channels = ARRAY_SIZE(max1038_channels),
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		.channels = max1238_channels,
+		.num_channels = ARRAY_SIZE(max1238_channels),
+>>>>>>> 2617302... source
 	},
 	[max11605] = {
 		.bits = 8,
@@ -1230,12 +1235,17 @@ static const struct max1363_chip_info max1363_chip_info_tbl[] = {
 		.default_mode = s0to11,
 		.info = &max1238_info,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.channels = max1238_channels,
 		.num_channels = ARRAY_SIZE(max1238_channels),
 =======
 		.channels = max1038_channels,
 		.num_channels = ARRAY_SIZE(max1038_channels),
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		.channels = max1238_channels,
+		.num_channels = ARRAY_SIZE(max1238_channels),
+>>>>>>> 2617302... source
 	},
 	[max11606] = {
 		.bits = 10,
@@ -1285,12 +1295,17 @@ static const struct max1363_chip_info max1363_chip_info_tbl[] = {
 		.default_mode = s0to11,
 		.info = &max1238_info,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.channels = max1238_channels,
 		.num_channels = ARRAY_SIZE(max1238_channels),
 =======
 		.channels = max1138_channels,
 		.num_channels = ARRAY_SIZE(max1138_channels),
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		.channels = max1238_channels,
+		.num_channels = ARRAY_SIZE(max1238_channels),
+>>>>>>> 2617302... source
 	},
 	[max11611] = {
 		.bits = 10,
@@ -1300,12 +1315,17 @@ static const struct max1363_chip_info max1363_chip_info_tbl[] = {
 		.default_mode = s0to11,
 		.info = &max1238_info,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.channels = max1238_channels,
 		.num_channels = ARRAY_SIZE(max1238_channels),
 =======
 		.channels = max1138_channels,
 		.num_channels = ARRAY_SIZE(max1138_channels),
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		.channels = max1238_channels,
+		.num_channels = ARRAY_SIZE(max1238_channels),
+>>>>>>> 2617302... source
 	},
 	[max11612] = {
 		.bits = 12,

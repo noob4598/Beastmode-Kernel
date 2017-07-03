@@ -34,11 +34,14 @@ irqreturn_t qxl_irq_handler(DRM_IRQ_ARGS)
 	pending = xchg(&qdev->ram_header->int_pending, 0);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (!pending)
 		return IRQ_NONE;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	atomic_inc(&qdev->irq_received);
 
 	if (pending & QXL_INTERRUPT_DISPLAY) {

@@ -30,12 +30,15 @@ extern int poweroff_charging;
 #endif
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #ifdef CONFIG_POWERSUSPEND
 #include <linux/powersuspend.h>
 #endif
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 #if defined(CONFIG_SEC_LENTIS_PROJECT)
 #define CYPRESS_RECENT_BACK_REPORT_FW_VER 0x24
 #elif defined(CONFIG_SEC_KCCAT6_PROJECT)
@@ -257,10 +260,13 @@ struct cypress_touchkey_info {
 #ifdef CONFIG_HAS_EARLYSUSPEND	
 	struct early_suspend			early_suspend;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #elif defined(CONFIG_POWERSUSPEND)
 	struct power_suspend			power_suspend;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 #endif
 	char			phys[32];
 	unsigned char			keycode[NUM_OF_KEY];

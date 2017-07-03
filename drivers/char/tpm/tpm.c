@@ -534,17 +534,23 @@ int tpm_get_timeouts(struct tpm_chip *chip)
 {
 	struct tpm_cmd_t tpm_cmd;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	struct timeout_t *timeout_cap;
 	struct duration_t *duration_cap;
 	ssize_t rc;
 	u32 timeout;
 	unsigned int scale = 1;
+<<<<<<< HEAD
 =======
 	unsigned long new_timeout[4];
 	unsigned long old_timeout[4];
 	struct duration_t *duration_cap;
 	ssize_t rc;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	tpm_cmd.header.in = tpm_getcap_header;
 	tpm_cmd.params.getcap_in.cap = TPM_CAP_PROP;
@@ -579,6 +585,9 @@ int tpm_get_timeouts(struct tpm_chip *chip)
 		return -EINVAL;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	timeout_cap = &tpm_cmd.params.getcap_out.cap.timeout;
 	/* Don't overwrite default if value is 0 */
 	timeout = be32_to_cpu(timeout_cap->a);
@@ -598,6 +607,7 @@ int tpm_get_timeouts(struct tpm_chip *chip)
 	timeout = be32_to_cpu(timeout_cap->d);
 	if (timeout)
 		chip->vendor.timeout_d = usecs_to_jiffies(timeout * scale);
+<<<<<<< HEAD
 =======
 	old_timeout[0] = be32_to_cpu(tpm_cmd.params.getcap_out.cap.timeout.a);
 	old_timeout[1] = be32_to_cpu(tpm_cmd.params.getcap_out.cap.timeout.b);
@@ -640,6 +650,8 @@ int tpm_get_timeouts(struct tpm_chip *chip)
 	chip->vendor.timeout_c = usecs_to_jiffies(new_timeout[2]);
 	chip->vendor.timeout_d = usecs_to_jiffies(new_timeout[3]);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 duration:
 	tpm_cmd.header.in = tpm_getcap_header;
@@ -1474,21 +1486,30 @@ int tpm_get_random(u32 chip_num, u8 *out, size_t max)
 	u8 *dest = out;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (!out || !num_bytes || max > TPM_MAX_RNG_DATA)
 		return -EINVAL;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	chip = tpm_chip_find_get(chip_num);
 	if (chip == NULL)
 		return -ENODEV;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (!out || !num_bytes || max > TPM_MAX_RNG_DATA)
 		return -EINVAL;
 
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (!out || !num_bytes || max > TPM_MAX_RNG_DATA)
+		return -EINVAL;
+
+>>>>>>> 2617302... source
 	do {
 		tpm_cmd.header.in = tpm_getrandom_header;
 		tpm_cmd.params.getrandom_in.num_bytes = cpu_to_be32(num_bytes);
@@ -1508,9 +1529,12 @@ int tpm_get_random(u32 chip_num, u8 *out, size_t max)
 	} while (retries-- && total < max);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	tpm_chip_put(chip);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	return total ? total : -EIO;
 }
 EXPORT_SYMBOL_GPL(tpm_get_random);

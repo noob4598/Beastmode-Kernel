@@ -89,6 +89,7 @@ test_delete()
 	fi
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	rm $file
 =======
 	rm $file 2>/dev/null
@@ -97,6 +98,9 @@ test_delete()
 		rm $file
 	fi
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	rm $file
+>>>>>>> 2617302... source
 
 	if [ -e $file ]; then
 		echo "$file couldn't be deleted" >&2
@@ -120,9 +124,12 @@ test_zero_size_delete()
 	fi
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	chattr -i $file
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	printf "$attrs" > $file
 
 	if [ -e $file ]; then
@@ -154,6 +161,7 @@ test_valid_filenames()
 			ret=1
 		else
 <<<<<<< HEAD
+<<<<<<< HEAD
 			rm $file
 =======
 			rm $file 2>/dev/null
@@ -162,6 +170,9 @@ test_valid_filenames()
 				rm $file
 			fi
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			rm $file
+>>>>>>> 2617302... source
 		fi
 	done
 
@@ -195,6 +206,7 @@ test_invalid_filenames()
 		if [ -e $file ]; then
 			echo "Creating $file should have failed" >&2
 <<<<<<< HEAD
+<<<<<<< HEAD
 			rm $file
 =======
 			rm $file 2>/dev/null
@@ -203,6 +215,9 @@ test_invalid_filenames()
 				rm $file
 			fi
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			rm $file
+>>>>>>> 2617302... source
 			ret=1
 		fi
 	done

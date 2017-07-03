@@ -141,9 +141,12 @@ struct sock *dccp_create_openreq_child(struct sock *sk,
 			 * destructor and make plain sk_free() */
 			newsk->sk_destruct = NULL;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 			bh_unlock_sock(newsk);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 			sk_free(newsk);
 			return NULL;
 		}

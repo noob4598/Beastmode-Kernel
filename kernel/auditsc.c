@@ -71,9 +71,12 @@
 #include <linux/ctype.h>
 #include <asm/unistd.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <linux/uaccess.h>
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 #include "audit.h"
 
@@ -83,11 +86,15 @@
 #define AUDITSC_FAILURE 2
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* no execve audit message should be longer than this (userspace limits) */
 =======
 /* no execve audit message should be longer than this (userspace limits),
  * see the note near the top of audit_log_execve_info() about this value */
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+/* no execve audit message should be longer than this (userspace limits) */
+>>>>>>> 2617302... source
 #define MAX_EXECVE_AUDIT_LEN 7500
 
 /* max length to print of cmdline/proctitle value during audit */
@@ -748,10 +755,14 @@ static enum audit_state audit_filter_task(struct task_struct *tsk, char **key)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static bool audit_in_mask(const struct audit_krule *rule, unsigned long val)
 =======
 static int audit_in_mask(const struct audit_krule *rule, unsigned long val)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+static bool audit_in_mask(const struct audit_krule *rule, unsigned long val)
+>>>>>>> 2617302... source
 {
 	int word, bit;
 
@@ -1037,6 +1048,9 @@ static int audit_log_pid_context(struct audit_context *context, pid_t pid,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 /*
  * to_send and len_sent accounting are very loose estimates.  We aren't
  * really worried about a hard cap to MAX_EXECVE_AUDIT_LEN so much as being
@@ -1184,17 +1198,24 @@ static int audit_log_single_execve_arg(struct audit_context *context,
 	return len + 1;
 }
 
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 static void audit_log_execve_info(struct audit_context *context,
 				  struct audit_buffer **ab,
 				  struct audit_aux_data_execve *axi)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	int i, len;
 	size_t len_sent = 0;
 	const char __user *p;
 	char *buf;
+<<<<<<< HEAD
 =======
 	long len_max;
 	long len_rem;
@@ -1215,6 +1236,8 @@ static void audit_log_execve_info(struct audit_context *context,
 	 *       code below) ... at this point in time 96 is plenty */
 	char abuf[96];
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	if (axi->mm != current->mm)
 		return; /* execve failed, no additional info */
@@ -1222,6 +1245,9 @@ static void audit_log_execve_info(struct audit_context *context,
 	p = (const char __user *)axi->mm->arg_start;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	audit_log_format(*ab, "argc=%d", axi->argc);
 
 	/*
@@ -1244,6 +1270,7 @@ static void audit_log_execve_info(struct audit_context *context,
 		p += len;
 	}
 	kfree(buf);
+<<<<<<< HEAD
 =======
 	/* NOTE: we set MAX_EXECVE_AUDIT_LEN to a rather arbitrary limit, the
 	 *       current value of 7500 is not as important as the fact that it
@@ -1396,6 +1423,8 @@ static void audit_log_execve_info(struct audit_context *context,
 out:
 	kfree(buf_head);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 }
 
 static void show_special(struct audit_context *context, int *call_panic)

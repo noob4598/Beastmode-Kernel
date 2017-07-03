@@ -999,6 +999,7 @@ acpi_ut_copy_iobject_to_iobject(union acpi_operand_object *source_desc,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/* Delete the allocated object if copy failed */
 
@@ -1007,5 +1008,7 @@ acpi_ut_copy_iobject_to_iobject(union acpi_operand_object *source_desc,
 	}
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	return_ACPI_STATUS(status);
 }

@@ -139,11 +139,17 @@ irqreturn_t mdss_mdp_isr(int irq, void *ptr)
 
 	mask = readl_relaxed(mdata->mdp_base + MDSS_MDP_REG_INTR_EN);
 <<<<<<< HEAD
+<<<<<<< HEAD
 #if 0 //defined (CONFIG_FB_MSM_MDSS_DSI_DBG)
 	xlog(__func__, isr , mask, 0, 0, 0, 0);
 #endif
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+#if 0 //defined (CONFIG_FB_MSM_MDSS_DSI_DBG)
+	xlog(__func__, isr , mask, 0, 0, 0, 0);
+#endif
+>>>>>>> 2617302... source
 	writel_relaxed(isr, mdata->mdp_base + MDSS_MDP_REG_INTR_CLEAR);
 
 	pr_debug("%s: isr=%x mask=%x\n", __func__, isr, mask);
@@ -501,10 +507,14 @@ static int mdss_mdp_put_img(struct mdss_mdp_img_data *data)
 		data->srcp_file = NULL;
 	} else if (!IS_ERR_OR_NULL(data->srcp_ihdl)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_debug("ion hdl=%p buf=0x%pa\n", data->srcp_ihdl,
 =======
 		pr_debug("ion hdl=%pK buf=0x%pa\n", data->srcp_ihdl,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		pr_debug("ion hdl=%p buf=0x%pa\n", data->srcp_ihdl,
+>>>>>>> 2617302... source
 							&data->addr);
 		if (!iclient) {
 			pr_err("invalid ion client\n");
@@ -601,6 +611,7 @@ static int mdss_mdp_get_img(struct msmfb_data *img,
 		data->len -= data->offset;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_debug("mem=%d ihdl=%p buf=0x%pa len=0x%lu\n", img->memory_id,
 			 data->srcp_ihdl, &data->addr, data->len);
 =======
@@ -608,6 +619,10 @@ static int mdss_mdp_get_img(struct msmfb_data *img,
 			 img->memory_id, data->srcp_ihdl, &data->addr,
 			 data->len);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		pr_debug("mem=%d ihdl=%p buf=0x%pa len=0x%lu\n", img->memory_id,
+			 data->srcp_ihdl, &data->addr, data->len);
+>>>>>>> 2617302... source
 	} else {
 		mdss_mdp_put_img(data);
 		return ret ? : -EOVERFLOW;
@@ -673,10 +688,14 @@ static int mdss_mdp_map_buffer(struct mdss_mdp_img_data *data)
 		data->len -= data->offset;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_debug("ihdl=%p buf=0x%pa len=0x%lu\n",
 =======
 		pr_debug("ihdl=%pK buf=0x%pa len=0x%lx\n",
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		pr_debug("ihdl=%p buf=0x%pa len=0x%lu\n",
+>>>>>>> 2617302... source
 			 data->srcp_ihdl, &data->addr, data->len);
 	} else {
 		mdss_mdp_put_img(data);

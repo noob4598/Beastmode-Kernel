@@ -24,6 +24,7 @@
 #include "audio_utils.h"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 /*
  * Define maximum buffer size. Below values are chosen considering the higher
@@ -35,6 +36,8 @@
 #define MAX_BUFFER_SIZE	(1 + ((MAX_FRAME_SIZE + META_SIZE) * MAX_FRAMES))
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 static int audio_in_pause(struct q6audio_in  *audio)
 {
 	int rc;
@@ -271,12 +274,15 @@ long audio_in_ioctl(struct file *file,
 			break;
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		if (cfg.buffer_size > MAX_BUFFER_SIZE) {
 			rc = -EINVAL;
 			break;
 		}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		audio->str_cfg.buffer_size = cfg.buffer_size;
 		audio->str_cfg.buffer_count = cfg.buffer_count;
 		if (audio->opened) {

@@ -404,10 +404,14 @@ int msm_sensor_power_down(struct msm_sensor_ctrl_t *s_ctrl)
 
 	if (!s_ctrl) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("%s:%d failed: s_ctrl %p\n",
 =======
 		pr_err("%s:%d failed: s_ctrl %pK\n",
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		pr_err("%s:%d failed: s_ctrl %p\n",
+>>>>>>> 2617302... source
 			__func__, __LINE__, s_ctrl);
 		return -EINVAL;
 	}
@@ -418,10 +422,14 @@ int msm_sensor_power_down(struct msm_sensor_ctrl_t *s_ctrl)
 
 	if (!power_info || !sensor_i2c_client) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("%s:%d failed: power_info %p sensor_i2c_client %p\n",
 =======
 		pr_err("%s:%d failed: power_info %pK sensor_i2c_client %pK\n",
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		pr_err("%s:%d failed: power_info %p sensor_i2c_client %p\n",
+>>>>>>> 2617302... source
 			__func__, __LINE__, power_info, sensor_i2c_client);
 		return -EINVAL;
 	}
@@ -451,10 +459,14 @@ int msm_sensor_power_up(struct msm_sensor_ctrl_t *s_ctrl)
 
 	if (!s_ctrl) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("%s:%d failed: %p\n",
 =======
 		pr_err("%s:%d failed: %pK\n",
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		pr_err("%s:%d failed: %p\n",
+>>>>>>> 2617302... source
 			__func__, __LINE__, s_ctrl);
 		return -EINVAL;
 	}
@@ -467,10 +479,14 @@ int msm_sensor_power_up(struct msm_sensor_ctrl_t *s_ctrl)
 	if (!power_info || !sensor_i2c_client || !slave_info ||
 		!sensor_name) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("%s:%d failed: %p %p %p %p\n",
 =======
 		pr_err("%s:%d failed: %pK %pK %pK %pK\n",
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		pr_err("%s:%d failed: %p %p %p %p\n",
+>>>>>>> 2617302... source
 			__func__, __LINE__, power_info,
 			sensor_i2c_client, slave_info, sensor_name);
 		return -EINVAL;
@@ -509,10 +525,14 @@ int msm_sensor_match_id(struct msm_sensor_ctrl_t *s_ctrl)
 
 	if (!s_ctrl) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("%s:%d failed: %p\n",
 =======
 		pr_err("%s:%d failed: %pK\n",
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		pr_err("%s:%d failed: %p\n",
+>>>>>>> 2617302... source
 			__func__, __LINE__, s_ctrl);
 		return -EINVAL;
 	}
@@ -522,10 +542,14 @@ int msm_sensor_match_id(struct msm_sensor_ctrl_t *s_ctrl)
 
 	if (!sensor_i2c_client || !slave_info || !sensor_name) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("%s:%d failed: %p %p %p\n",
 =======
 		pr_err("%s:%d failed: %pK %pK %pK\n",
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		pr_err("%s:%d failed: %p %p %p\n",
+>>>>>>> 2617302... source
 			__func__, __LINE__, sensor_i2c_client, slave_info,
 			sensor_name);
 		return -EINVAL;
@@ -604,10 +628,14 @@ static long msm_sensor_subdev_ioctl(struct v4l2_subdev *sd,
 		return msm_sensor_get_af_status(s_ctrl, argp);
 	case VIDIOC_MSM_SENSOR_RELEASE:
 <<<<<<< HEAD
+<<<<<<< HEAD
     	pr_warn("%s : msm_sensor_stop_stream", __func__);
 =======
 		pr_warn("%s : msm_sensor_stop_stream", __func__);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+    	pr_warn("%s : msm_sensor_stop_stream", __func__);
+>>>>>>> 2617302... source
 		msm_sensor_stop_stream(s_ctrl);
 		return 0;
 	case MSM_SD_SHUTDOWN:
@@ -1384,10 +1412,14 @@ int32_t msm_sensor_platform_probe(struct platform_device *pdev,
 	s_ctrl->pdev = pdev;
 	s_ctrl->dev = &pdev->dev;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	CDBG("%s called data %p\n", __func__, data);
 =======
 	CDBG("%s called data %pK\n", __func__, data);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	CDBG("%s called data %p\n", __func__, data);
+>>>>>>> 2617302... source
 	CDBG("%s pdev name %s\n", __func__, pdev->id_entry->name);
 
 	if (pdev->dev.of_node) {
@@ -1609,20 +1641,28 @@ int32_t msm_sensor_init_default_params(struct msm_sensor_ctrl_t *s_ctrl)
 	/* Validate input parameters */
 	if (!s_ctrl) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("%s:%d failed: invalid params s_ctrl %p\n", __func__,
 =======
 		pr_err("%s:%d failed: invalid params s_ctrl %pK\n", __func__,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		pr_err("%s:%d failed: invalid params s_ctrl %p\n", __func__,
+>>>>>>> 2617302... source
 			__LINE__, s_ctrl);
 		return -EINVAL;
 	}
 
 	if (!s_ctrl->sensor_i2c_client) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("%s:%d failed: invalid params sensor_i2c_client %p\n",
 =======
 		pr_err("%s:%d failed: invalid params sensor_i2c_client %pK\n",
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		pr_err("%s:%d failed: invalid params sensor_i2c_client %p\n",
+>>>>>>> 2617302... source
 			__func__, __LINE__, s_ctrl->sensor_i2c_client);
 		return -EINVAL;
 	}
@@ -1632,10 +1672,14 @@ int32_t msm_sensor_init_default_params(struct msm_sensor_ctrl_t *s_ctrl)
 		struct msm_camera_cci_client), GFP_KERNEL);
 	if (!s_ctrl->sensor_i2c_client->cci_client) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("%s:%d failed: no memory cci_client %p\n", __func__,
 =======
 		pr_err("%s:%d failed: no memory cci_client %pK\n", __func__,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		pr_err("%s:%d failed: no memory cci_client %p\n", __func__,
+>>>>>>> 2617302... source
 			__LINE__, s_ctrl->sensor_i2c_client->cci_client);
 		return -ENOMEM;
 	}
@@ -1670,10 +1714,14 @@ int32_t msm_sensor_init_default_params(struct msm_sensor_ctrl_t *s_ctrl)
 	clk_info = kzalloc(sizeof(cam_8974_clk_info), GFP_KERNEL);
 	if (!clk_info) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("%s:%d failed no memory clk_info %p\n", __func__,
 =======
 		pr_err("%s:%d failed no memory clk_info %pK\n", __func__,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		pr_err("%s:%d failed no memory clk_info %p\n", __func__,
+>>>>>>> 2617302... source
 			__LINE__, clk_info);
 		rc = -ENOMEM;
 		goto FREE_CCI_CLIENT;

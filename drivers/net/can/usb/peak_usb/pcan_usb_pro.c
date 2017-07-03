@@ -334,10 +334,15 @@ static int pcan_usb_pro_send_req(struct peak_usb_device *dev, int req_id,
 		return 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	memset(req_addr, '\0', req_size);
 
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	memset(req_addr, '\0', req_size);
+
+>>>>>>> 2617302... source
 	req_type = USB_TYPE_VENDOR | USB_RECIP_OTHER;
 
 	switch (req_id) {
@@ -349,9 +354,12 @@ static int pcan_usb_pro_send_req(struct peak_usb_device *dev, int req_id,
 		p = usb_rcvctrlpipe(dev->udev, 0);
 		req_type |= USB_DIR_IN;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		memset(req_addr, '\0', req_size);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		break;
 	}
 

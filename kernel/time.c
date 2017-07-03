@@ -196,12 +196,15 @@ SYSCALL_DEFINE2(settimeofday, struct timeval __user *, tv,
 		if (copy_from_user(&user_tv, tv, sizeof(*tv)))
 			return -EFAULT;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 		if (!timeval_valid(&user_tv))
 			return -EINVAL;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		new_ts.tv_sec = user_tv.tv_sec;
 		new_ts.tv_nsec = user_tv.tv_usec * NSEC_PER_USEC;
 	}
@@ -528,10 +531,14 @@ __timespec_to_jiffies(unsigned long sec, long nsec)
 
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 unsigned long
 timespec_to_jiffies(const struct timespec *value)
 {
  return __timespec_to_jiffies(value->tv_sec, value->tv_nsec);
+<<<<<<< HEAD
 =======
 
 unsigned long
@@ -539,6 +546,8 @@ timespec_to_jiffies(const struct timespec *value)
 {
 	return __timespec_to_jiffies(value->tv_sec, value->tv_nsec);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 }
 
 EXPORT_SYMBOL(timespec_to_jiffies);
@@ -578,10 +587,14 @@ timeval_to_jiffies(const struct timeval *value)
 {
 	return __timespec_to_jiffies(value->tv_sec,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				value->tv_usec * NSEC_PER_USEC);
 =======
 				     value->tv_usec * NSEC_PER_USEC);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+				value->tv_usec * NSEC_PER_USEC);
+>>>>>>> 2617302... source
 }
 EXPORT_SYMBOL(timeval_to_jiffies);
 

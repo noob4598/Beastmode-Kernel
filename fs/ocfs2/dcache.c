@@ -173,10 +173,14 @@ struct dentry *ocfs2_find_local_alias(struct inode *inode,
 
 	spin_lock(&inode->i_lock);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	hlist_for_each_entry(dentry, &inode->i_dentry, d_alias) {
 =======
 	hlist_for_each_entry(dentry, &inode->i_dentry, d_u.d_alias) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	hlist_for_each_entry(dentry, &inode->i_dentry, d_alias) {
+>>>>>>> 2617302... source
 		spin_lock(&dentry->d_lock);
 		if (ocfs2_match_dentry(dentry, parent_blkno, skip_unhashed)) {
 			trace_ocfs2_find_local_alias(dentry->d_name.len,

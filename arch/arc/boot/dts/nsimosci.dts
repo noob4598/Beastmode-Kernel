@@ -21,10 +21,14 @@
 		/* bootargs = "console=tty0 consoleblank=0"; */
 		/* this is for console on serial */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		bootargs = "earlycon=uart8250,mmio32,0xc0000000,115200n8 console=ttyS0,115200n8 consoleblank=0 debug";
 =======
 		bootargs = "earlycon=uart8250,mmio32,0xf0000000,115200n8 console=tty0 console=ttyS0,115200n8 consoleblank=0 debug";
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		bootargs = "earlycon=uart8250,mmio32,0xc0000000,115200n8 console=ttyS0,115200n8 consoleblank=0 debug";
+>>>>>>> 2617302... source
 	};
 
 	aliases {
@@ -51,6 +55,7 @@
 		};
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		uart0: serial@c0000000 {
 			compatible = "ns8250";
 			reg = <0xc0000000 0x2000>;
@@ -59,6 +64,11 @@
 			compatible = "ns8250";
 			reg = <0xf0000000 0x2000>;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		uart0: serial@c0000000 {
+			compatible = "ns8250";
+			reg = <0xc0000000 0x2000>;
+>>>>>>> 2617302... source
 			interrupts = <11>;
 			clock-frequency = <3686400>;
 			baud = <115200>;
@@ -68,6 +78,9 @@
 		};
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		pgu0: pgu@c9000000 {
 			compatible = "snps,arcpgufb";
 			reg = <0xc9000000 0x400>;
@@ -76,6 +89,7 @@
 		ps2: ps2@c9001000 {
 			compatible = "snps,arc_ps2";
 			reg = <0xc9000400 0x14>;
+<<<<<<< HEAD
 =======
 		pgu0: pgu@f9000000 {
 			compatible = "snps,arcpgufb";
@@ -86,10 +100,13 @@
 			compatible = "snps,arc_ps2";
 			reg = <0xf9000400 0x14>;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 			interrupts = <13>;
 			interrupt-names = "arc_ps2_irq";
 		};
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 		eth0: ethernet@c0003000 {
 			compatible = "snps,oscilan";
@@ -99,6 +116,11 @@
 			compatible = "snps,oscilan";
 			reg = <0xf0003000 0x44>;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		eth0: ethernet@c0003000 {
+			compatible = "snps,oscilan";
+			reg = <0xc0003000 0x44>;
+>>>>>>> 2617302... source
 			interrupts = <7>, <8>;
 			interrupt-names = "rx", "tx";
 		};

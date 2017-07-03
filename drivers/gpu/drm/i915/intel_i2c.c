@@ -277,12 +277,16 @@ gmbus_wait_idle(struct drm_i915_private *dev_priv)
 
 static int
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 gmbus_xfer_read(struct drm_i915_private *dev_priv, struct i2c_msg *msg,
 		u32 gmbus1_index)
 {
 	int reg_offset = dev_priv->gpio_mmio_base;
 	u16 len = msg->len;
 	u8 *buf = msg->buf;
+<<<<<<< HEAD
 =======
 gmbus_xfer_read_chunk(struct drm_i915_private *dev_priv,
 		      unsigned short addr, u8 *buf, unsigned int len,
@@ -290,16 +294,22 @@ gmbus_xfer_read_chunk(struct drm_i915_private *dev_priv,
 {
 	int reg_offset = dev_priv->gpio_mmio_base;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	I915_WRITE(GMBUS1 + reg_offset,
 		   gmbus1_index |
 		   GMBUS_CYCLE_WAIT |
 		   (len << GMBUS_BYTE_COUNT_SHIFT) |
 <<<<<<< HEAD
+<<<<<<< HEAD
 		   (msg->addr << GMBUS_SLAVE_ADDR_SHIFT) |
 =======
 		   (addr << GMBUS_SLAVE_ADDR_SHIFT) |
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		   (msg->addr << GMBUS_SLAVE_ADDR_SHIFT) |
+>>>>>>> 2617302... source
 		   GMBUS_SLAVE_READ | GMBUS_SW_RDY);
 	while (len) {
 		int ret;
@@ -322,11 +332,15 @@ gmbus_xfer_read_chunk(struct drm_i915_private *dev_priv,
 
 static int
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 gmbus_xfer_write(struct drm_i915_private *dev_priv, struct i2c_msg *msg)
 {
 	int reg_offset = dev_priv->gpio_mmio_base;
 	u16 len = msg->len;
 	u8 *buf = msg->buf;
+<<<<<<< HEAD
 =======
 gmbus_xfer_read(struct drm_i915_private *dev_priv, struct i2c_msg *msg,
 		u32 gmbus1_index)
@@ -358,6 +372,8 @@ gmbus_xfer_write_chunk(struct drm_i915_private *dev_priv,
 	int reg_offset = dev_priv->gpio_mmio_base;
 	unsigned int chunk_size = len;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	u32 val, loop;
 
 	val = loop = 0;
@@ -370,12 +386,17 @@ gmbus_xfer_write_chunk(struct drm_i915_private *dev_priv,
 	I915_WRITE(GMBUS1 + reg_offset,
 		   GMBUS_CYCLE_WAIT |
 <<<<<<< HEAD
+<<<<<<< HEAD
 		   (msg->len << GMBUS_BYTE_COUNT_SHIFT) |
 		   (msg->addr << GMBUS_SLAVE_ADDR_SHIFT) |
 =======
 		   (chunk_size << GMBUS_BYTE_COUNT_SHIFT) |
 		   (addr << GMBUS_SLAVE_ADDR_SHIFT) |
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		   (msg->len << GMBUS_BYTE_COUNT_SHIFT) |
+		   (msg->addr << GMBUS_SLAVE_ADDR_SHIFT) |
+>>>>>>> 2617302... source
 		   GMBUS_SLAVE_WRITE | GMBUS_SW_RDY);
 	while (len) {
 		int ret;
@@ -392,6 +413,7 @@ gmbus_xfer_write_chunk(struct drm_i915_private *dev_priv,
 		if (ret)
 			return ret;
 	}
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 
@@ -418,6 +440,8 @@ gmbus_xfer_write(struct drm_i915_private *dev_priv, struct i2c_msg *msg)
 	} while (tx_size != 0);
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	return 0;
 }
 
@@ -471,10 +495,14 @@ gmbus_xfer(struct i2c_adapter *adapter,
 					       adapter);
 	struct drm_i915_private *dev_priv = bus->dev_priv;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int i, reg_offset;
 =======
 	int i = 0, inc, try = 0, reg_offset;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	int i, reg_offset;
+>>>>>>> 2617302... source
 	int ret = 0;
 
 	mutex_lock(&dev_priv->gmbus_mutex);
@@ -487,12 +515,16 @@ gmbus_xfer(struct i2c_adapter *adapter,
 	reg_offset = dev_priv->gpio_mmio_base;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	I915_WRITE(GMBUS0 + reg_offset, bus->reg0);
 
 	for (i = 0; i < num; i++) {
 		if (gmbus_is_index_read(msgs, i, num)) {
 			ret = gmbus_xfer_index_read(dev_priv, &msgs[i]);
 			i += 1;  /* set i to the index of the read xfer */
+<<<<<<< HEAD
 =======
 retry:
 	I915_WRITE(GMBUS0 + reg_offset, bus->reg0);
@@ -503,6 +535,8 @@ retry:
 			ret = gmbus_xfer_index_read(dev_priv, &msgs[i]);
 			inc = 2; /* an index read is two msgs */
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		} else if (msgs[i].flags & I2C_M_RD) {
 			ret = gmbus_xfer_read(dev_priv, &msgs[i], 0);
 		} else {
@@ -575,6 +609,7 @@ clear_err:
 			 (msgs[i].flags & I2C_M_RD) ? 'r' : 'w', msgs[i].len);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/*
 	 * Passive adapters sometimes NAK the first probe. Retry the first
@@ -589,6 +624,8 @@ clear_err:
 	}
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	goto out;
 
 timeout:

@@ -545,14 +545,20 @@ static int newseg(struct ipc_namespace *ns, struct ipc_params *params)
 		goto no_file;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	id = ipc_addid(&shm_ids(ns), &shp->shm_perm, ns->shm_ctlmni);
 	if (id < 0) {
 		error = id;
 		goto no_id;
 	}
 
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	shp->shm_cprid = task_tgid_vnr(current);
 	shp->shm_lprid = 0;
 	shp->shm_atim = shp->shm_dtim = 0;
@@ -563,6 +569,7 @@ static int newseg(struct ipc_namespace *ns, struct ipc_params *params)
 	shp->shm_creator = current;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	id = ipc_addid(&shm_ids(ns), &shp->shm_perm, ns->shm_ctlmni);
 	if (id < 0) {
@@ -571,6 +578,8 @@ static int newseg(struct ipc_namespace *ns, struct ipc_params *params)
 	}
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	/*
 	 * shmid gets reported as "inode#" in /proc/pid/maps.
 	 * proc-ps tools use this. Changing this will break them.
@@ -1054,12 +1063,17 @@ out_unlock1:
  * this.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 long do_shmat(int shmid, char __user *shmaddr, int shmflg, ulong *raddr,
 	      unsigned long shmlba)
 =======
 long do_shmat(int shmid, char __user *shmaddr, int shmflg,
 	      ulong *raddr, unsigned long shmlba)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+long do_shmat(int shmid, char __user *shmaddr, int shmflg, ulong *raddr,
+	      unsigned long shmlba)
+>>>>>>> 2617302... source
 {
 	struct shmid_kernel *shp;
 	unsigned long addr;
@@ -1081,6 +1095,7 @@ long do_shmat(int shmid, char __user *shmaddr, int shmflg,
 	else if ((addr = (ulong)shmaddr)) {
 		if (addr & (shmlba - 1)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (shmflg & SHM_RND)
 				addr &= ~(shmlba - 1);	   /* round down */
 =======
@@ -1092,6 +1107,10 @@ long do_shmat(int shmid, char __user *shmaddr, int shmflg,
 			if ((shmflg & SHM_RND) && addr >= shmlba)
 				addr &= ~(shmlba - 1);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			if (shmflg & SHM_RND)
+				addr &= ~(shmlba - 1);	   /* round down */
+>>>>>>> 2617302... source
 			else
 #ifndef __ARCH_FORCE_SHMLBA
 				if (addr & ~PAGE_MASK)

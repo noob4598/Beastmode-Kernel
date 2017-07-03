@@ -7,9 +7,12 @@
 #include <linux/kthread.h>
 #include <linux/net.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <linux/sched.h>
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 #include <linux/slab.h>
 #include <linux/socket.h>
 #include <linux/string.h>
@@ -295,11 +298,15 @@ int ceph_msgr_init(void)
 		return -ENOMEM;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ceph_msgr_wq = alloc_workqueue("ceph-msgr", WQ_NON_REENTRANT, 0);
 =======
 	ceph_msgr_wq = alloc_workqueue("ceph-msgr",
 				       WQ_NON_REENTRANT | WQ_MEM_RECLAIM, 0);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	ceph_msgr_wq = alloc_workqueue("ceph-msgr", WQ_NON_REENTRANT, 0);
+>>>>>>> 2617302... source
 	if (ceph_msgr_wq)
 		return 0;
 
@@ -481,11 +488,15 @@ static int ceph_tcp_connect(struct ceph_connection *con)
 	struct sockaddr_storage *paddr = &con->peer_addr.in_addr;
 	struct socket *sock;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	int ret;
 
 	BUG_ON(con->sock);
 	ret = sock_create_kern(con->peer_addr.in_addr.ss_family, SOCK_STREAM,
 			       IPPROTO_TCP, &sock);
+<<<<<<< HEAD
 =======
 	unsigned int noio_flag;
 	int ret;
@@ -498,6 +509,8 @@ static int ceph_tcp_connect(struct ceph_connection *con)
 			       IPPROTO_TCP, &sock);
 	memalloc_noio_restore(noio_flag);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	if (ret)
 		return ret;
 	sock->sk->sk_allocation = GFP_NOFS;
@@ -579,10 +592,14 @@ static int ceph_tcp_sendmsg(struct socket *sock, struct kvec *iov,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int ceph_tcp_sendpage(struct socket *sock, struct page *page,
 =======
 static int __ceph_tcp_sendpage(struct socket *sock, struct page *page,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+static int ceph_tcp_sendpage(struct socket *sock, struct page *page,
+>>>>>>> 2617302... source
 		     int offset, size_t size, bool more)
 {
 	int flags = MSG_DONTWAIT | MSG_NOSIGNAL | (more ? MSG_MORE : MSG_EOR);
@@ -595,6 +612,7 @@ static int __ceph_tcp_sendpage(struct socket *sock, struct page *page,
 	return ret;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 static int ceph_tcp_sendpage(struct socket *sock, struct page *page,
@@ -616,6 +634,8 @@ static int ceph_tcp_sendpage(struct socket *sock, struct page *page,
 	return ret;
 }
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 /*
  * Shutdown/close the socket for the given connection.
@@ -934,10 +954,14 @@ static void ceph_msg_data_pages_cursor_init(struct ceph_msg_data_cursor *cursor,
 	cursor->page_count = (unsigned short)page_count;
 	BUG_ON(length > SIZE_MAX - cursor->page_offset);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	cursor->last_piece = (size_t)cursor->page_offset + length <= PAGE_SIZE;
 =======
 	cursor->last_piece = cursor->page_offset + cursor->resid <= PAGE_SIZE;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	cursor->last_piece = (size_t)cursor->page_offset + length <= PAGE_SIZE;
+>>>>>>> 2617302... source
 }
 
 static struct page *
@@ -2002,6 +2026,7 @@ static int process_connect(struct ceph_connection *con)
 	dout("process_connect on %p tag %d\n", con, (int)con->in_tag);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (con->auth_reply_buf) {
 		/*
@@ -2017,6 +2042,8 @@ static int process_connect(struct ceph_connection *con)
 	}
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	switch (con->in_reply.tag) {
 	case CEPH_MSGR_TAG_FEATURES:
 		pr_err("%s%lld %s feature set mismatch,"
@@ -2326,10 +2353,14 @@ static int read_partial_message(struct ceph_connection *con)
 			sizeof(m->footer);
 		con->in_tag = CEPH_MSGR_TAG_READY;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return 0;
 =======
 		return 1;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		return 0;
+>>>>>>> 2617302... source
 	} else if ((s64)seq - (s64)con->in_seq > 1) {
 		pr_err("read_partial_message bad seq %lld expected %lld\n",
 		       seq, con->in_seq + 1);
@@ -2363,10 +2394,14 @@ static int read_partial_message(struct ceph_connection *con)
 			con->in_tag = CEPH_MSGR_TAG_READY;
 			con->in_seq++;
 <<<<<<< HEAD
+<<<<<<< HEAD
 			return 0;
 =======
 			return 1;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			return 0;
+>>>>>>> 2617302... source
 		}
 
 		BUG_ON(!con->in_msg);
@@ -3202,10 +3237,14 @@ struct ceph_msg *ceph_msg_new(int type, int front_len, gfp_t flags,
 
 	/* front */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	m->front_max = front_len;
 =======
 	m->front_alloc_len = front_len;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	m->front_max = front_len;
+>>>>>>> 2617302... source
 	if (front_len) {
 		if (front_len > PAGE_CACHE_SIZE) {
 			m->front.iov_base = __vmalloc(front_len, flags,
@@ -3381,12 +3420,17 @@ EXPORT_SYMBOL(ceph_msg_last_put);
 void ceph_msg_dump(struct ceph_msg *msg)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_debug("msg_dump %p (front_max %d length %zd)\n", msg,
 		 msg->front_max, msg->data_length);
 =======
 	pr_debug("msg_dump %p (front_alloc_len %d length %zd)\n", msg,
 		 msg->front_alloc_len, msg->data_length);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	pr_debug("msg_dump %p (front_max %d length %zd)\n", msg,
+		 msg->front_max, msg->data_length);
+>>>>>>> 2617302... source
 	print_hex_dump(KERN_DEBUG, "header: ",
 		       DUMP_PREFIX_OFFSET, 16, 1,
 		       &msg->hdr, sizeof(msg->hdr), true);

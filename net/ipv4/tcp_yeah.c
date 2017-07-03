@@ -223,10 +223,14 @@ static u32 tcp_yeah_ssthresh(struct sock *sk) {
 	yeah->reno_count = max(yeah->reno_count>>1, 2U);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return tp->snd_cwnd - reduction;
 =======
 	return max_t(int, tp->snd_cwnd - reduction, 2);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	return tp->snd_cwnd - reduction;
+>>>>>>> 2617302... source
 }
 
 static struct tcp_congestion_ops tcp_yeah __read_mostly = {

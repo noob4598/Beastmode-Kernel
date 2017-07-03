@@ -129,6 +129,7 @@ static int masq_inet_event(struct notifier_block *this,
 			   void *ptr)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct net_device *dev = ((struct in_ifaddr *)ptr)->ifa_dev->dev;
 	return masq_device_event(this, event, dev);
 =======
@@ -143,6 +144,10 @@ static int masq_inet_event(struct notifier_block *this,
 
 	return masq_device_event(this, event, idev->dev);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	struct net_device *dev = ((struct in_ifaddr *)ptr)->ifa_dev->dev;
+	return masq_device_event(this, event, dev);
+>>>>>>> 2617302... source
 }
 
 static struct notifier_block masq_dev_notifier = {

@@ -85,6 +85,7 @@ static unsigned char * put16(unsigned char *cp, unsigned short x);
 static unsigned short pull16(unsigned char **cpp);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* Initialize compression data structure
  *	slots must be in range 0 to 255 (zero meaning no compression)
 =======
@@ -92,6 +93,10 @@ static unsigned short pull16(unsigned char **cpp);
  *	slots must be in range 0 to 255 (zero meaning no compression)
  * Returns pointer to structure or ERR_PTR() on error.
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+/* Initialize compression data structure
+ *	slots must be in range 0 to 255 (zero meaning no compression)
+>>>>>>> 2617302... source
  */
 struct slcompress *
 slhc_init(int rslots, int tslots)
@@ -101,20 +106,27 @@ slhc_init(int rslots, int tslots)
 	struct slcompress *comp;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (rslots < 0 || rslots > 255 || tslots < 0 || tslots > 255)
 		return ERR_PTR(-EINVAL);
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	comp = kzalloc(sizeof(struct slcompress), GFP_KERNEL);
 	if (! comp)
 		goto out_fail;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if ( rslots > 0  &&  rslots < 256 ) {
 =======
 	if (rslots > 0) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if ( rslots > 0  &&  rslots < 256 ) {
+>>>>>>> 2617302... source
 		size_t rsize = rslots * sizeof(struct cstate);
 		comp->rstate = kzalloc(rsize, GFP_KERNEL);
 		if (! comp->rstate)
@@ -123,10 +135,14 @@ slhc_init(int rslots, int tslots)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if ( tslots > 0  &&  tslots < 256 ) {
 =======
 	if (tslots > 0) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if ( tslots > 0  &&  tslots < 256 ) {
+>>>>>>> 2617302... source
 		size_t tsize = tslots * sizeof(struct cstate);
 		comp->tstate = kzalloc(tsize, GFP_KERNEL);
 		if (! comp->tstate)
@@ -162,10 +178,14 @@ out_free:
 	kfree(comp);
 out_fail:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return NULL;
 =======
 	return ERR_PTR(-ENOMEM);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	return NULL;
+>>>>>>> 2617302... source
 }
 
 

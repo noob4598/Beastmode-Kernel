@@ -46,11 +46,17 @@ int __fscache_register_netfs(struct fscache_netfs *netfs)
 	netfs->primary_index->netfs_data	= netfs;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	atomic_inc(&netfs->primary_index->parent->usage);
 	atomic_inc(&netfs->primary_index->parent->n_children);
 
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	atomic_inc(&netfs->primary_index->parent->usage);
+	atomic_inc(&netfs->primary_index->parent->n_children);
+
+>>>>>>> 2617302... source
 	spin_lock_init(&netfs->primary_index->lock);
 	INIT_HLIST_HEAD(&netfs->primary_index->backing_objects);
 
@@ -64,11 +70,14 @@ int __fscache_register_netfs(struct fscache_netfs *netfs)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	atomic_inc(&netfs->primary_index->parent->usage);
 	atomic_inc(&netfs->primary_index->parent->n_children);
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	list_add(&netfs->link, &fscache_netfs_list);
 	ret = 0;
 
@@ -80,11 +89,16 @@ already_registered:
 
 	if (ret < 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		netfs->primary_index->parent = NULL;
 		__fscache_cookie_put(netfs->primary_index);
 =======
 		kmem_cache_free(fscache_cookie_jar, netfs->primary_index);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		netfs->primary_index->parent = NULL;
+		__fscache_cookie_put(netfs->primary_index);
+>>>>>>> 2617302... source
 		netfs->primary_index = NULL;
 	}
 

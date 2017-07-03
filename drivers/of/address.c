@@ -335,6 +335,7 @@ static struct of_bus *of_match_bus(struct device_node *np)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 static int of_empty_ranges_quirk(void)
 {
@@ -352,6 +353,8 @@ static int of_empty_ranges_quirk(void)
 }
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 static int of_translate_one(struct device_node *parent, struct of_bus *bus,
 			    struct of_bus *pbus, __be32 *addr,
 			    int na, int ns, int pna, const char *rprop)
@@ -378,18 +381,24 @@ static int of_translate_one(struct device_node *parent, struct of_bus *bus,
 	 */
 	ranges = of_get_property(parent, rprop, &rlen);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 #if !defined(CONFIG_PPC)
 	if (ranges == NULL) {
 		pr_err("OF: no ranges; cannot translate\n");
 		return 1;
 	}
 #endif /* !defined(CONFIG_PPC) */
+<<<<<<< HEAD
 =======
 	if (ranges == NULL && !of_empty_ranges_quirk()) {
 		pr_err("OF: no ranges; cannot translate\n");
 		return 1;
 	}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	if (ranges == NULL || rlen == 0) {
 		offset = of_read_number(addr, na);
 		memset(addr, 0, pna * 4);
@@ -642,16 +651,22 @@ struct device_node *of_find_matching_node_by_address(struct device_node *from,
 
 	while (dn) {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		if (of_address_to_resource(dn, 0, &res))
 			continue;
 		if (res.start == base_address)
 			return dn;
+<<<<<<< HEAD
 =======
 		if (!of_address_to_resource(dn, 0, &res) &&
 		    res.start == base_address)
 			return dn;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		dn = of_find_matching_node(dn, matches);
 	}
 

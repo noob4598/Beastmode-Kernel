@@ -134,12 +134,15 @@ int ubi_start_update(struct ubi_device *ubi, struct ubi_volume *vol,
 	vol->updating = 1;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	vol->upd_buf = vmalloc(ubi->leb_size);
 	if (!vol->upd_buf)
 		return -ENOMEM;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	err = set_update_marker(ubi, vol);
 	if (err)
 		return err;
@@ -152,6 +155,9 @@ int ubi_start_update(struct ubi_device *ubi, struct ubi_volume *vol,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	if (bytes == 0) {
 		err = ubi_wl_flush(ubi, UBI_ALL, UBI_ALL);
 		if (err)
@@ -160,6 +166,7 @@ int ubi_start_update(struct ubi_device *ubi, struct ubi_volume *vol,
 		err = clear_update_marker(ubi, vol, 0);
 		if (err)
 			return err;
+<<<<<<< HEAD
 =======
 	err = ubi_wl_flush(ubi, UBI_ALL, UBI_ALL);
 	if (err)
@@ -172,17 +179,25 @@ int ubi_start_update(struct ubi_device *ubi, struct ubi_volume *vol,
 
 		vfree(vol->upd_buf);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		vol->updating = 0;
 		return 0;
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	vol->upd_buf = vmalloc(ubi->leb_size);
 	if (!vol->upd_buf)
 		return -ENOMEM;
 
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	vol->upd_ebs = div_u64(bytes + vol->usable_leb_size - 1,
 			       vol->usable_leb_size);
 	vol->upd_bytes = bytes;
@@ -215,10 +230,14 @@ int ubi_start_leb_change(struct ubi_device *ubi, struct ubi_volume *vol,
 	vol->ch_lnum = req->lnum;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	vol->upd_buf = vmalloc(req->bytes);
 =======
 	vol->upd_buf = vmalloc(ALIGN((int)req->bytes, ubi->min_io_size));
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	vol->upd_buf = vmalloc(req->bytes);
+>>>>>>> 2617302... source
 	if (!vol->upd_buf)
 		return -ENOMEM;
 

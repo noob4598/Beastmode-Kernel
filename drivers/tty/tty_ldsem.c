@@ -87,11 +87,15 @@ static inline long ldsem_atomic_update(long delta, struct ld_semaphore *sem)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 static inline int ldsem_cmpxchg(long *old, long new, struct ld_semaphore *sem)
 {
 	long tmp = *old;
 	*old = atomic_long_cmpxchg(&sem->count, *old, new);
 	return *old == tmp;
+<<<<<<< HEAD
 =======
 /*
  * ldsem_cmpxchg() updates @*old with the last-known sem->count value.
@@ -109,6 +113,8 @@ static inline int ldsem_cmpxchg(long *old, long new, struct ld_semaphore *sem)
 		return 0;
 	}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 }
 
 /*

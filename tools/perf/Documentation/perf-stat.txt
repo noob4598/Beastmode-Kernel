@@ -51,6 +51,7 @@ OPTIONS
 	scale/normalize counter values
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 -d::
 --detailed::
@@ -61,6 +62,8 @@ OPTIONS
      -d -d -d:     very detailed events, adding prefetch events
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 -r::
 --repeat=<n>::
 	repeat command and print average + stddev (max: 100). 0 means forever.

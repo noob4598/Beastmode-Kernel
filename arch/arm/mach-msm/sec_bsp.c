@@ -187,16 +187,22 @@ int request_bimc_clk(unsigned long request_clk)
 	ret = atomic_read(&bimc_lock_count);
 	if (request_clk && ret) {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		pr_err("%s: error bimc_lock_count locked\n",__func__);
 		return -EINVAL;
 	} else if (!request_clk && !ret) {
 		pr_err("%s: error bimc_lock_count unlocked\n",__func__);
+<<<<<<< HEAD
 =======
 		pr_debug("%s: error bimc_lock_count locked\n",__func__);
 		return -EINVAL;
 	} else if (!request_clk && !ret) {
 		pr_debug("%s: error bimc_lock_count unlocked\n",__func__);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		return -EINVAL;
 	}
 

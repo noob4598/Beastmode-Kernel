@@ -754,9 +754,12 @@ kvm_assign_ioeventfd(struct kvm *kvm, struct kvm_ioeventfd *args)
 		goto unlock_fail;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	kvm->buses[bus_idx]->ioeventfd_count++;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	list_add_tail(&p->list, &kvm->ioeventfds);
 
 	mutex_unlock(&kvm->slots_lock);
@@ -803,10 +806,13 @@ kvm_deassign_ioeventfd(struct kvm *kvm, struct kvm_ioeventfd *args)
 
 		kvm_io_bus_unregister_dev(kvm, bus_idx, &p->dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		if (kvm->buses[bus_idx])
 			kvm->buses[bus_idx]->ioeventfd_count--;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		ioeventfd_release(p);
 		ret = 0;
 		break;

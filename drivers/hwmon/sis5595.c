@@ -160,10 +160,14 @@ static inline int TEMP_FROM_REG(s8 val)
 	return val * 830 + 52120;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 static inline s8 TEMP_TO_REG(int val)
 =======
 static inline s8 TEMP_TO_REG(long val)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+static inline s8 TEMP_TO_REG(int val)
+>>>>>>> 2617302... source
 {
 	int nval = clamp_val(val, -54120, 157530) ;
 	return nval < 0 ? (nval - 5212 - 415) / 830 : (nval - 5212 + 415) / 830;

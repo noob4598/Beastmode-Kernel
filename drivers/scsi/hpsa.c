@@ -1207,12 +1207,17 @@ static void complete_scsi_command(struct CommandList *cp)
 
 	if (ei->CommandStatus == 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		cmd->scsi_done(cmd);
 		cmd_free(h, cp);
 =======
 		cmd_free(h, cp);
 		cmd->scsi_done(cmd);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		cmd->scsi_done(cmd);
+		cmd_free(h, cp);
+>>>>>>> 2617302... source
 		return;
 	}
 
@@ -1386,12 +1391,17 @@ static void complete_scsi_command(struct CommandList *cp)
 				cp, ei->CommandStatus);
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	cmd->scsi_done(cmd);
 	cmd_free(h, cp);
 =======
 	cmd_free(h, cp);
 	cmd->scsi_done(cmd);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	cmd->scsi_done(cmd);
+	cmd_free(h, cp);
+>>>>>>> 2617302... source
 }
 
 static void hpsa_pci_unmap(struct pci_dev *pdev,
@@ -3129,10 +3139,14 @@ static int hpsa_big_passthru_ioctl(struct ctlr_info *h, void __user *argp)
 		if (ioc->Request.Type.Direction == XFER_WRITE) {
 			if (copy_from_user(buff[sg_used], data_ptr, sz)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 				status = -ENOMEM;
 =======
 				status = -EFAULT;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+				status = -ENOMEM;
+>>>>>>> 2617302... source
 				goto cleanup1;
 			}
 		} else
@@ -3913,12 +3927,18 @@ static int hpsa_kdump_hard_reset_controller(struct pci_dev *pdev)
 	/* Save the PCI command register */
 	pci_read_config_word(pdev, 4, &command_register);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	/* Turn the board off.  This is so that later pci_restore_state()
 	 * won't turn the board on before the rest of config space is ready.
 	 */
 	pci_disable_device(pdev);
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	pci_save_state(pdev);
 
 	/* find the first memory BAR, so we can find the cfg table */
@@ -3967,13 +3987,19 @@ static int hpsa_kdump_hard_reset_controller(struct pci_dev *pdev)
 
 	pci_restore_state(pdev);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	rc = pci_enable_device(pdev);
 	if (rc) {
 		dev_warn(&pdev->dev, "failed to enable device.\n");
 		goto unmap_cfgtable;
 	}
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	pci_write_config_word(pdev, 4, command_register);
 
 	/* Some devices (notably the HP Smart Array 5i Controller)
@@ -4469,6 +4495,7 @@ static int hpsa_init_reset_devices(struct pci_dev *pdev)
 		return 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/* kdump kernel is loading, we don't know in which state is
 	 * the pci interface. The dev->enable_cnt is equal zero
@@ -4488,6 +4515,8 @@ static int hpsa_init_reset_devices(struct pci_dev *pdev)
 	}
 	pci_set_master(pdev);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	/* Reset the controller with a PCI power-cycle or via doorbell */
 	rc = hpsa_kdump_hard_reset_controller(pdev);
 
@@ -4497,10 +4526,14 @@ static int hpsa_init_reset_devices(struct pci_dev *pdev)
 	 * due to concerns about shared bbwc between 6402/6404 pair.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	if (rc == -ENOTSUPP)
 		return rc; /* just try to do the kdump anyhow. */
 	if (rc)
 		return -ENODEV;
+<<<<<<< HEAD
 =======
 	if (rc) {
 		if (rc != -ENOTSUPP) /* just try to do the kdump anyhow. */
@@ -4508,6 +4541,8 @@ static int hpsa_init_reset_devices(struct pci_dev *pdev)
 		goto out_disable;
 	}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	/* Now try to get the controller to respond to a no-op */
 	dev_warn(&pdev->dev, "Waiting for controller to respond to no-op\n");
@@ -4519,6 +4554,7 @@ static int hpsa_init_reset_devices(struct pci_dev *pdev)
 					(i < 11 ? "; re-trying" : ""));
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return 0;
 =======
 
@@ -4527,6 +4563,9 @@ out_disable:
 	pci_disable_device(pdev);
 	return rc;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	return 0;
+>>>>>>> 2617302... source
 }
 
 static int hpsa_allocate_cmd_pool(struct ctlr_info *h)
@@ -4670,9 +4709,12 @@ static void hpsa_undo_allocations_after_kdump_soft_reset(struct ctlr_info *h)
 	if (h->cfgtable)
 		iounmap(h->cfgtable);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	pci_disable_device(h->pdev);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	pci_release_regions(h->pdev);
 	kfree(h);
 }

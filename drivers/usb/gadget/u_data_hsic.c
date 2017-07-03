@@ -156,10 +156,14 @@ static int ghsic_data_alloc_requests(struct usb_ep *ep, struct list_head *head,
 	unsigned long		flags;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_debug("%s: ep:%s head:%p num:%d cb:%p", __func__,
 =======
 	pr_debug("%s: ep:%s head:%pK num:%d cb:%pK", __func__,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	pr_debug("%s: ep:%s head:%p num:%d cb:%p", __func__,
+>>>>>>> 2617302... source
 			ep->name, head, num, cb);
 
 	for (i = 0; i < num; i++) {
@@ -276,10 +280,14 @@ static int ghsic_data_receive(void *p, void *data, size_t len)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_debug("%s: p:%p#%d skb_len:%d\n", __func__,
 =======
 	pr_debug("%s: p:%pK#%d skb_len:%d\n", __func__,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	pr_debug("%s: p:%p#%d skb_len:%d\n", __func__,
+>>>>>>> 2617302... source
 			port, port->port_num, skb->len);
 
 	spin_lock_irqsave(&port->tx_lock, flags);
@@ -324,10 +332,14 @@ static void ghsic_data_write_tomdm(struct work_struct *w)
 
 	while ((skb = __skb_dequeue(&port->rx_skb_q))) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_debug("%s: port:%p tom:%lu pno:%d\n", __func__,
 =======
 		pr_debug("%s: port:%pK tom:%lu pno:%d\n", __func__,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		pr_debug("%s: port:%p tom:%lu pno:%d\n", __func__,
+>>>>>>> 2617302... source
 				port, port->to_modem, port->port_num);
 
 		info = (struct timestamp_info *)skb->cb;
@@ -436,10 +448,14 @@ static void ghsic_data_start_rx(struct gdata_port *port)
 	unsigned int		created;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_debug("%s: port:%p\n", __func__, port);
 =======
 	pr_debug("%s: port:%pK\n", __func__, port);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	pr_debug("%s: port:%p\n", __func__, port);
+>>>>>>> 2617302... source
 	if (!port)
 		return;
 
@@ -497,10 +513,14 @@ static void ghsic_data_start_io(struct gdata_port *port)
 	int		ret;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_debug("%s: port:%p\n", __func__, port);
 =======
 	pr_debug("%s: port:%pK\n", __func__, port);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	pr_debug("%s: port:%p\n", __func__, port);
+>>>>>>> 2617302... source
 
 	if (!port)
 		return;
@@ -528,10 +548,14 @@ static void ghsic_data_start_io(struct gdata_port *port)
 	ep_in = port->in;
 	spin_unlock_irqrestore(&port->tx_lock, flags);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_debug("%s: ep_in:%p\n", __func__, ep_in);
 =======
 	pr_debug("%s: ep_in:%pK\n", __func__, ep_in);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	pr_debug("%s: ep_in:%p\n", __func__, ep_in);
+>>>>>>> 2617302... source
 
 	if (!ep_in) {
 		spin_lock_irqsave(&port->rx_lock, flags);
@@ -567,10 +591,14 @@ static void ghsic_data_connect_w(struct work_struct *w)
 		return;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_debug("%s: port:%p\n", __func__, port);
 =======
 	pr_debug("%s: port:%pK\n", __func__, port);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	pr_debug("%s: port:%p\n", __func__, port);
+>>>>>>> 2617302... source
 
 	ret = data_bridge_open(&port->brdg);
 	if (ret) {
@@ -883,10 +911,14 @@ int ghsic_data_connect(void *gptr, int port_num)
 	ret = usb_ep_enable(port->in);
 	if (ret) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("%s: usb_ep_enable failed eptype:IN ep:%p",
 =======
 		pr_err("%s: usb_ep_enable failed eptype:IN ep:%pK",
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		pr_err("%s: usb_ep_enable failed eptype:IN ep:%p",
+>>>>>>> 2617302... source
 				__func__, port->in);
 		goto fail;
 	}
@@ -894,10 +926,14 @@ int ghsic_data_connect(void *gptr, int port_num)
 		ret = usb_ep_enable(port->out);
 		if (ret) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			pr_err("%s: usb_ep_enable failed eptype:OUT ep:%p",
 =======
 			pr_err("%s: usb_ep_enable failed eptype:OUT ep:%pK",
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			pr_err("%s: usb_ep_enable failed eptype:OUT ep:%p",
+>>>>>>> 2617302... source
 					__func__, port->out);
 			usb_ep_disable(port->in);
 			goto fail;
@@ -975,10 +1011,14 @@ static void dbg_timestamp(char *event, struct sk_buff * skb)
 
 	scnprintf(dbg_data.buf[dbg_data.idx], DBG_DATA_MSG,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		  "%p %u[%s] %u %u %u %u %u %u\n",
 =======
 		  "%pK %u[%s] %u %u %u %u %u %u\n",
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		  "%p %u[%s] %u %u %u %u %u %u\n",
+>>>>>>> 2617302... source
 		  skb, skb->len, event, info->created, info->rx_queued,
 		  info->rx_done, info->rx_done_sent, info->tx_queued,
 		  get_timestamp());
@@ -1053,10 +1093,14 @@ static ssize_t ghsic_data_read_stats(struct file *file,
 		temp += scnprintf(buf + temp, DEBUG_DATA_BUF_SIZE - temp,
 				"\nName:           %s\n"
 <<<<<<< HEAD
+<<<<<<< HEAD
 				"#PORT:%d port#:   %p\n"
 =======
 				"#PORT:%d port#:   %pK\n"
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+				"#PORT:%d port#:   %p\n"
+>>>>>>> 2617302... source
 				"data_ch_open:	   %d\n"
 				"data_ch_ready:    %d\n"
 				"\n******UL INFO*****\n\n"

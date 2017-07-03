@@ -33,11 +33,14 @@ gnet_stats_copy(struct gnet_dump *d, int type, void *buf, int size)
 
 nla_put_failure:
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	kfree(d->xstats);
 	d->xstats = NULL;
 	d->xstats_len = 0;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	spin_unlock_bh(d->lock);
 	return -1;
 }
@@ -212,12 +215,16 @@ gnet_stats_copy_app(struct gnet_dump *d, void *st, int len)
 {
 	if (d->compat_xstats) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		d->xstats = st;
 =======
 		d->xstats = kmemdup(st, len, GFP_ATOMIC);
 		if (!d->xstats)
 			goto err_out;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		d->xstats = st;
+>>>>>>> 2617302... source
 		d->xstats_len = len;
 	}
 
@@ -226,6 +233,7 @@ gnet_stats_copy_app(struct gnet_dump *d, void *st, int len)
 
 	return 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 err_out:
@@ -233,6 +241,8 @@ err_out:
 	spin_unlock_bh(d->lock);
 	return -1;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 }
 EXPORT_SYMBOL(gnet_stats_copy_app);
 
@@ -266,11 +276,14 @@ gnet_stats_finish_copy(struct gnet_dump *d)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	kfree(d->xstats);
 	d->xstats = NULL;
 	d->xstats_len = 0;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	spin_unlock_bh(d->lock);
 	return 0;
 }

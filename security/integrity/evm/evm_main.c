@@ -21,9 +21,12 @@
 #include <linux/evm.h>
 #include <crypto/hash.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <crypto/algapi.h>
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 #include "evm.h"
 
 int evm_initialized;
@@ -133,10 +136,14 @@ static enum integrity_status evm_verify_hmac(struct dentry *dentry,
 		if (rc)
 			break;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		rc = memcmp(xattr_data->digest, calc.digest,
 =======
 		rc = crypto_memneq(xattr_data->digest, calc.digest,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		rc = memcmp(xattr_data->digest, calc.digest,
+>>>>>>> 2617302... source
 			    sizeof(calc.digest));
 		if (rc)
 			rc = -EINVAL;
@@ -284,6 +291,7 @@ static int evm_protect_xattr(struct dentry *dentry, const char *xattr_name,
  * @xattr_value_len: pointer to the new extended attribute value length
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Updating 'security.evm' requires CAP_SYS_ADMIN privileges and that
  * the current value is valid.
 =======
@@ -293,10 +301,15 @@ static int evm_protect_xattr(struct dentry *dentry, const char *xattr_name,
  * userspace from writing HMAC value.  Writing 'security.evm' requires
  * requires CAP_SYS_ADMIN privileges.
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+ * Updating 'security.evm' requires CAP_SYS_ADMIN privileges and that
+ * the current value is valid.
+>>>>>>> 2617302... source
  */
 int evm_inode_setxattr(struct dentry *dentry, const char *xattr_name,
 		       const void *xattr_value, size_t xattr_value_len)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 	const struct evm_ima_xattr_data *xattr_data = xattr_value;
@@ -308,6 +321,8 @@ int evm_inode_setxattr(struct dentry *dentry, const char *xattr_name,
 			return -EPERM;
 	}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	return evm_protect_xattr(dentry, xattr_name, xattr_value,
 				 xattr_value_len);
 }

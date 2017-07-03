@@ -427,6 +427,9 @@ upload:
 	return 0;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 static int __init check_prereq(void)
 {
 	struct cpuinfo_x86 *c = &cpu_data(0);
@@ -457,9 +460,12 @@ static int __init check_prereq(void)
 	}
 	return -ENODEV;
 }
+<<<<<<< HEAD
 =======
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 /* acpi_perf_data is a pointer to percpu data. */
 static struct acpi_processor_performance __percpu *acpi_perf_data;
 
@@ -516,16 +522,22 @@ static int __init xen_acpi_processor_init(void)
 {
 	unsigned int i;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	int rc = check_prereq();
 
 	if (rc)
 		return rc;
+<<<<<<< HEAD
 =======
 	int rc;
 
 	if (!xen_initial_domain())
 		return -ENODEV;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	nr_acpi_bits = get_max_acpi_id() + 1;
 	acpi_ids_done = kcalloc(BITS_TO_LONGS(nr_acpi_bits), sizeof(unsigned long), GFP_KERNEL);

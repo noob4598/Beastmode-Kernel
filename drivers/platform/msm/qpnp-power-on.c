@@ -25,10 +25,14 @@
 #include <linux/qpnp/power-on.h>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #ifdef CONFIG_SEC_DEBUG
 =======
 #if defined(CONFIG_SEC_DEBUG)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+#ifdef CONFIG_SEC_DEBUG
+>>>>>>> 2617302... source
 #include <mach/sec_debug.h>
 #endif
 
@@ -1398,9 +1402,13 @@ static struct kernel_param_ops dload_on_uvlo_ops = {
 module_param_cb(dload_on_uvlo, &dload_on_uvlo_ops, &dload_on_uvlo, 0644);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #ifdef CONFIG_SEC_DEBUG
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+#ifdef CONFIG_SEC_DEBUG
+>>>>>>> 2617302... source
 static ssize_t  sysfs_powerkey_onoff_show(struct device *dev,
 		struct device_attribute *attr, char *buf)
 {
@@ -1416,9 +1424,13 @@ static ssize_t  sysfs_powerkey_onoff_show(struct device *dev,
 }
 static DEVICE_ATTR(sec_powerkey_pressed, 0664 , sysfs_powerkey_onoff_show, NULL);
 <<<<<<< HEAD
+<<<<<<< HEAD
 #endif
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+#endif
+>>>>>>> 2617302... source
 
 
 #ifdef CONFIG_SEC_PM_DEBUG
@@ -1502,14 +1514,20 @@ static int qpnp_pon_probe(struct spmi_device *spmi)
 	u8 pon_sts = 0, buf[2];
 	u16 poff_sts = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 #ifdef CONFIG_SEC_DEBUG
 	struct device *sec_powerkey;
 	int ret;
 #endif
+<<<<<<< HEAD
 =======
 	struct device *sec_powerkey;
 	int ret;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	pon = devm_kzalloc(&spmi->dev, sizeof(struct qpnp_pon),
 							GFP_KERNEL);
@@ -1650,9 +1668,13 @@ static int qpnp_pon_probe(struct spmi_device *spmi)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #ifdef CONFIG_SEC_DEBUG
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+#ifdef CONFIG_SEC_DEBUG
+>>>>>>> 2617302... source
 	sec_powerkey = device_create(sec_class, NULL, 0, NULL, "sec_powerkey");
 	if (IS_ERR(sec_powerkey))
 		pr_err("Failed to create device(sec_powerkey)!\n");
@@ -1663,9 +1685,13 @@ static int qpnp_pon_probe(struct spmi_device *spmi)
 	}
 	dev_set_drvdata(sec_powerkey, pon);
 <<<<<<< HEAD
+<<<<<<< HEAD
 #endif
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+#endif
+>>>>>>> 2617302... source
 
 	return rc;
 }

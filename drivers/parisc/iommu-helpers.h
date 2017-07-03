@@ -105,6 +105,7 @@ iommu_coalesce_chunks(struct ioc *ioc, struct device *dev,
 	unsigned long dma_offset, dma_len; /* start/len of DMA stream */
 	unsigned int n_mappings = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned int max_seg_size = dma_get_max_seg_size(dev);
 =======
 	unsigned int max_seg_size = min(dma_get_max_seg_size(dev),
@@ -113,6 +114,9 @@ iommu_coalesce_chunks(struct ioc *ioc, struct device *dev,
 	if (max_seg_boundary)	/* check if the addition above didn't overflow */
 		max_seg_size = min(max_seg_size, max_seg_boundary);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	unsigned int max_seg_size = dma_get_max_seg_size(dev);
+>>>>>>> 2617302... source
 
 	while (nents > 0) {
 
@@ -148,6 +152,9 @@ iommu_coalesce_chunks(struct ioc *ioc, struct device *dev,
 			/*
 			** First make sure current dma stream won't
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 			** exceed DMA_CHUNK_SIZE if we coalesce the
 			** next entry.
 			*/   
@@ -156,6 +163,7 @@ iommu_coalesce_chunks(struct ioc *ioc, struct device *dev,
 				break;
 
 			if (startsg->length + dma_len > max_seg_size)
+<<<<<<< HEAD
 =======
 			** exceed max_seg_size if we coalesce the
 			** next entry.
@@ -163,6 +171,8 @@ iommu_coalesce_chunks(struct ioc *ioc, struct device *dev,
 			if (unlikely(ALIGN(dma_len + dma_offset + startsg->length, IOVP_SIZE) >
 				     max_seg_size))
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 				break;
 
 			/*

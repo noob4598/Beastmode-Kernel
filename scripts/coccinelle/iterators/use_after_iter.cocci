@@ -124,10 +124,14 @@ list_remove_head(x,c,...)
 sizeof(<+...c...+>)
 |
 <<<<<<< HEAD
+<<<<<<< HEAD
 &c->member
 =======
  &c->member
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+&c->member
+>>>>>>> 2617302... source
 |
 c = E
 |

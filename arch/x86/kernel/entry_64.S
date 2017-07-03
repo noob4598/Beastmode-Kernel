@@ -59,9 +59,12 @@
 #include <asm/context_tracking.h>
 #include <asm/smap.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <asm/pgtable_types.h>
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 #include <linux/err.h>
 
 /* Avoid __ASSEMBLER__'ifying <linux/audit.h> just for this.  */
@@ -126,11 +129,15 @@ GLOBAL(ftrace_graph_call)
 #endif
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 GLOBAL(ftrace_stub)
 =======
 /* This is weak to keep gas from relaxing the jumps */
 WEAK(ftrace_stub)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+GLOBAL(ftrace_stub)
+>>>>>>> 2617302... source
 	retq
 END(ftrace_caller)
 
@@ -375,10 +382,14 @@ ENDPROC(native_usergs_sysret64)
 	pushq_cfi %rax /* rsp */
 	CFI_REL_OFFSET	rsp,0
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pushq_cfi $(X86_EFLAGS_IF|X86_EFLAGS_BIT1) /* eflags - interrupts on */
 =======
 	pushq_cfi $(X86_EFLAGS_IF|X86_EFLAGS_FIXED) /* eflags - interrupts on */
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	pushq_cfi $(X86_EFLAGS_IF|X86_EFLAGS_BIT1) /* eflags - interrupts on */
+>>>>>>> 2617302... source
 	/*CFI_REL_OFFSET	rflags,0*/
 	pushq_cfi $__KERNEL_CS /* cs */
 	/*CFI_REL_OFFSET	cs,0*/
@@ -570,11 +581,15 @@ ENTRY(ret_from_fork)
 	jz   1f
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	testl $_TIF_IA32, TI_flags(%rcx)	# 32-bit compat task needs IRET
 	jnz  int_ret_from_sys_call
 
 	RESTORE_TOP_OF_STACK %rdi, -ARGOFFSET
 	jmp ret_from_sys_call			# go to the SYSRET fastpath
+<<<<<<< HEAD
 =======
 	/*
 	 * By the time we get here, we have no idea whether our pt_regs,
@@ -585,6 +600,8 @@ ENTRY(ret_from_fork)
 	 */
 	jmp  int_ret_from_sys_call
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 1:
 	subq $REST_SKIP, %rsp	# leave space for volatiles
@@ -1081,6 +1098,9 @@ restore_args:
 irq_return:
 	INTERRUPT_RETURN
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	_ASM_EXTABLE(irq_return, bad_iret)
 
 #ifdef CONFIG_PARAVIRT
@@ -1107,6 +1127,7 @@ bad_iret:
 	jmp general_protection
 
 	.previous
+<<<<<<< HEAD
 =======
 
 ENTRY(native_iret)
@@ -1155,6 +1176,8 @@ native_irq_return_ldt:
 	jmp native_irq_return_iret
 #endif
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	/* edi: workmask, edx: work */
 retint_careful:
@@ -1201,6 +1224,7 @@ ENTRY(retint_kernel)
 	jmp exit_intr
 #endif
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	CFI_ENDPROC
 END(common_interrupt)
@@ -1209,6 +1233,11 @@ END(common_interrupt)
 END(common_interrupt)
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+
+	CFI_ENDPROC
+END(common_interrupt)
+>>>>>>> 2617302... source
 /*
  * End of kprobes section
  */
@@ -1548,10 +1577,14 @@ apicinterrupt HYPERVISOR_CALLBACK_VECTOR \
 paranoidzeroentry_ist debug do_debug DEBUG_STACK
 paranoidzeroentry_ist int3 do_int3 DEBUG_STACK
 <<<<<<< HEAD
+<<<<<<< HEAD
 paranoiderrorentry stack_segment do_stack_segment
 =======
 errorentry stack_segment do_stack_segment
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+paranoiderrorentry stack_segment do_stack_segment
+>>>>>>> 2617302... source
 #ifdef CONFIG_XEN
 zeroentry xen_debug do_debug
 zeroentry xen_int3 do_int3
@@ -1662,6 +1695,9 @@ error_sti:
 /*
  * There are two places in the kernel that can potentially fault with
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
  * usergs. Handle them here. The exception handlers after iret run with
  * kernel gs again, so don't set the user space flag. B stepping K8s
  * sometimes report an truncated RIP for IRET exceptions returning to
@@ -1672,6 +1708,7 @@ error_kernelspace:
 	leaq irq_return(%rip),%rcx
 	cmpq %rcx,RIP+8(%rsp)
 	je error_swapgs
+<<<<<<< HEAD
 =======
  * usergs. Handle them here.  B stepping K8s sometimes report a
  * truncated RIP for IRET exceptions returning to compat mode. Check
@@ -1683,6 +1720,8 @@ error_kernelspace:
 	cmpq %rcx,RIP+8(%rsp)
 	je error_bad_iret
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	movl %ecx,%eax	/* zero extend */
 	cmpq %rax,RIP+8(%rsp)
 	je bstep_iret
@@ -1693,6 +1732,7 @@ error_kernelspace:
 bstep_iret:
 	/* Fix truncated RIP */
 	movq %rcx,RIP+8(%rsp)
+<<<<<<< HEAD
 <<<<<<< HEAD
 	jmp error_swapgs
 =======
@@ -1706,6 +1746,9 @@ error_bad_iret:
 	decl %ebx	/* Return to usergs */
 	jmp error_sti
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	jmp error_swapgs
+>>>>>>> 2617302... source
 	CFI_ENDPROC
 END(error_entry)
 

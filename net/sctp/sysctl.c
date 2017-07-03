@@ -66,6 +66,7 @@ static int proc_sctp_do_hmac_alg(ctl_table *ctl,
 				int write,
 				void __user *buffer, size_t *lenp,
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 				loff_t *ppos);
 =======
@@ -75,6 +76,10 @@ static int proc_sctp_do_auth(struct ctl_table *ctl, int write,
 			     loff_t *ppos);
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+
+				loff_t *ppos);
+>>>>>>> 2617302... source
 static ctl_table sctp_table[] = {
 	{
 		.procname	= "sctp_mem",
@@ -276,10 +281,14 @@ static ctl_table sctp_net_table[] = {
 		.maxlen		= sizeof(int),
 		.mode		= 0644,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.proc_handler	= proc_dointvec,
 =======
 		.proc_handler	= proc_sctp_do_auth,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		.proc_handler	= proc_dointvec,
+>>>>>>> 2617302... source
 	},
 	{
 		.procname	= "addr_scope_policy",
@@ -361,6 +370,7 @@ static int proc_sctp_do_hmac_alg(ctl_table *ctl,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 static int proc_sctp_do_auth(struct ctl_table *ctl, int write,
 			     void __user *buffer, size_t *lenp,
@@ -393,6 +403,8 @@ static int proc_sctp_do_auth(struct ctl_table *ctl, int write,
 }
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 int sctp_sysctl_net_register(struct net *net)
 {
 	struct ctl_table *table;

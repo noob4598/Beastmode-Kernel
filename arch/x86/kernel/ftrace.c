@@ -745,6 +745,7 @@ void prepare_ftrace_return(unsigned long *parent, unsigned long self_addr,
 				&return_to_handler;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/*
 	 * When resuming from suspend-to-ram, this function can be indirectly
@@ -759,6 +760,8 @@ void prepare_ftrace_return(unsigned long *parent, unsigned long self_addr,
 		return;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	if (unlikely(atomic_read(&current->tracing_graph_pause)))
 		return;
 

@@ -159,10 +159,14 @@ static inline u16 FAN_TO_REG(unsigned long val)
 /* Temperature is reported in .001 degC increments */
 #define TEMP_TO_REG(val)	\
 <<<<<<< HEAD
+<<<<<<< HEAD
 		clamp_val(SCALE(val, 1000, 1), -127, 127)
 =======
 		DIV_ROUND_CLOSEST(clamp_val((val), -127000, 127000), 1000)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		clamp_val(SCALE(val, 1000, 1), -127, 127)
+>>>>>>> 2617302... source
 #define TEMPEXT_FROM_REG(val, ext)	\
 		SCALE(((val) << 4) + (ext), 16, 1000)
 #define TEMP_FROM_REG(val)	((val) * 1000)
@@ -197,10 +201,14 @@ static const int lm85_range_map[] = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int RANGE_TO_REG(int range)
 =======
 static int RANGE_TO_REG(long range)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+static int RANGE_TO_REG(int range)
+>>>>>>> 2617302... source
 {
 	int i;
 
@@ -223,10 +231,14 @@ static const int adm1027_freq_map[8] = { /* 1 Hz */
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int FREQ_TO_REG(const int *map, int freq)
 =======
 static int FREQ_TO_REG(const int *map, unsigned long freq)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+static int FREQ_TO_REG(const int *map, int freq)
+>>>>>>> 2617302... source
 {
 	int i;
 
@@ -476,11 +488,14 @@ static ssize_t store_vrm_reg(struct device *dev, struct device_attribute *attr,
 		return err;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (val > 255)
 		return -EINVAL;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	data->vrm = val;
 	return count;
 }

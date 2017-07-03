@@ -27,11 +27,15 @@ int msm_isp_axi_create_stream(
 	struct msm_vfe_axi_stream_request_cmd *stream_cfg_cmd)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int i, rc = -1;
 =======
 	int rc = -1;
 	uint32_t i;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	int i, rc = -1;
+>>>>>>> 2617302... source
 	for (i = 0; i < MAX_NUM_STREAM; i++) {
 		if (axi_data->stream_info[i].state == AVALIABLE)
 			break;
@@ -85,6 +89,7 @@ int msm_isp_validate_axi_request(struct msm_vfe_axi_shared_data *axi_data,
 {
 	int rc = -1, i;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct msm_vfe_axi_stream *stream_info =
 		&axi_data->stream_info[
 			HANDLE_TO_IDX(stream_cfg_cmd->axi_stream_handle)];
@@ -103,6 +108,11 @@ int msm_isp_validate_axi_request(struct msm_vfe_axi_shared_data *axi_data,
 		return -EINVAL;
 	}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	struct msm_vfe_axi_stream *stream_info =
+		&axi_data->stream_info[
+			HANDLE_TO_IDX(stream_cfg_cmd->axi_stream_handle)];
+>>>>>>> 2617302... source
 
 	switch (stream_cfg_cmd->output_format) {
 	case V4L2_PIX_FMT_SBGGR8:
@@ -377,12 +387,15 @@ int msm_isp_axi_check_stream_state(
 		(stream_cfg_cmd->cmd == START_STREAM) ? INACTIVE : ACTIVE;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (stream_cfg_cmd->num_streams > MAX_NUM_STREAM) {
 		return -EINVAL;
 	}
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	for (i = 0; i < stream_cfg_cmd->num_streams; i++) {
 		if (HANDLE_TO_IDX(stream_cfg_cmd->stream_handle[i]) >= MAX_NUM_STREAM) {
 			return -EINVAL;
@@ -508,10 +521,14 @@ void msm_isp_calculate_framedrop(
 	struct msm_vfe_axi_stream_request_cmd *stream_cfg_cmd)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	struct msm_vfe_axi_stream *stream_info =
 		&axi_data->stream_info[
 		HANDLE_TO_IDX(stream_cfg_cmd->axi_stream_handle)];
 	uint32_t framedrop_period = msm_isp_get_framedrop_period(
+<<<<<<< HEAD
 =======
 	uint32_t framedrop_period = 0;
 	struct msm_vfe_axi_stream *stream_info = NULL;
@@ -529,6 +546,8 @@ void msm_isp_calculate_framedrop(
 
 	framedrop_period = msm_isp_get_framedrop_period(
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	   stream_cfg_cmd->frame_skip_pattern);
 	stream_info->frame_skip_pattern =
 		stream_cfg_cmd->frame_skip_pattern;
@@ -578,6 +597,9 @@ void msm_isp_calculate_bandwidth(
 	} else {
 		int rdi = SRC_TO_INTF(stream_info->stream_src);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		if (recording_hint == 1) {
 			ISP_DBG("%s: [syscamera] Recording mode\n", __func__);
 			stream_info->bandwidth = axi_data->src_info[rdi].pixel_clock;
@@ -586,6 +608,7 @@ void msm_isp_calculate_bandwidth(
 			stream_info->bandwidth = axi_data->src_info[rdi].pixel_clock * 3 / 2;
 		}
 		isp_recording_hint = recording_hint;
+<<<<<<< HEAD
 =======
 		if (rdi < VFE_SRC_MAX) {
 			if (recording_hint == 1) {
@@ -599,6 +622,8 @@ void msm_isp_calculate_bandwidth(
 		} else
 			pr_err("%s: Invalid rdi interface\n", __func__);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	}
 }
 
@@ -625,9 +650,13 @@ int msm_isp_request_axi_stream(struct vfe_device *vfe_dev, void *arg)
 		return rc;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+
+>>>>>>> 2617302... source
 	stream_info = &vfe_dev->axi_data.
 		stream_info[HANDLE_TO_IDX(stream_cfg_cmd->axi_stream_handle)];
 	msm_isp_axi_reserve_wm(&vfe_dev->axi_data, stream_info);
@@ -861,10 +890,14 @@ static void msm_isp_get_done_buf(struct vfe_device *vfe_dev,
 		if (pingpong_bit !=
 			(~(pingpong_status >> stream_info->wm[i]) & 0x1)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			pr_warn("%s: Write master ping pong mismatch. Status: 0x%x\n",
 =======
 			pr_err_ratelimited("%s: Write master ping pong mismatch. Status: 0x%x\n",
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			pr_warn("%s: Write master ping pong mismatch. Status: 0x%x\n",
+>>>>>>> 2617302... source
 				__func__, pingpong_status);
 		}
 	}
@@ -885,17 +918,21 @@ static int msm_isp_cfg_ping_pong_address(struct vfe_device *vfe_dev,
 	uint32_t stream_idx = HANDLE_TO_IDX(stream_info->stream_handle);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (stream_idx >= MAX_NUM_STREAM) {
 		pr_err("%s: Invalid stream_idx", __func__);
 		return rc;
 	}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	if (stream_info->controllable_output && !stream_info->request_frm_num)
 		return 0;
 
 	bufq_handle = stream_info->bufq_handle;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	rc = vfe_dev->buf_mgr->ops->get_buf(vfe_dev->buf_mgr,
 			vfe_dev->pdev->id, bufq_handle, &buf);
@@ -909,6 +946,10 @@ static int msm_isp_cfg_ping_pong_address(struct vfe_device *vfe_dev,
 	}
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	rc = vfe_dev->buf_mgr->ops->get_buf(vfe_dev->buf_mgr,
+			vfe_dev->pdev->id, bufq_handle, &buf);
+>>>>>>> 2617302... source
 	if (rc < 0) {
 		vfe_dev->error_info.
 			stream_framedrop_count[stream_idx]++;
@@ -951,11 +992,16 @@ static void msm_isp_process_done_buf(struct vfe_device *vfe_dev,
 	struct msm_isp_event_data buf_event;
 	uint32_t stream_idx = HANDLE_TO_IDX(stream_info->stream_handle);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	uint32_t frame_id = vfe_dev->axi_data.
 		src_info[SRC_TO_INTF(stream_info->stream_src)].frame_id;
 =======
 	uint32_t frame_id;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	uint32_t frame_id = vfe_dev->axi_data.
+		src_info[SRC_TO_INTF(stream_info->stream_src)].frame_id;
+>>>>>>> 2617302... source
 	if (stream_idx >= MAX_NUM_STREAM) {
 		pr_err("%s: Invalid stream_idx", __func__);
 		return;
@@ -965,6 +1011,7 @@ static void msm_isp_process_done_buf(struct vfe_device *vfe_dev,
 			__func__, SRC_TO_INTF(stream_info->stream_src));
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 	if (SRC_TO_INTF(stream_info->stream_src) < VFE_SRC_MAX)
@@ -979,6 +1026,8 @@ static void msm_isp_process_done_buf(struct vfe_device *vfe_dev,
 	}
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	if (buf && ts) {
 		if (stream_info->buf_divert) {
 			rc = vfe_dev->buf_mgr->ops->buf_divert(vfe_dev->buf_mgr,
@@ -1060,6 +1109,7 @@ void msm_isp_update_camif_output_count(
 	struct msm_vfe_axi_stream *stream_info;
 	struct msm_vfe_axi_shared_data *axi_data = &vfe_dev->axi_data;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 	if (stream_cfg_cmd->num_streams > MAX_NUM_STREAM) {
@@ -1067,6 +1117,8 @@ void msm_isp_update_camif_output_count(
 	}
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	for (i = 0; i < stream_cfg_cmd->num_streams; i++) {
 		if (HANDLE_TO_IDX(stream_cfg_cmd->stream_handle[i]) >= MAX_NUM_STREAM) {
 			return;
@@ -1103,10 +1155,14 @@ void msm_camera_io_dump_2(void __iomem *addr, int size)
 	u32 *p = (u32 *) addr;
 	u32 data;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_err("%s: %p %d\n", __func__, addr, size);
 =======
 	ISP_DBG("%s: %pK %d\n", __func__, addr, size);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	pr_err("%s: %p %d\n", __func__, addr, size);
+>>>>>>> 2617302... source
 	line_str[0] = '\0';
 	p_str = line_str;
 	for (i = 0; i < size/4; i++) {
@@ -1136,10 +1192,14 @@ static int msm_isp_update_stream_bandwidth(struct vfe_device *vfe_dev)
 	struct msm_vfe_axi_stream *stream_info;
 	struct msm_vfe_axi_shared_data *axi_data = &vfe_dev->axi_data;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	uint32_t total_pix_bandwidth = 0, total_rdi_bandwidth = 0;
 =======
 	uint64_t total_pix_bandwidth = 0, total_rdi_bandwidth = 0;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	uint32_t total_pix_bandwidth = 0, total_rdi_bandwidth = 0;
+>>>>>>> 2617302... source
 	uint32_t num_pix_streams = 0;
 	uint64_t total_bandwidth = 0;
 
@@ -1157,6 +1217,9 @@ static int msm_isp_update_stream_bandwidth(struct vfe_device *vfe_dev)
 	}
 	if (num_pix_streams > 0)
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		total_pix_bandwidth = total_pix_bandwidth /
 			num_pix_streams * (num_pix_streams - 1) +
 			(unsigned long)axi_data->src_info[VFE_PIX_0].pixel_clock *
@@ -1165,6 +1228,7 @@ static int msm_isp_update_stream_bandwidth(struct vfe_device *vfe_dev)
 
 	rc = msm_isp_update_bandwidth(ISP_VFE0 + vfe_dev->pdev->id,
 		total_bandwidth, total_bandwidth *
+<<<<<<< HEAD
 =======
 		do_div(total_pix_bandwidth, num_pix_streams);
 
@@ -1177,6 +1241,8 @@ static int msm_isp_update_stream_bandwidth(struct vfe_device *vfe_dev)
 	rc = msm_isp_update_bandwidth(ISP_VFE0 + vfe_dev->pdev->id,
 		total_bandwidth,  total_bandwidth *
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		ISP_BUS_UTILIZATION_FACTOR / ISP_Q2);
 	if (rc < 0)
 		pr_err("%s: update failed\n", __func__);
@@ -1394,12 +1460,15 @@ static int msm_isp_start_axi_stream(struct vfe_device *vfe_dev,
 	enum msm_vfe_input_src input_src = 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (stream_cfg_cmd->num_streams > MAX_NUM_STREAM) {
 		return -EINVAL;
 	}
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	for (i = 0; i < stream_cfg_cmd->num_streams; i++) {
 		if (HANDLE_TO_IDX(stream_cfg_cmd->stream_handle[i]) >= MAX_NUM_STREAM) {
 			return -EINVAL;
@@ -1413,6 +1482,7 @@ static int msm_isp_start_axi_stream(struct vfe_device *vfe_dev,
 			vfe_dev->axi_data.src_info[input_src].frame_id = 0;
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 		src_state = axi_data->src_info[
 			SRC_TO_INTF(stream_info->stream_src)].active;
 =======
@@ -1425,6 +1495,10 @@ static int msm_isp_start_axi_stream(struct vfe_device *vfe_dev,
 			return -EINVAL;
 		}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		src_state = axi_data->src_info[
+			SRC_TO_INTF(stream_info->stream_src)].active;
+>>>>>>> 2617302... source
 
 		msm_isp_calculate_bandwidth(axi_data, stream_info, stream_cfg_cmd->recording_hint);
 		msm_isp_reset_framedrop(vfe_dev, stream_info);
@@ -1480,12 +1554,15 @@ static int msm_isp_stop_axi_stream(struct vfe_device *vfe_dev,
 	enum msm_vfe_input_src input_src = 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (stream_cfg_cmd->num_streams > MAX_NUM_STREAM) {
 		return -EINVAL;
 	}
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	for (i = 0; i < stream_cfg_cmd->num_streams; i++) {
 		if (HANDLE_TO_IDX(stream_cfg_cmd->stream_handle[i]) >= MAX_NUM_STREAM) {
 			return -EINVAL;
@@ -1675,12 +1752,15 @@ int msm_isp_update_axi_stream(struct vfe_device *vfe_dev, void *arg)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (update_cmd->num_streams > MAX_NUM_STREAM) {
 		return -EINVAL;
 	}
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	for (i = 0; i < update_cmd->num_streams; i++) {
 		update_info = &update_cmd->update_info[i];
 		if (HANDLE_TO_IDX(update_info->stream_handle) >= MAX_NUM_STREAM) {

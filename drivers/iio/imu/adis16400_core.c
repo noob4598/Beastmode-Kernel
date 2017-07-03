@@ -27,9 +27,12 @@
 #include <linux/module.h>
 #include <linux/debugfs.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <linux/bitops.h>
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 #include <linux/iio/iio.h>
 #include <linux/iio/sysfs.h>
@@ -442,6 +445,7 @@ static int adis16400_read_raw(struct iio_dev *indio_dev,
 			*val2 = (st->variant->temp_scale_nano % 1000000);
 			return IIO_VAL_INT_PLUS_MICRO;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		case IIO_PRESSURE:
 			/* 20 uBar = 0.002kPascal */
@@ -449,6 +453,8 @@ static int adis16400_read_raw(struct iio_dev *indio_dev,
 			*val2 = 2000;
 			return IIO_VAL_INT_PLUS_MICRO;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		default:
 			return -EINVAL;
 		}
@@ -460,10 +466,14 @@ static int adis16400_read_raw(struct iio_dev *indio_dev,
 		if (ret)
 			return ret;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		val16 = ((val16 & 0xFFF) << 4) >> 4;
 =======
 		val16 = sign_extend32(val16, 11);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		val16 = ((val16 & 0xFFF) << 4) >> 4;
+>>>>>>> 2617302... source
 		*val = val16;
 		return IIO_VAL_INT;
 	case IIO_CHAN_INFO_OFFSET:
@@ -496,16 +506,22 @@ static int adis16400_read_raw(struct iio_dev *indio_dev,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 #define ADIS16400_VOLTAGE_CHAN(addr, bits, name, si) { \
 	.type = IIO_VOLTAGE, \
 	.indexed = 1, \
 	.channel = 0, \
+<<<<<<< HEAD
 =======
 #define ADIS16400_VOLTAGE_CHAN(addr, bits, name, si, chn) { \
 	.type = IIO_VOLTAGE, \
 	.indexed = 1, \
 	.channel = chn, \
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	.extend_name = name, \
 	.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) | \
 		BIT(IIO_CHAN_INFO_SCALE), \
@@ -522,16 +538,22 @@ static int adis16400_read_raw(struct iio_dev *indio_dev,
 
 #define ADIS16400_SUPPLY_CHAN(addr, bits) \
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	ADIS16400_VOLTAGE_CHAN(addr, bits, "supply", ADIS16400_SCAN_SUPPLY)
 
 #define ADIS16400_AUX_ADC_CHAN(addr, bits) \
 	ADIS16400_VOLTAGE_CHAN(addr, bits, NULL, ADIS16400_SCAN_ADC)
+<<<<<<< HEAD
 =======
 	ADIS16400_VOLTAGE_CHAN(addr, bits, "supply", ADIS16400_SCAN_SUPPLY, 0)
 
 #define ADIS16400_AUX_ADC_CHAN(addr, bits) \
 	ADIS16400_VOLTAGE_CHAN(addr, bits, NULL, ADIS16400_SCAN_ADC, 1)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 #define ADIS16400_GYRO_CHAN(mod, addr, bits) { \
 	.type = IIO_ANGL_VEL, \
@@ -849,13 +871,19 @@ static const struct iio_info adis16400_info = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 static const unsigned long adis16400_burst_scan_mask[] = {
 	~0UL,
 	0,
 };
 
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 static const char * const adis16400_status_error_msgs[] = {
 	[ADIS16400_DIAG_STAT_ZACCL_FAIL] = "Z-axis accelerometer self-test failure",
 	[ADIS16400_DIAG_STAT_YACCL_FAIL] = "Y-axis accelerometer self-test failure",
@@ -904,6 +932,7 @@ static const struct adis_data adis16400_data = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 static void adis16400_setup_chan_mask(struct adis16400_state *st)
 {
@@ -920,6 +949,8 @@ static void adis16400_setup_chan_mask(struct adis16400_state *st)
 }
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 static int adis16400_probe(struct spi_device *spi)
 {
 	struct adis16400_state *st;
@@ -944,6 +975,7 @@ static int adis16400_probe(struct spi_device *spi)
 	indio_dev->modes = INDIO_DIRECT_MODE;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!(st->variant->flags & ADIS16400_NO_BURST))
 		indio_dev->available_scan_masks = adis16400_burst_scan_mask;
 =======
@@ -952,6 +984,10 @@ static int adis16400_probe(struct spi_device *spi)
 		indio_dev->available_scan_masks = st->avail_scan_mask;
 	}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (!(st->variant->flags & ADIS16400_NO_BURST))
+		indio_dev->available_scan_masks = adis16400_burst_scan_mask;
+>>>>>>> 2617302... source
 
 	ret = adis_init(&st->adis, indio_dev, spi, &adis16400_data);
 	if (ret)

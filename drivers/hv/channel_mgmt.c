@@ -649,10 +649,14 @@ int vmbus_request_offers(void)
 	struct vmbus_channel_message_header *msg;
 	struct vmbus_channel_msginfo *msginfo;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int ret, t;
 =======
 	int ret;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	int ret, t;
+>>>>>>> 2617302... source
 
 	msginfo = kmalloc(sizeof(*msginfo) +
 			  sizeof(struct vmbus_channel_message_header),
@@ -661,10 +665,15 @@ int vmbus_request_offers(void)
 		return -ENOMEM;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	init_completion(&msginfo->waitevent);
 
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	init_completion(&msginfo->waitevent);
+
+>>>>>>> 2617302... source
 	msg = (struct vmbus_channel_message_header *)msginfo->msg;
 
 	msg->msgtype = CHANNELMSG_REQUESTOFFERS;
@@ -679,6 +688,9 @@ int vmbus_request_offers(void)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	t = wait_for_completion_timeout(&msginfo->waitevent, 5*HZ);
 	if (t == 0) {
 		ret = -ETIMEDOUT;
@@ -687,8 +699,11 @@ int vmbus_request_offers(void)
 
 
 
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 cleanup:
 	kfree(msginfo);
 

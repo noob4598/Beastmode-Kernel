@@ -928,10 +928,14 @@ static ssize_t profile_pipe_print(struct file *filep, char __user *ubuf,
 		kgsl_mutex_unlock(&device->mutex, &device->mutex_owner);
 		set_current_state(TASK_INTERRUPTIBLE);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		schedule_timeout(HZ / 10);
 =======
 		schedule_timeout(msecs_to_jiffies(100));
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		schedule_timeout(HZ / 10);
+>>>>>>> 2617302... source
 		kgsl_mutex_lock(&device->mutex, &device->mutex_owner);
 
 		if (signal_pending(current)) {

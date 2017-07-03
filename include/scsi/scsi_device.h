@@ -253,10 +253,14 @@ struct scsi_target {
 	struct list_head	devices;
 	struct device		dev;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned int		reap_ref; /* protected by the host lock */
 =======
 	struct kref		reap_ref; /* last put renders target invisible */
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	unsigned int		reap_ref; /* protected by the host lock */
+>>>>>>> 2617302... source
 	unsigned int		channel;
 	unsigned int		id; /* target id ... replace
 				     * scsi_device.id eventually */
@@ -281,9 +285,13 @@ struct scsi_target {
 
 	char			scsi_level;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct execute_work	ew;
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	struct execute_work	ew;
+>>>>>>> 2617302... source
 	enum scsi_target_state	state;
 	void 			*hostdata; /* available to low-level driver */
 	unsigned long		starget_data[0]; /* for the transport */

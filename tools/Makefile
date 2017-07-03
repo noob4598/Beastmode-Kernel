@@ -23,12 +23,15 @@ help:
 	@echo '  the tools above'
 	@echo ''
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	@echo '  $$ make tools/all'
 	@echo ''
 	@echo '  builds all tools.'
 	@echo ''
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	@echo '  $$ make tools/install'
 	@echo ''
 	@echo '  installs all tools.'
@@ -58,12 +61,15 @@ turbostat x86_energy_perf_policy: FORCE
 	$(call descend,power/x86/$@)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 all: cgroup cpupower firewire lguest \
 		perf selftests turbostat usb \
 		virtio vm net x86_energy_perf_policy
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 cpupower_install:
 	$(call descend,power/$(@:_install=),install)
 

@@ -150,10 +150,14 @@ static int iwch_l2t_send(struct t3cdev *tdev, struct sk_buff *skb, struct l2t_en
 	if (error < 0)
 		kfree_skb(skb);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return error;
 =======
 	return error < 0 ? error : 0;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	return error;
+>>>>>>> 2617302... source
 }
 
 int iwch_cxgb3_ofld_send(struct t3cdev *tdev, struct sk_buff *skb)
@@ -170,10 +174,14 @@ int iwch_cxgb3_ofld_send(struct t3cdev *tdev, struct sk_buff *skb)
 	if (error < 0)
 		kfree_skb(skb);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return error;
 =======
 	return error < 0 ? error : 0;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	return error;
+>>>>>>> 2617302... source
 }
 
 static void release_tid(struct t3cdev *tdev, u32 hwtid, struct sk_buff *skb)

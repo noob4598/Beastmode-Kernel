@@ -499,9 +499,12 @@ void invert_screen(struct vc_data *vc, int offset, int count, int viewed)
 	if (DO_UPDATE(vc))
 		do_update_region(vc, (unsigned long) p, count);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	notify_update(vc);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 }
 
 /* used by selection: complement pointer position */
@@ -519,9 +522,12 @@ void complement_pos(struct vc_data *vc, int offset)
 		if (DO_UPDATE(vc))
 			vc->vc_sw->con_putc(vc, old, oldy, oldx);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		notify_update(vc);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	}
 
 	old_offset = offset;
@@ -540,12 +546,17 @@ void complement_pos(struct vc_data *vc, int offset)
 			vc->vc_sw->con_putc(vc, new, oldy, oldx);
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	}
 
 =======
 		notify_update(vc);
 	}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	}
+
+>>>>>>> 2617302... source
 }
 
 static void insert_char(struct vc_data *vc, unsigned int nr)
@@ -875,20 +886,26 @@ static int vc_do_resize(struct tty_struct *tty, struct vc_data *vc,
 		return 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (new_screen_size > (4 << 20))
 		return -EINVAL;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	newscreen = kmalloc(new_screen_size, GFP_USER);
 	if (!newscreen)
 		return -ENOMEM;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 	if (vc == sel_cons)
 		clear_selection();
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	old_rows = vc->vc_rows;
 	old_row_size = vc->vc_size_row;
 
@@ -1187,10 +1204,14 @@ static void csi_J(struct vc_data *vc, int vpar)
 		case 3: /* erase scroll-back buffer (and whole display) */
 			scr_memsetw(vc->vc_screenbuf, vc->vc_video_erase_char,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				    vc->vc_screenbuf_size >> 1);
 =======
 				    vc->vc_screenbuf_size);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+				    vc->vc_screenbuf_size >> 1);
+>>>>>>> 2617302... source
 			set_origin(vc);
 			if (CON_IS_VISIBLE(vc))
 				update_screen(vc);
@@ -3561,6 +3582,7 @@ static int do_register_con_driver(const struct consw *csw, int first, int last)
 
 	desc = csw->con_startup();
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	if (!desc)
 		goto err;
@@ -3570,6 +3592,11 @@ static int do_register_con_driver(const struct consw *csw, int first, int last)
 		goto err;
 	}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+
+	if (!desc)
+		goto err;
+>>>>>>> 2617302... source
 
 	retval = -EINVAL;
 

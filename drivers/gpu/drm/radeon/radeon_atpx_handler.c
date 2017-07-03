@@ -12,9 +12,12 @@
 #include <acpi/acpi_bus.h>
 #include <linux/pci.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <linux/delay.h>
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 #include "radeon_acpi.h"
 
@@ -257,12 +260,15 @@ static int radeon_atpx_set_discrete_state(struct radeon_atpx *atpx, u8 state)
 			return -EIO;
 		kfree(info);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 		/* 200ms delay is required after off */
 		if (state == 0)
 			msleep(200);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	}
 	return 0;
 }
@@ -535,6 +541,7 @@ static bool radeon_atpx_detect(void)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/* some newer PX laptops mark the dGPU as a non-VGA display device */
 	while ((pdev = pci_get_class(PCI_CLASS_DISPLAY_OTHER << 8, pdev)) != NULL) {
@@ -544,6 +551,8 @@ static bool radeon_atpx_detect(void)
 	}
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	if (has_atpx && vga_count == 2) {
 		acpi_get_name(radeon_atpx_priv.atpx.handle, ACPI_FULL_PATHNAME, &buffer);
 		printk(KERN_INFO "VGA switcheroo: detected switching method %s handle\n",

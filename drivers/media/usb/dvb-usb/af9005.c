@@ -1082,6 +1082,7 @@ static int __init af9005_usb_module_init(void)
 		return result;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	rc_decode = symbol_request(af9005_rc_decode);
 	rc_keys = symbol_request(rc_map_af9005_table);
 	rc_keys_size = symbol_request(rc_map_af9005_table_size);
@@ -1093,6 +1094,11 @@ static int __init af9005_usb_module_init(void)
 	rc_keys_size = symbol_request(rc_map_af9005_table_size);
 #endif
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	rc_decode = symbol_request(af9005_rc_decode);
+	rc_keys = symbol_request(rc_map_af9005_table);
+	rc_keys_size = symbol_request(rc_map_af9005_table_size);
+>>>>>>> 2617302... source
 	if (rc_decode == NULL || rc_keys == NULL || rc_keys_size == NULL) {
 		err("af9005_rc_decode function not found, disabling remote");
 		af9005_properties.rc.legacy.rc_query = NULL;

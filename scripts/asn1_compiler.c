@@ -1354,10 +1354,13 @@ static void render_out_of_line_list(FILE *out)
 			render_opcode(out, "_jump_target(%u),\n", entry);
 			break;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		default:
 			break;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		}
 		if (e->action)
 			render_opcode(out, "_action(ACT_%s),\n",
@@ -1461,11 +1464,15 @@ dont_render_tag:
 		render_element(out, e->type->type->element, tag);
 		if (e->action)
 <<<<<<< HEAD
+<<<<<<< HEAD
 			render_opcode(out, "ASN1_OP_ACT,\n");
 =======
 			render_opcode(out, "ASN1_OP_%sACT,\n",
 				      skippable ? "MAYBE_" : "");
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			render_opcode(out, "ASN1_OP_ACT,\n");
+>>>>>>> 2617302... source
 		break;
 
 	case SEQUENCE:

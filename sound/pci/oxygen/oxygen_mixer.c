@@ -89,10 +89,14 @@ static int dac_mute_put(struct snd_kcontrol *ctl,
 
 	mutex_lock(&chip->mutex);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	changed = !value->value.integer.value[0] != chip->dac_mute;
 =======
 	changed = (!value->value.integer.value[0]) != chip->dac_mute;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	changed = !value->value.integer.value[0] != chip->dac_mute;
+>>>>>>> 2617302... source
 	if (changed) {
 		chip->dac_mute = !value->value.integer.value[0];
 		chip->model.update_dac_mute(chip);

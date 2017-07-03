@@ -79,12 +79,16 @@ struct dst_entry *inet6_csk_route_req(struct sock *sk,
 	fl6->flowi6_proto = IPPROTO_TCP;
 	fl6->daddr = treq->rmt_addr;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	final_p = fl6_update_dst(fl6, np->opt, &final);
 =======
 	rcu_read_lock();
 	final_p = fl6_update_dst(fl6, rcu_dereference(np->opt), &final);
 	rcu_read_unlock();
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	final_p = fl6_update_dst(fl6, np->opt, &final);
+>>>>>>> 2617302... source
 	fl6->saddr = treq->loc_addr;
 	fl6->flowi6_oif = treq->iif;
 	fl6->flowi6_mark = inet_rsk(req)->ir_mark;
@@ -221,12 +225,16 @@ static struct dst_entry *inet6_csk_route_socket(struct sock *sk,
 	security_sk_classify_flow(sk, flowi6_to_flowi(fl6));
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	final_p = fl6_update_dst(fl6, np->opt, &final);
 =======
 	rcu_read_lock();
 	final_p = fl6_update_dst(fl6, rcu_dereference(np->opt), &final);
 	rcu_read_unlock();
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	final_p = fl6_update_dst(fl6, np->opt, &final);
+>>>>>>> 2617302... source
 
 	dst = __inet6_csk_dst_check(sk, np->dst_cookie);
 	if (!dst) {
@@ -261,11 +269,15 @@ int inet6_csk_xmit(struct sk_buff *skb, struct flowi *fl_unused)
 	fl6.daddr = np->daddr;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	res = ip6_xmit(sk, skb, &fl6, np->opt, np->tclass);
 =======
 	res = ip6_xmit(sk, skb, &fl6, rcu_dereference(np->opt),
 		       np->tclass);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	res = ip6_xmit(sk, skb, &fl6, np->opt, np->tclass);
+>>>>>>> 2617302... source
 	rcu_read_unlock();
 	return res;
 }

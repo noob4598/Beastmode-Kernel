@@ -807,10 +807,14 @@ int hash_process_data(
 				memmove(req_ctx->state.buffer,
 						device_data->state.buffer,
 <<<<<<< HEAD
+<<<<<<< HEAD
 						HASH_BLOCK_SIZE / sizeof(u32));
 =======
 						HASH_BLOCK_SIZE);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+						HASH_BLOCK_SIZE / sizeof(u32));
+>>>>>>> 2617302... source
 				if (ret) {
 					dev_err(device_data->dev, "[%s] "
 							"hash_resume_state()"
@@ -863,10 +867,14 @@ int hash_process_data(
 			memmove(device_data->state.buffer,
 					req_ctx->state.buffer,
 <<<<<<< HEAD
+<<<<<<< HEAD
 					HASH_BLOCK_SIZE / sizeof(u32));
 =======
 					HASH_BLOCK_SIZE);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+					HASH_BLOCK_SIZE / sizeof(u32));
+>>>>>>> 2617302... source
 			if (ret) {
 				dev_err(device_data->dev, "[%s] "
 						"hash_save_state()"
@@ -2007,13 +2015,19 @@ MODULE_DESCRIPTION("Driver for ST-Ericsson UX500 HASH engine.");
 MODULE_LICENSE("GPL");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 MODULE_ALIAS("sha1-all");
 MODULE_ALIAS("sha256-all");
 MODULE_ALIAS("hmac-sha1-all");
 MODULE_ALIAS("hmac-sha256-all");
+<<<<<<< HEAD
 =======
 MODULE_ALIAS_CRYPTO("sha1-all");
 MODULE_ALIAS_CRYPTO("sha256-all");
 MODULE_ALIAS_CRYPTO("hmac-sha1-all");
 MODULE_ALIAS_CRYPTO("hmac-sha256-all");
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source

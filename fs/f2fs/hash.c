@@ -43,11 +43,15 @@ static void TEA_transform(unsigned int buf[4], unsigned int const in[])
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void str2hashbuf(const char *msg, size_t len, unsigned int *buf, int num)
 =======
 static void str2hashbuf(const unsigned char *msg, size_t len,
 				unsigned int *buf, int num)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+static void str2hashbuf(const char *msg, size_t len, unsigned int *buf, int num)
+>>>>>>> 2617302... source
 {
 	unsigned pad, val;
 	int i;
@@ -75,6 +79,9 @@ static void str2hashbuf(const unsigned char *msg, size_t len,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 f2fs_hash_t f2fs_dentry_hash(const char *name, size_t len)
 {
 	__u32 hash;
@@ -84,6 +91,7 @@ f2fs_hash_t f2fs_dentry_hash(const char *name, size_t len)
 
 	if ((len <= 2) && (name[0] == '.') &&
 		(name[1] == '.' || name[1] == '\0'))
+<<<<<<< HEAD
 =======
 f2fs_hash_t f2fs_dentry_hash(const struct qstr *name_info)
 {
@@ -96,6 +104,8 @@ f2fs_hash_t f2fs_dentry_hash(const struct qstr *name_info)
 
 	if (is_dot_dotdot(name_info))
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		return 0;
 
 	/* Initialize the default seed for the hash checksum functions */

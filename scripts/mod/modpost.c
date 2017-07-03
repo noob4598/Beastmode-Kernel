@@ -576,16 +576,21 @@ static int ignore_undef_symbol(struct elf_info *info, const char *symname)
 		    strncmp(symname, "_savegpr_", sizeof("_savegpr_") - 1) == 0 ||
 		    strncmp(symname, "_rest32gpr_", sizeof("_rest32gpr_") - 1) == 0 ||
 <<<<<<< HEAD
+<<<<<<< HEAD
 		    strncmp(symname, "_save32gpr_", sizeof("_save32gpr_") - 1) == 0)
 =======
 		    strncmp(symname, "_save32gpr_", sizeof("_save32gpr_") - 1) == 0 ||
 		    strncmp(symname, "_restvr_", sizeof("_restvr_") - 1) == 0 ||
 		    strncmp(symname, "_savevr_", sizeof("_savevr_") - 1) == 0)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		    strncmp(symname, "_save32gpr_", sizeof("_save32gpr_") - 1) == 0)
+>>>>>>> 2617302... source
 			return 1;
 	if (info->hdr->e_machine == EM_PPC64)
 		/* Special register function linked on all modules during final link of .ko */
 		if (strncmp(symname, "_restgpr0_", sizeof("_restgpr0_") - 1) == 0 ||
+<<<<<<< HEAD
 <<<<<<< HEAD
 		    strncmp(symname, "_savegpr0_", sizeof("_savegpr0_") - 1) == 0)
 =======
@@ -593,6 +598,9 @@ static int ignore_undef_symbol(struct elf_info *info, const char *symname)
 		    strncmp(symname, "_restvr_", sizeof("_restvr_") - 1) == 0 ||
 		    strncmp(symname, "_savevr_", sizeof("_savevr_") - 1) == 0)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		    strncmp(symname, "_savegpr0_", sizeof("_savegpr0_") - 1) == 0)
+>>>>>>> 2617302... source
 			return 1;
 	/* Do not ignore this symbol */
 	return 0;

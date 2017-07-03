@@ -20,10 +20,14 @@
  * table to check for several different types  of binary formats.  We keep
  * trying until we recognize the file or we run out of supported binary
 <<<<<<< HEAD
+<<<<<<< HEAD
  * formats. 
 =======
  * formats.
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+ * formats. 
+>>>>>>> 2617302... source
  */
 
 #include <linux/slab.h>
@@ -201,6 +205,7 @@ static struct page *get_arg_page(struct linux_binprm *bprm, unsigned long pos,
 	if (write) {
 		unsigned long size = bprm->vma->vm_end - bprm->vma->vm_start;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		struct rlimit *rlim;
 
 =======
@@ -225,6 +230,10 @@ static struct page *get_arg_page(struct linux_binprm *bprm, unsigned long pos,
 		size += ptr_size;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		struct rlimit *rlim;
+
+>>>>>>> 2617302... source
 		acct_arg_size(bprm, size / PAGE_SIZE);
 
 		/*
@@ -243,6 +252,9 @@ static struct page *get_arg_page(struct linux_binprm *bprm, unsigned long pos,
 		 */
 		rlim = current->signal->rlim;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		if (size > ACCESS_ONCE(rlim[RLIMIT_STACK].rlim_cur) / 4) {
 			put_page(page);
 			return NULL;
@@ -250,6 +262,7 @@ static struct page *get_arg_page(struct linux_binprm *bprm, unsigned long pos,
 	}
 
 	return page;
+<<<<<<< HEAD
 =======
 		if (size > ACCESS_ONCE(rlim[RLIMIT_STACK].rlim_cur) / 4)
 			goto fail;
@@ -261,6 +274,8 @@ fail:
 	put_page(page);
 	return NULL;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 }
 
 static void put_arg_page(struct page *page)
@@ -697,16 +712,22 @@ int setup_arg_pages(struct linux_binprm *bprm,
 
 #ifdef CONFIG_STACK_GROWSUP
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	/* Limit stack size to 1GB */
 	stack_base = rlimit_max(RLIMIT_STACK);
 	if (stack_base > (1 << 30))
 		stack_base = 1 << 30;
+<<<<<<< HEAD
 =======
 	/* Limit stack size */
 	stack_base = rlimit_max(RLIMIT_STACK);
 	if (stack_base > STACK_SIZE_MAX)
 		stack_base = STACK_SIZE_MAX;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	/* Make sure we didn't let the argument array grow too large. */
 	if (vma->vm_end - vma->vm_start > stack_base)
@@ -1144,6 +1165,7 @@ int flush_old_exec(struct linux_binprm * bprm)
 	current->personality &= ~bprm->per_clear;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/*
 	 * We have to apply CLOEXEC before we change whether the process is
@@ -1153,6 +1175,8 @@ int flush_old_exec(struct linux_binprm * bprm)
 	 */
 	do_close_on_exec(current->files);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	return 0;
 
 out:
@@ -1163,10 +1187,14 @@ EXPORT_SYMBOL(flush_old_exec);
 void would_dump(struct linux_binprm *bprm, struct file *file)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (inode_permission(file_inode(file), MAY_READ) < 0)
 =======
 	if (inode_permission2(file->f_path.mnt, file_inode(file), MAY_READ) < 0)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (inode_permission(file_inode(file), MAY_READ) < 0)
+>>>>>>> 2617302... source
 		bprm->interp_flags |= BINPRM_FLAGS_ENFORCE_NONDUMP;
 }
 EXPORT_SYMBOL(would_dump);
@@ -1208,9 +1236,13 @@ void setup_new_exec(struct linux_binprm * bprm)
 			
 	flush_signal_handlers(current, 0);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	do_close_on_exec(current->files);
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	do_close_on_exec(current->files);
+>>>>>>> 2617302... source
 }
 EXPORT_SYMBOL(setup_new_exec);
 
@@ -1760,6 +1792,7 @@ static int do_execve_common(const char *filename,
 		goto out;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (d_is_su(file->f_dentry) && capable(CAP_SYS_ADMIN)) {
 		current->flags |= PF_SU;
@@ -1767,6 +1800,8 @@ static int do_execve_common(const char *filename,
 	}
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	/* execve succeeded */
 	current->fs->in_exec = 0;
 	current->in_execve = 0;

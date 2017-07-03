@@ -23,9 +23,12 @@
 #include <linux/netdevice.h>
 #include <linux/if_arp.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <linux/workqueue.h>
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 #include <linux/can.h>
 #include <linux/can/dev.h>
 #include <linux/can/skb.h>
@@ -390,10 +393,14 @@ void can_free_echo_skb(struct net_device *dev, unsigned int idx)
 
 	if (priv->echo_skb[idx]) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		kfree_skb(priv->echo_skb[idx]);
 =======
 		dev_kfree_skb_any(priv->echo_skb[idx]);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		kfree_skb(priv->echo_skb[idx]);
+>>>>>>> 2617302... source
 		priv->echo_skb[idx] = NULL;
 	}
 }
@@ -403,6 +410,7 @@ EXPORT_SYMBOL_GPL(can_free_echo_skb);
  * CAN device restart for bus-off recovery
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void can_restart(unsigned long data)
 {
 	struct net_device *dev = (struct net_device *)data;
@@ -410,6 +418,11 @@ static void can_restart(unsigned long data)
 static void can_restart(struct net_device *dev)
 {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+static void can_restart(unsigned long data)
+{
+	struct net_device *dev = (struct net_device *)data;
+>>>>>>> 2617302... source
 	struct can_priv *priv = netdev_priv(dev);
 	struct net_device_stats *stats = &dev->stats;
 	struct sk_buff *skb;
@@ -450,6 +463,7 @@ restart:
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 static void can_restart_work(struct work_struct *work)
 {
@@ -460,6 +474,8 @@ static void can_restart_work(struct work_struct *work)
 }
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 int can_restart_now(struct net_device *dev)
 {
 	struct can_priv *priv = netdev_priv(dev);
@@ -474,12 +490,17 @@ int can_restart_now(struct net_device *dev)
 		return -EBUSY;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* Runs as soon as possible in the timer context */
 	mod_timer(&priv->restart_timer, jiffies);
 =======
 	cancel_delayed_work_sync(&priv->restart_work);
 	can_restart(dev);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	/* Runs as soon as possible in the timer context */
+	mod_timer(&priv->restart_timer, jiffies);
+>>>>>>> 2617302... source
 
 	return 0;
 }
@@ -502,12 +523,17 @@ void can_bus_off(struct net_device *dev)
 
 	if (priv->restart_ms)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		mod_timer(&priv->restart_timer,
 			  jiffies + (priv->restart_ms * HZ) / 1000);
 =======
 		schedule_delayed_work(&priv->restart_work,
 				      msecs_to_jiffies(priv->restart_ms));
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		mod_timer(&priv->restart_timer,
+			  jiffies + (priv->restart_ms * HZ) / 1000);
+>>>>>>> 2617302... source
 }
 EXPORT_SYMBOL_GPL(can_bus_off);
 
@@ -538,6 +564,7 @@ struct sk_buff *alloc_can_skb(struct net_device *dev, struct can_frame **cf)
 	skb->ip_summed = CHECKSUM_UNNECESSARY;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	skb_reset_mac_header(skb);
 	skb_reset_network_header(skb);
@@ -548,6 +575,8 @@ struct sk_buff *alloc_can_skb(struct net_device *dev, struct can_frame **cf)
 	skb_reset_transport_header(skb);
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	can_skb_reserve(skb);
 	can_skb_prv(skb)->ifindex = dev->ifindex;
 
@@ -594,9 +623,12 @@ struct net_device *alloc_candev(int sizeof_priv, unsigned int echo_skb_max)
 
 	priv = netdev_priv(dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	priv->dev = dev;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	if (echo_skb_max) {
 		priv->echo_skb_max = echo_skb_max;
@@ -607,10 +639,14 @@ struct net_device *alloc_candev(int sizeof_priv, unsigned int echo_skb_max)
 	priv->state = CAN_STATE_STOPPED;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	init_timer(&priv->restart_timer);
 =======
 	INIT_DELAYED_WORK(&priv->restart_work, can_restart_work);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	init_timer(&priv->restart_timer);
+>>>>>>> 2617302... source
 
 	return dev;
 }
@@ -645,10 +681,15 @@ int open_candev(struct net_device *dev)
 		netif_carrier_on(dev);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	setup_timer(&priv->restart_timer, can_restart, (unsigned long)dev);
 
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	setup_timer(&priv->restart_timer, can_restart, (unsigned long)dev);
+
+>>>>>>> 2617302... source
 	return 0;
 }
 EXPORT_SYMBOL_GPL(open_candev);
@@ -664,10 +705,14 @@ void close_candev(struct net_device *dev)
 	struct can_priv *priv = netdev_priv(dev);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	del_timer_sync(&priv->restart_timer);
 =======
 	cancel_delayed_work_sync(&priv->restart_work);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	del_timer_sync(&priv->restart_timer);
+>>>>>>> 2617302... source
 	can_flush_echo_skb(dev);
 }
 EXPORT_SYMBOL_GPL(close_candev);
@@ -704,10 +749,14 @@ static int can_changelink(struct net_device *dev,
 			return -EBUSY;
 		cm = nla_data(data[IFLA_CAN_CTRLMODE]);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		if (cm->flags & ~priv->ctrlmode_supported)
 			return -EOPNOTSUPP;
 		priv->ctrlmode &= ~cm->mask;
 		priv->ctrlmode |= cm->flags;
+<<<<<<< HEAD
 =======
 
 		/* check whether changed bits are allowed to be modified */
@@ -718,6 +767,8 @@ static int can_changelink(struct net_device *dev,
 		priv->ctrlmode &= ~cm->mask;
 		priv->ctrlmode |= (cm->flags & cm->mask);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	}
 
 	if (data[IFLA_CAN_BITTIMING]) {
@@ -832,6 +883,7 @@ static int can_newlink(struct net *src_net, struct net_device *dev,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 static void can_dellink(struct net_device *dev, struct list_head *head)
 {
@@ -839,6 +891,8 @@ static void can_dellink(struct net_device *dev, struct list_head *head)
 }
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 static struct rtnl_link_ops can_link_ops __read_mostly = {
 	.kind		= "can",
 	.maxtype	= IFLA_CAN_MAX,
@@ -847,9 +901,12 @@ static struct rtnl_link_ops can_link_ops __read_mostly = {
 	.newlink	= can_newlink,
 	.changelink	= can_changelink,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	.dellink	= can_dellink,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	.get_size	= can_get_size,
 	.fill_info	= can_fill_info,
 	.get_xstats_size = can_get_xstats_size,

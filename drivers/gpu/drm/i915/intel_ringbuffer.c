@@ -315,9 +315,12 @@ gen7_render_ring_flush(struct intel_ring_buffer *ring,
 		flags |= PIPE_CONTROL_CONST_CACHE_INVALIDATE;
 		flags |= PIPE_CONTROL_STATE_CACHE_INVALIDATE;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		flags |= PIPE_CONTROL_MEDIA_STATE_CLEAR;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		/*
 		 * TLB invalidate requires a post-sync write.
 		 */
@@ -325,10 +328,13 @@ gen7_render_ring_flush(struct intel_ring_buffer *ring,
 		flags |= PIPE_CONTROL_GLOBAL_GTT_IVB;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		flags |= PIPE_CONTROL_STALL_AT_SCOREBOARD;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		/* Workaround: we must issue a pipe_control with CS-stall bit
 		 * set before a pipe_control command that has the state cache
 		 * invalidate bit set. */
@@ -406,11 +412,14 @@ static int init_ring_common(struct intel_ring_buffer *ring)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/* Enforce ordering by reading HEAD register back */
 	I915_READ_HEAD(ring);
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	/* Initialize the ring. This must happen _after_ we've cleared the ring
 	 * registers with the above sequence (the readback of the HEAD registers
 	 * also enforces ordering), otherwise the hw might lose the new ring

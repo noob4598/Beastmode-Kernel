@@ -41,9 +41,12 @@
 
 #include "target_core_internal.h"
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include "target_core_pr.h"
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 extern struct se_device *g_lun0_dev;
 
@@ -170,6 +173,7 @@ void core_tpg_add_node_to_devs(
 		core_enable_device_list_for_node(lun, NULL, lun->unpacked_lun,
 				lun_access, acl, tpg);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		/*
 		 * Check to see if there are any existing persistent reservation
@@ -179,6 +183,8 @@ void core_tpg_add_node_to_devs(
 		core_scsi3_check_aptpl_registration(dev, tpg, lun, acl,
 						    lun->unpacked_lun);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		spin_lock(&tpg->tpg_lun_lock);
 	}
 	spin_unlock(&tpg->tpg_lun_lock);

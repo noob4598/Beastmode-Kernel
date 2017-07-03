@@ -3033,12 +3033,17 @@ F:	arch/ia64/kernel/efi.c
 F:	arch/x86/boot/compressed/eboot.[ch]
 F:	arch/x86/include/asm/efi.h
 <<<<<<< HEAD
+<<<<<<< HEAD
 F:	arch/x86/platform/efi/*
 F:	drivers/firmware/efi/*
 =======
 F:	arch/x86/platform/efi/
 F:	drivers/firmware/efi/
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+F:	arch/x86/platform/efi/*
+F:	drivers/firmware/efi/*
+>>>>>>> 2617302... source
 F:	include/linux/efi*.h
 
 EFI VARIABLE FILESYSTEM
@@ -9231,6 +9236,7 @@ S:	Maintained
 F:	drivers/tty/serial/zs.*
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 ZSMALLOC COMPRESSED SLAB MEMORY ALLOCATOR
 M:	Minchan Kim <minchan@kernel.org>
@@ -9242,6 +9248,8 @@ F:	include/linux/zsmalloc.h
 F:	Documentation/vm/zsmalloc.txt
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 ZSWAP COMPRESSED SWAP CACHING
 M:	Seth Jennings <sjenning@linux.vnet.ibm.com>
 L:	linux-mm@kvack.org

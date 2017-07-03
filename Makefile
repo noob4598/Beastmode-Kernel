@@ -1,12 +1,17 @@
 VERSION = 3
 PATCHLEVEL = 10
 <<<<<<< HEAD
+<<<<<<< HEAD
 SUBLEVEL = 40
 EXTRAVERSION = -BeastMode
 =======
 SUBLEVEL = 107
 EXTRAVERSION =
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+SUBLEVEL = 40
+EXTRAVERSION = -BeastMode
+>>>>>>> 2617302... source
 NAME = TOSSUG Baby Fish
 
 # *DOCUMENTATION*
@@ -164,9 +169,13 @@ VPATH		:= $(srctree)$(if $(KBUILD_EXTMOD),:$(KBUILD_EXTMOD))
 export srctree objtree VPATH
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 CCACHE := ccache
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+CCACHE := ccache
+>>>>>>> 2617302... source
 
 # SUBARCH tells the usermode build what the underlying arch is.  That is set
 # first, and if a usermode build is happening, the "ARCH=um" on the command
@@ -202,6 +211,7 @@ SUBARCH := $(shell uname -m | sed -e s/i.86/x86/ -e s/x86_64/x86/ \
 # Default value for CROSS_COMPILE is not to prefix executables
 # Note: Some architectures assign CROSS_COMPILE in their arch/*/Makefile
 <<<<<<< HEAD
+<<<<<<< HEAD
 export KBUILD_BUILDHOST := $(SUBARCH)
 ARCH  ?=arm
 CROSS_COMPILE ?=/home/freeza/arm-cortex_a15-linux-gnueabihf-linaro_4.9.3-2015.02/bin/arm-cortex_a15-linux-gnueabihf-
@@ -209,6 +219,11 @@ CROSS_COMPILE ?=/home/freeza/arm-cortex_a15-linux-gnueabihf-linaro_4.9.3-2015.02
 ARCH		?= $(SUBARCH)
 CROSS_COMPILE	?= $(CONFIG_CROSS_COMPILE:"%"=%)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+export KBUILD_BUILDHOST := $(SUBARCH)
+ARCH  ?=arm
+CROSS_COMPILE ?=/home/freeza/arm-cortex_a15-linux-gnueabihf-linaro_4.9.3-2015.02/bin/arm-cortex_a15-linux-gnueabihf-
+>>>>>>> 2617302... source
 
 # Architecture as present in compile.h
 UTS_MACHINE 	:= $(ARCH)
@@ -367,16 +382,22 @@ CC		= $(srctree)/scripts/gcc-wrapper.py $(REAL_CC)
 CHECKFLAGS     := -D__linux__ -Dlinux -D__STDC__ -Dunix -D__unix__ \
 		  -Wbitwise -Wno-return-void $(CF)
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 CFLAGS_MODULE   = -munaligned-access -fno-pic -mfpu=neon-vfpv4
 AFLAGS_MODULE   =
 LDFLAGS_MODULE  = --strip-debug
 CFLAGS_KERNEL	= -munaligned-access -mfpu=neon-vfpv4
+<<<<<<< HEAD
 =======
 CFLAGS_MODULE   =
 AFLAGS_MODULE   =
 LDFLAGS_MODULE  =
 CFLAGS_KERNEL	=
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 AFLAGS_KERNEL	=
 CFLAGS_GCOV	= -fprofile-arcs -ftest-coverage
 
@@ -402,6 +423,9 @@ KBUILD_CPPFLAGS := -D__KERNEL__
 
 KBUILD_CFLAGS   := -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs \
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		   -fno-strict-aliasing -fno-common -Wno-unused-value \
 		   -Werror-implicit-function-declaration \
 		   -Wno-format-security -Wno-array-bounds -Wno-unused-variable -Wno-unused-function \
@@ -410,6 +434,7 @@ KBUILD_CFLAGS   := -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs \
 		   -funswitch-loops -fpredictive-commoning -fgcse-after-reload \
 		   -fno-aggressive-loop-optimizations \
 		   -fno-delete-null-pointer-checks -Wno-maybe-uninitialized
+<<<<<<< HEAD
 =======
 		   -fno-strict-aliasing -fno-common \
 		   -Werror-implicit-function-declaration \
@@ -418,6 +443,8 @@ KBUILD_CFLAGS   := -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs \
 		   -std=gnu89
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 KBUILD_AFLAGS_KERNEL :=
 KBUILD_CFLAGS_KERNEL :=
 KBUILD_AFLAGS   := -D__ASSEMBLY__
@@ -695,10 +722,14 @@ CHECKFLAGS     += $(NOSTDINC_FLAGS)
 
 # warn about C99 declaration after statement
 <<<<<<< HEAD
+<<<<<<< HEAD
 # KBUILD_CFLAGS += $(call cc-option,-Wdeclaration-after-statement,)
 =======
 KBUILD_CFLAGS += $(call cc-option,-Wdeclaration-after-statement,)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+# KBUILD_CFLAGS += $(call cc-option,-Wdeclaration-after-statement,)
+>>>>>>> 2617302... source
 
 # disable pointer signed / unsigned warnings in gcc 4.0
 KBUILD_CFLAGS += $(call cc-disable-warning, pointer-sign)

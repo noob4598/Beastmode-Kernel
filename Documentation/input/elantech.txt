@@ -505,6 +505,7 @@ byte 5:
 
    bit   7   6   5   4   3   2   1   0
 <<<<<<< HEAD
+<<<<<<< HEAD
          0   0   0   0   0   0   0   A
 
          A: 1 = enable absolute tracking
@@ -516,6 +517,11 @@ byte 5:
          F: 1 = disable ABS Position Filter
          R: 1 = enable real hardware resolution
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+         0   0   0   0   0   0   0   A
+
+         A: 1 = enable absolute tracking
+>>>>>>> 2617302... source
 
 6.2 Native absolute mode 6 byte packet format
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

@@ -47,19 +47,27 @@ void _paravirt_nop(void)
 
 /* identity function, which can be inlined */
 <<<<<<< HEAD
+<<<<<<< HEAD
 u32 _paravirt_ident_32(u32 x)
 =======
 u32 notrace _paravirt_ident_32(u32 x)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+u32 _paravirt_ident_32(u32 x)
+>>>>>>> 2617302... source
 {
 	return x;
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 u64 _paravirt_ident_64(u64 x)
 =======
 u64 notrace _paravirt_ident_64(u64 x)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+u64 _paravirt_ident_64(u64 x)
+>>>>>>> 2617302... source
 {
 	return x;
 }

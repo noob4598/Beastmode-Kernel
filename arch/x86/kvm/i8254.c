@@ -245,10 +245,14 @@ static void kvm_pit_ack_irq(struct kvm_irq_ack_notifier *kian)
 		 */
 		atomic_inc(&ps->pending);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	else if (value > 0)
 =======
 	else if (value > 0 && ps->reinject)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	else if (value > 0)
+>>>>>>> 2617302... source
 		/* in this case, we had multiple outstanding pit interrupts
 		 * that we needed to inject.  Reinject
 		 */
@@ -267,6 +271,7 @@ void __kvm_migrate_pit_timer(struct kvm_vcpu *vcpu)
 
 	timer = &pit->pit_state.timer;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (hrtimer_cancel(timer))
 		hrtimer_start_expires(timer, HRTIMER_MODE_ABS);
 =======
@@ -275,6 +280,10 @@ void __kvm_migrate_pit_timer(struct kvm_vcpu *vcpu)
 		hrtimer_start_expires(timer, HRTIMER_MODE_ABS);
 	mutex_unlock(&pit->pit_state.lock);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (hrtimer_cancel(timer))
+		hrtimer_start_expires(timer, HRTIMER_MODE_ABS);
+>>>>>>> 2617302... source
 }
 
 static void destroy_pit_timer(struct kvm_pit *pit)
@@ -297,12 +306,16 @@ static void pit_do_work(struct kthread_work *work)
 	 */
 	spin_lock(&ps->inject_lock);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (ps->irq_ack) {
 =======
 	if (!ps->reinject)
 		inject = 1;
 	else if (ps->irq_ack) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (ps->irq_ack) {
+>>>>>>> 2617302... source
 		ps->irq_ack = 0;
 		inject = 1;
 	}
@@ -321,10 +334,14 @@ static void pit_do_work(struct kthread_work *work)
 		 * VCPU0, and only if its LVT0 is in EXTINT mode.
 		 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (kvm->arch.vapics_in_nmi_mode > 0)
 =======
 		if (atomic_read(&kvm->arch.vapics_in_nmi_mode) > 0)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		if (kvm->arch.vapics_in_nmi_mode > 0)
+>>>>>>> 2617302... source
 			kvm_for_each_vcpu(i, vcpu, kvm)
 				kvm_apic_nmi_wd_deliver(vcpu);
 	}
@@ -336,16 +353,22 @@ static enum hrtimer_restart pit_timer_fn(struct hrtimer *data)
 	struct kvm_pit *pt = ps->kvm->arch.vpit;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	if (ps->reinject || !atomic_read(&ps->pending)) {
 		atomic_inc(&ps->pending);
 		queue_kthread_work(&pt->worker, &pt->expired);
 	}
+<<<<<<< HEAD
 =======
 	if (ps->reinject)
 		atomic_inc(&ps->pending);
 
 	queue_kthread_work(&pt->worker, &pt->expired);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	if (ps->is_periodic) {
 		hrtimer_add_expires_ns(&ps->timer, ps->period);

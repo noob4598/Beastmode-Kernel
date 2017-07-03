@@ -372,15 +372,22 @@ static void to_utf8(struct vc_data *vc, uint c)
 static void do_compute_shiftstate(void)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned int i, j, k, sym, val;
 =======
 	unsigned int k, sym, val;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	unsigned int i, j, k, sym, val;
+>>>>>>> 2617302... source
 
 	shift_state = 0;
 	memset(shift_down, 0, sizeof(shift_down));
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	for (i = 0; i < ARRAY_SIZE(key_down); i++) {
 
 		if (!key_down[i])
@@ -404,6 +411,7 @@ static void do_compute_shiftstate(void)
 			shift_down[val]++;
 			shift_state |= (1 << val);
 		}
+<<<<<<< HEAD
 =======
 	for_each_set_bit(k, key_down, min(NR_KEYS, KEY_CNT)) {
 		sym = U(key_maps[0][k]);
@@ -417,6 +425,8 @@ static void do_compute_shiftstate(void)
 		shift_down[val]++;
 		shift_state |= BIT(val);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	}
 }
 

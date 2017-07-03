@@ -198,10 +198,15 @@ static int cpu_notify(unsigned long val, void *v)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #ifdef CONFIG_HOTPLUG_CPU
 
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+#ifdef CONFIG_HOTPLUG_CPU
+
+>>>>>>> 2617302... source
 static void cpu_notify_nofail(unsigned long val, void *v)
 {
 	BUG_ON(cpu_notify(val, v));
@@ -224,9 +229,12 @@ void __ref __unregister_cpu_notifier(struct notifier_block *nb)
 EXPORT_SYMBOL(__unregister_cpu_notifier);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #ifdef CONFIG_HOTPLUG_CPU
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 /**
  * clear_tasks_mm_cpumask - Safely clear tasks' mm_cpumask for a CPU
  * @cpu: a CPU id
@@ -628,9 +636,12 @@ void __ref enable_nonboot_cpus(void)
 {
 	int cpu, error;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct device *cpu_device;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	/* Allow everyone to use the CPU hotplug again */
 	cpu_maps_update_begin();
@@ -647,6 +658,7 @@ void __ref enable_nonboot_cpus(void)
 		if (!error) {
 			printk(KERN_INFO "CPU%d is up\n", cpu);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 			cpu_device = get_cpu_device(cpu);
 			if (!cpu_device)
@@ -655,6 +667,8 @@ void __ref enable_nonboot_cpus(void)
 			else
 				kobject_uevent(&cpu_device->kobj, KOBJ_ONLINE);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 			continue;
 		}
 		printk(KERN_WARNING "Error taking CPU%d up: %d\n", cpu, error);

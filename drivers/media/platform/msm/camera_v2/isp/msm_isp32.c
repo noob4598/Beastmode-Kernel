@@ -121,11 +121,15 @@ vfe_remap_failed:
 				ARRAY_SIZE(msm_vfe32_2_clk_info), 0);
 clk_enable_failed:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	regulator_disable(vfe_dev->fs_vfe);
 =======
 	if (vfe_dev->fs_vfe)
 		regulator_disable(vfe_dev->fs_vfe);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	regulator_disable(vfe_dev->fs_vfe);
+>>>>>>> 2617302... source
 fs_failed:
 	msm_isp_deinit_bandwidth_mgr(ISP_VFE0 + vfe_dev->pdev->id);
 bus_scale_register_failed:

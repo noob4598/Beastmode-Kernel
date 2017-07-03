@@ -636,6 +636,7 @@ i915_gem_execbuffer_relocate_slow(struct drm_device *dev,
 		 */
 		for (j = 0; j < exec[i].relocation_count; j++) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (copy_to_user(&user_relocs[j].presumed_offset,
 					 &invalid_offset,
 					 sizeof(invalid_offset))) {
@@ -644,6 +645,11 @@ i915_gem_execbuffer_relocate_slow(struct drm_device *dev,
 					   &invalid_offset,
 					   sizeof(invalid_offset))) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			if (copy_to_user(&user_relocs[j].presumed_offset,
+					 &invalid_offset,
+					 sizeof(invalid_offset))) {
+>>>>>>> 2617302... source
 				ret = -EFAULT;
 				mutex_lock(&dev->struct_mutex);
 				goto err;
@@ -1158,6 +1164,9 @@ i915_gem_execbuffer(struct drm_device *dev, void *data,
 	ret = i915_gem_do_execbuffer(dev, data, file, &exec2, exec2_list);
 	if (!ret) {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		/* Copy the new buffer offsets back to the user's exec list. */
 		for (i = 0; i < args->buffer_count; i++)
 			exec_list[i].offset = exec2_list[i].offset;
@@ -1170,6 +1179,7 @@ i915_gem_execbuffer(struct drm_device *dev, void *data,
 			DRM_DEBUG("failed to copy %d exec entries "
 				  "back to user (%d)\n",
 				  args->buffer_count, ret);
+<<<<<<< HEAD
 =======
 		struct drm_i915_gem_exec_object __user *user_exec_list =
 			to_user_ptr(args->buffers_ptr);
@@ -1187,6 +1197,8 @@ i915_gem_execbuffer(struct drm_device *dev, void *data,
 				break;
 			}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		}
 	}
 
@@ -1233,6 +1245,9 @@ i915_gem_execbuffer2(struct drm_device *dev, void *data,
 	if (!ret) {
 		/* Copy the new buffer offsets back to the user's exec list. */
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		ret = copy_to_user(to_user_ptr(args->buffers_ptr),
 				   exec2_list,
 				   sizeof(*exec2_list) * args->buffer_count);
@@ -1241,6 +1256,7 @@ i915_gem_execbuffer2(struct drm_device *dev, void *data,
 			DRM_DEBUG("failed to copy %d exec entries "
 				  "back to user (%d)\n",
 				  args->buffer_count, ret);
+<<<<<<< HEAD
 =======
 		struct drm_i915_gem_exec_object2 *user_exec_list =
 				   to_user_ptr(args->buffers_ptr);
@@ -1258,6 +1274,8 @@ i915_gem_execbuffer2(struct drm_device *dev, void *data,
 				break;
 			}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		}
 	}
 

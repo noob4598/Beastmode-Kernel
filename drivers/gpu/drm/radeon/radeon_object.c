@@ -583,6 +583,9 @@ int radeon_bo_fault_reserve_notify(struct ttm_buffer_object *bo)
 	radeon_bo_check_tiling(rbo, 0, 0);
 	rdev = rbo->rdev;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	if (bo->mem.mem_type == TTM_PL_VRAM) {
 		size = bo->mem.num_pages << PAGE_SHIFT;
 		offset = bo->mem.start << PAGE_SHIFT;
@@ -599,6 +602,7 @@ int radeon_bo_fault_reserve_notify(struct ttm_buffer_object *bo)
 				return -EINVAL;
 		}
 	}
+<<<<<<< HEAD
 =======
 	if (bo->mem.mem_type != TTM_PL_VRAM)
 		return 0;
@@ -625,6 +629,8 @@ int radeon_bo_fault_reserve_notify(struct ttm_buffer_object *bo)
 		return -EINVAL;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	return 0;
 }
 

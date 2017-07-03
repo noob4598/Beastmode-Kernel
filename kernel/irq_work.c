@@ -199,9 +199,13 @@ static __init int irq_work_init_cpu_notifier(void)
 	return 0;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 device_initcall(irq_work_init_cpu_notifier);
 =======
 early_initcall(irq_work_init_cpu_notifier);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+device_initcall(irq_work_init_cpu_notifier);
+>>>>>>> 2617302... source
 
 #endif /* CONFIG_HOTPLUG_CPU */

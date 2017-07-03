@@ -56,11 +56,14 @@ static __u32 vmbus_get_next_version(__u32 current_version)
 		return VERSION_WIN7;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	case (VERSION_WIN8_1):
 		return VERSION_WIN8;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	case (VERSION_WS2008):
 	default:
 		return VERSION_INVAL;
@@ -87,11 +90,14 @@ static int vmbus_negotiate_version(struct vmbus_channel_msginfo *msginfo,
 				 PAGE_SIZE));
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (version == VERSION_WIN8_1)
 		msg->target_vcpu = hv_context.vp_index[smp_processor_id()];
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	/*
 	 * Add to list before we send the request since we may
 	 * receive the response before returning from this routine
@@ -311,6 +317,7 @@ static void process_chn_event(u32 relid)
 
 		do {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			hv_begin_read(&channel->inbound);
 			channel->onchannel_callback(arg);
 			bytes_to_read = hv_end_read(&channel->inbound);
@@ -323,6 +330,11 @@ static void process_chn_event(u32 relid)
 			else
 				bytes_to_read = 0;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			hv_begin_read(&channel->inbound);
+			channel->onchannel_callback(arg);
+			bytes_to_read = hv_end_read(&channel->inbound);
+>>>>>>> 2617302... source
 		} while (read_state && (bytes_to_read != 0));
 	} else {
 		pr_err("no channel callback for relid - %u\n", relid);
@@ -406,10 +418,14 @@ int vmbus_post_msg(void *buffer, size_t buflen)
 	 * times before giving up.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	while (retries < 3) {
 		ret =  hv_post_message(conn_id, 1, buffer, buflen);
 		if (ret != HV_STATUS_INSUFFICIENT_BUFFERS)
 			return ret;
+<<<<<<< HEAD
 =======
 	while (retries < 10) {
 		ret = hv_post_message(conn_id, 1, buffer, buflen);
@@ -427,6 +443,8 @@ int vmbus_post_msg(void *buffer, size_t buflen)
 		}
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		retries++;
 		msleep(100);
 	}

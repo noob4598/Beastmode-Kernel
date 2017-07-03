@@ -7,6 +7,7 @@ menu "Console display driver support"
 config VGA_CONSOLE
 	bool "VGA text console" if EXPERT || !X86
 <<<<<<< HEAD
+<<<<<<< HEAD
 	depends on !4xx && !8xx && !SPARC && !M68K && !PARISC && !FRV && !SUPERH && !BLACKFIN && !AVR32 && !MN10300 && (!ARM || ARCH_FOOTBRIDGE || ARCH_INTEGRATOR || ARCH_NETWINDER)
 =======
 	depends on !4xx && !8xx && !SPARC && !M68K && !PARISC && !FRV && \
@@ -14,6 +15,9 @@ config VGA_CONSOLE
 		(!ARM || ARCH_FOOTBRIDGE || ARCH_INTEGRATOR || ARCH_NETWINDER) && \
 		!ARM64
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	depends on !4xx && !8xx && !SPARC && !M68K && !PARISC && !FRV && !SUPERH && !BLACKFIN && !AVR32 && !MN10300 && (!ARM || ARCH_FOOTBRIDGE || ARCH_INTEGRATOR || ARCH_NETWINDER)
+>>>>>>> 2617302... source
 	default y
 	help
 	  Saying Y here will allow you to use Linux in text mode through a

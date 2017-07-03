@@ -246,6 +246,7 @@ static int debugfs_show_options(struct seq_file *m, struct dentry *root)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 static void debugfs_evict_inode(struct inode *inode)
 {
@@ -256,14 +257,19 @@ static void debugfs_evict_inode(struct inode *inode)
 }
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 static const struct super_operations debugfs_super_operations = {
 	.statfs		= simple_statfs,
 	.remount_fs	= debugfs_remount,
 	.show_options	= debugfs_show_options,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	.evict_inode	= debugfs_evict_inode,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 };
 
 static int debug_fill_super(struct super_block *sb, void *data, int silent)
@@ -481,6 +487,9 @@ static int __debugfs_remove(struct dentry *dentry, struct dentry *parent)
 
 	if (debugfs_positive(dentry)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		if (dentry->d_inode) {
 			dget(dentry);
 			switch (dentry->d_inode->i_mode & S_IFMT) {
@@ -498,6 +507,7 @@ static int __debugfs_remove(struct dentry *dentry, struct dentry *parent)
 				d_delete(dentry);
 			dput(dentry);
 		}
+<<<<<<< HEAD
 =======
 		dget(dentry);
 		if (S_ISDIR(dentry->d_inode->i_mode))
@@ -508,6 +518,8 @@ static int __debugfs_remove(struct dentry *dentry, struct dentry *parent)
 			d_delete(dentry);
 		dput(dentry);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	}
 	return ret;
 }
@@ -572,10 +584,14 @@ void debugfs_remove_recursive(struct dentry *dentry)
  down:
 	mutex_lock(&parent->d_inode->i_mutex);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	list_for_each_entry_safe(child, next, &parent->d_subdirs, d_u.d_child) {
 =======
 	list_for_each_entry_safe(child, next, &parent->d_subdirs, d_child) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	list_for_each_entry_safe(child, next, &parent->d_subdirs, d_u.d_child) {
+>>>>>>> 2617302... source
 		if (!debugfs_positive(child))
 			continue;
 
@@ -597,12 +613,17 @@ void debugfs_remove_recursive(struct dentry *dentry)
 
 	if (child != dentry) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		next = list_entry(child->d_u.d_child.next, struct dentry,
 					d_u.d_child);
 =======
 		next = list_entry(child->d_child.next, struct dentry,
 					d_child);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		next = list_entry(child->d_u.d_child.next, struct dentry,
+					d_u.d_child);
+>>>>>>> 2617302... source
 		goto up;
 	}
 

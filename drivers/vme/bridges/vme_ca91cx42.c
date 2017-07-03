@@ -465,10 +465,14 @@ static int ca91cx42_slave_get(struct vme_slave_resource *image, int *enabled,
 	pci_offset = ioread32(bridge->base + CA91CX42_VSI_TO[i]);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	*pci_base = (dma_addr_t)vme_base + pci_offset;
 =======
 	*pci_base = (dma_addr_t)*vme_base + pci_offset;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	*pci_base = (dma_addr_t)vme_base + pci_offset;
+>>>>>>> 2617302... source
 	*size = (unsigned long long)((vme_bound - *vme_base) + granularity);
 
 	*enabled = 0;

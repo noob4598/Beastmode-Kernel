@@ -343,10 +343,14 @@ struct tracer {
 	void			(*open)(struct trace_iterator *iter);
 	void			(*pipe_open)(struct trace_iterator *iter);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	void			(*wait_pipe)(struct trace_iterator *iter);
 =======
 	int			(*wait_pipe)(struct trace_iterator *iter);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	void			(*wait_pipe)(struct trace_iterator *iter);
+>>>>>>> 2617302... source
 	void			(*close)(struct trace_iterator *iter);
 	void			(*pipe_close)(struct trace_iterator *iter);
 	ssize_t			(*read)(struct trace_iterator *iter,
@@ -433,9 +437,12 @@ enum {
 	TRACE_CONTROL_BIT,
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	TRACE_BRANCH_BIT,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 /*
  * Abuse of the trace_recursion.
  * As we need a way to maintain state if we are tracing the function
@@ -566,10 +573,14 @@ void trace_init_global_iter(struct trace_iterator *iter);
 void tracing_iter_reset(struct trace_iterator *iter, int cpu);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 void poll_wait_pipe(struct trace_iterator *iter);
 =======
 int poll_wait_pipe(struct trace_iterator *iter);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+void poll_wait_pipe(struct trace_iterator *iter);
+>>>>>>> 2617302... source
 
 void ftrace(struct trace_array *tr,
 			    struct trace_array_cpu *data,

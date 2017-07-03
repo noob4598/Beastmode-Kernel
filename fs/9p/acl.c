@@ -321,6 +321,9 @@ static int v9fs_xattr_set_acl(struct dentry *dentry, const char *name,
 		name = POSIX_ACL_XATTR_ACCESS;
 		if (acl) {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 			umode_t mode = inode->i_mode;
 			retval = posix_acl_equiv_mode(acl, &mode);
 			if (retval < 0)
@@ -347,6 +350,7 @@ static int v9fs_xattr_set_acl(struct dentry *dentry, const char *name,
 				 */
 				v9fs_vfs_setattr_dotl(dentry, &iattr);
 			}
+<<<<<<< HEAD
 =======
 			struct iattr iattr;
 			struct posix_acl *old_acl = acl;
@@ -371,6 +375,8 @@ static int v9fs_xattr_set_acl(struct dentry *dentry, const char *name,
 			 */
 			v9fs_vfs_setattr_dotl(dentry, &iattr);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		}
 		break;
 	case ACL_TYPE_DEFAULT:

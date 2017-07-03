@@ -182,6 +182,7 @@ EXPORT_SYMBOL(csum_partial_copy);
 
 #ifndef csum_tcpudp_nofold
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 static inline u32 from64to32(u64 x)
 {
@@ -193,6 +194,8 @@ static inline u32 from64to32(u64 x)
 }
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 __wsum csum_tcpudp_nofold(__be32 saddr, __be32 daddr,
 			unsigned short len,
 			unsigned short proto,
@@ -208,11 +211,16 @@ __wsum csum_tcpudp_nofold(__be32 saddr, __be32 daddr,
 	s += (proto + len) << 8;
 #endif
 <<<<<<< HEAD
+<<<<<<< HEAD
 	s += (s >> 32);
 	return (__force __wsum)s;
 =======
 	return (__force __wsum)from64to32(s);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	s += (s >> 32);
+	return (__force __wsum)s;
+>>>>>>> 2617302... source
 }
 EXPORT_SYMBOL(csum_tcpudp_nofold);
 #endif

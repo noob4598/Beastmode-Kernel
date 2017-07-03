@@ -65,6 +65,7 @@ static inline void clear_rt_mutex_waiters(struct rt_mutex *lock)
 static void fixup_rt_mutex_waiters(struct rt_mutex *lock)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!rt_mutex_has_waiters(lock))
 		clear_rt_mutex_waiters(lock);
 =======
@@ -135,6 +136,10 @@ static void fixup_rt_mutex_waiters(struct rt_mutex *lock)
 	if (owner & RT_MUTEX_HAS_WAITERS)
 		ACCESS_ONCE(*p) = owner & ~RT_MUTEX_HAS_WAITERS;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (!rt_mutex_has_waiters(lock))
+		clear_rt_mutex_waiters(lock);
+>>>>>>> 2617302... source
 }
 
 /*
@@ -151,6 +156,7 @@ static inline void mark_rt_mutex_waiters(struct rt_mutex *lock)
 		owner = *p;
 	} while (cmpxchg(p, owner, owner | RT_MUTEX_HAS_WAITERS) != owner);
 }
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 
@@ -195,6 +201,8 @@ static inline bool unlock_rt_mutex_safe(struct rt_mutex *lock)
 }
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 #else
 # define rt_mutex_cmpxchg(l,c,n)	(0)
 static inline void mark_rt_mutex_waiters(struct rt_mutex *lock)
@@ -202,6 +210,7 @@ static inline void mark_rt_mutex_waiters(struct rt_mutex *lock)
 	lock->owner = (struct task_struct *)
 			((unsigned long)lock->owner | RT_MUTEX_HAS_WAITERS);
 }
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 
@@ -216,6 +225,8 @@ static inline bool unlock_rt_mutex_safe(struct rt_mutex *lock)
 	return true;
 }
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 #endif
 
 /*
@@ -270,6 +281,7 @@ static void rt_mutex_adjust_prio(struct task_struct *task)
 int max_lock_depth = 1024;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 static inline struct rt_mutex *task_blocked_on_lock(struct task_struct *p)
 {
@@ -277,6 +289,8 @@ static inline struct rt_mutex *task_blocked_on_lock(struct task_struct *p)
 }
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 /*
  * Adjust the priority chain. Also used for deadlock detection.
  * Decreases task's usage by one - may thus free the task.
@@ -286,9 +300,12 @@ static int rt_mutex_adjust_prio_chain(struct task_struct *task,
 				      int deadlock_detect,
 				      struct rt_mutex *orig_lock,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 				      struct rt_mutex *next_lock,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 				      struct rt_mutex_waiter *orig_waiter,
 				      struct task_struct *top_task)
 {
@@ -323,10 +340,14 @@ static int rt_mutex_adjust_prio_chain(struct task_struct *task,
 		put_task_struct(task);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return deadlock_detect ? -EDEADLK : 0;
 =======
 		return -EDEADLK;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		return deadlock_detect ? -EDEADLK : 0;
+>>>>>>> 2617302... source
 	}
  retry:
 	/*
@@ -352,6 +373,7 @@ static int rt_mutex_adjust_prio_chain(struct task_struct *task,
 
 	/*
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	 * We dropped all locks after taking a refcount on @task, so
 	 * the task might have moved on in the lock chain or even left
@@ -366,10 +388,13 @@ static int rt_mutex_adjust_prio_chain(struct task_struct *task,
 
 	/*
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	 * Drop out, when the task has no waiters. Note,
 	 * top_waiter can be NULL, when we are in the deboosting
 	 * mode!
 	 */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (top_waiter && (!task_has_pi_waiters(task) ||
 			   top_waiter != task_top_pi_waiter(task)))
@@ -386,6 +411,11 @@ static int rt_mutex_adjust_prio_chain(struct task_struct *task,
 			goto out_unlock_pi;
 	}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (top_waiter && (!task_has_pi_waiters(task) ||
+			   top_waiter != task_top_pi_waiter(task)))
+		goto out_unlock_pi;
+>>>>>>> 2617302... source
 
 	/*
 	 * When deadlock detection is off then we check, if further
@@ -402,11 +432,15 @@ static int rt_mutex_adjust_prio_chain(struct task_struct *task,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	/* Deadlock detection */
 	if (lock == orig_lock || rt_mutex_owner(lock) == top_task) {
 		debug_rt_mutex_deadlock(deadlock_detect, orig_waiter, lock);
 		raw_spin_unlock(&lock->wait_lock);
 		ret = deadlock_detect ? -EDEADLK : 0;
+<<<<<<< HEAD
 =======
 	/*
 	 * Deadlock detection. If the lock is the same as the original
@@ -419,6 +453,8 @@ static int rt_mutex_adjust_prio_chain(struct task_struct *task,
 		raw_spin_unlock(&lock->wait_lock);
 		ret = -EDEADLK;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		goto out_unlock_pi;
 	}
 
@@ -466,6 +502,7 @@ static int rt_mutex_adjust_prio_chain(struct task_struct *task,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/*
 	 * Check whether the task which owns the current lock is pi
@@ -476,11 +513,14 @@ static int rt_mutex_adjust_prio_chain(struct task_struct *task,
 	next_lock = task_blocked_on_lock(task);
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	raw_spin_unlock_irqrestore(&task->pi_lock, flags);
 
 	top_waiter = rt_mutex_top_waiter(lock);
 	raw_spin_unlock(&lock->wait_lock);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 	/*
@@ -491,6 +531,8 @@ static int rt_mutex_adjust_prio_chain(struct task_struct *task,
 		goto out_put_task;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	if (!detect_deadlock && waiter != top_waiter)
 		goto out_put_task;
 
@@ -602,6 +644,7 @@ static int task_blocks_on_rt_mutex(struct rt_mutex *lock,
 	struct task_struct *owner = rt_mutex_owner(lock);
 	struct rt_mutex_waiter *top_waiter = waiter;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned long flags;
 	int chain_walk = 0, res;
 =======
@@ -621,6 +664,10 @@ static int task_blocks_on_rt_mutex(struct rt_mutex *lock,
 	if (owner == task)
 		return -EDEADLK;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	unsigned long flags;
+	int chain_walk = 0, res;
+>>>>>>> 2617302... source
 
 	raw_spin_lock_irqsave(&task->pi_lock, flags);
 	__rt_mutex_adjust_prio(task);
@@ -642,12 +689,17 @@ static int task_blocks_on_rt_mutex(struct rt_mutex *lock,
 		return 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (waiter == rt_mutex_top_waiter(lock)) {
 		raw_spin_lock_irqsave(&owner->pi_lock, flags);
 =======
 	raw_spin_lock_irqsave(&owner->pi_lock, flags);
 	if (waiter == rt_mutex_top_waiter(lock)) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (waiter == rt_mutex_top_waiter(lock)) {
+		raw_spin_lock_irqsave(&owner->pi_lock, flags);
+>>>>>>> 2617302... source
 		plist_del(&top_waiter->pi_list_entry, &owner->pi_waiters);
 		plist_add(&waiter->pi_list_entry, &owner->pi_waiters);
 
@@ -655,12 +707,16 @@ static int task_blocks_on_rt_mutex(struct rt_mutex *lock,
 		if (owner->pi_blocked_on)
 			chain_walk = 1;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		raw_spin_unlock_irqrestore(&owner->pi_lock, flags);
 	}
 	else if (debug_rt_mutex_detect_deadlock(waiter, detect_deadlock))
 		chain_walk = 1;
 
 	if (!chain_walk)
+<<<<<<< HEAD
 =======
 	} else if (debug_rt_mutex_detect_deadlock(waiter, detect_deadlock)) {
 		chain_walk = 1;
@@ -677,6 +733,8 @@ static int task_blocks_on_rt_mutex(struct rt_mutex *lock,
 	 */
 	if (!chain_walk || !next_lock)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		return 0;
 
 	/*
@@ -689,12 +747,17 @@ static int task_blocks_on_rt_mutex(struct rt_mutex *lock,
 	raw_spin_unlock(&lock->wait_lock);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	res = rt_mutex_adjust_prio_chain(owner, detect_deadlock, lock, waiter,
 					 task);
 =======
 	res = rt_mutex_adjust_prio_chain(owner, detect_deadlock, lock,
 					 next_lock, waiter, task);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	res = rt_mutex_adjust_prio_chain(owner, detect_deadlock, lock, waiter,
+					 task);
+>>>>>>> 2617302... source
 
 	raw_spin_lock(&lock->wait_lock);
 
@@ -705,11 +768,15 @@ static int task_blocks_on_rt_mutex(struct rt_mutex *lock,
  * Wake up the next waiter on the lock.
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Remove the top waiter from the current tasks waiter list and wake it up.
 =======
  * Remove the top waiter from the current tasks pi waiter list and
  * wake it up.
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+ * Remove the top waiter from the current tasks waiter list and wake it up.
+>>>>>>> 2617302... source
  *
  * Called with lock->wait_lock held.
  */
@@ -731,10 +798,14 @@ static void wakeup_next_waiter(struct rt_mutex *lock)
 	plist_del(&waiter->pi_list_entry, &current->pi_waiters);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	rt_mutex_set_owner(lock, NULL);
 
 	raw_spin_unlock_irqrestore(&current->pi_lock, flags);
 
+<<<<<<< HEAD
 =======
 	/*
 	 * As we are waking up the top waiter, and the waiter stays
@@ -754,6 +825,8 @@ static void wakeup_next_waiter(struct rt_mutex *lock)
 	 * acquire it in order to dequeue the waiter.
 	 */
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	wake_up_process(waiter->task);
 }
 
@@ -769,12 +842,17 @@ static void remove_waiter(struct rt_mutex *lock,
 	int first = (waiter == rt_mutex_top_waiter(lock));
 	struct task_struct *owner = rt_mutex_owner(lock);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned long flags;
 	int chain_walk = 0;
 =======
 	struct rt_mutex *next_lock = NULL;
 	unsigned long flags;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	unsigned long flags;
+	int chain_walk = 0;
+>>>>>>> 2617302... source
 
 	raw_spin_lock_irqsave(&current->pi_lock, flags);
 	plist_del(&waiter->list_entry, &lock->wait_list);
@@ -799,12 +877,17 @@ static void remove_waiter(struct rt_mutex *lock,
 		__rt_mutex_adjust_prio(owner);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (owner->pi_blocked_on)
 			chain_walk = 1;
 =======
 		/* Store the lock on which owner is blocked or NULL */
 		next_lock = task_blocked_on_lock(owner);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		if (owner->pi_blocked_on)
+			chain_walk = 1;
+>>>>>>> 2617302... source
 
 		raw_spin_unlock_irqrestore(&owner->pi_lock, flags);
 	}
@@ -812,10 +895,14 @@ static void remove_waiter(struct rt_mutex *lock,
 	WARN_ON(!plist_node_empty(&waiter->pi_list_entry));
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!chain_walk)
 =======
 	if (!next_lock)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (!chain_walk)
+>>>>>>> 2617302... source
 		return;
 
 	/* gets dropped in rt_mutex_adjust_prio_chain()! */
@@ -824,10 +911,14 @@ static void remove_waiter(struct rt_mutex *lock,
 	raw_spin_unlock(&lock->wait_lock);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	rt_mutex_adjust_prio_chain(owner, 0, lock, NULL, current);
 =======
 	rt_mutex_adjust_prio_chain(owner, 0, lock, next_lock, NULL, current);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	rt_mutex_adjust_prio_chain(owner, 0, lock, NULL, current);
+>>>>>>> 2617302... source
 
 	raw_spin_lock(&lock->wait_lock);
 }
@@ -841,9 +932,12 @@ void rt_mutex_adjust_pi(struct task_struct *task)
 {
 	struct rt_mutex_waiter *waiter;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct rt_mutex *next_lock;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	unsigned long flags;
 
 	raw_spin_lock_irqsave(&task->pi_lock, flags);
@@ -854,20 +948,28 @@ void rt_mutex_adjust_pi(struct task_struct *task)
 		return;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 	next_lock = waiter->lock;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+
+>>>>>>> 2617302... source
 	raw_spin_unlock_irqrestore(&task->pi_lock, flags);
 
 	/* gets dropped in rt_mutex_adjust_prio_chain()! */
 	get_task_struct(task);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	rt_mutex_adjust_prio_chain(task, 0, NULL, NULL, task);
 =======
 
 	rt_mutex_adjust_prio_chain(task, 0, NULL, next_lock, NULL, task);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	rt_mutex_adjust_prio_chain(task, 0, NULL, NULL, task);
+>>>>>>> 2617302... source
 }
 
 /**
@@ -920,6 +1022,7 @@ __rt_mutex_slowlock(struct rt_mutex *lock, int state,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 static void rt_mutex_handle_deadlock(int res, int detect_deadlock,
 				     struct rt_mutex_waiter *w)
@@ -942,6 +1045,8 @@ static void rt_mutex_handle_deadlock(int res, int detect_deadlock,
 }
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 /*
  * Slow path lock function:
  */
@@ -980,6 +1085,7 @@ rt_mutex_slowlock(struct rt_mutex *lock, int state,
 	set_current_state(TASK_RUNNING);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (unlikely(ret))
 		remove_waiter(lock, &waiter);
 =======
@@ -988,6 +1094,10 @@ rt_mutex_slowlock(struct rt_mutex *lock, int state,
 		rt_mutex_handle_deadlock(ret, detect_deadlock, &waiter);
 	}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (unlikely(ret))
+		remove_waiter(lock, &waiter);
+>>>>>>> 2617302... source
 
 	/*
 	 * try_to_take_rt_mutex() sets the waiter bit
@@ -1044,12 +1154,16 @@ rt_mutex_slowunlock(struct rt_mutex *lock)
 	rt_mutex_deadlock_account_unlock(current);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	if (!rt_mutex_has_waiters(lock)) {
 		lock->owner = NULL;
 		raw_spin_unlock(&lock->wait_lock);
 		return;
 	}
 
+<<<<<<< HEAD
 =======
 	/*
 	 * We must be careful here if the fast path is enabled. If we
@@ -1095,6 +1209,8 @@ rt_mutex_slowunlock(struct rt_mutex *lock)
 	 * race. See the comments there.
 	 */
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	wakeup_next_waiter(lock);
 
 	raw_spin_unlock(&lock->wait_lock);
@@ -1342,11 +1458,15 @@ int rt_mutex_start_proxy_lock(struct rt_mutex *lock,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = task_blocks_on_rt_mutex(lock, waiter, task, detect_deadlock);
 =======
 	/* We enforce deadlock detection for futexes */
 	ret = task_blocks_on_rt_mutex(lock, waiter, task, 1);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	ret = task_blocks_on_rt_mutex(lock, waiter, task, detect_deadlock);
+>>>>>>> 2617302... source
 
 	if (ret && !rt_mutex_owner(lock)) {
 		/*

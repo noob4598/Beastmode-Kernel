@@ -89,6 +89,7 @@ static int gfs2_get_name(struct dentry *parent, char *name,
 	struct inode *inode = child->d_inode;
 	struct gfs2_inode *dip, *ip;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct get_name_filldir gnfd;
 =======
 	struct get_name_filldir gnfd = {
@@ -96,6 +97,9 @@ static int gfs2_get_name(struct dentry *parent, char *name,
 		.name = name
 	};
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	struct get_name_filldir gnfd;
+>>>>>>> 2617302... source
 	struct gfs2_holder gh;
 	u64 offset = 0;
 	int error;
@@ -114,9 +118,13 @@ static int gfs2_get_name(struct dentry *parent, char *name,
 	gnfd.inum.no_addr = ip->i_no_addr;
 	gnfd.inum.no_formal_ino = ip->i_no_formal_ino;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	gnfd.name = name;
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	gnfd.name = name;
+>>>>>>> 2617302... source
 
 	error = gfs2_glock_nq_init(dip->i_gl, LM_ST_SHARED, 0, &gh);
 	if (error)

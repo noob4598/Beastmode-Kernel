@@ -648,10 +648,14 @@ static ssize_t dwc3_store_ep_num(struct file *file, const char __user *ubuf,
 	struct dwc3		*dwc = s->private;
 	char			kbuf[10];
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned int		num, dir;
 =======
 	unsigned int		num, dir, temp;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	unsigned int		num, dir;
+>>>>>>> 2617302... source
 	unsigned long		flags;
 
 	memset(kbuf, 0, 10);
@@ -662,6 +666,7 @@ static ssize_t dwc3_store_ep_num(struct file *file, const char __user *ubuf,
 	if (sscanf(kbuf, "%u %u", &num, &dir) != 2)
 		return -EINVAL;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	spin_lock_irqsave(&dwc->lock, flags);
 	ep_num = (num << 1) + dir;
@@ -677,6 +682,10 @@ static ssize_t dwc3_store_ep_num(struct file *file, const char __user *ubuf,
 	spin_lock_irqsave(&dwc->lock, flags);
 	ep_num = temp;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	spin_lock_irqsave(&dwc->lock, flags);
+	ep_num = (num << 1) + dir;
+>>>>>>> 2617302... source
 	spin_unlock_irqrestore(&dwc->lock, flags);
 
 	return count;

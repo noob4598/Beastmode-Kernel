@@ -1603,19 +1603,27 @@ int should_remove_suid(struct dentry *dentry)
 EXPORT_SYMBOL(should_remove_suid);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int __remove_suid(struct dentry *dentry, int kill)
 =======
 static int __remove_suid(struct vfsmount *mnt, struct dentry *dentry, int kill)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+static int __remove_suid(struct dentry *dentry, int kill)
+>>>>>>> 2617302... source
 {
 	struct iattr newattrs;
 
 	newattrs.ia_valid = ATTR_FORCE | kill;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return notify_change(dentry, &newattrs);
 =======
 	return notify_change2(mnt, dentry, &newattrs);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	return notify_change(dentry, &newattrs);
+>>>>>>> 2617302... source
 }
 
 int file_remove_suid(struct file *file)
@@ -1639,10 +1647,14 @@ int file_remove_suid(struct file *file)
 		error = security_inode_killpriv(dentry);
 	if (!error && killsuid)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		error = __remove_suid(dentry, killsuid);
 =======
 		error = __remove_suid(file->f_path.mnt, dentry, killsuid);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		error = __remove_suid(dentry, killsuid);
+>>>>>>> 2617302... source
 	if (!error && (inode->i_sb->s_flags & MS_NOSEC))
 		inode->i_flags |= S_NOSEC;
 

@@ -4766,6 +4766,9 @@ static int tomtom_volatile(struct snd_soc_codec *ssc, unsigned int reg)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 #ifdef CONFIG_SOUND_CONTROL_HAX_3_GPL
 extern int snd_hax_reg_access(unsigned int);
 extern unsigned int snd_hax_cache_read(unsigned int);
@@ -4776,6 +4779,7 @@ extern void snd_hax_cache_write(unsigned int, unsigned int);
 static
 #endif
 unsigned int tomtom_read(struct snd_soc_codec *codec,
+<<<<<<< HEAD
 =======
 static int tomtom_write(struct snd_soc_codec *codec, unsigned int reg,
 	unsigned int value)
@@ -4799,6 +4803,8 @@ static int tomtom_write(struct snd_soc_codec *codec, unsigned int reg,
 }
 static unsigned int tomtom_read(struct snd_soc_codec *codec,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 				unsigned int reg)
 {
 	unsigned int val;
@@ -4825,6 +4831,9 @@ static unsigned int tomtom_read(struct snd_soc_codec *codec,
 	return val;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 #ifdef CONFIG_SOUND_CONTROL_HAX_3_GPL
 EXPORT_SYMBOL(tomtom_read);
 #endif
@@ -4869,8 +4878,11 @@ int tomtom_write(struct snd_soc_codec *codec, unsigned int reg,
 #ifdef CONFIG_SOUND_CONTROL_HAX_3_GPL
 EXPORT_SYMBOL(tomtom_write);
 #endif
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 static int tomtom_startup(struct snd_pcm_substream *substream,
 		struct snd_soc_dai *dai)
@@ -8087,6 +8099,9 @@ EXPORT_SYMBOL(is_codec_probe_done);
 #endif
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 #ifdef CONFIG_SOUND_CONTROL_HAX_3_GPL
 struct snd_soc_codec *fauxsound_codec_ptr;
 EXPORT_SYMBOL(fauxsound_codec_ptr);
@@ -8094,8 +8109,11 @@ int wcd9xxx_hw_revision;
 EXPORT_SYMBOL(wcd9xxx_hw_revision);
 #endif
 
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 static int tomtom_codec_probe(struct snd_soc_codec *codec)
 {
 	struct wcd9xxx *control;
@@ -8109,13 +8127,19 @@ static int tomtom_codec_probe(struct snd_soc_codec *codec)
 	struct wcd9xxx_core_resource *core_res;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 #ifdef CONFIG_SOUND_CONTROL_HAX_3_GPL
 	pr_info("tomtom codec probe...\n");
 	fauxsound_codec_ptr = codec;
 #endif
 
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	codec->control_data = dev_get_drvdata(codec->dev->parent);
 	control = codec->control_data;
 

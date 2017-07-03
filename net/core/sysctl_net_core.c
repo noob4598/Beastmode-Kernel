@@ -22,6 +22,7 @@
 
 static int zero = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int one = 1;
 static int ushort_max = USHRT_MAX;
 =======
@@ -29,6 +30,10 @@ static int ushort_max = USHRT_MAX;
 static int min_sndbuf = SOCK_MIN_SNDBUF;
 static int min_rcvbuf = SOCK_MIN_RCVBUF;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+static int one = 1;
+static int ushort_max = USHRT_MAX;
+>>>>>>> 2617302... source
 
 #ifdef CONFIG_RPS
 static int rps_sock_flow_sysctl(ctl_table *table, int write,
@@ -104,10 +109,14 @@ static struct ctl_table net_core_table[] = {
 		.mode		= 0644,
 		.proc_handler	= proc_dointvec_minmax,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.extra1		= &one,
 =======
 		.extra1		= &min_sndbuf,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		.extra1		= &one,
+>>>>>>> 2617302... source
 	},
 	{
 		.procname	= "rmem_max",
@@ -116,10 +125,14 @@ static struct ctl_table net_core_table[] = {
 		.mode		= 0644,
 		.proc_handler	= proc_dointvec_minmax,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.extra1		= &one,
 =======
 		.extra1		= &min_rcvbuf,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		.extra1		= &one,
+>>>>>>> 2617302... source
 	},
 	{
 		.procname	= "wmem_default",
@@ -128,10 +141,14 @@ static struct ctl_table net_core_table[] = {
 		.mode		= 0644,
 		.proc_handler	= proc_dointvec_minmax,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.extra1		= &one,
 =======
 		.extra1		= &min_sndbuf,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		.extra1		= &one,
+>>>>>>> 2617302... source
 	},
 	{
 		.procname	= "rmem_default",
@@ -140,10 +157,14 @@ static struct ctl_table net_core_table[] = {
 		.mode		= 0644,
 		.proc_handler	= proc_dointvec_minmax,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.extra1		= &one,
 =======
 		.extra1		= &min_rcvbuf,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		.extra1		= &one,
+>>>>>>> 2617302... source
 	},
 	{
 		.procname	= "dev_weight",

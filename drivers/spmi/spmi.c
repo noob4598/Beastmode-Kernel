@@ -33,9 +33,12 @@ static DEFINE_MUTEX(board_lock);
 static LIST_HEAD(board_list);
 static DEFINE_IDR(ctrl_idr);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 static DEFINE_IDA(spmi_devid_ida);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 static struct device_type spmi_dev_type;
 static struct device_type spmi_ctrl_type;
 
@@ -234,15 +237,19 @@ int spmi_add_device(struct spmi_device *spmidev)
 	int rc;
 	struct device *dev = get_valid_device(spmidev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	int id;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	if (!dev) {
 		pr_err("invalid SPMI device\n");
 		return -EINVAL;
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/* Set the device name */
 	dev_set_name(dev, "%s-%p", spmidev->name, spmidev);
@@ -257,15 +264,23 @@ int spmi_add_device(struct spmi_device *spmidev)
 	spmidev->id = id;
 	dev_set_name(dev, "%s-%d", spmidev->name, spmidev->id);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	/* Set the device name */
+	dev_set_name(dev, "%s-%p", spmidev->name, spmidev);
+>>>>>>> 2617302... source
 
 	/* Device may be bound to an active driver when this returns */
 	rc = device_add(dev);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	if (rc < 0)
 		dev_err(dev, "Can't add %s, status %d\n", dev_name(dev), rc);
 	else
 		dev_dbg(dev, "device %s registered\n", dev_name(dev));
+<<<<<<< HEAD
 =======
 	if (rc < 0) {
 		ida_simple_remove(&spmi_devid_ida, spmidev->id);
@@ -274,6 +289,8 @@ int spmi_add_device(struct spmi_device *spmidev)
 		dev_dbg(dev, "device %s registered\n", dev_name(dev));
 	}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	return rc;
 }
@@ -322,9 +339,12 @@ void spmi_remove_device(struct spmi_device *spmi_dev)
 {
 	device_unregister(&spmi_dev->dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	ida_simple_remove(&spmi_devid_ida, spmi_dev->id);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 }
 EXPORT_SYMBOL_GPL(spmi_remove_device);
 

@@ -200,6 +200,9 @@ static int __kprobes do_page_fault(unsigned long addr, unsigned int esr,
 	unsigned int mm_flags = FAULT_FLAG_ALLOW_RETRY | FAULT_FLAG_KILLABLE;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	if (esr & ESR_LNX_EXEC) {
 		vm_flags = VM_EXEC;
 	} else if ((esr & ESR_WRITE) && !(esr & ESR_CM)) {
@@ -207,8 +210,11 @@ static int __kprobes do_page_fault(unsigned long addr, unsigned int esr,
 		mm_flags |= FAULT_FLAG_WRITE;
 	}
 
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	tsk = current;
 	mm  = tsk->mm;
 
@@ -224,6 +230,7 @@ static int __kprobes do_page_fault(unsigned long addr, unsigned int esr,
 		goto no_context;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (user_mode(regs))
 		mm_flags |= FAULT_FLAG_USER;
@@ -236,6 +243,8 @@ static int __kprobes do_page_fault(unsigned long addr, unsigned int esr,
 	}
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	/*
 	 * As per x86, we may deadlock here. However, since the kernel only
 	 * validly references user space from well defined areas of the code,
@@ -292,9 +301,12 @@ retry:
 			 */
 			mm_flags &= ~FAULT_FLAG_ALLOW_RETRY;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 			mm_flags |= FAULT_FLAG_TRIED;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 			goto retry;
 		}
 	}
@@ -309,6 +321,7 @@ retry:
 		return 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/*
 	 * If we are in kernel mode at this point, we have no context to
@@ -318,6 +331,8 @@ retry:
 		goto no_context;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	if (fault & VM_FAULT_OOM) {
 		/*
 		 * We ran out of memory, call the OOM killer, and return to
@@ -329,6 +344,9 @@ retry:
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	/*
 	 * If we are in kernel mode at this point, we have no context to
 	 * handle this fault with.
@@ -336,8 +354,11 @@ retry:
 	if (!user_mode(regs))
 		goto no_context;
 
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	if (fault & VM_FAULT_SIGBUS) {
 		/*
 		 * We had some memory, but were unable to successfully fix up

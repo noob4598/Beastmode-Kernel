@@ -68,6 +68,7 @@
 
 /**
 <<<<<<< HEAD
+<<<<<<< HEAD
  * enum iwl_scan_flags - masks for power table command flags
 =======
  * enum iwl_ltr_config_flags - masks for LTR config command flags
@@ -105,6 +106,9 @@ struct iwl_ltr_config_cmd {
 /**
  * enum iwl_power_flags - masks for power table command flags
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+ * enum iwl_scan_flags - masks for power table command flags
+>>>>>>> 2617302... source
  * @POWER_FLAGS_POWER_SAVE_ENA_MSK: '1' Allow to save power by turning off
  *		receiver and transmitter. '0' - does not allow.
  * @POWER_FLAGS_POWER_MANAGEMENT_ENA_MSK: '0' Driver disables power management,

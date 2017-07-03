@@ -1,8 +1,12 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* Copyright (c) 2012-2014, The Linux Foundation. All rights reserved.
 =======
 /* Copyright (c) 2012-2016, The Linux Foundation. All rights reserved.
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+/* Copyright (c) 2012-2014, The Linux Foundation. All rights reserved.
+>>>>>>> 2617302... source
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -132,10 +136,14 @@ static int32_t afe_callback(struct apr_client_data *data, void *priv)
 	}
 	if (data->opcode == RESET_EVENTS) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_debug("%s: reset event = %d %d apr[%p]\n",
 =======
 		pr_debug("%s: reset event = %d %d apr[%pK]\n",
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		pr_debug("%s: reset event = %d %d apr[%p]\n",
+>>>>>>> 2617302... source
 			__func__,
 			data->reset_event, data->reset_proc, this_afe.apr);
 
@@ -164,6 +172,7 @@ static int32_t afe_callback(struct apr_client_data *data, void *priv)
 		if ((data->payload_size < sizeof(this_afe.calib_data))
 			|| !payload || (data->token >= AFE_MAX_PORTS)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			pr_err("%s: size %d payload %p token %d\n",
 			__func__, data->payload_size, payload, data->token);
 =======
@@ -171,6 +180,10 @@ static int32_t afe_callback(struct apr_client_data *data, void *priv)
 				__func__, data->payload_size,
 				payload, data->token);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			pr_err("%s: size %d payload %p token %d\n",
+			__func__, data->payload_size, payload, data->token);
+>>>>>>> 2617302... source
 			return -EINVAL;
 		}
 		memcpy(&this_afe.calib_data, payload,
@@ -519,12 +532,17 @@ static void afe_send_cal_block(int32_t path, u16 port_id)
 			atomic_read(&this_afe.mem_map_cal_handles[path]);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_debug("%s: AFE cal sent for device port = %d, path = %d, cal size = %zd, cal addr = 0x%pan",
 		__func__, port_id, path,
 =======
 	pr_debug("%s: AFE cal sent for device port = 0x%x, cal size = %zd, cal addr = 0x%pK\n",
 		__func__, port_id,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	pr_debug("%s: AFE cal sent for device port = %d, path = %d, cal size = %zd, cal addr = 0x%pan",
+		__func__, port_id, path,
+>>>>>>> 2617302... source
 		cal_block.cal_size, &cal_block.cal_paddr);
 
 	result = afe_apr_send_pkt(&afe_cal, &this_afe.wait[index]);
@@ -2419,10 +2437,14 @@ int q6afe_audio_client_buf_alloc_contiguous(unsigned int dir,
 
 	if (!(ac) || ((dir != IN) && (dir != OUT))) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("%s: ac %p dir %d\n", __func__, ac, dir);
 =======
 		pr_err("%s: ac %pK dir %d\n", __func__, ac, dir);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		pr_err("%s: ac %p dir %d\n", __func__, ac, dir);
+>>>>>>> 2617302... source
 		return -EINVAL;
 	}
 
@@ -2475,10 +2497,14 @@ int q6afe_audio_client_buf_alloc_contiguous(unsigned int dir,
 			buf[cnt].size = bufsz;
 			buf[cnt].actual_size = bufsz;
 <<<<<<< HEAD
+<<<<<<< HEAD
 			pr_debug("%s:  data[%p]phys[%pa][%p]\n", __func__,
 =======
 			pr_debug("%s:  data[%pK]phys[%pK][%pK]\n", __func__,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			pr_debug("%s:  data[%p]phys[%pa][%p]\n", __func__,
+>>>>>>> 2617302... source
 				   buf[cnt].data,
 				   &buf[cnt].phys,
 				   &buf[cnt].phys);
@@ -2572,10 +2598,14 @@ int afe_cmd_memory_map(phys_addr_t dma_addr_p, u32 dma_buf_sz)
 	mregion_pl->mem_size_bytes = dma_buf_sz;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_debug("%s: dma_addr_p 0x%pa , size %d\n", __func__,
 =======
 	pr_debug("%s: dma_addr_p 0x%pK , size %d\n", __func__,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	pr_debug("%s: dma_addr_p 0x%pa , size %d\n", __func__,
+>>>>>>> 2617302... source
 					&dma_addr_p, dma_buf_sz);
 	atomic_set(&this_afe.state, 1);
 	atomic_set(&this_afe.status, 0);
@@ -2694,10 +2724,14 @@ int q6afe_audio_client_buf_free_contiguous(unsigned int dir,
 
 	if (port->buf[0].data) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_debug("%s: data[%p]phys[%pa][%p] , client[%p] handle[%p]\n",
 =======
 		pr_debug("%s: data[%pK]phys[%pK][%pK] , client[%pK] handle[%pK]\n",
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		pr_debug("%s: data[%p]phys[%pa][%p] , client[%p] handle[%p]\n",
+>>>>>>> 2617302... source
 			__func__,
 			port->buf[0].data,
 			&port->buf[0].phys,
@@ -2942,12 +2976,17 @@ int afe_rt_proxy_port_write(u32 buf_addr_p, u32 mem_map_handle, int bytes)
 		return ret;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_debug("%s: buf_addr_p = 0x%x bytes = %d\n", __func__,
 						buf_addr_p, bytes);
 =======
 	pr_debug("%s: buf_addr_p = 0x%pK bytes = %d\n", __func__,
 						&buf_addr_p, bytes);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	pr_debug("%s: buf_addr_p = 0x%x bytes = %d\n", __func__,
+						buf_addr_p, bytes);
+>>>>>>> 2617302... source
 
 	afecmd_wr.hdr.hdr_field = APR_HDR_FIELD(APR_MSG_TYPE_SEQ_CMD,
 				APR_HDR_LEN(APR_HDR_SIZE), APR_PKT_VER);
@@ -2982,12 +3021,17 @@ int afe_rt_proxy_port_read(u32 buf_addr_p, u32 mem_map_handle, int bytes)
 		return ret;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_debug("%s: buf_addr_p = 0x%x bytes = %d\n", __func__,
 						buf_addr_p, bytes);
 =======
 	pr_debug("%s: buf_addr_p = 0x%pK bytes = %d\n", __func__,
 						&buf_addr_p, bytes);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	pr_debug("%s: buf_addr_p = 0x%x bytes = %d\n", __func__,
+						buf_addr_p, bytes);
+>>>>>>> 2617302... source
 
 	afecmd_rd.hdr.hdr_field = APR_HDR_FIELD(APR_MSG_TYPE_SEQ_CMD,
 				APR_HDR_LEN(APR_HDR_SIZE), APR_PKT_VER);

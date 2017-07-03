@@ -699,10 +699,14 @@ void matroxfb_unregister_driver(struct matroxfb_driver* drv);
 #define mga_fifo(n)	do {} while ((mga_inl(M_FIFOSTATUS) & 0xFF) < (n))
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define WaitTillIdle()	do {} while (mga_inl(M_STATUS) & 0x10000)
 =======
 #define WaitTillIdle()	do { mga_inl(M_STATUS); do {} while (mga_inl(M_STATUS) & 0x10000); } while (0)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+#define WaitTillIdle()	do {} while (mga_inl(M_STATUS) & 0x10000)
+>>>>>>> 2617302... source
 
 /* code speedup */
 #ifdef CONFIG_FB_MATROX_MILLENIUM

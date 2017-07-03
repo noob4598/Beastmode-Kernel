@@ -728,9 +728,12 @@ ipv6_dup_options(struct sock *sk, struct ipv6_txoptions *opt)
 		if (opt2->srcrt)
 			*((char **)&opt2->srcrt) += dif;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		atomic_set(&opt2->refcnt, 1);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	}
 	return opt2;
 }
@@ -795,10 +798,14 @@ ipv6_renew_options(struct sock *sk, struct ipv6_txoptions *opt,
 
 	memset(opt2, 0, tot_len);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 	atomic_set(&opt2->refcnt, 1);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+
+>>>>>>> 2617302... source
 	opt2->tot_len = tot_len;
 	p = (char *)(opt2 + 1);
 

@@ -803,6 +803,7 @@ static inline int pmd_numa(pmd_t pmd)
 static inline pte_t pte_mknonnuma(pte_t pte)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pte = pte_clear_flags(pte, _PAGE_NUMA);
 	return pte_set_flags(pte, _PAGE_PRESENT|_PAGE_ACCESSED);
 =======
@@ -812,12 +813,17 @@ static inline pte_t pte_mknonnuma(pte_t pte)
 	val |= (_PAGE_PRESENT|_PAGE_ACCESSED);
 	return __pte(val);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	pte = pte_clear_flags(pte, _PAGE_NUMA);
+	return pte_set_flags(pte, _PAGE_PRESENT|_PAGE_ACCESSED);
+>>>>>>> 2617302... source
 }
 #endif
 
 #ifndef pmd_mknonnuma
 static inline pmd_t pmd_mknonnuma(pmd_t pmd)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	pmd = pmd_clear_flags(pmd, _PAGE_NUMA);
 	return pmd_set_flags(pmd, _PAGE_PRESENT|_PAGE_ACCESSED);
@@ -829,12 +835,17 @@ static inline pmd_t pmd_mknonnuma(pmd_t pmd)
 
 	return __pmd(val);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	pmd = pmd_clear_flags(pmd, _PAGE_NUMA);
+	return pmd_set_flags(pmd, _PAGE_PRESENT|_PAGE_ACCESSED);
+>>>>>>> 2617302... source
 }
 #endif
 
 #ifndef pte_mknuma
 static inline pte_t pte_mknuma(pte_t pte)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	pte = pte_set_flags(pte, _PAGE_NUMA);
 	return pte_clear_flags(pte, _PAGE_PRESENT);
@@ -846,12 +857,17 @@ static inline pte_t pte_mknuma(pte_t pte)
 
 	return __pte(val);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	pte = pte_set_flags(pte, _PAGE_NUMA);
+	return pte_clear_flags(pte, _PAGE_PRESENT);
+>>>>>>> 2617302... source
 }
 #endif
 
 #ifndef pmd_mknuma
 static inline pmd_t pmd_mknuma(pmd_t pmd)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	pmd = pmd_set_flags(pmd, _PAGE_NUMA);
 	return pmd_clear_flags(pmd, _PAGE_PRESENT);
@@ -863,6 +879,10 @@ static inline pmd_t pmd_mknuma(pmd_t pmd)
 
 	return __pmd(val);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	pmd = pmd_set_flags(pmd, _PAGE_NUMA);
+	return pmd_clear_flags(pmd, _PAGE_PRESENT);
+>>>>>>> 2617302... source
 }
 #endif
 #else

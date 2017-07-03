@@ -91,10 +91,14 @@ static ssize_t mdss_debug_base_offset_read(struct file *file,
 	struct mdss_debug_base *dbg = file->private_data;
 	int len = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	char buf[24];
 =======
 	char buf[24] = {'\0'};
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	char buf[24];
+>>>>>>> 2617302... source
 
 	if (!dbg)
 		return -ENODEV;
@@ -104,16 +108,22 @@ static ssize_t mdss_debug_base_offset_read(struct file *file,
 
 	len = snprintf(buf, sizeof(buf), "0x%08zx %zx\n", dbg->off, dbg->cnt);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	if (len < 0)
 		return 0;
 
 	if (copy_to_user(buff, buf, len))
+<<<<<<< HEAD
 =======
 	if (len < 0 || len >= sizeof(buf))
 		return 0;
 
 	if ((count < sizeof(buf)) || copy_to_user(buff, buf, len))
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		return -EFAULT;
 
 	*ppos += len;	/* increase offset */
@@ -370,11 +380,15 @@ static ssize_t mdss_debug_factor_write(struct file *file,
 	if (strnchr(buf, count, '/')) {
 		/* Parsing buf as fraction */
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		if (sscanf(buf, "%d/%d", &numer, &denom) != 2)
 			return -EFAULT;
 	} else {
 		/* Parsing buf as percentage */
 		if (sscanf(buf, "%d", &numer) != 1)
+<<<<<<< HEAD
 =======
 		if (sscanf(buf, "%u/%u", &numer, &denom) != 2)
 			return -EFAULT;
@@ -382,6 +396,8 @@ static ssize_t mdss_debug_factor_write(struct file *file,
 		/* Parsing buf as percentage */
 		if (kstrtouint(buf, 0, &numer))
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 			return -EFAULT;
 		denom = 100;
 	}
@@ -402,10 +418,14 @@ static ssize_t mdss_debug_factor_read(struct file *file,
 	struct mdss_fudge_factor *factor = file->private_data;
 	int len = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	char buf[32];
 =======
 	char buf[32] = {'\0'};
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	char buf[32];
+>>>>>>> 2617302... source
 
 	if (!factor)
 		return -ENODEV;
@@ -416,16 +436,22 @@ static ssize_t mdss_debug_factor_read(struct file *file,
 	len = snprintf(buf, sizeof(buf), "%d/%d\n",
 			factor->numer, factor->denom);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	if (len < 0)
 		return 0;
 
 	if (copy_to_user(buff, buf, len))
+<<<<<<< HEAD
 =======
 	if (len < 0 || len >= sizeof(buf))
 		return 0;
 
 	if ((count < sizeof(buf)) || copy_to_user(buff, buf, len))
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		return -EFAULT;
 
 	*ppos += len;	/* increase offset */
@@ -577,6 +603,7 @@ void mdss_dump_reg(char __iomem *base, int len)
 		xc = readl_relaxed(addr+0xc);
 #if defined(CONFIG_FB_MSM_MDSS_SAMSUNG)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("%04x : %08x %08x %08x %08x\n", i * 16, x0, x4, x8, xc);
 #else
 		pr_info("%p : %08x %08x %08x %08x\n", addr, x0, x4, x8, xc);
@@ -585,6 +612,11 @@ void mdss_dump_reg(char __iomem *base, int len)
 #else
 		pr_info("%pK : %08x %08x %08x %08x\n", addr, x0, x4, x8, xc);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		pr_err("%04x : %08x %08x %08x %08x\n", i * 16, x0, x4, x8, xc);
+#else
+		pr_info("%p : %08x %08x %08x %08x\n", addr, x0, x4, x8, xc);
+>>>>>>> 2617302... source
 #endif
 		addr += 16;
 	}
@@ -656,10 +688,14 @@ static inline struct mdss_mdp_misr_map *mdss_misr_get_map(u32 block_id)
 	struct mdss_mdp_misr_map *map;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (block_id > DISPLAY_MISR_MDP) {
 =======
 	if (block_id > DISPLAY_MISR_HDMI && block_id != DISPLAY_MISR_MDP) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (block_id > DISPLAY_MISR_MDP) {
+>>>>>>> 2617302... source
 		pr_err("MISR Block id (%d) out of range\n", block_id);
 		return NULL;
 	}
@@ -711,6 +747,7 @@ int mdss_misr_set(struct mdss_data_type *mdata,
 	bool use_mdp_up_misr = false;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (!mdata || !req || !ctl) {
 		pr_err("Invalid input params: mdata = %pK req = %pK ctl = %pK",
@@ -719,6 +756,8 @@ int mdss_misr_set(struct mdss_data_type *mdata,
 	}
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	map = mdss_misr_get_map(req->block_id);
 	use_mdp_up_misr = switch_mdp_misr_offset(map, mdata->mdp_rev,
 				req->block_id);

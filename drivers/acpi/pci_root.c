@@ -386,9 +386,12 @@ static int acpi_pci_root_add(struct acpi_device *device,
 	struct acpi_pci_root *root;
 	u32 flags, base_flags;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	bool no_aspm = false, clear_aspm = false;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	root = kzalloc(sizeof(struct acpi_pci_root), GFP_KERNEL);
 	if (!root)
@@ -450,17 +453,26 @@ static int acpi_pci_root_add(struct acpi_device *device,
 	acpi_pci_osc_support(root, flags);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	/*
 	 * TBD: Need PCI interface for enumeration/configuration of roots.
 	 */
 
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	mutex_lock(&acpi_pci_root_lock);
 	list_add_tail(&root->node, &acpi_pci_roots);
 	mutex_unlock(&acpi_pci_root_lock);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	/*
 	 * Scan the Root Bridge
 	 * --------------------
@@ -478,8 +490,11 @@ static int acpi_pci_root_add(struct acpi_device *device,
 	}
 
 	/* Indicate support for various _OSC capabilities. */
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	if (pci_ext_cfg_avail())
 		flags |= OSC_EXT_PCI_CONFIG_SUPPORT;
 	if (pcie_aspm_support_enabled()) {
@@ -494,10 +509,14 @@ static int acpi_pci_root_add(struct acpi_device *device,
 			dev_info(&device->dev, "ACPI _OSC support "
 				"notification failed, disabling PCIe ASPM\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
 			pcie_no_aspm();
 =======
 			no_aspm = true;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			pcie_no_aspm();
+>>>>>>> 2617302... source
 			flags = base_flags;
 		}
 	}
@@ -530,10 +549,14 @@ static int acpi_pci_root_add(struct acpi_device *device,
 				 * that it's unsupported. Clear it.
 				 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 				pcie_clear_aspm(root->bus);
 =======
 				clear_aspm = true;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+				pcie_clear_aspm(root->bus);
+>>>>>>> 2617302... source
 			}
 		} else {
 			dev_info(&device->dev,
@@ -542,6 +565,7 @@ static int acpi_pci_root_add(struct acpi_device *device,
 				acpi_format_exception(status), flags);
 			pr_info("ACPI _OSC control for PCIe not granted, "
 				"disabling ASPM\n");
+<<<<<<< HEAD
 <<<<<<< HEAD
 			pcie_no_aspm();
 =======
@@ -554,6 +578,9 @@ static int acpi_pci_root_add(struct acpi_device *device,
 			 */
 			no_aspm = true;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			pcie_no_aspm();
+>>>>>>> 2617302... source
 		}
 	} else {
 		dev_info(&device->dev,
@@ -561,6 +588,7 @@ static int acpi_pci_root_add(struct acpi_device *device,
 			 "(_OSC support mask: 0x%02x)\n", flags);
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 	/*
@@ -591,6 +619,8 @@ static int acpi_pci_root_add(struct acpi_device *device,
 		pcie_no_aspm();
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	pci_acpi_add_bus_pm_notifier(device, root->bus);
 	if (device->wakeup.flags.run_wake)
 		device_set_run_wake(root->bus->bridge, true);
@@ -608,13 +638,19 @@ static int acpi_pci_root_add(struct acpi_device *device,
 	return 1;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 out_del_root:
 	mutex_lock(&acpi_pci_root_lock);
 	list_del(&root->node);
 	mutex_unlock(&acpi_pci_root_lock);
 
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 end:
 	kfree(root);
 	return result;

@@ -17,9 +17,12 @@
 #include <asm/realmode.h>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <linux/ftrace.h>
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 #include "../../realmode/rm/wakeup.h"
 #include "sleep.h"
 
@@ -101,6 +104,7 @@ int acpi_suspend_lowlevel(void)
 #endif /* CONFIG_64BIT */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	do_suspend_lowlevel();
 =======
 	/*
@@ -111,6 +115,9 @@ int acpi_suspend_lowlevel(void)
 	do_suspend_lowlevel();
 	unpause_graph_tracing();
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	do_suspend_lowlevel();
+>>>>>>> 2617302... source
 	return 0;
 }
 

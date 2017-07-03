@@ -790,9 +790,13 @@ static int pnv_pci_ioda_msi_setup(struct pnv_phb *phb, struct pci_dev *dev,
 {
 	struct pnv_ioda_pe *pe = pnv_ioda_get_pe(dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct pci_dn *pdn = pci_get_pdn(dev);
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	struct pci_dn *pdn = pci_get_pdn(dev);
+>>>>>>> 2617302... source
 	struct irq_data *idata;
 	struct irq_chip *ichip;
 	unsigned int xive_num = hwirq - phb->msi_base;
@@ -810,10 +814,14 @@ static int pnv_pci_ioda_msi_setup(struct pnv_phb *phb, struct pci_dev *dev,
 
 	/* Force 32-bit MSI on some broken devices */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (pdn && pdn->force_32bit_msi)
 =======
 	if (dev->no_64bit_msi)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (pdn && pdn->force_32bit_msi)
+>>>>>>> 2617302... source
 		is_64 = 0;
 
 	/* Assign XIVE to PE */

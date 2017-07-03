@@ -4855,10 +4855,15 @@ static void qib_get_7322_faststats(unsigned long opaque)
 		traffic_wds -= ppd->dd->traffic_wds;
 		ppd->dd->traffic_wds += traffic_wds;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (traffic_wds >= QIB_TRAFFIC_ACTIVE_THRESHOLD)
 			atomic_add(ACTIVITY_TIMER, &ppd->dd->active_time);
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		if (traffic_wds >= QIB_TRAFFIC_ACTIVE_THRESHOLD)
+			atomic_add(ACTIVITY_TIMER, &ppd->dd->active_time);
+>>>>>>> 2617302... source
 		spin_unlock_irqrestore(&ppd->dd->eep_st_lock, flags);
 		if (ppd->cpspec->qdr_dfe_on && (ppd->link_speed_active &
 						QIB_IB_QDR) &&

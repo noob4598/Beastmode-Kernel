@@ -550,6 +550,7 @@ group_add_out:
 
 	case EXT4_IOC_SWAP_BOOT:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (!(filp->f_mode & FMODE_WRITE))
 			return -EBADF;
 		return swap_inode_boot_loader(sb, inode);
@@ -566,6 +567,11 @@ group_add_out:
 		return err;
 	}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		if (!(filp->f_mode & FMODE_WRITE))
+			return -EBADF;
+		return swap_inode_boot_loader(sb, inode);
+>>>>>>> 2617302... source
 
 	case EXT4_IOC_RESIZE_FS: {
 		ext4_fsblk_t n_blocks_count;

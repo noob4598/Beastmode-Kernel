@@ -4151,6 +4151,7 @@ static const struct ata_blacklist_entry ata_device_blacklist [] = {
 						ATA_HORKAGE_FIRMWARE_WARN },
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* Seagate Momentus SpinPoint M8 seem to have FPMDA_AA issues */
 	{ "ST1000LM024 HN-M101MBB", "2AR10001",	ATA_HORKAGE_BROKEN_FPDMA_AA },
 	{ "ST1000LM024 HN-M101MBB", "2BA30001",	ATA_HORKAGE_BROKEN_FPDMA_AA },
@@ -4160,6 +4161,11 @@ static const struct ata_blacklist_entry ata_device_blacklist [] = {
 	{ "ST1000LM024 HN-M101MBB", "2BA30001",	ATA_HORKAGE_BROKEN_FPDMA_AA },
 	{ "VB0250EAVER",	"HPG7",		ATA_HORKAGE_BROKEN_FPDMA_AA },
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	/* Seagate Momentus SpinPoint M8 seem to have FPMDA_AA issues */
+	{ "ST1000LM024 HN-M101MBB", "2AR10001",	ATA_HORKAGE_BROKEN_FPDMA_AA },
+	{ "ST1000LM024 HN-M101MBB", "2BA30001",	ATA_HORKAGE_BROKEN_FPDMA_AA },
+>>>>>>> 2617302... source
 
 	/* Blacklist entries taken from Silicon Image 3124/3132
 	   Windows driver .inf file - also several Linux problem reports */
@@ -4208,11 +4214,14 @@ static const struct ata_blacklist_entry ata_device_blacklist [] = {
 	{ "PIONEER DVD-RW  DVR-216D",	NULL,	ATA_HORKAGE_NOSETXFER },
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/* devices that don't properly handle TRIM commands */
 	{ "SuperSSpeed S238*",		NULL,	ATA_HORKAGE_NOTRIM, },
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	/*
 	 * Some WD SATA-I drives spin up and down erratically when the link
 	 * is put into the slumber mode.  We don't have full list of the
@@ -4518,11 +4527,15 @@ static unsigned int ata_dev_set_xfermode(struct ata_device *dev)
 		return 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	err_mask = ata_exec_internal(dev, &tf, NULL, DMA_NONE, NULL, 0, 0);
 =======
 	/* On some disks, this command causes spin-up, so we need longer timeout */
 	err_mask = ata_exec_internal(dev, &tf, NULL, DMA_NONE, NULL, 0, 15000);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	err_mask = ata_exec_internal(dev, &tf, NULL, DMA_NONE, NULL, 0, 0);
+>>>>>>> 2617302... source
 
 	DPRINTK("EXIT, err_mask=%x\n", err_mask);
 	return err_mask;
@@ -4777,12 +4790,15 @@ void swap_buf_le16(u16 *buf, unsigned int buf_words)
  *	@ap: target port
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
  *	Some ATA host controllers may implement a queue depth which is less
  *	than ATA_MAX_QUEUE. So we shouldn't allocate a tag which is beyond
  *	the hardware limitation.
  *
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
  *	LOCKING:
  *	None.
  */
@@ -4791,9 +4807,12 @@ static struct ata_queued_cmd *ata_qc_new(struct ata_port *ap)
 {
 	struct ata_queued_cmd *qc = NULL;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	unsigned int max_queue = ap->host->n_tags;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	unsigned int i, tag;
 
 	/* no command while frozen */
@@ -4801,12 +4820,17 @@ static struct ata_queued_cmd *ata_qc_new(struct ata_port *ap)
 		return NULL;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	for (i = 0; i < ATA_MAX_QUEUE; i++) {
 		tag = (i + ap->last_tag + 1) % ATA_MAX_QUEUE;
 =======
 	for (i = 0, tag = ap->last_tag + 1; i < max_queue; i++, tag++) {
 		tag = tag < max_queue ? tag : 0;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	for (i = 0; i < ATA_MAX_QUEUE; i++) {
+		tag = (i + ap->last_tag + 1) % ATA_MAX_QUEUE;
+>>>>>>> 2617302... source
 
 		/* the last tag is reserved for internal command. */
 		if (tag == ATA_TAG_INTERNAL)
@@ -6108,9 +6132,12 @@ void ata_host_init(struct ata_host *host, struct device *dev,
 	spin_lock_init(&host->lock);
 	mutex_init(&host->eh_mutex);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	host->n_tags = ATA_MAX_QUEUE - 1;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	host->dev = dev;
 	host->ops = ops;
 }
@@ -6193,10 +6220,13 @@ int ata_host_register(struct ata_host *host, struct scsi_host_template *sht)
 	int i, rc;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	host->n_tags = clamp(sht->can_queue, 1, ATA_MAX_QUEUE - 1);
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	/* host must have been started */
 	if (!(host->flags & ATA_HOST_STARTED)) {
 		dev_err(host->dev, "BUG: trying to register unstarted host\n");
@@ -6344,10 +6374,13 @@ static void ata_port_detach(struct ata_port *ap)
 {
 	unsigned long flags;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct ata_link *link;
 	struct ata_device *dev;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	if (!ap->ops->error_handler)
 		goto skip_eh;
@@ -6368,6 +6401,7 @@ static void ata_port_detach(struct ata_port *ap)
 
  skip_eh:
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/* clean up zpodd on port removal */
 	ata_for_each_link(link, ap, HOST_FIRST) {
@@ -6377,6 +6411,8 @@ static void ata_port_detach(struct ata_port *ap)
 		}
 	}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	if (ap->pmp_link) {
 		int i;
 		for (i = 0; i < SATA_PMP_MAX_PORTS; i++)
@@ -6842,6 +6878,7 @@ u32 ata_wait_register(struct ata_port *ap, void __iomem *reg, u32 mask, u32 val,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 /**
  *	sata_lpm_ignore_phy_events - test if PHY event should be ignored
@@ -6876,6 +6913,8 @@ bool sata_lpm_ignore_phy_events(struct ata_link *link)
 EXPORT_SYMBOL_GPL(sata_lpm_ignore_phy_events);
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 /*
  * Dummy port_ops
  */

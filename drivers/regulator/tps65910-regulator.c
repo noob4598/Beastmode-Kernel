@@ -1081,6 +1081,7 @@ static int tps65910_probe(struct platform_device *pdev)
 		pmic->ext_sleep_control = tps65910_ext_sleep_control;
 		info = tps65910_regs;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		/* Work around silicon erratum SWCZ010: output programmed
 		 * voltage level can go higher than expected or crash
@@ -1089,6 +1090,8 @@ static int tps65910_probe(struct platform_device *pdev)
 		tps65910_reg_clear_bits(pmic->mfd, TPS65910_DCDCCTRL,
 					DCDCCTRL_DCDCCKSYNC_MASK);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		break;
 	case TPS65911:
 		pmic->get_ctrl_reg = &tps65911_get_ctrl_register;

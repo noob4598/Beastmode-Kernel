@@ -207,16 +207,22 @@ static int smsusb_sendrequest(void *context, void *buffer, size_t size)
 {
 	struct smsusb_device_t *dev = (struct smsusb_device_t *) context;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct sms_msg_hdr *phdr = (struct sms_msg_hdr *) buffer;
 	int dummy;
 =======
 	struct sms_msg_hdr *phdr;
 	int dummy, ret;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	struct sms_msg_hdr *phdr = (struct sms_msg_hdr *) buffer;
+	int dummy;
+>>>>>>> 2617302... source
 
 	if (dev->state != SMSUSB_ACTIVE)
 		return -ENOENT;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 	phdr = kmalloc(size, GFP_KERNEL);
@@ -225,11 +231,14 @@ static int smsusb_sendrequest(void *context, void *buffer, size_t size)
 	memcpy(phdr, buffer, size);
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	sms_debug("sending %s(%d) size: %d",
 		  smscore_translate_msg(phdr->msg_type), phdr->msg_type,
 		  phdr->msg_length);
 
 	smsendian_handle_tx_message((struct sms_msg_data *) phdr);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	smsendian_handle_message_header((struct sms_msg_hdr *)buffer);
 	return usb_bulk_msg(dev->udev, usb_sndbulkpipe(dev->udev, 2),
@@ -242,6 +251,11 @@ static int smsusb_sendrequest(void *context, void *buffer, size_t size)
 	kfree(phdr);
 	return ret;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	smsendian_handle_message_header((struct sms_msg_hdr *)buffer);
+	return usb_bulk_msg(dev->udev, usb_sndbulkpipe(dev->udev, 2),
+			    buffer, size, &dummy, 1000);
+>>>>>>> 2617302... source
 }
 
 static char *smsusb1_fw_lkup[] = {

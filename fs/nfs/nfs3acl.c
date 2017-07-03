@@ -306,6 +306,7 @@ static int nfs3_proc_setacls(struct inode *inode, struct posix_acl *acl,
 		.rpc_resp	= &fattr,
 	};
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int status;
 =======
 	int status = 0;
@@ -313,6 +314,9 @@ static int nfs3_proc_setacls(struct inode *inode, struct posix_acl *acl,
 	if (acl == NULL && (!S_ISDIR(inode->i_mode) || dfacl == NULL))
 		goto out;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	int status;
+>>>>>>> 2617302... source
 
 	status = -EOPNOTSUPP;
 	if (!nfs_server_capable(inode, NFS_CAP_ACLS))

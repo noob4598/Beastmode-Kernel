@@ -289,12 +289,15 @@ int ip_options_compile(struct net *net,
 			continue;
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		if (unlikely(l < 2)) {
 			pp_ptr = optptr;
 			goto error;
 		}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		optlen = optptr[1];
 		if (optlen<2 || optlen>l) {
 			pp_ptr = optptr;

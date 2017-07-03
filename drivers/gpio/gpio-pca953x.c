@@ -76,10 +76,14 @@ MODULE_DEVICE_TABLE(i2c, pca953x_id);
 #define BANK_SZ 8
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define NBANK(chip) (chip->gpio_chip.ngpio / BANK_SZ)
 =======
 #define NBANK(chip) DIV_ROUND_UP(chip->gpio_chip.ngpio, BANK_SZ)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+#define NBANK(chip) (chip->gpio_chip.ngpio / BANK_SZ)
+>>>>>>> 2617302... source
 
 struct pca953x_chip {
 	unsigned gpio_start;

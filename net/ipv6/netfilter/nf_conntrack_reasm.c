@@ -173,10 +173,14 @@ static void nf_ct_frag6_expire(unsigned long data)
 static inline struct frag_queue *fq_find(struct net *net, __be32 id,
 					 u32 user, struct in6_addr *src,
 <<<<<<< HEAD
+<<<<<<< HEAD
 					 struct in6_addr *dst, u8 ecn)
 =======
 					 struct in6_addr *dst, int iif, u8 ecn)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+					 struct in6_addr *dst, u8 ecn)
+>>>>>>> 2617302... source
 {
 	struct inet_frag_queue *q;
 	struct ip6_create_arg arg;
@@ -187,9 +191,12 @@ static inline struct frag_queue *fq_find(struct net *net, __be32 id,
 	arg.src = src;
 	arg.dst = dst;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	arg.iif = iif;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	arg.ecn = ecn;
 
 	read_lock_bh(&nf_frags.lock);
@@ -577,11 +584,14 @@ struct sk_buff *nf_ct_frag6_gather(struct sk_buff *skb, u32 user)
 		return skb;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (!net->nf_frag.frags.high_thresh)
 		return skb;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	clone = skb_clone(skb, GFP_ATOMIC);
 	if (clone == NULL) {
 		pr_debug("Can't clone skb\n");
@@ -605,10 +615,14 @@ struct sk_buff *nf_ct_frag6_gather(struct sk_buff *skb, u32 user)
 
 	fq = fq_find(net, fhdr->identification, user, &hdr->saddr, &hdr->daddr,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		     ip6_frag_ecn(hdr));
 =======
 		     skb->dev ? skb->dev->ifindex : 0, ip6_frag_ecn(hdr));
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		     ip6_frag_ecn(hdr));
+>>>>>>> 2617302... source
 	if (fq == NULL) {
 		pr_debug("Can't find and can't create new queue\n");
 		goto ret_orig;

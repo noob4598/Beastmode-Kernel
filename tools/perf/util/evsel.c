@@ -1515,6 +1515,9 @@ int perf_evsel__open_strerror(struct perf_evsel *evsel,
 	case EPERM:
 	case EACCES:
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		return scnprintf(msg, size, "%s",
 		 "You may not have permission to collect %sstats.\n"
 		 "Consider tweaking /proc/sys/kernel/perf_event_paranoid:\n"
@@ -1522,6 +1525,7 @@ int perf_evsel__open_strerror(struct perf_evsel *evsel,
 		 "  0 - Disallow raw tracepoint access for unpriv\n"
 		 "  1 - Disallow cpu events for unpriv\n"
 		 "  2 - Disallow kernel profiling for unpriv",
+<<<<<<< HEAD
 =======
 		return scnprintf(msg, size,
 		 "You may not have permission to collect %sstats.\n\n"
@@ -1534,6 +1538,8 @@ int perf_evsel__open_strerror(struct perf_evsel *evsel,
 		 ">= 1: Disallow CPU event access by users without CAP_SYS_ADMIN\n"
 		 ">= 2: Disallow kernel profiling by users without CAP_SYS_ADMIN",
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 				 target->system_wide ? "system-wide " : "");
 	case ENOENT:
 		return scnprintf(msg, size, "The %s event is not supported.",

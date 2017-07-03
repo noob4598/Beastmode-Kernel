@@ -476,10 +476,14 @@ static long vol_cdev_ioctl(struct file *file, unsigned int cmd,
 		err = -EINVAL;
 		if (req.lnum < 0 || req.lnum >= vol->reserved_pebs ||
 <<<<<<< HEAD
+<<<<<<< HEAD
 		    req.bytes < 0 || req.lnum >= vol->usable_leb_size)
 =======
 		    req.bytes < 0 || req.bytes > vol->usable_leb_size)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		    req.bytes < 0 || req.lnum >= vol->usable_leb_size)
+>>>>>>> 2617302... source
 			break;
 
 		err = get_exclusive(desc);

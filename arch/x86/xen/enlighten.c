@@ -34,12 +34,15 @@
 #include <linux/edd.h>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #ifdef CONFIG_KEXEC
 #include <linux/kexec.h>
 #endif
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 #include <xen/xen.h>
 #include <xen/events.h>
 #include <xen/interface/xen.h>
@@ -489,9 +492,12 @@ static void set_aliased_prot(void *v, pgprot_t prot)
 	unsigned long pfn;
 	struct page *page;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	unsigned char dummy;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	ptep = lookup_address((unsigned long)v, &level);
 	BUG_ON(ptep == NULL);
@@ -501,6 +507,7 @@ static void set_aliased_prot(void *v, pgprot_t prot)
 
 	pte = pfn_pte(pfn, prot);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 	/*
@@ -530,6 +537,8 @@ static void set_aliased_prot(void *v, pgprot_t prot)
 	pagefault_enable();
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	if (HYPERVISOR_update_va_mapping((unsigned long)v, pte, 0))
 		BUG();
 
@@ -542,10 +551,13 @@ static void set_aliased_prot(void *v, pgprot_t prot)
 	} else
 		kmap_flush_unused();
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 	preempt_enable();
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 }
 
 static void xen_alloc_ldt(struct desc_struct *ldt, unsigned entries)
@@ -553,6 +565,7 @@ static void xen_alloc_ldt(struct desc_struct *ldt, unsigned entries)
 	const unsigned entries_per_page = PAGE_SIZE / LDT_ENTRY_SIZE;
 	int i;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 	/*
@@ -567,6 +580,8 @@ static void xen_alloc_ldt(struct desc_struct *ldt, unsigned entries)
 	 */
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	for(i = 0; i < entries; i += entries_per_page)
 		set_aliased_prot(ldt + i, PAGE_KERNEL_RO);
 }
@@ -968,10 +983,14 @@ static void xen_load_sp0(struct tss_struct *tss,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void xen_set_iopl_mask(unsigned mask)
 =======
 void xen_set_iopl_mask(unsigned mask)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+static void xen_set_iopl_mask(unsigned mask)
+>>>>>>> 2617302... source
 {
 	struct physdev_set_iopl set_iopl;
 
@@ -1768,6 +1787,7 @@ static struct notifier_block xen_hvm_cpu_notifier __cpuinitdata = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #ifdef CONFIG_KEXEC
 static void xen_hvm_shutdown(void)
@@ -1785,6 +1805,8 @@ static void xen_hvm_crash_shutdown(struct pt_regs *regs)
 #endif
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 static void __init xen_hvm_guest_init(void)
 {
 	init_hvm_pv_info();
@@ -1800,12 +1822,15 @@ static void __init xen_hvm_guest_init(void)
 	xen_hvm_init_time_ops();
 	xen_hvm_init_mmu_ops();
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #ifdef CONFIG_KEXEC
 	machine_ops.shutdown = xen_hvm_shutdown;
 	machine_ops.crash_shutdown = xen_hvm_crash_shutdown;
 #endif
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 }
 
 static bool __init xen_hvm_platform(void)

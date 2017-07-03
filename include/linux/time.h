@@ -174,6 +174,7 @@ extern void monotonic_to_bootbased(struct timespec *ts);
 extern void get_monotonic_boottime(struct timespec *ts);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 static inline bool timeval_valid(const struct timeval *tv)
 {
@@ -189,6 +190,8 @@ static inline bool timeval_valid(const struct timeval *tv)
 }
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 extern struct timespec timespec_trunc(struct timespec t, unsigned gran);
 extern int timekeeping_valid_for_hres(void);
 extern u64 timekeeping_max_deferment(void);

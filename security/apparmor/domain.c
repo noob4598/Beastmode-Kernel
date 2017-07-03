@@ -442,10 +442,14 @@ int apparmor_bprm_set_creds(struct linux_binprm *bprm)
 				info = "ux fallback";
 			} else {
 <<<<<<< HEAD
+<<<<<<< HEAD
 				error = -ENOENT;
 =======
 				error = -EACCES;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+				error = -ENOENT;
+>>>>>>> 2617302... source
 				info = "profile not found";
 			}
 		}

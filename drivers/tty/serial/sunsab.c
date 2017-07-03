@@ -158,6 +158,7 @@ receive_chars(struct uart_sunsab_port *up,
 		saw_console_brk = 1;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (count == 0) {
 		if (unlikely(stat->sreg.isr1 & SAB82532_ISR1_BRK)) {
@@ -169,6 +170,8 @@ receive_chars(struct uart_sunsab_port *up,
 	}
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	for (i = 0; i < count; i++) {
 		unsigned char ch = buf[i], flag;
 

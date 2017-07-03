@@ -508,12 +508,17 @@ static void smp2p_find_entry_v1(struct smp2p_smem __iomem *item,
 
 	if (!item || !name || !entry_ptr) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		SMP2P_ERR("%s: invalid arguments %p, %p, %p\n",
 				__func__, item, name, entry_ptr);
 =======
 		SMP2P_ERR("%s: invalid arguments %d, %d, %d\n",
 				__func__, !item, !name, !entry_ptr);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		SMP2P_ERR("%s: invalid arguments %p, %p, %p\n",
+				__func__, item, name, entry_ptr);
+>>>>>>> 2617302... source
 		return;
 	}
 

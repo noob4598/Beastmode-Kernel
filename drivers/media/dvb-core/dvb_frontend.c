@@ -2196,6 +2196,7 @@ static int dvb_frontend_ioctl_legacy(struct file *file,
 				 __func__, c->delivery_system, fe->ops.info.type);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		/* Force the CAN_INVERSION_AUTO bit on. If the frontend doesn't
 		 * do it, it is done for it. */
 		info->caps |= FE_CAN_INVERSION_AUTO;
@@ -2204,6 +2205,11 @@ static int dvb_frontend_ioctl_legacy(struct file *file,
 		if (!(fepriv->tune_mode_flags & FE_TUNE_MODE_ONESHOT))
 			info->caps |= FE_CAN_INVERSION_AUTO;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		/* Force the CAN_INVERSION_AUTO bit on. If the frontend doesn't
+		 * do it, it is done for it. */
+		info->caps |= FE_CAN_INVERSION_AUTO;
+>>>>>>> 2617302... source
 		err = 0;
 		break;
 	}

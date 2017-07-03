@@ -11,9 +11,12 @@
 #include <linux/fs.h>
 #include <linux/slab.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <linux/mount.h>
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 #include "internal.h"
 
@@ -113,6 +116,7 @@ out_free:
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 static int
 efivarfs_ioc_getxflags(struct file *file, void __user *arg)
@@ -184,13 +188,18 @@ efivarfs_file_ioctl(struct file *file, unsigned int cmd, unsigned long p)
 }
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 const struct file_operations efivarfs_file_operations = {
 	.open	= simple_open,
 	.read	= efivarfs_file_read,
 	.write	= efivarfs_file_write,
 	.llseek	= no_llseek,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	.unlocked_ioctl = efivarfs_file_ioctl,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 };

@@ -218,9 +218,12 @@ static void part_release(struct device *dev)
 {
 	struct hd_struct *p = dev_to_part(dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	blk_free_devt(dev->devt);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	free_part_stats(p);
 	free_part_info(p);
 	kfree(p);
@@ -284,9 +287,13 @@ void delete_partition(struct gendisk *disk, int partno)
 #endif	
 	device_del(part_to_dev(part));
 <<<<<<< HEAD
+<<<<<<< HEAD
 	blk_free_devt(part_devt(part));
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	blk_free_devt(part_devt(part));
+>>>>>>> 2617302... source
 
 	hd_struct_put(part);
 }

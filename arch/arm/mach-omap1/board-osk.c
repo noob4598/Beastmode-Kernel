@@ -281,10 +281,14 @@ static struct omap_usb_config osk_usb_config __initdata = {
 	 * a peripheral.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 #ifdef	CONFIG_USB_GADGET_OMAP
 =======
 #if IS_ENABLED(CONFIG_USB_OMAP)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+#ifdef	CONFIG_USB_GADGET_OMAP
+>>>>>>> 2617302... source
 	.register_dev	= 1,
 	.hmc_mode	= 0,
 #else

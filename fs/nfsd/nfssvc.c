@@ -221,11 +221,15 @@ static int nfsd_startup_generic(int nrservs)
 	ret = nfsd_racache_init(2*nrservs);
 	if (ret)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return ret;
 =======
 		goto dec_users;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		return ret;
+>>>>>>> 2617302... source
 	ret = nfs4_state_start();
 	if (ret)
 		goto out_racache;
@@ -234,10 +238,13 @@ static int nfsd_startup_generic(int nrservs)
 out_racache:
 	nfsd_racache_shutdown();
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 dec_users:
 	nfsd_users--;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	return ret;
 }
 
@@ -635,6 +642,7 @@ static __be32 map_new_errors(u32 vers, __be32 nfserr)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 /*
  * A write procedure can have a large argument, and a read procedure can
@@ -668,6 +676,8 @@ static bool nfs_request_too_big(struct svc_rqst *rqstp,
 }
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 int
 nfsd_dispatch(struct svc_rqst *rqstp, __be32 *statp)
 {
@@ -681,6 +691,7 @@ nfsd_dispatch(struct svc_rqst *rqstp, __be32 *statp)
 	proc = rqstp->rq_procinfo;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (nfs_request_too_big(rqstp, proc)) {
 		dprintk("nfsd: NFSv%d argument too large\n", rqstp->rq_vers);
@@ -688,6 +699,8 @@ nfsd_dispatch(struct svc_rqst *rqstp, __be32 *statp)
 		return 1;
 	}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	/*
 	 * Give the xdr decoder a chance to change this if it wants
 	 * (necessary in the NFSv4.0 compound case)

@@ -30,6 +30,7 @@
 enum enclosure_component_type {
 	ENCLOSURE_COMPONENT_DEVICE = 0x01,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ENCLOSURE_COMPONENT_ARRAY_DEVICE = 0x17,
 =======
 	ENCLOSURE_COMPONENT_CONTROLLER_ELECTRONICS = 0x07,
@@ -38,6 +39,9 @@ enum enclosure_component_type {
 	ENCLOSURE_COMPONENT_ARRAY_DEVICE = 0x17,
 	ENCLOSURE_COMPONENT_SAS_EXPANDER = 0x18,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	ENCLOSURE_COMPONENT_ARRAY_DEVICE = 0x17,
+>>>>>>> 2617302... source
 };
 
 /* ses-2 common element status */

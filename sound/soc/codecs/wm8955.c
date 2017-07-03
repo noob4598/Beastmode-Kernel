@@ -299,10 +299,14 @@ static int wm8955_configure_clocking(struct snd_soc_codec *codec)
 				    WM8955_K_17_9_MASK,
 				    (pll.k >> 9) & WM8955_K_17_9_MASK);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		snd_soc_update_bits(codec, WM8955_PLL_CONTROL_2,
 =======
 		snd_soc_update_bits(codec, WM8955_PLL_CONTROL_3,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		snd_soc_update_bits(codec, WM8955_PLL_CONTROL_2,
+>>>>>>> 2617302... source
 				    WM8955_K_8_0_MASK,
 				    pll.k & WM8955_K_8_0_MASK);
 		if (pll.k)
@@ -398,10 +402,14 @@ static int wm8955_get_deemph(struct snd_kcontrol *kcontrol,
 	struct wm8955_priv *wm8955 = snd_soc_codec_get_drvdata(codec);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ucontrol->value.enumerated.item[0] = wm8955->deemph;
 =======
 	ucontrol->value.integer.value[0] = wm8955->deemph;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	ucontrol->value.enumerated.item[0] = wm8955->deemph;
+>>>>>>> 2617302... source
 	return 0;
 }
 
@@ -411,10 +419,14 @@ static int wm8955_put_deemph(struct snd_kcontrol *kcontrol,
 	struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
 	struct wm8955_priv *wm8955 = snd_soc_codec_get_drvdata(codec);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int deemph = ucontrol->value.enumerated.item[0];
 =======
 	int deemph = ucontrol->value.integer.value[0];
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	int deemph = ucontrol->value.enumerated.item[0];
+>>>>>>> 2617302... source
 
 	if (deemph > 1)
 		return -EINVAL;

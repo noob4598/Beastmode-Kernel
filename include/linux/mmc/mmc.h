@@ -292,11 +292,15 @@ struct _mmc_csd {
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define EXT_CSD_WR_REL_PARAM_EN		(1<<2)
 =======
 #define EXT_CSD_WR_REL_PARAM_EN			(1<<2)
 #define EXT_CSD_WR_REL_PARAM_EN_RPMB_REL_WR	(1<<4)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+#define EXT_CSD_WR_REL_PARAM_EN		(1<<2)
+>>>>>>> 2617302... source
 
 #define EXT_CSD_BOOT_WP_B_PWR_WP_DIS	(0x40)
 #define EXT_CSD_BOOT_WP_B_PERM_WP_DIS	(0x10)

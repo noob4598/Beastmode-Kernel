@@ -14,14 +14,20 @@
 	.align	5
 ENTRY(v7_early_abort)
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	/*
 	 * The effect of data aborts on on the exclusive access monitor are
 	 * UNPREDICTABLE. Do a CLREX to clear the state
 	 */
 	clrex
 
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	mrc	p15, 0, r1, c5, c0, 0		@ get FSR
 	mrc	p15, 0, r0, c6, c0, 0		@ get FAR
 

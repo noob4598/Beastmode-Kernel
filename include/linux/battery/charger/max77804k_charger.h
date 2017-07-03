@@ -109,9 +109,12 @@
 #define MAX77804K_MODE_BUCK	0x04
 #define MAX77804K_MODE_BOOST 0x08
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define MAX77804K_WDTEN 0x10
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 /* MAX77804K_CHG_REG_CHG_CNFG_02 */
 #define MAX77804K_CHG_CC		0x3F
@@ -126,11 +129,14 @@
 #define MAX77804K_CHG_PRM_SHIFT		0
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 /* MAX77804K_CHG_REG_CHG_CNFG_06 */
 #define MAX77804K_WDTCLR			0x1
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 /* MAX77804K_CHG_REG_CHG_CNFG_09 */
 #define MAX77804K_CHG_CHGIN_LIM	0x7F
 

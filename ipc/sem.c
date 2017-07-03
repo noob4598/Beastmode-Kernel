@@ -254,6 +254,7 @@ static void sem_rcu_free(struct rcu_head *head)
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
  * spin_unlock_wait() and !spin_is_locked() are not memory barriers, they
  * are only control barriers.
@@ -266,14 +267,20 @@ static void sem_rcu_free(struct rcu_head *head)
 
 /*
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
  * Wait until all currently ongoing simple ops have completed.
  * Caller must own sem_perm.lock.
  * New simple ops cannot start, because simple ops first check
  * that sem_perm.lock is free.
 <<<<<<< HEAD
+<<<<<<< HEAD
  * that a) sem_perm.lock is free and b) complex_count is 0.
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+ * that a) sem_perm.lock is free and b) complex_count is 0.
+>>>>>>> 2617302... source
  */
 static void sem_wait_array(struct sem_array *sma)
 {
@@ -281,6 +288,9 @@ static void sem_wait_array(struct sem_array *sma)
 	struct sem *sem;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	if (sma->complex_count)  {
 		/* The thread that increased sma->complex_count waited on
 		 * all sem->lock locks. Thus we don't need to wait again.
@@ -288,16 +298,22 @@ static void sem_wait_array(struct sem_array *sma)
 		return;
 	}
 
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	for (i = 0; i < sma->sem_nsems; i++) {
 		sem = sma->sem_base + i;
 		spin_unlock_wait(&sem->lock);
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	ipc_smp_acquire__after_spin_is_unlocked();
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 }
 
 /*
@@ -350,6 +366,7 @@ static inline int sem_lock(struct sem_array *sma, struct sembuf *sops,
 		/* Then check that the global lock is free */
 		if (!spin_is_locked(&sma->sem_perm.lock)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			/* spin_is_locked() is not a memory barrier */
 			smp_mb();
 =======
@@ -361,6 +378,10 @@ static inline int sem_lock(struct sem_array *sma, struct sembuf *sops,
 			 */
 			ipc_smp_acquire__after_spin_is_unlocked();
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			/* spin_is_locked() is not a memory barrier */
+			smp_mb();
+>>>>>>> 2617302... source
 
 			/* Now repeat the test of complex_count:
 			 * It can't change anymore until we drop sem->lock.
@@ -542,6 +563,9 @@ static int newary(struct ipc_namespace *ns, struct ipc_params *params)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	id = ipc_addid(&sem_ids(ns), &sma->sem_perm, ns->sc_semmni);
 	if (id < 0) {
 		ipc_rcu_putref(sma, sem_rcu_free);
@@ -549,8 +573,11 @@ static int newary(struct ipc_namespace *ns, struct ipc_params *params)
 	}
 	ns->used_sems += nsems;
 
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	sma->sem_base = (struct sem *) &sma[1];
 
 	for (i = 0; i < nsems; i++) {
@@ -566,6 +593,7 @@ static int newary(struct ipc_namespace *ns, struct ipc_params *params)
 	sma->sem_nsems = nsems;
 	sma->sem_ctime = get_seconds();
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 	id = ipc_addid(&sem_ids(ns), &sma->sem_perm, ns->sc_semmni);
@@ -576,6 +604,8 @@ static int newary(struct ipc_namespace *ns, struct ipc_params *params)
 	ns->used_sems += nsems;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	sem_unlock(sma, -1);
 	rcu_read_unlock();
 
@@ -2097,6 +2127,9 @@ void exit_sem(struct task_struct *tsk)
 		un = list_entry_rcu(ulp->list_proc.next,
 				    struct sem_undo, list_proc);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		if (&un->list_proc == &ulp->list_proc)
 			semid = -1;
 		 else
@@ -2108,6 +2141,7 @@ void exit_sem(struct task_struct *tsk)
 		}
 
 		sma = sem_obtain_object_check(tsk->nsproxy->ipc_ns, un->semid);
+<<<<<<< HEAD
 =======
 		if (&un->list_proc == &ulp->list_proc) {
 			/*
@@ -2132,6 +2166,8 @@ void exit_sem(struct task_struct *tsk)
 
 		sma = sem_obtain_object_check(tsk->nsproxy->ipc_ns, semid);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		/* exit_sem raced with IPC_RMID, nothing to do */
 		if (IS_ERR(sma)) {
 			rcu_read_unlock();

@@ -220,9 +220,12 @@ struct MPT3SAS_TARGET {
  * @eedp_type: 0(type_1), 1(type_2), 2(type_3)
  * @eedp_block_length: block size
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
  * @ata_command_pending: SATL passthrough outstanding for device
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
  */
 struct MPT3SAS_DEVICE {
 	struct MPT3SAS_TARGET *sas_target;
@@ -231,6 +234,7 @@ struct MPT3SAS_DEVICE {
 	u8	configured_lun;
 	u8	block;
 	u8	tlr_snoop_check;
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 	/*
@@ -245,6 +249,8 @@ struct MPT3SAS_DEVICE {
 	 */
 	unsigned long ata_command_pending;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 };
 
 #define MPT3_CMD_NOT_USED	0x8000	/* free */

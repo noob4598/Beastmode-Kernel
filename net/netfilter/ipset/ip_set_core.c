@@ -1755,6 +1755,7 @@ ip_set_sockfn_get(struct sock *sk, int optval, void __user *user, int *len)
 		/* Check the version at the beginning of operations */
 		struct ip_set_req_version *req_version = data;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 		if (*len < sizeof(struct ip_set_req_version)) {
@@ -1763,6 +1764,8 @@ ip_set_sockfn_get(struct sock *sk, int optval, void __user *user, int *len)
 		}
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		if (req_version->version != IPSET_PROTOCOL) {
 			ret = -EPROTO;
 			goto done;

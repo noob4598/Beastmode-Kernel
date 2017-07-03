@@ -33,6 +33,7 @@ struct route_info {
 #define RT6_LOOKUP_F_SRCPREF_COA	0x00000020
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 /* We do not (yet ?) support IPv6 jumbograms (RFC 2675)
  * Unlike IPv4, hdr->seg_len doesn't include the IPv6 header
@@ -40,6 +41,8 @@ struct route_info {
 #define IP6_MAX_MTU (0xFFFF + sizeof(struct ipv6hdr))
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 /*
  * rt6_srcprefs2flags() and rt6_flags2srcprefs() translate
  * between IPV6_ADDR_PREFERENCES socket option values

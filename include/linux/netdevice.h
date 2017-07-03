@@ -1730,6 +1730,7 @@ static inline int skb_gro_header_hard(struct sk_buff *skb, unsigned int hlen)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 static inline void skb_gro_frag0_invalidate(struct sk_buff *skb)
 {
@@ -1738,6 +1739,8 @@ static inline void skb_gro_frag0_invalidate(struct sk_buff *skb)
 }
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 static inline void *skb_gro_header_slow(struct sk_buff *skb, unsigned int hlen,
 					unsigned int offset)
 {
@@ -1745,11 +1748,16 @@ static inline void *skb_gro_header_slow(struct sk_buff *skb, unsigned int hlen,
 		return NULL;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	NAPI_GRO_CB(skb)->frag0 = NULL;
 	NAPI_GRO_CB(skb)->frag0_len = 0;
 =======
 	skb_gro_frag0_invalidate(skb);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	NAPI_GRO_CB(skb)->frag0 = NULL;
+	NAPI_GRO_CB(skb)->frag0_len = 0;
+>>>>>>> 2617302... source
 	return skb->data + offset;
 }
 
@@ -2237,9 +2245,12 @@ static inline void napi_free_frags(struct napi_struct *napi)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 bool netdev_is_rx_handler_busy(struct net_device *dev);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 extern int netdev_rx_handler_register(struct net_device *dev,
 				      rx_handler_func_t *rx_handler,
 				      void *rx_handler_data);

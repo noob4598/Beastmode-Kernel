@@ -59,12 +59,16 @@ struct ss_vib {
 void vibe_set_intensity(int intensity)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	if (0 == intensity)
 		vibe_pwm_onoff(0);
 	else {
 		if (MAX_INTENSITY == intensity)
 			intensity = 1;
 		else if (0 != intensity) {
+<<<<<<< HEAD
 =======
 	if (intensity == 0)
 		vibe_pwm_onoff(0);
@@ -73,6 +77,8 @@ void vibe_set_intensity(int intensity)
 			intensity = 1;
 		else if (intensity != 0) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 			int tmp = MAX_INTENSITY - intensity;
 			intensity = (tmp / 79);	// 79 := 10000 / 127
 		}
@@ -178,11 +184,15 @@ static void set_vibrator(struct ss_vib *vib)
 		if (vib->flag_en_gpio)
 			gpio_set_value(vib->vib_en_gpio, VIBRATION_ON);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		hrtimer_start(&vib->vib_timer, ktime_set(vib->timevalue / 1000, (vib->timevalue % 1000) * 1000000),HRTIMER_MODE_REL);
 =======
 		hrtimer_start(&vib->vib_timer, ktime_set(vib->timevalue / 1000,
 			(vib->timevalue % 1000) * 1000000),HRTIMER_MODE_REL);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		hrtimer_start(&vib->vib_timer, ktime_set(vib->timevalue / 1000, (vib->timevalue % 1000) * 1000000),HRTIMER_MODE_REL);
+>>>>>>> 2617302... source
 	} else {
 		rc = gpio_tlmm_config(GPIO_CFG(vib->vib_pwm_gpio,\
 				0, GPIO_CFG_OUTPUT, GPIO_CFG_PULL_DOWN, \
@@ -211,11 +221,15 @@ static void vibrator_enable(struct timed_output_dev *dev, int value)
 		vib->timevalue = 0;
 	} else {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_info("[VIB]: ON, Duration : %d msec, intensity : %d\n", value, vib->intensity);
 =======
 		pr_info("[VIB]: ON, Duration : %d msec, intensity : %d\n",
 			value, vib->intensity);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		pr_info("[VIB]: ON, Duration : %d msec, intensity : %d\n", value, vib->intensity);
+>>>>>>> 2617302... source
 		vib->state = 1;
 		vib->timevalue = value;
 	}
@@ -372,22 +386,31 @@ static ssize_t store_vib_tuning(struct device *dev,
 			g_nlra_gp_clk_pwm_mul, motor_strength, motor_min_strength);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	return count;                                                              
 }                                                                                  
 
 static DEVICE_ATTR(vib_tuning, 0660, show_vib_tuning, store_vib_tuning);           
+<<<<<<< HEAD
 =======
 	return count;
 }
 
 static DEVICE_ATTR(vib_tuning, 0660, show_vib_tuning, store_vib_tuning);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 static ssize_t intensity_store(struct device *dev,
 		struct device_attribute *devattr, const char *buf, size_t count)
 {
 	struct timed_output_dev *t_dev = dev_get_drvdata(dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	struct ss_vib *vib = container_of(t_dev, struct ss_vib, timed_dev); 
 	int ret = 0, set_intensity = 0; 
 
@@ -400,6 +423,7 @@ static ssize_t intensity_store(struct device *dev,
 
 	vibe_set_intensity(set_intensity);
 	vib->intensity = set_intensity;
+<<<<<<< HEAD
 =======
 	struct ss_vib *vib = container_of(t_dev, struct ss_vib, timed_dev);
 	int ret = 0, set_intensity = 0;
@@ -414,6 +438,8 @@ static ssize_t intensity_store(struct device *dev,
 	vibe_set_intensity((set_intensity * 100));
 	vib->intensity = (set_intensity * 100);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	return count;
 }
@@ -423,12 +449,16 @@ static ssize_t intensity_show(struct device *dev,
 {
 	struct timed_output_dev *t_dev = dev_get_drvdata(dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	struct ss_vib *vib = container_of(t_dev, struct ss_vib, timed_dev); 
 
 	return sprintf(buf, "intensity: %u\n", vib->intensity);
 }
 
 static DEVICE_ATTR(intensity, 0660, intensity_show, intensity_store);
+<<<<<<< HEAD
 =======
 	struct ss_vib *vib = container_of(t_dev, struct ss_vib, timed_dev);
 
@@ -465,6 +495,8 @@ static DEVICE_ATTR(pwm_min, 0444, pwm_min_show, NULL);
 static DEVICE_ATTR(pwm_threshold, 0444, pwm_threshold_show, NULL);
 static DEVICE_ATTR(pwm_value, 0644, intensity_show, intensity_store);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 
 #if defined(CONFIG_MOTOR_DRV_MAX77828) || defined(CONFIG_MOTOR_DRV_MAX77804K) || defined(CONFIG_MOTOR_DRV_MAX77843)
@@ -537,10 +569,14 @@ static int ss_vibrator_probe(struct platform_device *pdev)
 
 	vib->power_onoff = regulator_power_onoff;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	vib->intensity = MAX_INTENSITY;
 =======
 	vib->intensity = DEFAULT_INTENSITY;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	vib->intensity = MAX_INTENSITY;
+>>>>>>> 2617302... source
 	g_nlra_gp_clk_m = vib->m_default;
 	g_nlra_gp_clk_n = vib->n_default;
 	g_nlra_gp_clk_d = (vib->n_default)/2;
@@ -576,6 +612,7 @@ static int ss_vibrator_probe(struct platform_device *pdev)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	rc = sysfs_create_file(&vib->timed_dev.dev->kobj, &dev_attr_intensity.attr);
 =======
 	rc = sysfs_create_file(&vib->timed_dev.dev->kobj, &dev_attr_pwm_default.attr);
@@ -584,6 +621,9 @@ static int ss_vibrator_probe(struct platform_device *pdev)
 	rc = sysfs_create_file(&vib->timed_dev.dev->kobj, &dev_attr_pwm_threshold.attr);
 	rc = sysfs_create_file(&vib->timed_dev.dev->kobj, &dev_attr_pwm_value.attr);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	rc = sysfs_create_file(&vib->timed_dev.dev->kobj, &dev_attr_intensity.attr);
+>>>>>>> 2617302... source
 	if (rc < 0) {
 		pr_err("[VIB]: Failed to register sysfs intensity: %d\n", rc);
 	}

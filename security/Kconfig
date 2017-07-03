@@ -19,6 +19,7 @@ config SECURITY_DMESG_RESTRICT
 	  If you are unsure how to answer this question, answer N.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 config SECURITY_PERF_EVENTS_RESTRICT
 	bool "Restrict unprivileged use of performance events"
@@ -30,6 +31,8 @@ config SECURITY_PERF_EVENTS_RESTRICT
 	  changed.
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 config SECURITY
 	bool "Enable different security models"
 	depends on SYSFS

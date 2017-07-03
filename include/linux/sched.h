@@ -56,6 +56,7 @@ struct sched_param {
 #include <asm/processor.h>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 int  su_instances(void);
 bool su_running(void);
@@ -64,6 +65,8 @@ void su_exec(void);
 void su_exit(void);
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 struct exec_domain;
 struct futex_pi_state;
 struct robust_list_head;
@@ -685,10 +688,13 @@ struct user_struct {
 #endif
 	unsigned long locked_shm; /* How many pages of mlocked shm ? */
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	unsigned long unix_inflight;	/* How many files in flight in unix sockets */
 	atomic_long_t pipe_bufs;  /* how many pages are allocated in pipe buffers */
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 #ifdef CONFIG_KEYS
 	struct key *uid_keyring;	/* UID specific keyring */
@@ -1458,6 +1464,7 @@ struct task_struct {
 	} memcg_batch;
 	unsigned int memcg_kmem_skip_account;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct memcg_oom_info {
 		struct mem_cgroup *memcg;
@@ -1466,6 +1473,8 @@ struct task_struct {
 		unsigned int may_oom:1;
 	} memcg_oom;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 #endif
 #ifdef CONFIG_HAVE_HW_BREAKPOINT
 	atomic_t ptrace_bp_refcnt;
@@ -1708,10 +1717,13 @@ extern int task_free_unregister(struct notifier_block *n);
 #define PF_WAKE_UP_IDLE 0x80000000	/* try to wake up on an idle CPU */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define PF_SU		0x00000002      /* task is su */
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 /*
  * Only the _current_ task can read/write to tsk->flags, but other
  * tasks can access tsk->flags in readonly mode for example
@@ -1738,11 +1750,15 @@ extern int task_free_unregister(struct notifier_block *n);
 #define used_math() tsk_used_math(current)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 /* __GFP_IO isn't allowed if PF_MEMALLOC_NOIO is set in current->flags */
 static inline gfp_t memalloc_noio_flags(gfp_t flags)
 {
 	if (unlikely(current->flags & PF_MEMALLOC_NOIO))
 		flags &= ~__GFP_IO;
+<<<<<<< HEAD
 =======
 /* __GFP_IO isn't allowed if PF_MEMALLOC_NOIO is set in current->flags
  * __GFP_FS is also cleared as it implies __GFP_IO.
@@ -1752,6 +1768,8 @@ static inline gfp_t memalloc_noio_flags(gfp_t flags)
 	if (unlikely(current->flags & PF_MEMALLOC_NOIO))
 		flags &= ~(__GFP_IO | __GFP_FS);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	return flags;
 }
 
@@ -2294,6 +2312,9 @@ static inline bool thread_group_leader(struct task_struct *p)
  * pid, we don't actually care if we have the right task.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 static inline int has_group_leader_pid(struct task_struct *p)
 {
 	return p->pid == p->tgid;
@@ -2303,6 +2324,7 @@ static inline
 int same_thread_group(struct task_struct *p1, struct task_struct *p2)
 {
 	return p1->tgid == p2->tgid;
+<<<<<<< HEAD
 =======
 static inline bool has_group_leader_pid(struct task_struct *p)
 {
@@ -2314,6 +2336,8 @@ bool same_thread_group(struct task_struct *p1, struct task_struct *p2)
 {
 	return p1->signal == p2->signal;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 }
 
 static inline struct task_struct *next_thread(const struct task_struct *p)

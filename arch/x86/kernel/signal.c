@@ -678,6 +678,7 @@ handle_signal(struct ksignal *ksig, struct pt_regs *regs)
 		 */
 		regs->flags &= ~X86_EFLAGS_TF;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		/*
 		 * Ensure the signal handler starts with the new fpu state.
@@ -685,17 +686,23 @@ handle_signal(struct ksignal *ksig, struct pt_regs *regs)
 		if (used_math())
 			drop_init_fpu(current);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	}
 	signal_setup_done(failed, ksig, test_thread_flag(TIF_SINGLESTEP));
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 #ifdef CONFIG_X86_32
 #define NR_restart_syscall	__NR_restart_syscall
 #else /* !CONFIG_X86_32 */
 #define NR_restart_syscall	\
 	test_thread_flag(TIF_IA32) ? __NR_ia32_restart_syscall : __NR_restart_syscall
 #endif /* CONFIG_X86_32 */
+<<<<<<< HEAD
 =======
 static inline unsigned long get_nr_restart_syscall(const struct pt_regs *regs)
 {
@@ -707,6 +714,8 @@ static inline unsigned long get_nr_restart_syscall(const struct pt_regs *regs)
 #endif /* CONFIG_X86_32 || !CONFIG_X86_64 */
 }
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 /*
  * Note that 'init' is a special process: it doesn't get signals it doesn't
@@ -736,10 +745,14 @@ static void do_signal(struct pt_regs *regs)
 
 		case -ERESTART_RESTARTBLOCK:
 <<<<<<< HEAD
+<<<<<<< HEAD
 			regs->ax = NR_restart_syscall;
 =======
 			regs->ax = get_nr_restart_syscall(regs);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			regs->ax = NR_restart_syscall;
+>>>>>>> 2617302... source
 			regs->ip -= 2;
 			break;
 		}

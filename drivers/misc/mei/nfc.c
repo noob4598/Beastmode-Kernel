@@ -293,10 +293,14 @@ static int mei_nfc_if_version(struct mei_nfc_dev *ndev)
 
 	bytes_recv = __mei_cl_recv(cl, (u8 *)reply, if_version_length);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (bytes_recv < 0 || bytes_recv < sizeof(struct mei_nfc_reply)) {
 =======
 	if (bytes_recv < if_version_length) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (bytes_recv < 0 || bytes_recv < sizeof(struct mei_nfc_reply)) {
+>>>>>>> 2617302... source
 		dev_err(&dev->pdev->dev, "Could not read IF version\n");
 		ret = -EIO;
 		goto err;
@@ -347,6 +351,7 @@ static int mei_nfc_send(struct mei_cl_device *cldev, u8 *buf, size_t length)
 	dev = ndev->cl->dev;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mei_buf = kzalloc(length + MEI_NFC_HEADER_SIZE, GFP_KERNEL);
 	if (!mei_buf)
 		return -ENOMEM;
@@ -356,6 +361,11 @@ static int mei_nfc_send(struct mei_cl_device *cldev, u8 *buf, size_t length)
 	if (!mei_buf)
 		goto out;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	mei_buf = kzalloc(length + MEI_NFC_HEADER_SIZE, GFP_KERNEL);
+	if (!mei_buf)
+		return -ENOMEM;
+>>>>>>> 2617302... source
 
 	hdr = (struct mei_nfc_hci_hdr *) mei_buf;
 	hdr->cmd = MEI_NFC_CMD_HCI_SEND;
@@ -366,17 +376,23 @@ static int mei_nfc_send(struct mei_cl_device *cldev, u8 *buf, size_t length)
 
 	memcpy(mei_buf + MEI_NFC_HEADER_SIZE, buf, length);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 
 	err = __mei_cl_send(ndev->cl, mei_buf, length + MEI_NFC_HEADER_SIZE);
 	if (err < 0)
 		return err;
 
 	kfree(mei_buf);
+<<<<<<< HEAD
 =======
 	err = __mei_cl_send(ndev->cl, mei_buf, length + MEI_NFC_HEADER_SIZE);
 	if (err < 0)
 		goto out;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	if (!wait_event_interruptible_timeout(ndev->send_wq,
 				ndev->recv_req_id == ndev->req_id, HZ)) {
@@ -386,11 +402,15 @@ static int mei_nfc_send(struct mei_cl_device *cldev, u8 *buf, size_t length)
 		ndev->req_id++;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 out:
 	kfree(mei_buf);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+
+>>>>>>> 2617302... source
 	return err;
 }
 

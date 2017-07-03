@@ -1042,9 +1042,12 @@ static int mos7840_open(struct tty_struct *tty, struct usb_serial_port *port)
 	 * were not set up at that time.)                        */
 	if (port0->open_ports == 1) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		/* FIXME: Buffer never NULL, so URB is not submitted. */
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		if (serial->port[0]->interrupt_in_buffer == NULL) {
 			/* set up interrupt urb */
 			usb_fill_int_urb(serial->port[0]->interrupt_in_urb,
@@ -1443,12 +1446,17 @@ static int mos7840_write(struct tty_struct *tty, struct usb_serial_port *port,
 
 	if (urb->transfer_buffer == NULL) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		urb->transfer_buffer =
 		    kmalloc(URB_TRANSFER_BUFFER_SIZE, GFP_KERNEL);
 =======
 		urb->transfer_buffer = kmalloc(URB_TRANSFER_BUFFER_SIZE,
 					       GFP_ATOMIC);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		urb->transfer_buffer =
+		    kmalloc(URB_TRANSFER_BUFFER_SIZE, GFP_KERNEL);
+>>>>>>> 2617302... source
 
 		if (urb->transfer_buffer == NULL) {
 			dev_err_console(port, "%s no more kernel memory...\n",
@@ -2265,6 +2273,7 @@ static int mos7840_calc_num_ports(struct usb_serial *serial)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 static int mos7840_attach(struct usb_serial *serial)
 {
@@ -2279,6 +2288,8 @@ static int mos7840_attach(struct usb_serial *serial)
 }
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 static int mos7840_port_probe(struct usb_serial_port *port)
 {
 	struct usb_serial *serial = port->serial;
@@ -2562,9 +2573,12 @@ static struct usb_serial_driver moschip7840_4port_device = {
 	.tiocmiwait = usb_serial_generic_tiocmiwait,
 	.get_icount = usb_serial_generic_get_icount,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	.attach = mos7840_attach,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	.port_probe = mos7840_port_probe,
 	.port_remove = mos7840_port_remove,
 	.read_bulk_callback = mos7840_bulk_in_callback,

@@ -64,11 +64,14 @@
 #define	AT91_TWI_NACK		0x0100	/* Not Acknowledged */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define	AT91_TWI_INT_MASK \
 	(AT91_TWI_TXCOMP | AT91_TWI_RXRDY | AT91_TWI_TXRDY | AT91_TWI_NACK)
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 #define	AT91_TWI_IER		0x0024	/* Interrupt Enable Register */
 #define	AT91_TWI_IDR		0x0028	/* Interrupt Disable Register */
 #define	AT91_TWI_IMR		0x002c	/* Interrupt Mask Register */
@@ -109,9 +112,12 @@ struct at91_twi_dev {
 	struct at91_twi_pdata *pdata;
 	bool use_dma;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	bool recv_len_abort;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	struct at91_twi_dma dma;
 };
 
@@ -128,20 +134,29 @@ static void at91_twi_write(struct at91_twi_dev *dev, unsigned reg, unsigned val)
 static void at91_disable_twi_interrupts(struct at91_twi_dev *dev)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	at91_twi_write(dev, AT91_TWI_IDR,
 		       AT91_TWI_TXCOMP | AT91_TWI_RXRDY | AT91_TWI_TXRDY);
 =======
 	at91_twi_write(dev, AT91_TWI_IDR, AT91_TWI_INT_MASK);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	at91_twi_write(dev, AT91_TWI_IDR,
+		       AT91_TWI_TXCOMP | AT91_TWI_RXRDY | AT91_TWI_TXRDY);
+>>>>>>> 2617302... source
 }
 
 static void at91_twi_irq_save(struct at91_twi_dev *dev)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dev->imr = at91_twi_read(dev, AT91_TWI_IMR) & 0x7;
 =======
 	dev->imr = at91_twi_read(dev, AT91_TWI_IMR) & AT91_TWI_INT_MASK;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	dev->imr = at91_twi_read(dev, AT91_TWI_IMR) & 0x7;
+>>>>>>> 2617302... source
 	at91_disable_twi_interrupts(dev);
 }
 
@@ -230,6 +245,7 @@ static void at91_twi_write_data_dma_callback(void *data)
 
 	dma_unmap_single(dev->dev, sg_dma_address(&dev->dma.sg),
 <<<<<<< HEAD
+<<<<<<< HEAD
 			 dev->buf_len, DMA_MEM_TO_DEV);
 
 =======
@@ -244,6 +260,10 @@ static void at91_twi_write_data_dma_callback(void *data)
 	 */
 	at91_twi_write(dev, AT91_TWI_IER, AT91_TWI_TXCOMP);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			 dev->buf_len, DMA_MEM_TO_DEV);
+
+>>>>>>> 2617302... source
 	at91_twi_write(dev, AT91_TWI_CR, AT91_TWI_STOP);
 }
 
@@ -294,6 +314,7 @@ error:
 static void at91_twi_read_next_byte(struct at91_twi_dev *dev)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (dev->buf_len <= 0)
 		return;
 =======
@@ -306,17 +327,25 @@ static void at91_twi_read_next_byte(struct at91_twi_dev *dev)
 		return;
 	}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (dev->buf_len <= 0)
+		return;
+>>>>>>> 2617302... source
 
 	*dev->buf = at91_twi_read(dev, AT91_TWI_RHR) & 0xff;
 	--dev->buf_len;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	/* handle I2C_SMBUS_BLOCK_DATA */
 	if (unlikely(dev->msg->flags & I2C_M_RECV_LEN)) {
 		dev->msg->flags &= ~I2C_M_RECV_LEN;
 		dev->buf_len += *dev->buf;
 		dev->msg->len = dev->buf_len + 1;
 		dev_dbg(dev->dev, "received block length %d\n", dev->buf_len);
+<<<<<<< HEAD
 =======
 	/* return if aborting, we only needed to read RHR to clear RXRDY*/
 	if (dev->recv_len_abort)
@@ -337,6 +366,8 @@ static void at91_twi_read_next_byte(struct at91_twi_dev *dev)
 			dev->buf_len = 1;
 		}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	}
 
 	/* send stop if second but last byte has been read */
@@ -354,19 +385,27 @@ static void at91_twi_read_data_dma_callback(void *data)
 
 	dma_unmap_single(dev->dev, sg_dma_address(&dev->dma.sg),
 <<<<<<< HEAD
+<<<<<<< HEAD
 			 dev->buf_len, DMA_DEV_TO_MEM);
 =======
 			 dev->buf_len, DMA_FROM_DEVICE);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			 dev->buf_len, DMA_DEV_TO_MEM);
+>>>>>>> 2617302... source
 
 	/* The last two bytes have to be read without using dma */
 	dev->buf += dev->buf_len - 2;
 	dev->buf_len = 2;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	at91_twi_write(dev, AT91_TWI_IER, AT91_TWI_RXRDY);
 =======
 	at91_twi_write(dev, AT91_TWI_IER, AT91_TWI_RXRDY | AT91_TWI_TXCOMP);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	at91_twi_write(dev, AT91_TWI_IER, AT91_TWI_RXRDY);
+>>>>>>> 2617302... source
 }
 
 static void at91_twi_read_data_dma(struct at91_twi_dev *dev)
@@ -420,6 +459,9 @@ static irqreturn_t atmel_twi_interrupt(int irq, void *dev_id)
 	if (!irqstatus)
 		return IRQ_NONE;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	else if (irqstatus & AT91_TWI_RXRDY)
 		at91_twi_read_next_byte(dev);
 	else if (irqstatus & AT91_TWI_TXRDY)
@@ -433,6 +475,7 @@ static irqreturn_t atmel_twi_interrupt(int irq, void *dev_id)
 		complete(&dev->cmd_complete);
 	}
 
+<<<<<<< HEAD
 =======
 	/*
 	 * In reception, the behavior of the twi device (before sama5d2) is
@@ -502,6 +545,8 @@ static irqreturn_t atmel_twi_interrupt(int irq, void *dev_id)
 	dev->transfer_status |= status;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	return IRQ_HANDLED;
 }
 
@@ -510,6 +555,7 @@ static int at91_do_twi_transfer(struct at91_twi_dev *dev)
 	int ret;
 	bool has_unre_flag = dev->pdata->has_unre_flag;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 	/*
@@ -541,6 +587,8 @@ static int at91_do_twi_transfer(struct at91_twi_dev *dev)
 	 */
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	dev_dbg(dev->dev, "transfer: %s %d bytes.\n",
 		(dev->msg->flags & I2C_M_RD) ? "read" : "write", dev->buf_len);
 
@@ -548,11 +596,14 @@ static int at91_do_twi_transfer(struct at91_twi_dev *dev)
 	dev->transfer_status = 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/* Clear pending interrupts, such as NACK. */
 	at91_twi_read(dev, AT91_TWI_SR);
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	if (!dev->buf_len) {
 		at91_twi_write(dev, AT91_TWI_CR, AT91_TWI_QUICK);
 		at91_twi_write(dev, AT91_TWI_IER, AT91_TWI_TXCOMP);
@@ -560,13 +611,19 @@ static int at91_do_twi_transfer(struct at91_twi_dev *dev)
 		unsigned start_flags = AT91_TWI_START;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		if (at91_twi_read(dev, AT91_TWI_SR) & AT91_TWI_RXRDY) {
 			dev_err(dev->dev, "RXRDY still set!");
 			at91_twi_read(dev, AT91_TWI_RHR);
 		}
 
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		/* if only one byte is to be read, immediately stop transfer */
 		if (dev->buf_len <= 1 && !(dev->msg->flags & I2C_M_RECV_LEN))
 			start_flags |= AT91_TWI_STOP;
@@ -581,6 +638,9 @@ static int at91_do_twi_transfer(struct at91_twi_dev *dev)
 		 */
 		if (dev->use_dma && (dev->buf_len > AT91_I2C_DMA_THRESHOLD)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 			at91_twi_read_data_dma(dev);
 			/*
 			 * It is important to enable TXCOMP irq here because
@@ -606,6 +666,7 @@ static int at91_do_twi_transfer(struct at91_twi_dev *dev)
 
 	ret = wait_for_completion_interruptible_timeout(&dev->cmd_complete,
 							dev->adapter.timeout);
+<<<<<<< HEAD
 =======
 			at91_twi_write(dev, AT91_TWI_IER, AT91_TWI_NACK);
 			at91_twi_read_data_dma(dev);
@@ -631,6 +692,8 @@ static int at91_do_twi_transfer(struct at91_twi_dev *dev)
 	ret = wait_for_completion_timeout(&dev->cmd_complete,
 					     dev->adapter.timeout);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	if (ret == 0) {
 		dev_err(dev->dev, "controller timed out\n");
 		at91_init_twi_bus(dev);
@@ -653,6 +716,7 @@ static int at91_do_twi_transfer(struct at91_twi_dev *dev)
 		goto error;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (dev->recv_len_abort) {
 		dev_err(dev->dev, "invalid smbus block length recvd\n");
@@ -661,6 +725,8 @@ static int at91_do_twi_transfer(struct at91_twi_dev *dev)
 	}
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	dev_dbg(dev->dev, "transfer complete\n");
 
 	return 0;
@@ -718,9 +784,12 @@ static int at91_twi_xfer(struct i2c_adapter *adap, struct i2c_msg *msg, int num)
 	dev->buf = m_start->buf;
 	dev->msg = m_start;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	dev->recv_len_abort = false;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	ret = at91_do_twi_transfer(dev);
 

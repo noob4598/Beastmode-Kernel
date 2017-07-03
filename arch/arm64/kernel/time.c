@@ -69,14 +69,20 @@ unsigned long long notrace sched_clock(void)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 int read_current_timer(unsigned long *timer_value)
 {
 	*timer_value = arch_timer_read_counter();
 	return 0;
 }
 
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 void __init time_init(void)
 {
 	u32 arch_timer_rate;

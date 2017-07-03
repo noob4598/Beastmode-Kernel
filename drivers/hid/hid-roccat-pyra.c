@@ -36,10 +36,13 @@ static void profile_activated(struct pyra_device *pyra,
 		unsigned int new_profile)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (new_profile >= ARRAY_SIZE(pyra->profile_settings))
 		return;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	pyra->actual_profile = new_profile;
 	pyra->actual_cpi = pyra->profile_settings[pyra->actual_profile].y_cpi;
 }
@@ -242,6 +245,7 @@ static ssize_t pyra_sysfs_write_settings(struct file *fp,
 		return -EINVAL;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mutex_lock(&pyra->pyra_lock);
 
 	settings = (struct pyra_settings const *)buf;
@@ -252,6 +256,11 @@ static ssize_t pyra_sysfs_write_settings(struct file *fp,
 
 	mutex_lock(&pyra->pyra_lock);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	mutex_lock(&pyra->pyra_lock);
+
+	settings = (struct pyra_settings const *)buf;
+>>>>>>> 2617302... source
 
 	retval = pyra_set_settings(usb_dev, settings);
 	if (retval) {

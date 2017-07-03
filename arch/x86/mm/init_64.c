@@ -1143,10 +1143,14 @@ void mark_rodata_ro(void)
 	unsigned long text_end = PFN_ALIGN(&__stop___ex_table);
 	unsigned long rodata_end = PFN_ALIGN(&__end_rodata);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned long all_end = PFN_ALIGN(&_end);
 =======
 	unsigned long all_end;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	unsigned long all_end = PFN_ALIGN(&_end);
+>>>>>>> 2617302... source
 
 	printk(KERN_INFO "Write protecting the kernel read-only data: %luk\n",
 	       (end - start) >> 10);
@@ -1157,6 +1161,7 @@ void mark_rodata_ro(void)
 	/*
 	 * The rodata/data/bss/brk section (but not the kernel text!)
 	 * should also be not-executable.
+<<<<<<< HEAD
 <<<<<<< HEAD
 	 */
 	set_memory_nx(rodata_start, (all_end - rodata_start) >> PAGE_SHIFT);
@@ -1173,6 +1178,10 @@ void mark_rodata_ro(void)
 	all_end = roundup((unsigned long)_brk_end, PMD_SIZE);
 	set_memory_nx(text_end, (all_end - text_end) >> PAGE_SHIFT);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	 */
+	set_memory_nx(rodata_start, (all_end - rodata_start) >> PAGE_SHIFT);
+>>>>>>> 2617302... source
 
 	rodata_test();
 

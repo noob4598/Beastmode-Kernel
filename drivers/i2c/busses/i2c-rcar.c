@@ -542,6 +542,7 @@ static int rcar_i2c_master_xfer(struct i2c_adapter *adap,
 	ret = -EINVAL;
 	for (i = 0; i < num; i++) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		/* This HW can't send STOP after address phase */
 		if (msgs[i].len == 0) {
@@ -550,6 +551,8 @@ static int rcar_i2c_master_xfer(struct i2c_adapter *adap,
 		}
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		/*-------------- spin lock -----------------*/
 		spin_lock_irqsave(&priv->lock, flags);
 
@@ -615,11 +618,15 @@ static int rcar_i2c_master_xfer(struct i2c_adapter *adap,
 static u32 rcar_i2c_func(struct i2c_adapter *adap)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return I2C_FUNC_I2C | I2C_FUNC_SMBUS_EMUL;
 =======
 	/* This HW can't do SMBUS_QUICK and NOSTART */
 	return I2C_FUNC_I2C | (I2C_FUNC_SMBUS_EMUL & ~I2C_FUNC_SMBUS_QUICK);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	return I2C_FUNC_I2C | I2C_FUNC_SMBUS_EMUL;
+>>>>>>> 2617302... source
 }
 
 static const struct i2c_algorithm rcar_i2c_algo = {
@@ -681,6 +688,9 @@ static int rcar_i2c_probe(struct platform_device *pdev)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	ret = i2c_add_numbered_adapter(adap);
 	if (ret < 0) {
 		dev_err(dev, "reg adap failed: %d\n", ret);
@@ -690,6 +700,7 @@ static int rcar_i2c_probe(struct platform_device *pdev)
 	pm_runtime_enable(dev);
 	platform_set_drvdata(pdev, priv);
 
+<<<<<<< HEAD
 =======
 	pm_runtime_enable(dev);
 	platform_set_drvdata(pdev, priv);
@@ -702,6 +713,8 @@ static int rcar_i2c_probe(struct platform_device *pdev)
 	}
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	dev_info(dev, "probed\n");
 
 	return 0;

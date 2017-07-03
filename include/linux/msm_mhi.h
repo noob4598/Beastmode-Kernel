@@ -1,8 +1,12 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* Copyright (c) 2014, The Linux Foundation. All rights reserved.
 =======
 /* Copyright (c) 2013-2014, The Linux Foundation. All rights reserved.
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+/* Copyright (c) 2014, The Linux Foundation. All rights reserved.
+>>>>>>> 2617302... source
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -18,19 +22,27 @@
 #include <linux/types.h>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 struct mhi_client_handle;
 =======
 typedef struct mhi_client_handle mhi_client_handle;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+struct mhi_client_handle;
+>>>>>>> 2617302... source
 
 #define MHI_DMA_MASK       0x3FFFFFFF
 #define MHI_MAX_MTU        0xFFFF
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 enum MHI_STATUS {
 =======
 typedef enum MHI_STATUS {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+enum MHI_STATUS {
+>>>>>>> 2617302... source
 	MHI_STATUS_SUCCESS = 0,
 	MHI_STATUS_ERROR = 1,
 	MHI_STATUS_DEV_NOT_FOUND = 2,
@@ -49,17 +61,23 @@ typedef enum MHI_STATUS {
 	MHI_STATUS_BAD_HANDLE = 15,
 	MHI_STATUS_INVALID_CHAN_ERR = 16,
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	MHI_STATUS_OVERFLOW = 17,
 	MHI_STATUS_reserved = 0x80000000
 };
 
 enum MHI_CLIENT_CHANNEL {
+<<<<<<< HEAD
 =======
 	MHI_STATUS_reserved = 0x80000000
 } MHI_STATUS;
 
 typedef enum MHI_CLIENT_CHANNEL {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	MHI_CLIENT_LOOPBACK_OUT = 0,
 	MHI_CLIENT_LOOPBACK_IN = 1,
 	MHI_CLIENT_SAHARA_OUT = 2,
@@ -81,12 +99,17 @@ typedef enum MHI_CLIENT_CHANNEL {
 	MHI_CLIENT_IP_CTRL_1_OUT = 18,
 	MHI_CLIENT_IP_CTRL_1_IN = 19,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	MHI_CLIENT_DCI_OUT = 20,
 	MHI_CLIENT_DCI_IN = 21,
 =======
 	MHI_CLIENT_IP_CTRL_2_OUT = 20,
 	MHI_CLIENT_IP_CTRL_2_IN = 21,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	MHI_CLIENT_DCI_OUT = 20,
+	MHI_CLIENT_DCI_IN = 21,
+>>>>>>> 2617302... source
 	MHI_CLIENT_IP_CTRL_3_OUT = 22,
 	MHI_CLIENT_IP_CTRL_3_IN = 23,
 	MHI_CLIENT_IP_CTRL_4_OUT = 24,
@@ -112,6 +135,7 @@ typedef enum MHI_CLIENT_CHANNEL {
 	MHI_CLIENT_SMCT_OUT = 44,
 	MHI_CLIENT_SMCT_IN = 45,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	MHI_CLIENT_TEST_OUT = 60,
 	MHI_CLIENT_TEST_IN = 61,
 	MHI_CLIENT_RESERVED_1_LOWER = 62,
@@ -124,6 +148,11 @@ typedef enum MHI_CLIENT_CHANNEL {
 	MHI_CLIENT_RESERVED_1_LOWER = 46,
 #endif
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	MHI_CLIENT_TEST_OUT = 60,
+	MHI_CLIENT_TEST_IN = 61,
+	MHI_CLIENT_RESERVED_1_LOWER = 62,
+>>>>>>> 2617302... source
 	MHI_CLIENT_RESERVED_1_UPPER = 99,
 	MHI_CLIENT_IP_HW_0_OUT = 100,
 	MHI_CLIENT_IP_HW_0_IN = 101,
@@ -131,10 +160,14 @@ typedef enum MHI_CLIENT_CHANNEL {
 	MHI_CLIENT_RESERVED_2_UPPER = 127,
 	MHI_MAX_CHANNELS = 102
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 };
 
 enum MHI_CB_REASON {
 	MHI_CB_XFER = 0x0,
+<<<<<<< HEAD
 =======
 } MHI_CLIENT_CHANNEL;
 
@@ -142,11 +175,16 @@ typedef enum MHI_CB_REASON {
 	MHI_CB_XFER_SUCCESS = 0x0,
 	MHI_CB_XFER_ERROR = 0x1,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	MHI_CB_MHI_DISABLED = 0x4,
 	MHI_CB_MHI_ENABLED = 0x8,
 	MHI_CB_CHAN_RESET_COMPLETE = 0x10,
 	MHI_CB_reserved = 0x80000000,
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 };
 
 enum MHI_FLAGS {
@@ -290,6 +328,7 @@ int mhi_get_epid(struct mhi_client_handle *mhi_handle);
 struct mhi_result *mhi_poll(struct mhi_client_handle *client_handle);
 void mhi_mask_irq(struct mhi_client_handle *client_handle);
 void mhi_unmask_irq(struct mhi_client_handle *client_handle);
+<<<<<<< HEAD
 =======
 } MHI_CB_REASON;
 typedef struct mhi_result {
@@ -331,4 +370,6 @@ int rmnet_mhi_init(void);
 int mhi_set_lpm(mhi_client_handle *client_handle, int enable_lpm);
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 #endif

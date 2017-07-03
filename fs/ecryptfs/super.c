@@ -234,6 +234,7 @@ static long ecryptfs_propagate_lookup(struct super_block *sb, char *pathname){
 	sbi = ecryptfs_superblock_to_private(sb);
 	stat = &sbi->propagate_stat;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	propagate_path = kmalloc(PATH_MAX, GFP_KERNEL);
 
 	ECRYPTFS_OVERRIDE_ROOT_CRED(saved_cred);
@@ -245,6 +246,11 @@ static long ecryptfs_propagate_lookup(struct super_block *sb, char *pathname){
 		return -ENOMEM;
 	}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	propagate_path = kmalloc(PATH_MAX, GFP_KERNEL);
+
+	ECRYPTFS_OVERRIDE_ROOT_CRED(saved_cred);
+>>>>>>> 2617302... source
 	if (stat->propagate_type != TYPE_E_NONE && stat->propagate_type != TYPE_E_DEFAULT) {
 		snprintf(propagate_path, PATH_MAX, "%s/%s/%s/%s",
 				stat->base_path, "default", stat->label, pathname);

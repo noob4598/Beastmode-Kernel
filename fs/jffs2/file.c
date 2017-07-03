@@ -139,16 +139,25 @@ static int jffs2_write_begin(struct file *filp, struct address_space *mapping,
 	struct inode *inode = mapping->host;
 	struct jffs2_inode_info *f = JFFS2_INODE_INFO(inode);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct jffs2_sb_info *c = JFFS2_SB_INFO(inode->i_sb);
 	struct jffs2_raw_inode ri;
 	uint32_t alloc_len = 0;
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	struct jffs2_sb_info *c = JFFS2_SB_INFO(inode->i_sb);
+	struct jffs2_raw_inode ri;
+	uint32_t alloc_len = 0;
+>>>>>>> 2617302... source
 	pgoff_t index = pos >> PAGE_CACHE_SHIFT;
 	uint32_t pageofs = index << PAGE_CACHE_SHIFT;
 	int ret = 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	jffs2_dbg(1, "%s()\n", __func__);
 
 	if (pageofs > inode->i_size) {
@@ -171,6 +180,7 @@ static int jffs2_write_begin(struct file *filp, struct address_space *mapping,
 	if (alloc_len) {
 		/* Make new hole frag from old EOF to new page */
 		struct jffs2_full_dnode *fn;
+<<<<<<< HEAD
 =======
 	pg = grab_cache_page_write_begin(mapping, index, flags);
 	if (!pg)
@@ -186,10 +196,13 @@ static int jffs2_write_begin(struct file *filp, struct address_space *mapping,
 		struct jffs2_full_dnode *fn;
 		uint32_t alloc_len;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 		jffs2_dbg(1, "Writing new hole frag 0x%x-0x%x between current EOF and new page\n",
 			  (unsigned int)inode->i_size, pageofs);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 		ret = jffs2_reserve_space(c, sizeof(ri), &alloc_len,
@@ -199,6 +212,8 @@ static int jffs2_write_begin(struct file *filp, struct address_space *mapping,
 
 		mutex_lock(&f->sem);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		memset(&ri, 0, sizeof(ri));
 
 		ri.magic = cpu_to_je16(JFFS2_MAGIC_BITMASK);
@@ -226,9 +241,12 @@ static int jffs2_write_begin(struct file *filp, struct address_space *mapping,
 			ret = PTR_ERR(fn);
 			jffs2_complete_reservation(c);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 			mutex_unlock(&f->sem);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 			goto out_page;
 		}
 		ret = jffs2_add_full_dnode_to_inode(c, f, fn);
@@ -244,17 +262,23 @@ static int jffs2_write_begin(struct file *filp, struct address_space *mapping,
 			jffs2_free_full_dnode(fn);
 			jffs2_complete_reservation(c);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 			mutex_unlock(&f->sem);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 			goto out_page;
 		}
 		jffs2_complete_reservation(c);
 		inode->i_size = pageofs;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		mutex_unlock(&f->sem);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	}
 
 	/*
@@ -264,11 +288,15 @@ static int jffs2_write_begin(struct file *filp, struct address_space *mapping,
 	 */
 	if (!PageUptodate(pg)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		ret = jffs2_do_readpage_nolock(inode, pg);
 		if (ret)
 			goto out_page;
 	}
 	mutex_unlock(&f->sem);
+<<<<<<< HEAD
 =======
 		mutex_lock(&f->sem);
 		ret = jffs2_do_readpage_nolock(inode, pg);
@@ -277,6 +305,8 @@ static int jffs2_write_begin(struct file *filp, struct address_space *mapping,
 			goto out_page;
 	}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	jffs2_dbg(1, "end write_begin(). pg->flags %lx\n", pg->flags);
 	return ret;
 
@@ -284,9 +314,13 @@ out_page:
 	unlock_page(pg);
 	page_cache_release(pg);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mutex_unlock(&f->sem);
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	mutex_unlock(&f->sem);
+>>>>>>> 2617302... source
 	return ret;
 }
 

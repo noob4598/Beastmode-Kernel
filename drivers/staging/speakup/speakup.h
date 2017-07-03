@@ -78,9 +78,12 @@ extern void speakup_clear_selection(void);
 extern int speakup_set_selection(struct tty_struct *tty);
 extern int speakup_paste_selection(struct tty_struct *tty);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 extern void speakup_cancel_paste(void);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 extern void speakup_register_devsynth(void);
 extern void speakup_unregister_devsynth(void);
 extern void synth_write(const char *buf, size_t count);

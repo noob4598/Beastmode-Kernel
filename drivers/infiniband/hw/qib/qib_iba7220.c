@@ -3300,10 +3300,15 @@ static void qib_get_7220_faststats(unsigned long opaque)
 	traffic_wds -= dd->traffic_wds;
 	dd->traffic_wds += traffic_wds;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (traffic_wds  >= QIB_TRAFFIC_ACTIVE_THRESHOLD)
 		atomic_add(5, &dd->active_time); /* S/B #define */
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (traffic_wds  >= QIB_TRAFFIC_ACTIVE_THRESHOLD)
+		atomic_add(5, &dd->active_time); /* S/B #define */
+>>>>>>> 2617302... source
 	spin_unlock_irqrestore(&dd->eep_st_lock, flags);
 done:
 	mod_timer(&dd->stats_timer, jiffies + HZ * ACTIVITY_TIMER);

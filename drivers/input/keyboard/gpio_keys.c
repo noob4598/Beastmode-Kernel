@@ -593,10 +593,14 @@ static void flip_cover_work(struct work_struct *work)
 
 		input_report_switch(ddata->input,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			SW_FLIP, ddata->flip_cover);
 =======
 			SW_LID, !ddata->flip_cover);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			SW_FLIP, ddata->flip_cover);
+>>>>>>> 2617302... source
 		input_sync(ddata->input);
 	} else {
 		printk(KERN_DEBUG "%s : Value is not same!\n", __func__);
@@ -616,10 +620,14 @@ static void flip_cover_work(struct work_struct *work)
 
 	input_report_switch(ddata->input,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		SW_FLIP, ddata->flip_cover);
 =======
 		SW_LID, !ddata->flip_cover);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		SW_FLIP, ddata->flip_cover);
+>>>>>>> 2617302... source
 	input_sync(ddata->input);
 }
 #endif // CONFIG_SEC_FACTORY
@@ -706,9 +714,12 @@ static ssize_t sysfs_hall_detect_show(struct device *dev,
 		struct device_attribute *attr, char *buf)
 {	
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	if (flip_cover)
 		snprintf(buf, 6, "%s\n", "OPEN");
 	else
@@ -975,10 +986,14 @@ static int gpio_keys_probe(struct platform_device *pdev)
 	if(ddata->gpio_flip_cover != 0) {
 		input->evbit[0] |= BIT_MASK(EV_SW);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		input_set_capability(input, EV_SW, SW_FLIP);
 =======
 		input_set_capability(input, EV_SW, SW_LID);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		input_set_capability(input, EV_SW, SW_FLIP);
+>>>>>>> 2617302... source
 	}
 #endif
 	ddata->pdata = pdata;

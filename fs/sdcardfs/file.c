@@ -3,11 +3,15 @@
  *
  * Copyright (c) 2013 Samsung Electronics Co. Ltd
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
  *   Authors: Daeho Jeong, Woojoong Lee, Seunghwan Hyun, 
  *               Sunghwan Yun, Sungjong Seo
  *                      
  * This program has been developed as a stackable file system based on
  * the WrapFS which written by 
+<<<<<<< HEAD
 =======
  *   Authors: Daeho Jeong, Woojoong Lee, Seunghwan Hyun,
  *               Sunghwan Yun, Sungjong Seo
@@ -15,6 +19,8 @@
  * This program has been developed as a stackable file system based on
  * the WrapFS which written by
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
  *
  * Copyright (c) 1998-2011 Erez Zadok
  * Copyright (c) 2009     Shrikar Archak
@@ -74,10 +80,14 @@ static ssize_t sdcardfs_write(struct file *file, const char __user *buf,
 	/* check disk space */
 	if (!check_min_free_space(dentry, count, 0)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		printk(KERN_INFO "No minimum free space.\n");
 =======
 		pr_err("No minimum free space.\n");
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		printk(KERN_INFO "No minimum free space.\n");
+>>>>>>> 2617302... source
 		return -ENOSPC;
 	}
 
@@ -95,10 +105,14 @@ static ssize_t sdcardfs_write(struct file *file, const char __user *buf,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int sdcardfs_readdir(struct file *file, void *dirent, filldir_t filldir)
 =======
 static int sdcardfs_readdir(struct file *file, struct dir_context *ctx)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+static int sdcardfs_readdir(struct file *file, void *dirent, filldir_t filldir)
+>>>>>>> 2617302... source
 {
 	int err = 0;
 	struct file *lower_file = NULL;
@@ -108,10 +122,14 @@ static int sdcardfs_readdir(struct file *file, struct dir_context *ctx)
 
 	lower_file->f_pos = file->f_pos;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	err = vfs_readdir(lower_file, filldir, dirent);
 =======
 	err = iterate_dir(lower_file, ctx);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	err = vfs_readdir(lower_file, filldir, dirent);
+>>>>>>> 2617302... source
 	file->f_pos = lower_file->f_pos;
 	if (err >= 0)		/* copy the atime */
 		fsstack_copy_attr_atime(dentry->d_inode,
@@ -134,12 +152,15 @@ static long sdcardfs_unlocked_ioctl(struct file *file, unsigned int cmd,
 		err = lower_file->f_op->unlocked_ioctl(lower_file, cmd, arg);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/* some ioctls can change inode attributes (EXT2_IOC_SETFLAGS) */
 	if (!err)
 		sdcardfs_copy_and_fix_attrs(file_inode(file),
 				      file_inode(lower_file));
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 out:
 	return err;
 }
@@ -171,9 +192,12 @@ static int sdcardfs_mmap(struct file *file, struct vm_area_struct *vma)
 	struct file *lower_file;
 	const struct vm_operations_struct *saved_vm_ops = NULL;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	/* this might be deferred to mmap's writepage */
 	willwrite = ((vma->vm_flags | VM_SHARED | VM_WRITE) == vma->vm_flags);
 
@@ -191,11 +215,16 @@ static int sdcardfs_mmap(struct file *file, struct vm_area_struct *vma)
 	if (willwrite && !lower_file->f_mapping->a_ops->writepage) {
 		err = -EINVAL;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		printk(KERN_ERR "sdcardfs: lower file system does not "
 		       "support writeable mmap\n");
 =======
 		pr_err("sdcardfs: lower file system does not support writeable mmap\n");
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		printk(KERN_ERR "sdcardfs: lower file system does not "
+		       "support writeable mmap\n");
+>>>>>>> 2617302... source
 		goto out;
 	}
 
@@ -208,6 +237,9 @@ static int sdcardfs_mmap(struct file *file, struct vm_area_struct *vma)
 		err = lower_file->f_op->mmap(lower_file, vma);
 		if (err) {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 			printk(KERN_ERR "sdcardfs: lower mmap failed %d\n", err);
 			goto out;
 		}
@@ -218,12 +250,15 @@ static int sdcardfs_mmap(struct file *file, struct vm_area_struct *vma)
 			printk(KERN_ERR "sdcardfs: do_munmap failed %d\n", err);
 			goto out;
 		}
+<<<<<<< HEAD
 =======
 			pr_err("sdcardfs: lower mmap failed %d\n", err);
 			goto out;
 		}
 		saved_vm_ops = vma->vm_ops; /* save: came from lower ->mmap */
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	}
 
 	/*
@@ -237,11 +272,14 @@ static int sdcardfs_mmap(struct file *file, struct vm_area_struct *vma)
 	if (!SDCARDFS_F(file)->lower_vm_ops) /* save for our ->fault */
 		SDCARDFS_F(file)->lower_vm_ops = saved_vm_ops;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	vma->vm_private_data = file;
 	get_file(lower_file);
 	vma->vm_file = lower_file;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 out:
 	return err;
@@ -255,10 +293,14 @@ static int sdcardfs_open(struct inode *inode, struct file *file)
 	struct dentry *dentry = file->f_path.dentry;
 	struct dentry *parent = dget_parent(dentry);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct sdcardfs_sb_info *sbi = SDCARDFS_SB(dentry->d_sb); 
 =======
 	struct sdcardfs_sb_info *sbi = SDCARDFS_SB(dentry->d_sb);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	struct sdcardfs_sb_info *sbi = SDCARDFS_SB(dentry->d_sb); 
+>>>>>>> 2617302... source
 	const struct cred *saved_cred = NULL;
 
 	/* don't open unhashed/deleted files */
@@ -267,25 +309,35 @@ static int sdcardfs_open(struct inode *inode, struct file *file)
 		goto out_err;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	
 	if(!check_caller_access_to_name(parent->d_inode, dentry->d_name.name)) {
 		printk(KERN_INFO "%s: need to check the caller's gid in packages.list\n" 
                          "	dentry: %s, task:%s\n",
 						 __func__, dentry->d_name.name, current->comm);
+<<<<<<< HEAD
 =======
 
 	if (!check_caller_access_to_name(parent->d_inode, &dentry->d_name)) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		err = -EACCES;
 		goto out_err;
 	}
 
 	/* save current_cred and override it */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	OVERRIDE_CRED(sbi, saved_cred);
 =======
 	OVERRIDE_CRED(sbi, saved_cred, SDCARDFS_I(inode));
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	OVERRIDE_CRED(sbi, saved_cred);
+>>>>>>> 2617302... source
 
 	file->f_mode |= FMODE_NONMAPPABLE;
 	file->private_data =
@@ -297,6 +349,7 @@ static int sdcardfs_open(struct inode *inode, struct file *file)
 
 	/* open lower object and link sdcardfs's file struct to lower's */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	sdcardfs_copy_lower_path(file->f_path.dentry, &lower_path);
 	lower_file = dentry_open(&lower_path, file->f_flags, current_cred());
 =======
@@ -304,6 +357,10 @@ static int sdcardfs_open(struct inode *inode, struct file *file)
 	lower_file = dentry_open(&lower_path, file->f_flags, current_cred());
 	path_put(&lower_path);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	sdcardfs_copy_lower_path(file->f_path.dentry, &lower_path);
+	lower_file = dentry_open(&lower_path, file->f_flags, current_cred());
+>>>>>>> 2617302... source
 	if (IS_ERR(lower_file)) {
 		err = PTR_ERR(lower_file);
 		lower_file = sdcardfs_lower_file(file);
@@ -318,16 +375,22 @@ static int sdcardfs_open(struct inode *inode, struct file *file)
 	if (err)
 		kfree(SDCARDFS_F(file));
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	else {
 		mutex_lock(&inode->i_mutex);
 		sdcardfs_copy_inode_attr(inode, sdcardfs_lower_inode(inode));
 		fix_derived_permission(inode);
 		mutex_unlock(&inode->i_mutex);
 	}
+<<<<<<< HEAD
 =======
 	else
 		sdcardfs_copy_and_fix_attrs(inode, sdcardfs_lower_inode(inode));
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 out_revert_cred:
 	REVERT_CRED(saved_cred);
@@ -364,12 +427,17 @@ static int sdcardfs_file_release(struct inode *inode, struct file *file)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int
 sdcardfs_fsync(struct file *file, loff_t start, loff_t end, int datasync)
 =======
 static int sdcardfs_fsync(struct file *file, loff_t start, loff_t end,
 			int datasync)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+static int
+sdcardfs_fsync(struct file *file, loff_t start, loff_t end, int datasync)
+>>>>>>> 2617302... source
 {
 	int err;
 	struct file *lower_file;
@@ -377,21 +445,28 @@ static int sdcardfs_fsync(struct file *file, loff_t start, loff_t end,
 	struct dentry *dentry = file->f_path.dentry;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	err = generic_file_fsync(file, start, end, datasync);
 	if (err)
 		goto out;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	lower_file = sdcardfs_lower_file(file);
 	sdcardfs_get_lower_path(dentry, &lower_path);
 	err = vfs_fsync_range(lower_file, start, end, datasync);
 	sdcardfs_put_lower_path(dentry, &lower_path);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 out:
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+
+>>>>>>> 2617302... source
 	return err;
 }
 
@@ -407,6 +482,7 @@ static int sdcardfs_fasync(int fd, struct file *file, int flag)
 	return err;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 /*
@@ -433,6 +509,8 @@ out:
 
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 static struct file *sdcardfs_get_lower_file(struct file *f)
 {
 	return sdcardfs_lower_file(f);
@@ -458,6 +536,7 @@ const struct file_operations sdcardfs_main_fops = {
 /* trimmed directory options */
 const struct file_operations sdcardfs_dir_fops = {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.llseek		= generic_file_llseek,
 	.read		= generic_read_dir,
 	.readdir	= sdcardfs_readdir,
@@ -466,6 +545,11 @@ const struct file_operations sdcardfs_dir_fops = {
 	.read		= generic_read_dir,
 	.iterate	= sdcardfs_readdir,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	.llseek		= generic_file_llseek,
+	.read		= generic_read_dir,
+	.readdir	= sdcardfs_readdir,
+>>>>>>> 2617302... source
 	.unlocked_ioctl	= sdcardfs_unlocked_ioctl,
 #ifdef CONFIG_COMPAT
 	.compat_ioctl	= sdcardfs_compat_ioctl,

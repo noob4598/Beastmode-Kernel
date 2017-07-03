@@ -968,12 +968,16 @@ static void put_osd(struct ceph_osd *osd)
 static void __remove_osd(struct ceph_osd_client *osdc, struct ceph_osd *osd)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	dout("__remove_osd %p\n", osd);
 	BUG_ON(!list_empty(&osd->o_requests));
 	rb_erase(&osd->o_node, &osdc->osds);
 	list_del_init(&osd->o_osd_lru);
 	ceph_con_close(&osd->o_con);
 	put_osd(osd);
+<<<<<<< HEAD
 =======
 	dout("%s %p osd%d\n", __func__, osd, osd->o_osd);
 	WARN_ON(!list_empty(&osd->o_requests));
@@ -994,6 +998,8 @@ static void remove_osd(struct ceph_osd_client *osdc, struct ceph_osd *osd)
 		put_osd(osd);
 	}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 }
 
 static void remove_all_osds(struct ceph_osd_client *osdc)
@@ -1004,10 +1010,14 @@ static void remove_all_osds(struct ceph_osd_client *osdc)
 		struct ceph_osd *osd = rb_entry(rb_first(&osdc->osds),
 						struct ceph_osd, o_node);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		__remove_osd(osdc, osd);
 =======
 		remove_osd(osdc, osd);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		__remove_osd(osdc, osd);
+>>>>>>> 2617302... source
 	}
 	mutex_unlock(&osdc->request_mutex);
 }
@@ -1038,10 +1048,14 @@ static void remove_old_osds(struct ceph_osd_client *osdc)
 		if (time_before(jiffies, osd->lru_ttl))
 			break;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		__remove_osd(osdc, osd);
 =======
 		remove_osd(osdc, osd);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		__remove_osd(osdc, osd);
+>>>>>>> 2617302... source
 	}
 	mutex_unlock(&osdc->request_mutex);
 }
@@ -1057,11 +1071,16 @@ static int __reset_osd(struct ceph_osd_client *osdc, struct ceph_osd *osd)
 	if (list_empty(&osd->o_requests) &&
 	    list_empty(&osd->o_linger_requests)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		__remove_osd(osdc, osd);
 
 =======
 		remove_osd(osdc, osd);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		__remove_osd(osdc, osd);
+
+>>>>>>> 2617302... source
 		return -ENODEV;
 	}
 
@@ -1644,9 +1663,12 @@ static void reset_changed_osds(struct ceph_osd_client *osdc)
 	struct rb_node *p, *n;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	dout("%s %p\n", __func__, osdc);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	for (p = rb_first(&osdc->osds); p; p = n) {
 		struct ceph_osd *osd = rb_entry(p, struct ceph_osd, o_node);
 
@@ -1728,6 +1750,9 @@ static void kick_requests(struct ceph_osd_client *osdc, bool force_resend,
 				    force_resend || force_resend_writes);
 		dout("__map_request returned %d\n", err);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		if (err == 0)
 			continue;  /* no change and no osd was specified */
 		if (err < 0)
@@ -1742,6 +1767,7 @@ static void kick_requests(struct ceph_osd_client *osdc, bool force_resend,
 		     req->r_osd ? req->r_osd->o_osd : -1);
 		__register_request(osdc, req);
 		__unregister_linger_request(osdc, req);
+<<<<<<< HEAD
 =======
 		if (err < 0)
 			continue;  /* hrm! */
@@ -1767,6 +1793,8 @@ static void kick_requests(struct ceph_osd_client *osdc, bool force_resend,
 			__unregister_linger_request(osdc, req);
 		}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	}
 	reset_changed_osds(osdc);
 	mutex_unlock(&osdc->request_mutex);

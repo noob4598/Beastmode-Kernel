@@ -386,6 +386,7 @@ sort_pacl(struct posix_acl *pacl)
 	int i, j;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (pacl->a_count <= 4)
 		return; /* no users or groups */
 =======
@@ -394,6 +395,10 @@ sort_pacl(struct posix_acl *pacl)
 		return;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (pacl->a_count <= 4)
+		return; /* no users or groups */
+>>>>>>> 2617302... source
 	i = 1;
 	while (pacl->a_entries[i].e_tag == ACL_USER)
 		i++;
@@ -521,6 +526,9 @@ posix_state_to_acl(struct posix_acl_state *state, unsigned int flags)
 	/*
 	 * ACLs with no ACEs are treated differently in the inheritable
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	 * and effective cases: when there are no inheritable ACEs, we
 	 * set a zero-length default posix acl:
 	 */
@@ -528,6 +536,7 @@ posix_state_to_acl(struct posix_acl_state *state, unsigned int flags)
 		pacl = posix_acl_alloc(0, GFP_KERNEL);
 		return pacl ? pacl : ERR_PTR(-ENOMEM);
 	}
+<<<<<<< HEAD
 =======
 	 * and effective cases: when there are no inheritable ACEs,
 	 * calls ->set_acl with a NULL ACL structure.
@@ -536,6 +545,8 @@ posix_state_to_acl(struct posix_acl_state *state, unsigned int flags)
 		return NULL;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	/*
 	 * When there are no effective ACEs, the following will end
 	 * up setting a 3-element effective posix ACL with all

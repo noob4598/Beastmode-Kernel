@@ -488,6 +488,7 @@ static int nf_nat_proto_remove(struct nf_conn *i, void *data)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 static int nf_nat_proto_clean(struct nf_conn *ct, void *data)
 {
@@ -523,6 +524,8 @@ static int nf_nat_proto_clean(struct nf_conn *ct, void *data)
 }
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 static void nf_nat_l4proto_clean(u8 l3proto, u8 l4proto)
 {
 	struct nf_nat_proto_clean clean = {
@@ -786,10 +789,14 @@ static void __net_exit nf_nat_net_exit(struct net *net)
 	struct nf_nat_proto_clean clean = {};
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	nf_ct_iterate_cleanup(net, &nf_nat_proto_remove, &clean);
 =======
 	nf_ct_iterate_cleanup(net, nf_nat_proto_clean, &clean);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	nf_ct_iterate_cleanup(net, &nf_nat_proto_remove, &clean);
+>>>>>>> 2617302... source
 	synchronize_rcu();
 	nf_ct_free_hashtable(net->ct.nat_bysource, net->ct.nat_htable_size);
 }

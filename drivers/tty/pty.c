@@ -216,11 +216,14 @@ static int pty_signal(struct tty_struct *tty, int sig)
 	struct pid *pgrp;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (sig != SIGINT && sig != SIGQUIT && sig != SIGTSTP)
 		return -EINVAL;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	if (tty->link) {
 		spin_lock_irqsave(&tty->link->ctrl_lock, flags);
 		pgrp = get_pid(tty->link->pgrp);
@@ -627,6 +630,7 @@ static void pty_unix98_remove(struct tty_driver *driver, struct tty_struct *tty)
 static void pty_unix98_shutdown(struct tty_struct *tty)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	devpts_kill_index(tty->driver_data, tty->index);
 =======
 	struct inode *ptmx_inode;
@@ -638,6 +642,9 @@ static void pty_unix98_shutdown(struct tty_struct *tty)
 	devpts_kill_index(ptmx_inode, tty->index);
 	devpts_del_ref(ptmx_inode);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	devpts_kill_index(tty->driver_data, tty->index);
+>>>>>>> 2617302... source
 }
 
 static const struct tty_operations ptm_unix98_ops = {
@@ -729,6 +736,7 @@ static int ptmx_open(struct inode *inode, struct file *filp)
 	tty->driver_data = inode;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/*
 	 * In the case where all references to ptmx inode are dropped and we
@@ -743,6 +751,8 @@ static int ptmx_open(struct inode *inode, struct file *filp)
 	devpts_add_ref(inode);
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	tty_add_file(tty, filp);
 
 	slave_inode = devpts_pty_new(inode,

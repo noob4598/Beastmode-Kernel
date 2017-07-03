@@ -129,6 +129,9 @@ static sec_bat_adc_table_data_t chg_temp_table[] = {
 
 #if defined(CONFIG_BATTERY_SWELLING)
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 #define BATT_SWELLING_HIGH_TEMP_BLOCK			450
 #define BATT_SWELLING_HIGH_TEMP_RECOV			400
 #define BATT_SWELLING_LOW_TEMP_BLOCK			100
@@ -138,6 +141,7 @@ static sec_bat_adc_table_data_t chg_temp_table[] = {
 #define BATT_SWELLING_DROP_FLOAT_VOLTAGE		4200
 #define BATT_SWELLING_HIGH_RECHG_VOLTAGE		4150
 #define BATT_SWELLING_LOW_RECHG_VOLTAGE			4050
+<<<<<<< HEAD
 =======
 #define BATT_SWELLING_HIGH_TEMP_BLOCK		500
 #define BATT_SWELLING_HIGH_TEMP_RECOV		450
@@ -147,6 +151,8 @@ static sec_bat_adc_table_data_t chg_temp_table[] = {
 #define BATT_SWELLING_RECHG_VOLTAGE		4150
 #define BATT_SWELLING_BLOCK_TIME	10 * 60 /* 10 min */
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 #endif
 
 #define TEMP_HIGHLIMIT_THRESHOLD	800

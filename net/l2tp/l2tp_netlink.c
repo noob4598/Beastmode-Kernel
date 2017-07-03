@@ -720,10 +720,14 @@ static int l2tp_nl_cmd_session_dump(struct sk_buff *skb, struct netlink_callback
 		}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		session = l2tp_session_find_nth(tunnel, si);
 =======
 		session = l2tp_session_get_nth(tunnel, si, false);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		session = l2tp_session_find_nth(tunnel, si);
+>>>>>>> 2617302... source
 		if (session == NULL) {
 			ti++;
 			tunnel = NULL;
@@ -734,6 +738,7 @@ static int l2tp_nl_cmd_session_dump(struct sk_buff *skb, struct netlink_callback
 		if (l2tp_nl_session_send(skb, NETLINK_CB(cb->skb).portid,
 					 cb->nlh->nlmsg_seq, NLM_F_MULTI,
 <<<<<<< HEAD
+<<<<<<< HEAD
 					 session) <= 0)
 			break;
 =======
@@ -743,6 +748,10 @@ static int l2tp_nl_cmd_session_dump(struct sk_buff *skb, struct netlink_callback
 		}
 		l2tp_session_dec_refcount(session);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+					 session) <= 0)
+			break;
+>>>>>>> 2617302... source
 
 		si++;
 	}

@@ -1,8 +1,12 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* Copyright (c) 2012-2014, The Linux Foundation. All rights reserved.
 =======
 /* Copyright (c) 2012-2016, The Linux Foundation. All rights reserved.
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+/* Copyright (c) 2012-2014, The Linux Foundation. All rights reserved.
+>>>>>>> 2617302... source
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -39,9 +43,12 @@
 #define ADM_GET_PARAMETER_LENGTH  (4096 - APR_HDR_SIZE - 2 * sizeof(uint32_t))
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define ULL_SUPPORTED_BITS_PER_SAMPLE 16
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 #define ULL_SUPPORTED_SAMPLE_RATE 48000
 
 
@@ -515,16 +522,22 @@ int adm_get_params(int port_id, uint32_t module_id, uint32_t param_id,
 		goto adm_get_param_return;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	if ((params_data) && (ARRAY_SIZE(adm_get_parameters) >=
 		(1+adm_get_parameters[0])) &&
 		(params_length/sizeof(uint32_t) >=
 		adm_get_parameters[0])) {
+<<<<<<< HEAD
 =======
 	if ((params_data) &&
 	    (ARRAY_SIZE(adm_get_parameters) > 0) &&
 	    (ARRAY_SIZE(adm_get_parameters) >= (1+adm_get_parameters[0])) &&
 	    (params_length/sizeof(uint32_t) >= adm_get_parameters[0])) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		if (module_id != 0x10001050)
 			for (i = 0; i < adm_get_parameters[0]; i++)
 				params_data[i] = adm_get_parameters[1+i];
@@ -665,15 +678,21 @@ static int32_t adm_callback(struct apr_client_data *data, void *priv)
 
 	if (data->opcode == RESET_EVENTS) {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		pr_debug("%s: Reset event is received: %d %d apr[%p]\n",
 				__func__,
 				data->reset_event, data->reset_proc,
 				this_adm.apr);
+<<<<<<< HEAD
 =======
 		pr_debug("%s: Reset event is received: %d %d apr[%pK]\n",
 			__func__,
 			data->reset_event, data->reset_proc, this_adm.apr);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		if (this_adm.apr) {
 			apr_reset(this_adm.apr);
 			for (i = 0; i < AFE_MAX_PORTS; i++) {
@@ -833,12 +852,16 @@ static int32_t adm_callback(struct apr_client_data *data, void *priv)
 			/* payload[3] is the param size, check if payload */
 			/* is big enough and has a valid param size */
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 			if ((payload[0] == 0) && (data->payload_size >
 				(4 * sizeof(*payload))) &&
 				(data->payload_size - 4 >=
 				payload[3]) &&
 				(ARRAY_SIZE(adm_get_parameters)-1 >=
 				payload[3])) {
+<<<<<<< HEAD
 =======
 			if ((payload[0] == 0) &&
 			    (data->payload_size > (4 * sizeof(*payload))) &&
@@ -846,6 +869,8 @@ static int32_t adm_callback(struct apr_client_data *data, void *priv)
 			    (ARRAY_SIZE(adm_get_parameters) > 0) &&
 			    (ARRAY_SIZE(adm_get_parameters)-1 >= payload[3])) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 				adm_get_parameters[0] = payload[3] /
 							sizeof(uint32_t);
 				/*
@@ -919,6 +944,9 @@ void send_adm_custom_topology(int port_id)
 	int				size = 4096;
 	
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	pr_info("%s:\n", __func__);
 
 	get_adm_custom_topology(&cal_block);
@@ -926,11 +954,14 @@ void send_adm_custom_topology(int port_id)
 		pr_err("%s: no cal to send\n", __func__);
 		pr_debug("%s: no cal to send addr= 0x%pa\n",
 				__func__, &cal_block.cal_paddr);
+<<<<<<< HEAD
 =======
 	get_adm_custom_topology(&cal_block);
 	if (cal_block.cal_size == 0) {
 		pr_debug("%s: no ADM cal to send\n", __func__);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		goto done;
 	}
 
@@ -952,11 +983,15 @@ void send_adm_custom_topology(int port_id)
 				&cal_block.cal_paddr, 0, &size, 1);
 		if (result < 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 			pr_err("%s: mmap did not work! size = %zd result %d\n",
 				__func__, cal_block.cal_size, result);
 			pr_info("%s: mmap did not work! addr = 0x%pa, size = %zd\n",
 				__func__, &cal_block.cal_paddr,
 			       cal_block.cal_size);
+<<<<<<< HEAD
 =======
 			pr_err("%s: ADM mmap did not work! size = %zd result %d\n",
 				__func__, cal_block.cal_size, result);
@@ -965,6 +1000,8 @@ void send_adm_custom_topology(int port_id)
 				&cal_block.cal_paddr,
 				cal_block.cal_size, result);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 			goto done;
 		}
 	}
@@ -990,22 +1027,32 @@ void send_adm_custom_topology(int port_id)
 
 	atomic_set(&this_adm.copp_stat[index], 0);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_debug("%s: Sending ADM_CMD_ADD_TOPOLOGIES payload = 0x%x, size = %d\n",
 		__func__, adm_top.payload_addr_lsw,
 =======
 	pr_debug("%s: Sending ADM_CMD_ADD_TOPOLOGIES payload = 0x%pK, size = %d\n",
 		__func__, &cal_block.cal_paddr,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	pr_debug("%s: Sending ADM_CMD_ADD_TOPOLOGIES payload = 0x%x, size = %d\n",
+		__func__, adm_top.payload_addr_lsw,
+>>>>>>> 2617302... source
 		adm_top.payload_size);
 	result = apr_send_pkt(this_adm.apr, (uint32_t *)&adm_top);
 	if (result < 0) {
 		pr_err("%s: Set topologies failed port = 0x%x result %d\n",
 			__func__, port_id, result);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_info("%s: Set topologies failed port = 0x%x payload = 0x%pa\n",
 			__func__, port_id, &cal_block.cal_paddr);
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		pr_info("%s: Set topologies failed port = 0x%x payload = 0x%pa\n",
+			__func__, port_id, &cal_block.cal_paddr);
+>>>>>>> 2617302... source
 		goto done;
 	}
 	/* Wait for the callback */
@@ -1016,10 +1063,15 @@ void send_adm_custom_topology(int port_id)
 		pr_err("%s: Set topologies timed out port = 0x%x\n",
 			__func__, port_id);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_info("%s: Set topologies timed out port = 0x%x, payload = 0x%pa\n",
 			__func__, port_id, &cal_block.cal_paddr);
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		pr_info("%s: Set topologies timed out port = 0x%x, payload = 0x%pa\n",
+			__func__, port_id, &cal_block.cal_paddr);
+>>>>>>> 2617302... source
 		goto done;
 	}
 
@@ -1083,22 +1135,31 @@ static int send_adm_cal_block(int port_id, struct acdb_cal_block *aud_cal,
 
 	atomic_set(&this_adm.copp_stat[index], 0);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_debug("%s: Sending SET_PARAMS payload = 0x%x, size = %d\n",
 		__func__, adm_params.payload_addr_lsw,
 =======
 	pr_debug("%s: Sending SET_PARAMS payload = 0x%pK, size = %d\n",
 		__func__, &aud_cal->cal_paddr,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	pr_debug("%s: Sending SET_PARAMS payload = 0x%x, size = %d\n",
+		__func__, adm_params.payload_addr_lsw,
+>>>>>>> 2617302... source
 		adm_params.payload_size);
 	result = apr_send_pkt(this_adm.apr, (uint32_t *)&adm_params);
 	if (result < 0) {
 		pr_err("%s: Set params failed port = 0x%x result %d\n",
 			__func__, port_id, result);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_debug("%s: Set params failed port = 0x%x payload = 0x%pa\n",
 =======
 		pr_debug("%s: Set params failed port = 0x%x payload = 0x%pK\n",
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		pr_debug("%s: Set params failed port = 0x%x payload = 0x%pa\n",
+>>>>>>> 2617302... source
 			__func__, port_id, &aud_cal->cal_paddr);
 		result = -EINVAL;
 		goto done;
@@ -1111,10 +1172,14 @@ static int send_adm_cal_block(int port_id, struct acdb_cal_block *aud_cal,
 		pr_err("%s: Set params timed out port = 0x%x\n",
 			__func__, port_id);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_debug("%s: Set params timed out port = 0x%x, payload = 0x%pa\n",
 =======
 		pr_debug("%s: Set params timed out port = 0x%x, payload = 0x%pK\n",
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		pr_debug("%s: Set params timed out port = 0x%x, payload = 0x%pa\n",
+>>>>>>> 2617302... source
 			__func__, port_id, &aud_cal->cal_paddr);
 		result = -EINVAL;
 		goto done;
@@ -1511,9 +1576,12 @@ int adm_open(int port_id, int path, int rate, int channel_mode, int topology,
 				open.topology_id = NULL_COPP_TOPOLOGY;
 				rate = ULL_SUPPORTED_SAMPLE_RATE;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 				open.bit_width = ULL_SUPPORTED_BITS_PER_SAMPLE;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 			} else if (perf_mode == LOW_LATENCY_PCM_MODE) {
 				if ((open.topology_id ==
 					DOLBY_ADM_COPP_TOPOLOGY_ID) ||

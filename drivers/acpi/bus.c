@@ -58,6 +58,7 @@ EXPORT_SYMBOL(acpi_root_dir);
 
 #ifdef CONFIG_X86
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #ifdef CONFIG_ACPI_CUSTOM_DSDT
 static inline int set_copy_dsdt(const struct dmi_system_id *id)
@@ -66,6 +67,8 @@ static inline int set_copy_dsdt(const struct dmi_system_id *id)
 }
 #else
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 static int set_copy_dsdt(const struct dmi_system_id *id)
 {
 	printk(KERN_NOTICE "%s detected - "
@@ -74,9 +77,12 @@ static int set_copy_dsdt(const struct dmi_system_id *id)
 	return 0;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #endif
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 static struct dmi_system_id dsdt_dmi_table[] __initdata = {
 	/*

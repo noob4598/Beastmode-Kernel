@@ -1,9 +1,13 @@
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright (c) 2012-2014, The Linux Foundation. All rights reserved.
 =======
  * Copyright (c) 2012-2015, The Linux Foundation. All rights reserved.
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+ * Copyright (c) 2012-2014, The Linux Foundation. All rights reserved.
+>>>>>>> 2617302... source
  * Author: Brian Swetland <swetland@google.com>
  *
  * This software is licensed under the terms of the GNU General Public
@@ -371,6 +375,7 @@ static int q6asm_session_alloc(struct audio_client *ac)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 static bool q6asm_is_valid_audio_client(struct audio_client *ac)
 {
@@ -383,6 +388,8 @@ static bool q6asm_is_valid_audio_client(struct audio_client *ac)
 }
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 static void q6asm_session_free(struct audio_client *ac)
 {
 	pr_debug("%s: sessionid[%d]\n", __func__, ac->session);
@@ -395,6 +402,7 @@ static void q6asm_session_free(struct audio_client *ac)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 static uint32_t q6asm_get_next_buf(uint32_t curr_buf, uint32_t max_buf_cnt)
 {
@@ -405,6 +413,8 @@ static uint32_t q6asm_get_next_buf(uint32_t curr_buf, uint32_t max_buf_cnt)
 }
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 int send_asm_custom_topology(struct audio_client *ac)
 {
 	struct acdb_cal_block		cal_block;
@@ -450,10 +460,14 @@ int send_asm_custom_topology(struct audio_client *ac)
 		pr_err("%s: mmap did not work! size %zd result %d",
 			__func__, cal_block.cal_size, result);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_debug("%s: addr = 0x%pa, size = %zd\n",
 =======
 		pr_debug("%s: addr = 0x%pK, size = %zd\n",
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		pr_debug("%s: addr = 0x%pa, size = %zd\n",
+>>>>>>> 2617302... source
 			__func__, &cal_block.cal_paddr,
 			cal_block.cal_size);
 		goto err_map;
@@ -480,10 +494,14 @@ int send_asm_custom_topology(struct audio_client *ac)
 	asm_top.payload_size = cal_block.cal_size;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	 pr_debug("%s: Sending ASM_CMD_ADD_TOPOLOGIES payload = %pa, size = %d, map handle = 0x%x\n",
 =======
 	 pr_debug("%s: Sending ASM_CMD_ADD_TOPOLOGIES payload = %pK, size = %d, map handle = 0x%x\n",
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	 pr_debug("%s: Sending ASM_CMD_ADD_TOPOLOGIES payload = %pa, size = %d, map handle = 0x%x\n",
+>>>>>>> 2617302... source
 		__func__, &cal_block.cal_paddr,
 		asm_top.payload_size, asm_top.mem_map_handle);
 
@@ -492,10 +510,14 @@ int send_asm_custom_topology(struct audio_client *ac)
 		pr_err("%s: Set topologies failed payload %d\n",
 			__func__, result);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_debug("%s: 0x%pa\n", __func__, &cal_block.cal_paddr);
 =======
 		pr_debug("%s: 0x%paKn", __func__, &cal_block.cal_paddr);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		pr_debug("%s: 0x%pa\n", __func__, &cal_block.cal_paddr);
+>>>>>>> 2617302... source
 		goto err_unmap;
 	}
 
@@ -504,10 +526,14 @@ int send_asm_custom_topology(struct audio_client *ac)
 	if (!result) {
 		pr_err("%s: Set topologies failed payload\n", __func__);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_debug("%s: payload = 0x%pa\n",
 =======
 		pr_debug("%s: payload = 0x%pK\n",
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		pr_debug("%s: payload = 0x%pa\n",
+>>>>>>> 2617302... source
 			__func__, &cal_block.cal_paddr);
 		result = -ETIMEDOUT;
 		goto err_unmap;
@@ -583,10 +609,14 @@ int q6asm_map_rtac_block(struct rtac_cal_block_data *cal_block)
 			__func__,
 			cal_block->map_data.map_size, result);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_debug("%s: mmap did not work! addr = 0x%pa, size = %d\n",
 =======
 		pr_debug("%s: mmap did not work! addr = 0x%pK, size = %d\n",
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		pr_debug("%s: mmap did not work! addr = 0x%pa, size = %d\n",
+>>>>>>> 2617302... source
 			__func__,
 			&cal_block->cal_data.paddr,
 			cal_block->map_data.map_size);
@@ -779,10 +809,14 @@ int q6asm_audio_client_buf_free_contiguous(unsigned int dir,
 
 	if (port->buf[0].data) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_debug("%s: data[%p]phys[%pa][%p] , client[%p] handle[%p]\n",
 =======
 		pr_debug("%s: data[%pK]phys[%pK][%pK] , client[%pK] handle[%pK]\n",
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		pr_debug("%s: data[%p]phys[%pa][%p] , client[%p] handle[%p]\n",
+>>>>>>> 2617302... source
 			__func__,
 			port->buf[0].data,
 			&port->buf[0].phys,
@@ -814,10 +848,14 @@ void q6asm_audio_client_free(struct audio_client *ac)
 	struct audio_port_data *port;
 	if (!ac) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("%s: ac %p\n", __func__, ac);
 =======
 		pr_err("%s: ac %pK\n", __func__, ac);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		pr_err("%s: ac %p\n", __func__, ac);
+>>>>>>> 2617302... source
 		return;
 	}
 	if (!ac->session) {
@@ -1022,10 +1060,14 @@ int q6asm_audio_client_buf_alloc(unsigned int dir,
 			struct audio_client *ac,
 			unsigned int bufsz,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			unsigned int bufcnt)
 =======
 			uint32_t bufcnt)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			unsigned int bufcnt)
+>>>>>>> 2617302... source
 {
 	int cnt = 0;
 	int rc = 0;
@@ -1034,10 +1076,14 @@ int q6asm_audio_client_buf_alloc(unsigned int dir,
 
 	if (!(ac) || ((dir != IN) && (dir != OUT))) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("%s: ac %p dir %d\n", __func__, ac, dir);
 =======
 		pr_err("%s: ac %pK dir %d\n", __func__, ac, dir);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		pr_err("%s: ac %p dir %d\n", __func__, ac, dir);
+>>>>>>> 2617302... source
 		return -EINVAL;
 	}
 
@@ -1057,6 +1103,7 @@ int q6asm_audio_client_buf_alloc(unsigned int dir,
 		}
 		mutex_lock(&ac->cmd_lock);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		if (bufcnt > (U32_MAX/sizeof(struct audio_buffer))) {
 			pr_err("%s: Buffer size overflows", __func__);
@@ -1064,6 +1111,8 @@ int q6asm_audio_client_buf_alloc(unsigned int dir,
 			goto fail;
 		}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		buf = kzalloc(((sizeof(struct audio_buffer))*bufcnt),
 				GFP_KERNEL);
 
@@ -1094,10 +1143,14 @@ int q6asm_audio_client_buf_alloc(unsigned int dir,
 					buf[cnt].size = bufsz;
 					buf[cnt].actual_size = bufsz;
 <<<<<<< HEAD
+<<<<<<< HEAD
 					pr_debug("%s: data[%p]phys[%pa][%p]\n",
 =======
 					pr_debug("%s: data[%pK]phys[%pK][%pK]\n",
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+					pr_debug("%s: data[%p]phys[%pa][%p]\n",
+>>>>>>> 2617302... source
 						__func__,
 					   buf[cnt].data,
 					   &buf[cnt].phys,
@@ -1135,10 +1188,14 @@ int q6asm_audio_client_buf_alloc_contiguous(unsigned int dir,
 
 	if (!(ac) || ((dir != IN) && (dir != OUT))) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("%s: ac %p dir %d\n", __func__, ac, dir);
 =======
 		pr_err("%s: ac %pK dir %d\n", __func__, ac, dir);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		pr_err("%s: ac %p dir %d\n", __func__, ac, dir);
+>>>>>>> 2617302... source
 		return -EINVAL;
 	}
 
@@ -1169,6 +1226,7 @@ int q6asm_audio_client_buf_alloc_contiguous(unsigned int dir,
 	ac->port[dir].buf = buf;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/* check for integer overflow */
 	if ((bufcnt > 0) && ((UINT_MAX / bufcnt) < bufsz)) {
@@ -1177,6 +1235,8 @@ int q6asm_audio_client_buf_alloc_contiguous(unsigned int dir,
 		goto fail;
 	}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	bytes_to_alloc = bufsz * bufcnt;
 
 	/* The size to allocate should be multiple of 4K bytes */
@@ -1211,10 +1271,14 @@ int q6asm_audio_client_buf_alloc_contiguous(unsigned int dir,
 			buf[cnt].size = bufsz;
 			buf[cnt].actual_size = bufsz;
 <<<<<<< HEAD
+<<<<<<< HEAD
 			pr_debug("%s: data[%p]phys[%pa][%p]\n",
 =======
 			pr_debug("%s: data[%pK]phys[%pK][%pK]\n",
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			pr_debug("%s: data[%p]phys[%pa][%p]\n",
+>>>>>>> 2617302... source
 				__func__,
 				buf[cnt].data,
 				&buf[cnt].phys,
@@ -1258,10 +1322,14 @@ static int32_t q6asm_srvc_callback(struct apr_client_data *data, void *priv)
 
 	if (data->opcode == RESET_EVENTS) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_debug("%s: Reset event is received: %d %d apr[%p]\n",
 =======
 		pr_debug("%s: Reset event is received: %d %d apr[%pK]\n",
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		pr_debug("%s: Reset event is received: %d %d apr[%p]\n",
+>>>>>>> 2617302... source
 				__func__,
 				data->reset_event,
 				data->reset_proc,
@@ -1410,6 +1478,7 @@ static int32_t q6asm_callback(struct apr_client_data *data, void *priv)
 		return -EINVAL;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (ac->session <= 0 || ac->session > 8) {
 		pr_err("%s: Session ID is invalid, session = %d\n", __func__,
 =======
@@ -1422,6 +1491,10 @@ static int32_t q6asm_callback(struct apr_client_data *data, void *priv)
 	if (ac->session <= 0 || ac->session > 8) {
 		pr_err("%s:Session ID is invalid, session = %d\n", __func__,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (ac->session <= 0 || ac->session > 8) {
+		pr_err("%s: Session ID is invalid, session = %d\n", __func__,
+>>>>>>> 2617302... source
 			ac->session);
 		return -EINVAL;
 	}
@@ -1440,10 +1513,14 @@ static int32_t q6asm_callback(struct apr_client_data *data, void *priv)
 		if (ac->apr == NULL)
 			ac->apr = ac->apr2;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_debug("%s: Reset event is received: %d %d apr[%p]\n",
 =======
 		pr_debug("%s: Reset event is received: %d %d apr[%pK]\n",
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		pr_debug("%s: Reset event is received: %d %d apr[%p]\n",
+>>>>>>> 2617302... source
 			__func__,
 			data->reset_event, data->reset_proc, ac->apr);
 			if (ac->cb)
@@ -1585,10 +1662,14 @@ static int32_t q6asm_callback(struct apr_client_data *data, void *priv)
 			upper_32_bits(port->buf[data->token].phys) !=
 			payload[1]) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 				pr_debug("%s: Expected addr %pa\n",
 =======
 				pr_debug("%s: Expected addr %pK\n",
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+				pr_debug("%s: Expected addr %pa\n",
+>>>>>>> 2617302... source
 				__func__, &port->buf[data->token].phys);
 				pr_err("%s: rxedl[0x%x] rxedu [0x%x]\n",
 					__func__, payload[0], payload[1]);
@@ -1653,10 +1734,14 @@ static int32_t q6asm_callback(struct apr_client_data *data, void *priv)
 			upper_32_bits(port->buf[token].phys) !=
 			payload[READDONE_IDX_BUFADD_MSW]) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 				dev_vdbg(ac->dev, "%s: Expected addr %pa\n",
 =======
 				dev_vdbg(ac->dev, "%s: Expected addr %pK\n",
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+				dev_vdbg(ac->dev, "%s: Expected addr %pa\n",
+>>>>>>> 2617302... source
 					__func__, &port->buf[token].phys);
 				pr_err("%s: rxedl[0x%x] rxedu[0x%x]\n",
 					__func__,
@@ -1728,10 +1813,14 @@ void *q6asm_is_cpu_buf_avail(int dir, struct audio_client *ac, uint32_t *size,
 
 	if (!ac || ((dir != IN) && (dir != OUT))) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("%s: ac %p dir %d\n", __func__, ac, dir);
 =======
 		pr_err("%s: ac %pK dir %d\n", __func__, ac, dir);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		pr_err("%s: ac %p dir %d\n", __func__, ac, dir);
+>>>>>>> 2617302... source
 		return NULL;
 	}
 
@@ -1759,10 +1848,14 @@ void *q6asm_is_cpu_buf_avail(int dir, struct audio_client *ac, uint32_t *size,
 		*index = port->cpu_buf;
 		data = port->buf[idx].data;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev_vdbg(ac->dev, "%s: session[%d]index[%d] data[%p]size[%d]\n",
 =======
 		dev_vdbg(ac->dev, "%s: session[%d]index[%d] data[%pK]size[%d]\n",
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		dev_vdbg(ac->dev, "%s: session[%d]index[%d] data[%p]size[%d]\n",
+>>>>>>> 2617302... source
 						__func__,
 						ac->session,
 						port->cpu_buf,
@@ -1772,11 +1865,15 @@ void *q6asm_is_cpu_buf_avail(int dir, struct audio_client *ac, uint32_t *size,
 		buf(to avoid another api)*/
 		port->buf[idx].used = dir;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		port->cpu_buf = ((port->cpu_buf + 1) & (port->max_buf_cnt - 1));
 =======
 		port->cpu_buf = q6asm_get_next_buf(port->cpu_buf,
 						   port->max_buf_cnt);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		port->cpu_buf = ((port->cpu_buf + 1) & (port->max_buf_cnt - 1));
+>>>>>>> 2617302... source
 		mutex_unlock(&port->lock);
 		return data;
 	}
@@ -1792,10 +1889,14 @@ void *q6asm_is_cpu_buf_avail_nolock(int dir, struct audio_client *ac,
 
 	if (!ac || ((dir != IN) && (dir != OUT))) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("%s: ac %p dir %d\n", __func__, ac, dir);
 =======
 		pr_err("%s: ac %pK dir %d\n", __func__, ac, dir);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		pr_err("%s: ac %p dir %d\n", __func__, ac, dir);
+>>>>>>> 2617302... source
 		return NULL;
 	}
 
@@ -1823,10 +1924,14 @@ void *q6asm_is_cpu_buf_avail_nolock(int dir, struct audio_client *ac,
 	*index = port->cpu_buf;
 	data = port->buf[idx].data;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dev_vdbg(ac->dev, "%s: session[%d]index[%d] data[%p]size[%d]\n",
 =======
 	dev_vdbg(ac->dev, "%s: session[%d]index[%d] data[%pK]size[%d]\n",
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	dev_vdbg(ac->dev, "%s: session[%d]index[%d] data[%p]size[%d]\n",
+>>>>>>> 2617302... source
 		__func__, ac->session, port->cpu_buf,
 		data, *size);
 	/*
@@ -1836,11 +1941,15 @@ void *q6asm_is_cpu_buf_avail_nolock(int dir, struct audio_client *ac,
 	 */
 	port->buf[idx].used = dir;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	port->cpu_buf = ((port->cpu_buf + 1) & (port->max_buf_cnt - 1));
 =======
 	port->cpu_buf = q6asm_get_next_buf(port->cpu_buf,
 					   port->max_buf_cnt);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	port->cpu_buf = ((port->cpu_buf + 1) & (port->max_buf_cnt - 1));
+>>>>>>> 2617302... source
 	return data;
 }
 
@@ -1852,10 +1961,14 @@ int q6asm_is_dsp_buf_avail(int dir, struct audio_client *ac)
 
 	if (!ac || (dir != OUT)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("%s: ac %p dir %d\n", __func__, ac, dir);
 =======
 		pr_err("%s: ac %pK dir %d\n", __func__, ac, dir);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		pr_err("%s: ac %p dir %d\n", __func__, ac, dir);
+>>>>>>> 2617302... source
 		return ret;
 	}
 
@@ -2121,20 +2234,28 @@ int q6asm_open_write_compressed(struct audio_client *ac, uint32_t format,
 
 	if (ac == NULL) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("%s: ac[%p] NULL\n",  __func__, ac);
 =======
 		pr_err("%s: ac[%pK] NULL\n",  __func__, ac);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		pr_err("%s: ac[%p] NULL\n",  __func__, ac);
+>>>>>>> 2617302... source
 		rc = -EINVAL;
 		goto fail_cmd;
 	}
 
 	if (ac->apr == NULL) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("%s: APR handle[%p] NULL\n", __func__,  ac->apr);
 =======
 		pr_err("%s: APR handle[%pK] NULL\n", __func__,  ac->apr);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		pr_err("%s: APR handle[%p] NULL\n", __func__,  ac->apr);
+>>>>>>> 2617302... source
 		rc = -EINVAL;
 		goto fail_cmd;
 	}
@@ -2271,11 +2392,14 @@ static int __q6asm_open_write(struct audio_client *ac, uint32_t format,
 		open.dec_fmt_id = ASM_MEDIA_FMT_MP2;
 		break;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	case FORMAT_FLAC:
 		open.dec_fmt_id = ASM_MEDIA_FMT_FLAC;
 		break;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	default:
 		pr_err("%s: Invalid format 0x%x\n", __func__, format);
 		goto fail_cmd;
@@ -3592,6 +3716,7 @@ fail_cmd:
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 int q6asm_stream_media_format_block_flac(struct audio_client *ac,
 				struct asm_flac_cfg *cfg, int stream_id)
@@ -3637,6 +3762,8 @@ fail_cmd:
 }
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 static int __q6asm_ds1_set_endp_params(struct audio_client *ac, int param_id,
 				int param_value, int stream_id)
 {
@@ -3756,10 +3883,14 @@ int q6asm_memory_map(struct audio_client *ac, phys_addr_t buf_add, int dir,
 	ac->port[dir].tmp_hdl = 0;
 	port = &ac->port[dir];
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_debug("%s: buf_add 0x%pa, bufsz: %d\n", __func__,
 =======
 	pr_debug("%s: buf_add 0x%pK, bufsz: %d\n", __func__,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	pr_debug("%s: buf_add 0x%pa, bufsz: %d\n", __func__,
+>>>>>>> 2617302... source
 		&buf_add, bufsz);
 	mregions->shm_addr_lsw = lower_32_bits(buf_add);
 	mregions->shm_addr_msw = upper_32_bits(buf_add);
@@ -3900,10 +4031,14 @@ static int q6asm_memory_map_regions(struct audio_client *ac, int dir,
 	int	rc = 0;
 	int    i = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int	cmd_size = 0;
 =======
 	uint32_t cmd_size = 0;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	int	cmd_size = 0;
+>>>>>>> 2617302... source
 	uint32_t bufcnt_t;
 	uint32_t bufsz_t;
 
@@ -3926,6 +4061,7 @@ static int q6asm_memory_map_regions(struct audio_client *ac, int dir,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (bufcnt_t > (UINT_MAX
 			- sizeof(struct avs_cmd_shared_mem_map_regions))
@@ -3936,10 +4072,13 @@ static int q6asm_memory_map_regions(struct audio_client *ac, int dir,
 	}
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	cmd_size = sizeof(struct avs_cmd_shared_mem_map_regions)
 			+ (sizeof(struct avs_shared_map_region_payload)
 							* bufcnt_t);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 
@@ -3950,6 +4089,8 @@ static int q6asm_memory_map_regions(struct audio_client *ac, int dir,
 	}
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	buffer_node = kzalloc(sizeof(struct asm_buffer_node) * bufcnt,
 				GFP_KERNEL);
 	if (!buffer_node) {
@@ -3971,10 +4112,14 @@ static int q6asm_memory_map_regions(struct audio_client *ac, int dir,
 					((ac->session << 8) | dir));
 	atomic_set(&ac->mem_state, 1);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_info("%s: mmap_region=0x%p token=0x%x\n", __func__,
 =======
 	pr_debug("%s: mmap_region=0x%pK token=0x%x\n", __func__,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	pr_info("%s: mmap_region=0x%p token=0x%x\n", __func__,
+>>>>>>> 2617302... source
 		mmap_regions, ((ac->session << 8) | dir));
 
 	mmap_regions->hdr.opcode = ASM_CMD_SHARED_MEM_MAP_REGIONS;
@@ -4031,10 +4176,14 @@ static int q6asm_memory_map_regions(struct audio_client *ac, int dir,
 		list_add_tail(&buffer_node[i].list,
 			&ac->port[dir].mem_map_handle);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_info("%s: i=%d, bufadd[i] = 0x%pa, maphdl[i] = 0x%x\n",
 =======
 		pr_debug("%s: i=%d, bufadd[i] = 0x%pK, maphdl[i] = 0x%x\n",
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		pr_info("%s: i=%d, bufadd[i] = 0x%pa, maphdl[i] = 0x%x\n",
+>>>>>>> 2617302... source
 			__func__, i, &buffer_node[i].buf_phys_addr,
 			buffer_node[i].mmap_hdl);
 	}
@@ -4825,10 +4974,14 @@ int q6asm_read(struct audio_client *ac)
 		ab = &port->buf[dsp_buf];
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev_vdbg(ac->dev, "%s: session[%d]dsp-buf[%d][%p]cpu_buf[%d][%pa]\n",
 =======
 		dev_vdbg(ac->dev, "%s: session[%d]dsp-buf[%d][%pK]cpu_buf[%d][%pK]\n",
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		dev_vdbg(ac->dev, "%s: session[%d]dsp-buf[%d][%p]cpu_buf[%d][%pa]\n",
+>>>>>>> 2617302... source
 				__func__,
 				ac->session,
 				dsp_buf,
@@ -4852,6 +5005,7 @@ int q6asm_read(struct audio_client *ac)
 		read.seq_id = port->dsp_buf;
 		read.hdr.token = port->dsp_buf;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		port->dsp_buf = (port->dsp_buf + 1) & (port->max_buf_cnt - 1);
 		mutex_unlock(&port->lock);
 		dev_vdbg(ac->dev, "%s: buf add[%pa] token[%d] uid[%d]\n",
@@ -4861,6 +5015,11 @@ int q6asm_read(struct audio_client *ac)
 		mutex_unlock(&port->lock);
 		dev_vdbg(ac->dev, "%s: buf add[%pK] token[%d] uid[%d]\n",
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		port->dsp_buf = (port->dsp_buf + 1) & (port->max_buf_cnt - 1);
+		mutex_unlock(&port->lock);
+		dev_vdbg(ac->dev, "%s: buf add[%pa] token[%d] uid[%d]\n",
+>>>>>>> 2617302... source
 				__func__, &ab->phys, read.hdr.token,
 				read.seq_id);
 		rc = apr_send_pkt(ac->apr, (uint32_t *) &read);
@@ -4904,10 +5063,14 @@ int q6asm_read_nolock(struct audio_client *ac)
 		ab = &port->buf[dsp_buf];
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev_vdbg(ac->dev, "%s: session[%d]dsp-buf[%d][%p]cpu_buf[%d][%pa]\n",
 =======
 		dev_vdbg(ac->dev, "%s: session[%d]dsp-buf[%d][%pK]cpu_buf[%d][%pK]\n",
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		dev_vdbg(ac->dev, "%s: session[%d]dsp-buf[%d][%p]cpu_buf[%d][%pa]\n",
+>>>>>>> 2617302... source
 				__func__,
 				ac->session,
 				dsp_buf,
@@ -4932,6 +5095,7 @@ int q6asm_read_nolock(struct audio_client *ac)
 		}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		port->dsp_buf = (port->dsp_buf + 1) & (port->max_buf_cnt - 1);
 		dev_vdbg(ac->dev, "%s: buf add[%pa] token[%d] uid[%d]\n",
 =======
@@ -4939,6 +5103,10 @@ int q6asm_read_nolock(struct audio_client *ac)
 						   port->max_buf_cnt);
 		dev_vdbg(ac->dev, "%s: buf add[%pK] token[%d] uid[%d]\n",
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		port->dsp_buf = (port->dsp_buf + 1) & (port->max_buf_cnt - 1);
+		dev_vdbg(ac->dev, "%s: buf add[%pa] token[%d] uid[%d]\n",
+>>>>>>> 2617302... source
 				__func__, &ab->phys, read.hdr.token,
 				read.seq_id);
 		rc = apr_send_pkt(ac->apr, (uint32_t *) &read);
@@ -5002,10 +5170,14 @@ int q6asm_async_write(struct audio_client *ac,
 		lbuf_phys_addr = param->paddr;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dev_vdbg(ac->dev, "%s: token[0x%x], buf_addr[%pa], buf_size[0x%x], ts_msw[0x%x], ts_lsw[0x%x], lbuf_phys_addr: 0x[%pa]\n",
 =======
 	dev_vdbg(ac->dev, "%s: token[0x%x], buf_addr[%pK], buf_size[0x%x], ts_msw[0x%x], ts_lsw[0x%x], lbuf_phys_addr: 0x[%pK]\n",
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	dev_vdbg(ac->dev, "%s: token[0x%x], buf_addr[%pa], buf_size[0x%x], ts_msw[0x%x], ts_lsw[0x%x], lbuf_phys_addr: 0x[%pa]\n",
+>>>>>>> 2617302... source
 			__func__,
 			write.hdr.token, &param->paddr,
 			write.buf_size, write.timestamp_msw,
@@ -5147,21 +5319,29 @@ int q6asm_write(struct audio_client *ac, uint32_t len, uint32_t msw_ts,
 		else
 			write.flags = (0x80000000 | flags);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		port->dsp_buf = (port->dsp_buf + 1) & (port->max_buf_cnt - 1);
 =======
 		port->dsp_buf = q6asm_get_next_buf(port->dsp_buf,
 						   port->max_buf_cnt);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		port->dsp_buf = (port->dsp_buf + 1) & (port->max_buf_cnt - 1);
+>>>>>>> 2617302... source
 		buf_node = list_first_entry(&ac->port[IN].mem_map_handle,
 				struct asm_buffer_node,
 				list);
 		write.mem_map_handle = buf_node->mmap_hdl;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev_vdbg(ac->dev, "%s: ab->phys[%pa]bufadd[0x%x] token[0x%x]buf_id[0x%x]buf_size[0x%x]mmaphdl[0x%x]"
 =======
 		dev_vdbg(ac->dev, "%s: ab->phys[%pK]bufadd[0x%x] token[0x%x]buf_id[0x%x]buf_size[0x%x]mmaphdl[0x%x]"
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		dev_vdbg(ac->dev, "%s: ab->phys[%pa]bufadd[0x%x] token[0x%x]buf_id[0x%x]buf_size[0x%x]mmaphdl[0x%x]"
+>>>>>>> 2617302... source
 				, __func__,
 				&ab->phys,
 				write.buf_addr_lsw,
@@ -5233,6 +5413,7 @@ int q6asm_write_nolock(struct audio_client *ac, uint32_t len, uint32_t msw_ts,
 		else
 			write.flags = (0x80000000 | flags);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		port->dsp_buf = (port->dsp_buf + 1) & (port->max_buf_cnt - 1);
 
 		dev_vdbg(ac->dev, "%s: ab->phys[%pa]bufadd[0x%x]token[0x%x] buf_id[0x%x]buf_size[0x%x]mmaphdl[0x%x]"
@@ -5242,6 +5423,11 @@ int q6asm_write_nolock(struct audio_client *ac, uint32_t len, uint32_t msw_ts,
 
 		dev_vdbg(ac->dev, "%s: ab->phys[%pK]bufadd[0x%x]token[0x%x] buf_id[0x%x]buf_size[0x%x]mmaphdl[0x%x]"
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		port->dsp_buf = (port->dsp_buf + 1) & (port->max_buf_cnt - 1);
+
+		dev_vdbg(ac->dev, "%s: ab->phys[%pa]bufadd[0x%x]token[0x%x] buf_id[0x%x]buf_size[0x%x]mmaphdl[0x%x]"
+>>>>>>> 2617302... source
 				, __func__,
 				&ab->phys,
 				write.buf_addr_lsw,

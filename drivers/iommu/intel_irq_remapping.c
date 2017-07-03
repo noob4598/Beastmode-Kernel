@@ -496,10 +496,14 @@ static void iommu_disable_irq_remapping(struct intel_iommu *iommu)
 	raw_spin_lock_irqsave(&iommu->register_lock, flags);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	sts = dmar_readq(iommu->reg + DMAR_GSTS_REG);
 =======
 	sts = readl(iommu->reg + DMAR_GSTS_REG);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	sts = dmar_readq(iommu->reg + DMAR_GSTS_REG);
+>>>>>>> 2617302... source
 	if (!(sts & DMA_GSTS_IRES))
 		goto end;
 

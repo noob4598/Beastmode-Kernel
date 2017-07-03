@@ -1116,12 +1116,16 @@ static void mmc_sd_remove(struct mmc_host *host)
 {
 	BUG_ON(!host);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	BUG_ON(!host->card);
 =======
 
 	if (!host->card)
 		return;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	BUG_ON(!host->card);
+>>>>>>> 2617302... source
 
 	mmc_remove_card(host->card);
 
@@ -1153,6 +1157,7 @@ static void mmc_sd_detect(struct mmc_host *host)
 	BUG_ON(!host->card);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #if defined(CONFIG_MMC_BLOCK_DEFERRED_RESUME)
 	if (host->ops->get_cd && host->ops->get_cd(host) == 0) {
@@ -1171,6 +1176,8 @@ static void mmc_sd_detect(struct mmc_host *host)
 #endif
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	mmc_rpm_hold(host, &host->card->dev);
 	mmc_claim_host(host);
 
@@ -1407,6 +1414,7 @@ int mmc_attach_sd(struct mmc_host *host)
 #ifdef CONFIG_MMC_PARANOID_SD_INIT
 	retries = 5;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	while (retries) {
 =======
 	/*
@@ -1415,6 +1423,9 @@ int mmc_attach_sd(struct mmc_host *host)
 	 */
 	while (retries && !host->rescan_disable) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	while (retries) {
+>>>>>>> 2617302... source
 		err = mmc_sd_init_card(host, host->ocr, NULL);
 		if (err) {
 			retries--;
@@ -1433,11 +1444,14 @@ int mmc_attach_sd(struct mmc_host *host)
 		goto err;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 	if (host->rescan_disable)
 		goto err;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 #else
 	err = mmc_sd_init_card(host, host->ocr, NULL);
 	if (err)
@@ -1462,6 +1476,7 @@ remove_card:
 err:
 	mmc_detach_bus(host);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	pr_err("%s: error %d whilst initialising SD card\n",
 		mmc_hostname(host), err);
@@ -1470,6 +1485,11 @@ err:
 		pr_err("%s: error %d whilst initialising SD card: rescan: %d\n",
 		       mmc_hostname(host), err, host->rescan_disable);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+
+	pr_err("%s: error %d whilst initialising SD card\n",
+		mmc_hostname(host), err);
+>>>>>>> 2617302... source
 
 	return err;
 }

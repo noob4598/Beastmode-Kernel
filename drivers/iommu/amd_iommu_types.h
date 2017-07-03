@@ -283,9 +283,12 @@
 #define IOMMU_PTE_IW (1ULL << 62)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define DTE_FLAG_MASK	(0x3ffULL << 32)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 #define DTE_FLAG_IOTLB	(0x01UL << 32)
 #define DTE_FLAG_GV	(0x01ULL << 55)
 #define DTE_GLX_SHIFT	(56)

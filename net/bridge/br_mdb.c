@@ -346,9 +346,13 @@ static int br_mdb_add_group(struct net_bridge *br, struct net_bridge_port *port,
 	rcu_assign_pointer(*pp, p);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	br_mdb_notify(br->dev, port, group, RTM_NEWMDB);
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	br_mdb_notify(br->dev, port, group, RTM_NEWMDB);
+>>>>>>> 2617302... source
 	return 0;
 }
 
@@ -372,9 +376,12 @@ static int __br_mdb_add(struct net *net, struct net_bridge *br,
 		return -EINVAL;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	memset(&ip, 0, sizeof(ip));
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	ip.proto = entry->addr.proto;
 	if (ip.proto == htons(ETH_P_IP))
 		ip.u.ip4 = entry->addr.u.ip4;
@@ -425,9 +432,12 @@ static int __br_mdb_del(struct net_bridge *br, struct br_mdb_entry *entry)
 		return -EBUSY;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	memset(&ip, 0, sizeof(ip));
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	ip.proto = entry->addr.proto;
 	if (ip.proto == htons(ETH_P_IP))
 		ip.u.ip4 = entry->addr.u.ip4;

@@ -82,9 +82,12 @@ void speakup_fake_down_arrow(void)
 	input_report_key(virt_keyboard, KEY_DOWN, PRESSED);
 	input_report_key(virt_keyboard, KEY_DOWN, RELEASED);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	input_sync(virt_keyboard);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	__this_cpu_write(reporting_keystroke, false);
 
 	/* reenable preemption */

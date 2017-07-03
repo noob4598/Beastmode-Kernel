@@ -220,11 +220,15 @@ efivar_store_raw(struct efivar_entry *entry, const char *buf, size_t count)
 
 	if ((new_var->Attributes & ~EFI_VARIABLE_MASK) != 0 ||
 <<<<<<< HEAD
+<<<<<<< HEAD
 	    efivar_validate(new_var, new_var->Data, new_var->DataSize) == false) {
 =======
 	    efivar_validate(new_var->VendorGuid, new_var->VariableName,
 			    new_var->Data, new_var->DataSize) == false) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	    efivar_validate(new_var, new_var->Data, new_var->DataSize) == false) {
+>>>>>>> 2617302... source
 		printk(KERN_ERR "efivars: Malformed variable content\n");
 		return -EINVAL;
 	}
@@ -340,11 +344,15 @@ static ssize_t efivar_create(struct file *filp, struct kobject *kobj,
 
 	if ((new_var->Attributes & ~EFI_VARIABLE_MASK) != 0 ||
 <<<<<<< HEAD
+<<<<<<< HEAD
 	    efivar_validate(new_var, new_var->Data, new_var->DataSize) == false) {
 =======
 	    efivar_validate(new_var->VendorGuid, new_var->VariableName,
 			    new_var->Data, new_var->DataSize) == false) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	    efivar_validate(new_var, new_var->Data, new_var->DataSize) == false) {
+>>>>>>> 2617302... source
 		printk(KERN_ERR "efivars: Malformed variable content\n");
 		return -EINVAL;
 	}
@@ -416,6 +424,9 @@ efivar_create_sysfs_entry(struct efivar_entry *new_var)
 	int i, short_name_size;
 	char *short_name;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	unsigned long variable_name_size;
 	efi_char16_t *variable_name;
 
@@ -445,6 +456,7 @@ efivar_create_sysfs_entry(struct efivar_entry *new_var)
 	*(short_name + strlen(short_name)) = '-';
 	efi_guid_unparse(&new_var->var.VendorGuid,
 			 short_name + strlen(short_name));
+<<<<<<< HEAD
 =======
 	unsigned long utf8_name_size;
 	efi_char16_t *variable_name = new_var->var.VariableName;
@@ -468,6 +480,8 @@ efivar_create_sysfs_entry(struct efivar_entry *new_var)
 	efi_guid_unparse(&new_var->var.VendorGuid,
 			 short_name + utf8_name_size + 1);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	new_var->kobj.kset = efivars_kset;
 

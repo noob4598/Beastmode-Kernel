@@ -5,9 +5,12 @@
 #include <linux/unistd.h>
 #include <linux/ftrace_event.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <linux/thread_info.h>
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 #include <asm/ptrace.h>
 
@@ -36,6 +39,7 @@ struct syscall_metadata {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #if defined(CONFIG_TRACEPOINTS) && defined(CONFIG_HAVE_SYSCALL_TRACEPOINTS)
 static inline void syscall_tracepoint_update(struct task_struct *p)
@@ -52,4 +56,6 @@ static inline void syscall_tracepoint_update(struct task_struct *p)
 #endif
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 #endif /* _TRACE_SYSCALL_H */

@@ -764,10 +764,14 @@ static int get_first_leaf(struct gfs2_inode *dip, u32 index,
 
 	error = get_leaf_nr(dip, index, &leaf_no);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!error)
 =======
 	if (!IS_ERR_VALUE(error))
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (!error)
+>>>>>>> 2617302... source
 		error = get_leaf(dip, leaf_no, bh_out);
 
 	return error;
@@ -979,10 +983,14 @@ static int dir_split_leaf(struct inode *inode, const struct qstr *name)
 	index = name->hash >> (32 - dip->i_depth);
 	error = get_leaf_nr(dip, index, &leaf_no);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (error)
 =======
 	if (IS_ERR_VALUE(error))
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (error)
+>>>>>>> 2617302... source
 		return error;
 
 	/*  Get the old leaf block  */

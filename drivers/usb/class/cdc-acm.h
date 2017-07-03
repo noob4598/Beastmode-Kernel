@@ -96,9 +96,13 @@ struct acm {
 	struct acm_rb read_buffers[ACM_NR];
 	int rx_buflimit;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int rx_endpoint;
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	int rx_endpoint;
+>>>>>>> 2617302... source
 	spinlock_t read_lock;
 	int write_used;					/* number of non-empty write buffers */
 	int transmitting;
@@ -121,10 +125,14 @@ struct acm {
 	unsigned int throttle_req:1;			/* throttle requested */
 	u8 bInterval;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct acm_wb *delayed_wb;			/* write queued for a device about to be woken */
 =======
 	struct usb_anchor delayed;			/* writes queued for a device about to be woken */
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	struct acm_wb *delayed_wb;			/* write queued for a device about to be woken */
+>>>>>>> 2617302... source
 };
 
 #define CDC_DATA_INTERFACE_TYPE	0x0a

@@ -44,6 +44,7 @@ extern int sysctl_legacy_va_layout;
 #endif
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #ifdef CONFIG_HAVE_ARCH_MMAP_RND_BITS
 extern const int mmap_rnd_bits_min;
@@ -57,6 +58,8 @@ extern int mmap_rnd_compat_bits __read_mostly;
 #endif
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 #include <asm/page.h>
 #include <asm/pgtable.h>
 #include <asm/processor.h>
@@ -186,9 +189,12 @@ extern pgprot_t protection_map[16];
 #define FAULT_FLAG_KILLABLE	0x20	/* The fault task is in SIGKILL killable region */
 #define FAULT_FLAG_TRIED	0x40	/* second try */
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define FAULT_FLAG_USER		0x80	/* The fault originated in userspace */
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 /*
  * vm_fault is filled by the the pagefault handler and passed to the vma's
@@ -915,9 +921,12 @@ static inline int page_mapped(struct page *page)
 #define VM_FAULT_HWPOISON 0x0010	/* Hit poisoned small page */
 #define VM_FAULT_HWPOISON_LARGE 0x0020  /* Hit poisoned large page. Index encoded in upper bits */
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define VM_FAULT_SIGSEGV 0x0040
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 #define VM_FAULT_NOPAGE	0x0100	/* ->fault installed the pte, not return page */
 #define VM_FAULT_LOCKED	0x0200	/* ->fault locked the returned page */
@@ -926,12 +935,17 @@ static inline int page_mapped(struct page *page)
 #define VM_FAULT_HWPOISON_LARGE_MASK 0xf000 /* encodes hpage index for large hwpoison */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define VM_FAULT_ERROR	(VM_FAULT_OOM | VM_FAULT_SIGBUS | VM_FAULT_HWPOISON | \
 			 VM_FAULT_HWPOISON_LARGE)
 =======
 #define VM_FAULT_ERROR	(VM_FAULT_OOM | VM_FAULT_SIGBUS | VM_FAULT_SIGSEGV | \
 			 VM_FAULT_HWPOISON | VM_FAULT_HWPOISON_LARGE)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+#define VM_FAULT_ERROR	(VM_FAULT_OOM | VM_FAULT_SIGBUS | VM_FAULT_HWPOISON | \
+			 VM_FAULT_HWPOISON_LARGE)
+>>>>>>> 2617302... source
 
 /* Encode hstate index for a hwpoisoned large page */
 #define VM_FAULT_SET_HINDEX(x) ((x) << 12)
@@ -1039,9 +1053,12 @@ static inline void unmap_shared_mapping_range(struct address_space *mapping,
 extern void truncate_pagecache(struct inode *inode, loff_t old, loff_t new);
 extern void truncate_setsize(struct inode *inode, loff_t newsize);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 void pagecache_isize_extended(struct inode *inode, loff_t from, loff_t to);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 void truncate_pagecache_range(struct inode *inode, loff_t offset, loff_t end);
 int truncate_inode_page(struct address_space *mapping, struct page *page);
 int generic_error_remove_page(struct address_space *mapping, struct page *page);
@@ -1106,6 +1123,9 @@ int clear_page_dirty_for_io(struct page *page);
 int get_cmdline(struct task_struct *task, char *buffer, int buflen);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 /* Is the vma a continuation of the stack vma above it? */
 static inline int vma_growsdown(struct vm_area_struct *vma, unsigned long addr)
 {
@@ -1134,8 +1154,11 @@ static inline int stack_guard_page_end(struct vm_area_struct *vma,
 		!vma_growsup(vma->vm_next, addr);
 }
 
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 extern pid_t
 vm_is_stack(struct task_struct *task, struct vm_area_struct *vma, int in_group);
 
@@ -1662,9 +1685,12 @@ unsigned long ra_submit(struct file_ra_state *ra,
 			struct file *filp);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 extern unsigned long stack_guard_gap;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 /* Generic expand stack which grows the stack according to GROWS{UP,DOWN} */
 extern int expand_stack(struct vm_area_struct *vma, unsigned long address);
 
@@ -1675,10 +1701,14 @@ extern int expand_downwards(struct vm_area_struct *vma,
 extern int expand_upwards(struct vm_area_struct *vma, unsigned long address);
 #else
 <<<<<<< HEAD
+<<<<<<< HEAD
   #define expand_upwards(vma, address) do { } while (0)
 =======
   #define expand_upwards(vma, address) (0)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+  #define expand_upwards(vma, address) do { } while (0)
+>>>>>>> 2617302... source
 #endif
 
 /* Look up the first VMA which satisfies  addr < vm_end,  NULL if none. */
@@ -1697,6 +1727,7 @@ static inline struct vm_area_struct * find_vma_intersection(struct mm_struct * m
 	return vma;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 static inline unsigned long vm_start_gap(struct vm_area_struct *vma)
@@ -1724,6 +1755,8 @@ static inline unsigned long vm_end_gap(struct vm_area_struct *vma)
 }
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 static inline unsigned long vma_pages(struct vm_area_struct *vma)
 {
 	return (vma->vm_end - vma->vm_start) >> PAGE_SHIFT;
@@ -1790,9 +1823,12 @@ static inline struct page *follow_page(struct vm_area_struct *vma,
 #define FOLL_NUMA	0x200	/* force NUMA hinting page fault */
 #define FOLL_MIGRATION	0x400	/* wait for page to replace migration entry */
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define FOLL_COW	0x4000	/* internal GUP flag */
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 typedef int (*pte_fn_t)(pte_t *pte, pgtable_t token, unsigned long addr,
 			void *data);

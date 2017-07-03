@@ -137,20 +137,27 @@ static int tc_ctl_tfilter(struct sk_buff *skb, struct nlmsghdr *n)
 	unsigned long fh;
 	int err;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int tp_created = 0;
 =======
 	int tp_created;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	int tp_created = 0;
+>>>>>>> 2617302... source
 
 	if ((n->nlmsg_type != RTM_GETTFILTER) && !netlink_capable(skb, CAP_NET_ADMIN))
 		return -EPERM;
 
 replay:
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	tp_created = 0;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	err = nlmsg_parse(n, sizeof(*t), tca, TCA_MAX, NULL);
 	if (err < 0)
 		return err;

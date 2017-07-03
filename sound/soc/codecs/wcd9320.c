@@ -1198,6 +1198,7 @@ static int taiko_mad_input_put(struct snd_kcontrol *kcontrol,
 	taiko_mad_input = ucontrol->value.integer.value[0];
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (taiko_mad_input >= ARRAY_SIZE(taiko_conn_mad_text)) {
 		dev_err(codec->dev,
@@ -1207,6 +1208,8 @@ static int taiko_mad_input_put(struct snd_kcontrol *kcontrol,
 	}
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	pr_debug("%s: taiko_mad_input = %s\n", __func__,
 			taiko_conn_mad_text[taiko_mad_input]);
 

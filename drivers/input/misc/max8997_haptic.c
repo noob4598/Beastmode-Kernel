@@ -247,21 +247,29 @@ static int max8997_haptic_probe(struct platform_device *pdev)
 	const struct max8997_platform_data *pdata =
 					dev_get_platdata(iodev->dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	const struct max8997_haptic_platform_data *haptic_pdata =
 					pdata->haptic_pdata;
 =======
 	const struct max8997_haptic_platform_data *haptic_pdata = NULL;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	const struct max8997_haptic_platform_data *haptic_pdata =
+					pdata->haptic_pdata;
+>>>>>>> 2617302... source
 	struct max8997_haptic *chip;
 	struct input_dev *input_dev;
 	int error;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 	if (pdata)
 		haptic_pdata = pdata->haptic_pdata;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	if (!haptic_pdata) {
 		dev_err(&pdev->dev, "no haptic platform data\n");
 		return -EINVAL;

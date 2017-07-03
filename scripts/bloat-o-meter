@@ -56,11 +56,15 @@ delta.sort()
 delta.reverse()
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 print "add/remove: %s/%s grow/shrink: %s/%s up/down: %s/%s (%s)" % \
       (add, remove, grow, shrink, up, -down, up-down)
 print "%-40s %7s %7s %+7s" % ("function", "old", "new", "delta")
 for d, n in delta:
     if d: print "%-40s %7s %7s %+7d" % (n, old.get(n,"-"), new.get(n,"-"), d)
+<<<<<<< HEAD
 =======
 print("add/remove: %s/%s grow/shrink: %s/%s up/down: %s/%s (%s)" % \
       (add, remove, grow, shrink, up, -down, up-down))
@@ -68,3 +72,5 @@ print("%-40s %7s %7s %+7s" % ("function", "old", "new", "delta"))
 for d, n in delta:
     if d: print("%-40s %7s %7s %+7d" % (n, old.get(n,"-"), new.get(n,"-"), d))
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source

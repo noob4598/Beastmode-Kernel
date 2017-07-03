@@ -1837,10 +1837,14 @@ int mlx4_multi_func_init(struct mlx4_dev *dev)
 		}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		memset(&priv->mfunc.master.cmd_eqe, 0, dev->caps.eqe_size);
 =======
 		memset(&priv->mfunc.master.cmd_eqe, 0, sizeof(struct mlx4_eqe));
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		memset(&priv->mfunc.master.cmd_eqe, 0, dev->caps.eqe_size);
+>>>>>>> 2617302... source
 		priv->mfunc.master.cmd_eqe.type = MLX4_EVENT_TYPE_CMD;
 		INIT_WORK(&priv->mfunc.master.comm_work,
 			  mlx4_master_comm_channel);

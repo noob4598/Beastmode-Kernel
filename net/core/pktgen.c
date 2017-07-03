@@ -3378,6 +3378,7 @@ static int pktgen_thread_worker(void *arg)
 
 	/* Wait for kthread_stop */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	while (!kthread_should_stop()) {
 		set_current_state(TASK_INTERRUPTIBLE);
 =======
@@ -3386,6 +3387,10 @@ static int pktgen_thread_worker(void *arg)
 		if (kthread_should_stop())
 			break;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	while (!kthread_should_stop()) {
+		set_current_state(TASK_INTERRUPTIBLE);
+>>>>>>> 2617302... source
 		schedule();
 	}
 	__set_current_state(TASK_RUNNING);

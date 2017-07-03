@@ -791,10 +791,14 @@ static const struct hid_device_id lg_devices[] = {
 		.driver_data = LG_FF },
 	{ HID_USB_DEVICE(USB_VENDOR_ID_LOGITECH, USB_DEVICE_ID_LOGITECH_RUMBLEPAD2),
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.driver_data = LG_FF2 },
 =======
 		.driver_data = LG_NOGET | LG_FF2 },
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		.driver_data = LG_FF2 },
+>>>>>>> 2617302... source
 	{ HID_USB_DEVICE(USB_VENDOR_ID_LOGITECH, USB_DEVICE_ID_LOGITECH_FLIGHT_SYSTEM_G940),
 		.driver_data = LG_FF3 },
 	{ HID_USB_DEVICE(USB_VENDOR_ID_LOGITECH, USB_DEVICE_ID_SPACENAVIGATOR),

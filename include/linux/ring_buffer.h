@@ -98,10 +98,14 @@ __ring_buffer_alloc(unsigned long size, unsigned flags, struct lock_class_key *k
 })
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 void ring_buffer_wait(struct ring_buffer *buffer, int cpu);
 =======
 int ring_buffer_wait(struct ring_buffer *buffer, int cpu);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+void ring_buffer_wait(struct ring_buffer *buffer, int cpu);
+>>>>>>> 2617302... source
 int ring_buffer_poll_wait(struct ring_buffer *buffer, int cpu,
 			  struct file *filp, poll_table *poll_table);
 

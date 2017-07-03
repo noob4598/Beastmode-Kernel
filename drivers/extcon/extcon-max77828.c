@@ -46,10 +46,14 @@
 extern int poweroff_charging;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 extern int system_rev;
 =======
 extern unsigned int system_rev;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+extern int system_rev;
+>>>>>>> 2617302... source
 
 extern struct otg_notify *get_otg_notify(void);
 

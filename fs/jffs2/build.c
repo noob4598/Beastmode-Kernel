@@ -50,11 +50,15 @@ next_inode(int *i, struct jffs2_inode_cache *ic, struct jffs2_sb_info *c)
 
 static void jffs2_build_inode_pass1(struct jffs2_sb_info *c,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				    struct jffs2_inode_cache *ic)
 =======
 				    struct jffs2_inode_cache *ic,
 				    int *dir_hardlinks)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+				    struct jffs2_inode_cache *ic)
+>>>>>>> 2617302... source
 {
 	struct jffs2_full_dirent *fd;
 
@@ -74,6 +78,9 @@ static void jffs2_build_inode_pass1(struct jffs2_sb_info *c,
 				  fd->name, fd->ino, ic->ino);
 			jffs2_mark_node_obsolete(c, fd->raw);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 			continue;
 		}
 
@@ -87,6 +94,7 @@ static void jffs2_build_inode_pass1(struct jffs2_sb_info *c,
 			}
 		} else
 			child_ic->pino_nlink++;
+<<<<<<< HEAD
 =======
 			/* Clear the ic/raw union so it doesn't cause problems later. */
 			fd->ic = NULL;
@@ -104,6 +112,8 @@ static void jffs2_build_inode_pass1(struct jffs2_sb_info *c,
 				*dir_hardlinks = 1;
 		}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 		dbg_fsbuild("increased nlink for child \"%s\" (ino #%u)\n", fd->name, fd->ino);
 		/* Can't free scan_dents so far. We might need them in pass 2 */
@@ -118,11 +128,16 @@ static void jffs2_build_inode_pass1(struct jffs2_sb_info *c,
 static int jffs2_build_filesystem(struct jffs2_sb_info *c)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int ret;
 	int i;
 =======
 	int ret, i, dir_hardlinks = 0;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	int ret;
+	int i;
+>>>>>>> 2617302... source
 	struct jffs2_inode_cache *ic;
 	struct jffs2_full_dirent *fd;
 	struct jffs2_full_dirent *dead_fds = NULL;
@@ -147,10 +162,14 @@ static int jffs2_build_filesystem(struct jffs2_sb_info *c)
 	for_each_inode(i, c, ic) {
 		if (ic->scan_dents) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			jffs2_build_inode_pass1(c, ic);
 =======
 			jffs2_build_inode_pass1(c, ic, &dir_hardlinks);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			jffs2_build_inode_pass1(c, ic);
+>>>>>>> 2617302... source
 			cond_resched();
 		}
 	}
@@ -187,6 +206,7 @@ static int jffs2_build_filesystem(struct jffs2_sb_info *c)
 
 	dbg_fsbuild("pass 2a complete\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 	if (dir_hardlinks) {
@@ -203,6 +223,8 @@ static int jffs2_build_filesystem(struct jffs2_sb_info *c)
 		}
 	}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	dbg_fsbuild("freeing temporary data structures\n");
 
 	/* Finally, we can scan again and free the dirent structs */
@@ -210,6 +232,7 @@ static int jffs2_build_filesystem(struct jffs2_sb_info *c)
 		while(ic->scan_dents) {
 			fd = ic->scan_dents;
 			ic->scan_dents = fd->next;
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 			/* We do use the pino_nlink field to count nlink of
@@ -240,6 +263,8 @@ static int jffs2_build_filesystem(struct jffs2_sb_info *c)
 				fd->ic->pino_nlink = ic->ino;
 			}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 			jffs2_free_full_dirent(fd);
 		}
 		ic->scan_dents = NULL;
@@ -319,14 +344,20 @@ static void jffs2_build_remove_unlinked_inode(struct jffs2_sb_info *c,
 			/* Reduce nlink of the child. If it's now zero, stick it on the
 			   dead_fds list to be cleaned up later. Else just free the fd */
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 
 			if (fd->type == DT_DIR)
 				child_ic->pino_nlink = 0;
 			else
 				child_ic->pino_nlink--;
+<<<<<<< HEAD
 =======
 			child_ic->pino_nlink--;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 			if (!child_ic->pino_nlink) {
 				dbg_fsbuild("inode #%u (\"%s\") now has no links; adding to dead_fds list.\n",

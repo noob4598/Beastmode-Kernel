@@ -1095,10 +1095,14 @@ struct pnfs_ds_commit_info {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define NFS4_EXCHANGE_ID_LEN	(48)
 =======
 #define NFS4_EXCHANGE_ID_LEN	(127)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+#define NFS4_EXCHANGE_ID_LEN	(48)
+>>>>>>> 2617302... source
 struct nfs41_exchange_id_args {
 	struct nfs_client		*client;
 	nfs4_verifier			*verifier;
@@ -1189,6 +1193,7 @@ struct nfs41_free_stateid_res {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 static inline void
 nfs_free_pnfs_ds_cinfo(struct pnfs_ds_commit_info *cinfo)
@@ -1197,11 +1202,14 @@ nfs_free_pnfs_ds_cinfo(struct pnfs_ds_commit_info *cinfo)
 }
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 #else
 
 struct pnfs_ds_commit_info {
 };
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 static inline void
@@ -1210,6 +1218,8 @@ nfs_free_pnfs_ds_cinfo(struct pnfs_ds_commit_info *cinfo)
 }
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 #endif /* CONFIG_NFS_V4_1 */
 
 struct nfs_page;

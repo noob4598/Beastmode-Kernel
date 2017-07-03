@@ -592,6 +592,7 @@ static int32_t sp1628_platform_probe(struct platform_device *pdev)
 	CDBG("%s, E.", __func__);
 	match = of_match_device(sp1628_dt_match, &pdev->dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	rc = msm_sensor_platform_probe(pdev, match->data);
 =======
 	if (match)
@@ -601,6 +602,9 @@ static int32_t sp1628_platform_probe(struct platform_device *pdev)
 		rc = -EINVAL;
 	}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	rc = msm_sensor_platform_probe(pdev, match->data);
+>>>>>>> 2617302... source
 	return rc;
 }
 

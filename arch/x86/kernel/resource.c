@@ -38,10 +38,14 @@ static void remove_e820_regions(struct resource *avail)
 void arch_remove_reservations(struct resource *avail)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	/* Trim out BIOS areas (low 1MB and high 2MB) and E820 regions */
 	if (avail->flags & IORESOURCE_MEM) {
 		if (avail->start < BIOS_END)
 			avail->start = BIOS_END;
+<<<<<<< HEAD
 =======
 	/*
 	 * Trim out BIOS area (high 2MB) and E820 regions. We do not remove
@@ -50,6 +54,8 @@ void arch_remove_reservations(struct resource *avail)
 	 */
 	if (avail->flags & IORESOURCE_MEM) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		resource_clip(avail, BIOS_ROM_BASE, BIOS_ROM_END);
 
 		remove_e820_regions(avail);

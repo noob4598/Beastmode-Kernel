@@ -48,10 +48,14 @@ static DEFINE_SPINLOCK(zone_scan_lock);
 /**
  * has_intersects_mems_allowed() - check task eligiblity for kill
 <<<<<<< HEAD
+<<<<<<< HEAD
  * @tsk: task struct of which task to consider
 =======
  * @start: task struct of which task to consider
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+ * @tsk: task struct of which task to consider
+>>>>>>> 2617302... source
  * @mask: nodemask passed to page allocator for mempolicy ooms
  *
  * Task eligibility is determined by whether or not a candidate task, @tsk,
@@ -59,12 +63,16 @@ static DEFINE_SPINLOCK(zone_scan_lock);
  * and whether or not it has the same set of allowed cpuset nodes.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 static bool has_intersects_mems_allowed(struct task_struct *tsk,
 					const nodemask_t *mask)
 {
 	struct task_struct *start = tsk;
 
 	do {
+<<<<<<< HEAD
 =======
 static bool has_intersects_mems_allowed(struct task_struct *start,
 					const nodemask_t *mask)
@@ -75,6 +83,8 @@ static bool has_intersects_mems_allowed(struct task_struct *start,
 	rcu_read_lock();
 	for_each_thread(start, tsk) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		if (mask) {
 			/*
 			 * If this is a mempolicy constrained oom, tsk's
@@ -83,23 +93,32 @@ static bool has_intersects_mems_allowed(struct task_struct *start,
 			 * needlessly killed.
 			 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (mempolicy_nodemask_intersects(tsk, mask))
 				return true;
 =======
 			ret = mempolicy_nodemask_intersects(tsk, mask);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			if (mempolicy_nodemask_intersects(tsk, mask))
+				return true;
+>>>>>>> 2617302... source
 		} else {
 			/*
 			 * This is not a mempolicy constrained oom, so only
 			 * check the mems of tsk's cpuset.
 			 */
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 			if (cpuset_mems_allowed_intersects(current, tsk))
 				return true;
 		}
 	} while_each_thread(start, tsk);
 
 	return false;
+<<<<<<< HEAD
 =======
 			ret = cpuset_mems_allowed_intersects(current, tsk);
 		}
@@ -110,6 +129,8 @@ static bool has_intersects_mems_allowed(struct task_struct *start,
 
 	return ret;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 }
 #else
 static bool has_intersects_mems_allowed(struct task_struct *tsk,
@@ -128,6 +149,9 @@ static bool has_intersects_mems_allowed(struct task_struct *tsk,
 struct task_struct *find_lock_task_mm(struct task_struct *p)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	struct task_struct *t = p;
 
 	do {
@@ -138,6 +162,7 @@ struct task_struct *find_lock_task_mm(struct task_struct *p)
 	} while_each_thread(p, t);
 
 	return NULL;
+<<<<<<< HEAD
 =======
 	struct task_struct *t;
 
@@ -155,6 +180,8 @@ found:
 
 	return t;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 }
 
 /* return true if the task is not adequate as candidate victim task. */
@@ -359,10 +386,14 @@ static struct task_struct *select_bad_process(unsigned int *ppoints,
 
 	rcu_read_lock();
 <<<<<<< HEAD
+<<<<<<< HEAD
 	do_each_thread(g, p) {
 =======
 	for_each_process_thread(g, p) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	do_each_thread(g, p) {
+>>>>>>> 2617302... source
 		unsigned int points;
 #ifdef CONFIG_OOM_SCAN_WA_PREVENT_WRONG_SEARCH
 		skip_search_thread = false;
@@ -398,11 +429,16 @@ static struct task_struct *select_bad_process(unsigned int *ppoints,
 			chosen_points = points;
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	} while_each_thread(g, p);
 	
 =======
 	}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	} while_each_thread(g, p);
+	
+>>>>>>> 2617302... source
 	if (chosen)
 	{
 #ifdef CONFIG_OOM_SCAN_SKIP_SEARCH_THREAD
@@ -484,6 +520,7 @@ static void dump_header(struct task_struct *p, gfp_t gfp_mask, int order,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 /*
  * Number of OOM killer invocations (including memcg OOM killer).
@@ -503,6 +540,8 @@ void note_oom_kill(void)
 }
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 #define K(x) ((x) << (PAGE_SHIFT-10))
 /*
  * Must be called while holding a reference to p, which will be released upon
@@ -516,10 +555,14 @@ void oom_kill_process(struct task_struct *p, gfp_t gfp_mask, int order,
 	struct task_struct *victim = p;
 	struct task_struct *child;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct task_struct *t = p;
 =======
 	struct task_struct *t;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	struct task_struct *t = p;
+>>>>>>> 2617302... source
 	struct mm_struct *mm;
 	unsigned int victim_points = 0;
 	static DEFINE_RATELIMIT_STATE(oom_rs, DEFAULT_RATELIMIT_INTERVAL,
@@ -551,10 +594,14 @@ void oom_kill_process(struct task_struct *p, gfp_t gfp_mask, int order,
 	 */
 	read_lock(&tasklist_lock);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	do {
 =======
 	for_each_thread(p, t) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	do {
+>>>>>>> 2617302... source
 		list_for_each_entry(child, &t->children, sibling) {
 			unsigned int child_points;
 
@@ -573,6 +620,9 @@ void oom_kill_process(struct task_struct *p, gfp_t gfp_mask, int order,
 			}
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	} while_each_thread(p, t);
 	read_unlock(&tasklist_lock);
 
@@ -580,6 +630,7 @@ void oom_kill_process(struct task_struct *p, gfp_t gfp_mask, int order,
 	p = find_lock_task_mm(victim);
 	if (!p) {
 		rcu_read_unlock();
+<<<<<<< HEAD
 =======
 	}
 	read_unlock(&tasklist_lock);
@@ -587,6 +638,8 @@ void oom_kill_process(struct task_struct *p, gfp_t gfp_mask, int order,
 	p = find_lock_task_mm(victim);
 	if (!p) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		put_task_struct(victim);
 		return;
 	} else if (victim != p) {
@@ -613,9 +666,12 @@ void oom_kill_process(struct task_struct *p, gfp_t gfp_mask, int order,
 	 * pending fatal signal.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	rcu_read_lock();
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	for_each_process(p)
 		if (p->mm == mm && !same_thread_group(p, victim) &&
 		    !(p->flags & PF_KTHREAD)) {
@@ -808,6 +864,7 @@ out:
 void pagefault_out_of_memory(void)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct zonelist *zonelist = node_zonelist(first_online_node,
 						  GFP_KERNEL);
 
@@ -819,6 +876,11 @@ void pagefault_out_of_memory(void)
 
 	zonelist = node_zonelist(first_online_node, GFP_KERNEL);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	struct zonelist *zonelist = node_zonelist(first_online_node,
+						  GFP_KERNEL);
+
+>>>>>>> 2617302... source
 	if (try_set_zonelist_oom(zonelist, GFP_KERNEL)) {
 		out_of_memory(NULL, 0, 0, NULL, false);
 		clear_zonelist_oom(zonelist, GFP_KERNEL);

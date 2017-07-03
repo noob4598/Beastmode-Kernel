@@ -89,9 +89,13 @@ static struct sk_buff *ipv6_gso_segment(struct sk_buff *skb,
 	int proto;
 	struct frag_hdr *fptr;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned int unfrag_ip6hlen;
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	unsigned int unfrag_ip6hlen;
+>>>>>>> 2617302... source
 	u8 *prevhdr;
 	int offset = 0;
 
@@ -130,6 +134,7 @@ static struct sk_buff *ipv6_gso_segment(struct sk_buff *skb,
 					   sizeof(*ipv6h));
 		if (proto == IPPROTO_UDP) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			unfrag_ip6hlen = ip6_find_1stfragopt(skb, &prevhdr);
 			fptr = (struct frag_hdr *)(skb_network_header(skb) +
 				unfrag_ip6hlen);
@@ -140,6 +145,11 @@ static struct sk_buff *ipv6_gso_segment(struct sk_buff *skb,
 			fptr = (struct frag_hdr *)(skb_network_header(skb) +
 				err);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			unfrag_ip6hlen = ip6_find_1stfragopt(skb, &prevhdr);
+			fptr = (struct frag_hdr *)(skb_network_header(skb) +
+				unfrag_ip6hlen);
+>>>>>>> 2617302... source
 			fptr->frag_off = htons(offset);
 			if (skb->next != NULL)
 				fptr->frag_off |= htons(IP6_MF);
@@ -186,9 +196,12 @@ static struct sk_buff **ipv6_gro_receive(struct sk_buff **head,
 	if (!ops || !ops->callbacks.gro_receive) {
 		__pskb_pull(skb, skb_gro_offset(skb));
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		skb_gro_frag0_invalidate(skb);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		proto = ipv6_gso_pull_exthdrs(skb, proto);
 		skb_gro_pull(skb, -skb_transport_offset(skb));
 		skb_reset_transport_header(skb);

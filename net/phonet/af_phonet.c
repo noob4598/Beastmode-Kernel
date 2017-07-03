@@ -378,12 +378,15 @@ static int phonet_rcv(struct sk_buff *skb, struct net_device *dev,
 	u16 len;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	skb = skb_share_check(skb, GFP_ATOMIC);
 	if (!skb)
 		return NET_RX_DROP;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	/* check we have at least a full Phonet header */
 	if (!pskb_pull(skb, sizeof(struct phonethdr)))
 		goto out;

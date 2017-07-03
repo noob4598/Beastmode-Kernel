@@ -361,11 +361,17 @@ static void iwl_mvm_cleanup_iterator(void *data, u8 *mac,
 	mvmvif->ap_sta_id = IWL_MVM_STATION_COUNT;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* does this make sense at all? */
 	mvmvif->color++;
 
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	/* does this make sense at all? */
+	mvmvif->color++;
+
+>>>>>>> 2617302... source
 	spin_lock_bh(&mvm->time_event_lock);
 	iwl_mvm_te_clear_data(mvm, &mvmvif->time_event_data);
 	spin_unlock_bh(&mvm->time_event_lock);

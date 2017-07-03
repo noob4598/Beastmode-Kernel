@@ -92,10 +92,14 @@ static gfp_t massage_gfp_flags(const struct device *dev, gfp_t gfp)
 #endif
 #if defined(CONFIG_ZONE_DMA) && !defined(CONFIG_ZONE_DMA32)
 <<<<<<< HEAD
+<<<<<<< HEAD
 	     if (dev->coherent_dma_mask < DMA_BIT_MASK(64))
 =======
 	     if (dev->coherent_dma_mask < DMA_BIT_MASK(sizeof(phys_addr_t) * 8))
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	     if (dev->coherent_dma_mask < DMA_BIT_MASK(64))
+>>>>>>> 2617302... source
 		dma_flag = __GFP_DMA;
 	else
 #endif

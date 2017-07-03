@@ -1434,12 +1434,16 @@ clock_set:
 		}
 		timeout--;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		udelay(1);
 =======
 		spin_unlock_irq(&host->lock);
 		usleep_range(900, 1100);
 		spin_lock_irq(&host->lock);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		udelay(1);
+>>>>>>> 2617302... source
 	}
 
 	clk |= SDHCI_CLOCK_CARD_EN;
@@ -1697,6 +1701,9 @@ static void sdhci_request(struct mmc_host *mmc, struct mmc_request *mrq)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	/*
 	 * Firstly check card presence from cd-gpio.  The return could
 	 * be one of the following possibilities:
@@ -1713,9 +1720,12 @@ static void sdhci_request(struct mmc_host *mmc, struct mmc_request *mrq)
 			present = sdhci_readl(host, SDHCI_PRESENT_STATE) &
 					SDHCI_CARD_PRESENT;
 	}
+<<<<<<< HEAD
 =======
 	present = mmc_gpio_get_cd(host->mmc);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	spin_lock_irqsave(&host->lock, flags);
 
@@ -1746,6 +1756,7 @@ static void sdhci_request(struct mmc_host *mmc, struct mmc_request *mrq)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/*
 	 * Firstly check card presence from cd-gpio.  The return could
@@ -1764,6 +1775,8 @@ static void sdhci_request(struct mmc_host *mmc, struct mmc_request *mrq)
 	}
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	if (!present || host->flags & SDHCI_DEVICE_DEAD) {
 		host->mrq->cmd->error = -ENOMEDIUM;
 		tasklet_schedule(&host->finish_tasklet);

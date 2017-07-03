@@ -25,6 +25,7 @@ static void idmap_add_pmd(pud_t *pud, unsigned long addr, unsigned long end,
 			return;
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		/*
 		 * Copy the original PMD to ensure that the PMD entries for
@@ -34,6 +35,8 @@ static void idmap_add_pmd(pud_t *pud, unsigned long addr, unsigned long end,
 			memcpy(pmd, pmd_offset(pud, 0),
 			       PTRS_PER_PMD * sizeof(pmd_t));
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		pud_populate(&init_mm, pud, pmd);
 		pmd += pmd_index(addr);
 	} else

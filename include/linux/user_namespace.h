@@ -18,12 +18,15 @@ struct uid_gid_map {	/* 64 bytes -- 1 cache line */
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define USERNS_SETGROUPS_ALLOWED 1UL
 
 #define USERNS_INIT_FLAGS USERNS_SETGROUPS_ALLOWED
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 struct user_namespace {
 	struct uid_gid_map	uid_map;
 	struct uid_gid_map	gid_map;
@@ -35,9 +38,12 @@ struct user_namespace {
 	kgid_t			group;
 	unsigned int		proc_inum;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	unsigned long		flags;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	bool			may_mount_sysfs;
 	bool			may_mount_proc;
 };
@@ -71,11 +77,14 @@ extern ssize_t proc_uid_map_write(struct file *, const char __user *, size_t, lo
 extern ssize_t proc_gid_map_write(struct file *, const char __user *, size_t, loff_t *);
 extern ssize_t proc_projid_map_write(struct file *, const char __user *, size_t, loff_t *);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 extern ssize_t proc_setgroups_write(struct file *, const char __user *, size_t, loff_t *);
 extern int proc_setgroups_show(struct seq_file *m, void *v);
 extern bool userns_may_setgroups(const struct user_namespace *ns);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 #else
 
 static inline struct user_namespace *get_user_ns(struct user_namespace *ns)
@@ -101,12 +110,15 @@ static inline void put_user_ns(struct user_namespace *ns)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 static inline bool userns_may_setgroups(const struct user_namespace *ns)
 {
 	return true;
 }
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 #endif
 
 void update_mnt_policy(struct user_namespace *userns);

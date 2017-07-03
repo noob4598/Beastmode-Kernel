@@ -347,12 +347,15 @@ static ssize_t ipath_diagpkt_write(struct file *fp,
 			goto bail;
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		dp.len = odp.len;
 		dp.unit = odp.unit;
 		dp.data = odp.data;
 		dp.pbc_wd = 0;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	} else {
 		ret = -EINVAL;
 		goto bail;

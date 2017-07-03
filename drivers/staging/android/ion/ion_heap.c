@@ -3,10 +3,14 @@
  *
  * Copyright (C) 2011 Google, Inc.
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright (c) 2011-2014, The Linux Foundation. All rights reserved.
 =======
  * Copyright (c) 2011-2016, The Linux Foundation. All rights reserved.
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+ * Copyright (c) 2011-2014, The Linux Foundation. All rights reserved.
+>>>>>>> 2617302... source
  *
  * This software is licensed under the terms of the GNU General Public
  * License version 2, as published by the Free Software Foundation, and
@@ -360,6 +364,7 @@ struct ion_heap *ion_heap_create(struct ion_platform_heap *heap_data)
 	switch (heap_data->type) {
 	case ION_HEAP_TYPE_SYSTEM_CONTIG:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		heap = ion_system_contig_heap_create(heap_data);
 		break;
 =======
@@ -367,6 +372,10 @@ struct ion_heap *ion_heap_create(struct ion_platform_heap *heap_data)
 		       heap_data->type);
 		return ERR_PTR(-EINVAL);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		heap = ion_system_contig_heap_create(heap_data);
+		break;
+>>>>>>> 2617302... source
 	case ION_HEAP_TYPE_SYSTEM:
 		heap = ion_system_heap_create(heap_data);
 		break;
@@ -403,11 +412,15 @@ void ion_heap_destroy(struct ion_heap *heap)
 	switch (heap->type) {
 	case ION_HEAP_TYPE_SYSTEM_CONTIG:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ion_system_contig_heap_destroy(heap);
 =======
 		pr_err("%s: Heap type is disabled: %d\n", __func__,
 		       heap->type);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		ion_system_contig_heap_destroy(heap);
+>>>>>>> 2617302... source
 		break;
 	case ION_HEAP_TYPE_SYSTEM:
 		ion_system_heap_destroy(heap);

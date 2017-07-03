@@ -35,9 +35,12 @@
 #include <linux/slab.h>
 #include <linux/suspend.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <linux/delay.h>
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 #include <asm/unaligned.h>
 
 #ifdef CONFIG_ACPI_PROCFS_POWER
@@ -1086,6 +1089,7 @@ static struct dmi_system_id bat_dmi_table[] = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 /*
  * Some machines'(E,G Lenovo Z480) ECs are not stable
@@ -1110,6 +1114,8 @@ static int acpi_battery_update_retry(struct acpi_battery *battery)
 }
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 static int acpi_battery_add(struct acpi_device *device)
 {
 	int result = 0;
@@ -1130,6 +1136,7 @@ static int acpi_battery_add(struct acpi_device *device)
 			"_BIX", &handle)))
 		set_bit(ACPI_BATTERY_XINFO_PRESENT, &battery->flags);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	result = acpi_battery_update(battery);
 	if (result)
 		goto fail;
@@ -1140,6 +1147,11 @@ static int acpi_battery_add(struct acpi_device *device)
 		goto fail;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	result = acpi_battery_update(battery);
+	if (result)
+		goto fail;
+>>>>>>> 2617302... source
 #ifdef CONFIG_ACPI_PROCFS_POWER
 	result = acpi_battery_add_fs(device);
 #endif

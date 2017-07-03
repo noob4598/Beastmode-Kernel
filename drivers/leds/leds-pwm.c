@@ -83,6 +83,7 @@ static inline size_t sizeof_pwm_leds_priv(int num_leds)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 static void led_pwm_cleanup(struct led_pwm_priv *priv)
 {
@@ -94,6 +95,8 @@ static void led_pwm_cleanup(struct led_pwm_priv *priv)
 }
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 static struct led_pwm_priv *led_pwm_create_of(struct platform_device *pdev)
 {
 	struct device_node *node = pdev->dev.of_node;
@@ -152,11 +155,16 @@ static struct led_pwm_priv *led_pwm_create_of(struct platform_device *pdev)
 	return priv;
 err:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	while (priv->num_leds--)
 		led_classdev_unregister(&priv->leds[priv->num_leds].cdev);
 =======
 	led_pwm_cleanup(priv);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	while (priv->num_leds--)
+		led_classdev_unregister(&priv->leds[priv->num_leds].cdev);
+>>>>>>> 2617302... source
 
 	return NULL;
 }
@@ -217,12 +225,17 @@ static int led_pwm_probe(struct platform_device *pdev)
 
 err:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	while (i--)
 		led_classdev_unregister(&priv->leds[i].cdev);
 =======
 	priv->num_leds = i;
 	led_pwm_cleanup(priv);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	while (i--)
+		led_classdev_unregister(&priv->leds[i].cdev);
+>>>>>>> 2617302... source
 
 	return ret;
 }
@@ -231,6 +244,9 @@ static int led_pwm_remove(struct platform_device *pdev)
 {
 	struct led_pwm_priv *priv = platform_get_drvdata(pdev);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	int i;
 
 	for (i = 0; i < priv->num_leds; i++) {
@@ -238,10 +254,13 @@ static int led_pwm_remove(struct platform_device *pdev)
 		if (priv->leds[i].can_sleep)
 			cancel_work_sync(&priv->leds[i].work);
 	}
+<<<<<<< HEAD
 =======
 
 	led_pwm_cleanup(priv);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	return 0;
 }

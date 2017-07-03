@@ -287,10 +287,13 @@
 #define WCD9XXX_A_RX_HPH_CHOP_CTL			(0x1A5)
 #define WCD9XXX_A_RX_HPH_CHOP_CTL__POR				(0xB4)
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define WCD9XXX_A_RX_HPH_BIAS_PA			(0x1A6)
 #define WCD9XXX_A_RX_HPH_BIAS_PA__POR				(0x7A)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 #define WCD9XXX_A_RX_HPH_L_TEST				(0x1AF)
 #define WCD9XXX_A_RX_HPH_L_TEST__POR				(0x00)
 #define WCD9XXX_A_RX_HPH_R_TEST				(0x1B5)
@@ -304,12 +307,15 @@
 #define WCD9XXX_A_RX_HPH_CNP_WG_CTL			(0x1AC)
 #define WCD9XXX_A_RX_HPH_CNP_WG_CTL__POR			(0xDE)
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define WCD9XXX_A_RX_HPH_L_PA_CTL			(0x1B0)
 #define WCD9XXX_A_RX_HPH_L_PA_CTL__POR				(0x42)
 #define WCD9XXX_A_RX_HPH_R_PA_CTL			(0x1B6)
 #define WCD9XXX_A_RX_HPH_R_PA_CTL__POR				(0x42)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 #define WCD9XXX_A_CDC_CONN_RX2_B1_CTL			(0x383)
 #define WCD9XXX_A_CDC_CONN_RX2_B1_CTL__POR			(0x00)
 #define WCD9XXX_A_CDC_PA_RAMP_B1_CTL			(0x361)

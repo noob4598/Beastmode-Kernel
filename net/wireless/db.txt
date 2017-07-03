@@ -370,11 +370,15 @@ country GD:
 	(5735 - 5835 @ 80), (6, 30)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 country GH: DFS-FCC
 	(2402 - 2482 @ 40), (3, 20)
 	(5170 - 5250 @ 80), (6, 17), AUTO-BW
 	(5250 - 5330 @ 80), (6, 24), DFS, AUTO-BW
 	(5490 - 5730 @ 160), (6, 24), DFS
+<<<<<<< HEAD
 =======
 country GH: DFS-FCC 
 	(2402 - 2482 @ 40), (3, 20) 
@@ -382,6 +386,8 @@ country GH: DFS-FCC
 	(5250 - 5330 @ 80), (6, 24), DFS, AUTO-BW 
 	(5490 - 5730 @ 160), (6, 24), DFS 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	(5735 - 5835 @ 80), (6, 30)
 
 country GP:
@@ -469,6 +475,7 @@ country IE: DFS-ETSI
 country IL:
 	(2402 - 2482 @ 40), (N/A, 20)
 <<<<<<< HEAD
+<<<<<<< HEAD
 	(5150 - 5250 @ 80), (N/A, 200 mW), NO-OUTDOOR
 	(5250 - 5350 @ 80), (N/A, 200 mW), NO-OUTDOOR, DFS
 =======
@@ -477,6 +484,10 @@ country IL:
 	(5490 - 5730 @ 160), (N/A, 23), DFS
 	(5735 - 5835 @ 80), (N/A, 23), PASSIVE-SCAN
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	(5150 - 5250 @ 80), (N/A, 200 mW), NO-OUTDOOR
+	(5250 - 5350 @ 80), (N/A, 200 mW), NO-OUTDOOR, DFS
+>>>>>>> 2617302... source
 
 country IN:
 	(2402 - 2482 @ 40), (N/A, 20)
@@ -1000,6 +1011,9 @@ country UG:
 	(5150 - 5250 @ 80), (6, 20)
 	(5250 - 5350 @ 80), (6, 20), DFS
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
         (5470 - 5725 @ 80), (6, 20), DFS
         (5725 - 5825 @ 80), (6, 20)
 
@@ -1024,6 +1038,7 @@ country CU: DFS-FCC
 	# reference: http://cfr.regstoday.com/47cfr15.aspx#47_CFR_15p255
 	# channels 1,2,3, EIRP=40dBm(43dBm peak)
 	(57240 - 63720 @ 2160), (40)
+<<<<<<< HEAD
 =======
 	(5470 - 5725 @ 80), (6, 20), DFS
 	(5725 - 5825 @ 80), (6, 20)
@@ -1050,6 +1065,8 @@ country CU: DFS-FCC
 	# channels 1,2,3, EIRP=40dBm(43dBm peak)
 	(57240 - 63720 @ 2160), (N/A, 40)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 # Public Safety FCCA, FCC4
 #  27dBm [4.9GHz 1/4 rate], 30dBm [1/2 rate], 33dBm [full rate], and 5GHz same as FCC1

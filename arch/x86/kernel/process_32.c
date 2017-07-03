@@ -148,10 +148,14 @@ int copy_thread(unsigned long clone_flags, unsigned long sp,
 		childregs->orig_ax = -1;
 		childregs->cs = __KERNEL_CS | get_kernel_rpl();
 <<<<<<< HEAD
+<<<<<<< HEAD
 		childregs->flags = X86_EFLAGS_IF | X86_EFLAGS_BIT1;
 =======
 		childregs->flags = X86_EFLAGS_IF | X86_EFLAGS_FIXED;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		childregs->flags = X86_EFLAGS_IF | X86_EFLAGS_BIT1;
+>>>>>>> 2617302... source
 		p->fpu_counter = 0;
 		p->thread.io_bitmap_ptr = NULL;
 		memset(p->thread.ptrace_bps, 0, sizeof(p->thread.ptrace_bps));

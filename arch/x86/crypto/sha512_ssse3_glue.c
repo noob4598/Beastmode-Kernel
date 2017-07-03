@@ -142,10 +142,14 @@ static int sha512_ssse3_final(struct shash_desc *desc, u8 *out)
 	/* save number of bits */
 	bits[1] = cpu_to_be64(sctx->count[0] << 3);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	bits[0] = cpu_to_be64(sctx->count[1] << 3) | sctx->count[0] >> 61;
 =======
 	bits[0] = cpu_to_be64(sctx->count[1] << 3 | sctx->count[0] >> 61);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	bits[0] = cpu_to_be64(sctx->count[1] << 3) | sctx->count[0] >> 61;
+>>>>>>> 2617302... source
 
 	/* Pad out to 112 mod 128 and append length */
 	index = sctx->count[0] & 0x7f;
@@ -284,7 +288,11 @@ MODULE_LICENSE("GPL");
 MODULE_DESCRIPTION("SHA512 Secure Hash Algorithm, Supplemental SSE3 accelerated");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 MODULE_ALIAS("sha512");
 =======
 MODULE_ALIAS_CRYPTO("sha512");
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+MODULE_ALIAS("sha512");
+>>>>>>> 2617302... source

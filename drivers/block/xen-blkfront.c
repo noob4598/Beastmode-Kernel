@@ -105,10 +105,14 @@ struct blkfront_info
 	struct gnttab_free_callback callback;
 	struct blk_shadow shadow[BLK_RING_SIZE];
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct list_head persistent_gnts;
 =======
 	struct list_head grants;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	struct list_head persistent_gnts;
+>>>>>>> 2617302... source
 	unsigned int persistent_gnts_c;
 	unsigned long shadow_free;
 	unsigned int feature_flush;
@@ -180,6 +184,9 @@ static int fill_grant_buffer(struct blkfront_info *info, int num)
 			goto out_of_memory;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		granted_page = alloc_page(GFP_NOIO);
 		if (!granted_page) {
 			kfree(gnt_list_entry);
@@ -189,6 +196,7 @@ static int fill_grant_buffer(struct blkfront_info *info, int num)
 		gnt_list_entry->pfn = page_to_pfn(granted_page);
 		gnt_list_entry->gref = GRANT_INVALID_REF;
 		list_add(&gnt_list_entry->node, &info->persistent_gnts);
+<<<<<<< HEAD
 =======
 		if (info->feature_persistent) {
 			granted_page = alloc_page(GFP_NOIO);
@@ -202,6 +210,8 @@ static int fill_grant_buffer(struct blkfront_info *info, int num)
 		gnt_list_entry->gref = GRANT_INVALID_REF;
 		list_add(&gnt_list_entry->node, &info->grants);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		i++;
 	}
 
@@ -209,6 +219,7 @@ static int fill_grant_buffer(struct blkfront_info *info, int num)
 
 out_of_memory:
 	list_for_each_entry_safe(gnt_list_entry, n,
+<<<<<<< HEAD
 <<<<<<< HEAD
 	                         &info->persistent_gnts, node) {
 		list_del(&gnt_list_entry->node);
@@ -219,6 +230,11 @@ out_of_memory:
 		if (info->feature_persistent)
 			__free_page(pfn_to_page(gnt_list_entry->pfn));
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	                         &info->persistent_gnts, node) {
+		list_del(&gnt_list_entry->node);
+		__free_page(pfn_to_page(gnt_list_entry->pfn));
+>>>>>>> 2617302... source
 		kfree(gnt_list_entry);
 		i--;
 	}
@@ -228,14 +244,18 @@ out_of_memory:
 
 static struct grant *get_grant(grant_ref_t *gref_head,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
                                unsigned long pfn,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
                                struct blkfront_info *info)
 {
 	struct grant *gnt_list_entry;
 	unsigned long buffer_mfn;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	BUG_ON(list_empty(&info->persistent_gnts));
 	gnt_list_entry = list_first_entry(&info->persistent_gnts, struct grant,
@@ -244,6 +264,11 @@ static struct grant *get_grant(grant_ref_t *gref_head,
 	BUG_ON(list_empty(&info->grants));
 	gnt_list_entry = list_first_entry(&info->grants, struct grant, node);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	BUG_ON(list_empty(&info->persistent_gnts));
+	gnt_list_entry = list_first_entry(&info->persistent_gnts, struct grant,
+	                                  node);
+>>>>>>> 2617302... source
 	list_del(&gnt_list_entry->node);
 
 	if (gnt_list_entry->gref != GRANT_INVALID_REF) {
@@ -255,12 +280,15 @@ static struct grant *get_grant(grant_ref_t *gref_head,
 	gnt_list_entry->gref = gnttab_claim_grant_reference(gref_head);
 	BUG_ON(gnt_list_entry->gref == -ENOSPC);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (!info->feature_persistent) {
 		BUG_ON(!pfn);
 		gnt_list_entry->pfn = pfn;
 	}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	buffer_mfn = pfn_to_mfn(gnt_list_entry->pfn);
 	gnttab_grant_foreign_access_ref(gnt_list_entry->gref,
 	                                info->xbdev->otherend_id,
@@ -472,19 +500,27 @@ static int blkif_queue_request(struct request *req)
 			lsect = fsect + (sg->length >> 9) - 1;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 			gnt_list_entry = get_grant(&gref_head, info);
 =======
 			gnt_list_entry = get_grant(&gref_head, page_to_pfn(sg_page(sg)), info);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			gnt_list_entry = get_grant(&gref_head, info);
+>>>>>>> 2617302... source
 			ref = gnt_list_entry->gref;
 
 			info->shadow[id].grants_used[i] = gnt_list_entry;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (rq_data_dir(req)) {
 =======
 			if (rq_data_dir(req) && info->feature_persistent) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			if (rq_data_dir(req)) {
+>>>>>>> 2617302... source
 				char *bvec_data;
 				void *shared_data;
 
@@ -878,6 +914,7 @@ static void blkif_free(struct blkfront_info *info, int suspend)
 
 	/* Remove all persistent grants */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!list_empty(&info->persistent_gnts)) {
 		list_for_each_entry_safe(persistent_gnt, n,
 		                         &info->persistent_gnts, node) {
@@ -886,6 +923,11 @@ static void blkif_free(struct blkfront_info *info, int suspend)
 		list_for_each_entry_safe(persistent_gnt, n,
 		                         &info->grants, node) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (!list_empty(&info->persistent_gnts)) {
+		list_for_each_entry_safe(persistent_gnt, n,
+		                         &info->persistent_gnts, node) {
+>>>>>>> 2617302... source
 			list_del(&persistent_gnt->node);
 			if (persistent_gnt->gref != GRANT_INVALID_REF) {
 				gnttab_end_foreign_access(persistent_gnt->gref,
@@ -893,11 +935,15 @@ static void blkif_free(struct blkfront_info *info, int suspend)
 				info->persistent_gnts_c--;
 			}
 <<<<<<< HEAD
+<<<<<<< HEAD
 			__free_page(pfn_to_page(persistent_gnt->pfn));
 =======
 			if (info->feature_persistent)
 				__free_page(pfn_to_page(persistent_gnt->pfn));
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			__free_page(pfn_to_page(persistent_gnt->pfn));
+>>>>>>> 2617302... source
 			kfree(persistent_gnt);
 		}
 	}
@@ -935,10 +981,14 @@ static void blkif_completion(struct blk_shadow *s, struct blkfront_info *info,
 	nseg = s->req.u.rw.nr_segments;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (bret->operation == BLKIF_OP_READ) {
 =======
 	if (bret->operation == BLKIF_OP_READ && info->feature_persistent) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (bret->operation == BLKIF_OP_READ) {
+>>>>>>> 2617302... source
 		/*
 		 * Copy the data received from the backend into the bvec.
 		 * Since bv_offset can be different than 0, and bv_len different
@@ -958,6 +1008,7 @@ static void blkif_completion(struct blk_shadow *s, struct blkfront_info *info,
 		}
 	}
 	/* Add the persistent grant into the list of free grants */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	for (i = 0; i < s->req.u.rw.nr_segments; i++) {
 		list_add(&s->grants_used[i]->node, &info->persistent_gnts);
@@ -988,6 +1039,11 @@ static void blkif_completion(struct blk_shadow *s, struct blkfront_info *info,
 			list_add_tail(&s->grants_used[i]->node, &info->grants);
 		}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	for (i = 0; i < s->req.u.rw.nr_segments; i++) {
+		list_add(&s->grants_used[i]->node, &info->persistent_gnts);
+		info->persistent_gnts_c++;
+>>>>>>> 2617302... source
 	}
 }
 
@@ -1126,14 +1182,20 @@ static int setup_blkring(struct xenbus_device *dev,
 		sg_init_table(info->shadow[i].sg, BLKIF_MAX_SEGMENTS_PER_REQUEST);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	/* Allocate memory for grants */
 	err = fill_grant_buffer(info, BLK_RING_SIZE *
 	                              BLKIF_MAX_SEGMENTS_PER_REQUEST);
 	if (err)
 		goto fail;
 
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	err = xenbus_grant_ring(dev, virt_to_mfn(info->ring.sring));
 	if (err < 0) {
 		free_page((unsigned long)sring);
@@ -1293,10 +1355,14 @@ static int blkfront_probe(struct xenbus_device *dev,
 	info->xbdev = dev;
 	info->vdevice = vdevice;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	INIT_LIST_HEAD(&info->persistent_gnts);
 =======
 	INIT_LIST_HEAD(&info->grants);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	INIT_LIST_HEAD(&info->persistent_gnts);
+>>>>>>> 2617302... source
 	info->persistent_gnts_c = 0;
 	info->connected = BLKIF_STATE_DISCONNECTED;
 	INIT_WORK(&info->work, blkif_restart_queue);
@@ -1326,11 +1392,15 @@ static int blkif_recover(struct blkfront_info *info)
 	struct blkif_request *req;
 	struct blk_shadow *copy;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int j;
 =======
 	unsigned int persistent;
 	int j, rc;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	int j;
+>>>>>>> 2617302... source
 
 	/* Stage 1: Make a safe copy of the shadow state. */
 	copy = kmemdup(info->shadow, sizeof(info->shadow),
@@ -1345,6 +1415,7 @@ static int blkif_recover(struct blkfront_info *info)
 	info->shadow_free = info->ring.req_prod_pvt;
 	info->shadow[BLK_RING_SIZE-1].req.u.rw.id = 0x0fffffff;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 	/* Check if the backend supports persistent grants */
@@ -1366,6 +1437,8 @@ static int blkif_recover(struct blkfront_info *info)
 	}
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	/* Stage 3: Find pending requests and requeue them. */
 	for (i = 0; i < BLK_RING_SIZE; i++) {
 		/* Not in use? */
@@ -1431,6 +1504,7 @@ static int blkfront_resume(struct xenbus_device *dev)
 
 	err = talk_to_blkback(dev, info);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (info->connected == BLKIF_STATE_SUSPENDED && !err)
 		err = blkif_recover(info);
 =======
@@ -1441,6 +1515,10 @@ static int blkfront_resume(struct xenbus_device *dev)
 	 * features it supports.
 	 */
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (info->connected == BLKIF_STATE_SUSPENDED && !err)
+		err = blkif_recover(info);
+>>>>>>> 2617302... source
 
 	return err;
 }
@@ -1545,6 +1623,7 @@ static void blkfront_connect(struct blkfront_info *info)
 		set_capacity(info->gd, sectors);
 		revalidate_disk(info->gd);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 		/* fall through */
 	case BLKIF_STATE_SUSPENDED:
@@ -1560,6 +1639,11 @@ static void blkfront_connect(struct blkfront_info *info)
 		 */
 		blkif_recover(info);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+
+		/* fall through */
+	case BLKIF_STATE_SUSPENDED:
+>>>>>>> 2617302... source
 		return;
 
 	default:
@@ -1628,6 +1712,7 @@ static void blkfront_connect(struct blkfront_info *info)
 		info->feature_persistent = persistent;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/* Allocate memory for grants */
 	err = fill_grant_buffer(info, BLK_RING_SIZE *
@@ -1638,6 +1723,8 @@ static void blkfront_connect(struct blkfront_info *info)
 	}
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	err = xlvbd_alloc_gendisk(sectors, info, binfo, sector_size);
 	if (err) {
 		xenbus_dev_fatal(info->xbdev, err, "xlvbd_add at %s",
@@ -1687,11 +1774,15 @@ static void blkback_changed(struct xenbus_device *dev,
 		/* Missed the backend's Closing state -- fallthrough */
 	case XenbusStateClosing:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		blkfront_closing(info);
 =======
 		if (info)
 			blkfront_closing(info);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		blkfront_closing(info);
+>>>>>>> 2617302... source
 		break;
 	}
 }

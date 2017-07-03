@@ -1,8 +1,12 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* Copyright (c) 2012-2013, The Linux Foundation. All rights reserved.
 =======
 /* Copyright (c) 2012-2014, The Linux Foundation. All rights reserved.
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+/* Copyright (c) 2012-2013, The Linux Foundation. All rights reserved.
+>>>>>>> 2617302... source
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -2119,9 +2123,13 @@ static int do_allocate(struct ocmem_req *req, bool can_block, bool can_wait)
 	down_write(&req->rw_sem);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mutex_lock(&allocation_mutex);
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	mutex_lock(&allocation_mutex);
+>>>>>>> 2617302... source
 retry_allocate:
 
 	/* Take the scheduler mutex */
@@ -2132,9 +2140,12 @@ retry_allocate:
 	if (rc == OP_EVICT) {
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		mutex_lock(&allocation_mutex);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		ret = run_evict(req);
 
 		if (ret == 0) {
@@ -2142,9 +2153,12 @@ retry_allocate:
 			if (rc < 0) {
 				pr_err("Failed to restore for req %p\n", req);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 				mutex_unlock(&allocation_mutex);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 				goto err_allocate_fail;
 			}
 			req->edata = NULL;
@@ -2153,6 +2167,7 @@ retry_allocate:
 			req->req_start = 0x0;
 			req->req_end = 0x0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 			goto retry_allocate;
 		} else {
 =======
@@ -2161,15 +2176,24 @@ retry_allocate:
 		} else {
 			mutex_unlock(&allocation_mutex);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			goto retry_allocate;
+		} else {
+>>>>>>> 2617302... source
 			goto err_allocate_fail;
 		}
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mutex_unlock(&allocation_mutex);
 
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	mutex_unlock(&allocation_mutex);
+
+>>>>>>> 2617302... source
 	if (rc == OP_FAIL) {
 		inc_ocmem_stat(zone_of(req), NR_ALLOCATION_FAILS);
 		goto err_allocate_fail;
@@ -2195,9 +2219,13 @@ retry_allocate:
 	return 0;
 err_allocate_fail:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mutex_unlock(&allocation_mutex);
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	mutex_unlock(&allocation_mutex);
+>>>>>>> 2617302... source
 	up_write(&req->rw_sem);
 	return -EINVAL;
 }

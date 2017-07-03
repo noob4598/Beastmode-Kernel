@@ -117,18 +117,24 @@ static void iwl_pcie_set_pwr(struct iwl_trans *trans, bool vaux)
 /* PCI registers */
 #define PCI_CFG_RETRY_TIMEOUT	0x041
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define PCI_EXP_DEVCTL2_LTR_EN	0x0400
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 static void iwl_pcie_apm_config(struct iwl_trans *trans)
 {
 	struct iwl_trans_pcie *trans_pcie = IWL_TRANS_GET_PCIE_TRANS(trans);
 	u16 lctl;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	u16 cap;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	/*
 	 * HW bug W/A for instability in PCIe bus L0S->L1 transition.
@@ -140,6 +146,9 @@ static void iwl_pcie_apm_config(struct iwl_trans *trans)
 	 */
 	pcie_capability_read_word(trans_pcie->pci_dev, PCI_EXP_LNKCTL, &lctl);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	if (lctl & PCI_EXP_LNKCTL_ASPM_L1) {
 		/* L1-ASPM enabled; disable(!) L0S */
 		iwl_set_bit(trans, CSR_GIO_REG, CSR_GIO_REG_VAL_L0S_ENABLED);
@@ -150,6 +159,7 @@ static void iwl_pcie_apm_config(struct iwl_trans *trans)
 		dev_info(trans->dev, "L1 Disabled; Enabling L0S\n");
 	}
 	trans->pm_support = !(lctl & PCI_EXP_LNKCTL_ASPM_L0S);
+<<<<<<< HEAD
 =======
 	if (lctl & PCI_EXP_LNKCTL_ASPM_L1)
 		iwl_set_bit(trans, CSR_GIO_REG, CSR_GIO_REG_VAL_L0S_ENABLED);
@@ -163,6 +173,8 @@ static void iwl_pcie_apm_config(struct iwl_trans *trans)
 		 (lctl & PCI_EXP_LNKCTL_ASPM_L1) ? "En" : "Dis",
 		 trans->ltr_enabled ? "En" : "Dis");
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 }
 
 /*
@@ -362,9 +374,12 @@ static int iwl_pcie_prepare_card_hw(struct iwl_trans *trans)
 	int ret;
 	int t = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	int iter;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	IWL_DEBUG_INFO(trans, "iwl_trans_prepare_card_hw enter\n");
 
@@ -374,6 +389,9 @@ static int iwl_pcie_prepare_card_hw(struct iwl_trans *trans)
 		return 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	/* If HW is not ready, prepare the conditions to check again */
 	iwl_set_bit(trans, CSR_HW_IF_CONFIG_REG,
 		    CSR_HW_IF_CONFIG_REG_PREPARE);
@@ -386,6 +404,7 @@ static int iwl_pcie_prepare_card_hw(struct iwl_trans *trans)
 		usleep_range(200, 1000);
 		t += 200;
 	} while (t < 150000);
+<<<<<<< HEAD
 =======
 	for (iter = 0; iter < 10; iter++) {
 		/* If HW is not ready, prepare the conditions to check again */
@@ -405,6 +424,8 @@ static int iwl_pcie_prepare_card_hw(struct iwl_trans *trans)
 
 	IWL_DEBUG_INFO(trans, "got NIC after %d iterations\n", iter);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	return ret;
 }

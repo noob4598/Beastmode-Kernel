@@ -225,9 +225,12 @@ nouveau_hw_get_clock(struct drm_device *dev, enum nvbios_pll_type plltype)
 
 		pci_read_config_dword(pci_get_bus_and_slot(0, 3), 0x6c, &mpllP);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		mpllP = (mpllP >> 8) & 0xf;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		if (!mpllP)
 			mpllP = 4;
 
@@ -239,10 +242,14 @@ nouveau_hw_get_clock(struct drm_device *dev, enum nvbios_pll_type plltype)
 
 		pci_read_config_dword(pci_get_bus_and_slot(0, 5), 0x4c, &clock);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return clock;
 =======
 		return clock / 1000;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		return clock;
+>>>>>>> 2617302... source
 	}
 
 	ret = nouveau_hw_get_pllvals(dev, plltype, &pllvals);

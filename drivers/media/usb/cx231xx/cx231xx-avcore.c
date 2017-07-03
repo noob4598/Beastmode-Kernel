@@ -1262,6 +1262,7 @@ int cx231xx_set_agc_analog_digital_mux_select(struct cx231xx *dev,
 				   analog_or_digital);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return status;
 =======
 	if (status < 0)
@@ -1269,6 +1270,9 @@ int cx231xx_set_agc_analog_digital_mux_select(struct cx231xx *dev,
 
 	return 0;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	return status;
+>>>>>>> 2617302... source
 }
 
 int cx231xx_enable_i2c_port_3(struct cx231xx *dev, bool is_port_3)

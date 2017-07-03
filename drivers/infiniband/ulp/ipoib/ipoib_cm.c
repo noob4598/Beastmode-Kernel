@@ -1291,10 +1291,13 @@ void ipoib_cm_destroy_tx(struct ipoib_cm_tx *tx)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define QPN_AND_OPTIONS_OFFSET	4
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 static void ipoib_cm_tx_start(struct work_struct *work)
 {
 	struct ipoib_dev_priv *priv = container_of(work, struct ipoib_dev_priv,
@@ -1304,9 +1307,12 @@ static void ipoib_cm_tx_start(struct work_struct *work)
 	struct ipoib_cm_tx *p;
 	unsigned long flags;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct ipoib_path *path;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	int ret;
 
 	struct ib_sa_path_rec pathrec;
@@ -1319,6 +1325,7 @@ static void ipoib_cm_tx_start(struct work_struct *work)
 		p = list_entry(priv->cm.start_list.next, typeof(*p), list);
 		list_del_init(&p->list);
 		neigh = p->neigh;
+<<<<<<< HEAD
 <<<<<<< HEAD
 		qpn = IPOIB_QPN(neigh->daddr);
 =======
@@ -1336,6 +1343,9 @@ static void ipoib_cm_tx_start(struct work_struct *work)
 			goto free_neigh;
 		}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		qpn = IPOIB_QPN(neigh->daddr);
+>>>>>>> 2617302... source
 		memcpy(&pathrec, &p->path->pathrec, sizeof pathrec);
 
 		spin_unlock_irqrestore(&priv->lock, flags);
@@ -1348,9 +1358,12 @@ static void ipoib_cm_tx_start(struct work_struct *work)
 
 		if (ret) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 free_neigh:
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 			neigh = p->neigh;
 			if (neigh) {
 				neigh->cm = NULL;
@@ -1496,12 +1509,16 @@ static ssize_t set_mode(struct device *d, struct device_attribute *attr,
 	ret = ipoib_set_mode(dev, buf);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	rtnl_unlock();
 
 	if (!ret)
 		return count;
 
 	return ret;
+<<<<<<< HEAD
 =======
 	/* The assumption is that the function ipoib_set_mode returned
 	 * with the rtnl held by it, if not the value -EBUSY returned,
@@ -1512,6 +1529,8 @@ static ssize_t set_mode(struct device *d, struct device_attribute *attr,
 
 	return (!ret || ret == -EBUSY) ? count : ret;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 }
 
 static DEVICE_ATTR(mode, S_IWUSR | S_IRUGO, show_mode, set_mode);

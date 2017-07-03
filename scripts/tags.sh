@@ -1,8 +1,12 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 #!/bin/sh
 =======
 #!/bin/bash
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+#!/bin/sh
+>>>>>>> 2617302... source
 # Generate tags or cscope files
 # Usage tags.sh <mode>
 #
@@ -16,17 +20,23 @@ if [ "$KBUILD_VERBOSE" = "1" ]; then
 fi
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 # This is a duplicate of RCS_FIND_IGNORE without escaped '()'
 ignore="( -name SCCS -o -name BitKeeper -o -name .svn -o \
           -name CVS  -o -name .pc       -o -name .hg  -o \
           -name .git )                                   \
           -prune -o"
+<<<<<<< HEAD
 =======
 # RCS_FIND_IGNORE has escaped ()s -- remove them.
 ignore="$(echo "$RCS_FIND_IGNORE" | sed 's|\\||g' )"
 # tags and cscope files should also ignore MODVERSION *.mod.c files
 ignore="$ignore ( -name *.mod.c ) -prune -o"
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 # Do not use full path if we do not use O=.. builds
 # Use make O=. {tags|cscope}
@@ -38,11 +48,14 @@ else
 fi
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 # ignore userspace tools
 ignore="$ignore ( -path ${tree}tools ) -prune -o"
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 # Find all available archs
 find_all_archs()
 {
@@ -66,11 +79,15 @@ find_arch_sources()
 		prune="$prune -wholename $i -prune -o"
 	done
 <<<<<<< HEAD
+<<<<<<< HEAD
 	find ${tree}arch/$1 $ignore $subarchprune $prune -name "$2" -print;
 =======
 	find ${tree}arch/$1 $ignore $subarchprune $prune -name "$2" \
 		-not -type l -print;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	find ${tree}arch/$1 $ignore $subarchprune $prune -name "$2" -print;
+>>>>>>> 2617302... source
 }
 
 # find sources in arch/$1/include
@@ -81,10 +98,14 @@ find_arch_include_sources()
 	if [ -n "$include" ]; then
 		archincludedir="$archincludedir $include"
 <<<<<<< HEAD
+<<<<<<< HEAD
 		find $include $ignore -name "$2" -print;
 =======
 		find $include $ignore -name "$2" -not -type l -print;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		find $include $ignore -name "$2" -print;
+>>>>>>> 2617302... source
 	fi
 }
 
@@ -92,11 +113,15 @@ find_arch_include_sources()
 find_include_sources()
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	find ${tree}include $ignore -name config -prune -o -name "$1" -print;
 =======
 	find ${tree}include $ignore -name config -prune -o -name "$1" \
 		-not -type l -print;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	find ${tree}include $ignore -name config -prune -o -name "$1" -print;
+>>>>>>> 2617302... source
 }
 
 # find sources in rest of tree
@@ -106,10 +131,14 @@ find_other_sources()
 	find ${tree}* $ignore \
 	     \( -name include -o -name arch -o -name '.tmp_*' \) -prune -o \
 <<<<<<< HEAD
+<<<<<<< HEAD
 	       -name "$1" -print;
 =======
 	       -name "$1" -not -type l -print;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	       -name "$1" -print;
+>>>>>>> 2617302... source
 }
 
 find_sources()
@@ -166,13 +195,19 @@ all_kconfigs()
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 all_defconfigs()
 {
 	find_sources $ALLSOURCE_ARCHS "defconfig"
 }
 
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 docscope()
 {
 	(echo \-k; echo \-q; all_target_sources) > cscope.files
@@ -185,6 +220,9 @@ dogtags()
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 exuberant()
 {
 	all_target_sources | xargs $1 -a                        \
@@ -253,6 +291,7 @@ exuberant()
 	all_defconfigs | xargs -r $1 -a                         \
 	--langdef=dotconfig --language-force=dotconfig          \
 	--regex-dotconfig='/^#?[[:blank:]]*(CONFIG_[[:alnum:]_]+)/\1/'
+<<<<<<< HEAD
 =======
 # Basic regular expressions with an optional /kind-spec/ for ctags and
 # the following limitations:
@@ -380,11 +419,16 @@ exuberant()
 	--langdef=kconfig --language-force=kconfig "${regex[@]}"
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 }
 
 emacs()
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	all_target_sources | xargs $1 -a                        \
 	--regex='/^\(ENTRY\|_GLOBAL\)(\([^)]*\)).*/\2/'         \
 	--regex='/^SYSCALL_DEFINE[0-9]?(\([^,)]*\).*/sys_\1/'   \
@@ -423,6 +467,7 @@ emacs()
 
 	all_defconfigs | xargs -r $1 -a                         \
 	--regex='/^#?[ \t]?\(CONFIG_[a-zA-Z0-9_]+\)/\1/'
+<<<<<<< HEAD
 =======
 	setup_regex emacs asm c
 	all_target_sources | xargs $1 -a "${regex[@]}"
@@ -430,6 +475,8 @@ emacs()
 	setup_regex emacs kconfig
 	all_kconfigs | xargs $1 -a "${regex[@]}"
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 }
 
 xtags()
@@ -441,10 +488,14 @@ xtags()
 	else
 		all_target_sources | xargs $1 -a
 <<<<<<< HEAD
+<<<<<<< HEAD
         fi
 =======
 	fi
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+        fi
+>>>>>>> 2617302... source
 }
 
 # Support um (which uses SUBARCH)

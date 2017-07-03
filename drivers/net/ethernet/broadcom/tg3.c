@@ -6438,10 +6438,14 @@ static void tg3_tx(struct tg3_napi *tnapi)
 		bytes_compl += skb->len;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev_kfree_skb(skb);
 =======
 		dev_kfree_skb_any(skb);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		dev_kfree_skb(skb);
+>>>>>>> 2617302... source
 
 		if (unlikely(tx_bug)) {
 			tg3_tx_recover(tp);
@@ -6772,6 +6776,7 @@ static int tg3_rx(struct tg3_napi *tnapi, int budget)
 
 		if (len > (tp->dev->mtu + ETH_HLEN) &&
 <<<<<<< HEAD
+<<<<<<< HEAD
 		    skb->protocol != htons(ETH_P_8021Q)) {
 			dev_kfree_skb(skb);
 =======
@@ -6779,6 +6784,10 @@ static int tg3_rx(struct tg3_napi *tnapi, int budget)
 		    skb->protocol != htons(ETH_P_8021AD)) {
 			dev_kfree_skb_any(skb);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		    skb->protocol != htons(ETH_P_8021Q)) {
+			dev_kfree_skb(skb);
+>>>>>>> 2617302... source
 			goto drop_it_no_recycle;
 		}
 
@@ -7662,10 +7671,14 @@ static int tigon3_dma_hwbug_workaround(struct tg3_napi *tnapi,
 		/* Make sure the mapping succeeded */
 		if (pci_dma_mapping_error(tp->pdev, new_addr)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			dev_kfree_skb(new_skb);
 =======
 			dev_kfree_skb_any(new_skb);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			dev_kfree_skb(new_skb);
+>>>>>>> 2617302... source
 			ret = -1;
 		} else {
 			u32 save_entry = *entry;
@@ -7681,20 +7694,28 @@ static int tigon3_dma_hwbug_workaround(struct tg3_napi *tnapi,
 					    mss, vlan)) {
 				tg3_tx_skb_unmap(tnapi, save_entry, -1);
 <<<<<<< HEAD
+<<<<<<< HEAD
 				dev_kfree_skb(new_skb);
 =======
 				dev_kfree_skb_any(new_skb);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+				dev_kfree_skb(new_skb);
+>>>>>>> 2617302... source
 				ret = -1;
 			}
 		}
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dev_kfree_skb(skb);
 =======
 	dev_kfree_skb_any(skb);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	dev_kfree_skb(skb);
+>>>>>>> 2617302... source
 	*pskb = new_skb;
 	return ret;
 }
@@ -7738,10 +7759,14 @@ static int tg3_tso_bug(struct tg3 *tp, struct sk_buff *skb)
 
 tg3_tso_bug_end:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dev_kfree_skb(skb);
 =======
 	dev_kfree_skb_any(skb);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	dev_kfree_skb(skb);
+>>>>>>> 2617302... source
 
 	return NETDEV_TX_OK;
 }
@@ -7786,10 +7811,15 @@ static netdev_tx_t tg3_start_xmit(struct sk_buff *skb, struct net_device *dev)
 	entry = tnapi->tx_prod;
 	base_flags = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (skb->ip_summed == CHECKSUM_PARTIAL)
 		base_flags |= TXD_FLAG_TCPUDP_CSUM;
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (skb->ip_summed == CHECKSUM_PARTIAL)
+		base_flags |= TXD_FLAG_TCPUDP_CSUM;
+>>>>>>> 2617302... source
 
 	mss = skb_shinfo(skb)->gso_size;
 	if (mss) {
@@ -7806,6 +7836,7 @@ static netdev_tx_t tg3_start_xmit(struct sk_buff *skb, struct net_device *dev)
 		hdr_len = skb_transport_offset(skb) + tcp_hdrlen(skb) - ETH_HLEN;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		/* HW/FW can not correctly segment packets that have been
 		 * vlan encapsulated.
@@ -7815,6 +7846,8 @@ static netdev_tx_t tg3_start_xmit(struct sk_buff *skb, struct net_device *dev)
 			return tg3_tso_bug(tp, skb);
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		if (!skb_is_gso_v6(skb)) {
 			iph->check = 0;
 			iph->tot_len = htons(mss + hdr_len);
@@ -7862,6 +7895,7 @@ static netdev_tx_t tg3_start_xmit(struct sk_buff *skb, struct net_device *dev)
 			}
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	} else if (skb->ip_summed == CHECKSUM_PARTIAL) {
 		/* HW/FW can not correctly checksum packets that have been
@@ -7875,6 +7909,8 @@ static netdev_tx_t tg3_start_xmit(struct sk_buff *skb, struct net_device *dev)
 			base_flags |= TXD_FLAG_TCPUDP_CSUM;
 		}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	}
 
 	if (tg3_flag(tp, USE_JUMBO_BDFLAG) &&
@@ -7991,10 +8027,14 @@ dma_error:
 	tnapi->tx_buffers[tnapi->tx_prod].skb = NULL;
 drop:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dev_kfree_skb(skb);
 =======
 	dev_kfree_skb_any(skb);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	dev_kfree_skb(skb);
+>>>>>>> 2617302... source
 drop_nofree:
 	tp->tx_dropped++;
 	return NETDEV_TX_OK;
@@ -8433,11 +8473,15 @@ static int tg3_init_rings(struct tg3 *tp)
 			memset(tnapi->rx_rcb, 0, TG3_RX_RCB_RING_BYTES(tp));
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (tg3_rx_prodring_alloc(tp, &tnapi->prodring)) {
 =======
 		if (tnapi->prodring.rx_std &&
 		    tg3_rx_prodring_alloc(tp, &tnapi->prodring)) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		if (tg3_rx_prodring_alloc(tp, &tnapi->prodring)) {
+>>>>>>> 2617302... source
 			tg3_free_rings(tp);
 			return -ENOMEM;
 		}
@@ -10563,10 +10607,14 @@ static ssize_t tg3_show_temp(struct device *dev,
 				sizeof(temperature));
 	spin_unlock_bh(&tp->lock);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return sprintf(buf, "%u\n", temperature);
 =======
 	return sprintf(buf, "%u\n", temperature * 1000);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	return sprintf(buf, "%u\n", temperature);
+>>>>>>> 2617302... source
 }
 
 
@@ -12140,12 +12188,16 @@ static int tg3_set_ringparam(struct net_device *dev, struct ethtool_ringparam *e
 	    tp->rx_pending > 63)
 		tp->rx_pending = 63;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	tp->rx_jumbo_pending = ering->rx_jumbo_pending;
 =======
 
 	if (tg3_flag(tp, JUMBO_RING_ENABLE))
 		tp->rx_jumbo_pending = ering->rx_jumbo_pending;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	tp->rx_jumbo_pending = ering->rx_jumbo_pending;
+>>>>>>> 2617302... source
 
 	for (i = 0; i < tp->irq_max; i++)
 		tp->napi[i].tx_pending = ering->tx_pending;
@@ -17442,6 +17494,9 @@ static int tg3_init_one(struct pci_dev *pdev,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	/*
 	 * Reset chip in case UNDI or EFI driver did not shutdown
 	 * DMA self test will enable WDMAC and we'll see (spurious)
@@ -17459,8 +17514,11 @@ static int tg3_init_one(struct pci_dev *pdev,
 		goto err_out_apeunmap;
 	}
 
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	intmbx = MAILBOX_INTERRUPT_0 + TG3_64BIT_REG_LOW;
 	rcvmbx = MAILBOX_RCVRET_CON_IDX_0 + TG3_64BIT_REG_LOW;
 	sndmbx = MAILBOX_SNDHOST_PROD_IDX_0 + TG3_64BIT_REG_LOW;
@@ -17506,6 +17564,7 @@ static int tg3_init_one(struct pci_dev *pdev,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/*
 	 * Reset chip in case UNDI or EFI driver did not shutdown
@@ -17525,6 +17584,8 @@ static int tg3_init_one(struct pci_dev *pdev,
 	}
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	tg3_init_coal(tp);
 
 	pci_set_drvdata(pdev, dev);

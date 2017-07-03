@@ -346,9 +346,13 @@ out:
 		iounmap(apbs[i].RamIO);
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pci_disable_device(dev);
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	pci_disable_device(dev);
+>>>>>>> 2617302... source
 	return ret;
 }
 

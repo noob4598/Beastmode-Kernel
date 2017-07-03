@@ -286,6 +286,7 @@ MODULE_LICENSE("GPL");
 MODULE_DESCRIPTION("SHA-512 and SHA-384 Secure Hash Algorithms");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 MODULE_ALIAS("sha384");
 MODULE_ALIAS("sha512");
 =======
@@ -294,3 +295,7 @@ MODULE_ALIAS_CRYPTO("sha384-generic");
 MODULE_ALIAS_CRYPTO("sha512");
 MODULE_ALIAS_CRYPTO("sha512-generic");
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+MODULE_ALIAS("sha384");
+MODULE_ALIAS("sha512");
+>>>>>>> 2617302... source

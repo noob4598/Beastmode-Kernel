@@ -348,12 +348,16 @@ static inline int ip6_forward_finish(struct sk_buff *skb)
 static bool ip6_pkt_too_big(const struct sk_buff *skb, unsigned int mtu)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	if (skb->len <= mtu || skb->local_df)
 		return false;
 
 	if (IP6CB(skb)->frag_max_size && IP6CB(skb)->frag_max_size > mtu)
 		return true;
 
+<<<<<<< HEAD
 =======
 	if (skb->len <= mtu)
 		return false;
@@ -366,6 +370,8 @@ static bool ip6_pkt_too_big(const struct sk_buff *skb, unsigned int mtu)
 		return false;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	if (skb_is_gso(skb) && skb_gso_network_seglen(skb) <= mtu)
 		return false;
 
@@ -551,6 +557,7 @@ static void ip6_copy_metadata(struct sk_buff *to, struct sk_buff *from)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 static void ipv6_select_ident(struct frag_hdr *fhdr, struct rt6_info *rt)
 {
@@ -570,6 +577,8 @@ static void ipv6_select_ident(struct frag_hdr *fhdr, struct rt6_info *rt)
 }
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 int ip6_fragment(struct sk_buff *skb, int (*output)(struct sk_buff *))
 {
 	struct sk_buff *frag;
@@ -585,6 +594,7 @@ int ip6_fragment(struct sk_buff *skb, int (*output)(struct sk_buff *))
 	struct net *net = dev_net(skb_dst(skb)->dev);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	hlen = ip6_find_1stfragopt(skb, &prevhdr);
 =======
 	err = ip6_find_1stfragopt(skb, &prevhdr);
@@ -592,6 +602,9 @@ int ip6_fragment(struct sk_buff *skb, int (*output)(struct sk_buff *))
 		goto fail;
 	hlen = err;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	hlen = ip6_find_1stfragopt(skb, &prevhdr);
+>>>>>>> 2617302... source
 	nexthdr = *prevhdr;
 
 	mtu = ip6_skb_dst_mtu(skb);
@@ -761,9 +774,13 @@ slow_path:
 	 */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	*prevhdr = NEXTHDR_FRAGMENT;
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	*prevhdr = NEXTHDR_FRAGMENT;
+>>>>>>> 2617302... source
 	hroom = LL_RESERVED_SPACE(rt->dst.dev);
 	troom = rt->dst.dev->needed_tailroom;
 
@@ -772,10 +789,13 @@ slow_path:
 	 */
 	while(left > 0)	{
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		u8 *fragnexthdr_offset;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		len = left;
 		/* IF: it doesn't fit, use 'mtu' - the data space left */
 		if (len > mtu)
@@ -823,12 +843,15 @@ slow_path:
 		skb_copy_from_linear_data(skb, skb_network_header(frag), hlen);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		fragnexthdr_offset = skb_network_header(frag);
 		fragnexthdr_offset += prevhdr - skb_network_header(skb);
 		*fragnexthdr_offset = NEXTHDR_FRAGMENT;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		/*
 		 *	Build fragment header.
 		 */
@@ -1323,11 +1346,15 @@ int ip6_append_data(struct sock *sk, int getfrag(void *from, char *to,
 	     (skb && skb_has_frags(skb))) &&
 	    (sk->sk_protocol == IPPROTO_UDP) &&
 <<<<<<< HEAD
+<<<<<<< HEAD
 	    (rt->dst.dev->features & NETIF_F_UFO)) {
 =======
 	    (rt->dst.dev->features & NETIF_F_UFO) &&
 	    (sk->sk_type == SOCK_DGRAM)) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	    (rt->dst.dev->features & NETIF_F_UFO)) {
+>>>>>>> 2617302... source
 		err = ip6_ufo_append_data(sk, getfrag, from, length,
 					  hh_len, fragheaderlen,
 					  transhdrlen, mtu, flags, rt);
@@ -1401,6 +1428,7 @@ alloc_new_skb:
 			alloclen += sizeof(struct frag_hdr);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 			copy = datalen - transhdrlen - fraggap;
 			if (copy < 0) {
@@ -1408,6 +1436,8 @@ alloc_new_skb:
 				goto error;
 			}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 			if (transhdrlen) {
 				skb = sock_alloc_send_skb(sk,
 						alloclen + hh_len,
@@ -1472,6 +1502,9 @@ alloc_new_skb:
 				pskb_trim_unique(skb_prev, maxfraglen);
 			}
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 			copy = datalen - transhdrlen - fraggap;
 
 			if (copy < 0) {
@@ -1479,11 +1512,14 @@ alloc_new_skb:
 				kfree_skb(skb);
 				goto error;
 			} else if (copy > 0 && getfrag(from, data + transhdrlen, offset, copy, fraggap, skb) < 0) {
+<<<<<<< HEAD
 =======
 			if (copy > 0 &&
 			    getfrag(from, data + transhdrlen, offset,
 				    copy, fraggap, skb) < 0) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 				err = -EFAULT;
 				kfree_skb(skb);
 				goto error;

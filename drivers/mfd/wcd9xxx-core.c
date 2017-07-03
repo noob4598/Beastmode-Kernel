@@ -123,6 +123,9 @@ int wcd9xxx_reg_read(
 EXPORT_SYMBOL(wcd9xxx_reg_read);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 #ifdef CONFIG_SOUND_CONTROL_HAX_3_GPL
 int wcd9xxx_reg_read_safe(
 	struct wcd9xxx_core_resource *core_res,
@@ -142,8 +145,11 @@ int wcd9xxx_reg_read_safe(
 EXPORT_SYMBOL_GPL(wcd9xxx_reg_read_safe);
 #endif
 
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 static int wcd9xxx_write(struct wcd9xxx *wcd9xxx, unsigned short reg,
 			int bytes, void *src, bool interface_reg)
 {

@@ -533,11 +533,15 @@ static int ipaq_open(struct tty_struct *tty,
 	 * several times.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	while (retries--) {
 =======
 	while (retries) {
 		retries--;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	while (retries--) {
+>>>>>>> 2617302... source
 		result = usb_control_msg(serial->dev,
 				usb_sndctrlpipe(serial->dev, 0), 0x22, 0x21,
 				0x1, 0, NULL, 0, 100);

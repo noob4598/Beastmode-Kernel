@@ -266,10 +266,14 @@ static void __init free_unused_memmap(void)
 		 * MAX_ORDER_NR_PAGES.
 		 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		prev_end = ALIGN(start + __phys_to_pfn(reg->size),
 =======
 		prev_end = ALIGN(__phys_to_pfn(reg->base + reg->size),
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		prev_end = ALIGN(start + __phys_to_pfn(reg->size),
+>>>>>>> 2617302... source
 				 MAX_ORDER_NR_PAGES);
 	}
 

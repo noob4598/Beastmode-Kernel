@@ -284,6 +284,9 @@ module_exit(eseqiv_module_exit);
 MODULE_LICENSE("GPL");
 MODULE_DESCRIPTION("Encrypted Sequence Number IV Generator");
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 MODULE_ALIAS_CRYPTO("eseqiv");
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source

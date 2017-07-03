@@ -229,6 +229,7 @@ int __kprobes hw_breakpoint_handler(struct die_args *args)
 
 	bp = __get_cpu_var(bp_per_reg);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!bp)
 		goto out;
 =======
@@ -237,6 +238,10 @@ int __kprobes hw_breakpoint_handler(struct die_args *args)
 		goto out;
 	}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (!bp)
+		goto out;
+>>>>>>> 2617302... source
 	info = counter_arch_bp(bp);
 
 	/*

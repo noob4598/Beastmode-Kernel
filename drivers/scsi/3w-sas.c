@@ -304,6 +304,9 @@ static int twl_post_command_packet(TW_Device_Extension *tw_dev, int request_id)
 } /* End twl_post_command_packet() */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 /* This function will perform a pci-dma mapping for a scatter gather list */
 static int twl_map_scsi_sg_data(TW_Device_Extension *tw_dev, int request_id)
 {
@@ -324,8 +327,11 @@ static int twl_map_scsi_sg_data(TW_Device_Extension *tw_dev, int request_id)
 	return use_sg;
 } /* End twl_map_scsi_sg_data() */
 
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 /* This function hands scsi cdb's to the firmware */
 static int twl_scsiop_execute_scsi(TW_Device_Extension *tw_dev, int request_id, char *cdb, int use_sg, TW_SG_Entry_ISO *sglistarg)
 {
@@ -374,12 +380,17 @@ static int twl_scsiop_execute_scsi(TW_Device_Extension *tw_dev, int request_id, 
 		/* Map sglist from scsi layer to cmd packet */
 		if (scsi_sg_count(srb)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			sg_count = twl_map_scsi_sg_data(tw_dev, request_id);
 			if (sg_count == 0)
 =======
 			sg_count = scsi_dma_map(srb);
 			if (sg_count <= 0)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			sg_count = twl_map_scsi_sg_data(tw_dev, request_id);
+			if (sg_count == 0)
+>>>>>>> 2617302... source
 				goto out;
 
 			scsi_for_each_sg(srb, sg, sg_count, i) {
@@ -1125,6 +1136,9 @@ out:
 } /* End twl_initialize_device_extension() */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 /* This function will perform a pci-dma unmap */
 static void twl_unmap_scsi_data(TW_Device_Extension *tw_dev, int request_id)
 {
@@ -1134,8 +1148,11 @@ static void twl_unmap_scsi_data(TW_Device_Extension *tw_dev, int request_id)
 		scsi_dma_unmap(cmd);
 } /* End twl_unmap_scsi_data() */
 
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 /* This function will handle attention interrupts */
 static int twl_handle_attention_interrupt(TW_Device_Extension *tw_dev)
 {
@@ -1277,11 +1294,15 @@ static irqreturn_t twl_interrupt(int irq, void *dev_instance)
 
 			/* Now complete the io */
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 			tw_dev->state[request_id] = TW_S_COMPLETED;
 			twl_free_request_id(tw_dev, request_id);
 			tw_dev->posted_request_count--;
 			tw_dev->srb[request_id]->scsi_done(tw_dev->srb[request_id]);
 			twl_unmap_scsi_data(tw_dev, request_id);
+<<<<<<< HEAD
 =======
 			scsi_dma_unmap(cmd);
 			cmd->scsi_done(cmd);
@@ -1289,6 +1310,8 @@ static irqreturn_t twl_interrupt(int irq, void *dev_instance)
 			twl_free_request_id(tw_dev, request_id);
 			tw_dev->posted_request_count--;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		}
 
 		/* Check for another response interrupt */
@@ -1434,10 +1457,14 @@ static int twl_reset_device_extension(TW_Device_Extension *tw_dev, int ioctl_res
 		    (tw_dev->state[i] != TW_S_INITIAL) &&
 		    (tw_dev->state[i] != TW_S_COMPLETED)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 			if (tw_dev->srb[i]) {
 				tw_dev->srb[i]->result = (DID_RESET << 16);
 				tw_dev->srb[i]->scsi_done(tw_dev->srb[i]);
 				twl_unmap_scsi_data(tw_dev, i);
+<<<<<<< HEAD
 =======
 			struct scsi_cmnd *cmd = tw_dev->srb[i];
 
@@ -1446,6 +1473,8 @@ static int twl_reset_device_extension(TW_Device_Extension *tw_dev, int ioctl_res
 				scsi_dma_unmap(cmd);
 				cmd->scsi_done(cmd);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 			}
 		}
 	}
@@ -1550,11 +1579,17 @@ static int twl_scsi_queue_lck(struct scsi_cmnd *SCpnt, void (*done)(struct scsi_
 	tw_dev->srb[request_id] = SCpnt;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* Initialize phase to zero */
 	SCpnt->SCp.phase = TW_PHASE_INITIAL;
 
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	/* Initialize phase to zero */
+	SCpnt->SCp.phase = TW_PHASE_INITIAL;
+
+>>>>>>> 2617302... source
 	retval = twl_scsiop_execute_scsi(tw_dev, request_id, NULL, 0, NULL);
 	if (retval) {
 		tw_dev->state[request_id] = TW_S_COMPLETED;

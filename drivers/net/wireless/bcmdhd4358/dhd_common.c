@@ -1618,10 +1618,13 @@ wl_host_event(dhd_pub_t *dhd_pub, int *ifidx, void *pktdata, size_t pktlen,
 	status = ntoh32_ua((void *)&event->status);
 	datalen = ntoh32_ua((void *)&event->datalen);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	evlen = datalen + sizeof(bcm_event_t);
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	if (datalen > pktlen) {
 		return (BCME_ERROR);
 	}

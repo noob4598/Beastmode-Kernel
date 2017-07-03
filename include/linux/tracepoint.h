@@ -15,6 +15,7 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/errno.h>
 #include <linux/types.h>
 =======
@@ -24,6 +25,10 @@
 #include <linux/percpu.h>
 #include <linux/cpumask.h>
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+#include <linux/errno.h>
+#include <linux/types.h>
+>>>>>>> 2617302... source
 #include <linux/rcupdate.h>
 #include <linux/static_key.h>
 
@@ -268,6 +273,9 @@ static inline void tracepoint_synchronize_unregister(void)
  */
 #define DECLARE_TRACE_NOARGS(name)					\
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		__DECLARE_TRACE(name, void, , 1, void *__data, __data)
 
 #define DECLARE_TRACE(name, proto, args)				\
@@ -277,6 +285,7 @@ static inline void tracepoint_synchronize_unregister(void)
 
 #define DECLARE_TRACE_CONDITION(name, proto, args, cond)		\
 	__DECLARE_TRACE(name, PARAMS(proto), PARAMS(args), PARAMS(cond), \
+<<<<<<< HEAD
 =======
 	__DECLARE_TRACE(name, void, ,					\
 			cpu_online(raw_smp_processor_id()),		\
@@ -292,6 +301,8 @@ static inline void tracepoint_synchronize_unregister(void)
 	__DECLARE_TRACE(name, PARAMS(proto), PARAMS(args),		\
 			cpu_online(raw_smp_processor_id()) && (PARAMS(cond)), \
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 			PARAMS(void *__data, proto),			\
 			PARAMS(__data, args))
 

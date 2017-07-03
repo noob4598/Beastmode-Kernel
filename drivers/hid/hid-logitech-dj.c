@@ -680,9 +680,13 @@ static int logi_dj_raw_event(struct hid_device *hdev,
 	struct dj_report *dj_report = (struct dj_report *) data;
 	unsigned long flags;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	bool report_processed = false;
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	bool report_processed = false;
+>>>>>>> 2617302... source
 
 	dbg_hid("%s, size:%d\n", __func__, size);
 
@@ -711,6 +715,7 @@ static int logi_dj_raw_event(struct hid_device *hdev,
 	 */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/* case 1) */
 	if (data[0] != REPORT_ID_DJ_SHORT)
@@ -730,6 +735,8 @@ static int logi_dj_raw_event(struct hid_device *hdev,
 	}
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	if ((dj_report->device_index < DJ_DEVICE_INDEX_MIN) ||
 	    (dj_report->device_index > DJ_DEVICE_INDEX_MAX)) {
 		dev_err(&hdev->dev, "%s: invalid device index:%d\n",
@@ -739,6 +746,9 @@ static int logi_dj_raw_event(struct hid_device *hdev,
 
 	spin_lock_irqsave(&djrcv_dev->lock, flags);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	if (dj_report->report_id == REPORT_ID_DJ_SHORT) {
 		switch (dj_report->report_type) {
 		case REPORT_TYPE_NOTIF_DEVICE_PAIRED:
@@ -759,6 +769,7 @@ static int logi_dj_raw_event(struct hid_device *hdev,
 	spin_unlock_irqrestore(&djrcv_dev->lock, flags);
 
 	return report_processed;
+<<<<<<< HEAD
 =======
 	switch (dj_report->report_type) {
 	case REPORT_TYPE_NOTIF_DEVICE_PAIRED:
@@ -778,6 +789,8 @@ static int logi_dj_raw_event(struct hid_device *hdev,
 
 	return true;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 }
 
 static int logi_dj_probe(struct hid_device *hdev,

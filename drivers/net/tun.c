@@ -1126,6 +1126,7 @@ static ssize_t tun_get_user(struct tun_struct *tun, struct tun_file *tfile,
 
 	if (tun->flags & TUN_VNET_HDR) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (len < tun->vnet_hdr_sz)
 			return -EINVAL;
 		len -= tun->vnet_hdr_sz;
@@ -1136,6 +1137,11 @@ static ssize_t tun_get_user(struct tun_struct *tun, struct tun_file *tfile,
 			return -EINVAL;
 		len -= vnet_hdr_sz;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		if (len < tun->vnet_hdr_sz)
+			return -EINVAL;
+		len -= tun->vnet_hdr_sz;
+>>>>>>> 2617302... source
 
 		if (memcpy_fromiovecend((void *)&gso, iv, offset, sizeof(gso)))
 			return -EFAULT;
@@ -1147,10 +1153,14 @@ static ssize_t tun_get_user(struct tun_struct *tun, struct tun_file *tfile,
 		if (gso.hdr_len > len)
 			return -EINVAL;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		offset += tun->vnet_hdr_sz;
 =======
 		offset += vnet_hdr_sz;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		offset += tun->vnet_hdr_sz;
+>>>>>>> 2617302... source
 	}
 
 	if ((tun->flags & TUN_TYPE_MASK) == TUN_TAP_DEV) {
@@ -1385,22 +1395,29 @@ static ssize_t tun_put_user(struct tun_struct *tun,
 	struct tun_pi pi = { 0, skb->protocol };
 	ssize_t total = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	int vnet_hdr_sz = 0;
 
 	if (tun->flags & TUN_VNET_HDR)
 		vnet_hdr_sz = ACCESS_ONCE(tun->vnet_hdr_sz);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	if (!(tun->flags & TUN_NO_PI)) {
 		if ((len -= sizeof(pi)) < 0)
 			return -EINVAL;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (len < skb->len) {
 =======
 		if (len < skb->len + vnet_hdr_sz) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		if (len < skb->len) {
+>>>>>>> 2617302... source
 			/* Packet will be striped */
 			pi.flags |= TUN_PKT_STRIP;
 		}
@@ -1411,6 +1428,7 @@ static ssize_t tun_put_user(struct tun_struct *tun,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (tun->flags & TUN_VNET_HDR) {
 		struct virtio_net_hdr gso = { 0 }; /* no info leak */
 		if ((len -= tun->vnet_hdr_sz) < 0)
@@ -1419,6 +1437,11 @@ static ssize_t tun_put_user(struct tun_struct *tun,
 		struct virtio_net_hdr gso = { 0 }; /* no info leak */
 		if ((len -= vnet_hdr_sz) < 0)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (tun->flags & TUN_VNET_HDR) {
+		struct virtio_net_hdr gso = { 0 }; /* no info leak */
+		if ((len -= tun->vnet_hdr_sz) < 0)
+>>>>>>> 2617302... source
 			return -EINVAL;
 
 		if (skb_is_gso(skb)) {
@@ -1462,10 +1485,14 @@ static ssize_t tun_put_user(struct tun_struct *tun,
 					       sizeof(gso))))
 			return -EFAULT;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		total += tun->vnet_hdr_sz;
 =======
 		total += vnet_hdr_sz;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		total += tun->vnet_hdr_sz;
+>>>>>>> 2617302... source
 	}
 
 

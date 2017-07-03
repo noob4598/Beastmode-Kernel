@@ -347,6 +347,7 @@ int msm_jpeg_output_get_unblock(struct msm_jpeg_device *pgmn_dev)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 static inline int msm_jpeg_add_u32_check(uint32_t *p, uint32_t n, uint32_t *res)
 {
@@ -361,11 +362,14 @@ static inline int msm_jpeg_add_u32_check(uint32_t *p, uint32_t n, uint32_t *res)
 }
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 int msm_jpeg_output_buf_enqueue(struct msm_jpeg_device *pgmn_dev,
 	void __user *arg)
 {
 	struct msm_jpeg_buf buf_cmd;
 	struct msm_jpeg_core_buf *buf_p;
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 	uint32_t buf_len_params[10];
@@ -373,6 +377,8 @@ int msm_jpeg_output_buf_enqueue(struct msm_jpeg_device *pgmn_dev,
 	int n = 0;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	memset(&buf_cmd, 0x0, sizeof(struct msm_jpeg_buf));
 
 	JPEG_DBG("%s:%d] Enter\n", __func__, __LINE__);
@@ -381,6 +387,7 @@ int msm_jpeg_output_buf_enqueue(struct msm_jpeg_device *pgmn_dev,
 		return -EFAULT;
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 	buf_len_params[n++] = buf_cmd.y_len;
@@ -394,6 +401,8 @@ int msm_jpeg_output_buf_enqueue(struct msm_jpeg_device *pgmn_dev,
 	}
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	buf_p = kmalloc(sizeof(struct msm_jpeg_core_buf), GFP_ATOMIC);
 	if (!buf_p) {
 		JPEG_PR_ERR("%s:%d] no mem\n", __func__, __LINE__);
@@ -401,6 +410,9 @@ int msm_jpeg_output_buf_enqueue(struct msm_jpeg_device *pgmn_dev,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	JPEG_DBG("%s:%d] vaddr = 0x%08x y_len = %d\n, fd = %d",
 		__func__, __LINE__, (int) buf_cmd.vaddr, buf_cmd.y_len,
 		buf_cmd.fd);
@@ -408,6 +420,7 @@ int msm_jpeg_output_buf_enqueue(struct msm_jpeg_device *pgmn_dev,
 	buf_p->y_buffer_addr = msm_jpeg_platform_v2p(pgmn_dev, buf_cmd.fd,
 		buf_cmd.y_len + buf_cmd.cbcr_len + buf_cmd.pln2_len,
 		&buf_p->file, &buf_p->handle, pgmn_dev->domain_num);
+<<<<<<< HEAD
 =======
 	JPEG_DBG("%s:%d] vaddr = 0x%08lx y_len = %d\n, fd = %d",
 		__func__, __LINE__, (unsigned long) buf_cmd.vaddr,
@@ -417,6 +430,8 @@ int msm_jpeg_output_buf_enqueue(struct msm_jpeg_device *pgmn_dev,
 		total_len, &buf_p->file, &buf_p->handle, pgmn_dev->domain_num);
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	if (!buf_p->y_buffer_addr) {
 		JPEG_PR_ERR("%s:%d] v2p wrong\n", __func__, __LINE__);
 		kfree(buf_p);
@@ -424,10 +439,13 @@ int msm_jpeg_output_buf_enqueue(struct msm_jpeg_device *pgmn_dev,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	buf_p->y_buffer_addr += buf_cmd.offset + buf_cmd.y_off;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	if (buf_cmd.cbcr_len)
 		buf_p->cbcr_buffer_addr = buf_p->y_buffer_addr +
 			buf_cmd.y_len;
@@ -537,18 +555,22 @@ int msm_jpeg_input_buf_enqueue(struct msm_jpeg_device *pgmn_dev,
 	struct msm_jpeg_core_buf *buf_p;
 	struct msm_jpeg_buf buf_cmd;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	uint32_t buf_len_params[10];
 	uint32_t total_len = 0;
 	int n = 0;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	memset(&buf_cmd, 0x0, sizeof(struct msm_jpeg_buf));
 
 	if (copy_from_user(&buf_cmd, arg, sizeof(struct msm_jpeg_buf))) {
 		JPEG_PR_ERR("%s:%d] failed\n", __func__, __LINE__);
 		return -EFAULT;
 	}
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 	buf_len_params[n++] = buf_cmd.y_len;
@@ -566,6 +588,8 @@ int msm_jpeg_input_buf_enqueue(struct msm_jpeg_device *pgmn_dev,
 		return -EFAULT;
 	}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	buf_p = kmalloc(sizeof(struct msm_jpeg_core_buf), GFP_ATOMIC);
 	if (!buf_p) {
@@ -577,6 +601,7 @@ int msm_jpeg_input_buf_enqueue(struct msm_jpeg_device *pgmn_dev,
 		(int) buf_cmd.vaddr, buf_cmd.y_len);
 
 	buf_p->y_buffer_addr    = msm_jpeg_platform_v2p(pgmn_dev, buf_cmd.fd,
+<<<<<<< HEAD
 <<<<<<< HEAD
 		buf_cmd.y_len + buf_cmd.cbcr_len + buf_cmd.pln2_len,
 		&buf_p->file, &buf_p->handle, pgmn_dev->domain_num) +
@@ -593,6 +618,11 @@ int msm_jpeg_input_buf_enqueue(struct msm_jpeg_device *pgmn_dev,
 	buf_p->y_buffer_addr += buf_cmd.offset + buf_cmd.y_off;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		buf_cmd.y_len + buf_cmd.cbcr_len + buf_cmd.pln2_len,
+		&buf_p->file, &buf_p->handle, pgmn_dev->domain_num) +
+		buf_cmd.offset + buf_cmd.y_off;
+>>>>>>> 2617302... source
 	buf_p->y_len          = buf_cmd.y_len;
 	buf_p->cbcr_len       = buf_cmd.cbcr_len;
 	buf_p->pln2_len       = buf_cmd.pln2_len;
@@ -617,13 +647,19 @@ int msm_jpeg_input_buf_enqueue(struct msm_jpeg_device *pgmn_dev,
 		buf_p->pln2_addr, buf_p->pln2_len, buf_cmd.fd);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	if (!buf_p->y_buffer_addr) {
 		JPEG_PR_ERR("%s:%d] v2p wrong\n", __func__, __LINE__);
 		kfree(buf_p);
 		return -EFAULT;
 	}
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	buf_p->vbuf           = buf_cmd;
 
 	msm_jpeg_q_in(&pgmn_dev->input_buf_q, buf_p);
@@ -688,10 +724,14 @@ int __msm_jpeg_open(struct msm_jpeg_device *pgmn_dev)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	JPEG_DBG("%s:%d] platform resources - mem %p, base %p, irq %d\n",
 =======
 	JPEG_DBG("%s:%d] platform resources - mem %pK, base %pK, irq %d\n",
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	JPEG_DBG("%s:%d] platform resources - mem %p, base %p, irq %d\n",
+>>>>>>> 2617302... source
 		__func__, __LINE__,
 		pgmn_dev->mem, pgmn_dev->base, pgmn_dev->irq);
 	pgmn_dev->res_size = resource_size(pgmn_dev->mem);
@@ -860,9 +900,12 @@ int msm_jpeg_start(struct msm_jpeg_device *pgmn_dev, void * __user arg)
 	rc = msm_jpeg_ioctl_hw_cmds(pgmn_dev, arg);
 	wmb();
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	pgmn_dev->state = MSM_JPEG_EXECUTING;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	JPEG_DBG("%s:%d]", __func__, __LINE__);
 	return rc;
 }
@@ -875,11 +918,15 @@ int msm_jpeg_ioctl_reset(struct msm_jpeg_device *pgmn_dev,
 
 	JPEG_DBG("%s:%d] Enter\n", __func__, __LINE__);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	if (copy_from_user(&ctrl_cmd, arg, sizeof(ctrl_cmd))) {
 		JPEG_PR_ERR("%s:%d] failed\n", __func__, __LINE__);
 		return -EFAULT;
 	}
 
+<<<<<<< HEAD
 =======
 
 	if (pgmn_dev->state == MSM_JPEG_INIT) {
@@ -888,10 +935,13 @@ int msm_jpeg_ioctl_reset(struct msm_jpeg_device *pgmn_dev,
 			return -EFAULT;
 		}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	pgmn_dev->op_mode = ctrl_cmd.type;
 
 	rc = msm_jpeg_core_reset(pgmn_dev, pgmn_dev->op_mode, pgmn_dev->base,
 		resource_size(pgmn_dev->mem));
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 	} else {
@@ -900,6 +950,8 @@ int msm_jpeg_ioctl_reset(struct msm_jpeg_device *pgmn_dev,
 		rc = -1;
 	}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	return rc;
 }
 
@@ -928,9 +980,12 @@ long __msm_jpeg_ioctl(struct msm_jpeg_device *pgmn_dev,
 	case MSM_JPEG_IOCTL_STOP:
 		rc = msm_jpeg_ioctl_hw_cmds(pgmn_dev, (void __user *) arg);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		pgmn_dev->state = MSM_JPEG_STOPPED;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		break;
 
 	case MSM_JPEG_IOCTL_START:

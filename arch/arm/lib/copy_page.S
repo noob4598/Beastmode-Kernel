@@ -9,11 +9,14 @@
  *
  *  ASM optimised string functions
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
  *
  *  Optimization for modern ARM platforms
  *  Copyright 2013 Harm Hanemaaijer
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
  */
 #include <linux/linkage.h>
 #include <asm/assembler.h>
@@ -21,6 +24,9 @@
 #include <asm/cache.h>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 #define COPY_COUNT (PAGE_SZ / (2 * L1_CACHE_BYTES) PLD( -1 ))
 
 		.text
@@ -51,6 +57,7 @@ ENTRY(copy_page)
 	PLD(	ldmeqia r1!, {r3, r4, ip, lr}	)
 	PLD(	beq	2b			)
 		ldmfd	sp!, {r4, pc}			@	3
+<<<<<<< HEAD
 =======
 /*
  * Notes for armv6/v7:
@@ -108,4 +115,6 @@ ENTRY(copy_page)
 	PLD(	bgt	2b			)
 		ldmfd	sp!, {r4-r8, pc}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 ENDPROC(copy_page)

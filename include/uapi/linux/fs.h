@@ -168,6 +168,7 @@ struct inodes_stat_t {
 
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
  * File system encryption support
  */
@@ -203,6 +204,8 @@ struct fscrypt_policy {
 
 /*
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
  * Inode flags (FS_IOC_GETFLAGS / FS_IOC_SETFLAGS)
  */
 #define	FS_SECRM_FL			0x00000001 /* Secure deletion */

@@ -194,10 +194,14 @@ static int stb6100_write_reg_range(struct stb6100_state *state, u8 buf[], int st
 	};
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (1 + len > sizeof(buf)) {
 =======
 	if (1 + len > sizeof(cmdbuf)) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (1 + len > sizeof(buf)) {
+>>>>>>> 2617302... source
 		printk(KERN_WARNING
 		       "%s: i2c wr: len=%d is too big!\n",
 		       KBUILD_MODNAME, len);

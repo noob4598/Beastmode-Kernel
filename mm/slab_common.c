@@ -56,9 +56,12 @@ static int kmem_cache_sanity_check(struct mem_cgroup *memcg, const char *name,
 		}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #if !defined(CONFIG_SLUB)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		/*
 		 * For simplicity, we won't check this in the list of memcg
 		 * caches. We have control over memcg naming, and if there
@@ -73,9 +76,12 @@ static int kmem_cache_sanity_check(struct mem_cgroup *memcg, const char *name,
 			return -EINVAL;
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #endif
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	}
 
 	WARN_ON(strchr(name, ' '));	/* It confuses parsers */

@@ -26,6 +26,7 @@
 #include "inv_mpu_iio.h"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 static void inv_clear_kfifo(struct inv_mpu6050_state *st)
 {
@@ -38,6 +39,8 @@ static void inv_clear_kfifo(struct inv_mpu6050_state *st)
 }
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 int inv_reset_fifo(struct iio_dev *indio_dev)
 {
 	int result;
@@ -65,12 +68,15 @@ int inv_reset_fifo(struct iio_dev *indio_dev)
 	if (result)
 		goto reset_fifo_fail;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 	/* clear timestamps fifo */
 	inv_clear_kfifo(st);
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	/* enable interrupt */
 	if (st->chip_config.accl_fifo_enable ||
 	    st->chip_config.gyro_fifo_enable) {
@@ -105,6 +111,9 @@ reset_fifo_fail:
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 static void inv_clear_kfifo(struct inv_mpu6050_state *st)
 {
 	unsigned long flags;
@@ -115,8 +124,11 @@ static void inv_clear_kfifo(struct inv_mpu6050_state *st)
 	spin_unlock_irqrestore(&st->time_stamp_lock, flags);
 }
 
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 /**
  * inv_mpu6050_irq_handler() - Cache a timestamp at each data ready interrupt.
  */
@@ -211,9 +223,13 @@ flush_fifo:
 	/* Flush HW and SW FIFOs. */
 	inv_reset_fifo(indio_dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	inv_clear_kfifo(st);
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	inv_clear_kfifo(st);
+>>>>>>> 2617302... source
 	mutex_unlock(&indio_dev->mlock);
 	iio_trigger_notify_done(indio_dev->trig);
 

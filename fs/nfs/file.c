@@ -420,10 +420,14 @@ static int nfs_write_end(struct file *file, struct address_space *mapping,
 	if (!PageUptodate(page)) {
 		unsigned pglen = nfs_page_length(page);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		unsigned end = offset + len;
 =======
 		unsigned end = offset + copied;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		unsigned end = offset + len;
+>>>>>>> 2617302... source
 
 		if (pglen == 0) {
 			zero_user_segments(page, 0, offset,

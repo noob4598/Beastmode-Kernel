@@ -803,6 +803,7 @@ static int iowarrior_probe(struct usb_interface *interface,
 			dev->int_out_endpoint = endpoint;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 	if (!dev->int_in_endpoint) {
@@ -820,6 +821,8 @@ static int iowarrior_probe(struct usb_interface *interface,
 	}
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	/* we have to check the report_size often, so remember it in the endianness suitable for our machine */
 	dev->report_size = usb_endpoint_maxp(dev->int_in_endpoint);
 	if ((dev->interface->cur_altsetting->desc.bInterfaceNumber == 0) &&

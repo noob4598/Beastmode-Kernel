@@ -31,18 +31,24 @@ struct pg_state {
 	unsigned long current_address;
 	const struct addr_marker *marker;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	unsigned long lines;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 };
 
 struct addr_marker {
 	unsigned long start_address;
 	const char *name;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	unsigned long max_lines;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 };
 
 /* indices for address_markers; keep sync'd w/ address_markers below */
@@ -54,9 +60,12 @@ enum address_markers_idx {
 	VMALLOC_START_NR,
 	VMEMMAP_START_NR,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	ESPFIX_START_NR,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	HIGH_KERNEL_NR,
 	MODULES_VADDR_NR,
 	MODULES_END_NR,
@@ -80,9 +89,12 @@ static struct addr_marker address_markers[] = {
 	{ VMALLOC_START,        "vmalloc() Area" },
 	{ VMEMMAP_START,        "Vmemmap" },
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	{ ESPFIX_BASE_ADDR,	"ESPfix Area", 16 },
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	{ __START_KERNEL_map,   "High Kernel Mapping" },
 	{ MODULES_VADDR,        "Modules" },
 	{ MODULES_END,          "End Modules" },
@@ -180,10 +192,14 @@ static void note_page(struct seq_file *m, struct pg_state *st,
 {
 	pgprotval_t prot, cur;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	static const char units[] = "KMGTPE";
 =======
 	static const char units[] = "BKMGTPE";
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	static const char units[] = "KMGTPE";
+>>>>>>> 2617302... source
 
 	/*
 	 * If we have a "break" in the series, we need to flush the state that
@@ -199,9 +215,12 @@ static void note_page(struct seq_file *m, struct pg_state *st,
 		st->level = level;
 		st->marker = address_markers;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		st->lines = 0;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		seq_printf(m, "---[ %s ]---\n", st->marker->name);
 	} else if (prot != cur || level != st->level ||
 		   st->current_address >= st->marker[1].start_address) {
@@ -213,6 +232,9 @@ static void note_page(struct seq_file *m, struct pg_state *st,
 		 * Now print the actual finished series
 		 */
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		seq_printf(m, "0x%0*lx-0x%0*lx   ",
 			   width, st->start_address,
 			   width, st->current_address);
@@ -224,6 +246,7 @@ static void note_page(struct seq_file *m, struct pg_state *st,
 		}
 		seq_printf(m, "%9lu%c ", delta, *unit);
 		printk_prot(m, st->current_prot, st->level);
+<<<<<<< HEAD
 =======
 		if (!st->marker->max_lines ||
 		    st->lines < st->marker->max_lines) {
@@ -241,6 +264,8 @@ static void note_page(struct seq_file *m, struct pg_state *st,
 		}
 		st->lines++;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 		/*
 		 * We print markers for special areas of address space,
@@ -248,6 +273,7 @@ static void note_page(struct seq_file *m, struct pg_state *st,
 		 * This helps in the interpretation.
 		 */
 		if (st->current_address >= st->marker[1].start_address) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 			st->marker++;
 =======
@@ -261,6 +287,9 @@ static void note_page(struct seq_file *m, struct pg_state *st,
 			st->marker++;
 			st->lines = 0;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			st->marker++;
+>>>>>>> 2617302... source
 			seq_printf(m, "---[ %s ]---\n", st->marker->name);
 		}
 

@@ -25,15 +25,22 @@ static inline void spill_registers(void)
 #if XCHAL_NUM_AREGS > 16
 	__asm__ __volatile__ (
 <<<<<<< HEAD
+<<<<<<< HEAD
 		"	call12	1f\n"
 =======
 		"	call8	1f\n"
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		"	call12	1f\n"
+>>>>>>> 2617302... source
 		"	_j	2f\n"
 		"	retw\n"
 		"	.align	4\n"
 		"1:\n"
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		"	_entry	a1, 48\n"
 		"	addi	a12, a0, 3\n"
 #if XCHAL_NUM_AREGS > 32
@@ -53,6 +60,7 @@ static inline void spill_registers(void)
 		"	retw\n"
 		"2:\n"
 		: : : "a12", "a13", "memory");
+<<<<<<< HEAD
 =======
 #if XCHAL_NUM_AREGS == 32
 		"	_entry	a1, 32\n"
@@ -83,6 +91,8 @@ static inline void spill_registers(void)
 		"2:\n"
 		: : : "a8", "a9", "memory");
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 #else
 	__asm__ __volatile__ (
 		"	mov	a12, a12\n"

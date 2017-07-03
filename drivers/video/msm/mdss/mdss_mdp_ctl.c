@@ -2965,12 +2965,18 @@ int mdss_mdp_display_wait4pingpong(struct mdss_mdp_ctl *ctl)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 #if defined (CONFIG_FB_MSM_MDSS_DSI_DBG)
 struct mdss_mdp_ctl *commit_ctl;
 #endif
 
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 int mdss_mdp_display_commit(struct mdss_mdp_ctl *ctl, void *arg,
 	struct mdss_mdp_commit_cb *commit_cb)
 {

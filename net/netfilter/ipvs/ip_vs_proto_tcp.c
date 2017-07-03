@@ -374,6 +374,7 @@ static const char *const tcp_state_name_table[IP_VS_TCP_S_LAST+1] = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 static const bool tcp_state_active_table[IP_VS_TCP_S_LAST] = {
 	[IP_VS_TCP_S_NONE]		=	false,
@@ -390,6 +391,8 @@ static const bool tcp_state_active_table[IP_VS_TCP_S_LAST] = {
 };
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 #define sNO IP_VS_TCP_S_NONE
 #define sES IP_VS_TCP_S_ESTABLISHED
 #define sSS IP_VS_TCP_S_SYN_SENT
@@ -414,6 +417,7 @@ static const char * tcp_state_name(int state)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 static bool tcp_state_active(int state)
 {
@@ -423,6 +427,8 @@ static bool tcp_state_active(int state)
 }
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 static struct tcp_states_t tcp_states [] = {
 /*	INPUT */
 /*        sNO, sES, sSS, sSR, sFW, sTW, sCL, sCW, sLA, sLI, sSA	*/
@@ -546,19 +552,27 @@ set_tcp_state(struct ip_vs_proto_data *pd, struct ip_vs_conn *cp,
 		if (dest) {
 			if (!(cp->flags & IP_VS_CONN_F_INACTIVE) &&
 <<<<<<< HEAD
+<<<<<<< HEAD
 			    (new_state != IP_VS_TCP_S_ESTABLISHED)) {
 =======
 			    !tcp_state_active(new_state)) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			    (new_state != IP_VS_TCP_S_ESTABLISHED)) {
+>>>>>>> 2617302... source
 				atomic_dec(&dest->activeconns);
 				atomic_inc(&dest->inactconns);
 				cp->flags |= IP_VS_CONN_F_INACTIVE;
 			} else if ((cp->flags & IP_VS_CONN_F_INACTIVE) &&
 <<<<<<< HEAD
+<<<<<<< HEAD
 				   (new_state == IP_VS_TCP_S_ESTABLISHED)) {
 =======
 				   tcp_state_active(new_state)) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+				   (new_state == IP_VS_TCP_S_ESTABLISHED)) {
+>>>>>>> 2617302... source
 				atomic_inc(&dest->activeconns);
 				atomic_dec(&dest->inactconns);
 				cp->flags &= ~IP_VS_CONN_F_INACTIVE;

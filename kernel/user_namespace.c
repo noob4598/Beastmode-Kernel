@@ -25,9 +25,12 @@
 
 static struct kmem_cache *user_ns_cachep __read_mostly;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 static DEFINE_MUTEX(userns_state_mutex);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 static bool new_idmap_permitted(const struct file *file,
 				struct user_namespace *ns, int cap_setid,
@@ -104,6 +107,7 @@ int create_user_ns(struct cred *new)
 	ns->group = group;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/* Inherit USERNS_SETGROUPS_ALLOWED from our parent */
 	mutex_lock(&userns_state_mutex);
@@ -111,6 +115,8 @@ int create_user_ns(struct cred *new)
 	mutex_unlock(&userns_state_mutex);
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	set_cred_user_ns(new, ns);
 
 	update_mnt_policy(ns);
@@ -590,11 +596,17 @@ static bool mappings_overlap(struct uid_gid_map *new_map, struct uid_gid_extent 
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 static DEFINE_MUTEX(id_map_mutex);
 
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+
+static DEFINE_MUTEX(id_map_mutex);
+
+>>>>>>> 2617302... source
 static ssize_t map_write(struct file *file, const char __user *buf,
 			 size_t count, loff_t *ppos,
 			 int cap_setid,
@@ -612,10 +624,14 @@ static ssize_t map_write(struct file *file, const char __user *buf,
 
 	/*
 <<<<<<< HEAD
+<<<<<<< HEAD
 	 * The id_map_mutex serializes all writes to any given map.
 =======
 	 * The userns_state_mutex serializes all writes to any given map.
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	 * The id_map_mutex serializes all writes to any given map.
+>>>>>>> 2617302... source
 	 *
 	 * Any map is only ever written once.
 	 *
@@ -634,10 +650,14 @@ static ssize_t map_write(struct file *file, const char __user *buf,
 	 * architectures returning stale data.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mutex_lock(&id_map_mutex);
 =======
 	mutex_lock(&userns_state_mutex);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	mutex_lock(&id_map_mutex);
+>>>>>>> 2617302... source
 
 	ret = -EPERM;
 	/* Only allow one successful write to the map */
@@ -765,10 +785,14 @@ static ssize_t map_write(struct file *file, const char __user *buf,
 	ret = count;
 out:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mutex_unlock(&id_map_mutex);
 =======
 	mutex_unlock(&userns_state_mutex);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	mutex_unlock(&id_map_mutex);
+>>>>>>> 2617302... source
 	if (page)
 		free_page(page);
 	return ret;
@@ -828,6 +852,9 @@ static bool new_idmap_permitted(const struct file *file,
 				struct uid_gid_map *new_map)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	/* Allow mapping to your own filesystem ids */
 	if ((new_map->nr_extents == 1) && (new_map->extent[0].count == 1)) {
 		u32 id = new_map->extent[0].lower_first;
@@ -839,6 +866,7 @@ static bool new_idmap_permitted(const struct file *file,
 		else if (cap_setid == CAP_SETGID) {
 			kgid_t gid = make_kgid(ns->parent, id);
 			if (gid_eq(gid, file->f_cred->fsgid))
+<<<<<<< HEAD
 =======
 	const struct cred *cred = file->f_cred;
 	/* Don't allow mappings that would allow anything that wouldn't
@@ -856,6 +884,8 @@ static bool new_idmap_permitted(const struct file *file,
 			if (!(ns->flags & USERNS_SETGROUPS_ALLOWED) &&
 			    gid_eq(gid, cred->egid))
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 				return true;
 		}
 	}
@@ -875,6 +905,7 @@ static bool new_idmap_permitted(const struct file *file,
 	return false;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 int proc_setgroups_show(struct seq_file *seq, void *v)
@@ -972,6 +1003,8 @@ bool userns_may_setgroups(const struct user_namespace *ns)
 }
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 static void *userns_get(struct task_struct *task)
 {
 	struct user_namespace *user_ns;

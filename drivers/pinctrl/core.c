@@ -1078,10 +1078,14 @@ EXPORT_SYMBOL_GPL(devm_pinctrl_put);
 
 int pinctrl_register_map(struct pinctrl_map const *maps, unsigned num_maps,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			 bool dup, bool locked)
 =======
 			 bool dup)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			 bool dup, bool locked)
+>>>>>>> 2617302... source
 {
 	int i, ret;
 	struct pinctrl_maps *maps_node;
@@ -1150,16 +1154,22 @@ int pinctrl_register_map(struct pinctrl_map const *maps, unsigned num_maps,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	if (!locked)
 		mutex_lock(&pinctrl_maps_mutex);
 	list_add_tail(&maps_node->node, &pinctrl_maps);
 	if (!locked)
 		mutex_unlock(&pinctrl_maps_mutex);
+<<<<<<< HEAD
 =======
 	mutex_lock(&pinctrl_maps_mutex);
 	list_add_tail(&maps_node->node, &pinctrl_maps);
 	mutex_unlock(&pinctrl_maps_mutex);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	return 0;
 }
@@ -1175,10 +1185,14 @@ int pinctrl_register_mappings(struct pinctrl_map const *maps,
 			      unsigned num_maps)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return pinctrl_register_map(maps, num_maps, true, false);
 =======
 	return pinctrl_register_map(maps, num_maps, true);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	return pinctrl_register_map(maps, num_maps, true, false);
+>>>>>>> 2617302... source
 }
 
 void pinctrl_unregister_map(struct pinctrl_map const *map)
@@ -1709,24 +1723,33 @@ void pinctrl_unregister(struct pinctrl_dev *pctldev)
 		return;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	mutex_lock(&pinctrldev_list_mutex);
 	mutex_lock(&pctldev->mutex);
 
 	pinctrl_remove_device_debugfs(pctldev);
+<<<<<<< HEAD
 =======
 	mutex_lock(&pctldev->mutex);
 	pinctrl_remove_device_debugfs(pctldev);
 	mutex_unlock(&pctldev->mutex);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	if (!IS_ERR(pctldev->p))
 		pinctrl_put(pctldev->p);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	mutex_lock(&pinctrldev_list_mutex);
 	mutex_lock(&pctldev->mutex);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	/* TODO: check that no pinmuxes are still active? */
 	list_del(&pctldev->node);
 	/* Destroy descriptor tree */

@@ -1,8 +1,12 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* Copyright (c) 2014, The Linux Foundation. All rights reserved.
 =======
 /* Copyright (c) 2013-2014, The Linux Foundation. All rights reserved.
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+/* Copyright (c) 2014, The Linux Foundation. All rights reserved.
+>>>>>>> 2617302... source
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -18,14 +22,20 @@
 
 #define MHI_IPC_LOG_PAGES (50)
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 #define MHI_LOG_SIZE 0x1000
 #define MHI_LINK_STABILITY_WAIT_MS 100
 #define MHI_MAX_LINK_RETRIES 9
 #define DT_WAIT_RETRIES 30
+<<<<<<< HEAD
 =======
 #define MHI_LINK_STABILITY_WAIT_MS 100
 #define MHI_MAX_LINK_RETRIES 9
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 #define MHI_MAX_SUSPEND_RETRIES 1000
 #define MHI_VERSION 0x01000000
 #define ALIGNMENT_OFFSET 0xFFF
@@ -37,10 +47,14 @@
 #define MHI_MAX_RESUME_TIMEOUT 5000
 #define MHI_MAX_SUSPEND_TIMEOUT 5000
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define MHI_MAX_CMD_TIMEOUT 500
 =======
 #define MHI_MAX_INIT_M0_TIMEOUT 1000
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+#define MHI_MAX_CMD_TIMEOUT 500
+>>>>>>> 2617302... source
 
 #define MAX_NR_MSI 4
 
@@ -70,10 +84,15 @@
 #define MHI_XFER_DB_INTERVAL 8
 #define MHI_EV_DB_INTERVAL 32
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 #define MHI_HANDLE_MAGIC 0x12344321
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+
+#define MHI_HANDLE_MAGIC 0x12344321
+>>>>>>> 2617302... source
 /* PCIe Device Info */
 
 #define MHI_PCIE_DEVICE_BAR0_OFFSET_LOW (16)
@@ -83,6 +102,9 @@
 
 #define IS_HARDWARE_CHANNEL(_CHAN_NR) \
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	(((enum MHI_CLIENT_CHANNEL)(_CHAN_NR) > \
 	MHI_CLIENT_RESERVED_1_UPPER) && \
 	 ((enum MHI_CLIENT_CHANNEL)(_CHAN_NR) < MHI_CLIENT_RESERVED_2_LOWER))
@@ -90,6 +112,7 @@
 #define IS_SOFTWARE_CHANNEL(_CHAN_NR) \
 	(((enum MHI_CLIENT_CHANNEL)(_CHAN_NR) >= 0) && \
 	 ((enum MHI_CLIENT_CHANNEL)(_CHAN_NR) < MHI_CLIENT_RESERVED_1_LOWER))
+<<<<<<< HEAD
 =======
 	(((MHI_CLIENT_CHANNEL)(_CHAN_NR) > MHI_CLIENT_RESERVED_1_UPPER) && \
 	 ((MHI_CLIENT_CHANNEL)(_CHAN_NR) < MHI_CLIENT_RESERVED_2_LOWER))
@@ -98,6 +121,8 @@
 	(((MHI_CLIENT_CHANNEL)(_CHAN_NR) >= 0) && \
 	 ((MHI_CLIENT_CHANNEL)(_CHAN_NR) < MHI_CLIENT_RESERVED_1_LOWER))
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 #define IRQ_TO_MSI(_MHI_DEV_CTXT, _IRQ_NR) \
 	((_IRQ_NR) - (_MHI_DEV_CTXT)->dev_info->core.irq_base)
@@ -114,10 +139,14 @@
 #define MHI_HW_INTMOD_VAL_MS 2
 /* Timeout Values */
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define MHI_READY_STATUS_TIMEOUT_MS 50
 =======
 #define MHI_READY_STATUS_TIMEOUT_MS 500
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+#define MHI_READY_STATUS_TIMEOUT_MS 50
+>>>>>>> 2617302... source
 #define MHI_THREAD_SLEEP_TIMEOUT_MS 20
 #define MHI_RESUME_WAKE_RETRIES 20
 
@@ -146,20 +175,28 @@
 #define MHI_EV_TRB_CODE__MASK (0xFF)
 #define MHI_EV_TRB_CODE__SHIFT (24)
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define MHI_EV_READ_CODE(_FIELD, _PKT) (((_PKT->type).xfer_details >> \
 =======
 #define MHI_EV_READ_CODE(_FIELD, _PKT) ((((_PKT)->type).xfer_details >> \
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+#define MHI_EV_READ_CODE(_FIELD, _PKT) (((_PKT->type).xfer_details >> \
+>>>>>>> 2617302... source
 			MHI_##_FIELD ## __SHIFT) & \
 		MHI_ ##_FIELD ## __MASK)
 #define EV_LEN
 #define MHI_EV_LEN__MASK (0xFFFF)
 #define MHI_EV_LEN__SHIFT (0)
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define MHI_EV_READ_LEN(_FIELD, _PKT) (((_PKT->xfer_event_pkt).xfer_details >> \
 =======
 #define MHI_EV_READ_LEN(_FIELD, _PKT) ((((_PKT)->xfer_event_pkt).xfer_details >> \
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+#define MHI_EV_READ_LEN(_FIELD, _PKT) (((_PKT->xfer_event_pkt).xfer_details >> \
+>>>>>>> 2617302... source
 			MHI_##_FIELD ## __SHIFT) & \
 		MHI_ ##_FIELD ## __MASK)
 
@@ -245,6 +282,7 @@
 #define HIGH_WORD(_x) ((u32)((((u64)(_x)) >> 32) & 0xFFFFFFFF))
 #define LOW_WORD(_x) ((u32)(((u64)(_x)) & 0xFFFFFFFF))
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 #define MHI_REG_WRITE(_base, _offset, _val) \
@@ -345,6 +383,8 @@
 			0)
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 #define EVENT_RING_MSI_VEC
 #define MHI_EVENT_RING_MSI_VEC__MASK (0xf)
 #define MHI_EVENT_RING_MSI_VEC__SHIFT (2)
@@ -386,12 +426,18 @@
 	(((_CTXT)->mhi_intmodt >> MHI_##_FIELD ## __SHIFT) & \
 				 MHI_##_FIELD ## __MASK)
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 
 #define MHI_READ_FIELD(_val, _mask, _shift) \
 	do { \
 		_val &= (u32)(_mask); \
 		_val >>= (u32)(_shift); \
 	} while (0)
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 #endif

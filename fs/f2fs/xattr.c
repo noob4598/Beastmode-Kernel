@@ -26,10 +26,14 @@
 
 static size_t f2fs_xattr_generic_list(struct dentry *dentry, char *list,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		size_t list_size, const char *name, size_t name_len, int type)
 =======
 		size_t list_size, const char *name, size_t len, int type)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		size_t list_size, const char *name, size_t name_len, int type)
+>>>>>>> 2617302... source
 {
 	struct f2fs_sb_info *sbi = F2FS_SB(dentry->d_sb);
 	int total_len, prefix_len = 0;
@@ -57,11 +61,15 @@ static size_t f2fs_xattr_generic_list(struct dentry *dentry, char *list,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	total_len = prefix_len + name_len + 1;
 	if (list && total_len <= list_size) {
 		memcpy(list, prefix, prefix_len);
 		memcpy(list + prefix_len, name, name_len);
 		list[prefix_len + name_len] = '\0';
+<<<<<<< HEAD
 =======
 	total_len = prefix_len + len + 1;
 	if (list && total_len <= list_size) {
@@ -69,6 +77,8 @@ static size_t f2fs_xattr_generic_list(struct dentry *dentry, char *list,
 		memcpy(list + prefix_len, name, len);
 		list[prefix_len + len] = '\0';
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	}
 	return total_len;
 }
@@ -95,10 +105,14 @@ static int f2fs_xattr_generic_get(struct dentry *dentry, const char *name,
 	if (strcmp(name, "") == 0)
 		return -EINVAL;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return f2fs_getxattr(dentry->d_inode, type, name, buffer, size);
 =======
 	return f2fs_getxattr(d_inode(dentry), type, name, buffer, size, NULL);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	return f2fs_getxattr(dentry->d_inode, type, name, buffer, size);
+>>>>>>> 2617302... source
 }
 
 static int f2fs_xattr_generic_set(struct dentry *dentry, const char *name,
@@ -124,11 +138,15 @@ static int f2fs_xattr_generic_set(struct dentry *dentry, const char *name,
 		return -EINVAL;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	return f2fs_setxattr(dentry->d_inode, type, name, value, size, NULL);
 }
 
 static size_t f2fs_xattr_advise_list(struct dentry *dentry, char *list,
 		size_t list_size, const char *name, size_t name_len, int type)
+<<<<<<< HEAD
 =======
 	return f2fs_setxattr(d_inode(dentry), type, name,
 					value, size, NULL, flags);
@@ -137,6 +155,8 @@ static size_t f2fs_xattr_advise_list(struct dentry *dentry, char *list,
 static size_t f2fs_xattr_advise_list(struct dentry *dentry, char *list,
 		size_t list_size, const char *name, size_t len, int type)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 {
 	const char *xname = F2FS_SYSTEM_ADVISE_PREFIX;
 	size_t size;
@@ -154,20 +174,28 @@ static int f2fs_xattr_advise_get(struct dentry *dentry, const char *name,
 		void *buffer, size_t size, int type)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct inode *inode = dentry->d_inode;
 =======
 	struct inode *inode = d_inode(dentry);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	struct inode *inode = dentry->d_inode;
+>>>>>>> 2617302... source
 
 	if (strcmp(name, "") != 0)
 		return -EINVAL;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	*((char *)buffer) = F2FS_I(inode)->i_advise;
 =======
 	if (buffer)
 		*((char *)buffer) = F2FS_I(inode)->i_advise;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	*((char *)buffer) = F2FS_I(inode)->i_advise;
+>>>>>>> 2617302... source
 	return sizeof(char);
 }
 
@@ -175,10 +203,14 @@ static int f2fs_xattr_advise_set(struct dentry *dentry, const char *name,
 		const void *value, size_t size, int flags, int type)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct inode *inode = dentry->d_inode;
 =======
 	struct inode *inode = d_inode(dentry);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	struct inode *inode = dentry->d_inode;
+>>>>>>> 2617302... source
 
 	if (strcmp(name, "") != 0)
 		return -EINVAL;
@@ -189,9 +221,12 @@ static int f2fs_xattr_advise_set(struct dentry *dentry, const char *name,
 
 	F2FS_I(inode)->i_advise |= *(char *)value;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	f2fs_mark_inode_dirty_sync(inode, true);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	return 0;
 }
 
@@ -206,10 +241,14 @@ static int f2fs_initxattrs(struct inode *inode, const struct xattr *xattr_array,
 		err = f2fs_setxattr(inode, F2FS_XATTR_INDEX_SECURITY,
 				xattr->name, xattr->value,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				xattr->value_len, (struct page *)page);
 =======
 				xattr->value_len, (struct page *)page, 0);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+				xattr->value_len, (struct page *)page);
+>>>>>>> 2617302... source
 		if (err < 0)
 			break;
 	}
@@ -284,6 +323,9 @@ const struct xattr_handler *f2fs_xattr_handlers[] = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 static inline const struct xattr_handler *f2fs_xattr_handler(int name_index)
 {
 	const struct xattr_handler *handler = NULL;
@@ -336,6 +378,7 @@ int f2fs_getxattr(struct inode *inode, int name_index, const char *name,
 	if (buffer && value_len > buffer_size) {
 		error = -ERANGE;
 		goto cleanup;
+<<<<<<< HEAD
 =======
 static inline const struct xattr_handler *f2fs_xattr_handler(int index)
 {
@@ -632,17 +675,23 @@ int f2fs_getxattr(struct inode *inode, int index, const char *name,
 		error = -ERANGE;
 		goto out;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	}
 
 	if (buffer) {
 		char *pval = entry->e_name + entry->e_name_len;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		memcpy(buffer, pval, value_len);
 	}
 	error = value_len;
 
 cleanup:
 	f2fs_put_page(page, 1);
+<<<<<<< HEAD
 =======
 		memcpy(buffer, pval, size);
 	}
@@ -650,26 +699,37 @@ cleanup:
 out:
 	kzfree(base_addr);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	return error;
 }
 
 ssize_t f2fs_listxattr(struct dentry *dentry, char *buffer, size_t buffer_size)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	struct inode *inode = dentry->d_inode;
 	struct f2fs_sb_info *sbi = F2FS_SB(inode->i_sb);
 	struct f2fs_inode_info *fi = F2FS_I(inode);
 	struct f2fs_xattr_entry *entry;
 	struct page *page;
+<<<<<<< HEAD
 =======
 	struct inode *inode = d_inode(dentry);
 	struct f2fs_xattr_entry *entry;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	void *base_addr;
 	int error = 0;
 	size_t rest = buffer_size;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	if (!fi->i_xattr_nid)
 		return 0;
 
@@ -677,11 +737,14 @@ ssize_t f2fs_listxattr(struct dentry *dentry, char *buffer, size_t buffer_size)
 	if (IS_ERR(page))
 		return PTR_ERR(page);
 	base_addr = page_address(page);
+<<<<<<< HEAD
 =======
 	error = read_all_xattrs(inode, NULL, &base_addr);
 	if (error)
 		return error;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	list_for_each_xattr(entry, base_addr) {
 		const struct xattr_handler *handler =
@@ -705,6 +768,9 @@ ssize_t f2fs_listxattr(struct dentry *dentry, char *buffer, size_t buffer_size)
 	error = buffer_size - rest;
 cleanup:
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	f2fs_put_page(page, 1);
 	return error;
 }
@@ -722,6 +788,7 @@ int f2fs_setxattr(struct inode *inode, int name_index, const char *name,
 	size_t name_len;
 	char *pval;
 	int ilock;
+<<<<<<< HEAD
 =======
 	kzfree(base_addr);
 	return error;
@@ -747,12 +814,17 @@ static int __f2fs_setxattr(struct inode *inode, int index,
 	__u32 new_hsize;
 	int error = 0;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	if (name == NULL)
 		return -EINVAL;
 
 	if (value == NULL)
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		value_len = 0;
 
 	name_len = strlen(name);
@@ -838,6 +910,7 @@ static int __f2fs_setxattr(struct inode *inode, int index,
 		if (free < newsize) {
 			error = -ENOSPC;
 			goto cleanup;
+<<<<<<< HEAD
 =======
 		size = 0;
 
@@ -892,17 +965,23 @@ static int __f2fs_setxattr(struct inode *inode, int index,
 			error = -E2BIG;
 			goto exit;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		}
 	}
 
 	/* 2. Remove old entry */
 	if (found) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		/* If entry is found, remove old entry.
 =======
 		/*
 		 * If entry is found, remove old entry.
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		/* If entry is found, remove old entry.
+>>>>>>> 2617302... source
 		 * If not found, remove operation is not needed.
 		 */
 		struct f2fs_xattr_entry *next = XATTR_NEXT_ENTRY(here);
@@ -914,6 +993,9 @@ static int __f2fs_setxattr(struct inode *inode, int index,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	/* 3. Write new entry */
 	if (value) {
 		/* Before we come here, old entry is removed.
@@ -948,6 +1030,7 @@ exit:
 	mutex_unlock_op(sbi, ilock);
 	return error;
 }
+<<<<<<< HEAD
 =======
 	new_hsize = (char *)last - (char *)base_addr;
 
@@ -1011,3 +1094,5 @@ int f2fs_setxattr(struct inode *inode, int index, const char *name,
 	return err;
 }
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source

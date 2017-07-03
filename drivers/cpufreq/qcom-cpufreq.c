@@ -194,10 +194,13 @@ static int set_cpu_freq(struct cpufreq_policy *policy, unsigned int new_freq,
 		trace_cpu_frequency_switch_end(policy->cpu);
 		cpufreq_notify_transition(policy, &freqs, CPUFREQ_POSTCHANGE);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	} else {
 		pr_debug("%s: cpu%d clk_set_rate fail- %u!!\n", __func__, policy->cpu, new_freq);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	}
 
 	/* Restore priority after clock ramp-up */
@@ -223,10 +226,14 @@ static int msm_cpufreq_target(struct cpufreq_policy *policy,
 				unsigned int relation)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int ret = -EFAULT;
 =======
 	int ret = 0;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	int ret = -EFAULT;
+>>>>>>> 2617302... source
 	int index;
 	struct cpufreq_frequency_table *table;
 
@@ -235,10 +242,14 @@ static int msm_cpufreq_target(struct cpufreq_policy *policy,
 	mutex_lock(&per_cpu(cpufreq_suspend, policy->cpu).suspend_mutex);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	if (per_cpu(cpufreq_suspend, policy->cpu).device_suspended) {
 		pr_debug("cpufreq: cpu%d scheduling frequency change "
 				"in suspend.\n", policy->cpu);
 		ret = -EFAULT;
+<<<<<<< HEAD
 =======
 	if (target_freq == policy->cur)
 		goto done; 
@@ -248,10 +259,13 @@ static int msm_cpufreq_target(struct cpufreq_policy *policy,
 				"in suspend.\n", policy->cpu);
 		//ret = -EFAULT;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		goto done;
 	}
 
 	table = cpufreq_frequency_get_table(policy->cpu);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (cpufreq_frequency_table_target(policy, table, target_freq, relation,
 			&index)) {
@@ -267,6 +281,11 @@ static int msm_cpufreq_target(struct cpufreq_policy *policy,
 			&index)) {
 		pr_err("cpufreq: cpu%d invalid target_freq: %d\n", policy->cpu, target_freq);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (cpufreq_frequency_table_target(policy, table, target_freq, relation,
+			&index)) {
+		pr_err("cpufreq: invalid target_freq: %d\n", target_freq);
+>>>>>>> 2617302... source
 		ret = -EINVAL;
 		goto done;
 	}
@@ -293,6 +312,7 @@ done:
 	return ret;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 static int cpufreq_verify_within_freqtable(struct cpufreq_policy *policy)
@@ -357,10 +377,13 @@ static int cpufreq_verify_within_freqtable(struct cpufreq_policy *policy)
 }
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 static int msm_cpufreq_verify(struct cpufreq_policy *policy)
 {
 	cpufreq_verify_within_limits(policy, policy->cpuinfo.min_freq,
 			policy->cpuinfo.max_freq);
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 
@@ -368,6 +391,8 @@ static int msm_cpufreq_verify(struct cpufreq_policy *policy)
 	cpufreq_verify_within_freqtable(policy);
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	return 0;
 }
 

@@ -42,9 +42,12 @@ void inode_add_rsv_space(struct inode *inode, qsize_t number);
 void inode_claim_rsv_space(struct inode *inode, qsize_t number);
 void inode_sub_rsv_space(struct inode *inode, qsize_t number);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 void inode_reclaim_rsv_space(struct inode *inode, qsize_t number);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 void dquot_initialize(struct inode *inode);
 void dquot_drop(struct inode *inode);
@@ -64,9 +67,12 @@ int dquot_alloc_inode(const struct inode *inode);
 int dquot_claim_space_nodirty(struct inode *inode, qsize_t number);
 void dquot_free_inode(const struct inode *inode);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 void dquot_reclaim_space_nodirty(struct inode *inode, qsize_t number);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 int dquot_disable(struct super_block *sb, int type, unsigned int flags);
 /* Suspend quotas on remount RO */
@@ -247,6 +253,7 @@ static inline int dquot_claim_space_nodirty(struct inode *inode, qsize_t number)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 static inline int dquot_reclaim_space_nodirty(struct inode *inode,
 					      qsize_t number)
@@ -256,6 +263,8 @@ static inline int dquot_reclaim_space_nodirty(struct inode *inode,
 }
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 static inline int dquot_disable(struct super_block *sb, int type,
 		unsigned int flags)
 {
@@ -355,6 +364,7 @@ static inline int dquot_claim_block(struct inode *inode, qsize_t nr)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 static inline void dquot_reclaim_block(struct inode *inode, qsize_t nr)
 {
@@ -363,6 +373,8 @@ static inline void dquot_reclaim_block(struct inode *inode, qsize_t nr)
 }
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 static inline void dquot_free_space_nodirty(struct inode *inode, qsize_t nr)
 {
 	__dquot_free_space(inode, nr, 0);

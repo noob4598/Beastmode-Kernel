@@ -66,9 +66,12 @@ static struct ib_ah *create_ib_ah(struct ib_pd *pd, struct ib_ah_attr *ah_attr,
 	ah->av.ib.port_pd = cpu_to_be32(to_mpd(pd)->pdn | (ah_attr->port_num << 24));
 	ah->av.ib.g_slid  = ah_attr->src_path_bits;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	ah->av.ib.sl_tclass_flowlabel = cpu_to_be32(ah_attr->sl << 28);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	if (ah_attr->ah_flags & IB_AH_GRH) {
 		ah->av.ib.g_slid   |= 0x80;
 		ah->av.ib.gid_index = ah_attr->grh.sgid_index;
@@ -87,9 +90,13 @@ static struct ib_ah *create_ib_ah(struct ib_pd *pd, struct ib_ah_attr *ah_attr,
 			--ah->av.ib.stat_rate;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ah->av.ib.sl_tclass_flowlabel = cpu_to_be32(ah_attr->sl << 28);
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	ah->av.ib.sl_tclass_flowlabel = cpu_to_be32(ah_attr->sl << 28);
+>>>>>>> 2617302... source
 
 	return &ah->ibah;
 }
@@ -126,12 +133,16 @@ static struct ib_ah *create_iboe_ah(struct ib_pd *pd, struct ib_ah_attr *ah_attr
 			--ah->av.eth.stat_rate;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 	ah->av.eth.sl_tclass_flowlabel |=
 			cpu_to_be32((ah_attr->grh.traffic_class << 20) |
 				    ah_attr->grh.flow_label);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+
+>>>>>>> 2617302... source
 	/*
 	 * HW requires multicast LID so we just choose one.
 	 */
@@ -140,10 +151,14 @@ static struct ib_ah *create_iboe_ah(struct ib_pd *pd, struct ib_ah_attr *ah_attr
 
 	memcpy(ah->av.eth.dgid, ah_attr->grh.dgid.raw, 16);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ah->av.eth.sl_tclass_flowlabel = cpu_to_be32(ah_attr->sl << 29);
 =======
 	ah->av.eth.sl_tclass_flowlabel |= cpu_to_be32(ah_attr->sl << 29);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	ah->av.eth.sl_tclass_flowlabel = cpu_to_be32(ah_attr->sl << 29);
+>>>>>>> 2617302... source
 
 	return &ah->ibah;
 }
@@ -187,6 +202,7 @@ int mlx4_ib_query_ah(struct ib_ah *ibah, struct ib_ah_attr *ah_attr)
 
 	memset(ah_attr, 0, sizeof *ah_attr);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ah_attr->sl = be32_to_cpu(ah->av.ib.sl_tclass_flowlabel) >> 28;
 	ah_attr->port_num = be32_to_cpu(ah->av.ib.port_pd) >> 24;
 	ll = rdma_port_get_link_layer(ibah->device, ah_attr->port_num);
@@ -199,6 +215,11 @@ int mlx4_ib_query_ah(struct ib_ah *ibah, struct ib_ah_attr *ah_attr)
 		ah_attr->sl = be32_to_cpu(ah->av.ib.sl_tclass_flowlabel) >> 28;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	ah_attr->sl = be32_to_cpu(ah->av.ib.sl_tclass_flowlabel) >> 28;
+	ah_attr->port_num = be32_to_cpu(ah->av.ib.port_pd) >> 24;
+	ll = rdma_port_get_link_layer(ibah->device, ah_attr->port_num);
+>>>>>>> 2617302... source
 	ah_attr->dlid = ll == IB_LINK_LAYER_INFINIBAND ? be16_to_cpu(ah->av.ib.dlid) : 0;
 	if (ah->av.ib.stat_rate)
 		ah_attr->static_rate = ah->av.ib.stat_rate - MLX4_STAT_RATE_OFFSET;

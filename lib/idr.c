@@ -251,10 +251,14 @@ static int sub_alloc(struct idr *idp, int *starting_id, struct idr_layer **pa,
 
 			/* if already at the top layer, we need to grow */
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (id >= 1 << (idp->layers * IDR_BITS)) {
 =======
 			if (id > idr_max(idp->layers)) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			if (id >= 1 << (idp->layers * IDR_BITS)) {
+>>>>>>> 2617302... source
 				*starting_id = id;
 				return -EAGAIN;
 			}
@@ -834,18 +838,24 @@ void *idr_replace(struct idr *idp, void *ptr, int id)
 		return ERR_PTR(-EINVAL);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	n = (p->layer+1) * IDR_BITS;
 
 	if (id >= (1 << n))
 		return ERR_PTR(-EINVAL);
 
 	n -= IDR_BITS;
+<<<<<<< HEAD
 =======
 	if (id > idr_max(p->layer + 1))
 		return ERR_PTR(-EINVAL);
 
 	n = p->layer * IDR_BITS;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	while ((n > 0) && p) {
 		p = p->ary[(id >> n) & IDR_MASK];
 		n -= IDR_BITS;

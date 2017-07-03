@@ -134,10 +134,14 @@ static inline struct musb *dev_to_musb(struct device *dev)
 
 #ifndef CONFIG_BLACKFIN
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int musb_ulpi_read(struct usb_phy *phy, u32 offset)
 =======
 static int musb_ulpi_read(struct usb_phy *phy, u32 reg)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+static int musb_ulpi_read(struct usb_phy *phy, u32 offset)
+>>>>>>> 2617302... source
 {
 	void __iomem *addr = phy->io_priv;
 	int	i = 0;
@@ -157,10 +161,14 @@ static int musb_ulpi_read(struct usb_phy *phy, u32 reg)
 	 */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	musb_writeb(addr, MUSB_ULPI_REG_ADDR, (u8)offset);
 =======
 	musb_writeb(addr, MUSB_ULPI_REG_ADDR, (u8)reg);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	musb_writeb(addr, MUSB_ULPI_REG_ADDR, (u8)offset);
+>>>>>>> 2617302... source
 	musb_writeb(addr, MUSB_ULPI_REG_CONTROL,
 			MUSB_ULPI_REG_REQ | MUSB_ULPI_RDN_WR);
 
@@ -186,10 +194,14 @@ out:
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int musb_ulpi_write(struct usb_phy *phy, u32 offset, u32 data)
 =======
 static int musb_ulpi_write(struct usb_phy *phy, u32 val, u32 reg)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+static int musb_ulpi_write(struct usb_phy *phy, u32 offset, u32 data)
+>>>>>>> 2617302... source
 {
 	void __iomem *addr = phy->io_priv;
 	int	i = 0;
@@ -205,12 +217,17 @@ static int musb_ulpi_write(struct usb_phy *phy, u32 val, u32 reg)
 	musb_writeb(addr, MUSB_POWER, power);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	musb_writeb(addr, MUSB_ULPI_REG_ADDR, (u8)offset);
 	musb_writeb(addr, MUSB_ULPI_REG_DATA, (u8)data);
 =======
 	musb_writeb(addr, MUSB_ULPI_REG_ADDR, (u8)reg);
 	musb_writeb(addr, MUSB_ULPI_REG_DATA, (u8)val);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	musb_writeb(addr, MUSB_ULPI_REG_ADDR, (u8)offset);
+	musb_writeb(addr, MUSB_ULPI_REG_DATA, (u8)data);
+>>>>>>> 2617302... source
 	musb_writeb(addr, MUSB_ULPI_REG_CONTROL, MUSB_ULPI_REG_REQ);
 
 	while (!(musb_readb(addr, MUSB_ULPI_REG_CONTROL)

@@ -516,10 +516,14 @@ static ssize_t set_temp_min(struct device *dev,
 
 	temp = DIV_ROUND_CLOSEST(temp, 1000);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	temp = clamp_val(temp, 0, 255);
 =======
 	temp = clamp_val(temp, -128, 127);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	temp = clamp_val(temp, 0, 255);
+>>>>>>> 2617302... source
 
 	mutex_lock(&data->lock);
 	data->temp_min[attr->index] = temp;
@@ -554,10 +558,14 @@ static ssize_t set_temp_max(struct device *dev,
 
 	temp = DIV_ROUND_CLOSEST(temp, 1000);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	temp = clamp_val(temp, 0, 255);
 =======
 	temp = clamp_val(temp, -128, 127);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	temp = clamp_val(temp, 0, 255);
+>>>>>>> 2617302... source
 
 	mutex_lock(&data->lock);
 	data->temp_max[attr->index] = temp;
@@ -835,10 +843,14 @@ static ssize_t set_pwm_tmin(struct device *dev,
 
 	temp = DIV_ROUND_CLOSEST(temp, 1000);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	temp = clamp_val(temp, 0, 255);
 =======
 	temp = clamp_val(temp, -128, 127);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	temp = clamp_val(temp, 0, 255);
+>>>>>>> 2617302... source
 
 	mutex_lock(&data->lock);
 	data->pwm_tmin[attr->index] = temp;

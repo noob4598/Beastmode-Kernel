@@ -844,11 +844,14 @@ static int xpad_probe(struct usb_interface *intf, const struct usb_device_id *id
 	int i, error;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (intf->cur_altsetting->desc.bNumEndpoints != 2)
 		return -ENODEV;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	for (i = 0; xpad_device[i].idVendor; i++) {
 		if ((le16_to_cpu(udev->descriptor.idVendor) == xpad_device[i].idVendor) &&
 		    (le16_to_cpu(udev->descriptor.idProduct) == xpad_device[i].idProduct))
@@ -905,6 +908,7 @@ static int xpad_probe(struct usb_interface *intf, const struct usb_device_id *id
 	input_dev->phys = xpad->phys;
 	usb_to_input_id(udev, &input_dev->id);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 	if (xpad->xtype == XTYPE_XBOX360W) {
@@ -913,6 +917,8 @@ static int xpad_probe(struct usb_interface *intf, const struct usb_device_id *id
 	}
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	input_dev->dev.parent = &intf->dev;
 
 	input_set_drvdata(input_dev, xpad);
@@ -1018,6 +1024,7 @@ static int xpad_probe(struct usb_interface *intf, const struct usb_device_id *id
 
 		ep_irq_in = &intf->cur_altsetting->endpoint[1].desc;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		usb_fill_bulk_urb(xpad->bulk_out, udev,
 				usb_sndbulkpipe(udev, ep_irq_in->bEndpointAddress),
 				xpad->bdata, XPAD_PKT_LEN, xpad_bulk_out, xpad);
@@ -1036,6 +1043,11 @@ static int xpad_probe(struct usb_interface *intf, const struct usb_device_id *id
 					 xpad_bulk_out, xpad, 0);
 		}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		usb_fill_bulk_urb(xpad->bulk_out, udev,
+				usb_sndbulkpipe(udev, ep_irq_in->bEndpointAddress),
+				xpad->bdata, XPAD_PKT_LEN, xpad_bulk_out, xpad);
+>>>>>>> 2617302... source
 
 		/*
 		 * Submit the int URB immediately rather than waiting for open

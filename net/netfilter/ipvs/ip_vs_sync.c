@@ -600,10 +600,14 @@ static void ip_vs_sync_conn_v0(struct net *net, struct ip_vs_conn *cp,
 		else
 			pkts = sysctl_sync_threshold(ipvs);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ip_vs_sync_conn(net, cp->control, pkts);
 =======
 		ip_vs_sync_conn(net, cp, pkts);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		ip_vs_sync_conn(net, cp->control, pkts);
+>>>>>>> 2617302... source
 	}
 }
 
@@ -883,10 +887,13 @@ static void ip_vs_proc_conn(struct net *net, struct ip_vs_conn_param *param,
 			return;
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		if (!(flags & IP_VS_CONN_F_TEMPLATE))
 			kfree(param->pe_data);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	}
 
 	if (opt)
@@ -1161,9 +1168,12 @@ static inline int ip_vs_proc_sync_conn(struct net *net, __u8 *p, __u8 *msg_end)
 				);
 #endif
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	ip_vs_pe_put(param.pe);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	return 0;
 	/* Error exit */
 out:

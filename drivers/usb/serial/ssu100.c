@@ -496,15 +496,21 @@ static void ssu100_update_lsr(struct usb_serial_port *port, u8 lsr,
 				*tty_flag = TTY_FRAME;
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		if (lsr & UART_LSR_OE){
 			port->icount.overrun++;
 			if (*tty_flag == TTY_NORMAL)
 				*tty_flag = TTY_OVERRUN;
+<<<<<<< HEAD
 =======
 		if (lsr & UART_LSR_OE) {
 			port->icount.overrun++;
 			tty_insert_flip_char(&port->port, 0, TTY_OVERRUN);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		}
 	}
 
@@ -523,16 +529,22 @@ static void ssu100_process_read_urb(struct urb *urb)
 	    (packet[0] == 0x1b) && (packet[1] == 0x1b) &&
 	    ((packet[2] == 0x00) || (packet[2] == 0x01))) {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		if (packet[2] == 0x00) {
 			ssu100_update_lsr(port, packet[3], &flag);
 			if (flag == TTY_OVERRUN)
 				tty_insert_flip_char(&port->port, 0,
 						TTY_OVERRUN);
 		}
+<<<<<<< HEAD
 =======
 		if (packet[2] == 0x00)
 			ssu100_update_lsr(port, packet[3], &flag);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		if (packet[2] == 0x01)
 			ssu100_update_msr(port, packet[3]);
 

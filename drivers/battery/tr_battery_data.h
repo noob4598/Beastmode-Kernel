@@ -530,6 +530,9 @@ static sec_bat_adc_table_data_t chg_temp_table[] = {
 #define BATT_SWELLING_HIGH_TEMP_BLOCK		500
 #define BATT_SWELLING_HIGH_TEMP_RECOV		450
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 #define BATT_SWELLING_LOW_TEMP_BLOCK		50
 #define BATT_SWELLING_LOW_TEMP_RECOV		100
 #define BATT_SWELLING_HIGH_CHG_CURRENT			0
@@ -538,6 +541,7 @@ static sec_bat_adc_table_data_t chg_temp_table[] = {
 #define BATT_SWELLING_DROP_FLOAT_VOLTAGE		4200
 #define BATT_SWELLING_HIGH_RECHG_VOLTAGE		4150
 #define BATT_SWELLING_LOW_RECHG_VOLTAGE			4050
+<<<<<<< HEAD
 =======
 #define BATT_SWELLING_LOW_TEMP_BLOCK		100
 #define BATT_SWELLING_LOW_TEMP_RECOV		150
@@ -545,6 +549,8 @@ static sec_bat_adc_table_data_t chg_temp_table[] = {
 #define BATT_SWELLING_RECHG_VOLTAGE		4150
 #define BATT_SWELLING_BLOCK_TIME	10 * 60 /* 10 min */
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 #endif
 
 #define TEMP_HIGHLIMIT_THRESHOLD	800
@@ -582,6 +588,9 @@ static sec_bat_adc_table_data_t chg_temp_table[] = {
 #define TEMP_LOW_RECOVERY_LPM		20
 #else
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 #define TEMP_HIGH_THRESHOLD_EVENT	580
 #define TEMP_HIGH_RECOVERY_EVENT		530
 #define TEMP_LOW_THRESHOLD_EVENT		-50
@@ -592,6 +601,7 @@ static sec_bat_adc_table_data_t chg_temp_table[] = {
 #define TEMP_LOW_RECOVERY_NORMAL	0
 #define TEMP_HIGH_THRESHOLD_LPM		580
 #define TEMP_HIGH_RECOVERY_LPM		530
+<<<<<<< HEAD
 =======
 #define TEMP_HIGH_THRESHOLD_EVENT	600
 #define TEMP_HIGH_RECOVERY_EVENT		460
@@ -604,6 +614,8 @@ static sec_bat_adc_table_data_t chg_temp_table[] = {
 #define TEMP_HIGH_THRESHOLD_LPM		600
 #define TEMP_HIGH_RECOVERY_LPM		460
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 #define TEMP_LOW_THRESHOLD_LPM		-50
 #define TEMP_LOW_RECOVERY_LPM		0
 #endif

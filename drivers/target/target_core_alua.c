@@ -410,6 +410,7 @@ static inline int core_alua_state_standby(
 	case RECEIVE_DIAGNOSTIC:
 	case SEND_DIAGNOSTIC:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return 0;
 =======
 	case READ_CAPACITY:
@@ -423,6 +424,9 @@ static inline int core_alua_state_standby(
 			return 1;
 		}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		return 0;
+>>>>>>> 2617302... source
 	case MAINTENANCE_IN:
 		switch (cdb[1] & 0x1f) {
 		case MI_REPORT_TARGET_PGS:

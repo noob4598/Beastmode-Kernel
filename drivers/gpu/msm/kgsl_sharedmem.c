@@ -593,6 +593,9 @@ _kgsl_sharedmem_page_alloc(struct kgsl_memdesc *memdesc,
 {
 	int pcount = 0, order, ret = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	int j, len, page_size, sglen_alloc, sglen = 0;
 	struct page **pages = NULL;
 	pgprot_t page_prot = pgprot_writecombine(PAGE_KERNEL);
@@ -600,6 +603,7 @@ _kgsl_sharedmem_page_alloc(struct kgsl_memdesc *memdesc,
 	unsigned int align;
 	int step = ((VMALLOC_END - VMALLOC_START)/8) >> PAGE_SHIFT;
 
+<<<<<<< HEAD
 =======
 	int j, page_size, sglen_alloc, sglen = 0;
 	struct page **pages = NULL;
@@ -614,6 +618,8 @@ _kgsl_sharedmem_page_alloc(struct kgsl_memdesc *memdesc,
 		return -EINVAL;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	align = (memdesc->flags & KGSL_MEMALIGN_MASK) >> KGSL_MEMALIGN_SHIFT;
 
 	page_size = (align >= ilog2(SZ_64K) && size >= SZ_64K)
@@ -633,11 +639,14 @@ _kgsl_sharedmem_page_alloc(struct kgsl_memdesc *memdesc,
 	memdesc->ops = &kgsl_page_alloc_ops;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/* Check for integer overflow */
 	if (sglen_alloc && (sizeof(struct scatterlist) > INT_MAX / sglen_alloc))
 		return -EINVAL;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	memdesc->sg = kgsl_malloc(sglen_alloc * sizeof(struct scatterlist));
 
 	if (memdesc->sg == NULL) {

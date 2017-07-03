@@ -144,9 +144,13 @@ static int msg_insert(struct msg_msg *msg, struct mqueue_inode_info *info)
 			return -ENOMEM;
 		INIT_LIST_HEAD(&leaf->msg_list);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		info->qsize += sizeof(*leaf);
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		info->qsize += sizeof(*leaf);
+>>>>>>> 2617302... source
 	}
 	leaf->priority = msg->m_type;
 	rb_link_node(&leaf->rb_node, parent, p);
@@ -192,9 +196,13 @@ try_again:
 		rb_erase(&leaf->rb_node, &info->msg_tree);
 		if (info->node_cache) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			info->qsize -= sizeof(*leaf);
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			info->qsize -= sizeof(*leaf);
+>>>>>>> 2617302... source
 			kfree(leaf);
 		} else {
 			info->node_cache = leaf;
@@ -208,9 +216,13 @@ try_again:
 			rb_erase(&leaf->rb_node, &info->msg_tree);
 			if (info->node_cache) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 				info->qsize -= sizeof(*leaf);
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+				info->qsize -= sizeof(*leaf);
+>>>>>>> 2617302... source
 				kfree(leaf);
 			} else {
 				info->node_cache = leaf;
@@ -764,10 +776,14 @@ static struct file *do_create(struct ipc_namespace *ipc_ns, struct inode *dir,
 
 	mode &= ~current_umask();
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = vfs_create(dir, path->dentry, mode, true);
 =======
 	ret = vfs_create2(path->mnt, dir, path->dentry, mode, true);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	ret = vfs_create(dir, path->dentry, mode, true);
+>>>>>>> 2617302... source
 	path->dentry->d_fsdata = NULL;
 	if (ret)
 		return ERR_PTR(ret);
@@ -784,10 +800,14 @@ static struct file *do_open(struct path *path, int oflag)
 		return ERR_PTR(-EINVAL);
 	acc = oflag2acc[oflag & O_ACCMODE];
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (inode_permission(path->dentry->d_inode, acc))
 =======
 	if (inode_permission2(path->mnt, path->dentry->d_inode, acc))
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (inode_permission(path->dentry->d_inode, acc))
+>>>>>>> 2617302... source
 		return ERR_PTR(-EACCES);
 	return dentry_open(path, oflag, current_cred());
 }
@@ -821,10 +841,14 @@ SYSCALL_DEFINE4(mq_open, const char __user *, u_name, int, oflag, umode_t, mode,
 	error = 0;
 	mutex_lock(&root->d_inode->i_mutex);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	path.dentry = lookup_one_len(name->name, root, strlen(name->name));
 =======
 	path.dentry = lookup_one_len2(name->name, mnt, root, strlen(name->name));
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	path.dentry = lookup_one_len(name->name, root, strlen(name->name));
+>>>>>>> 2617302... source
 	if (IS_ERR(path.dentry)) {
 		error = PTR_ERR(path.dentry);
 		goto out_putfd;
@@ -896,10 +920,14 @@ SYSCALL_DEFINE1(mq_unlink, const char __user *, u_name)
 		goto out_name;
 	mutex_lock_nested(&mnt->mnt_root->d_inode->i_mutex, I_MUTEX_PARENT);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dentry = lookup_one_len(name->name, mnt->mnt_root,
 =======
 	dentry = lookup_one_len2(name->name, mnt, mnt->mnt_root,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	dentry = lookup_one_len(name->name, mnt->mnt_root,
+>>>>>>> 2617302... source
 				strlen(name->name));
 	if (IS_ERR(dentry)) {
 		err = PTR_ERR(dentry);
@@ -912,10 +940,14 @@ SYSCALL_DEFINE1(mq_unlink, const char __user *, u_name)
 	} else {
 		ihold(inode);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		err = vfs_unlink(dentry->d_parent->d_inode, dentry);
 =======
 		err = vfs_unlink2(mnt, dentry->d_parent->d_inode, dentry);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		err = vfs_unlink(dentry->d_parent->d_inode, dentry);
+>>>>>>> 2617302... source
 	}
 	dput(dentry);
 
@@ -1056,9 +1088,13 @@ SYSCALL_DEFINE5(mq_timedsend, mqd_t, mqdes, const char __user *, u_msg_ptr,
 		INIT_LIST_HEAD(&new_leaf->msg_list);
 		info->node_cache = new_leaf;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		info->qsize += sizeof(*new_leaf);
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		info->qsize += sizeof(*new_leaf);
+>>>>>>> 2617302... source
 		new_leaf = NULL;
 	} else {
 		kfree(new_leaf);
@@ -1166,9 +1202,13 @@ SYSCALL_DEFINE5(mq_timedreceive, mqd_t, mqdes, char __user *, u_msg_ptr,
 		INIT_LIST_HEAD(&new_leaf->msg_list);
 		info->node_cache = new_leaf;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		info->qsize += sizeof(*new_leaf);
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		info->qsize += sizeof(*new_leaf);
+>>>>>>> 2617302... source
 	} else {
 		kfree(new_leaf);
 	}

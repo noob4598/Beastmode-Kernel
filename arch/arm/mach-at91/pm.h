@@ -38,10 +38,14 @@ static inline void at91rm9200_standby(void)
 		"    str    %5, [%1, %2]"
 		:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		: "r" (0), "r" (AT91_BASE_SYS), "r" (AT91RM9200_SDRAMC_LPR),
 =======
 		: "r" (0), "r" (at91_ramc_base[0]), "r" (AT91RM9200_SDRAMC_LPR),
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		: "r" (0), "r" (AT91_BASE_SYS), "r" (AT91RM9200_SDRAMC_LPR),
+>>>>>>> 2617302... source
 		  "r" (1), "r" (AT91RM9200_SDRAMC_SRR),
 		  "r" (lpr));
 }

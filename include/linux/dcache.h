@@ -121,6 +121,9 @@ struct dentry {
 
 	struct list_head d_lru;		/* LRU list */
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	/*
 	 * d_child and d_rcu can share memory
 	 */
@@ -130,6 +133,7 @@ struct dentry {
 	} d_u;
 	struct list_head d_subdirs;	/* our children */
 	struct hlist_node d_alias;	/* inode alias list */
+<<<<<<< HEAD
 =======
 	struct list_head d_child;	/* child of parent list */
 	struct list_head d_subdirs;	/* our children */
@@ -141,6 +145,8 @@ struct dentry {
 	 	struct rcu_head d_rcu;
 	} d_u;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 };
 
 /*
@@ -171,9 +177,12 @@ struct dentry_operations {
 	struct vfsmount *(*d_automount)(struct path *);
 	int (*d_manage)(struct dentry *, bool);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	void (*d_canonical_path)(const struct path *, struct path *);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 } ____cacheline_aligned;
 
 /*
@@ -227,10 +236,13 @@ struct dentry_operations {
 #define DCACHE_DENTRY_KILLED	0x100000
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define DCACHE_ENCRYPTED_WITH_KEY	0x04000000 /* dir is encrypted with a valid key */
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 extern seqlock_t rename_lock;
 
 static inline int dname_external(struct dentry *dentry)
@@ -432,6 +444,7 @@ static inline bool d_mountpoint(struct dentry *dentry)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 static inline bool d_is_su(const struct dentry *dentry)
 {
@@ -441,6 +454,8 @@ static inline bool d_is_su(const struct dentry *dentry)
 }
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 extern int sysctl_vfs_cache_pressure;
 
 #endif	/* __LINUX_DCACHE_H */

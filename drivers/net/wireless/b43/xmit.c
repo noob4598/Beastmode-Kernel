@@ -811,6 +811,7 @@ void b43_rx(struct b43_wldev *dev, struct sk_buff *skb, const void *_rxhdr)
 	case B43_PHYTYPE_G:
 		status.band = IEEE80211_BAND_2GHZ;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		/* chanid is the radio channel cookie value as used
 		 * to tune the radio. */
 		status.freq = chanid + 2400;
@@ -823,6 +824,11 @@ void b43_rx(struct b43_wldev *dev, struct sk_buff *skb, const void *_rxhdr)
 		else
 			status.freq = chanid + 2400;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		/* chanid is the radio channel cookie value as used
+		 * to tune the radio. */
+		status.freq = chanid + 2400;
+>>>>>>> 2617302... source
 		break;
 	case B43_PHYTYPE_N:
 	case B43_PHYTYPE_LP:

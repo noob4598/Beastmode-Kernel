@@ -1932,9 +1932,12 @@ static int hwsim_tx_info_frame_received_nl(struct sk_buff *skb_2,
 	   !info->attrs[HWSIM_ATTR_FLAGS] ||
 	   !info->attrs[HWSIM_ATTR_COOKIE] ||
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	   !info->attrs[HWSIM_ATTR_SIGNAL] ||
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	   !info->attrs[HWSIM_ATTR_TX_INFO])
 		goto out;
 

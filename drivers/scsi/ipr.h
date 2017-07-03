@@ -258,10 +258,14 @@
 
 #define IPR_IPL_INIT_MIN_STAGE_TIME			5
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define IPR_IPL_INIT_DEFAULT_STAGE_TIME                 15
 =======
 #define IPR_IPL_INIT_DEFAULT_STAGE_TIME                 30
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+#define IPR_IPL_INIT_DEFAULT_STAGE_TIME                 15
+>>>>>>> 2617302... source
 #define IPR_IPL_INIT_STAGE_UNKNOWN			0x0
 #define IPR_IPL_INIT_STAGE_TRANSOP			0xB0000000
 #define IPR_IPL_INIT_STAGE_MASK				0xff000000
@@ -1457,9 +1461,12 @@ struct ipr_ioa_cfg {
 #define IPR_NUM_TRACE_INDEX_BITS	8
 #define IPR_NUM_TRACE_ENTRIES		(1 << IPR_NUM_TRACE_INDEX_BITS)
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define IPR_TRACE_INDEX_MASK		(IPR_NUM_TRACE_ENTRIES - 1)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 #define IPR_TRACE_SIZE	(sizeof(struct ipr_trace_entry) * IPR_NUM_TRACE_ENTRIES)
 	char trace_start[8];
 #define IPR_TRACE_START_LABEL			"trace"
@@ -1587,9 +1594,12 @@ struct ipr_cmnd {
 	} u;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct completion *eh_comp;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	struct ipr_hrr_queue *hrrq;
 	struct ipr_ioa_cfg *ioa_cfg;
 };

@@ -196,10 +196,14 @@ static int fc2580_set_params(struct dvb_frontend *fe)
 	f_ref = 2UL * priv->cfg->clock / r_val;
 	n_val = div_u64_rem(f_vco, f_ref, &k_val);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	k_val_reg = 1UL * k_val * (1 << 20) / f_ref;
 =======
 	k_val_reg = div_u64(1ULL * k_val * (1 << 20), f_ref);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	k_val_reg = 1UL * k_val * (1 << 20) / f_ref;
+>>>>>>> 2617302... source
 
 	ret = fc2580_wr_reg(priv, 0x18, r18_val | ((k_val_reg >> 16) & 0xff));
 	if (ret < 0)
@@ -353,12 +357,17 @@ static int fc2580_set_params(struct dvb_frontend *fe)
 		goto err;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = fc2580_wr_reg(priv, 0x37, 1UL * priv->cfg->clock * \
 			fc2580_if_filter_lut[i].mul / 1000000000);
 =======
 	ret = fc2580_wr_reg(priv, 0x37, div_u64(1ULL * priv->cfg->clock *
 			fc2580_if_filter_lut[i].mul, 1000000000));
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	ret = fc2580_wr_reg(priv, 0x37, 1UL * priv->cfg->clock * \
+			fc2580_if_filter_lut[i].mul / 1000000000);
+>>>>>>> 2617302... source
 	if (ret < 0)
 		goto err;
 

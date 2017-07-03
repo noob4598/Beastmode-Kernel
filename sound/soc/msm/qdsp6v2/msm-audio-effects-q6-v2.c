@@ -1,8 +1,12 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* Copyright (c) 2013, The Linux Foundation. All rights reserved.
 =======
 /* Copyright (c) 2013-2016, The Linux Foundation. All rights reserved.
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+/* Copyright (c) 2013, The Linux Foundation. All rights reserved.
+>>>>>>> 2617302... source
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -20,6 +24,7 @@
 #include <sound/compress_params.h>
 #include "msm-audio-effects-q6-v2.h"
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 #define GET_NEXT(ptr, upper_limit, rc)                                  \
@@ -41,11 +46,16 @@ do {                                                                    \
 
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 int msm_audio_effects_virtualizer_handler(struct audio_client *ac,
 				struct virtualizer_params *virtualizer,
 				long *values)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	int devices = *values++;
 	int num_commands = *values++;
 	char *params;
@@ -55,6 +65,7 @@ int msm_audio_effects_virtualizer_handler(struct audio_client *ac,
 
 	pr_debug("%s\n", __func__);
 	if (!ac) {
+<<<<<<< HEAD
 =======
 	long *param_max_offset = values + MAX_PP_PARAMS_SZ - 1;
 	char *params = NULL;
@@ -67,6 +78,8 @@ int msm_audio_effects_virtualizer_handler(struct audio_client *ac,
 	pr_debug("%s\n", __func__);
 	if (!ac || (devices == -EINVAL) || (num_commands == -EINVAL)) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		pr_err("%s: cannot set audio effects\n", __func__);
 		return -EINVAL;
 	}
@@ -80,6 +93,9 @@ int msm_audio_effects_virtualizer_handler(struct audio_client *ac,
 	params_length = 0;
 	for (i = 0; i < num_commands; i++) {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		uint32_t command_id = *values++;
 		uint32_t command_config_state = *values++;
 		uint32_t index_offset = *values++;
@@ -89,6 +105,7 @@ int msm_audio_effects_virtualizer_handler(struct audio_client *ac,
 			pr_debug("%s: VIRTUALIZER_ENABLE\n", __func__);
 			if (length != 1 || index_offset != 0) {
 				pr_err("no valid params\n");
+<<<<<<< HEAD
 =======
 		uint32_t command_id =
 			GET_NEXT(values, param_max_offset, rc);
@@ -103,11 +120,16 @@ int msm_audio_effects_virtualizer_handler(struct audio_client *ac,
 			if (length != 1 || index_offset != 0) {
 				pr_err("VIRT ENABLE:invalid params\n");
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 				rc = -EINVAL;
 				goto invalid_config;
 			}
 			prev_enable_flag = virtualizer->enable_flag;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 			virtualizer->enable_flag = *values++;
 			if (prev_enable_flag != virtualizer->enable_flag) {
 				*updt_params++ = AUDPROC_MODULE_ID_VIRTUALIZER;
@@ -172,6 +194,7 @@ int msm_audio_effects_virtualizer_handler(struct audio_client *ac,
 				*updt_params++ = virtualizer->gain_adjust;
 				params_length += COMMAND_PAYLOAD_SZ +
 					VIRTUALIZER_GAIN_ADJUST_PARAM_SZ;
+<<<<<<< HEAD
 =======
 			virtualizer->enable_flag =
 				GET_NEXT(values, param_max_offset, rc);
@@ -278,6 +301,8 @@ int msm_audio_effects_virtualizer_handler(struct audio_client *ac,
 				*updt_params++ =
 				virtualizer->gain_adjust;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 			}
 			break;
 		default:
@@ -285,6 +310,7 @@ int msm_audio_effects_virtualizer_handler(struct audio_client *ac,
 			break;
 		}
 	}
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (params_length)
 		q6asm_send_audio_effects_params(ac, params,
@@ -296,6 +322,11 @@ int msm_audio_effects_virtualizer_handler(struct audio_client *ac,
 	else
 		pr_debug("%s: did not send pp params\n", __func__);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (params_length)
+		q6asm_send_audio_effects_params(ac, params,
+						params_length);
+>>>>>>> 2617302... source
 invalid_config:
 	kfree(params);
 	return rc;
@@ -306,6 +337,9 @@ int msm_audio_effects_reverb_handler(struct audio_client *ac,
 				     long *values)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	int devices = *values++;
 	int num_commands = *values++;
 	char *params;
@@ -315,6 +349,7 @@ int msm_audio_effects_reverb_handler(struct audio_client *ac,
 
 	pr_debug("%s\n", __func__);
 	if (!ac) {
+<<<<<<< HEAD
 =======
 	long *param_max_offset = values + MAX_PP_PARAMS_SZ - 1;
 	char *params = NULL;
@@ -327,6 +362,8 @@ int msm_audio_effects_reverb_handler(struct audio_client *ac,
 	pr_debug("%s\n", __func__);
 	if (!ac || (devices == -EINVAL) || (num_commands == -EINVAL)) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		pr_err("%s: cannot set audio effects\n", __func__);
 		return -EINVAL;
 	}
@@ -340,6 +377,9 @@ int msm_audio_effects_reverb_handler(struct audio_client *ac,
 	params_length = 0;
 	for (i = 0; i < num_commands; i++) {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		uint32_t command_id = *values++;
 		uint32_t command_config_state = *values++;
 		uint32_t index_offset = *values++;
@@ -349,6 +389,7 @@ int msm_audio_effects_reverb_handler(struct audio_client *ac,
 			pr_debug("%s: REVERB_ENABLE\n", __func__);
 			if (length != 1 || index_offset != 0) {
 				pr_err("no valid params\n");
+<<<<<<< HEAD
 =======
 		uint32_t command_id =
 			GET_NEXT(values, param_max_offset, rc);
@@ -363,11 +404,16 @@ int msm_audio_effects_reverb_handler(struct audio_client *ac,
 			if (length != 1 || index_offset != 0) {
 				pr_err("REVERB_ENABLE:invalid params\n");
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 				rc = -EINVAL;
 				goto invalid_config;
 			}
 			prev_enable_flag = reverb->enable_flag;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 			reverb->enable_flag = *values++;
 			if (prev_enable_flag != reverb->enable_flag) {
 				*updt_params++ = AUDPROC_MODULE_ID_REVERB;
@@ -626,6 +672,7 @@ int msm_audio_effects_reverb_handler(struct audio_client *ac,
 				*updt_params++ = reverb->density;
 				params_length += COMMAND_PAYLOAD_SZ +
 					REVERB_DENSITY_PARAM_SZ;
+<<<<<<< HEAD
 =======
 			reverb->enable_flag =
 				GET_NEXT(values, param_max_offset, rc);
@@ -1040,6 +1087,8 @@ int msm_audio_effects_reverb_handler(struct audio_client *ac,
 				*updt_params++ =
 					reverb->density;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 			}
 			break;
 		default:
@@ -1047,6 +1096,7 @@ int msm_audio_effects_reverb_handler(struct audio_client *ac,
 			break;
 		}
 	}
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (params_length)
 		q6asm_send_audio_effects_params(ac, params,
@@ -1058,6 +1108,11 @@ int msm_audio_effects_reverb_handler(struct audio_client *ac,
 	else
 		pr_debug("%s: did not send pp params\n", __func__);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (params_length)
+		q6asm_send_audio_effects_params(ac, params,
+						params_length);
+>>>>>>> 2617302... source
 invalid_config:
 	kfree(params);
 	return rc;
@@ -1068,6 +1123,9 @@ int msm_audio_effects_bass_boost_handler(struct audio_client *ac,
 					long *values)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	int devices = *values++;
 	int num_commands = *values++;
 	char *params;
@@ -1077,6 +1135,7 @@ int msm_audio_effects_bass_boost_handler(struct audio_client *ac,
 
 	pr_debug("%s\n", __func__);
 	if (!ac) {
+<<<<<<< HEAD
 =======
 	long *param_max_offset = values + MAX_PP_PARAMS_SZ - 1;
 	char *params = NULL;
@@ -1089,6 +1148,8 @@ int msm_audio_effects_bass_boost_handler(struct audio_client *ac,
 	pr_debug("%s\n", __func__);
 	if (!ac || (devices == -EINVAL) || (num_commands == -EINVAL)) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		pr_err("%s: cannot set audio effects\n", __func__);
 		return -EINVAL;
 	}
@@ -1102,6 +1163,9 @@ int msm_audio_effects_bass_boost_handler(struct audio_client *ac,
 	params_length = 0;
 	for (i = 0; i < num_commands; i++) {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		uint32_t command_id = *values++;
 		uint32_t command_config_state = *values++;
 		uint32_t index_offset = *values++;
@@ -1111,6 +1175,7 @@ int msm_audio_effects_bass_boost_handler(struct audio_client *ac,
 			pr_debug("%s: BASS_BOOST_ENABLE\n", __func__);
 			if (length != 1 || index_offset != 0) {
 				pr_err("no valid params\n");
+<<<<<<< HEAD
 =======
 		uint32_t command_id =
 			GET_NEXT(values, param_max_offset, rc);
@@ -1125,11 +1190,16 @@ int msm_audio_effects_bass_boost_handler(struct audio_client *ac,
 			if (length != 1 || index_offset != 0) {
 				pr_err("BASS_BOOST_ENABLE:invalid params\n");
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 				rc = -EINVAL;
 				goto invalid_config;
 			}
 			prev_enable_flag = bass_boost->enable_flag;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 			bass_boost->enable_flag = *values++;
 			if (prev_enable_flag != bass_boost->enable_flag) {
 				*updt_params++ = AUDPROC_MODULE_ID_BASS_BOOST;
@@ -1175,6 +1245,7 @@ int msm_audio_effects_bass_boost_handler(struct audio_client *ac,
 				*updt_params++ = bass_boost->strength;
 				params_length += COMMAND_PAYLOAD_SZ +
 					BASS_BOOST_STRENGTH_PARAM_SZ;
+<<<<<<< HEAD
 =======
 			bass_boost->enable_flag =
 				GET_NEXT(values, param_max_offset, rc);
@@ -1254,6 +1325,8 @@ int msm_audio_effects_bass_boost_handler(struct audio_client *ac,
 				*updt_params++ =
 					bass_boost->strength;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 			}
 			break;
 		default:
@@ -1261,6 +1334,7 @@ int msm_audio_effects_bass_boost_handler(struct audio_client *ac,
 			break;
 		}
 	}
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (params_length)
 		q6asm_send_audio_effects_params(ac, params,
@@ -1272,6 +1346,11 @@ int msm_audio_effects_bass_boost_handler(struct audio_client *ac,
 	else
 		pr_debug("%s: did not send pp params\n", __func__);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (params_length)
+		q6asm_send_audio_effects_params(ac, params,
+						params_length);
+>>>>>>> 2617302... source
 invalid_config:
 	kfree(params);
 	return rc;
@@ -1282,6 +1361,9 @@ int msm_audio_effects_popless_eq_handler(struct audio_client *ac,
 					 long *values)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	int devices = *values++;
 	int num_commands = *values++;
 	char *params;
@@ -1291,6 +1373,7 @@ int msm_audio_effects_popless_eq_handler(struct audio_client *ac,
 
 	pr_debug("%s\n", __func__);
 	if (!ac) {
+<<<<<<< HEAD
 =======
 	long *param_max_offset = values + MAX_PP_PARAMS_SZ - 1;
 	char *params = NULL;
@@ -1303,6 +1386,8 @@ int msm_audio_effects_popless_eq_handler(struct audio_client *ac,
 	pr_debug("%s\n", __func__);
 	if (!ac || (devices == -EINVAL) || (num_commands == -EINVAL)) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		pr_err("%s: cannot set audio effects\n", __func__);
 		return -EINVAL;
 	}
@@ -1316,6 +1401,9 @@ int msm_audio_effects_popless_eq_handler(struct audio_client *ac,
 	params_length = 0;
 	for (i = 0; i < num_commands; i++) {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		uint32_t command_id = *values++;
 		uint32_t command_config_state = *values++;
 		uint32_t index_offset = *values++;
@@ -1326,6 +1414,7 @@ int msm_audio_effects_popless_eq_handler(struct audio_client *ac,
 			pr_debug("%s: EQ_ENABLE\n", __func__);
 			if (length != 1 || index_offset != 0) {
 				pr_err("no valid params\n");
+<<<<<<< HEAD
 =======
 		uint32_t command_id =
 			GET_NEXT(values, param_max_offset, rc);
@@ -1342,11 +1431,16 @@ int msm_audio_effects_popless_eq_handler(struct audio_client *ac,
 			if (length != 1 || index_offset != 0) {
 				pr_err("EQ_ENABLE:invalid params\n");
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 				rc = -EINVAL;
 				goto invalid_config;
 			}
 			prev_enable_flag = eq->enable_flag;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 			eq->enable_flag = *values++;
 			pr_debug("%s: prev_enable_flag : %d, eq.enable_flag : %d",
 				__func__, prev_enable_flag, eq->enable_flag);
@@ -1374,6 +1468,7 @@ int msm_audio_effects_popless_eq_handler(struct audio_client *ac,
 			eq->config.num_bands = *values++;
 			if (eq->config.num_bands > MAX_EQ_BANDS) {
 				pr_err("invalid num of bands\n");
+<<<<<<< HEAD
 =======
 			eq->enable_flag =
 				GET_NEXT(values, param_max_offset, rc);
@@ -1417,6 +1512,8 @@ int msm_audio_effects_popless_eq_handler(struct audio_client *ac,
 			if (eq->config.num_bands > MAX_EQ_BANDS) {
 				pr_err("EQ_CONFIG:invalid num of bands\n");
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 				rc = -EINVAL;
 				goto invalid_config;
 			}
@@ -1425,15 +1522,22 @@ int msm_audio_effects_popless_eq_handler(struct audio_client *ac,
 				EQ_CONFIG_PER_BAND_PARAM_LEN)
 				!= eq->config.num_bands)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 				pr_err("invalid length to set config per band\n");
 =======
 				pr_err("EQ_CONFIG:invalid length per band\n");
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+				pr_err("invalid length to set config per band\n");
+>>>>>>> 2617302... source
 				rc = -EINVAL;
 				goto invalid_config;
 			}
 			for (j = 0; j < eq->config.num_bands; j++) {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 				idx = *values++;
 				eq->per_band_cfg[idx].band_idx = idx;
 				eq->per_band_cfg[idx].filter_type = *values++;
@@ -1443,6 +1547,7 @@ int msm_audio_effects_popless_eq_handler(struct audio_client *ac,
 								*values++;
 				eq->per_band_cfg[idx].quality_factor =
 								*values++;
+<<<<<<< HEAD
 =======
 				idx = GET_NEXT(values, param_max_offset, rc);
 				if (idx >= MAX_EQ_BANDS) {
@@ -1460,12 +1565,17 @@ int msm_audio_effects_popless_eq_handler(struct audio_client *ac,
 				eq->per_band_cfg[idx].quality_factor =
 					GET_NEXT(values, param_max_offset, rc);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 			}
 			if (command_config_state == CONFIG_SET) {
 				int config_param_length = EQ_CONFIG_PARAM_SZ +
 					(EQ_CONFIG_PER_BAND_PARAM_SZ*
 					 eq->config.num_bands);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 				*updt_params++ =
 					AUDPROC_MODULE_ID_POPLESS_EQUALIZER;
 				*updt_params++ = AUDPROC_PARAM_ID_EQ_CONFIG;
@@ -1473,6 +1583,7 @@ int msm_audio_effects_popless_eq_handler(struct audio_client *ac,
 				*updt_params++ = eq->config.eq_pregain;
 				*updt_params++ = eq->config.preset_id;
 				*updt_params++ = eq->config.num_bands;
+<<<<<<< HEAD
 =======
 				params_length += COMMAND_PAYLOAD_SZ +
 						config_param_length;
@@ -1494,11 +1605,16 @@ int msm_audio_effects_popless_eq_handler(struct audio_client *ac,
 				*updt_params++ =
 					eq->config.num_bands;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 				for (idx = 0; idx < MAX_EQ_BANDS; idx++) {
 					if (eq->per_band_cfg[idx].band_idx < 0)
 						continue;
 					*updt_params++ =
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 					  eq->per_band_cfg[idx].filter_type;
 					*updt_params++ =
 					  eq->per_band_cfg[idx].freq_millihertz;
@@ -1523,6 +1639,7 @@ int msm_audio_effects_popless_eq_handler(struct audio_client *ac,
 			idx = *values++;
 			if (idx > MAX_EQ_BANDS) {
 				pr_err("invalid band index\n");
+<<<<<<< HEAD
 =======
 					eq->per_band_cfg[idx].filter_type;
 					*updt_params++ =
@@ -1546,10 +1663,13 @@ int msm_audio_effects_popless_eq_handler(struct audio_client *ac,
 			if (idx > MAX_EQ_BANDS) {
 				pr_err("EQ_BAND_INDEX:invalid band index\n");
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 				rc = -EINVAL;
 				goto invalid_config;
 			}
 			eq->band_index = idx;
+<<<<<<< HEAD
 <<<<<<< HEAD
 			if (command_config_state == CONFIG_SET) {
 =======
@@ -1564,11 +1684,17 @@ int msm_audio_effects_popless_eq_handler(struct audio_client *ac,
 				if (rc != 0)
 					break;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			if (command_config_state == CONFIG_SET) {
+>>>>>>> 2617302... source
 				*updt_params++ =
 					AUDPROC_MODULE_ID_POPLESS_EQUALIZER;
 				*updt_params++ =
 					AUDPROC_PARAM_ID_EQ_BAND_INDEX;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 				*updt_params++ = EQ_BAND_INDEX_PARAM_SZ;
 				*updt_params++ = eq->band_index;
 				params_length += COMMAND_PAYLOAD_SZ +
@@ -1579,6 +1705,7 @@ int msm_audio_effects_popless_eq_handler(struct audio_client *ac,
 			pr_debug("%s: EQ_SINGLE_BAND_FREQ\n", __func__);
 			if (length != 1 || index_offset != 0) {
 				pr_err("no valid params\n");
+<<<<<<< HEAD
 =======
 				*updt_params++ =
 					EQ_BAND_INDEX_PARAM_SZ;
@@ -1590,16 +1717,22 @@ int msm_audio_effects_popless_eq_handler(struct audio_client *ac,
 			if (length != 1 || index_offset != 0) {
 				pr_err("EQ_SINGLE_BAND_FREQ:invalid params\n");
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 				rc = -EINVAL;
 				goto invalid_config;
 			}
 			if (eq->band_index > MAX_EQ_BANDS) {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 				pr_err("invalid band index to set frequency\n");
 				break;
 			}
 			eq->freq_millihertz = *values++;
 			if (command_config_state == CONFIG_SET) {
+<<<<<<< HEAD
 =======
 				pr_err("EQ_SINGLE_BAND_FREQ:invalid index\n");
 				break;
@@ -1617,21 +1750,29 @@ int msm_audio_effects_popless_eq_handler(struct audio_client *ac,
 				if (rc != 0)
 					break;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 				*updt_params++ =
 					AUDPROC_MODULE_ID_POPLESS_EQUALIZER;
 				*updt_params++ =
 					AUDPROC_PARAM_ID_EQ_SINGLE_BAND_FREQ;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 				*updt_params++ = EQ_SINGLE_BAND_FREQ_PARAM_SZ;
 				*updt_params++ = eq->freq_millihertz;
 				params_length += COMMAND_PAYLOAD_SZ +
 					EQ_SINGLE_BAND_FREQ_PARAM_SZ;
+<<<<<<< HEAD
 =======
 				*updt_params++ =
 					EQ_SINGLE_BAND_FREQ_PARAM_SZ;
 				*updt_params++ =
 					eq->freq_millihertz;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 			}
 			break;
 		default:
@@ -1639,6 +1780,7 @@ int msm_audio_effects_popless_eq_handler(struct audio_client *ac,
 			break;
 		}
 	}
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (params_length)
 		q6asm_send_audio_effects_params(ac, params,
@@ -1650,6 +1792,11 @@ int msm_audio_effects_popless_eq_handler(struct audio_client *ac,
 	else
 		pr_debug("%s: did not send pp params\n", __func__);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (params_length)
+		q6asm_send_audio_effects_params(ac, params,
+						params_length);
+>>>>>>> 2617302... source
 invalid_config:
 	kfree(params);
 	return rc;

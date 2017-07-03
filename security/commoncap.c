@@ -154,13 +154,17 @@ int cap_ptrace_access_check(struct task_struct *child, unsigned int mode)
 	int ret = 0;
 	const struct cred *cred, *child_cred;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	const kernel_cap_t *caller_caps;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	rcu_read_lock();
 	cred = current_cred();
 	child_cred = __task_cred(child);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (cred->user_ns == child_cred->user_ns &&
 	    cap_issubset(child_cred->cap_permitted, cred->cap_permitted))
@@ -172,6 +176,10 @@ int cap_ptrace_access_check(struct task_struct *child, unsigned int mode)
 	if (cred->user_ns == child_cred->user_ns &&
 	    cap_issubset(child_cred->cap_permitted, *caller_caps))
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (cred->user_ns == child_cred->user_ns &&
+	    cap_issubset(child_cred->cap_permitted, cred->cap_permitted))
+>>>>>>> 2617302... source
 		goto out;
 	if (ns_capable(child_cred->user_ns, CAP_SYS_PTRACE))
 		goto out;
@@ -446,11 +454,14 @@ int get_vfs_caps_from_disk(const struct dentry *dentry, struct cpu_vfs_cap_data 
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	cpu_caps->permitted.cap[CAP_LAST_U32] &= CAP_LAST_U32_VALID_MASK;
 	cpu_caps->inheritable.cap[CAP_LAST_U32] &= CAP_LAST_U32_VALID_MASK;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	return 0;
 }
 

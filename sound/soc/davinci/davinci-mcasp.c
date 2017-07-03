@@ -633,6 +633,7 @@ static int davinci_config_channel_size(struct davinci_audio_dev *dev,
 	u32 fmt;
 	u32 tx_rotate = (word_length / 4) & 0x7;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u32 rx_rotate = (32 - word_length) / 4;
 	u32 mask = (1ULL << word_length) - 1;
 =======
@@ -648,6 +649,10 @@ static int davinci_config_channel_size(struct davinci_audio_dev *dev,
 	 */
 	u32 rx_rotate = 0;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	u32 rx_rotate = (32 - word_length) / 4;
+	u32 mask = (1ULL << word_length) - 1;
+>>>>>>> 2617302... source
 
 	/*
 	 * if s BCLK-to-LRCLK ratio has been configured via the set_clkdiv()

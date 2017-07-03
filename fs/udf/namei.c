@@ -234,11 +234,15 @@ static struct fileIdentDesc *udf_find_entry(struct inode *dir,
 			continue;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		flen = udf_get_filename(dir->i_sb, nameptr, fname, lfi);
 =======
 		flen = udf_get_filename(dir->i_sb, nameptr, lfi, fname,
 					UDF_NAME_LEN);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		flen = udf_get_filename(dir->i_sb, nameptr, fname, lfi);
+>>>>>>> 2617302... source
 		if (flen && udf_match(flen, fname, child->len, child->name))
 			goto out_ok;
 	}

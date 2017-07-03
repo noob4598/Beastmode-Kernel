@@ -27,6 +27,7 @@
 #define JPEG_8974_V2 0x10010000
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 enum msm_jpeg_state {
 	MSM_JPEG_INIT,
@@ -37,6 +38,8 @@ enum msm_jpeg_state {
 };
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 struct msm_jpeg_q {
 	char const	*name;
 	struct list_head  q;
@@ -110,9 +113,12 @@ struct msm_jpeg_device {
 	uint32_t res_size;
 	uint32_t jpeg_bus_client;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	enum msm_jpeg_state state;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 };
 
 int __msm_jpeg_open(struct msm_jpeg_device *pgmn_dev);

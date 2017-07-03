@@ -181,6 +181,7 @@ static int ecryptfs_interpose(struct dentry *lower_dentry,
 	if (IS_ERR(inode))
 		return PTR_ERR(inode);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	d_instantiate(dentry, inode);
 =======
 
@@ -188,6 +189,9 @@ static int ecryptfs_interpose(struct dentry *lower_dentry,
 	if(d_unhashed(dentry))
 		d_rehash(dentry);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	d_instantiate(dentry, inode);
+>>>>>>> 2617302... source
 
 #ifdef CONFIG_SDP
 	if(S_ISDIR(inode->i_mode) && dentry) {
@@ -347,10 +351,13 @@ int ecryptfs_initialize_file(struct dentry *ecryptfs_dentry,
 			/* TODO: Can DLP files be created while in locked state? */
 			crypt_stat->flags |= ECRYPTFS_DLP_ENABLED;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 			getnstimeofday(&crypt_stat->expiry.expiry_time);
 			crypt_stat->expiry.expiry_time.tv_sec += 600;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 #if DLP_DEBUG
 			printk(KERN_ERR "DLP %s: current->pid : %d\n", __func__, current->tgid);
 			printk(KERN_ERR "DLP %s: crypt_stat->mount_crypt_stat->userid : %d\n", __func__, crypt_stat->mount_crypt_stat->userid);
@@ -457,12 +464,16 @@ ecryptfs_create(struct inode *directory_inode, struct dentry *ecryptfs_dentry,
 	}
 	unlock_new_inode(ecryptfs_inode);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	d_add(ecryptfs_dentry, ecryptfs_inode);
 =======
 	d_instantiate(ecryptfs_dentry, ecryptfs_inode);
 	if(d_unhashed(ecryptfs_dentry))
 		d_rehash(ecryptfs_dentry);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	d_add(ecryptfs_dentry, ecryptfs_inode);
+>>>>>>> 2617302... source
 out:
 	return rc;
 }
@@ -1493,6 +1504,7 @@ ecryptfs_getxattr(struct dentry *dentry, const char *name, void *value,
 		  size_t size)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return ecryptfs_getxattr_lower(ecryptfs_dentry_to_lower(dentry), name,
 				       value, size);
 =======
@@ -1522,6 +1534,10 @@ ecryptfs_getxattr(struct dentry *dentry, const char *name, void *value,
 				       value, size);
 #endif
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	return ecryptfs_getxattr_lower(ecryptfs_dentry_to_lower(dentry), name,
+				       value, size);
+>>>>>>> 2617302... source
 }
 
 static ssize_t

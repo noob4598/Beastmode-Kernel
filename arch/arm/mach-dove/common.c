@@ -227,10 +227,14 @@ void __init dove_init_early(void)
 	mvebu_mbus_init("marvell,dove-mbus",
 			BRIDGE_WINS_BASE, BRIDGE_WINS_SZ,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			DOVE_MC_WINS_BASE, DOVE_MC_WINS_SZ);
 =======
 			DOVE_MC_WINS_BASE, DOVE_MC_WINS_SZ, 0);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			DOVE_MC_WINS_BASE, DOVE_MC_WINS_SZ);
+>>>>>>> 2617302... source
 }
 
 static int __init dove_find_tclk(void)

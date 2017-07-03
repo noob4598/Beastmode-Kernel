@@ -51,6 +51,7 @@ int ioremap_change_attr(unsigned long vaddr, unsigned long size,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 static int __ioremap_check_ram(unsigned long start_pfn, unsigned long nr_pages,
 			       void *arg)
@@ -68,6 +69,8 @@ static int __ioremap_check_ram(unsigned long start_pfn, unsigned long nr_pages,
 }
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 /*
  * Remap an arbitrary physical address space into the kernel virtual
  * address space. Needed when the kernel wants to access high addresses
@@ -112,6 +115,9 @@ static void __iomem *__ioremap_caller(resource_size_t phys_addr,
 	 * Don't allow anybody to remap normal RAM that we're using..
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	last_pfn = last_addr >> PAGE_SHIFT;
 	for (pfn = phys_addr >> PAGE_SHIFT; pfn <= last_pfn; pfn++) {
 		int is_ram = page_is_ram(pfn);
@@ -120,6 +126,7 @@ static void __iomem *__ioremap_caller(resource_size_t phys_addr,
 			return NULL;
 		WARN_ON_ONCE(is_ram);
 	}
+<<<<<<< HEAD
 =======
 	pfn      = phys_addr >> PAGE_SHIFT;
 	last_pfn = last_addr >> PAGE_SHIFT;
@@ -127,6 +134,8 @@ static void __iomem *__ioremap_caller(resource_size_t phys_addr,
 				  __ioremap_check_ram) == 1)
 		return NULL;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	/*
 	 * Mappings have to be page-aligned

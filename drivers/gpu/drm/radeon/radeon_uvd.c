@@ -450,12 +450,15 @@ static int radeon_uvd_cs_reloc(struct radeon_cs_parser *p,
 
 	if (cmd < 0x4) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		if (end <= start) {
 			DRM_ERROR("invalid reloc offset %X!\n", offset);
 			return -EINVAL;
 		}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		if ((end - start) < buf_sizes[cmd]) {
 			DRM_ERROR("buffer to small (%d / %d)!\n",
 				  (unsigned)(end - start), buf_sizes[cmd]);

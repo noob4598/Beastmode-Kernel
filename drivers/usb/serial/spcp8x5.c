@@ -156,6 +156,7 @@ static int spcp8x5_probe(struct usb_serial *serial,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 static int spcp8x5_attach(struct usb_serial *serial)
 {
@@ -171,6 +172,8 @@ static int spcp8x5_attach(struct usb_serial *serial)
 }
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 static int spcp8x5_port_probe(struct usb_serial_port *port)
 {
 	const struct usb_device_id *id = usb_get_serial_data(port->serial);
@@ -235,11 +238,15 @@ static int spcp8x5_get_msr(struct usb_serial_port *port, u8 *status)
 			      GET_UART_STATUS, GET_UART_STATUS_TYPE,
 			      0, GET_UART_STATUS_MSR, buf, 1, 100);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	if (ret < 0)
 		dev_err(&port->dev, "failed to get modem status: %d", ret);
 
 	dev_dbg(&port->dev, "0xc0:0x22:0:6  %d - 0x02%x", ret, *buf);
 	*status = *buf;
+<<<<<<< HEAD
 =======
 	if (ret < 1) {
 		dev_err(&port->dev, "failed to get modem status: %d", ret);
@@ -253,6 +260,8 @@ static int spcp8x5_get_msr(struct usb_serial_port *port, u8 *status)
 	ret = 0;
 out:
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	kfree(buf);
 
 	return ret;
@@ -510,9 +519,12 @@ static struct usb_serial_driver spcp8x5_device = {
 	.tiocmset		= spcp8x5_tiocmset,
 	.probe			= spcp8x5_probe,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	.attach			= spcp8x5_attach,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	.port_probe		= spcp8x5_port_probe,
 	.port_remove		= spcp8x5_port_remove,
 };

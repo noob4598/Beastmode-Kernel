@@ -306,6 +306,7 @@ static void scsi_host_dev_release(struct device *dev)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (shost->shost_state == SHOST_CREATED) {
 		/*
@@ -319,6 +320,8 @@ static void scsi_host_dev_release(struct device *dev)
 	}
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	scsi_destroy_command_freelist(shost);
 	if (shost->bqt)
 		blk_free_tags(shost->bqt);

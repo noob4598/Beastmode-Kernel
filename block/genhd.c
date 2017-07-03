@@ -35,16 +35,22 @@ struct kobject *block_depr;
 #define NR_EXT_DEVT		(1 << MINORBITS)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 /* For extended devt allocation.  ext_devt_mutex prevents look up
  * results from going away underneath its user.
  */
 static DEFINE_MUTEX(ext_devt_mutex);
+<<<<<<< HEAD
 =======
 /* For extended devt allocation.  ext_devt_lock prevents look up
  * results from going away underneath its user.
  */
 static DEFINE_SPINLOCK(ext_devt_lock);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 static DEFINE_IDR(ext_devt_idr);
 
 static struct device_type disk_type;
@@ -434,6 +440,7 @@ int blk_alloc_devt(struct hd_struct *part, dev_t *devt)
 
 	/* allocate ext devt */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mutex_lock(&ext_devt_mutex);
 	idx = idr_alloc(&ext_devt_idr, part, 0, NR_EXT_DEVT, GFP_KERNEL);
 	mutex_unlock(&ext_devt_mutex);
@@ -446,6 +453,11 @@ int blk_alloc_devt(struct hd_struct *part, dev_t *devt)
 
 	idr_preload_end();
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	mutex_lock(&ext_devt_mutex);
+	idx = idr_alloc(&ext_devt_idr, part, 0, NR_EXT_DEVT, GFP_KERNEL);
+	mutex_unlock(&ext_devt_mutex);
+>>>>>>> 2617302... source
 	if (idx < 0)
 		return idx == -ENOSPC ? -EBUSY : idx;
 
@@ -465,14 +477,20 @@ int blk_alloc_devt(struct hd_struct *part, dev_t *devt)
 void blk_free_devt(dev_t devt)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	might_sleep();
 
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	might_sleep();
+
+>>>>>>> 2617302... source
 	if (devt == MKDEV(0, 0))
 		return;
 
 	if (MAJOR(devt) == BLOCK_EXT_MAJOR) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		mutex_lock(&ext_devt_mutex);
 		idr_remove(&ext_devt_idr, blk_mangle_minor(MINOR(devt)));
@@ -482,6 +500,11 @@ void blk_free_devt(dev_t devt)
 		idr_remove(&ext_devt_idr, blk_mangle_minor(MINOR(devt)));
 		spin_unlock_bh(&ext_devt_lock);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		mutex_lock(&ext_devt_mutex);
+		idr_remove(&ext_devt_idr, blk_mangle_minor(MINOR(devt)));
+		mutex_unlock(&ext_devt_mutex);
+>>>>>>> 2617302... source
 	}
 }
 
@@ -705,9 +728,13 @@ void del_gendisk(struct gendisk *disk)
 	kobject_put(disk->part0.holder_dir);
 	kobject_put(disk->slave_dir);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	disk->driverfs_dev = NULL;
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	disk->driverfs_dev = NULL;
+>>>>>>> 2617302... source
 	if (!sysfs_deprecated)
 		sysfs_remove_link(block_depr, dev_name(disk_to_dev(disk)));
 	pm_runtime_set_memalloc_noio(disk_to_dev(disk), false);
@@ -718,9 +745,13 @@ void del_gendisk(struct gendisk *disk)
 #endif	
 	device_del(disk_to_dev(disk));
 <<<<<<< HEAD
+<<<<<<< HEAD
 	blk_free_devt(disk_to_dev(disk)->devt);
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	blk_free_devt(disk_to_dev(disk)->devt);
+>>>>>>> 2617302... source
 }
 EXPORT_SYMBOL(del_gendisk);
 
@@ -746,20 +777,28 @@ struct gendisk *get_gendisk(dev_t devt, int *partno)
 		struct hd_struct *part;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		mutex_lock(&ext_devt_mutex);
 =======
 		spin_lock_bh(&ext_devt_lock);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		mutex_lock(&ext_devt_mutex);
+>>>>>>> 2617302... source
 		part = idr_find(&ext_devt_idr, blk_mangle_minor(MINOR(devt)));
 		if (part && get_disk(part_to_disk(part))) {
 			*partno = part->partno;
 			disk = part_to_disk(part);
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 		mutex_unlock(&ext_devt_mutex);
 =======
 		spin_unlock_bh(&ext_devt_lock);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		mutex_unlock(&ext_devt_mutex);
+>>>>>>> 2617302... source
 	}
 
 	return disk;
@@ -892,9 +931,12 @@ static void disk_seqf_stop(struct seq_file *seqf, void *v)
 		class_dev_iter_exit(iter);
 		kfree(iter);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		seqf->private = NULL;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	}
 }
 
@@ -1137,6 +1179,7 @@ int disk_expand_part_tbl(struct gendisk *disk, int partno)
 	struct disk_part_tbl *new_ptbl;
 	int len = old_ptbl ? old_ptbl->len : 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int target = partno + 1;
 	size_t size;
 	int i;
@@ -1152,6 +1195,11 @@ int disk_expand_part_tbl(struct gendisk *disk, int partno)
 	if (target < 0)
 		return -EINVAL;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	int target = partno + 1;
+	size_t size;
+	int i;
+>>>>>>> 2617302... source
 
 	/* disk_max_parts() is zero during initialization, ignore if so */
 	if (disk_max_parts(disk) && target > disk_max_parts(disk))
@@ -1179,9 +1227,12 @@ static void disk_release(struct device *dev)
 	struct gendisk *disk = dev_to_disk(dev);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	blk_free_devt(dev->devt);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	disk_release_events(disk);
 	kfree(disk->random);
 	disk_replace_part_tbl(disk, NULL);

@@ -33,20 +33,28 @@
 void msm_camera_io_w(u32 data, void __iomem *addr)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	CDBG("%s: 0x%p %08x\n", __func__,  (addr), (data));
 =======
 	CDBG("%s: 0x%pK %08x\n", __func__,  (addr), (data));
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	CDBG("%s: 0x%p %08x\n", __func__,  (addr), (data));
+>>>>>>> 2617302... source
 	writel_relaxed((data), (addr));
 }
 
 void msm_camera_io_w_mb(u32 data, void __iomem *addr)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	CDBG("%s: 0x%p %08x\n", __func__,  (addr), (data));
 =======
 	CDBG("%s: 0x%pK %08x\n", __func__,  (addr), (data));
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	CDBG("%s: 0x%p %08x\n", __func__,  (addr), (data));
+>>>>>>> 2617302... source
 	wmb();
 	writel_relaxed((data), (addr));
 	wmb();
@@ -56,10 +64,14 @@ u32 msm_camera_io_r(void __iomem *addr)
 {
 	uint32_t data = readl_relaxed(addr);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	CDBG("%s: 0x%p %08x\n", __func__,  (addr), (data));
 =======
 	CDBG("%s: 0x%pK %08x\n", __func__,  (addr), (data));
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	CDBG("%s: 0x%p %08x\n", __func__,  (addr), (data));
+>>>>>>> 2617302... source
 	return data;
 }
 
@@ -70,10 +82,14 @@ u32 msm_camera_io_r_mb(void __iomem *addr)
 	data = readl_relaxed(addr);
 	rmb();
 <<<<<<< HEAD
+<<<<<<< HEAD
 	CDBG("%s: 0x%p %08x\n", __func__,  (addr), (data));
 =======
 	CDBG("%s: 0x%pK %08x\n", __func__,  (addr), (data));
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	CDBG("%s: 0x%p %08x\n", __func__,  (addr), (data));
+>>>>>>> 2617302... source
 	return data;
 }
 
@@ -95,19 +111,27 @@ void msm_camera_io_dump(void __iomem *addr, int size)
 	u32 *p = (u32 *) addr;
 	u32 data;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	CDBG("%s: %p %d\n", __func__, addr, size);
 =======
 	CDBG("%s: %pK %d\n", __func__, addr, size);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	CDBG("%s: %p %d\n", __func__, addr, size);
+>>>>>>> 2617302... source
 	line_str[0] = '\0';
 	p_str = line_str;
 	for (i = 0; i < size/4; i++) {
 		if (i % 4 == 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			snprintf(p_str, 12, "0x%p: ",  p);
 =======
 			snprintf(p_str, 12, "0x%pK: ",  p);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			snprintf(p_str, 12, "0x%p: ",  p);
+>>>>>>> 2617302... source
 			p_str += 10;
 		}
 		data = readl_relaxed(p++);
@@ -127,10 +151,14 @@ void msm_camera_io_memcpy(void __iomem *dest_addr,
 	void __iomem *src_addr, u32 len)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	CDBG("%s: %p %p %d\n", __func__, dest_addr, src_addr, len);
 =======
 	CDBG("%s: %pK %pK %d\n", __func__, dest_addr, src_addr, len);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	CDBG("%s: %p %p %d\n", __func__, dest_addr, src_addr, len);
+>>>>>>> 2617302... source
 	msm_camera_io_memcpy_toio(dest_addr, src_addr, len / 4);
 	msm_camera_io_dump(dest_addr, len);
 }
@@ -280,6 +308,7 @@ int msm_camera_config_vreg(struct device *dev, struct camera_vreg_t *cam_vreg,
 		return -EINVAL;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 	if (cam_vreg == NULL) {
@@ -288,6 +317,8 @@ int msm_camera_config_vreg(struct device *dev, struct camera_vreg_t *cam_vreg,
 	}
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	if (!num_vreg_seq)
 		num_vreg_seq = num_vreg;
 
@@ -645,10 +676,14 @@ int msm_camera_request_gpio_table(struct gpio *gpio_tbl, uint8_t size,
 
 	if (!gpio_tbl || !size) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("%s:%d invalid gpio_tbl %p / size %d\n", __func__,
 =======
 		pr_err("%s:%d invalid gpio_tbl %pK / size %d\n", __func__,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		pr_err("%s:%d invalid gpio_tbl %p / size %d\n", __func__,
+>>>>>>> 2617302... source
 			__LINE__, gpio_tbl, size);
 		return -EINVAL;
 	}

@@ -182,10 +182,14 @@ static struct ext4_new_flex_group_data *alloc_flex_gd(unsigned long flexbg_size)
 		goto out3;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (flexbg_size >= UINT_MAX / sizeof(struct ext4_new_flex_group_data))
 =======
 	if (flexbg_size >= UINT_MAX / sizeof(struct ext4_new_group_data))
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (flexbg_size >= UINT_MAX / sizeof(struct ext4_new_flex_group_data))
+>>>>>>> 2617302... source
 		goto out2;
 	flex_gd->count = flexbg_size;
 
@@ -1030,10 +1034,14 @@ exit_free:
  * which changed s_groups_count will backup again.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void update_backups(struct super_block *sb, int blk_off, char *data,
 =======
 static void update_backups(struct super_block *sb, sector_t blk_off, char *data,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+static void update_backups(struct super_block *sb, int blk_off, char *data,
+>>>>>>> 2617302... source
 			   int size, int meta_bg)
 {
 	struct ext4_sb_info *sbi = EXT4_SB(sb);
@@ -1059,10 +1067,14 @@ static void update_backups(struct super_block *sb, sector_t blk_off, char *data,
 		last = sbi->s_groups_count;
 	} else {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		group = ext4_meta_bg_first_group(sb, group) + 1;
 =======
 		group = ext4_get_group_number(sb, blk_off) + 1;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		group = ext4_meta_bg_first_group(sb, group) + 1;
+>>>>>>> 2617302... source
 		last = (ext4_group_t)(group + EXT4_DESC_PER_BLOCK(sb) - 2);
 	}
 
@@ -1079,10 +1091,14 @@ static void update_backups(struct super_block *sb, sector_t blk_off, char *data,
 
 		if (meta_bg == 0)
 <<<<<<< HEAD
+<<<<<<< HEAD
 			backup_block = group * bpg + blk_off;
 =======
 			backup_block = ((ext4_fsblk_t)group) * bpg + blk_off;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			backup_block = group * bpg + blk_off;
+>>>>>>> 2617302... source
 		else
 			backup_block = (ext4_group_first_block_no(sb, group) +
 					ext4_bg_has_super(sb, group));

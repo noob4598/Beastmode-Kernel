@@ -71,10 +71,14 @@ static unsigned long clk_factors_recalc_rate(struct clk_hw *hw,
 
 	/* Calculate the rate */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	rate = (parent_rate * n * (k + 1) >> p) / (m + 1);
 =======
 	rate = (parent_rate * (n + config->n_start) * (k + 1) >> p) / (m + 1);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	rate = (parent_rate * n * (k + 1) >> p) / (m + 1);
+>>>>>>> 2617302... source
 
 	return rate;
 }

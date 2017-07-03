@@ -487,12 +487,17 @@ void ahci_save_initial_config(struct device *dev,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* fabricate port_map from cap.nr_ports */
 	if (!port_map) {
 =======
 	/* fabricate port_map from cap.nr_ports for < AHCI 1.3 */
 	if (!port_map && vers < 0x10300) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	/* fabricate port_map from cap.nr_ports */
+	if (!port_map) {
+>>>>>>> 2617302... source
 		port_map = (1 << ahci_nr_ports(cap)) - 1;
 		dev_warn(dev, "forcing PORTS_IMPL to 0x%x\n", port_map);
 
@@ -1250,6 +1255,7 @@ static int ahci_exec_polled_cmd(struct ata_port *ap, int pmp,
 	ahci_fill_cmd_slot(pp, 0, cmd_fis_len | flags | (pmp << 12));
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/* set port value for softreset of Port Multiplier */
 	if (pp->fbs_enabled && pp->fbs_last_dev != pmp) {
@@ -1261,6 +1267,8 @@ static int ahci_exec_polled_cmd(struct ata_port *ap, int pmp,
 	}
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	/* issue & wait */
 	writel(1, port_mmio + PORT_CMD_ISSUE);
 
@@ -1702,11 +1710,16 @@ static void ahci_handle_port_interrupt(struct ata_port *ap,
 		status &= ~PORT_IRQ_BAD_PMP;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* if LPM is enabled, PHYRDY doesn't mean anything */
 	if (ap->link.lpm_policy > ATA_LPM_MAX_POWER) {
 =======
 	if (sata_lpm_ignore_phy_events(&ap->link)) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	/* if LPM is enabled, PHYRDY doesn't mean anything */
+	if (ap->link.lpm_policy > ATA_LPM_MAX_POWER) {
+>>>>>>> 2617302... source
 		status &= ~PORT_IRQ_PHYRDY;
 		ahci_scr_write(&ap->link, SCR_ERROR, SERR_PHYRDY_CHG);
 	}

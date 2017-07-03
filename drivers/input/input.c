@@ -258,6 +258,7 @@ static int input_handle_abs_event(struct input_dev *dev,
 
 static int input_get_disposition(struct input_dev *dev,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			  unsigned int type, unsigned int code, int value)
 {
 	int disposition = INPUT_IGNORE_EVENT;
@@ -267,6 +268,11 @@ static int input_get_disposition(struct input_dev *dev,
 	int disposition = INPUT_IGNORE_EVENT;
 	int value = *pval;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			  unsigned int type, unsigned int code, int value)
+{
+	int disposition = INPUT_IGNORE_EVENT;
+>>>>>>> 2617302... source
 
 	switch (type) {
 
@@ -365,9 +371,12 @@ static int input_get_disposition(struct input_dev *dev,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	*pval = value;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	return disposition;
 }
 
@@ -377,10 +386,14 @@ static void input_handle_event(struct input_dev *dev,
 	int disposition;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	disposition = input_get_disposition(dev, type, code, value);
 =======
 	disposition = input_get_disposition(dev, type, code, &value);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	disposition = input_get_disposition(dev, type, code, value);
+>>>>>>> 2617302... source
 
 	if ((disposition & INPUT_PASS_TO_DEVICE) && dev->event)
 		dev->event(dev, type, code, value);

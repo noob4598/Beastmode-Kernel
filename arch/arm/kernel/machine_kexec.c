@@ -15,10 +15,14 @@
 #include <asm/mmu_context.h>
 #include <asm/cacheflush.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 #include <asm/mach-types.h>
 #include <asm/system_misc.h>
 
 extern const unsigned char relocate_new_kernel[];
+<<<<<<< HEAD
 =======
 #include <asm/fncpy.h>
 #include <asm/mach-types.h>
@@ -26,6 +30,8 @@ extern const unsigned char relocate_new_kernel[];
 
 extern void relocate_new_kernel(void);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 extern const unsigned int relocate_new_kernel_size;
 
 extern unsigned long kexec_start_address;
@@ -142,10 +148,13 @@ void machine_kexec(struct kimage *image)
 	unsigned long page_list;
 	unsigned long reboot_code_buffer_phys;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	unsigned long reboot_entry = (unsigned long)relocate_new_kernel;
 	unsigned long reboot_entry_phys;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	void *reboot_code_buffer;
 
 	if (num_online_cpus() > 1) {
@@ -170,12 +179,16 @@ void machine_kexec(struct kimage *image)
 
 	/* copy our kernel relocation code to the control code page */
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	memcpy(reboot_code_buffer,
 	       relocate_new_kernel, relocate_new_kernel_size);
 
 
 	flush_icache_range((unsigned long) reboot_code_buffer,
 			   (unsigned long) reboot_code_buffer + KEXEC_CONTROL_PAGE_SIZE);
+<<<<<<< HEAD
 =======
 	reboot_entry = fncpy(reboot_code_buffer,
 			     reboot_entry,
@@ -184,16 +197,22 @@ void machine_kexec(struct kimage *image)
 		(reboot_code_buffer_phys - (unsigned long)reboot_code_buffer);
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	printk(KERN_INFO "Bye!\n");
 
 	if (kexec_reinit)
 		kexec_reinit();
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	soft_restart(reboot_code_buffer_phys);
 =======
 	soft_restart(reboot_entry_phys);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	soft_restart(reboot_code_buffer_phys);
+>>>>>>> 2617302... source
 }
 
 void arch_crash_save_vmcoreinfo(void)

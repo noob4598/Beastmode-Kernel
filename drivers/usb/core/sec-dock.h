@@ -108,10 +108,14 @@ static int call_battery_notify(struct usb_device *dev, bool bOnOff)
 
 	if (dev->bus->root_hub != dev && bOnOff) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_info("%s device\n", __func__);
 =======
 		pr_debug("%s device\n", __func__);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		pr_info("%s device\n", __func__);
+>>>>>>> 2617302... source
 		send_otg_notify(o_notify, NOTIFY_EVENT_DEVICE_CONNECT, 1);
 	}
 	index = is_notify_hub(dev);
@@ -136,10 +140,14 @@ static int call_battery_notify(struct usb_device *dev, bool bOnOff)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_info("%s : VID : 0x%x, PID : 0x%x, bOnOff=%d, count=%d\n", __func__,
 =======
 	pr_debug("%s : VID : 0x%x, PID : 0x%x, bOnOff=%d, count=%d\n", __func__,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	pr_info("%s : VID : 0x%x, PID : 0x%x, bOnOff=%d, count=%d\n", __func__,
+>>>>>>> 2617302... source
 		dev->descriptor.idVendor, dev->descriptor.idProduct,
 			bOnOff, count);
 	if (bOnOff) {

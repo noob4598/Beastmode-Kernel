@@ -674,12 +674,17 @@ int dso__load_kallsyms(struct dso *dso, const char *filename,
 		return -1;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	symbols__fixup_duplicate(&dso->symbols[map->type]);
 	symbols__fixup_end(&dso->symbols[map->type]);
 =======
 	symbols__fixup_end(&dso->symbols[map->type]);
 	symbols__fixup_duplicate(&dso->symbols[map->type]);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	symbols__fixup_duplicate(&dso->symbols[map->type]);
+	symbols__fixup_end(&dso->symbols[map->type]);
+>>>>>>> 2617302... source
 
 	if (dso->kernel == DSO_TYPE_GUEST_KERNEL)
 		dso->symtab_type = DSO_BINARY_TYPE__GUEST_KALLSYMS;

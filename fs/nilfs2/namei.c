@@ -52,6 +52,7 @@ static inline int nilfs_add_nondir(struct dentry *dentry, struct inode *inode)
 	if (!err) {
 		d_instantiate(dentry, inode);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return 0;
 	}
 	inode_dec_link_count(inode);
@@ -62,6 +63,11 @@ static inline int nilfs_add_nondir(struct dentry *dentry, struct inode *inode)
 	inode_dec_link_count(inode);
 	unlock_new_inode(inode);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		return 0;
+	}
+	inode_dec_link_count(inode);
+>>>>>>> 2617302... source
 	iput(inode);
 	return err;
 }
@@ -191,9 +197,12 @@ out_fail:
 	drop_nlink(inode);
 	nilfs_mark_inode_dirty(inode);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	unlock_new_inode(inode);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	iput(inode);
 	goto out;
 }
@@ -214,11 +223,15 @@ static int nilfs_link(struct dentry *old_dentry, struct inode *dir,
 	ihold(inode);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	err = nilfs_add_nondir(dentry, inode);
 	if (!err)
 		err = nilfs_transaction_commit(dir->i_sb);
 	else
 		nilfs_transaction_abort(dir->i_sb);
+<<<<<<< HEAD
 =======
 	err = nilfs_add_link(dentry, inode);
 	if (!err) {
@@ -230,6 +243,8 @@ static int nilfs_link(struct dentry *old_dentry, struct inode *dir,
 		nilfs_transaction_abort(dir->i_sb);
 	}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	return err;
 }
@@ -268,9 +283,12 @@ static int nilfs_mkdir(struct inode *dir, struct dentry *dentry, umode_t mode)
 	nilfs_mark_inode_dirty(inode);
 	d_instantiate(dentry, inode);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	unlock_new_inode(inode);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 out:
 	if (!err)
 		err = nilfs_transaction_commit(dir->i_sb);
@@ -284,9 +302,12 @@ out_fail:
 	drop_nlink(inode);
 	nilfs_mark_inode_dirty(inode);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	unlock_new_inode(inode);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	iput(inode);
 out_dir:
 	drop_nlink(dir);

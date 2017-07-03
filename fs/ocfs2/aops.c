@@ -918,10 +918,14 @@ void ocfs2_unlock_and_free_pages(struct page **pages, int num_pages)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void ocfs2_free_write_ctxt(struct ocfs2_write_ctxt *wc)
 =======
 static void ocfs2_unlock_pages(struct ocfs2_write_ctxt *wc)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+static void ocfs2_free_write_ctxt(struct ocfs2_write_ctxt *wc)
+>>>>>>> 2617302... source
 {
 	int i;
 
@@ -943,6 +947,7 @@ static void ocfs2_unlock_pages(struct ocfs2_write_ctxt *wc)
 	}
 	ocfs2_unlock_and_free_pages(wc->w_pages, wc->w_num_pages);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 }
@@ -951,6 +956,9 @@ static void ocfs2_free_write_ctxt(struct ocfs2_write_ctxt *wc)
 {
 	ocfs2_unlock_pages(wc);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+
+>>>>>>> 2617302... source
 	brelse(wc->w_di_bh);
 	kfree(wc);
 }
@@ -2073,6 +2081,7 @@ out_write_size:
 	ocfs2_journal_dirty(handle, wc->w_di_bh);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/* unlock pages before dealloc since it needs acquiring j_trans_barrier
 	 * lock, or it will cause a deadlock since journal commit threads holds
@@ -2082,16 +2091,22 @@ out_write_size:
 	ocfs2_unlock_pages(wc);
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	ocfs2_commit_trans(osb, handle);
 
 	ocfs2_run_deallocs(osb, &wc->w_dealloc);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	ocfs2_free_write_ctxt(wc);
 =======
 	brelse(wc->w_di_bh);
 	kfree(wc);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	ocfs2_free_write_ctxt(wc);
+>>>>>>> 2617302... source
 
 	return copied;
 }

@@ -60,6 +60,9 @@ u64 notrace trace_clock(void)
 /*
  * trace_jiffy_clock(): Simply use jiffies as a clock counter.
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
  */
 u64 notrace trace_clock_jiffies(void)
 {
@@ -67,6 +70,7 @@ u64 notrace trace_clock_jiffies(void)
 
 	/* Return nsecs */
 	return (u64)jiffies_to_usecs(jiffy) * 1000ULL;
+<<<<<<< HEAD
 =======
  * Note that this use of jiffies_64 is not completely safe on
  * 32-bit systems. But the window is tiny, and the effect if
@@ -77,6 +81,8 @@ u64 notrace trace_clock_jiffies(void)
 {
 	return jiffies_64_to_clock_t(jiffies_64 - INITIAL_JIFFIES);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 }
 
 /*

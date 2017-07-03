@@ -1741,10 +1741,14 @@ static struct amba_id mmci_ids[] = {
 		.id     = 0x00280180,
 		.mask   = 0x00ffffff,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.data	= &variant_u300,
 =======
 		.data	= &variant_nomadik,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		.data	= &variant_u300,
+>>>>>>> 2617302... source
 	},
 	{
 		.id     = 0x00480180,

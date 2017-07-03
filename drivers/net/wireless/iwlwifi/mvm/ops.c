@@ -294,9 +294,12 @@ static const char *iwl_mvm_cmd_strings[REPLY_MAX] = {
 	CMD(BT_CONFIG),
 	CMD(MCAST_FILTER_CMD),
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	CMD(LTR_CONFIG),
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 };
 #undef CMD
 

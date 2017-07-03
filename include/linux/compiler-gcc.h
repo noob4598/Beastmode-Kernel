@@ -38,11 +38,14 @@
     (typeof(ptr)) (__ptr + (off)); })
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 /* Make the optimizer believe the variable can be manipulated arbitrarily. */
 #define OPTIMIZER_HIDE_VAR(var) __asm__ ("" : "=r" (var) : "0" (var))
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 #ifdef __CHECKER__
 #define __must_be_array(arr) 0
 #else
@@ -104,10 +107,14 @@
 #define __always_unused			__attribute__((unused))
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 #define __gcc_header(x) #x
 #define _gcc_header(x) __gcc_header(linux/compiler-gcc##x.h)
 #define gcc_header(x) _gcc_header(x)
 #include gcc_header(__GNUC__)
+<<<<<<< HEAD
 =======
 /* gcc version specific checks */
 
@@ -220,6 +227,8 @@
 
 #endif	/* gcc version >= 40000 specific checks */
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 #if !defined(__noclone)
 #define __noclone	/* not needed */

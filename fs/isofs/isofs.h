@@ -108,10 +108,14 @@ extern int iso_date(char *, int);
 struct inode;		/* To make gcc happy */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 extern int parse_rock_ridge_inode(struct iso_directory_record *, struct inode *);
 =======
 extern int parse_rock_ridge_inode(struct iso_directory_record *, struct inode *, int relocated);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+extern int parse_rock_ridge_inode(struct iso_directory_record *, struct inode *);
+>>>>>>> 2617302... source
 extern int get_rock_ridge_filename(struct iso_directory_record *, char *, struct inode *);
 extern int isofs_name_translate(struct iso_directory_record *, char *, struct inode *);
 
@@ -122,6 +126,7 @@ extern struct dentry *isofs_lookup(struct inode *, struct dentry *, unsigned int
 extern struct buffer_head *isofs_bread(struct inode *, sector_t);
 extern int isofs_get_blocks(struct inode *, sector_t, struct buffer_head **, unsigned long);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 extern struct inode *isofs_iget(struct super_block *sb,
                                 unsigned long block,
@@ -146,6 +151,11 @@ static inline struct inode *isofs_iget_reloc(struct super_block *sb,
 	return __isofs_iget(sb, block, offset, 1);
 }
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+extern struct inode *isofs_iget(struct super_block *sb,
+                                unsigned long block,
+                                unsigned long offset);
+>>>>>>> 2617302... source
 
 /* Because the inode number is no longer relevant to finding the
  * underlying meta-data for an inode, we are free to choose a more

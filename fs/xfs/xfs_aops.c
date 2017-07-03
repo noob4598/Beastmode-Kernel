@@ -159,6 +159,7 @@ xfs_setfilesize(
 			   0, 1, _THIS_IP_);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/* we abort the update if there was an IO error */
 	if (ioend->io_error) {
@@ -167,6 +168,8 @@ xfs_setfilesize(
 	}
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	xfs_ilock(ip, XFS_ILOCK_EXCL);
 	isize = xfs_new_eof(ip, ioend->io_offset + ioend->io_size);
 	if (!isize) {
@@ -223,14 +226,20 @@ xfs_end_io(
 		goto done;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (ioend->io_error)
 		goto done;
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (ioend->io_error)
+		goto done;
+>>>>>>> 2617302... source
 
 	/*
 	 * For unwritten extents we need to issue transactions to convert a
 	 * range to normal written extens after the data I/O has finished.
+<<<<<<< HEAD
 <<<<<<< HEAD
 	 */
 	if (ioend->io_type == XFS_IO_UNWRITTEN) {
@@ -243,6 +252,10 @@ xfs_end_io(
 		if (ioend->io_error)
 			goto done;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	 */
+	if (ioend->io_type == XFS_IO_UNWRITTEN) {
+>>>>>>> 2617302... source
 		error = xfs_iomap_write_unwritten(ip, ioend->io_offset,
 						  ioend->io_size);
 	} else if (ioend->io_isdirect && xfs_ioend_is_append(ioend)) {
@@ -1684,6 +1697,7 @@ xfs_vm_readpages(
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 /*
  * This is basically a copy of __set_page_dirty_buffers() with one
@@ -1746,15 +1760,20 @@ xfs_vm_set_page_dirty(
 }
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 const struct address_space_operations xfs_address_space_operations = {
 	.readpage		= xfs_vm_readpage,
 	.readpages		= xfs_vm_readpages,
 	.writepage		= xfs_vm_writepage,
 	.writepages		= xfs_vm_writepages,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	.set_page_dirty		= xfs_vm_set_page_dirty,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	.releasepage		= xfs_vm_releasepage,
 	.invalidatepage		= xfs_vm_invalidatepage,
 	.write_begin		= xfs_vm_write_begin,

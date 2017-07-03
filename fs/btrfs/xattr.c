@@ -28,9 +28,12 @@
 #include "xattr.h"
 #include "disk-io.h"
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include "locking.h"
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 
 ssize_t __btrfs_getxattr(struct inode *inode, const char *name,
@@ -94,10 +97,14 @@ static int do_setxattr(struct btrfs_trans_handle *trans,
 		       const void *value, size_t size, int flags)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct btrfs_dir_item *di;
 =======
 	struct btrfs_dir_item *di = NULL;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	struct btrfs_dir_item *di;
+>>>>>>> 2617302... source
 	struct btrfs_root *root = BTRFS_I(inode)->root;
 	struct btrfs_path *path;
 	size_t name_len = strlen(name);
@@ -110,6 +117,9 @@ static int do_setxattr(struct btrfs_trans_handle *trans,
 	if (!path)
 		return -ENOMEM;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 
 	if (flags & XATTR_REPLACE) {
 		di = btrfs_lookup_xattr(trans, root, path, btrfs_ino(inode), name,
@@ -188,6 +198,7 @@ again:
 			btrfs_release_path(path);
 			goto again;
 		}
+<<<<<<< HEAD
 =======
 	path->skip_release_on_error = 1;
 
@@ -312,6 +323,8 @@ again:
 		 * filled it.
 		 */
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	}
 out:
 	btrfs_free_path(path);

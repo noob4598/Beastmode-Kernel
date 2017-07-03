@@ -69,9 +69,12 @@ struct hci_uart {
 
 	struct work_struct	init_ready;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct work_struct	write_work;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	struct hci_uart_proto	*proto;
 	void			*priv;

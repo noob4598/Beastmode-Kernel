@@ -632,6 +632,7 @@ int ntp_validate_timex(struct timex *txc)
 		return -EPERM;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/*
 	 * Check for potential multiplication overflows that can
@@ -645,6 +646,8 @@ int ntp_validate_timex(struct timex *txc)
 	}
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	return 0;
 }
 

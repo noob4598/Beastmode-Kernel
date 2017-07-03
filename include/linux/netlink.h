@@ -17,6 +17,7 @@ static inline struct nlmsghdr *nlmsg_hdr(const struct sk_buff *skb)
 
 enum netlink_skb_flags {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	NETLINK_SKB_MMAPED	= 0x1,		/* Packet data is mmaped */
 	NETLINK_SKB_TX		= 0x2,		/* Packet was sent by userspace */
 	NETLINK_SKB_DELIVERED	= 0x4,		/* Packet was delivered */
@@ -26,6 +27,11 @@ enum netlink_skb_flags {
 	NETLINK_SKB_DELIVERED	= 0x4,	/* Packet was delivered */
 	NETLINK_SKB_DST		= 0x8,	/* Dst set in sendto or sendmsg */
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	NETLINK_SKB_MMAPED	= 0x1,		/* Packet data is mmaped */
+	NETLINK_SKB_TX		= 0x2,		/* Packet was sent by userspace */
+	NETLINK_SKB_DELIVERED	= 0x4,		/* Packet was delivered */
+>>>>>>> 2617302... source
 };
 
 struct netlink_skb_parms {
@@ -153,16 +159,23 @@ static inline int netlink_dump_start(struct sock *ssk, struct sk_buff *skb,
 
 bool __netlink_ns_capable(const struct netlink_skb_parms *nsp,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			struct user_namespace *ns, int cap);
 =======
 			  struct user_namespace *ns, int cap);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			struct user_namespace *ns, int cap);
+>>>>>>> 2617302... source
 bool netlink_ns_capable(const struct sk_buff *skb,
 			struct user_namespace *ns, int cap);
 bool netlink_capable(const struct sk_buff *skb, int cap);
 bool netlink_net_capable(const struct sk_buff *skb, int cap);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 #endif	/* __LINUX_NETLINK_H */

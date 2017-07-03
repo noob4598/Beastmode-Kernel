@@ -865,6 +865,7 @@ struct dvb_frontend *ds3000_attach(const struct ds3000_config *config,
 			sizeof(struct dvb_frontend_ops));
 	state->frontend.demodulator_priv = state;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 	/*
@@ -874,6 +875,8 @@ struct dvb_frontend *ds3000_attach(const struct ds3000_config *config,
 	 */
 	ds3000_set_voltage(&state->frontend, SEC_VOLTAGE_OFF);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	return &state->frontend;
 
 error3:

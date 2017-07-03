@@ -150,6 +150,7 @@ static int get_task_ioprio(struct task_struct *p)
 		goto out;
 	ret = IOPRIO_PRIO_VALUE(IOPRIO_CLASS_NONE, IOPRIO_NORM);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (p->io_context)
 		ret = p->io_context->ioprio;
 =======
@@ -158,6 +159,10 @@ static int get_task_ioprio(struct task_struct *p)
 		ret = p->io_context->ioprio;
 	task_unlock(p);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (p->io_context)
+		ret = p->io_context->ioprio;
+>>>>>>> 2617302... source
 out:
 	return ret;
 }
@@ -165,6 +170,9 @@ out:
 int ioprio_best(unsigned short aprio, unsigned short bprio)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	unsigned short aclass = IOPRIO_PRIO_CLASS(aprio);
 	unsigned short bclass = IOPRIO_PRIO_CLASS(bprio);
 
@@ -173,6 +181,7 @@ int ioprio_best(unsigned short aprio, unsigned short bprio)
 	if (bclass == IOPRIO_CLASS_NONE)
 		bclass = IOPRIO_CLASS_BE;
 
+<<<<<<< HEAD
 =======
 	unsigned short aclass;
 	unsigned short bclass;
@@ -185,6 +194,8 @@ int ioprio_best(unsigned short aprio, unsigned short bprio)
 	aclass = IOPRIO_PRIO_CLASS(aprio);
 	bclass = IOPRIO_PRIO_CLASS(bprio);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	if (aclass == bclass)
 		return min(aprio, bprio);
 	if (aclass > bclass)

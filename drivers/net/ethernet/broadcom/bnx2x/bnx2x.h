@@ -313,9 +313,12 @@ struct sw_tx_bd {
 /* Set on the first BD descriptor when there is a split BD */
 #define BNX2X_TSO_SPLIT_BD		(1<<0)
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define BNX2X_HAS_SECOND_PBD		(1<<1)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 };
 
 struct sw_rx_page {

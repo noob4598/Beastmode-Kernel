@@ -107,10 +107,14 @@ static inline long long empty_log_bytes(const struct ubifs_info *c)
 	t = (long long)c->ltail_lnum * c->leb_size;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	if (h >= t)
 		return c->log_bytes - h + t;
 	else
 		return t - h;
+<<<<<<< HEAD
 =======
 	if (h > t)
 		return c->log_bytes - h + t;
@@ -121,6 +125,8 @@ static inline long long empty_log_bytes(const struct ubifs_info *c)
 	else
 		return c->log_bytes;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 }
 
 /**
@@ -459,6 +465,7 @@ out:
  *
  * This function is called on when the commit operation was finished. It
 <<<<<<< HEAD
+<<<<<<< HEAD
  * moves log tail to new position and unmaps LEBs which contain obsolete data.
  * Returns zero in case of success and a negative error code in case of
  * failure.
@@ -467,6 +474,11 @@ out:
  * the new log tail LEB number. Returns zero in case of success and a negative
  * error code in case of failure.
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+ * moves log tail to new position and unmaps LEBs which contain obsolete data.
+ * Returns zero in case of success and a negative error code in case of
+ * failure.
+>>>>>>> 2617302... source
  */
 int ubifs_log_end_commit(struct ubifs_info *c, int ltail_lnum)
 {
@@ -495,6 +507,7 @@ int ubifs_log_end_commit(struct ubifs_info *c, int ltail_lnum)
 
 	err = dbg_check_bud_bytes(c);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 	if (err)
@@ -504,6 +517,9 @@ int ubifs_log_end_commit(struct ubifs_info *c, int ltail_lnum)
 
 out:
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+
+>>>>>>> 2617302... source
 	mutex_unlock(&c->log_mutex);
 	return err;
 }

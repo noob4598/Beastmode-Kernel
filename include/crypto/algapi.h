@@ -387,6 +387,7 @@ static inline int crypto_requires_sync(u32 type, u32 mask)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #endif	/* _CRYPTO_ALGAPI_H */
 
 =======
@@ -409,3 +410,7 @@ static inline int crypto_memneq(const void *a, const void *b, size_t size)
 
 #endif	/* _CRYPTO_ALGAPI_H */
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+#endif	/* _CRYPTO_ALGAPI_H */
+
+>>>>>>> 2617302... source

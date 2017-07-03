@@ -27,9 +27,12 @@
 #include <linux/i2c/pxa-i2c.h>
 #include <linux/io.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <linux/regulator/machine.h>
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 #include <linux/spi/spi.h>
 #include <linux/spi/ads7846.h>
 #include <linux/spi/corgi_lcd.h>
@@ -716,10 +719,13 @@ static void __init corgi_init(void)
 
 	platform_add_devices(devices, ARRAY_SIZE(devices));
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 	regulator_has_full_constraints();
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 }
 
 static void __init fixup_corgi(struct tag *tags, char **cmdline,

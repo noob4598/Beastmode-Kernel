@@ -161,10 +161,13 @@ static int __init parse_tag_initrd(const bp_tag_t* tag)
 __tagtable(BP_TAG_INITRD, parse_tag_initrd);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #endif /* CONFIG_BLK_DEV_INITRD */
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 #ifdef CONFIG_OF
 
 static int __init parse_tag_fdt(const bp_tag_t *tag)
@@ -186,10 +189,15 @@ void __init early_init_dt_setup_initrd_arch(unsigned long start,
 #endif /* CONFIG_OF */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #endif /* CONFIG_BLK_DEV_INITRD */
 
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+#endif /* CONFIG_BLK_DEV_INITRD */
+
+>>>>>>> 2617302... source
 static int __init parse_tag_cmdline(const bp_tag_t* tag)
 {
 	strlcpy(command_line, (char *)(tag->data), COMMAND_LINE_SIZE);

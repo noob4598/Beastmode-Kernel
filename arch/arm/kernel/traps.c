@@ -372,6 +372,7 @@ int is_valid_bugaddr(unsigned long pc)
 {
 #ifdef CONFIG_THUMB2_KERNEL
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned short bkpt;
 #else
 	unsigned long bkpt;
@@ -382,16 +383,25 @@ int is_valid_bugaddr(unsigned long pc)
 	u32 bkpt;
 	u32 insn = __opcode_to_mem_arm(BUG_INSTR_VALUE);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	unsigned short bkpt;
+#else
+	unsigned long bkpt;
+>>>>>>> 2617302... source
 #endif
 
 	if (probe_kernel_address((unsigned *)pc, bkpt))
 		return 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return bkpt == BUG_INSTR_VALUE;
 =======
 	return bkpt == insn;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	return bkpt == BUG_INSTR_VALUE;
+>>>>>>> 2617302... source
 }
 
 #endif

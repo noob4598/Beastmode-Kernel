@@ -744,12 +744,15 @@ int r100_irq_set(struct radeon_device *rdev)
 	}
 	WREG32(RADEON_GEN_INT_CNTL, tmp);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 	/* read back to post the write */
 	RREG32(RADEON_GEN_INT_CNTL);
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	return 0;
 }
 

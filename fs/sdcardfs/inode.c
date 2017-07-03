@@ -3,11 +3,15 @@
  *
  * Copyright (c) 2013 Samsung Electronics Co. Ltd
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
  *   Authors: Daeho Jeong, Woojoong Lee, Seunghwan Hyun, 
  *               Sunghwan Yun, Sungjong Seo
  *                      
  * This program has been developed as a stackable file system based on
  * the WrapFS which written by 
+<<<<<<< HEAD
 =======
  *   Authors: Daeho Jeong, Woojoong Lee, Seunghwan Hyun,
  *               Sunghwan Yun, Sungjong Seo
@@ -15,6 +19,8 @@
  * This program has been developed as a stackable file system based on
  * the WrapFS which written by
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
  *
  * Copyright (c) 1998-2011 Erez Zadok
  * Copyright (c) 2009     Shrikar Archak
@@ -28,6 +34,9 @@
 
 #include "sdcardfs.h"
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 
 /* Do not directly use this function. Use OVERRIDE_CRED() instead. */
 const struct cred * override_fsids(uid_t fsuid, gid_t fsgid)
@@ -70,6 +79,7 @@ static int sdcardfs_create(struct inode *dir, struct dentry *dentry,
 		printk(KERN_INFO "%s: need to check the caller's gid in packages.list\n" 
 						 "  dentry: %s, task:%s\n",
 						 __func__, dentry->d_name.name, current->comm);
+<<<<<<< HEAD
 =======
 #include <linux/fs_struct.h>
 #include <linux/ratelimit.h>
@@ -121,12 +131,17 @@ static int sdcardfs_create(struct inode *dir, struct dentry *dentry,
 
 	if (!check_caller_access_to_name(dir, &dentry->d_name)) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		err = -EACCES;
 		goto out_eacces;
 	}
 
 	/* save current_cred and override it */
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	OVERRIDE_CRED(SDCARDFS_SB(dir->i_sb), saved_cred);
 
 	sdcardfs_get_lower_path(dentry, &lower_path);
@@ -145,6 +160,7 @@ static int sdcardfs_create(struct inode *dir, struct dentry *dentry,
 		goto out;
 
 	err = sdcardfs_interpose(dentry, dir->i_sb, &lower_path);
+<<<<<<< HEAD
 =======
 	OVERRIDE_CRED(SDCARDFS_SB(dir->i_sb), saved_cred, SDCARDFS_I(dir));
 
@@ -171,10 +187,13 @@ static int sdcardfs_create(struct inode *dir, struct dentry *dentry,
 
 	err = sdcardfs_interpose(dentry, dir->i_sb, &lower_path, SDCARDFS_I(dir)->userid);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	if (err)
 		goto out;
 	fsstack_copy_attr_times(dir, sdcardfs_lower_inode(dir));
 	fsstack_copy_inode_size(dir, lower_parent_dentry->d_inode);
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 out:
@@ -186,6 +205,11 @@ out:
 	current->fs = saved_fs;
 	free_fs_struct(copied_fs);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+
+out:
+	mnt_drop_write(lower_path.mnt);
+>>>>>>> 2617302... source
 out_unlock:
 	unlock_dir(lower_parent_dentry);
 	sdcardfs_put_lower_path(dentry, &lower_path);
@@ -207,10 +231,14 @@ static int sdcardfs_link(struct dentry *old_dentry, struct inode *dir,
 
 	OVERRIDE_CRED(SDCARDFS_SB(dir->i_sb));
 <<<<<<< HEAD
+<<<<<<< HEAD
 	
 =======
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	
+>>>>>>> 2617302... source
 	file_size_save = i_size_read(old_dentry->d_inode);
 	sdcardfs_get_lower_path(old_dentry, &lower_old_path);
 	sdcardfs_get_lower_path(new_dentry, &lower_new_path);
@@ -219,12 +247,18 @@ static int sdcardfs_link(struct dentry *old_dentry, struct inode *dir,
 	lower_dir_dentry = lock_parent(lower_new_dentry);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	err = mnt_want_write(lower_new_path.mnt);
 	if (err)
 		goto out_unlock;
 
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	err = vfs_link(lower_old_dentry, lower_dir_dentry->d_inode,
 		       lower_new_dentry);
 	if (err || !lower_new_dentry->d_inode)
@@ -240,10 +274,15 @@ static int sdcardfs_link(struct dentry *old_dentry, struct inode *dir,
 	i_size_write(new_dentry->d_inode, file_size_save);
 out:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mnt_drop_write(lower_new_path.mnt);
 out_unlock:
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	mnt_drop_write(lower_new_path.mnt);
+out_unlock:
+>>>>>>> 2617302... source
 	unlock_dir(lower_dir_dentry);
 	sdcardfs_put_lower_path(old_dentry, &lower_old_path);
 	sdcardfs_put_lower_path(new_dentry, &lower_new_path);
@@ -257,28 +296,40 @@ static int sdcardfs_unlink(struct inode *dir, struct dentry *dentry)
 	int err;
 	struct dentry *lower_dentry;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct vfsmount *lower_mnt;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	struct inode *lower_dir_inode = sdcardfs_lower_inode(dir);
 	struct dentry *lower_dir_dentry;
 	struct path lower_path;
 	const struct cred *saved_cred = NULL;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	if(!check_caller_access_to_name(dir, dentry->d_name.name)) {
 		printk(KERN_INFO "%s: need to check the caller's gid in packages.list\n" 
 						 "  dentry: %s, task:%s\n",
 						 __func__, dentry->d_name.name, current->comm);
+<<<<<<< HEAD
 =======
 	if (!check_caller_access_to_name(dir, &dentry->d_name)) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		err = -EACCES;
 		goto out_eacces;
 	}
 
 	/* save current_cred and override it */
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	OVERRIDE_CRED(SDCARDFS_SB(dir->i_sb), saved_cred);
 
 	sdcardfs_get_lower_path(dentry, &lower_path);
@@ -290,6 +341,7 @@ static int sdcardfs_unlink(struct inode *dir, struct dentry *dentry)
 	if (err)
 		goto out_unlock;
 	err = vfs_unlink(lower_dir_inode, lower_dentry);
+<<<<<<< HEAD
 =======
 	OVERRIDE_CRED(SDCARDFS_SB(dir->i_sb), saved_cred, SDCARDFS_I(dir));
 
@@ -301,6 +353,8 @@ static int sdcardfs_unlink(struct inode *dir, struct dentry *dentry)
 
 	err = vfs_unlink2(lower_mnt, lower_dir_inode, lower_dentry);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	/*
 	 * Note: unlinking on top of NFS can cause silly-renamed files.
@@ -321,10 +375,15 @@ static int sdcardfs_unlink(struct inode *dir, struct dentry *dentry)
 	d_drop(dentry); /* this is needed, else LTP fails (VFS won't do it) */
 out:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mnt_drop_write(lower_path.mnt);
 out_unlock:
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	mnt_drop_write(lower_path.mnt);
+out_unlock:
+>>>>>>> 2617302... source
 	unlock_dir(lower_dir_dentry);
 	dput(lower_dentry);
 	sdcardfs_put_lower_path(dentry, &lower_path);
@@ -349,11 +408,17 @@ static int sdcardfs_symlink(struct inode *dir, struct dentry *dentry,
 	lower_parent_dentry = lock_parent(lower_dentry);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	err = mnt_want_write(lower_path.mnt);
 	if (err)
 		goto out_unlock;
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	err = mnt_want_write(lower_path.mnt);
+	if (err)
+		goto out_unlock;
+>>>>>>> 2617302... source
 	err = vfs_symlink(lower_parent_dentry->d_inode, lower_dentry, symname);
 	if (err)
 		goto out;
@@ -365,10 +430,15 @@ static int sdcardfs_symlink(struct inode *dir, struct dentry *dentry,
 
 out:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mnt_drop_write(lower_path.mnt);
 out_unlock:
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	mnt_drop_write(lower_path.mnt);
+out_unlock:
+>>>>>>> 2617302... source
 	unlock_dir(lower_parent_dentry);
 	sdcardfs_put_lower_path(dentry, &lower_path);
 	REVERT_CRED();
@@ -377,6 +447,9 @@ out_unlock:
 #endif
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 static int touch(char *abs_path, mode_t mode) {
 	struct file *filp = filp_open(abs_path, O_RDWR|O_CREAT|O_EXCL|O_NOFOLLOW, mode);
 	if (IS_ERR(filp)) {
@@ -385,6 +458,7 @@ static int touch(char *abs_path, mode_t mode) {
 		}
 		else {
 			printk(KERN_ERR "sdcardfs: failed to open(%s): %ld\n",
+<<<<<<< HEAD
 =======
 static int touch(char *abs_path, mode_t mode)
 {
@@ -396,6 +470,8 @@ static int touch(char *abs_path, mode_t mode)
 		} else {
 			pr_err("sdcardfs: failed to open(%s): %ld\n",
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 						abs_path, PTR_ERR(filp));
 			return PTR_ERR(filp);
 		}
@@ -410,6 +486,9 @@ static int sdcardfs_mkdir(struct inode *dir, struct dentry *dentry, umode_t mode
 	int make_nomedia_in_obb = 0;
 	struct dentry *lower_dentry;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	struct dentry *lower_parent_dentry = NULL;
 	struct path lower_path;
 	const struct cred *saved_cred = NULL;
@@ -424,6 +503,7 @@ static int sdcardfs_mkdir(struct inode *dir, struct dentry *dentry, umode_t mode
 		printk(KERN_INFO "%s: need to check the caller's gid in packages.list\n" 
 						 "  dentry: %s, task:%s\n",
 						 __func__, dentry->d_name.name, current->comm);
+<<<<<<< HEAD
 =======
 	struct vfsmount *lower_mnt;
 	struct dentry *lower_parent_dentry = NULL;
@@ -439,17 +519,23 @@ static int sdcardfs_mkdir(struct inode *dir, struct dentry *dentry, umode_t mode
 
 	if (!check_caller_access_to_name(dir, &dentry->d_name)) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		err = -EACCES;
 		goto out_eacces;
 	}
 
 	/* save current_cred and override it */
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	OVERRIDE_CRED(SDCARDFS_SB(dir->i_sb), saved_cred);
 
 	/* check disk space */
 	if (!check_min_free_space(dentry, 0, 1)) {
 		printk(KERN_INFO "sdcardfs: No minimum free space.\n");
+<<<<<<< HEAD
 =======
 	OVERRIDE_CRED(SDCARDFS_SB(dir->i_sb), saved_cred, SDCARDFS_I(dir));
 
@@ -457,6 +543,8 @@ static int sdcardfs_mkdir(struct inode *dir, struct dentry *dentry, umode_t mode
 	if (!check_min_free_space(dentry, 0, 1)) {
 		pr_err("sdcardfs: No minimum free space.\n");
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		err = -ENOSPC;
 		goto out_revert;
 	}
@@ -465,6 +553,9 @@ static int sdcardfs_mkdir(struct inode *dir, struct dentry *dentry, umode_t mode
 	sdcardfs_get_lower_path(dentry, &lower_path);
 	lower_dentry = lower_path.dentry;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	lower_parent_dentry = lock_parent(lower_dentry);
 
 	err = mnt_want_write(lower_path.mnt);
@@ -476,6 +567,7 @@ static int sdcardfs_mkdir(struct inode *dir, struct dentry *dentry, umode_t mode
 	/* set last 16bytes of mode field to 0775 */
 	mode = (mode & S_IFMT) | 00775; 
 	err = vfs_mkdir(lower_parent_dentry->d_inode, lower_dentry, mode);
+<<<<<<< HEAD
 =======
 	lower_mnt = lower_path.mnt;
 	lower_parent_dentry = lock_parent(lower_dentry);
@@ -495,12 +587,17 @@ static int sdcardfs_mkdir(struct inode *dir, struct dentry *dentry, umode_t mode
 	current->fs->umask = 0;
 	err = vfs_mkdir2(lower_mnt, lower_parent_dentry->d_inode, lower_dentry, mode);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	if (err) {
 		unlock_dir(lower_parent_dentry);
 		goto out;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	
 	/* if it is a local obb dentry, setup it with the base obbpath */
 	if(need_graft_path(dentry)) {
@@ -515,6 +612,7 @@ static int sdcardfs_mkdir(struct inode *dir, struct dentry *dentry, umode_t mode
 			/* the newly created lower path which saved to its orig_path or
 			 * the lower_path is the base obbpath. 
              * therefore, an additional path_get is required */
+<<<<<<< HEAD
 =======
 
 	/* if it is a local obb dentry, setup it with the base obbpath */
@@ -534,16 +632,22 @@ static int sdcardfs_mkdir(struct inode *dir, struct dentry *dentry, umode_t mode
 			 * therefore, an additional path_get is required
 			 */
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 			path_get(&lower_path);
 		} else
 			make_nomedia_in_obb = 1;
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	err = sdcardfs_interpose(dentry, dir->i_sb, &lower_path);
 =======
 	err = sdcardfs_interpose(dentry, dir->i_sb, &lower_path, pi->userid);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	err = sdcardfs_interpose(dentry, dir->i_sb, &lower_path);
+>>>>>>> 2617302... source
 	if (err) {
 		unlock_dir(lower_parent_dentry);
 		goto out;
@@ -554,21 +658,30 @@ static int sdcardfs_mkdir(struct inode *dir, struct dentry *dentry, umode_t mode
 	/* update number of links on parent directory */
 	set_nlink(dir, sdcardfs_lower_inode(dir)->i_nlink);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 
 	unlock_dir(lower_parent_dentry);
 
 	if (!strcasecmp(dentry->d_name.name, "obb") && (pi->perm == PERM_ANDROID))
+<<<<<<< HEAD
 =======
 	fixup_lower_ownership(dentry, dentry->d_name.name);
 	unlock_dir(lower_parent_dentry);
 	if ((!sbi->options.multiuser) && (qstr_case_eq(&dentry->d_name, &q_obb))
 		&& (pi->perm == PERM_ANDROID) && (pi->userid == 0))
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		make_nomedia_in_obb = 1;
 
 	/* When creating /Android/data and /Android/obb, mark them as .nomedia */
 	if (make_nomedia_in_obb ||
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		((pi->perm == PERM_ANDROID) && (!strcasecmp(dentry->d_name.name, "data")))) {
 
 		page_buf = (char *)__get_free_page(GFP_KERNEL);
@@ -607,6 +720,7 @@ static int sdcardfs_mkdir(struct inode *dir, struct dentry *dentry, umode_t mode
 	}
 out:
 	mnt_drop_write(lower_path.mnt);
+<<<<<<< HEAD
 =======
 		((pi->perm == PERM_ANDROID) && (qstr_case_eq(&dentry->d_name, &q_data)))) {
 		REVERT_CRED(saved_cred);
@@ -623,6 +737,8 @@ out:
 	current->fs = saved_fs;
 	free_fs_struct(copied_fs);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 out_unlock:
 	sdcardfs_put_lower_path(dentry, &lower_path);
 out_revert:
@@ -636,6 +752,9 @@ static int sdcardfs_rmdir(struct inode *dir, struct dentry *dentry)
 	struct dentry *lower_dentry;
 	struct dentry *lower_dir_dentry;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	int err;
 	struct path lower_path;
 	const struct cred *saved_cred = NULL;
@@ -645,6 +764,7 @@ static int sdcardfs_rmdir(struct inode *dir, struct dentry *dentry)
 		printk(KERN_INFO "%s: need to check the caller's gid in packages.list\n" 
 						 "  dentry: %s, task:%s\n",
 						 __func__, dentry->d_name.name, current->comm);
+<<<<<<< HEAD
 =======
 	struct vfsmount *lower_mnt;
 	int err;
@@ -653,12 +773,17 @@ static int sdcardfs_rmdir(struct inode *dir, struct dentry *dentry)
 
 	if (!check_caller_access_to_name(dir, &dentry->d_name)) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		err = -EACCES;
 		goto out_eacces;
 	}
 
 	/* save current_cred and override it */
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	OVERRIDE_CRED(SDCARDFS_SB(dir->i_sb), saved_cred);
 
 	/* sdcardfs_get_real_lower(): in case of remove an user's obb dentry 
@@ -672,6 +797,7 @@ static int sdcardfs_rmdir(struct inode *dir, struct dentry *dentry)
 	if (err)
 		goto out_unlock;
 	err = vfs_rmdir(lower_dir_dentry->d_inode, lower_dentry);
+<<<<<<< HEAD
 =======
 	OVERRIDE_CRED(SDCARDFS_SB(dir->i_sb), saved_cred, SDCARDFS_I(dir));
 
@@ -686,6 +812,8 @@ static int sdcardfs_rmdir(struct inode *dir, struct dentry *dentry)
 
 	err = vfs_rmdir2(lower_mnt, lower_dir_dentry->d_inode, lower_dentry);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	if (err)
 		goto out;
 
@@ -698,10 +826,15 @@ static int sdcardfs_rmdir(struct inode *dir, struct dentry *dentry)
 
 out:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mnt_drop_write(lower_path.mnt);
 out_unlock:
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	mnt_drop_write(lower_path.mnt);
+out_unlock:
+>>>>>>> 2617302... source
 	unlock_dir(lower_dir_dentry);
 	sdcardfs_put_real_lower(dentry, &lower_path);
 	REVERT_CRED(saved_cred);
@@ -725,11 +858,17 @@ static int sdcardfs_mknod(struct inode *dir, struct dentry *dentry, umode_t mode
 	lower_parent_dentry = lock_parent(lower_dentry);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	err = mnt_want_write(lower_path.mnt);
 	if (err)
 		goto out_unlock;
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	err = mnt_want_write(lower_path.mnt);
+	if (err)
+		goto out_unlock;
+>>>>>>> 2617302... source
 	err = vfs_mknod(lower_parent_dentry->d_inode, lower_dentry, mode, dev);
 	if (err)
 		goto out;
@@ -742,10 +881,15 @@ static int sdcardfs_mknod(struct inode *dir, struct dentry *dentry, umode_t mode
 
 out:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mnt_drop_write(lower_path.mnt);
 out_unlock:
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	mnt_drop_write(lower_path.mnt);
+out_unlock:
+>>>>>>> 2617302... source
 	unlock_dir(lower_parent_dentry);
 	sdcardfs_put_lower_path(dentry, &lower_path);
 	REVERT_CRED();
@@ -766,6 +910,9 @@ static int sdcardfs_rename(struct inode *old_dir, struct dentry *old_dentry,
 	struct dentry *lower_old_dir_dentry = NULL;
 	struct dentry *lower_new_dir_dentry = NULL;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	struct dentry *trap = NULL;
 	struct dentry *new_parent = NULL;
 	struct path lower_old_path, lower_new_path;
@@ -776,6 +923,7 @@ static int sdcardfs_rename(struct inode *old_dir, struct dentry *old_dentry,
 		printk(KERN_INFO "%s: need to check the caller's gid in packages.list\n" 
 						 "  new_dentry: %s, task:%s\n",
 						 __func__, new_dentry->d_name.name, current->comm);
+<<<<<<< HEAD
 =======
 	struct vfsmount *lower_mnt = NULL;
 	struct dentry *trap = NULL;
@@ -785,25 +933,34 @@ static int sdcardfs_rename(struct inode *old_dir, struct dentry *old_dentry,
 	if (!check_caller_access_to_name(old_dir, &old_dentry->d_name) ||
 		!check_caller_access_to_name(new_dir, &new_dentry->d_name)) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		err = -EACCES;
 		goto out_eacces;
 	}
 
 	/* save current_cred and override it */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	OVERRIDE_CRED(SDCARDFS_SB(old_dir->i_sb), saved_cred);
 =======
 	OVERRIDE_CRED(SDCARDFS_SB(old_dir->i_sb), saved_cred, SDCARDFS_I(new_dir));
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	OVERRIDE_CRED(SDCARDFS_SB(old_dir->i_sb), saved_cred);
+>>>>>>> 2617302... source
 
 	sdcardfs_get_real_lower(old_dentry, &lower_old_path);
 	sdcardfs_get_lower_path(new_dentry, &lower_new_path);
 	lower_old_dentry = lower_old_path.dentry;
 	lower_new_dentry = lower_new_path.dentry;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	lower_mnt = lower_old_path.mnt;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	lower_old_dir_dentry = dget_parent(lower_old_dentry);
 	lower_new_dir_dentry = dget_parent(lower_new_dentry);
 
@@ -820,6 +977,9 @@ static int sdcardfs_rename(struct inode *old_dir, struct dentry *old_dentry,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	err = mnt_want_write(lower_old_path.mnt);
 	if (err)
 		goto out;
@@ -857,6 +1017,7 @@ out_err:
 	mnt_drop_write(lower_new_path.mnt);
 out_drop_old_write:
 	mnt_drop_write(lower_old_path.mnt);
+<<<<<<< HEAD
 =======
 	err = vfs_rename2(lower_mnt,
 			 lower_old_dir_dentry->d_inode, lower_old_dentry,
@@ -877,6 +1038,8 @@ out_drop_old_write:
 	fixup_lower_ownership(old_dentry, new_dentry->d_name.name);
 	d_invalidate(old_dentry); /* Can't fixup ownership recursively :( */
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 out:
 	unlock_rename(lower_old_dir_dentry, lower_new_dir_dentry);
 	dput(lower_old_dir_dentry);
@@ -959,6 +1122,9 @@ static void sdcardfs_put_link(struct dentry *dentry, struct nameidata *nd,
 #endif
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 static int sdcardfs_permission(struct inode *inode, int mask)
 {
 	int err;
@@ -985,6 +1151,7 @@ static int sdcardfs_permission(struct inode *inode, int mask)
 		 * we check it with AID_MEDIA_RW permission 
 		 */
 		struct inode *lower_inode;
+<<<<<<< HEAD
 =======
 static int sdcardfs_permission_wrn(struct inode *inode, int mask)
 {
@@ -1061,6 +1228,8 @@ static int sdcardfs_permission(struct vfsmount *mnt, struct inode *inode, int ma
 		struct inode *lower_inode;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		OVERRIDE_CRED(SDCARDFS_SB(inode->sb));
 
 		lower_inode = sdcardfs_lower_inode(inode);
@@ -1070,6 +1239,9 @@ static int sdcardfs_permission(struct vfsmount *mnt, struct inode *inode, int ma
 	}
 #endif
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	return err; 
 
 }
@@ -1119,6 +1291,7 @@ static int sdcardfs_setattr(struct dentry *dentry, struct iattr *ia)
 {
 	int err = 0;
 	struct dentry *lower_dentry;
+<<<<<<< HEAD
 =======
 	return err;
 
@@ -1136,11 +1309,14 @@ static int sdcardfs_setattr(struct vfsmount *mnt, struct dentry *dentry, struct 
 	struct dentry *lower_dentry;
 	struct vfsmount *lower_mnt;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	struct inode *inode;
 	struct inode *lower_inode;
 	struct path lower_path;
 	struct iattr lower_ia;
 	struct dentry *parent;
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	inode = dentry->d_inode;
@@ -1177,6 +1353,10 @@ static int sdcardfs_setattr(struct vfsmount *mnt, struct dentry *dentry, struct 
 	release_top(SDCARDFS_I(inode));
 	tmp.i_sb = inode->i_sb;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+
+	inode = dentry->d_inode;
+>>>>>>> 2617302... source
 
 	/*
 	 * Check if user has permission to change inode.  We don't check if
@@ -1184,6 +1364,9 @@ static int sdcardfs_setattr(struct vfsmount *mnt, struct dentry *dentry, struct 
 	 * calling notify_change on the lower inode.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	err = inode_change_ok(inode, ia);
 
 	/* no vfs_XXX operations required, cred overriding will be skipped. wj*/
@@ -1198,6 +1381,7 @@ static int sdcardfs_setattr(struct vfsmount *mnt, struct dentry *dentry, struct 
 		}
 		dput(parent);
 	} 
+<<<<<<< HEAD
 =======
 	/* prepare our own lower struct iattr (with the lower file) */
 	memcpy(&lower_ia, ia, sizeof(lower_ia));
@@ -1215,17 +1399,23 @@ static int sdcardfs_setattr(struct vfsmount *mnt, struct dentry *dentry, struct 
 		dput(parent);
 	}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	if (err)
 		goto out_err;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	sdcardfs_get_lower_path(dentry, &lower_path);
 	lower_dentry = lower_path.dentry;
 	lower_inode = sdcardfs_lower_inode(inode);
 
 	/* prepare our own lower struct iattr (with the lower file) */
 	memcpy(&lower_ia, ia, sizeof(lower_ia));
+<<<<<<< HEAD
 =======
 	/* save current_cred and override it */
 	OVERRIDE_CRED(SDCARDFS_SB(dentry->d_sb), saved_cred, SDCARDFS_I(inode));
@@ -1236,6 +1426,8 @@ static int sdcardfs_setattr(struct vfsmount *mnt, struct dentry *dentry, struct 
 	lower_inode = sdcardfs_lower_inode(inode);
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	if (ia->ia_valid & ATTR_FILE)
 		lower_ia.ia_file = sdcardfs_lower_file(ia->ia_file);
 
@@ -1250,6 +1442,9 @@ static int sdcardfs_setattr(struct vfsmount *mnt, struct dentry *dentry, struct 
 	 * the lower level.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	if (ia->ia_valid & ATTR_SIZE) {
 		loff_t oldsize;
 		err = inode_newsize_ok(inode, ia->ia_size);
@@ -1264,6 +1459,7 @@ static int sdcardfs_setattr(struct vfsmount *mnt, struct dentry *dentry, struct 
 		if (sizeof(ia->ia_size) > sizeof(long))
 			spin_unlock(&inode->i_lock);
 		truncate_pagecache(inode, oldsize, ia->ia_size);
+<<<<<<< HEAD
 =======
 	if (current->mm)
 		down_write(&current->mm->mmap_sem);
@@ -1276,6 +1472,8 @@ static int sdcardfs_setattr(struct vfsmount *mnt, struct dentry *dentry, struct 
 		}
 		truncate_setsize(inode, ia->ia_size);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	}
 
 	/*
@@ -1293,6 +1491,9 @@ static int sdcardfs_setattr(struct vfsmount *mnt, struct dentry *dentry, struct 
 	 */
 	mutex_lock(&lower_dentry->d_inode->i_mutex);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	err = notify_change(lower_dentry, &lower_ia); /* note: lower_ia */
 	mutex_unlock(&lower_dentry->d_inode->i_mutex);
 	if (err)
@@ -1302,6 +1503,7 @@ static int sdcardfs_setattr(struct vfsmount *mnt, struct dentry *dentry, struct 
 	sdcardfs_copy_inode_attr(inode, lower_inode);
 	/* update derived permission of the upper inode */
 	fix_derived_permission(inode);
+<<<<<<< HEAD
 =======
 	err = notify_change2(lower_mnt, lower_dentry, &lower_ia); /* note: lower_ia */
 
@@ -1314,6 +1516,8 @@ static int sdcardfs_setattr(struct vfsmount *mnt, struct dentry *dentry, struct 
 	/* get attributes from the lower inode and update derived permissions */
 	sdcardfs_copy_and_fix_attrs(inode, lower_inode);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	/*
 	 * Not running fsstack_copy_inode_size(inode, lower_inode), because
@@ -1324,14 +1528,20 @@ static int sdcardfs_setattr(struct vfsmount *mnt, struct dentry *dentry, struct 
 out:
 	sdcardfs_put_lower_path(dentry, &lower_path);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	REVERT_CRED(saved_cred);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 out_err:
 	return err;
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 const struct inode_operations sdcardfs_symlink_iops = {
 	.permission	= sdcardfs_permission,
 	.setattr	= sdcardfs_setattr,
@@ -1347,6 +1557,7 @@ const struct inode_operations sdcardfs_symlink_iops = {
 	.readlink	= sdcardfs_readlink, 
 	.follow_link	= sdcardfs_follow_link, 
 	.put_link	= sdcardfs_put_link, 
+<<<<<<< HEAD
 =======
 static int sdcardfs_fillattr(struct vfsmount *mnt,
 				struct inode *inode, struct kstat *stat)
@@ -1412,6 +1623,8 @@ const struct inode_operations sdcardfs_symlink_iops = {
 	.follow_link	= sdcardfs_follow_link,
 	.put_link	= sdcardfs_put_link,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	 */
 };
 
@@ -1419,16 +1632,23 @@ const struct inode_operations sdcardfs_dir_iops = {
 	.create		= sdcardfs_create,
 	.lookup		= sdcardfs_lookup,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.permission	= sdcardfs_permission,
 =======
 	.permission	= sdcardfs_permission_wrn,
 	.permission2	= sdcardfs_permission,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	.permission	= sdcardfs_permission,
+>>>>>>> 2617302... source
 	.unlink		= sdcardfs_unlink,
 	.mkdir		= sdcardfs_mkdir,
 	.rmdir		= sdcardfs_rmdir,
 	.rename		= sdcardfs_rename,
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	.setattr	= sdcardfs_setattr,
 	.getattr	= sdcardfs_getattr,
 #ifdef SDCARD_FS_XATTR
@@ -1443,6 +1663,7 @@ const struct inode_operations sdcardfs_dir_iops = {
 	.symlink	= sdcardfs_symlink, 
 	.link		= sdcardfs_link, 
 	.mknod		= sdcardfs_mknod, 
+<<<<<<< HEAD
 =======
 	.setattr	= sdcardfs_setattr_wrn,
 	.setattr2	= sdcardfs_setattr,
@@ -1454,11 +1675,16 @@ const struct inode_operations sdcardfs_dir_iops = {
 	.link		= sdcardfs_link,
 	.mknod		= sdcardfs_mknod,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	 */
 };
 
 const struct inode_operations sdcardfs_main_iops = {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	.permission	= sdcardfs_permission, 
 	.setattr	= sdcardfs_setattr, 
 	.getattr	= sdcardfs_getattr,
@@ -1468,6 +1694,7 @@ const struct inode_operations sdcardfs_main_iops = {
 	.listxattr	= sdcardfs_listxattr,
 	.removexattr = sdcardfs_removexattr,
 #endif // SDCARDFS_XATTR
+<<<<<<< HEAD
 =======
 	.permission	= sdcardfs_permission_wrn,
 	.permission2	= sdcardfs_permission,
@@ -1475,4 +1702,6 @@ const struct inode_operations sdcardfs_main_iops = {
 	.setattr2	= sdcardfs_setattr,
 	.getattr	= sdcardfs_getattr,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 };

@@ -929,9 +929,13 @@ omap_i2c_isr_thread(int this_irq, void *dev_id)
 			err |= OMAP_I2C_STAT_NACK;
 			omap_i2c_ack_stat(dev, OMAP_I2C_STAT_NACK);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			break;
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			break;
+>>>>>>> 2617302... source
 		}
 
 		if (stat & OMAP_I2C_STAT_AL) {
@@ -939,9 +943,13 @@ omap_i2c_isr_thread(int this_irq, void *dev_id)
 			err |= OMAP_I2C_STAT_AL;
 			omap_i2c_ack_stat(dev, OMAP_I2C_STAT_AL);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			break;
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			break;
+>>>>>>> 2617302... source
 		}
 
 		/*
@@ -967,11 +975,15 @@ omap_i2c_isr_thread(int this_irq, void *dev_id)
 				num_bytes = dev->buf_len;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 			omap_i2c_receive_data(dev, num_bytes, true);
 
 			if (dev->errata & I2C_OMAP_ERRATA_I207)
 				i2c_omap_errata_i207(dev, stat);
 
+<<<<<<< HEAD
 =======
 			if (dev->errata & I2C_OMAP_ERRATA_I207) {
 				i2c_omap_errata_i207(dev, stat);
@@ -981,6 +993,8 @@ omap_i2c_isr_thread(int this_irq, void *dev_id)
 
 			omap_i2c_receive_data(dev, num_bytes, true);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 			omap_i2c_ack_stat(dev, OMAP_I2C_STAT_RDR);
 			continue;
 		}

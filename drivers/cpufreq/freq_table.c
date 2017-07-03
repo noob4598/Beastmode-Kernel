@@ -24,10 +24,14 @@ int cpufreq_frequency_table_cpuinfo(struct cpufreq_policy *policy,
 	unsigned int min_freq = ~0;
 	unsigned int max_freq = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned int diff, i = 0;
 =======
 	unsigned int i;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	unsigned int diff, i = 0;
+>>>>>>> 2617302... source
 
 	for (i = 0; (table[i].frequency != CPUFREQ_TABLE_END); i++) {
 		unsigned int freq = table[i].frequency;
@@ -120,10 +124,14 @@ int cpufreq_frequency_table_target(struct cpufreq_policy *policy,
 		.frequency = 0,
 	};
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned int i, diff;
 =======
 	unsigned int i;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	unsigned int i, diff;
+>>>>>>> 2617302... source
 
 	pr_debug("request for target %u kHz (relation: %u) for cpu %u\n",
 					target_freq, relation, policy->cpu);
@@ -134,9 +142,13 @@ int cpufreq_frequency_table_target(struct cpufreq_policy *policy,
 		break;
 	case CPUFREQ_RELATION_L:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	case CPUFREQ_RELATION_C:
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	case CPUFREQ_RELATION_C:
+>>>>>>> 2617302... source
 		optimal.frequency = ~0;
 		break;
 	}
@@ -175,6 +187,9 @@ int cpufreq_frequency_table_target(struct cpufreq_policy *policy,
 			}
 			break;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		case CPUFREQ_RELATION_C:
 			diff = abs(freq - target_freq);
 			if (diff < optimal.frequency ||
@@ -184,8 +199,11 @@ int cpufreq_frequency_table_target(struct cpufreq_policy *policy,
 				optimal.driver_data = i;
 			}
 			break;
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		}
 	}
 	if (optimal.driver_data > i) {
@@ -293,6 +311,10 @@ MODULE_AUTHOR("Dominik Brodowski <linux@brodo.de>");
 MODULE_DESCRIPTION("CPUfreq frequency table helpers");
 MODULE_LICENSE("GPL");
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+
+>>>>>>> 2617302... source

@@ -274,6 +274,9 @@ static void zte_ev_usb_serial_close(struct usb_serial_port *port)
 
 static const struct usb_device_id id_table[] = {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	/* AC8710, AC8710T */
 	{ USB_DEVICE_AND_INTERFACE_INFO(0x19d2, 0xffff, 0xff, 0xff, 0xff) },
 	 /* AC8700 */
@@ -283,15 +286,21 @@ static const struct usb_device_id id_table[] = {
 	{ USB_DEVICE(0x19d2, 0xfffc) },
 	{ USB_DEVICE(0x19d2, 0xfffb) },
 	/* AC8710_V3 */
+<<<<<<< HEAD
 =======
 	{ USB_DEVICE(0x19d2, 0xffec) },
 	{ USB_DEVICE(0x19d2, 0xffee) },
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	{ USB_DEVICE(0x19d2, 0xfff6) },
 	{ USB_DEVICE(0x19d2, 0xfff7) },
 	{ USB_DEVICE(0x19d2, 0xfff8) },
 	{ USB_DEVICE(0x19d2, 0xfff9) },
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	{ USB_DEVICE(0x19d2, 0xffee) },
 	/* AC2716, MC2716 */
 	{ USB_DEVICE_AND_INTERFACE_INFO(0x19d2, 0xffed, 0xff, 0xff, 0xff) },
@@ -301,12 +310,15 @@ static const struct usb_device_id id_table[] = {
 	{ USB_DEVICE(0x05C6, 0x3197) },
 	{ USB_DEVICE(0x05C6, 0x6000) },
 	{ USB_DEVICE(0x05C6, 0x9008) },
+<<<<<<< HEAD
 =======
 	{ USB_DEVICE(0x19d2, 0xfffb) },
 	{ USB_DEVICE(0x19d2, 0xfffc) },
 	/* MG880 */
 	{ USB_DEVICE(0x19d2, 0xfffd) },
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	{ },
 };
 MODULE_DEVICE_TABLE(usb, id_table);

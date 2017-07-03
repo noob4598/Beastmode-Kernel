@@ -1,8 +1,12 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* Copyright (c) 2013-2014, The Linux Foundation. All rights reserved.
 =======
 /* Copyright (c) 2013-2017, The Linux Foundation. All rights reserved.
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+/* Copyright (c) 2013-2014, The Linux Foundation. All rights reserved.
+>>>>>>> 2617302... source
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -130,6 +134,9 @@ enum rndis_ipa_operation {
 	RNDIS_IPA_DEBUG("Driver state: %s", rndis_ipa_state_string(ctx->state));
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 /**
  * struct rndis_loopback_pipe - hold all information needed for
  *  pipe loopback logic
@@ -153,8 +160,11 @@ struct rndis_loopback_pipe {
 	ipa_notify_cb ipa_callback;
 	struct ipa_ep_cfg *ipa_ep_cfg;
 };
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 /**
  * struct rndis_ipa_dev - main driver context parameters
@@ -170,14 +180,20 @@ struct rndis_loopback_pipe {
  * @icmp_filter: allow all ICMP packet to pass through the filters
  * @rm_enable: flag that enable/disable Resource manager request prior to Tx
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
  * @loopback_enable:  flag that enable/disable USB stub loopback
  * @deaggregation_enable: enable/disable IPA HW deaggregation logic
  * @usb_to_ipa_loopback_pipe: usb to ipa (Rx) pipe representation for loopback
  * @ipa_to_usb_loopback_pipe: ipa to usb (Tx) pipe representation for loopback
  * @bam_dma_hdl: handle representing bam-dma, used for loopback logic
+<<<<<<< HEAD
 =======
  * @deaggregation_enable: enable/disable IPA HW deaggregation logic
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
  * @directory: holds all debug flags used by the driver to allow cleanup
  *  for driver unload
  * @eth_ipv4_hdr_hdl: saved handle for ipv4 header-insertion table
@@ -203,14 +219,20 @@ struct rndis_ipa_dev {
 	u32 icmp_filter;
 	u32 rm_enable;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	bool loopback_enable;
 	u32 deaggregation_enable;
 	struct rndis_loopback_pipe usb_to_ipa_loopback_pipe;
 	struct rndis_loopback_pipe ipa_to_usb_loopback_pipe;
 	u32 bam_dma_hdl;
+<<<<<<< HEAD
 =======
 	u32 deaggregation_enable;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	struct dentry *directory;
 	uint32_t eth_ipv4_hdr_hdl;
 	uint32_t eth_ipv6_hdr_hdl;
@@ -269,6 +291,9 @@ static void resource_release(struct rndis_ipa_dev *rndis_ipa_ctx);
 static netdev_tx_t rndis_ipa_start_xmit(struct sk_buff *skb,
 					struct net_device *net);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 static int rndis_ipa_loopback_pipe_create(
 		struct rndis_ipa_dev *rndis_ipa_ctx,
 		struct rndis_loopback_pipe *loopback_pipe);
@@ -280,8 +305,11 @@ static int rndis_ipa_setup_loopback(bool enable,
 		struct rndis_ipa_dev *rndis_ipa_ctx);
 static int rndis_ipa_debugfs_loopback_open(struct inode *inode,
 		struct file *file);
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 static int rndis_ipa_debugfs_atomic_open(struct inode *inode,
 		struct file *file);
 static int rndis_ipa_debugfs_aggr_open(struct inode *inode,
@@ -289,6 +317,9 @@ static int rndis_ipa_debugfs_aggr_open(struct inode *inode,
 static ssize_t rndis_ipa_debugfs_aggr_write(struct file *file,
 		const char __user *buf, size_t count, loff_t *ppos);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 static ssize_t rndis_ipa_debugfs_loopback_write(struct file *file,
 		const char __user *buf, size_t count, loff_t *ppos);
 static ssize_t rndis_ipa_debugfs_enable_write(struct file *file,
@@ -297,8 +328,11 @@ static ssize_t rndis_ipa_debugfs_enable_read(struct file *file,
 		char __user *ubuf, size_t count, loff_t *ppos);
 static ssize_t rndis_ipa_debugfs_loopback_read(struct file *file,
 		char __user *ubuf, size_t count, loff_t *ppos);
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 static ssize_t rndis_ipa_debugfs_atomic_read(struct file *file,
 		char __user *ubuf, size_t count, loff_t *ppos);
 static void rndis_ipa_dump_skb(struct sk_buff *skb);
@@ -334,14 +368,20 @@ const struct file_operations rndis_ipa_debugfs_atomic_ops = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 const struct file_operations rndis_ipa_loopback_ops = {
 		.open = rndis_ipa_debugfs_loopback_open,
 		.read = rndis_ipa_debugfs_loopback_read,
 		.write = rndis_ipa_debugfs_loopback_write,
 };
 
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 const struct file_operations rndis_ipa_aggr_ops = {
 		.open = rndis_ipa_debugfs_aggr_open,
 		.write = rndis_ipa_debugfs_aggr_write,
@@ -1984,6 +2024,9 @@ static int rndis_ipa_debugfs_init(struct rndis_ipa_dev *rndis_ipa_ctx)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	file = debugfs_create_file("loopback_enable", flags_read_write,
 				rndis_ipa_ctx->directory,
 				rndis_ipa_ctx, &rndis_ipa_loopback_ops);
@@ -1992,8 +2035,11 @@ static int rndis_ipa_debugfs_init(struct rndis_ipa_dev *rndis_ipa_ctx)
 		goto fail_file;
 	}
 
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	file = debugfs_create_u8("state", flags_read_only,
 			rndis_ipa_ctx->directory, (u8 *)&rndis_ipa_ctx->state);
 	if (!file) {
@@ -2135,6 +2181,9 @@ static ssize_t rndis_ipa_debugfs_aggr_write(struct file *file,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 static int rndis_ipa_debugfs_loopback_open(struct inode *inode,
 		struct file *file)
 {
@@ -2188,8 +2237,11 @@ static ssize_t rndis_ipa_debugfs_loopback_write(struct file *file,
 	return cnt;
 }
 
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 static int rndis_ipa_debugfs_atomic_open(struct inode *inode, struct file *file)
 {
 	struct rndis_ipa_dev *rndis_ipa_ctx = inode->i_private;
@@ -2221,6 +2273,9 @@ static ssize_t rndis_ipa_debugfs_atomic_read(struct file *file,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 static ssize_t rndis_ipa_debugfs_enable_read(struct file *file,
 		char __user *ubuf, size_t count, loff_t *ppos)
 {
@@ -2532,8 +2587,11 @@ static int rndis_ipa_setup_loopback(bool enable,
 
 }
 
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 static int rndis_ipa_init_module(void)
 {
 	pr_info("RNDIS_IPA module is loaded.");

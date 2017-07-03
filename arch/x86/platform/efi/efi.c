@@ -251,12 +251,16 @@ static efi_status_t __init phys_efi_set_virtual_address_map(
 {
 	efi_status_t status;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 
 	efi_call_phys_prelog();
 	status = efi_call_phys4(efi_phys.set_virtual_address_map,
 				memory_map_size, descriptor_size,
 				descriptor_version, virtual_map);
 	efi_call_phys_epilog();
+<<<<<<< HEAD
 =======
 	unsigned long flags;
 
@@ -272,6 +276,8 @@ static efi_status_t __init phys_efi_set_virtual_address_map(
 	efi_call_phys_epilog();
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	return status;
 }
 

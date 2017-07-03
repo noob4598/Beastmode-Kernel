@@ -162,18 +162,26 @@ static int at91_adc_channel_init(struct iio_dev *idev)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static u8 at91_adc_get_trigger_value_by_name(struct iio_dev *idev,
 =======
 static int at91_adc_get_trigger_value_by_name(struct iio_dev *idev,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+static u8 at91_adc_get_trigger_value_by_name(struct iio_dev *idev,
+>>>>>>> 2617302... source
 					     struct at91_adc_trigger *triggers,
 					     const char *trigger_name)
 {
 	struct at91_adc_state *st = iio_priv(idev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u8 value = 0;
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	u8 value = 0;
+>>>>>>> 2617302... source
 	int i;
 
 	for (i = 0; i < st->trigger_number; i++) {
@@ -187,6 +195,7 @@ static int at91_adc_get_trigger_value_by_name(struct iio_dev *idev,
 
 		if (strcmp(trigger_name, name) == 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			value = triggers[i].value;
 			kfree(name);
 			break;
@@ -196,16 +205,25 @@ static int at91_adc_get_trigger_value_by_name(struct iio_dev *idev,
 				return -EINVAL;
 			return triggers[i].value;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			value = triggers[i].value;
+			kfree(name);
+			break;
+>>>>>>> 2617302... source
 		}
 
 		kfree(name);
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return value;
 =======
 	return -EINVAL;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	return value;
+>>>>>>> 2617302... source
 }
 
 static int at91_adc_configure_trigger(struct iio_trigger *trig, bool state)
@@ -216,15 +234,20 @@ static int at91_adc_configure_trigger(struct iio_trigger *trig, bool state)
 	struct at91_adc_reg_desc *reg = st->registers;
 	u32 status = at91_adc_readl(st, reg->trigger_register);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u8 value;
 =======
 	int value;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	u8 value;
+>>>>>>> 2617302... source
 	u8 bit;
 
 	value = at91_adc_get_trigger_value_by_name(idev,
 						   st->trigger_list,
 						   idev->trig->name);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (value == 0)
 		return -EINVAL;
@@ -232,6 +255,10 @@ static int at91_adc_configure_trigger(struct iio_trigger *trig, bool state)
 	if (value < 0)
 		return value;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (value == 0)
+		return -EINVAL;
+>>>>>>> 2617302... source
 
 	if (state) {
 		st->buffer = kmalloc(idev->scan_bytes, GFP_KERNEL);

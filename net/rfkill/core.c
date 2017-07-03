@@ -52,9 +52,13 @@ struct rfkill {
 	spinlock_t		lock;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	const char		*name;
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	const char		*name;
+>>>>>>> 2617302... source
 	enum rfkill_type	type;
 
 	unsigned long		state;
@@ -79,9 +83,12 @@ struct rfkill {
 	struct work_struct	uevent_work;
 	struct work_struct	sync_work;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	char			name[];
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 };
 #define to_rfkill(d)	container_of(d, struct rfkill, dev)
 
@@ -883,10 +890,14 @@ struct rfkill * __must_check rfkill_alloc(const char *name,
 		return NULL;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	rfkill = kzalloc(sizeof(*rfkill), GFP_KERNEL);
 =======
 	rfkill = kzalloc(sizeof(*rfkill) + strlen(name) + 1, GFP_KERNEL);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	rfkill = kzalloc(sizeof(*rfkill), GFP_KERNEL);
+>>>>>>> 2617302... source
 	if (!rfkill)
 		return NULL;
 
@@ -894,10 +905,14 @@ struct rfkill * __must_check rfkill_alloc(const char *name,
 	INIT_LIST_HEAD(&rfkill->node);
 	rfkill->type = type;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	rfkill->name = name;
 =======
 	strcpy(rfkill->name, name);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	rfkill->name = name;
+>>>>>>> 2617302... source
 	rfkill->ops = ops;
 	rfkill->data = ops_data;
 
@@ -1108,6 +1123,9 @@ static unsigned int rfkill_fop_poll(struct file *file, poll_table *wait)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 static bool rfkill_readable(struct rfkill_data *data)
 {
 	bool r;
@@ -1119,8 +1137,11 @@ static bool rfkill_readable(struct rfkill_data *data)
 	return r;
 }
 
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 static ssize_t rfkill_fop_read(struct file *file, char __user *buf,
 			       size_t count, loff_t *pos)
 {
@@ -1138,6 +1159,7 @@ static ssize_t rfkill_fop_read(struct file *file, char __user *buf,
 		}
 		mutex_unlock(&data->mtx);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ret = wait_event_interruptible(data->read_wait,
 					       rfkill_readable(data));
 =======
@@ -1147,6 +1169,10 @@ static ssize_t rfkill_fop_read(struct file *file, char __user *buf,
 		ret = wait_event_interruptible(data->read_wait,
 					       !list_empty(&data->events));
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		ret = wait_event_interruptible(data->read_wait,
+					       rfkill_readable(data));
+>>>>>>> 2617302... source
 		mutex_lock(&data->mtx);
 
 		if (ret)

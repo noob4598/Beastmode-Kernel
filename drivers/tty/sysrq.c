@@ -56,10 +56,14 @@ unsigned short platform_sysrq_reset_seq[] __weak = { KEY_RESERVED };
 int sysrq_reset_downtime_ms __weak;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 static bool sysrq_on(void)
 {
 	return sysrq_enabled || sysrq_always_enabled;
 }
+<<<<<<< HEAD
 =======
 bool sysrq_on(void)
 {
@@ -67,6 +71,8 @@ bool sysrq_on(void)
 }
 EXPORT_SYMBOL(sysrq_on);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 /*
  * A value of 1 means 'all', other nonzero values are an op mask:
@@ -890,12 +896,17 @@ static const struct input_device_id sysrq_ids[] = {
 		.flags = INPUT_DEVICE_ID_MATCH_EVBIT |
 				INPUT_DEVICE_ID_MATCH_KEYBIT,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.evbit = { BIT_MASK(EV_KEY) },
 		.keybit = { BIT_MASK(KEY_LEFTALT) },
 =======
 		.evbit = { [BIT_WORD(EV_KEY)] = BIT_MASK(EV_KEY) },
 		.keybit = { [BIT_WORD(KEY_LEFTALT)] = BIT_MASK(KEY_LEFTALT) },
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		.evbit = { BIT_MASK(EV_KEY) },
+		.keybit = { BIT_MASK(KEY_LEFTALT) },
+>>>>>>> 2617302... source
 	},
 	{ },
 };

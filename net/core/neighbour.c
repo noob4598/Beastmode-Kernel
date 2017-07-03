@@ -704,10 +704,14 @@ void neigh_destroy(struct neighbour *neigh)
 
 	if (!neigh->dead) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_warn("Destroying alive neighbour %p\n", neigh);
 =======
 		pr_warn("Destroying alive neighbour %pK\n", neigh);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		pr_warn("Destroying alive neighbour %p\n", neigh);
+>>>>>>> 2617302... source
 		dump_stack();
 		return;
 	}
@@ -880,11 +884,15 @@ static void neigh_probe(struct neighbour *neigh)
 		skb = skb_copy(skb, GFP_ATOMIC);
 	write_unlock(&neigh->lock);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	neigh->ops->solicit(neigh, skb);
 =======
 	if (neigh->ops->solicit)
 		neigh->ops->solicit(neigh, skb);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	neigh->ops->solicit(neigh, skb);
+>>>>>>> 2617302... source
 	atomic_inc(&neigh->probes);
 	kfree_skb(skb);
 }
@@ -1330,10 +1338,14 @@ out:
 	return rc;
 discard:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	neigh_dbg(1, "%s: dst=%p neigh=%p\n", __func__, dst, neigh);
 =======
 	neigh_dbg(1, "%s: dst=%pK neigh=%pK\n", __func__, dst, neigh);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	neigh_dbg(1, "%s: dst=%p neigh=%p\n", __func__, dst, neigh);
+>>>>>>> 2617302... source
 out_kfree_skb:
 	rc = -EINVAL;
 	kfree_skb(skb);

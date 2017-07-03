@@ -465,6 +465,7 @@ static __be32 decode_cb_sequence_args(struct svc_rqst *rqstp,
 		for (i = 0; i < args->csa_nrclists; i++) {
 			status = decode_rc_list(xdr, &args->csa_rclists[i]);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (status)
 				goto out_free;
 =======
@@ -473,6 +474,10 @@ static __be32 decode_cb_sequence_args(struct svc_rqst *rqstp,
 				goto out_free;
 			}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			if (status)
+				goto out_free;
+>>>>>>> 2617302... source
 		}
 	}
 	status = 0;
@@ -890,10 +895,14 @@ static __be32 nfs4_callback_compound(struct svc_rqst *rqstp, void *argp, void *r
 		cps.clp = nfs4_find_client_ident(SVC_NET(rqstp), hdr_arg.cb_ident);
 		if (!cps.clp || !check_gss_callback_principal(cps.clp, rqstp))
 <<<<<<< HEAD
+<<<<<<< HEAD
 			return rpc_drop_reply;
 =======
 			goto out_invalidcred;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			return rpc_drop_reply;
+>>>>>>> 2617302... source
 	}
 
 	hdr_res.taglen = hdr_arg.taglen;
@@ -921,12 +930,15 @@ static __be32 nfs4_callback_compound(struct svc_rqst *rqstp, void *argp, void *r
 	dprintk("%s: done, status = %u\n", __func__, ntohl(status));
 	return rpc_success;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 out_invalidcred:
 	pr_warn_ratelimited("NFS: NFSv4 callback contains invalid cred\n");
 	return rpc_autherr_badcred;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 }
 
 /*

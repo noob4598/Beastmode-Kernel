@@ -43,19 +43,27 @@ static bool ip_may_fragment(const struct sk_buff *skb)
 {
 	return unlikely((ip_hdr(skb)->frag_off & htons(IP_DF)) == 0) ||
 <<<<<<< HEAD
+<<<<<<< HEAD
 	       !skb->local_df;
 =======
 		skb->local_df;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	       !skb->local_df;
+>>>>>>> 2617302... source
 }
 
 static bool ip_exceeds_mtu(const struct sk_buff *skb, unsigned int mtu)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (skb->len <= mtu || skb->local_df)
 =======
 	if (skb->len <= mtu)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (skb->len <= mtu || skb->local_df)
+>>>>>>> 2617302... source
 		return false;
 
 	if (skb_is_gso(skb) && skb_gso_network_seglen(skb) <= mtu)
@@ -135,11 +143,14 @@ int ip_forward(struct sk_buff *skb)
 	struct ip_options *opt	= &(IPCB(skb)->opt);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (unlikely(skb->sk))
 		goto drop;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	if (skb_warn_if_lro(skb))
 		goto drop;
 
@@ -190,12 +201,17 @@ int ip_forward(struct sk_buff *skb)
 	 *	we calculated.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
     if (IPCB(skb)->flags & IPSKB_DOREDIRECT && !opt->srr &&
         !skb_sec_path(skb))
 =======
 	if (IPCB(skb)->flags & IPSKB_DOREDIRECT && !opt->srr &&
 	    !skb_sec_path(skb))
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+    if (IPCB(skb)->flags & IPSKB_DOREDIRECT && !opt->srr &&
+        !skb_sec_path(skb))
+>>>>>>> 2617302... source
 		ip_rt_send_redirect(skb);
 
 	skb->priority = rt_tos2priority(iph->tos);

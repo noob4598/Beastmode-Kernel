@@ -148,6 +148,7 @@ asmlinkage void __cpuinit secondary_start_kernel(void)
 
 	/*
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	 * Log the CPU info before it is marked online and might get read.
 	 */
@@ -155,6 +156,8 @@ asmlinkage void __cpuinit secondary_start_kernel(void)
 
 	/*
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	 * OK, now it's safe to let the boot CPU continue.  Wait for
 	 * the CPU migration code to notice that the CPU is online
 	 * before we continue.

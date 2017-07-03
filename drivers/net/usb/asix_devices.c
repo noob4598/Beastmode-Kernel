@@ -467,6 +467,9 @@ static int ax88772_bind(struct usbnet *dev, struct usb_interface *intf)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	ret = asix_sw_reset(dev, AX_SWRESET_IPPD | AX_SWRESET_PRL);
 	if (ret < 0)
 		return ret;
@@ -480,9 +483,12 @@ static int ax88772_bind(struct usbnet *dev, struct usb_interface *intf)
 	msleep(150);
 
 	ret = asix_sw_reset(dev, embd_phy ? AX_SWRESET_IPRL : AX_SWRESET_PRTE);
+<<<<<<< HEAD
 =======
 	ax88772_reset(dev);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	/* Read PHYID register *AFTER* the PHY was reset properly */
 	phyid = asix_get_phyid(dev);
@@ -893,10 +899,14 @@ static const struct driver_info ax88772_info = {
 	.status = asix_status,
 	.link_reset = ax88772_link_reset,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.reset = ax88772_reset,
 =======
 	.reset = ax88772_link_reset,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	.reset = ax88772_reset,
+>>>>>>> 2617302... source
 	.flags = FLAG_ETHER | FLAG_FRAMING_AX | FLAG_LINK_INTR | FLAG_MULTI_PACKET,
 	.rx_fixup = asix_rx_fixup_common,
 	.tx_fixup = asix_tx_fixup,

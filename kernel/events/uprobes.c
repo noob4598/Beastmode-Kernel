@@ -1512,9 +1512,13 @@ bool uprobe_deny_signal(void)
 			utask->state = UTASK_SSTEP_TRAPPED;
 			set_tsk_thread_flag(t, TIF_UPROBE);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			set_tsk_thread_flag(t, TIF_NOTIFY_RESUME);
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			set_tsk_thread_flag(t, TIF_NOTIFY_RESUME);
+>>>>>>> 2617302... source
 		}
 	}
 

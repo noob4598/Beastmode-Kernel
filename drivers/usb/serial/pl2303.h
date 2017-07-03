@@ -23,9 +23,12 @@
 #define PL2303_PRODUCT_ID_HCR331	0x331a
 #define PL2303_PRODUCT_ID_MOTOROLA	0x0307
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define PL2303_PRODUCT_ID_ZTEK		0xe1f1
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 #define ATEN_VENDOR_ID		0x0557
 #define ATEN_VENDOR_ID2		0x0547
@@ -66,12 +69,18 @@
 #define ALCATEL_PRODUCT_ID	0x02df
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 /* Samsung I330 phone cradle */
 #define SAMSUNG_VENDOR_ID	0x04e8
 #define SAMSUNG_PRODUCT_ID	0x8001
 
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 #define SIEMENS_VENDOR_ID	0x11f5
 #define SIEMENS_PRODUCT_ID_SX1	0x0001
 #define SIEMENS_PRODUCT_ID_X65	0x0003

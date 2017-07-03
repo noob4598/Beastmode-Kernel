@@ -818,10 +818,15 @@ void aer_isr(struct work_struct *work)
 		aer_isr_one_error(p_device, &e_src);
 	mutex_unlock(&rpc->rpc_mutex);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	wake_up(&rpc->wait_release);
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+
+	wake_up(&rpc->wait_release);
+>>>>>>> 2617302... source
 }
 
 /**

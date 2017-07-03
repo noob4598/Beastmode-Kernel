@@ -261,10 +261,14 @@ static int gssx_dec_option_array(struct xdr_stream *xdr,
 		return -ENOMEM;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	creds = kmalloc(sizeof(struct svc_cred), GFP_KERNEL);
 =======
 	creds = kzalloc(sizeof(struct svc_cred), GFP_KERNEL);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	creds = kmalloc(sizeof(struct svc_cred), GFP_KERNEL);
+>>>>>>> 2617302... source
 	if (!creds) {
 		kfree(oa->data);
 		return -ENOMEM;
@@ -799,6 +803,7 @@ int gssx_dec_accept_sec_context(struct rpc_rqst *rqstp,
 	u32 value_follows;
 	int err;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct page *scratch;
 
@@ -807,25 +812,35 @@ int gssx_dec_accept_sec_context(struct rpc_rqst *rqstp,
 		return -ENOMEM;
 	xdr_set_scratch_buffer(xdr, page_address(scratch), PAGE_SIZE);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	/* res->status */
 	err = gssx_dec_status(xdr, &res->status);
 	if (err)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return err;
 =======
 		goto out_free;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		return err;
+>>>>>>> 2617302... source
 
 	/* res->context_handle */
 	err = gssx_dec_bool(xdr, &value_follows);
 	if (err)
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		return err;
 	if (value_follows) {
 		err = gssx_dec_ctx(xdr, res->context_handle);
 		if (err)
 			return err;
+<<<<<<< HEAD
 =======
 		goto out_free;
 	if (value_follows) {
@@ -833,6 +848,8 @@ int gssx_dec_accept_sec_context(struct rpc_rqst *rqstp,
 		if (err)
 			goto out_free;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	} else {
 		res->context_handle = NULL;
 	}
@@ -841,11 +858,15 @@ int gssx_dec_accept_sec_context(struct rpc_rqst *rqstp,
 	err = gssx_dec_bool(xdr, &value_follows);
 	if (err)
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		return err;
 	if (value_follows) {
 		err = gssx_dec_buffer(xdr, res->output_token);
 		if (err)
 			return err;
+<<<<<<< HEAD
 =======
 		goto out_free;
 	if (value_follows) {
@@ -853,6 +874,8 @@ int gssx_dec_accept_sec_context(struct rpc_rqst *rqstp,
 		if (err)
 			goto out_free;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	} else {
 		res->output_token = NULL;
 	}
@@ -861,10 +884,14 @@ int gssx_dec_accept_sec_context(struct rpc_rqst *rqstp,
 	err = gssx_dec_bool(xdr, &value_follows);
 	if (err)
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		return err;
 	if (value_follows) {
 		/* we do not support upcall servers sending this data. */
 		return -EINVAL;
+<<<<<<< HEAD
 =======
 		goto out_free;
 	if (value_follows) {
@@ -872,15 +899,20 @@ int gssx_dec_accept_sec_context(struct rpc_rqst *rqstp,
 		err = -EINVAL;
 		goto out_free;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	}
 
 	/* res->options */
 	err = gssx_dec_option_array(xdr, &res->options);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 out_free:
 	__free_page(scratch);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	return err;
 }

@@ -139,9 +139,12 @@ enum {
 	/* Power */
 	POWER_TABLE_CMD = 0x77,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	LTR_CONFIG = 0xee,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	/* Scanning */
 	SCAN_REQUEST_CMD = 0x80,

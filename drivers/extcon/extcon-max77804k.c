@@ -67,12 +67,17 @@ enum {
 	/* Special 1A charger, max current 1A */
 	CHGTYP_1A		= 0x05,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* Reserved for Future Use */
 	CHGTYP_RFU		= 0x06,
 =======
 	/* Special Charger */
 	CHGTYP_SPECIAL_CHGR		= 0x06,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	/* Reserved for Future Use */
+	CHGTYP_RFU		= 0x06,
+>>>>>>> 2617302... source
 	/* Dead Battery Charging, max current 100mA */
 	CHGTYP_DB_100MA		= 0x07,
 	CHGTYP_MAX,
@@ -83,10 +88,14 @@ enum {
 
 #define CHGTYP (CHGTYP_USB | CHGTYP_DOWNSTREAM_PORT |\
 <<<<<<< HEAD
+<<<<<<< HEAD
 CHGTYP_DEDICATED_CHGR | CHGTYP_500MA | CHGTYP_1A)
 =======
 CHGTYP_DEDICATED_CHGR | CHGTYP_500MA | CHGTYP_1A | CHGTYP_SPECIAL_CHGR )
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+CHGTYP_DEDICATED_CHGR | CHGTYP_500MA | CHGTYP_1A)
+>>>>>>> 2617302... source
 
 enum {
 	ADC_GND			= 0x00,
@@ -1350,9 +1359,12 @@ static int max77804k_muic_handle_attach(struct max77804k_muic_info *info,
 		case CHGTYP_500MA:
 		case CHGTYP_1A:
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		case CHGTYP_SPECIAL_CHGR:
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 			new_state = BIT(EXTCON_TA);
 			break;
 		default:

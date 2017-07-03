@@ -714,11 +714,17 @@ static int mdss_dsi_ulps_config(struct mdss_dsi_ctrl_pdata *ctrl,
 	pr_debug("%s: configuring ulps (%s) for ctrl%d, active lanes=0x%08x\n",
 		__func__, (enable ? "on" : "off"), ctrl->ndx, active_lanes);
 <<<<<<< HEAD
+<<<<<<< HEAD
 #if defined (CONFIG_FB_MSM_MDSS_DSI_DBG)
 	MDSS_XLOG(ctrl->ndx, enable, ctrl->ulps);
 #endif
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+#if defined (CONFIG_FB_MSM_MDSS_DSI_DBG)
+	MDSS_XLOG(ctrl->ndx, enable, ctrl->ulps);
+#endif
+>>>>>>> 2617302... source
 	if (enable && !ctrl->ulps) {
 		/*
 		 * ULPS Entry Request.
@@ -1208,11 +1214,17 @@ int mdss_dsi_clk_ctrl(struct mdss_dsi_ctrl_pdata *ctrl,
 				&mctrl->link_clk_cnt, enable);
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 #if defined (CONFIG_FB_MSM_MDSS_DSI_DBG)
 	MDSS_XLOG(ctrl->ndx, enable, bus_changed, m_bus_changed, ctrl->bus_clk_cnt, mctrl?mctrl->bus_clk_cnt:0xbbb);
 #endif
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+#if defined (CONFIG_FB_MSM_MDSS_DSI_DBG)
+	MDSS_XLOG(ctrl->ndx, enable, bus_changed, m_bus_changed, ctrl->bus_clk_cnt, mctrl?mctrl->bus_clk_cnt:0xbbb);
+#endif
+>>>>>>> 2617302... source
 	if (!link_changed && !bus_changed)
 		goto no_error; /* clk cnts updated, nothing else needed */
 

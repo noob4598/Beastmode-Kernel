@@ -47,9 +47,13 @@
 #define CCI_I2C_MAX_READ 8192
 #define CCI_I2C_MAX_WRITE 8192
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define CCI_NUM_CLK_MAX		16
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+#define CCI_NUM_CLK_MAX		16
+>>>>>>> 2617302... source
 
 static struct v4l2_subdev *g_cci_subdev;
 
@@ -63,6 +67,7 @@ static void msm_cci_set_clk_param(struct cci_device *cci_dev,
 	enum i2c_freq_mode_t i2c_freq_mode = c_ctrl->cci_info->i2c_freq_mode;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if ((i2c_freq_mode >= I2C_MAX_MODES) || (i2c_freq_mode < 0)) {
 		pr_err("%s:%d invalid i2c_freq_mode %d\n",
@@ -71,6 +76,8 @@ static void msm_cci_set_clk_param(struct cci_device *cci_dev,
 	}
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	if (i2c_freq_mode == I2C_STANDARD_MODE)
 		pr_info("cci%d will run as 100Khz\n", master);
 	else if (i2c_freq_mode == I2C_FAST_MODE)
@@ -79,9 +86,12 @@ static void msm_cci_set_clk_param(struct cci_device *cci_dev,
 	if (cci_dev->master_clk_init[master])
 		return;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	clk_params = &cci_dev->cci_clk_params[i2c_freq_mode];
 
 	if (MASTER_0 == master) {
@@ -375,13 +385,17 @@ static int32_t msm_cci_i2c_read(struct v4l2_subdev *sd,
 	struct cci_device *cci_dev = NULL;
 	struct msm_camera_cci_i2c_read_cfg *read_cfg = NULL;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	CDBG("%s line %d\n", __func__, __LINE__);
 	cci_dev = v4l2_get_subdevdata(sd);
 	master = c_ctrl->cci_info->cci_i2c_master;
 	read_cfg = &c_ctrl->cfg.cci_i2c_read_cfg;
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 	if (master >= MASTER_MAX || master < 0) {
@@ -391,6 +405,8 @@ static int32_t msm_cci_i2c_read(struct v4l2_subdev *sd,
 	}
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	mutex_lock(&cci_dev->cci_master_info[master].mutex);
 
 	/*
@@ -544,10 +560,14 @@ static int32_t msm_cci_i2c_read_bytes(struct v4l2_subdev *sd,
 
 	if (!sd || !c_ctrl) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("%s:%d sd %p c_ctrl %p\n", __func__,
 =======
 		pr_err("%s:%d sd %pK c_ctrl %pK\n", __func__,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		pr_err("%s:%d sd %p c_ctrl %p\n", __func__,
+>>>>>>> 2617302... source
 			__LINE__, sd, c_ctrl);
 		return -EINVAL;
 	}
@@ -742,10 +762,14 @@ static int32_t msm_cci_init(struct v4l2_subdev *sd,
 
 	if (!cci_dev || !c_ctrl) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("%s:%d failed: invalid params %p %p\n", __func__,
 =======
 		pr_err("%s:%d failed: invalid params %pK %pK\n", __func__,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		pr_err("%s:%d failed: invalid params %p %p\n", __func__,
+>>>>>>> 2617302... source
 			__LINE__, cci_dev, c_ctrl);
 		rc = -ENOMEM;
 		return rc;
@@ -783,9 +807,13 @@ static int32_t msm_cci_init(struct v4l2_subdev *sd,
 		cci_dev->cci_gpio_tbl_size, 1);
 	if (rc < 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		cci_dev->ref_count--;
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		cci_dev->ref_count--;
+>>>>>>> 2617302... source
 		CDBG("%s: request gpio failed\n", __func__);
 		goto request_gpio_failed;
 	}
@@ -794,9 +822,13 @@ static int32_t msm_cci_init(struct v4l2_subdev *sd,
 		cci_dev->cci_clk, cci_dev->num_clk, 1);
 	if (rc < 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		cci_dev->ref_count--;
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		cci_dev->ref_count--;
+>>>>>>> 2617302... source
 		CDBG("%s: clk enable failed\n", __func__);
 		goto clk_enable_failed;
 	}
@@ -999,10 +1031,14 @@ static long msm_cci_subdev_ioctl(struct v4l2_subdev *sd,
 		break;
 	case MSM_SD_SHUTDOWN: {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		break;
 =======
 		return rc;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		break;
+>>>>>>> 2617302... source
 	}
 	default:
 		rc = -ENOIOCTLCMD;
@@ -1281,10 +1317,14 @@ static int msm_cci_probe(struct platform_device *pdev)
 	struct cci_device *new_cci_dev;
 	int rc = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_err("%s: pdev %p device id = %d\n", __func__, pdev, pdev->id);
 =======
 	CDBG("%s: pdev %pK device id = %d\n", __func__, pdev, pdev->id);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	pr_err("%s: pdev %p device id = %d\n", __func__, pdev, pdev->id);
+>>>>>>> 2617302... source
 	new_cci_dev = kzalloc(sizeof(struct cci_device), GFP_KERNEL);
 	if (!new_cci_dev) {
 		CDBG("%s: no enough memory\n", __func__);
@@ -1297,10 +1337,14 @@ static int msm_cci_probe(struct platform_device *pdev)
 	v4l2_set_subdevdata(&new_cci_dev->msm_sd.sd, new_cci_dev);
 	platform_set_drvdata(pdev, &new_cci_dev->msm_sd.sd);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	CDBG("%s sd %p\n", __func__, &new_cci_dev->msm_sd.sd);
 =======
 	CDBG("%s sd %pK\n", __func__, &new_cci_dev->msm_sd.sd);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	CDBG("%s sd %p\n", __func__, &new_cci_dev->msm_sd.sd);
+>>>>>>> 2617302... source
 	if (pdev->dev.of_node)
 		of_property_read_u32((&pdev->dev)->of_node,
 			"cell-index", &pdev->id);
@@ -1366,10 +1410,14 @@ static int msm_cci_probe(struct platform_device *pdev)
 	new_cci_dev->cci_state = CCI_STATE_DISABLED;
 	g_cci_subdev = &new_cci_dev->msm_sd.sd;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	CDBG("%s cci subdev %p\n", __func__, &new_cci_dev->msm_sd.sd);
 =======
 	CDBG("%s cci subdev %pK\n", __func__, &new_cci_dev->msm_sd.sd);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	CDBG("%s cci subdev %p\n", __func__, &new_cci_dev->msm_sd.sd);
+>>>>>>> 2617302... source
 	CDBG("%s line %d\n", __func__, __LINE__);
     pr_warn("%s : Succeed!", __func__);
 	return 0;

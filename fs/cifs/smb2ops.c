@@ -49,6 +49,7 @@ change_conf(struct TCP_Server_Info *server)
 	default:
 		server->echoes = true;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		server->oplocks = true;
 		server->echo_credits = 1;
 		server->oplock_credits = 1;
@@ -61,6 +62,11 @@ change_conf(struct TCP_Server_Info *server)
 
 		server->echo_credits = 1;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		server->oplocks = true;
+		server->echo_credits = 1;
+		server->oplock_credits = 1;
+>>>>>>> 2617302... source
 	}
 	server->credits -= server->echo_credits + server->oplock_credits;
 	return 0;
@@ -254,10 +260,14 @@ smb2_query_file_info(const unsigned int xid, struct cifs_tcon *tcon,
 	struct smb2_file_all_info *smb2_data;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	smb2_data = kzalloc(sizeof(struct smb2_file_all_info) + MAX_NAME * 2,
 =======
 	smb2_data = kzalloc(sizeof(struct smb2_file_all_info) + PATH_MAX * 2,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	smb2_data = kzalloc(sizeof(struct smb2_file_all_info) + MAX_NAME * 2,
+>>>>>>> 2617302... source
 			    GFP_KERNEL);
 	if (smb2_data == NULL)
 		return -ENOMEM;
@@ -569,6 +579,7 @@ smb2_new_lease_key(struct cifs_fid *fid)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 static bool
 smb2_dir_needs_close(struct cifsFileInfo *cfile)
@@ -577,6 +588,8 @@ smb2_dir_needs_close(struct cifsFileInfo *cfile)
 }
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 struct smb_version_operations smb21_operations = {
 	.compare_fids = smb2_compare_fids,
 	.setup_request = smb2_setup_request,
@@ -642,9 +655,12 @@ struct smb_version_operations smb21_operations = {
 	.new_lease_key = smb2_new_lease_key,
 	.calc_signature = smb2_calc_signature,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	.dir_needs_close = smb2_dir_needs_close,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 };
 
 
@@ -713,9 +729,12 @@ struct smb_version_operations smb30_operations = {
 	.new_lease_key = smb2_new_lease_key,
 	.calc_signature = smb3_calc_signature,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	.dir_needs_close = smb2_dir_needs_close,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 };
 
 struct smb_version_values smb20_values = {

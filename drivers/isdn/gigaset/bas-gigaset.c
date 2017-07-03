@@ -2318,11 +2318,14 @@ static int gigaset_probe(struct usb_interface *interface,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (hostif->desc.bNumEndpoints < 1)
 		return -ENODEV;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	dev_info(&udev->dev,
 		 "%s: Device matched (Vendor: 0x%x, Product: 0x%x)\n",
 		 __func__, le16_to_cpu(udev->descriptor.idVendor),

@@ -46,10 +46,13 @@
 #include <linux/export.h>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <rdma/ib.h>
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 #include "qib.h"
 #include "qib_common.h"
 #include "qib_user_sdma.h"
@@ -1983,11 +1986,14 @@ static ssize_t qib_write(struct file *fp, const char __user *data,
 	void *dest;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (WARN_ON_ONCE(!ib_safe_file_access(fp)))
 		return -EACCES;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	if (count < sizeof(cmd.type)) {
 		ret = -EINVAL;
 		goto bail;

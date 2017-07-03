@@ -303,6 +303,7 @@ static const struct driver_info	cx82310_info = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static const struct usb_device_id products[] = {
 	{
 		USB_DEVICE_AND_INTERFACE_INFO(0x0572, 0xcb01, 0xff, 0, 0),
@@ -320,6 +321,11 @@ static const struct usb_device_id products[] = {
 	{
 		USB_DEVICE_CLASS(0x0572, 0xcb01, 0xff, 0, 0),
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+static const struct usb_device_id products[] = {
+	{
+		USB_DEVICE_AND_INTERFACE_INFO(0x0572, 0xcb01, 0xff, 0, 0),
+>>>>>>> 2617302... source
 		.driver_info = (unsigned long) &cx82310_info
 	},
 	{ },

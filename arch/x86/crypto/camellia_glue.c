@@ -1726,9 +1726,14 @@ module_exit(fini);
 MODULE_LICENSE("GPL");
 MODULE_DESCRIPTION("Camellia Cipher Algorithm, asm optimized");
 <<<<<<< HEAD
+<<<<<<< HEAD
 MODULE_ALIAS("camellia");
 MODULE_ALIAS("camellia-asm");
 =======
 MODULE_ALIAS_CRYPTO("camellia");
 MODULE_ALIAS_CRYPTO("camellia-asm");
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+MODULE_ALIAS("camellia");
+MODULE_ALIAS("camellia-asm");
+>>>>>>> 2617302... source

@@ -262,11 +262,15 @@ void usb_serial_generic_wait_until_sent(struct tty_struct *tty, long timeout)
 	 */
 	period = max_t(unsigned long, (10 * HZ / bps), 1);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	period = min_t(unsigned long, period, timeout);
 =======
 	if (timeout)
 		period = min_t(unsigned long, period, timeout);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	period = min_t(unsigned long, period, timeout);
+>>>>>>> 2617302... source
 
 	dev_dbg(&port->dev, "%s - timeout = %u ms, period = %u ms\n",
 					__func__, jiffies_to_msecs(timeout),
@@ -277,10 +281,14 @@ void usb_serial_generic_wait_until_sent(struct tty_struct *tty, long timeout)
 		if (signal_pending(current))
 			break;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (time_after(jiffies, expire))
 =======
 		if (timeout && time_after(jiffies, expire))
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		if (time_after(jiffies, expire))
+>>>>>>> 2617302... source
 			break;
 	}
 }

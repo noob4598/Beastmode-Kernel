@@ -242,9 +242,12 @@ struct adpd142_data {
 	struct i2c_client *client;
 	struct mutex mutex;/*for chip structure*/
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct mutex storelock;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	struct device *dev;
 	struct input_dev *ptr_sample_inputdev;
 	struct adpd_platform_data *ptr_config;
@@ -392,10 +395,14 @@ cmd_parsing(const char *buf, unsigned short cnt, unsigned short *data)
 
 		if (parsing_cnt < cnt)
 <<<<<<< HEAD
+<<<<<<< HEAD
 			*(data + parsing_cnt) = val;
 =======
 			*(data + parsing_cnt) = (unsigned short)val;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			*(data + parsing_cnt) = val;
+>>>>>>> 2617302... source
 		else
 			break;
 		parsing_cnt++;
@@ -2230,16 +2237,20 @@ static ssize_t eol_test_result_store(struct device *dev,
 		buf_len = MAX_EOL_RESULT;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	mutex_lock(&pst_adpd->storelock);
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	if (pst_adpd->eol_test_result != NULL)
 		kfree(pst_adpd->eol_test_result);
 
 	pst_adpd->eol_test_result = kzalloc(sizeof(char) * buf_len, GFP_KERNEL);
 	if (pst_adpd->eol_test_result == NULL) {
 		pr_err("adpd142_%s - couldn't allocate memory\n", __func__);
+<<<<<<< HEAD
 <<<<<<< HEAD
 		return -ENOMEM;
 	}
@@ -2253,6 +2264,11 @@ static ssize_t eol_test_result_store(struct device *dev,
 	mutex_unlock(&pst_adpd->storelock);
 	
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		return -ENOMEM;
+	}
+	strncpy(pst_adpd->eol_test_result, buf, buf_len);
+>>>>>>> 2617302... source
 	pr_info("adpd142_%s - result = %s, buf_len(%u)\n", __func__, pst_adpd->eol_test_result, buf_len);
 	pst_adpd->eol_test_status = 1;
 
@@ -2298,16 +2314,20 @@ static ssize_t adpd142_eol_lib_ver_store(struct device *dev,
 		buf_len = MAX_LIB_VER;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	mutex_lock(&pst_adpd->storelock);
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	if (pst_adpd->eol_lib_ver != NULL)
 		kfree(pst_adpd->eol_lib_ver);
 
 	pst_adpd->eol_lib_ver = kzalloc(sizeof(char) * buf_len, GFP_KERNEL);
 	if (pst_adpd->eol_lib_ver == NULL) {
 		pr_err("%s - couldn't allocate memory\n", __func__);
+<<<<<<< HEAD
 <<<<<<< HEAD
 		return -ENOMEM;
 	}
@@ -2320,6 +2340,11 @@ static ssize_t adpd142_eol_lib_ver_store(struct device *dev,
 
 	mutex_unlock(&pst_adpd->storelock);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		return -ENOMEM;
+	}
+	strncpy(pst_adpd->eol_lib_ver, buf, buf_len);
+>>>>>>> 2617302... source
 	pr_info("%s - eol_lib_ver = %s\n", __func__, pst_adpd->eol_lib_ver);
 	return size;
 }
@@ -2348,16 +2373,20 @@ static ssize_t adpd142_elf_lib_ver_store(struct device *dev,
 		buf_len = MAX_LIB_VER;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	mutex_lock(&pst_adpd->storelock);
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	if (pst_adpd->elf_lib_ver != NULL)
 		kfree(pst_adpd->elf_lib_ver);
 
 	pst_adpd->elf_lib_ver = kzalloc(sizeof(char) * buf_len, GFP_KERNEL);
 	if (pst_adpd->elf_lib_ver == NULL) {
 		pr_err("%s - couldn't allocate memory\n", __func__);
+<<<<<<< HEAD
 <<<<<<< HEAD
 		return -ENOMEM;
 	}
@@ -2371,6 +2400,11 @@ static ssize_t adpd142_elf_lib_ver_store(struct device *dev,
 	mutex_unlock(&pst_adpd->storelock);
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		return -ENOMEM;
+	}
+	strncpy(pst_adpd->elf_lib_ver, buf, buf_len);
+>>>>>>> 2617302... source
 	return size;
 }
 
@@ -2487,9 +2521,12 @@ adpd_i2c_probe(struct i2c_client *client, const struct i2c_device_id *id)
 
 	mutex_init(&pst_adpd->mutex);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	mutex_init(&pst_adpd->storelock);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	pst_adpd->skip_i2c_msleep = 1;
 	pst_adpd->client = client;

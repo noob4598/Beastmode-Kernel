@@ -17,6 +17,7 @@
 								\
 	tmp = kmalloc(sizeof(format) + max_alloc, GFP_ATOMIC);	\
 <<<<<<< HEAD
+<<<<<<< HEAD
 	sprintf(tmp, format, param);				\
 	strcat(str, tmp);					\
 	kfree(tmp);						\
@@ -29,6 +30,11 @@
 		strcat(str, "kmalloc failure in SPRINTFCAT");	\
 	}							\
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	sprintf(tmp, format, param);				\
+	strcat(str, tmp);					\
+	kfree(tmp);						\
+>>>>>>> 2617302... source
 }
 
 static void report_jump_idx(u32 status, char *outstr)

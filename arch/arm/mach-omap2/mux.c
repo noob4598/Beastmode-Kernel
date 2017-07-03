@@ -184,6 +184,7 @@ static int __init _omap_mux_get_by_name(struct omap_mux_partition *partition,
 
 		/* First check for full name in mode0.muxmode format */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (mode0_len && strncmp(muxname, m0_entry, mode0_len))
 			continue;
 =======
@@ -192,6 +193,10 @@ static int __init _omap_mux_get_by_name(struct omap_mux_partition *partition,
 			    (strlen(m0_entry) != mode0_len))
 				continue;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		if (mode0_len && strncmp(muxname, m0_entry, mode0_len))
+			continue;
+>>>>>>> 2617302... source
 
 		/* Then check for muxmode only */
 		for (i = 0; i < OMAP_MUX_NR_MODES; i++) {

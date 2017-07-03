@@ -1,8 +1,12 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* Copyright (c) 2012-2014, The Linux Foundation. All rights reserved.
 =======
 /* Copyright (c) 2012-2016, The Linux Foundation. All rights reserved.
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+/* Copyright (c) 2012-2014, The Linux Foundation. All rights reserved.
+>>>>>>> 2617302... source
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -519,10 +523,14 @@ static void populate_codec_list(struct msm_compr_audio *prtd)
 	prtd->compr_cap.max_fragments =
 			COMPR_PLAYBACK_MAX_NUM_FRAGMENTS;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	prtd->compr_cap.num_codecs = 8;
 =======
 	prtd->compr_cap.num_codecs = 9;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	prtd->compr_cap.num_codecs = 8;
+>>>>>>> 2617302... source
 	prtd->compr_cap.codecs[0] = SND_AUDIOCODEC_MP3;
 	prtd->compr_cap.codecs[1] = SND_AUDIOCODEC_AAC;
 	prtd->compr_cap.codecs[2] = SND_AUDIOCODEC_AC3;
@@ -532,9 +540,12 @@ static void populate_codec_list(struct msm_compr_audio *prtd)
 	prtd->compr_cap.codecs[6] = SND_AUDIOCODEC_WMA;
 	prtd->compr_cap.codecs[7] = SND_AUDIOCODEC_WMA_PRO;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	prtd->compr_cap.codecs[8] = SND_AUDIOCODEC_FLAC;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 }
 
 static int msm_compr_send_media_format_block(struct snd_compr_stream *cstream,
@@ -546,9 +557,12 @@ static int msm_compr_send_media_format_block(struct snd_compr_stream *cstream,
 	struct asm_wma_cfg wma_cfg;
 	struct asm_wmapro_cfg wma_pro_cfg;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct asm_flac_cfg flac_cfg;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	int ret = 0;
 	uint16_t bit_width = 16;
 
@@ -643,6 +657,7 @@ static int msm_compr_send_media_format_block(struct snd_compr_stream *cstream,
 		pr_info("%s: SND_AUDIOCODEC_MP2\n", __func__);
 		break;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	case FORMAT_FLAC:
 		pr_debug("%s: SND_AUDIOCODEC_FLAC\n", __func__);
@@ -669,6 +684,8 @@ static int msm_compr_send_media_format_block(struct snd_compr_stream *cstream,
 
 		break;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	default:
 		pr_info("%s, unsupported format, skip", __func__);
 		break;
@@ -698,6 +715,7 @@ static int msm_compr_configure_dsp(struct snd_compr_stream *cstream)
 	};
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (prtd->codec_param.codec.format == SNDRV_PCM_FORMAT_S24_LE)
 		bits_per_sample = 24;
@@ -705,6 +723,8 @@ static int msm_compr_configure_dsp(struct snd_compr_stream *cstream)
 		bits_per_sample = 32;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	if (prtd->compr_passthr != LEGACY_PCM) {
 		ret = q6asm_open_write_compressed(ac, prtd->codec,
 						  prtd->compr_passthr);
@@ -994,9 +1014,12 @@ static int msm_compr_free(struct snd_compr_stream *cstream)
 	kfree(pdata->dec_params[soc_prtd->dai_link->be_id]);
 	kfree(prtd);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	runtime->private_data = NULL;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	return 0;
 }
@@ -1051,6 +1074,7 @@ static int msm_compr_set_params(struct snd_compr_stream *cstream,
 		prtd->sample_rate = 48000;
 		break;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	case SNDRV_PCM_RATE_96000:
 		prtd->sample_rate = 96000;
 		break;
@@ -1068,6 +1092,11 @@ static int msm_compr_set_params(struct snd_compr_stream *cstream,
 		prtd->sample_rate = 176400;
 		break;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	case SNDRV_PCM_RATE_96000:
+		prtd->sample_rate = 96000;
+		break;
+>>>>>>> 2617302... source
 	case SNDRV_PCM_RATE_192000:
 		prtd->sample_rate = 192000;
 		break;
@@ -1142,6 +1171,7 @@ static int msm_compr_set_params(struct snd_compr_stream *cstream,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	case SND_AUDIOCODEC_FLAC: {
 		pr_debug("%s: SND_AUDIOCODEC_FLAC\n", __func__);
@@ -1150,6 +1180,8 @@ static int msm_compr_set_params(struct snd_compr_stream *cstream,
 	}
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	default:
 		pr_err("codec not supported, id =%d\n", params->codec.id);
 		return -EINVAL;
@@ -1823,10 +1855,14 @@ static int msm_compr_get_caps(struct snd_compr_stream *cstream,
 	} else {
 		ret = -EINVAL;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("%s: arg (0x%p), prtd (0x%p)\n", __func__, arg, prtd);
 =======
 		pr_err("%s: arg (0x%pK), prtd (0x%pK)\n", __func__, arg, prtd);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		pr_err("%s: arg (0x%p), prtd (0x%p)\n", __func__, arg, prtd);
+>>>>>>> 2617302... source
 	}
 
 	return ret;
@@ -1867,10 +1903,13 @@ static int msm_compr_get_codec_caps(struct snd_compr_stream *cstream,
 	case SND_AUDIOCODEC_EAC3:
 		break;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	case SND_AUDIOCODEC_FLAC:
 		break;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	default:
 		pr_err("%s: Unsupported audio codec %d\n",
 			__func__, codec->codec);
@@ -2062,9 +2101,12 @@ static int msm_compr_send_dec_params(struct snd_compr_stream *cstream,
 	case FORMAT_MP3:
 	case FORMAT_MPEG4_AAC:
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	case FORMAT_FLAC:
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		pr_debug("%s: no runtime parameters for codec: %d\n", __func__,
 			 prtd->codec);
 		break;
@@ -2212,10 +2254,14 @@ static int msm_compr_audio_effects_config_info(struct snd_kcontrol *kcontrol,
 {
 	uinfo->type = SNDRV_CTL_ELEM_TYPE_INTEGER;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	uinfo->count = 128;
 =======
 	uinfo->count = MAX_PP_PARAMS_SZ;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	uinfo->count = 128;
+>>>>>>> 2617302... source
 	uinfo->value.integer.min = 0;
 	uinfo->value.integer.max = 0xFFFFFFFF;
 	return 0;

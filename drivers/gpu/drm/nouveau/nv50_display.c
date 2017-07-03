@@ -1254,10 +1254,14 @@ nv50_crtc_gamma_set(struct drm_crtc *crtc, u16 *r, u16 *g, u16 *b,
 {
 	struct nouveau_crtc *nv_crtc = nouveau_crtc(crtc);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u32 end = max(start + size, (u32)256);
 =======
 	u32 end = min_t(u32, start + size, 256);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	u32 end = max(start + size, (u32)256);
+>>>>>>> 2617302... source
 	u32 i;
 
 	for (i = start; i < end; i++) {

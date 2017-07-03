@@ -299,6 +299,7 @@ xfs_file_aio_read(
 				return ret;
 			}
 <<<<<<< HEAD
+<<<<<<< HEAD
 			truncate_pagecache_range(VFS_I(ip), pos, -1);
 =======
 
@@ -312,6 +313,9 @@ xfs_file_aio_read(
 			WARN_ON_ONCE(ret);
 			ret = 0;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			truncate_pagecache_range(VFS_I(ip), pos, -1);
+>>>>>>> 2617302... source
 		}
 		xfs_rw_ilock_demote(ip, XFS_IOLOCK_EXCL);
 	}
@@ -691,6 +695,7 @@ xfs_file_dio_aio_write(
 		if (ret)
 			goto out;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		truncate_pagecache_range(VFS_I(ip), pos, -1);
 =======
 		/*
@@ -703,6 +708,9 @@ xfs_file_dio_aio_write(
 		WARN_ON_ONCE(ret);
 		ret = 0;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		truncate_pagecache_range(VFS_I(ip), pos, -1);
+>>>>>>> 2617302... source
 	}
 
 	/*

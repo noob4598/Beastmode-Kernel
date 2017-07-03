@@ -2269,11 +2269,14 @@ int msm_ipc_router_register_server(struct msm_ipc_port *port_ptr,
 		return -EINVAL;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (port_ptr->type != CLIENT_PORT)
 		return -EINVAL;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	if (name->addrtype != MSM_IPC_ADDR_NAME)
 		return -EINVAL;
 

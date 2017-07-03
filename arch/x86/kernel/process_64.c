@@ -50,9 +50,12 @@
 #include <asm/debugreg.h>
 #include <asm/switch_to.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <asm/xen/hypervisor.h>
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 asmlinkage extern void ret_from_fork(void);
 
@@ -181,10 +184,14 @@ int copy_thread(unsigned long clone_flags, unsigned long sp,
 		childregs->orig_ax = -1;
 		childregs->cs = __KERNEL_CS | get_kernel_rpl();
 <<<<<<< HEAD
+<<<<<<< HEAD
 		childregs->flags = X86_EFLAGS_IF | X86_EFLAGS_BIT1;
 =======
 		childregs->flags = X86_EFLAGS_IF | X86_EFLAGS_FIXED;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		childregs->flags = X86_EFLAGS_IF | X86_EFLAGS_BIT1;
+>>>>>>> 2617302... source
 		return 0;
 	}
 	*childregs = *current_pt_regs();
@@ -288,6 +295,9 @@ __switch_to(struct task_struct *prev_p, struct task_struct *next_p)
 	fpu = switch_fpu_prepare(prev_p, next_p, cpu);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	/*
 	 * Reload esp0, LDT and the page table pointer:
 	 */
@@ -306,11 +316,14 @@ __switch_to(struct task_struct *prev_p, struct task_struct *next_p)
 		loadsegment(ds, next->ds);
 
 
+<<<<<<< HEAD
 =======
 	/* Reload esp0 and ss1. */
 	load_sp0(tss, next);
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	/* We must save %fs and %gs before load_TLS() because
 	 * %fs and %gs may be cleared by load_TLS().
 	 *
@@ -320,6 +333,9 @@ __switch_to(struct task_struct *prev_p, struct task_struct *next_p)
 	savesegment(gs, gsindex);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	load_TLS(next, cpu);
 
 	/*
@@ -344,6 +360,7 @@ __switch_to(struct task_struct *prev_p, struct task_struct *next_p)
 		 * Check if the user used a selector != 0; if yes
 		 *  clear 64bit base, since overloaded base is always
 		 *  mapped to the Null selector
+<<<<<<< HEAD
 =======
 	/*
 	 * Load TLS before restoring any segments so that segment loads
@@ -429,14 +446,20 @@ __switch_to(struct task_struct *prev_p, struct task_struct *next_p)
 		 * restore the prior base address next time we reschdule
 		 * the process.
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		 */
 		if (fsindex)
 			prev->fs = 0;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* when next process has a 64bit base use it */
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	/* when next process has a 64bit base use it */
+>>>>>>> 2617302... source
 	if (next->fs)
 		wrmsrl(MSR_FS_BASE, next->fs);
 	prev->fsindex = fsindex;
@@ -444,10 +467,13 @@ __switch_to(struct task_struct *prev_p, struct task_struct *next_p)
 	if (unlikely(gsindex | next->gsindex | prev->gs)) {
 		load_gs_index(next->gsindex);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 		/* This works (and fails) the same way as fsindex above. */
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		if (gsindex)
 			prev->gs = 0;
 	}
@@ -476,6 +502,7 @@ __switch_to(struct task_struct *prev_p, struct task_struct *next_p)
 		__switch_to_xtra(prev_p, next_p, tss);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #ifdef CONFIG_XEN
 	/*
@@ -489,6 +516,8 @@ __switch_to(struct task_struct *prev_p, struct task_struct *next_p)
 #endif
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	return prev_p;
 }
 

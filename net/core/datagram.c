@@ -129,6 +129,7 @@ out_noerr:
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 static struct sk_buff *skb_set_peeked(struct sk_buff *skb)
 {
@@ -160,6 +161,8 @@ done:
 }
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 /**
  *	__skb_recv_datagram - Receive a datagram skbuff
  *	@sk: socket
@@ -195,12 +198,16 @@ struct sk_buff *__skb_recv_datagram(struct sock *sk, unsigned int flags,
 				    int *peeked, int *off, int *err)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct sk_buff *skb, *last;
 =======
 	struct sk_buff_head *queue = &sk->sk_receive_queue;
 	struct sk_buff *skb, *last;
 	unsigned long cpu_flags;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	struct sk_buff *skb, *last;
+>>>>>>> 2617302... source
 	long timeo;
 	/*
 	 * Caller is allowed not to check sk->sk_err before skb_recv_datagram()
@@ -220,10 +227,15 @@ struct sk_buff *__skb_recv_datagram(struct sock *sk, unsigned int flags,
 		 * However, this function was correct in any case. 8)
 		 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		unsigned long cpu_flags;
 		struct sk_buff_head *queue = &sk->sk_receive_queue;
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		unsigned long cpu_flags;
+		struct sk_buff_head *queue = &sk->sk_receive_queue;
+>>>>>>> 2617302... source
 		int _off = *off;
 
 		last = (struct sk_buff *)queue;
@@ -238,6 +250,7 @@ struct sk_buff *__skb_recv_datagram(struct sock *sk, unsigned int flags,
 					continue;
 				}
 <<<<<<< HEAD
+<<<<<<< HEAD
 				skb->peeked = 1;
 =======
 
@@ -247,6 +260,9 @@ struct sk_buff *__skb_recv_datagram(struct sock *sk, unsigned int flags,
 					goto unlock_err;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+				skb->peeked = 1;
+>>>>>>> 2617302... source
 				atomic_inc(&skb->users);
 			} else
 				__skb_unlink(skb, queue);
@@ -267,10 +283,13 @@ struct sk_buff *__skb_recv_datagram(struct sock *sk, unsigned int flags,
 	return NULL;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 unlock_err:
 	spin_unlock_irqrestore(&queue->lock, cpu_flags);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 no_packet:
 	*err = error;
 	return NULL;
@@ -721,11 +740,15 @@ __sum16 __skb_checksum_complete_head(struct sk_buff *skb, int len)
 		if (unlikely(skb->ip_summed == CHECKSUM_COMPLETE))
 			netdev_rx_csum_fault(skb->dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		skb->ip_summed = CHECKSUM_UNNECESSARY;
 =======
 		if (!skb_shared(skb))
 			skb->ip_summed = CHECKSUM_UNNECESSARY;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		skb->ip_summed = CHECKSUM_UNNECESSARY;
+>>>>>>> 2617302... source
 	}
 	return sum;
 }
@@ -743,9 +766,12 @@ EXPORT_SYMBOL(__skb_checksum_complete);
  *	@hlen: hardware length
  *	@iov: io vector
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
  *	@len: amount of data to copy from skb to iov
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
  *
  *	Caller _must_ check that skb will fit to this iovec.
  *
@@ -756,20 +782,27 @@ EXPORT_SYMBOL(__skb_checksum_complete);
  */
 int skb_copy_and_csum_datagram_iovec(struct sk_buff *skb,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				     int hlen, struct iovec *iov)
 =======
 				     int hlen, struct iovec *iov, int len)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+				     int hlen, struct iovec *iov)
+>>>>>>> 2617302... source
 {
 	__wsum csum;
 	int chunk = skb->len - hlen;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 	if (chunk > len)
 		chunk = len;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	if (!chunk)
 		return 0;
 

@@ -124,9 +124,13 @@ static int proc_ipcauto_dointvec_minmax(ctl_table *table, int write,
 {
 	struct ctl_table ipc_table;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	size_t lenp_bef = *lenp;
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	size_t lenp_bef = *lenp;
+>>>>>>> 2617302... source
 	int oldval;
 	int rc;
 
@@ -137,10 +141,14 @@ static int proc_ipcauto_dointvec_minmax(ctl_table *table, int write,
 	rc = proc_dointvec_minmax(&ipc_table, write, buffer, lenp, ppos);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (write && !rc && lenp_bef == *lenp) {
 =======
 	if (write && !rc) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (write && !rc && lenp_bef == *lenp) {
+>>>>>>> 2617302... source
 		int newval = *((int *)(ipc_table.data));
 		/*
 		 * The file "auto_msgmni" has correctly been set.

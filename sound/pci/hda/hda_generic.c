@@ -643,6 +643,7 @@ static int get_amp_val_to_activate(struct hda_codec *codec, hda_nid_t nid,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 /* is this a stereo widget or a stereo-to-mono mix? */
 static bool is_stereo_amps(struct hda_codec *codec, hda_nid_t nid, int dir)
@@ -662,11 +663,14 @@ static bool is_stereo_amps(struct hda_codec *codec, hda_nid_t nid, int dir)
 }
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 /* initialize the amp value (only at the first time) */
 static void init_amp(struct hda_codec *codec, hda_nid_t nid, int dir, int idx)
 {
 	unsigned int caps = query_amp_caps(codec, nid, dir);
 	int val = get_amp_val_to_activate(codec, nid, dir, caps, false);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	snd_hda_codec_amp_init_stereo(codec, nid, dir, idx, 0xff, val);
 =======
@@ -688,6 +692,9 @@ static int update_amp(struct hda_codec *codec, hda_nid_t nid, int dir, int idx,
 		return snd_hda_codec_amp_update(codec, nid, 0, dir, idx,
 						mask, val);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	snd_hda_codec_amp_init_stereo(codec, nid, dir, idx, 0xff, val);
+>>>>>>> 2617302... source
 }
 
 /* calculate amp value mask we can modify;
@@ -728,10 +735,14 @@ static void activate_amp(struct hda_codec *codec, hda_nid_t nid, int dir,
 
 	val &= mask;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	snd_hda_codec_amp_stereo(codec, nid, dir, idx, mask, val);
 =======
 	update_amp(codec, nid, dir, idx, mask, val);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	snd_hda_codec_amp_stereo(codec, nid, dir, idx, mask, val);
+>>>>>>> 2617302... source
 }
 
 static void activate_amp_out(struct hda_codec *codec, struct nid_path *path,
@@ -4280,6 +4291,9 @@ static void mute_all_mixer_nid(struct hda_codec *codec, hda_nid_t mix)
 	for (i = 0; i < nums; i++) {
 		if (has_amp)
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 			snd_hda_codec_amp_stereo(codec, mix,
 						 HDA_INPUT, i,
 						 0xff, HDA_AMP_MUTE);
@@ -4287,6 +4301,7 @@ static void mute_all_mixer_nid(struct hda_codec *codec, hda_nid_t mix)
 			snd_hda_codec_amp_stereo(codec, conn[i],
 						 HDA_OUTPUT, 0,
 						 0xff, HDA_AMP_MUTE);
+<<<<<<< HEAD
 =======
 			update_amp(codec, mix, HDA_INPUT, i,
 				   0xff, HDA_AMP_MUTE);
@@ -4294,6 +4309,8 @@ static void mute_all_mixer_nid(struct hda_codec *codec, hda_nid_t mix)
 			update_amp(codec, conn[i], HDA_OUTPUT, 0,
 				   0xff, HDA_AMP_MUTE);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	}
 }
 

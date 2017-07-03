@@ -1491,6 +1491,7 @@ static void sd_set_streamparm(struct gspca_dev *gspca_dev,
 	struct sd *sd = (struct sd *) gspca_dev;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* Set requested framerate */
 	sd->frame_rate = tpf->denominator / tpf->numerator;
 =======
@@ -1502,6 +1503,10 @@ static void sd_set_streamparm(struct gspca_dev *gspca_dev,
 		sd->frame_rate = tpf->denominator / tpf->numerator;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	/* Set requested framerate */
+	sd->frame_rate = tpf->denominator / tpf->numerator;
+>>>>>>> 2617302... source
 	if (gspca_dev->streaming)
 		set_frame_rate(gspca_dev);
 

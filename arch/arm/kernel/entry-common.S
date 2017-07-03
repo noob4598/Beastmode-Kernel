@@ -32,12 +32,16 @@ ret_fast_syscall:
  UNWIND(.cantunwind	)
 	disable_irq				@ disable interrupts
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ldr	r1, [tsk, #TI_FLAGS]
 =======
 	ldr	r1, [tsk, #TI_FLAGS]		@ re-check for syscall tracing
 	tst	r1, #_TIF_SYSCALL_WORK
 	bne	__sys_trace_return
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	ldr	r1, [tsk, #TI_FLAGS]
+>>>>>>> 2617302... source
 	tst	r1, #_TIF_WORK_MASK
 	bne	fast_work_pending
 	asm_trace_hardirqs_on
@@ -368,6 +372,7 @@ ENTRY(vector_swi)
 	zero_fp
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #ifdef CONFIG_ALIGNMENT_TRAP
 	ldr	ip, __cr_alignment
@@ -380,6 +385,8 @@ ENTRY(vector_swi)
 	get_thread_info tsk
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	/*
 	 * Get the system call number.
 	 */
@@ -394,6 +401,7 @@ ENTRY(vector_swi)
 	tst	r8, #PSR_T_BIT
 	movne	r10, #0				@ no thumb OABI emulation
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ldreq	r10, [lr, #-4]			@ get SWI instruction
 #else
 	ldr	r10, [lr, #-4]			@ get SWI instruction
@@ -402,6 +410,11 @@ ENTRY(vector_swi)
 #else
  USER(	ldr	r10, [lr, #-4]		)	@ get SWI instruction
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	ldreq	r10, [lr, #-4]			@ get SWI instruction
+#else
+	ldr	r10, [lr, #-4]			@ get SWI instruction
+>>>>>>> 2617302... source
 #endif
 #ifdef CONFIG_CPU_ENDIAN_BE8
 	rev	r10, r10			@ little endian instruction
@@ -417,6 +430,9 @@ ENTRY(vector_swi)
 	tst	r8, #PSR_T_BIT			@ this is SPSR from save_user_regs
 	addne	scno, r7, #__NR_SYSCALL_BASE	@ put OS number in
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	ldreq	scno, [lr, #-4]
 
 #else
@@ -433,6 +449,7 @@ ENTRY(vector_swi)
 	ct_user_exit
 
 	get_thread_info tsk
+<<<<<<< HEAD
 =======
  USER(	ldreq	scno, [lr, #-4]		)
 
@@ -442,6 +459,8 @@ ENTRY(vector_swi)
 #endif
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	adr	tbl, sys_call_table		@ load syscall table pointer
 
 #if defined(CONFIG_OABI_COMPAT)
@@ -477,6 +496,7 @@ local_restart:
 	bcs	arm_syscall	
 	b	sys_ni_syscall			@ not private func
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 #if defined(CONFIG_OABI_COMPAT) || !defined(CONFIG_AEABI)
@@ -494,6 +514,8 @@ local_restart:
 	b	ret_fast_syscall
 #endif
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 ENDPROC(vector_swi)
 
 	/*

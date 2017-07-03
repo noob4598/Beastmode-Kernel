@@ -406,9 +406,12 @@ struct sock *tcp_create_openreq_child(struct sock *sk, struct request_sock *req,
 		newtp->mdev = TCP_TIMEOUT_INIT;
 		newicsk->icsk_rto = TCP_TIMEOUT_INIT;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		newicsk->icsk_ack.lrcvtime = tcp_time_stamp;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 		newtp->packets_out = 0;
 		newtp->retrans_out = 0;

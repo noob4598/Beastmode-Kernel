@@ -35,12 +35,17 @@
 #include "internal.h"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 int do_truncate(struct dentry *dentry, loff_t length, unsigned int time_attrs,
 	struct file *filp)
 =======
 int do_truncate2(struct vfsmount *mnt, struct dentry *dentry, loff_t length,
 		unsigned int time_attrs, struct file *filp)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+int do_truncate(struct dentry *dentry, loff_t length, unsigned int time_attrs,
+	struct file *filp)
+>>>>>>> 2617302... source
 {
 	int ret;
 	struct iattr newattrs;
@@ -63,10 +68,14 @@ int do_truncate2(struct vfsmount *mnt, struct dentry *dentry, loff_t length,
 
 	mutex_lock(&dentry->d_inode->i_mutex);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	ret = notify_change(dentry, &newattrs);
 	mutex_unlock(&dentry->d_inode->i_mutex);
 	return ret;
 }
+<<<<<<< HEAD
 =======
 	ret = notify_change2(mnt, dentry, &newattrs);
 	mutex_unlock(&dentry->d_inode->i_mutex);
@@ -78,10 +87,13 @@ int do_truncate(struct dentry *dentry, loff_t length, unsigned int time_attrs,
 	return do_truncate2(NULL, dentry, length, time_attrs, filp);
 }
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 long vfs_truncate(struct path *path, loff_t length)
 {
 	struct inode *inode;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	long error;
 
@@ -93,6 +105,11 @@ long vfs_truncate(struct path *path, loff_t length)
 	inode = path->dentry->d_inode;
 	mnt = path->mnt;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	long error;
+
+	inode = path->dentry->d_inode;
+>>>>>>> 2617302... source
 
 	/* For directories it's -EISDIR, for other non-regulars - -EINVAL */
 	if (S_ISDIR(inode->i_mode))
@@ -105,10 +122,14 @@ long vfs_truncate(struct path *path, loff_t length)
 		goto out;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	error = inode_permission(inode, MAY_WRITE);
 =======
 	error = inode_permission2(mnt, inode, MAY_WRITE);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	error = inode_permission(inode, MAY_WRITE);
+>>>>>>> 2617302... source
 	if (error)
 		goto mnt_drop_write_and_out;
 
@@ -133,10 +154,14 @@ long vfs_truncate(struct path *path, loff_t length)
 		error = security_path_truncate(path);
 	if (!error)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		error = do_truncate(path->dentry, length, 0, NULL);
 =======
 		error = do_truncate2(mnt, path->dentry, length, 0, NULL);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		error = do_truncate(path->dentry, length, 0, NULL);
+>>>>>>> 2617302... source
 
 put_write_and_out:
 	put_write_access(inode);
@@ -186,9 +211,12 @@ static long do_sys_ftruncate(unsigned int fd, loff_t length, int small)
 	struct inode *inode;
 	struct dentry *dentry;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct vfsmount *mnt;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	struct fd f;
 	int error;
 
@@ -206,9 +234,12 @@ static long do_sys_ftruncate(unsigned int fd, loff_t length, int small)
 
 	dentry = f.file->f_path.dentry;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	mnt = f.file->f_path.mnt;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	inode = dentry->d_inode;
 	error = -EINVAL;
 	if (!S_ISREG(inode->i_mode) || !(f.file->f_mode & FMODE_WRITE))
@@ -229,10 +260,14 @@ static long do_sys_ftruncate(unsigned int fd, loff_t length, int small)
 		error = security_path_truncate(&f.file->f_path);
 	if (!error)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		error = do_truncate(dentry, length, ATTR_MTIME|ATTR_CTIME, f.file);
 =======
 		error = do_truncate2(mnt, dentry, length, ATTR_MTIME|ATTR_CTIME, f.file);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		error = do_truncate(dentry, length, ATTR_MTIME|ATTR_CTIME, f.file);
+>>>>>>> 2617302... source
 	sb_end_write(inode->i_sb);
 out_putf:
 	fdput(f);
@@ -348,9 +383,12 @@ SYSCALL_DEFINE3(faccessat, int, dfd, const char __user *, filename, int, mode)
 	struct path path;
 	struct inode *inode;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct vfsmount *mnt;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	int res;
 	unsigned int lookup_flags = LOOKUP_FOLLOW;
 
@@ -382,9 +420,12 @@ retry:
 
 	inode = path.dentry->d_inode;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	mnt = path.mnt;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	if ((mode & MAY_EXEC) && S_ISREG(inode->i_mode)) {
 		/*
@@ -397,10 +438,14 @@ retry:
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	res = inode_permission(inode, mode | MAY_ACCESS);
 =======
 	res = inode_permission2(mnt, inode, mode | MAY_ACCESS);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	res = inode_permission(inode, mode | MAY_ACCESS);
+>>>>>>> 2617302... source
 	/* SuS v2 requires we report a read only fs too */
 	if (res || !(mode & S_IWOTH) || special_file(inode->i_mode))
 		goto out_path_release;
@@ -445,10 +490,14 @@ retry:
 		goto out;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	error = inode_permission(path.dentry->d_inode, MAY_EXEC | MAY_CHDIR);
 =======
 	error = inode_permission2(path.mnt, path.dentry->d_inode, MAY_EXEC | MAY_CHDIR);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	error = inode_permission(path.dentry->d_inode, MAY_EXEC | MAY_CHDIR);
+>>>>>>> 2617302... source
 	if (error)
 		goto dput_and_out;
 
@@ -469,9 +518,12 @@ SYSCALL_DEFINE1(fchdir, unsigned int, fd)
 	struct fd f = fdget_raw(fd);
 	struct inode *inode;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct vfsmount *mnt;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	int error = -EBADF;
 
 	error = -EBADF;
@@ -480,19 +532,26 @@ SYSCALL_DEFINE1(fchdir, unsigned int, fd)
 
 	inode = file_inode(f.file);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	mnt = f.file->f_path.mnt;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	error = -ENOTDIR;
 	if (!S_ISDIR(inode->i_mode))
 		goto out_putf;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	error = inode_permission(inode, MAY_EXEC | MAY_CHDIR);
 =======
 	error = inode_permission2(mnt, inode, MAY_EXEC | MAY_CHDIR);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	error = inode_permission(inode, MAY_EXEC | MAY_CHDIR);
+>>>>>>> 2617302... source
 	if (!error)
 		set_fs_pwd(current->fs, &f.file->f_path);
 out_putf:
@@ -512,10 +571,14 @@ retry:
 		goto out;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	error = inode_permission(path.dentry->d_inode, MAY_EXEC | MAY_CHDIR);
 =======
 	error = inode_permission2(path.mnt, path.dentry->d_inode, MAY_EXEC | MAY_CHDIR);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	error = inode_permission(path.dentry->d_inode, MAY_EXEC | MAY_CHDIR);
+>>>>>>> 2617302... source
 	if (error)
 		goto dput_and_out;
 
@@ -554,10 +617,14 @@ static int chmod_common(struct path *path, umode_t mode)
 	newattrs.ia_mode = (mode & S_IALLUGO) | (inode->i_mode & ~S_IALLUGO);
 	newattrs.ia_valid = ATTR_MODE | ATTR_CTIME;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	error = notify_change(path->dentry, &newattrs);
 =======
 	error = notify_change2(path->mnt, path->dentry, &newattrs);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	error = notify_change(path->dentry, &newattrs);
+>>>>>>> 2617302... source
 out_unlock:
 	mutex_unlock(&inode->i_mutex);
 	mnt_drop_write(path->mnt);
@@ -632,10 +699,14 @@ static int chown_common(struct path *path, uid_t user, gid_t group)
 	error = security_path_chown(path, uid, gid);
 	if (!error)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		error = notify_change(path->dentry, &newattrs);
 =======
 		error = notify_change2(path->mnt, path->dentry, &newattrs);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		error = notify_change(path->dentry, &newattrs);
+>>>>>>> 2617302... source
 	mutex_unlock(&inode->i_mutex);
 
 	return error;
@@ -714,6 +785,9 @@ static inline int __get_file_write_access(struct inode *inode,
 					  struct vfsmount *mnt)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	int error;
 	error = get_write_access(inode);
 	if (error)
@@ -731,6 +805,7 @@ static inline int __get_file_write_access(struct inode *inode,
 		if (error)
 			put_write_access(inode);
 	}
+<<<<<<< HEAD
 =======
 	int error = get_write_access(inode);
 	if (error)
@@ -739,6 +814,8 @@ static inline int __get_file_write_access(struct inode *inode,
 	if (error)
 		put_write_access(inode);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	return error;
 }
 
@@ -772,6 +849,9 @@ static int do_dentry_open(struct file *f,
 	path_get(&f->f_path);
 	inode = f->f_inode = f->f_path.dentry->d_inode;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	if (f->f_mode & FMODE_WRITE) {
 		error = __get_file_write_access(inode, f->f_path.mnt);
 		if (error)
@@ -782,6 +862,7 @@ static int do_dentry_open(struct file *f,
 
 	f->f_mapping = inode->i_mapping;
 	file_sb_list_add(f, inode->i_sb);
+<<<<<<< HEAD
 =======
 	if (f->f_mode & FMODE_WRITE && !special_file(inode->i_mode)) {
 		error = __get_file_write_access(inode, f->f_path.mnt);
@@ -792,6 +873,8 @@ static int do_dentry_open(struct file *f,
 
 	f->f_mapping = inode->i_mapping;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	if (unlikely(f->f_mode & FMODE_PATH)) {
 		f->f_op = &empty_fops;
@@ -799,12 +882,15 @@ static int do_dentry_open(struct file *f,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (S_ISREG(inode->i_mode))
 		f->f_mode |= FMODE_SPLICE_WRITE | FMODE_SPLICE_READ;
 
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	f->f_op = fops_get(inode->i_fop);
 
 	error = security_file_open(f, cred);
@@ -834,12 +920,18 @@ static int do_dentry_open(struct file *f,
 cleanup_all:
 	fops_put(f->f_op);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	file_sb_list_del(f);
 	if (f->f_mode & FMODE_WRITE) {
 		put_write_access(inode);
 =======
 	if (f->f_mode & FMODE_WRITE) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	file_sb_list_del(f);
+	if (f->f_mode & FMODE_WRITE) {
+		put_write_access(inode);
+>>>>>>> 2617302... source
 		if (!special_file(inode->i_mode)) {
 			/*
 			 * We don't consider this a real
@@ -848,9 +940,12 @@ cleanup_all:
 			 * here, so just reset the state.
 			 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 			put_write_access(inode);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 			file_reset_write(f);
 			__mnt_drop_write(f->f_path.mnt);
 		}

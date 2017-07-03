@@ -822,11 +822,15 @@ nfs4_fl_prepare_ds(struct pnfs_layout_segment *lseg, u32 ds_idx)
 	}
 out_test_devid:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (filelayout_test_devid_unavailable(devid))
 =======
 	if (ret->ds_clp == NULL ||
 	    filelayout_test_devid_unavailable(devid))
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (filelayout_test_devid_unavailable(devid))
+>>>>>>> 2617302... source
 		ret = NULL;
 out:
 	return ret;

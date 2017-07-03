@@ -3,10 +3,13 @@
 
 #include <linux/linkage.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <linux/types.h>
 #include <asm/opcodes.h>
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 #ifdef CONFIG_BUG
 
@@ -18,16 +21,22 @@
 #ifdef CONFIG_THUMB2_KERNEL
 #define BUG_INSTR_VALUE 0xde02
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 #define BUG_INSTR_TYPE ".hword "
 #else
 #define BUG_INSTR_VALUE 0xe7f001f2
 #define BUG_INSTR_TYPE ".word "
+<<<<<<< HEAD
 =======
 #define BUG_INSTR(__value) __inst_thumb16(__value)
 #else
 #define BUG_INSTR_VALUE 0xe7f001f2
 #define BUG_INSTR(__value) __inst_arm(__value)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 #endif
 
 
@@ -46,10 +55,14 @@
 #define __BUG(__file, __line, __value)				\
 do {								\
 <<<<<<< HEAD
+<<<<<<< HEAD
 	asm volatile("1:\t" BUG_INSTR_TYPE #__value "\n"	\
 =======
 	asm volatile("1:\t" BUG_INSTR(__value) "\n"  \
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	asm volatile("1:\t" BUG_INSTR_TYPE #__value "\n"	\
+>>>>>>> 2617302... source
 		".pushsection .rodata.str, \"aMS\", %progbits, 1\n" \
 		"2:\t.asciz " #__file "\n" 			\
 		".popsection\n" 				\
@@ -65,10 +78,14 @@ do {								\
 #define __BUG(__file, __line, __value)				\
 do {								\
 <<<<<<< HEAD
+<<<<<<< HEAD
 	asm volatile(BUG_INSTR_TYPE #__value);			\
 =======
 	asm volatile(BUG_INSTR(__value) "\n");			\
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	asm volatile(BUG_INSTR_TYPE #__value);			\
+>>>>>>> 2617302... source
 	unreachable();						\
 } while (0)
 #endif  /* CONFIG_DEBUG_BUGVERBOSE */

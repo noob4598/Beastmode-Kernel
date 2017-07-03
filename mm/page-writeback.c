@@ -816,6 +816,7 @@ static void bdi_update_write_bandwidth(struct backing_dev_info *bdi,
 	 * write_bandwidth = ---------------------------------------------------
 	 *                                          period
 <<<<<<< HEAD
+<<<<<<< HEAD
 	 */
 	bw = written - bdi->written_stamp;
 =======
@@ -825,6 +826,10 @@ static void bdi_update_write_bandwidth(struct backing_dev_info *bdi,
 	 */
 	bw = written - min(written, bdi->written_stamp);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	 */
+	bw = written - bdi->written_stamp;
+>>>>>>> 2617302... source
 	bw *= HZ;
 	if (unlikely(elapsed > period)) {
 		do_div(bw, elapsed);
@@ -889,10 +894,14 @@ static void global_update_bandwidth(unsigned long thresh,
 {
 	static DEFINE_SPINLOCK(dirty_lock);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	static unsigned long update_time;
 =======
 	static unsigned long update_time = INITIAL_JIFFIES;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	static unsigned long update_time;
+>>>>>>> 2617302... source
 
 	/*
 	 * check locklessly first to optimize away locking for the most time

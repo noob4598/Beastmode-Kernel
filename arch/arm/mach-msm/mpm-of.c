@@ -112,10 +112,14 @@ enum mpm_reg_offsets {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static DEFINE_SPINLOCK(msm_mpm_lock);
 =======
 static __refdata DEFINE_SPINLOCK(msm_mpm_lock);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+static DEFINE_SPINLOCK(msm_mpm_lock);
+>>>>>>> 2617302... source
 
 static uint32_t msm_mpm_enabled_irq[MSM_MPM_REG_WIDTH];
 static uint32_t msm_mpm_wake_irq[MSM_MPM_REG_WIDTH];
@@ -131,10 +135,14 @@ enum {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int msm_mpm_debug_mask = 1;
 =======
 static int msm_mpm_debug_mask __refdata = 0;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+static int msm_mpm_debug_mask = 1;
+>>>>>>> 2617302... source
 module_param_named(
 	debug_mask, msm_mpm_debug_mask, int, S_IRUGO | S_IWUSR | S_IWGRP
 );
@@ -649,10 +657,14 @@ static void msm_mpm_work_fn(struct work_struct *work)
 	while (1) {
 		bool allow;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		wait_for_completion(&wake_wq);
 =======
 		wait_for_completion_interruptible(&wake_wq);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		wait_for_completion(&wake_wq);
+>>>>>>> 2617302... source
 		spin_lock_irqsave(&msm_mpm_lock, flags);
 		allow = msm_mpm_irqs_detectable(true) &&
 				msm_mpm_gpio_irqs_detectable(true);
@@ -773,6 +785,9 @@ static inline int mpm_irq_domain_legacy_size(struct irq_domain *d)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 static void __init __of_mpm_init(struct device_node *node)
 {
 	const __be32 *list;
@@ -807,6 +822,7 @@ static void __init __of_mpm_init(struct device_node *node)
 		},
 	};
 
+<<<<<<< HEAD
 =======
 struct mpm_of {
 	char *pkey;
@@ -843,6 +859,8 @@ static void __init __of_mpm_init(struct device_node *node)
 	int i;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	if (msm_mpm_initialized & MSM_MPM_IRQ_MAPPING_DONE) {
 		pr_warn("%s(): MPM driver mapping exists\n", __func__);
 		return;

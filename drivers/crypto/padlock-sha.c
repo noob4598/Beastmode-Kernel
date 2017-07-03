@@ -594,13 +594,19 @@ MODULE_LICENSE("GPL");
 MODULE_AUTHOR("Michal Ludvig");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 MODULE_ALIAS("sha1-all");
 MODULE_ALIAS("sha256-all");
 MODULE_ALIAS("sha1-padlock");
 MODULE_ALIAS("sha256-padlock");
+<<<<<<< HEAD
 =======
 MODULE_ALIAS_CRYPTO("sha1-all");
 MODULE_ALIAS_CRYPTO("sha256-all");
 MODULE_ALIAS_CRYPTO("sha1-padlock");
 MODULE_ALIAS_CRYPTO("sha256-padlock");
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source

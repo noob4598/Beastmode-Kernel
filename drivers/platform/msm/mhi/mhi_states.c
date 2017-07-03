@@ -1,8 +1,12 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* Copyright (c) 2014, The Linux Foundation. All rights reserved.
 =======
 /* Copyright (c) 2013-2014, The Linux Foundation. All rights reserved.
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+/* Copyright (c) 2014, The Linux Foundation. All rights reserved.
+>>>>>>> 2617302... source
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -14,6 +18,9 @@
  * GNU General Public License for more details.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 
 #include "mhi_sys.h"
 #include "mhi_hwio.h"
@@ -111,6 +118,7 @@ static void ring_all_ev_dbs(struct mhi_device_ctxt *mhi_dev_ctxt)
 static enum MHI_STATUS process_m0_transition(
 			struct mhi_device_ctxt *mhi_dev_ctxt,
 			enum STATE_TRANSITION cur_work_item)
+<<<<<<< HEAD
 =======
 #include "mhi_sys.h"
 #include "mhi_hwio.h"
@@ -387,6 +395,8 @@ exit:
 MHI_STATUS process_M0_transition(mhi_device_ctxt *mhi_dev_ctxt,
 			STATE_TRANSITION cur_work_item)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 {
 	unsigned long flags;
 	int ret_val;
@@ -400,20 +410,28 @@ MHI_STATUS process_M0_transition(mhi_device_ctxt *mhi_dev_ctxt,
 		"M3 work NOT cancelled, either running or never started\n");
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/* Wait for mhi_dev_ctxt transition to M0 */
 		/* Proxy vote to prevent M3 while we are ringing DBs */
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	if (mhi_dev_ctxt->mhi_state == MHI_STATE_M2) {
 		mhi_dev_ctxt->counters.m2_m0++;
 	} else if (mhi_dev_ctxt->mhi_state == MHI_STATE_M3) {
 			mhi_dev_ctxt->counters.m3_m0++;
 	} else if (mhi_dev_ctxt->mhi_state == MHI_STATE_READY) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		mhi_log(MHI_MSG_INFO,
 			"Transitioning from READY.\n");
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		mhi_log(MHI_MSG_INFO,
+			"Transitioning from READY.\n");
+>>>>>>> 2617302... source
 	} else {
 		mhi_log(MHI_MSG_INFO,
 			"MHI State %d link state %d. Quitting\n",
@@ -429,9 +447,12 @@ MHI_STATUS process_M0_transition(mhi_device_ctxt *mhi_dev_ctxt,
 
 	if (mhi_dev_ctxt->flags.mhi_initialized) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		/* Bump up the vote for pending data */
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		ring_all_ev_dbs(mhi_dev_ctxt);
 		ring_all_chan_dbs(mhi_dev_ctxt);
 		ring_all_cmd_dbs(mhi_dev_ctxt);
@@ -445,6 +466,9 @@ MHI_STATUS process_M0_transition(mhi_device_ctxt *mhi_dev_ctxt,
 	mhi_dev_ctxt->flags.pending_M0 = 0;
 	wake_up_interruptible(mhi_dev_ctxt->M0_event);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	if (ret_val == -ERESTARTSYS)
 		mhi_log(MHI_MSG_CRITICAL,
 			"Pending restart detected\n");
@@ -456,11 +480,14 @@ MHI_STATUS process_M0_transition(mhi_device_ctxt *mhi_dev_ctxt,
 		atomic_set(&mhi_dev_ctxt->flags.pending_ssr, 0);
 		atomic_set(&mhi_dev_ctxt->flags.pending_powerup, 0);
 	}
+<<<<<<< HEAD
 =======
 	ret_val = hrtimer_start(&mhi_dev_ctxt->m1_timer,
 				mhi_dev_ctxt->m1_timeout,
 				HRTIMER_MODE_REL);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	mhi_log(MHI_MSG_VERBOSE, "Starting M1 timer, ret %d\n", ret_val);
 exit:
 	mhi_log(MHI_MSG_INFO, "Exited\n");
@@ -468,6 +495,9 @@ exit:
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 static enum MHI_STATUS process_m1_transition(
 		struct mhi_device_ctxt  *mhi_dev_ctxt,
 		enum STATE_TRANSITION cur_work_item)
@@ -649,6 +679,7 @@ static enum MHI_STATUS process_wake_transition(
 			"Failed to turn on PCIe link.\n");
 		goto exit;
 	}
+<<<<<<< HEAD
 	if (mhi_dev_ctxt->flags.mhi_initialized &&
 		mhi_dev_ctxt->flags.link_up) {
 		mhi_log(MHI_MSG_VERBOSE,
@@ -847,6 +878,48 @@ MHI_STATUS process_READY_transition(mhi_device_ctxt *mhi_dev_ctxt,
 {
 	MHI_STATUS ret_val = MHI_STATUS_SUCCESS;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (mhi_dev_ctxt->flags.mhi_initialized &&
+		mhi_dev_ctxt->flags.link_up) {
+		mhi_log(MHI_MSG_VERBOSE,
+			"MHI is initialized, transitioning to M0.\n");
+		mhi_initiate_m0(mhi_dev_ctxt);
+	}
+	if (!mhi_dev_ctxt->flags.mhi_initialized) {
+		mhi_log(MHI_MSG_INFO,
+			"MHI is not initialized transitioning to base.\n");
+		ret_val = init_mhi_base_state(mhi_dev_ctxt);
+		if (MHI_STATUS_SUCCESS != ret_val)
+			mhi_log(MHI_MSG_CRITICAL,
+				"Failed to transition to base state %d.\n",
+				ret_val);
+	}
+
+exit:
+	__pm_relax(&mhi_dev_ctxt->w_lock);
+	mhi_log(MHI_MSG_INFO, "Exited.\n");
+	return ret_val;
+
+}
+
+static enum MHI_STATUS process_bhi_transition(
+			struct mhi_device_ctxt *mhi_dev_ctxt,
+			enum STATE_TRANSITION cur_work_item)
+{
+	mhi_turn_on_pcie_link(mhi_dev_ctxt);
+	mhi_log(MHI_MSG_INFO, "Entered\n");
+	mhi_dev_ctxt->mhi_state = MHI_STATE_BHI;
+	wake_up_interruptible(mhi_dev_ctxt->bhi_event);
+	mhi_log(MHI_MSG_INFO, "Exited\n");
+	return MHI_STATUS_SUCCESS;
+}
+
+static enum MHI_STATUS process_ready_transition(
+			struct mhi_device_ctxt *mhi_dev_ctxt,
+			enum STATE_TRANSITION cur_work_item)
+{
+	enum MHI_STATUS ret_val = MHI_STATUS_SUCCESS;
+>>>>>>> 2617302... source
 	mhi_log(MHI_MSG_INFO, "Processing READY state transition\n");
 	mhi_dev_ctxt->mhi_state = MHI_STATE_READY;
 
@@ -865,28 +938,41 @@ MHI_STATUS process_READY_transition(mhi_device_ctxt *mhi_dev_ctxt,
 	ret_val = mhi_add_elements_to_event_rings(mhi_dev_ctxt,
 				cur_work_item);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+
+>>>>>>> 2617302... source
 	if (MHI_STATUS_SUCCESS != ret_val) {
 		mhi_log(MHI_MSG_ERROR,
 			"Failure during event ring init\n");
 		return MHI_STATUS_ERROR;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 
 	mhi_dev_ctxt->flags.stop_threads = 0;
 	mhi_reg_write_field(mhi_dev_ctxt,
 			mhi_dev_ctxt->mmio_addr, MHICTRL,
+<<<<<<< HEAD
 =======
 	MHI_REG_WRITE_FIELD(mhi_dev_ctxt->mmio_addr, MHICTRL,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 			MHICTRL_MHISTATE_MASK,
 			MHICTRL_MHISTATE_SHIFT,
 			MHI_STATE_M0);
 	return MHI_STATUS_SUCCESS;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 
 static void mhi_reset_chan_ctxt(struct mhi_device_ctxt *mhi_dev_ctxt,
 				int chan)
@@ -932,6 +1018,7 @@ static enum MHI_STATUS process_reset_transition(
 	switch (ret_val) {
 	case MHI_STATUS_SUCCESS:
 		break;
+<<<<<<< HEAD
 =======
 MHI_STATUS process_RESET_transition(mhi_device_ctxt *mhi_dev_ctxt,
 			STATE_TRANSITION cur_work_item)
@@ -958,6 +1045,8 @@ MHI_STATUS process_RESET_transition(mhi_device_ctxt *mhi_dev_ctxt,
 			STATE_TRANSITION_READY);
 	break;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	case MHI_STATUS_LINK_DOWN:
 		mhi_log(MHI_MSG_CRITICAL, "Link down detected\n");
 		break;
@@ -975,6 +1064,9 @@ MHI_STATUS process_RESET_transition(mhi_device_ctxt *mhi_dev_ctxt,
 		break;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	for (i = 0; i < NR_OF_CMD_RINGS; ++i) {
 		mhi_dev_ctxt->mhi_local_cmd_ctxt[i].rp =
 				mhi_dev_ctxt->mhi_local_cmd_ctxt[i].base;
@@ -1350,6 +1442,7 @@ void m0_work(struct work_struct *work)
 {
 	struct mhi_device_ctxt *mhi_dev_ctxt =
 		container_of(work, struct mhi_device_ctxt, m0_work);
+<<<<<<< HEAD
 =======
 	/* Synchronise the local rp/wp with the ctxt rp/wp
 	   This will enable the device to pick up exactly where it left off, should
@@ -1546,6 +1639,8 @@ void m0_work(struct work_struct *work)
 	mhi_device_ctxt *mhi_dev_ctxt =
 		container_of(work, mhi_device_ctxt, m0_work);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	if (!atomic_read(&mhi_dev_ctxt->flags.pending_resume)) {
 		mhi_log(MHI_MSG_INFO, "No pending resume, initiating M0.\n");
 		mhi_initiate_m0(mhi_dev_ctxt);
@@ -1555,6 +1650,9 @@ void m0_work(struct work_struct *work)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 int mhi_initiate_m0(struct mhi_device_ctxt *mhi_dev_ctxt)
 {
 	int r = 0;
@@ -1565,6 +1663,7 @@ int mhi_initiate_m0(struct mhi_device_ctxt *mhi_dev_ctxt)
 		mhi_dev_ctxt->mhi_state, mhi_dev_ctxt->flags.pending_M0,
 					mhi_dev_ctxt->flags.pending_M3);
 	mutex_lock(&mhi_dev_ctxt->pm_lock);
+<<<<<<< HEAD
 =======
 int mhi_initiate_m0(mhi_device_ctxt *mhi_dev_ctxt)
 {
@@ -1576,6 +1675,8 @@ int mhi_initiate_m0(mhi_device_ctxt *mhi_dev_ctxt)
 	mutex_lock(&mhi_dev_ctxt->pm_lock);
 	/* 1. Wait on M3 event completion */
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	mhi_log(MHI_MSG_INFO,
 		"Waiting for M0 M1 or M3. Currently %d...\n",
 					mhi_dev_ctxt->mhi_state);
@@ -1585,6 +1686,9 @@ int mhi_initiate_m0(mhi_device_ctxt *mhi_dev_ctxt)
 			mhi_dev_ctxt->mhi_state == MHI_STATE_M0 ||
 			mhi_dev_ctxt->mhi_state == MHI_STATE_M1,
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		msecs_to_jiffies(MHI_MAX_SUSPEND_TIMEOUT));
 	switch (r) {
 	case 0:
@@ -1592,6 +1696,7 @@ int mhi_initiate_m0(mhi_device_ctxt *mhi_dev_ctxt)
 			"Timeout: State %d after %d ms\n",
 				mhi_dev_ctxt->mhi_state,
 				MHI_MAX_SUSPEND_TIMEOUT);
+<<<<<<< HEAD
 =======
 		msecs_to_jiffies(MHI_MAX_INIT_M0_TIMEOUT));
 	switch(r) {
@@ -1601,25 +1706,35 @@ int mhi_initiate_m0(mhi_device_ctxt *mhi_dev_ctxt)
 				mhi_dev_ctxt->mhi_state,
 				MHI_MAX_INIT_M0_TIMEOUT);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		mhi_dev_ctxt->counters.m0_event_timeouts++;
 		r = -ETIME;
 		goto exit;
 		break;
 	case -ERESTARTSYS:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		mhi_log(MHI_MSG_CRITICAL,
 =======
 		mhi_log(MHI_MSG_CRITICAL | MHI_DBG_POWER,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		mhi_log(MHI_MSG_CRITICAL,
+>>>>>>> 2617302... source
 			"Going Down...\n");
 		goto exit;
 		break;
 	default:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		mhi_log(MHI_MSG_INFO,
 =======
 		mhi_log(MHI_MSG_INFO | MHI_DBG_POWER,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		mhi_log(MHI_MSG_INFO,
+>>>>>>> 2617302... source
 			"Wait complete state: %d\n", mhi_dev_ctxt->mhi_state);
 		r = 0;
 		break;
@@ -1633,6 +1748,7 @@ int mhi_initiate_m0(mhi_device_ctxt *mhi_dev_ctxt)
 		goto exit;
 	} else {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (MHI_STATUS_SUCCESS != mhi_turn_on_pcie_link(mhi_dev_ctxt)) {
 			mhi_log(MHI_MSG_CRITICAL,
 =======
@@ -1640,6 +1756,10 @@ int mhi_initiate_m0(mhi_device_ctxt *mhi_dev_ctxt)
 		if (MHI_STATUS_SUCCESS != mhi_turn_on_pcie_link(mhi_dev_ctxt)) {
 			mhi_log(MHI_MSG_CRITICAL | MHI_DBG_POWER,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		if (MHI_STATUS_SUCCESS != mhi_turn_on_pcie_link(mhi_dev_ctxt)) {
+			mhi_log(MHI_MSG_CRITICAL,
+>>>>>>> 2617302... source
 					"Failed to resume link\n");
 			r = -EIO;
 			goto exit;
@@ -1647,12 +1767,16 @@ int mhi_initiate_m0(mhi_device_ctxt *mhi_dev_ctxt)
 
 		write_lock_irqsave(&mhi_dev_ctxt->xfer_lock, flags);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		mhi_log(MHI_MSG_VERBOSE, "Setting M0 ...\n");
 		if (mhi_dev_ctxt->flags.pending_M3) {
 			mhi_log(MHI_MSG_INFO,
 				"Pending M3 detected, aborting M0 procedure\n");
 			write_unlock_irqrestore(&mhi_dev_ctxt->xfer_lock,
 								flags);
+<<<<<<< HEAD
 =======
 		mhi_log(MHI_MSG_CRITICAL | MHI_DBG_POWER,
 				"Setting M0 ...\n");
@@ -1661,6 +1785,8 @@ int mhi_initiate_m0(mhi_device_ctxt *mhi_dev_ctxt)
 				"Pending M3 detected, aborting M0 procedure\n");
 			write_unlock_irqrestore(&mhi_dev_ctxt->xfer_lock, flags);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 			r = -EPERM;
 			goto exit;
 		}
@@ -1677,6 +1803,7 @@ exit:
 	return r;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 int mhi_initiate_m3(struct mhi_device_ctxt *mhi_dev_ctxt)
 =======
@@ -1753,11 +1880,17 @@ MHI_STATUS mhi_process_link_down(mhi_device_ctxt *mhi_dev_ctxt)
 
 int mhi_initiate_m3(mhi_device_ctxt *mhi_dev_ctxt)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+int mhi_initiate_m3(struct mhi_device_ctxt *mhi_dev_ctxt)
+>>>>>>> 2617302... source
 {
 
 	unsigned long flags;
 	int r;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 
 	mhi_log(MHI_MSG_INFO,
 		"Entered MHI state %d, Pending M0 %d Pending M3 %d\n",
@@ -1775,6 +1908,7 @@ int mhi_initiate_m3(mhi_device_ctxt *mhi_dev_ctxt)
 					"Failed to set bus freq ret %d\n", r);
 		goto exit;
 		break;
+<<<<<<< HEAD
 =======
 	int abort_m3 = 0;
 
@@ -1785,15 +1919,20 @@ int mhi_initiate_m3(mhi_device_ctxt *mhi_dev_ctxt)
 
 	switch (mhi_dev_ctxt->mhi_state) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	case MHI_STATE_M1:
 	case MHI_STATE_M2:
 		mhi_log(MHI_MSG_INFO,
 			"Triggering wake out of M2\n");
 		write_lock_irqsave(&mhi_dev_ctxt->xfer_lock, flags);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		mhi_dev_ctxt->flags.pending_M3 = 1;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		mhi_assert_device_wake(mhi_dev_ctxt);
 		write_unlock_irqrestore(&mhi_dev_ctxt->xfer_lock, flags);
 		r = wait_event_interruptible_timeout(*mhi_dev_ctxt->M0_event,
@@ -1802,10 +1941,14 @@ int mhi_initiate_m3(mhi_device_ctxt *mhi_dev_ctxt)
 				msecs_to_jiffies(MHI_MAX_RESUME_TIMEOUT));
 		if (0 == r || -ERESTARTSYS == r) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			mhi_log(MHI_MSG_INFO,
 =======
 			mhi_log(MHI_MSG_INFO | MHI_DBG_POWER,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			mhi_log(MHI_MSG_INFO,
+>>>>>>> 2617302... source
 				"MDM failed to come out of M2.\n");
 			goto exit;
 		}
@@ -1821,6 +1964,7 @@ int mhi_initiate_m3(mhi_device_ctxt *mhi_dev_ctxt)
 			r = 0;
 		goto exit;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	case MHI_STATE_RESET:
 		mhi_log(MHI_MSG_INFO,
@@ -1832,6 +1976,8 @@ int mhi_initiate_m3(mhi_device_ctxt *mhi_dev_ctxt)
 		goto exit;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	default:
 		mhi_log(MHI_MSG_INFO,
 			"MHI state %d, link state %d.\n",
@@ -1841,6 +1987,9 @@ int mhi_initiate_m3(mhi_device_ctxt *mhi_dev_ctxt)
 	}
 	while (atomic_read(&mhi_dev_ctxt->counters.outbound_acks)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		mhi_log(MHI_MSG_INFO,
 			"There are still %d acks pending from device\n",
 			atomic_read(&mhi_dev_ctxt->counters.outbound_acks));
@@ -1851,6 +2000,7 @@ int mhi_initiate_m3(mhi_device_ctxt *mhi_dev_ctxt)
 
 	if (atomic_read(&mhi_dev_ctxt->flags.data_pending))
 		goto exit;
+<<<<<<< HEAD
 =======
 		mhi_log(MHI_MSG_INFO | MHI_DBG_POWER,
 			"There are still %d acks pending from device\n",
@@ -1865,16 +2015,23 @@ int mhi_initiate_m3(mhi_device_ctxt *mhi_dev_ctxt)
 		goto exit;
 	}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	r = hrtimer_cancel(&mhi_dev_ctxt->m1_timer);
 	if (r)
 		mhi_log(MHI_MSG_INFO, "Cancelled M1 timer, timer was active\n");
 	else
+<<<<<<< HEAD
 <<<<<<< HEAD
 		mhi_log(MHI_MSG_INFO,
 			"Cancelled M1 timer, timer was not active\n");
 =======
 		mhi_log(MHI_MSG_INFO, "Cancelled M1 timer, timer was not active\n");
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		mhi_log(MHI_MSG_INFO,
+			"Cancelled M1 timer, timer was not active\n");
+>>>>>>> 2617302... source
 	write_lock_irqsave(&mhi_dev_ctxt->xfer_lock, flags);
 	if (mhi_dev_ctxt->flags.pending_M0) {
 		write_unlock_irqrestore(&mhi_dev_ctxt->xfer_lock, flags);
@@ -1885,21 +2042,28 @@ int mhi_initiate_m3(mhi_device_ctxt *mhi_dev_ctxt)
 	}
 	mhi_dev_ctxt->flags.pending_M3 = 1;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 
 	mhi_set_m_state(mhi_dev_ctxt, MHI_STATE_M3);
 	write_unlock_irqrestore(&mhi_dev_ctxt->xfer_lock, flags);
 
 	mhi_log(MHI_MSG_INFO,
+<<<<<<< HEAD
 =======
 	mhi_set_m_state(mhi_dev_ctxt, MHI_STATE_M3);
 	write_unlock_irqrestore(&mhi_dev_ctxt->xfer_lock, flags);
 
 	mhi_log(MHI_MSG_INFO | MHI_DBG_POWER,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 			"Waiting for M3 completion.\n");
 	r = wait_event_interruptible_timeout(*mhi_dev_ctxt->M3_event,
 			mhi_dev_ctxt->mhi_state == MHI_STATE_M3,
 		msecs_to_jiffies(MHI_MAX_SUSPEND_TIMEOUT));
+<<<<<<< HEAD
 <<<<<<< HEAD
 	switch (r) {
 	case 0:
@@ -1909,15 +2073,24 @@ int mhi_initiate_m3(mhi_device_ctxt *mhi_dev_ctxt)
 	case 0:
 		mhi_log(MHI_MSG_CRITICAL | MHI_DBG_POWER,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	switch (r) {
+	case 0:
+		mhi_log(MHI_MSG_CRITICAL,
+>>>>>>> 2617302... source
 			"MDM failed to suspend after %d ms\n",
 			MHI_MAX_SUSPEND_TIMEOUT);
 		mhi_dev_ctxt->counters.m3_event_timeouts++;
 		mhi_dev_ctxt->flags.pending_M3 = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		goto exit;
 		break;
 	case -ERESTARTSYS:
 		mhi_log(MHI_MSG_CRITICAL,
+<<<<<<< HEAD
 =======
 		r = -EAGAIN;
 		goto exit;
@@ -1925,28 +2098,38 @@ int mhi_initiate_m3(mhi_device_ctxt *mhi_dev_ctxt)
 	case -ERESTARTSYS:
 		mhi_log(MHI_MSG_CRITICAL | MHI_DBG_POWER,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 			"Going Down...\n");
 		goto exit;
 		break;
 	default:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		mhi_log(MHI_MSG_INFO,
 =======
 		mhi_log(MHI_MSG_INFO | MHI_DBG_POWER,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		mhi_log(MHI_MSG_INFO,
+>>>>>>> 2617302... source
 			"M3 completion received\n");
 		break;
 	}
 	mhi_deassert_device_wake(mhi_dev_ctxt);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/* Turn off PCIe link*/
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	mhi_turn_off_pcie_link(mhi_dev_ctxt);
 	r = mhi_set_bus_request(mhi_dev_ctxt, 0);
 	if (r)
 		mhi_log(MHI_MSG_INFO, "Failed to set bus freq ret %d\n", r);
 exit:
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 	if (abort_m3) {
@@ -1961,6 +2144,8 @@ exit:
 	 * even if we did not set it above. This works since the only other
 	 * entity that sets this flag must also acquire the pm_lock */
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	atomic_set(&mhi_dev_ctxt->flags.m3_work_enabled, 0);
 	mhi_dev_ctxt->flags.pending_M3 = 0;
 	mutex_unlock(&mhi_dev_ctxt->pm_lock);

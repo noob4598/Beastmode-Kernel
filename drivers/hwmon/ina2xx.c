@@ -148,11 +148,15 @@ static int ina2xx_get_value(struct ina2xx_data *data, u8 reg)
 	switch (reg) {
 	case INA2XX_SHUNT_VOLTAGE:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		val = DIV_ROUND_CLOSEST(data->regs[reg],
 =======
 		/* signed register */
 		val = DIV_ROUND_CLOSEST((s16)data->regs[reg],
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		val = DIV_ROUND_CLOSEST(data->regs[reg],
+>>>>>>> 2617302... source
 					data->config->shunt_div);
 		break;
 	case INA2XX_BUS_VOLTAGE:
@@ -165,12 +169,17 @@ static int ina2xx_get_value(struct ina2xx_data *data, u8 reg)
 		break;
 	case INA2XX_CURRENT:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		/* LSB=1mA (selected). Is in mA */
 		val = data->regs[reg];
 =======
 		/* signed register, LSB=1mA (selected), in mA */
 		val = (s16)data->regs[reg];
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		/* LSB=1mA (selected). Is in mA */
+		val = data->regs[reg];
+>>>>>>> 2617302... source
 		break;
 	default:
 		/* programmer goofed */

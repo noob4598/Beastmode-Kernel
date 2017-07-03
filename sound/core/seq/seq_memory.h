@@ -85,9 +85,12 @@ int snd_seq_pool_init(struct snd_seq_pool *pool);
 
 /* done pool - free events */
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 void snd_seq_pool_mark_closing(struct snd_seq_pool *pool);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 int snd_seq_pool_done(struct snd_seq_pool *pool);
 
 /* create pool */

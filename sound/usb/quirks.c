@@ -137,9 +137,12 @@ static int create_fixed_stream_quirk(struct snd_usb_audio *chip,
 		return -ENOMEM;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	INIT_LIST_HEAD(&fp->list);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	if (fp->nr_rates > MAX_NR_RATES) {
 		kfree(fp);
 		return -EINVAL;
@@ -158,6 +161,9 @@ static int create_fixed_stream_quirk(struct snd_usb_audio *chip,
 		? SNDRV_PCM_STREAM_CAPTURE : SNDRV_PCM_STREAM_PLAYBACK;
 	err = snd_usb_add_audio_stream(chip, stream, fp);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	if (err < 0) {
 		kfree(fp);
 		kfree(rate_table);
@@ -168,6 +174,7 @@ static int create_fixed_stream_quirk(struct snd_usb_audio *chip,
 		kfree(fp);
 		kfree(rate_table);
 		return -EINVAL;
+<<<<<<< HEAD
 =======
 	if (err < 0)
 		goto error;
@@ -176,6 +183,8 @@ static int create_fixed_stream_quirk(struct snd_usb_audio *chip,
 		err = -EINVAL;
 		goto error;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	}
 	alts = &iface->altsetting[fp->altset_idx];
 	if (fp->datainterval == 0)
@@ -187,6 +196,7 @@ static int create_fixed_stream_quirk(struct snd_usb_audio *chip,
 	snd_usb_init_sample_rate(chip, fp->iface, alts, fp, fp->rate_max);
 	return 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
  error:
@@ -195,6 +205,8 @@ static int create_fixed_stream_quirk(struct snd_usb_audio *chip,
 	kfree(rate_table);
 	return err;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 }
 
 /*
@@ -262,9 +274,12 @@ static int create_uaxx_quirk(struct snd_usb_audio *chip,
 	fp->datainterval = 0;
 	fp->maxpacksize = le16_to_cpu(get_endpoint(alts, 0)->wMaxPacketSize);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	INIT_LIST_HEAD(&fp->list);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	switch (fp->maxpacksize) {
 	case 0x120:
@@ -289,9 +304,12 @@ static int create_uaxx_quirk(struct snd_usb_audio *chip,
 	err = snd_usb_add_audio_stream(chip, stream, fp);
 	if (err < 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		list_del(&fp->list); /* unlink for avoiding double-free */
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		kfree(fp);
 		return err;
 	}
@@ -344,9 +362,12 @@ int snd_usb_create_quirk(struct snd_usb_audio *chip,
 		[QUIRK_MIDI_AKAI] = create_any_midi_quirk,
 		[QUIRK_MIDI_FTDI] = create_any_midi_quirk,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		[QUIRK_MIDI_CH345] = create_any_midi_quirk,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		[QUIRK_AUDIO_STANDARD_INTERFACE] = create_standard_audio_quirk,
 		[QUIRK_AUDIO_FIXED_ENDPOINT] = create_fixed_stream_quirk,
 		[QUIRK_AUDIO_EDIROL_UAXX] = create_uaxx_quirk,
@@ -934,6 +955,7 @@ void snd_usb_set_interface_quirk(struct usb_device *dev)
 	 * USB interface.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (le16_to_cpu(dev->descriptor.idVendor) == 0x23ba)
 		mdelay(50);
 =======
@@ -944,6 +966,10 @@ void snd_usb_set_interface_quirk(struct usb_device *dev)
 		break;
 	}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (le16_to_cpu(dev->descriptor.idVendor) == 0x23ba)
+		mdelay(50);
+>>>>>>> 2617302... source
 }
 
 void snd_usb_ctl_msg_quirk(struct usb_device *dev, unsigned int pipe,
@@ -957,6 +983,7 @@ void snd_usb_ctl_msg_quirk(struct usb_device *dev, unsigned int pipe,
 	if ((le16_to_cpu(dev->descriptor.idVendor) == 0x23ba) &&
 	    (requesttype & USB_TYPE_MASK) == USB_TYPE_CLASS)
 		mdelay(20);
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 
@@ -982,6 +1009,8 @@ void snd_usb_ctl_msg_quirk(struct usb_device *dev, unsigned int pipe,
 		}
 	}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 }
 
 /*

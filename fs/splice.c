@@ -190,11 +190,14 @@ ssize_t splice_to_pipe(struct pipe_inode_info *pipe,
 	int ret, do_wakeup, page_nr;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (!spd_pages)
 		return 0;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	ret = 0;
 	do_wakeup = 0;
 	page_nr = 0;
@@ -219,9 +222,12 @@ ssize_t splice_to_pipe(struct pipe_inode_info *pipe,
 			buf->private = spd->partial[page_nr].private;
 			buf->ops = spd->ops;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 			buf->flags = 0;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 			if (spd->flags & SPLICE_F_GIFT)
 				buf->flags |= PIPE_BUF_FLAG_GIFT;
 
@@ -392,11 +398,14 @@ __generic_file_splice_read(struct file *in, loff_t *ppos,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (unlikely(!(in->f_mode & FMODE_SPLICE_READ)))
 		return -EINVAL;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	/*
 	 * Now loop over the map and see if we need to start IO on any
 	 * pages, fill in the partial map, etc.
@@ -966,9 +975,12 @@ ssize_t __splice_from_pipe(struct pipe_inode_info *pipe, struct splice_desc *sd,
 	splice_from_pipe_begin(sd);
 	do {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		cond_resched();
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		ret = splice_from_pipe_next(pipe, sd);
 		if (ret > 0)
 			ret = splice_from_pipe_feed(pipe, sd, actor);
@@ -1033,16 +1045,23 @@ generic_file_splice_write(struct pipe_inode_info *pipe, struct file *out,
 	struct inode *inode = mapping->host;
 	struct splice_desc sd = {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.total_len = len,
 		.flags = flags,
 		.pos = *ppos,
 =======
 		.flags = flags,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		.total_len = len,
+		.flags = flags,
+		.pos = *ppos,
+>>>>>>> 2617302... source
 		.u.file = out,
 	};
 	ssize_t ret;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 	ret = generic_write_checks(out, ppos, &len, S_ISBLK(inode->i_mode));
@@ -1052,6 +1071,8 @@ generic_file_splice_write(struct pipe_inode_info *pipe, struct file *out,
 	sd.pos = *ppos;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	pipe_lock(pipe);
 
 	splice_from_pipe_begin(&sd);
@@ -1114,11 +1135,14 @@ static ssize_t default_file_splice_write(struct pipe_inode_info *pipe,
 	ssize_t ret;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (unlikely(!(out->f_mode & FMODE_SPLICE_WRITE)))
 		return -EINVAL;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	ret = splice_from_pipe(pipe, out, ppos, len, flags, write_pipe_buf);
 	if (ret > 0)
 		*ppos += ret;
@@ -1225,10 +1249,14 @@ ssize_t splice_direct_to_actor(struct file *in, struct splice_desc *sd,
 	umode_t i_mode;
 	size_t len;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int i, flags;
 =======
 	int i, flags, more;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	int i, flags;
+>>>>>>> 2617302... source
 
 	/*
 	 * We require the input being a regular file, as we don't want to
@@ -1272,9 +1300,12 @@ ssize_t splice_direct_to_actor(struct file *in, struct splice_desc *sd,
 	 */
 	sd->flags &= ~SPLICE_F_NONBLOCK;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	more = sd->flags & SPLICE_F_MORE;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	while (len) {
 		size_t read_len;
@@ -1289,6 +1320,7 @@ ssize_t splice_direct_to_actor(struct file *in, struct splice_desc *sd,
 
 		/*
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		 * If more data is pending, set SPLICE_F_MORE
 		 * If this is the last data and SPLICE_F_MORE was not set
@@ -1300,6 +1332,8 @@ ssize_t splice_direct_to_actor(struct file *in, struct splice_desc *sd,
 			sd->flags &= ~SPLICE_F_MORE;
 		/*
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		 * NOTE: nonblocking mode only applies to the input. We
 		 * must not do the output in nonblocking mode as then we
 		 * could get stuck data in the internal pipe:

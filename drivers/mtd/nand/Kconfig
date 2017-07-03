@@ -542,10 +542,14 @@ config MTD_NAND_FSMC
 
 config MTD_NAND_XWAY
 <<<<<<< HEAD
+<<<<<<< HEAD
 	tristate "Support for NAND on Lantiq XWAY SoC"
 =======
 	bool "Support for NAND on Lantiq XWAY SoC"
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	tristate "Support for NAND on Lantiq XWAY SoC"
+>>>>>>> 2617302... source
 	depends on LANTIQ && SOC_TYPE_XWAY
 	select MTD_NAND_PLATFORM
 	help

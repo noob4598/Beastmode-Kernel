@@ -378,11 +378,17 @@ struct root_domain {
 	cpumask_var_t online;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* Indicate more than one runnable task for any CPU */
 	bool overload;
 
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+/* Indicate more than one runnable task for any CPU */
+	bool overload;
+
+>>>>>>> 2617302... source
 	/*
 	 * The "RT overload" flag: it gets set if a CPU has more than
 	 * one runnable RT task.
@@ -1116,6 +1122,9 @@ static inline void inc_nr_running(struct rq *rq)
 	rq->nr_running++;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	if (rq->nr_running == 2) {
 #ifdef CONFIG_SMP
 		if (!rq->rd->overload)
@@ -1123,15 +1132,19 @@ static inline void inc_nr_running(struct rq *rq)
 #endif
 
 #ifdef CONFIG_NO_HZ_FULL
+<<<<<<< HEAD
 =======
 #ifdef CONFIG_NO_HZ_FULL
 	if (rq->nr_running == 2) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		if (tick_nohz_full_cpu(rq->cpu)) {
 			/* Order rq->nr_running write against the IPI */
 			smp_wmb();
 			smp_send_reschedule(rq->cpu);
 		}
+<<<<<<< HEAD
 <<<<<<< HEAD
 #endif
 	}
@@ -1139,6 +1152,10 @@ static inline void inc_nr_running(struct rq *rq)
        }
 #endif
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+#endif
+	}
+>>>>>>> 2617302... source
 }
 
 static inline void dec_nr_running(struct rq *rq)
@@ -1433,6 +1450,7 @@ static inline u64 irq_time_read(int cpu)
 #endif /* CONFIG_64BIT */
 #endif /* CONFIG_IRQ_TIME_ACCOUNTING */
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 static inline void account_reset_rq(struct rq *rq)
@@ -1448,3 +1466,5 @@ static inline void account_reset_rq(struct rq *rq)
 #endif
 }
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source

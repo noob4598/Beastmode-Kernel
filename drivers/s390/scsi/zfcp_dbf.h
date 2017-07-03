@@ -3,10 +3,14 @@
  * debug feature declarations
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright IBM Corp. 2008, 2010
 =======
  * Copyright IBM Corp. 2008, 2016
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+ * Copyright IBM Corp. 2008, 2010
+>>>>>>> 2617302... source
  */
 
 #ifndef ZFCP_DBF_H
@@ -22,6 +26,7 @@
 #define ZFCP_DBF_INVALID_LUN	0xFFFFFFFFFFFFFFFFull
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 enum zfcp_dbf_pseudo_erp_act_type {
 	ZFCP_PSEUDO_ERP_ACTION_RPORT_ADD = 0xff,
@@ -29,6 +34,8 @@ enum zfcp_dbf_pseudo_erp_act_type {
 };
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 /**
  * struct zfcp_dbf_rec_trigger - trace record for triggered recovery action
  * @ready: number of ready recovery actions
@@ -123,9 +130,12 @@ struct zfcp_dbf_san {
 #define ZFCP_DBF_SAN_MAX_PAYLOAD (FC_CT_HDR_LEN + 32)
 	char payload[ZFCP_DBF_SAN_MAX_PAYLOAD];
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	u16 pl_len;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 } __packed;
 
 /**
@@ -143,10 +153,13 @@ struct zfcp_dbf_hba_res {
 	u32 fsf_status;
 	u8  fsf_status_qual[FSF_STATUS_QUALIFIER_SIZE];
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	u32 port_handle;
 	u32 lun_handle;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 } __packed;
 
 /**
@@ -297,6 +310,7 @@ struct zfcp_dbf {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 /**
  * zfcp_dbf_hba_fsf_resp_suppress - true if we should not trace by default
@@ -323,15 +337,21 @@ bool zfcp_dbf_hba_fsf_resp_suppress(struct zfcp_fsf_req *req)
 }
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 static inline
 void zfcp_dbf_hba_fsf_resp(char *tag, int level, struct zfcp_fsf_req *req)
 {
 	if (level <= req->adapter->dbf->hba->level)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		zfcp_dbf_hba_fsf_res(tag, req);
 =======
 		zfcp_dbf_hba_fsf_res(tag, level, req);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		zfcp_dbf_hba_fsf_res(tag, req);
+>>>>>>> 2617302... source
 }
 
 /**
@@ -349,12 +369,16 @@ void zfcp_dbf_hba_fsf_response(struct zfcp_fsf_req *req)
 
 	} else if (qtcb->header.fsf_status != FSF_GOOD) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		zfcp_dbf_hba_fsf_resp("fs_ferr", 1, req);
 =======
 		zfcp_dbf_hba_fsf_resp("fs_ferr",
 				      zfcp_dbf_hba_fsf_resp_suppress(req)
 				      ? 5 : 1, req);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		zfcp_dbf_hba_fsf_resp("fs_ferr", 1, req);
+>>>>>>> 2617302... source
 
 	} else if ((req->fsf_command == FSF_QTCB_OPEN_PORT_WITH_DID) ||
 		   (req->fsf_command == FSF_QTCB_OPEN_LUN)) {
@@ -377,10 +401,14 @@ void _zfcp_dbf_scsi(char *tag, int level, struct scsi_cmnd *scmd,
 
 	if (level <= adapter->dbf->scsi->level)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		zfcp_dbf_scsi(tag, scmd, req);
 =======
 		zfcp_dbf_scsi(tag, level, scmd, req);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		zfcp_dbf_scsi(tag, scmd, req);
+>>>>>>> 2617302... source
 }
 
 /**
@@ -443,6 +471,7 @@ void zfcp_dbf_scsi_devreset(char *tag, struct scsi_cmnd *scmnd, u8 flag)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 /**
  * zfcp_dbf_scsi_nullcmnd() - trace NULLify of SCSI command in dev/tgt-reset.
@@ -456,4 +485,6 @@ static inline void zfcp_dbf_scsi_nullcmnd(struct scsi_cmnd *scmnd,
 }
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 #endif /* ZFCP_DBF_H */

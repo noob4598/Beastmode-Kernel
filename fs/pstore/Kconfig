@@ -49,6 +49,7 @@ config PSTORE_RAM
 
 	  For more information, see Documentation/ramoops.txt.
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 config PSTORE_RAM_ANNOTATION_APPEND
@@ -65,3 +66,5 @@ config PSTORE_RAM_ANNOTATION_APPEND
 	  and merged to annotation-ramoops file.
 	  If unsure, say N.
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source

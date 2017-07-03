@@ -200,9 +200,12 @@ bool sk_net_capable(const struct sock *sk, int cap)
 EXPORT_SYMBOL(sk_net_capable);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 #ifdef CONFIG_MEMCG_KMEM
 int mem_cgroup_sockets_init(struct mem_cgroup *memcg, struct cgroup_subsys *ss)
 {
@@ -432,10 +435,15 @@ static void sock_warn_obsolete_bsdism(const char *name)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define SK_FLAGS_TIMESTAMP ((1UL << SOCK_TIMESTAMP) | (1UL << SOCK_TIMESTAMPING_RX_SOFTWARE))
 
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+#define SK_FLAGS_TIMESTAMP ((1UL << SOCK_TIMESTAMP) | (1UL << SOCK_TIMESTAMPING_RX_SOFTWARE))
+
+>>>>>>> 2617302... source
 static void sock_disable_timestamp(struct sock *sk, unsigned long flags)
 {
 	if (sk->sk_flags & flags) {
@@ -743,10 +751,14 @@ int sock_setsockopt(struct socket *sock, int level, int optname,
 set_sndbuf:
 		sk->sk_userlocks |= SOCK_SNDBUF_LOCK;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		sk->sk_sndbuf = max_t(u32, val * 2, SOCK_MIN_SNDBUF);
 =======
 		sk->sk_sndbuf = max_t(int, val * 2, SOCK_MIN_SNDBUF);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		sk->sk_sndbuf = max_t(u32, val * 2, SOCK_MIN_SNDBUF);
+>>>>>>> 2617302... source
 		/* Wake up sending tasks if we upped the value. */
 		sk->sk_write_space(sk);
 		break;
@@ -783,10 +795,14 @@ set_rcvbuf:
 		 * is the most desirable behavior.
 		 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		sk->sk_rcvbuf = max_t(u32, val * 2, SOCK_MIN_RCVBUF);
 =======
 		sk->sk_rcvbuf = max_t(int, val * 2, SOCK_MIN_RCVBUF);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		sk->sk_rcvbuf = max_t(u32, val * 2, SOCK_MIN_RCVBUF);
+>>>>>>> 2617302... source
 		break;
 
 	case SO_RCVBUFFORCE:
@@ -1435,6 +1451,7 @@ static void __sk_free(struct sock *sk)
 			 __func__, atomic_read(&sk->sk_omem_alloc));
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (sk->sk_frag.page) {
 		put_page(sk->sk_frag.page);
@@ -1442,6 +1459,8 @@ static void __sk_free(struct sock *sk)
 	}
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	if (sk->sk_peer_cred)
 		put_cred(sk->sk_peer_cred);
 	put_pid(sk->sk_peer_pid);
@@ -1555,9 +1574,12 @@ struct sock *sk_clone_lock(const struct sock *sk, const gfp_t priority)
 
 		newsk->sk_err	   = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		newsk->sk_err_soft = 0;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		newsk->sk_priority = 0;
 		/*
 		 * Before updating sk_refcnt, we must commit prior changes to memory
@@ -1658,6 +1680,7 @@ void sock_rfree(struct sk_buff *skb)
 EXPORT_SYMBOL(sock_rfree);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 void sock_efree(struct sk_buff *skb)
 {
@@ -1666,6 +1689,8 @@ void sock_efree(struct sk_buff *skb)
 EXPORT_SYMBOL(sock_efree);
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 void sock_edemux(struct sk_buff *skb)
 {
 	struct sock *sk = skb->sk;
@@ -2101,12 +2126,16 @@ EXPORT_SYMBOL(__sk_mem_schedule);
  *	__sk_reclaim - reclaim memory_allocated
  *	@sk: socket
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
  */
 void __sk_mem_reclaim(struct sock *sk)
 {
 	sk_memory_allocated_sub(sk,
 				sk->sk_forward_alloc >> SK_MEM_QUANTUM_SHIFT);
 	sk->sk_forward_alloc &= SK_MEM_QUANTUM - 1;
+<<<<<<< HEAD
 =======
  *	@amount: number of bytes (rounded down to a SK_MEM_QUANTUM multiple)
  */
@@ -2116,6 +2145,8 @@ void __sk_mem_reclaim(struct sock *sk, int amount)
 	sk_memory_allocated_sub(sk, amount);
 	sk->sk_forward_alloc -= amount << SK_MEM_QUANTUM_SHIFT;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	if (sk_under_memory_pressure(sk) &&
 	    (sk_memory_allocated(sk) < sk_prot_mem_limits(sk, 0)))
@@ -2617,13 +2648,19 @@ void sk_common_release(struct sock *sk)
 	sk_refcnt_debug_release(sk);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	if (sk->sk_frag.page) {
 		put_page(sk->sk_frag.page);
 		sk->sk_frag.page = NULL;
 	}
 
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	sock_put(sk);
 }
 EXPORT_SYMBOL(sk_common_release);

@@ -247,16 +247,23 @@ acpi_tb_print_table_header(acpi_physical_address address,
 	struct acpi_table_header local_header;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	/*
 	 * The reason that the Address is cast to a void pointer is so that we
 	 * can use %p which will work properly on both 32-bit and 64-bit hosts.
 	 */
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	if (ACPI_COMPARE_NAME(header->signature, ACPI_SIG_FACS)) {
 
 		/* FACS only has signature and length fields */
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 		ACPI_INFO((AE_INFO, "%4.4s %p %05X",
 			   header->signature, ACPI_CAST_PTR(void, address),
@@ -264,6 +271,10 @@ acpi_tb_print_table_header(acpi_physical_address address,
 		ACPI_INFO((AE_INFO, "%4.4s 0x%8.8X%8.8X %05X",
 			   header->signature, ACPI_FORMAT_UINT64(address),
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		ACPI_INFO((AE_INFO, "%4.4s %p %05X",
+			   header->signature, ACPI_CAST_PTR(void, address),
+>>>>>>> 2617302... source
 			   header->length));
 	} else if (ACPI_COMPARE_NAME(header->signature, ACPI_SIG_RSDP)) {
 
@@ -275,12 +286,17 @@ acpi_tb_print_table_header(acpi_physical_address address,
 		acpi_tb_fix_string(local_header.oem_id, ACPI_OEM_ID_SIZE);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ACPI_INFO((AE_INFO, "RSDP %p %05X (v%.2d %6.6s)",
 			   ACPI_CAST_PTR (void, address),
 =======
 		ACPI_INFO((AE_INFO, "RSDP 0x%8.8X%8.8X %05X (v%.2d %6.6s)",
 			   ACPI_FORMAT_UINT64(address),
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		ACPI_INFO((AE_INFO, "RSDP %p %05X (v%.2d %6.6s)",
+			   ACPI_CAST_PTR (void, address),
+>>>>>>> 2617302... source
 			   (ACPI_CAST_PTR(struct acpi_table_rsdp, header)->
 			    revision >
 			    0) ? ACPI_CAST_PTR(struct acpi_table_rsdp,
@@ -295,12 +311,17 @@ acpi_tb_print_table_header(acpi_physical_address address,
 
 		ACPI_INFO((AE_INFO,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			   "%4.4s %p %05X (v%.2d %6.6s %8.8s %08X %4.4s %08X)",
 			   local_header.signature, ACPI_CAST_PTR(void, address),
 =======
 			   "%-4.4s 0x%8.8X%8.8X %05X (v%.2d %-6.6s %-8.8s %08X %-4.4s %08X)",
 			   local_header.signature, ACPI_FORMAT_UINT64(address),
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			   "%4.4s %p %05X (v%.2d %6.6s %8.8s %08X %4.4s %08X)",
+			   local_header.signature, ACPI_CAST_PTR(void, address),
+>>>>>>> 2617302... source
 			   local_header.length, local_header.revision,
 			   local_header.oem_id, local_header.oem_table_id,
 			   local_header.oem_revision,
@@ -493,12 +514,17 @@ acpi_tb_install_table(acpi_physical_address address,
 	if (!table) {
 		ACPI_ERROR((AE_INFO,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			    "Could not map memory for table [%s] at %p",
 			    signature, ACPI_CAST_PTR(void, address)));
 =======
 			    "Could not map memory for table [%s] at %8.8X%8.8X",
 			    signature, ACPI_FORMAT_UINT64(address)));
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			    "Could not map memory for table [%s] at %p",
+			    signature, ACPI_CAST_PTR(void, address)));
+>>>>>>> 2617302... source
 		return;
 	}
 

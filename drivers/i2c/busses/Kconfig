@@ -110,10 +110,13 @@ config I2C_I801
 	    Wellsburg (PCH)
 	    Coleto Creek (PCH)
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	    Wildcat Point-LP (PCH)
 	    BayTrail (SOC)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	  This driver can also be built as a module.  If so, the module
 	  will be called i2c-i801.

@@ -181,6 +181,7 @@ static u16 bnx2x_free_tx_pkt(struct bnx2x *bp, struct bnx2x_fp_txdata *txdata,
 	bd_idx = TX_BD(NEXT_TX_IDX(bd_idx));
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (tx_buf->flags & BNX2X_HAS_SECOND_PBD) {
 		/* Skip second parse bd... */
@@ -189,6 +190,8 @@ static u16 bnx2x_free_tx_pkt(struct bnx2x *bp, struct bnx2x_fp_txdata *txdata,
 	}
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	/* TSO headers+data bds share a common mapping. See bnx2x_tx_split() */
 	if (tx_buf->flags & BNX2X_TSO_SPLIT_BD) {
 		tx_data_bd = &txdata->tx_desc_ring[bd_idx].reg_bd;
@@ -755,11 +758,15 @@ static void bnx2x_tpa_stop(struct bnx2x *bp, struct bnx2x_fastpath *fp,
 		return;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	bnx2x_frag_free(fp, new_data);
 =======
 	if (new_data)
 		bnx2x_frag_free(fp, new_data);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	bnx2x_frag_free(fp, new_data);
+>>>>>>> 2617302... source
 drop:
 	/* drop the packet and keep the buffer in the bin */
 	DP(NETIF_MSG_RX_STATUS,
@@ -3769,11 +3776,14 @@ netdev_tx_t bnx2x_start_xmit(struct sk_buff *skb, struct net_device *dev)
 			SET_FLAG(tx_start_bd->general_data,
 				 ETH_TX_START_BD_TUNNEL_EXIST, 1);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 			tx_buf->flags |= BNX2X_HAS_SECOND_PBD;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 			nbd++;
 		} else if (xmit_type & XMIT_CSUM) {
 			/* Set PBD in checksum offload case w/o encapsulation */

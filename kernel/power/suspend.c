@@ -31,16 +31,22 @@
 #include "power.h"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 const char *const pm_states[PM_SUSPEND_MAX] = {
 	[PM_SUSPEND_FREEZE]	= "freeze",
 	[PM_SUSPEND_STANDBY]	= "standby",
 	[PM_SUSPEND_MEM]	= "mem",
+<<<<<<< HEAD
 =======
 struct pm_sleep_state pm_states[PM_SUSPEND_MAX] = {
 	[PM_SUSPEND_FREEZE] = { .label = "freeze", .state = PM_SUSPEND_FREEZE },
 	[PM_SUSPEND_STANDBY] = { .label = "standby", },
 	[PM_SUSPEND_MEM] = { .label = "mem", },
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 };
 
 static const struct platform_suspend_ops *suspend_ops;
@@ -71,6 +77,7 @@ void freeze_wake(void)
 EXPORT_SYMBOL_GPL(freeze_wake);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 static bool valid_state(suspend_state_t state)
 {
@@ -83,12 +90,15 @@ static bool valid_state(suspend_state_t state)
 }
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 /**
  * suspend_set_ops - Set the global suspend method table.
  * @ops: Suspend operations to use.
  */
 void suspend_set_ops(const struct platform_suspend_ops *ops)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	lock_system_sleep();
 	suspend_ops = ops;
@@ -102,11 +112,18 @@ void suspend_set_ops(const struct platform_suspend_ops *ops)
 		pm_states[i].state = valid_state(i) ? i : 0;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	lock_system_sleep();
+	suspend_ops = ops;
+>>>>>>> 2617302... source
 	unlock_system_sleep();
 }
 EXPORT_SYMBOL_GPL(suspend_set_ops);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 bool valid_state(suspend_state_t state)
 {
 	if (state == PM_SUSPEND_FREEZE) {
@@ -131,8 +148,11 @@ bool valid_state(suspend_state_t state)
 	return suspend_ops && suspend_ops->valid && suspend_ops->valid(state);
 }
 
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 /**
  * suspend_valid_only_mem - Generic memory-only valid callback.
  *
@@ -147,6 +167,9 @@ int suspend_valid_only_mem(suspend_state_t state)
 EXPORT_SYMBOL_GPL(suspend_valid_only_mem);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 static bool platform_suspend_again(void)
 {
 	int count;
@@ -169,8 +192,11 @@ static bool platform_suspend_again(void)
 	return suspend;
 }
 
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 static int suspend_test(int level)
 {
 #ifdef CONFIG_PM_DEBUG
@@ -340,10 +366,14 @@ int suspend_devices_and_enter(suspend_state_t state)
 		error = suspend_enter(state, &wakeup);
 	} while (!error && !wakeup && need_suspend_ops(state)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		&& platform_suspend_again());
 =======
 		&& suspend_ops->suspend_again && suspend_ops->suspend_again());
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		&& platform_suspend_again());
+>>>>>>> 2617302... source
 
  Resume_devices:
 	suspend_test_start();
@@ -389,6 +419,7 @@ static int enter_state(suspend_state_t state)
 	int error;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!valid_state(state))
 		return -ENODEV;
 
@@ -405,6 +436,11 @@ static int enter_state(suspend_state_t state)
 		return -EINVAL;
 	}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (!valid_state(state))
+		return -ENODEV;
+
+>>>>>>> 2617302... source
 	if (!mutex_trylock(&pm_mutex))
 		return -EBUSY;
 
@@ -416,10 +452,14 @@ static int enter_state(suspend_state_t state)
 	printk("done.\n");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_debug("PM: Preparing system for %s sleep\n", pm_states[state]);
 =======
 	pr_debug("PM: Preparing system for %s sleep\n", pm_states[state].label);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	pr_debug("PM: Preparing system for %s sleep\n", pm_states[state]);
+>>>>>>> 2617302... source
 	error = suspend_prepare(state);
 	if (error)
 		goto Unlock;
@@ -428,10 +468,14 @@ static int enter_state(suspend_state_t state)
 		goto Finish;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_debug("PM: Entering %s sleep\n", pm_states[state]);
 =======
 	pr_debug("PM: Entering %s sleep\n", pm_states[state].label);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	pr_debug("PM: Entering %s sleep\n", pm_states[state]);
+>>>>>>> 2617302... source
 	pm_restrict_gfp_mask();
 	error = suspend_devices_and_enter(state);
 	pm_restore_gfp_mask();

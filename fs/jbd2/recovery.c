@@ -428,9 +428,12 @@ static int do_one_pass(journal_t *journal,
 	__u32			crc32_sum = ~0; /* Transactional Checksums */
 	int			descr_csum_size = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	int			block_error = 0;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	/*
 	 * First thing is to establish what we expect to find in the log
@@ -526,9 +529,12 @@ static int do_one_pass(journal_t *journal,
 							  bh->b_data)) {
 				err = -EIO;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 				brelse(bh);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 				goto failed;
 			}
 
@@ -608,11 +614,15 @@ static int do_one_pass(journal_t *journal,
 						       "block %llu in log\n",
 						       blocknr);
 <<<<<<< HEAD
+<<<<<<< HEAD
 						continue;
 =======
 						block_error = 1;
 						goto skip_write;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+						continue;
+>>>>>>> 2617302... source
 					}
 
 					/* Find a buffer for the new
@@ -812,11 +822,15 @@ static int do_one_pass(journal_t *journal,
 		}
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 	if (block_error && success == 0)
 		success = -EIO;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+
+>>>>>>> 2617302... source
 	return success;
 
  failed:

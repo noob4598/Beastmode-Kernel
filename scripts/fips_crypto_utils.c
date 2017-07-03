@@ -14,6 +14,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 #include <string.h>
@@ -22,6 +23,9 @@ int update_crypto_hmac (const char *, const char *, unsigned long);
 int collect_crypto_bytes (const char *, const char *, unsigned long,
 			  unsigned long, const char *);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+
+>>>>>>> 2617302... source
 
 int main (int argc, char **argv)
 {

@@ -652,9 +652,12 @@ static int init_volumes(struct ubi_device *ubi,
 			ubi_err("%d PEBs are corrupted and not used",
 				ubi->corr_peb_count);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		return -ENOSPC;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	}
 	ubi->rsvd_pebs += reserved_pebs;
 	ubi->avail_pebs -= reserved_pebs;

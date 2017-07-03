@@ -17,10 +17,13 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <linux/atomic.h>
 #include <linux/err.h>
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 #include <linux/file.h>
 #include <linux/freezer.h>
 #include <linux/fs.h>
@@ -120,9 +123,12 @@ struct ion_client {
 struct ion_handle {
 	struct kref ref;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	unsigned int user_ref_count;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	struct ion_client *client;
 	struct ion_buffer *buffer;
 	struct rb_node node;
@@ -407,6 +413,7 @@ static void ion_handle_get(struct ion_handle *handle)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 /* Must hold the client lock */
 static struct ion_handle* ion_handle_get_check_overflow(struct ion_handle *handle)
@@ -423,12 +430,15 @@ static int ion_handle_put_nolock(struct ion_handle *handle)
 }
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 int ion_handle_put(struct ion_handle *handle)
 {
 	struct ion_client *client = handle->client;
 	int ret;
 
 	mutex_lock(&client->lock);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	ret = kref_put(&handle->ref, ion_handle_destroy);
 	mutex_unlock(&client->lock);
@@ -480,6 +490,10 @@ static int user_ion_handle_put_nolock(struct ion_handle *handle)
 		ret = ion_handle_put_nolock(handle);
 	}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	ret = kref_put(&handle->ref, ion_handle_destroy);
+	mutex_unlock(&client->lock);
+>>>>>>> 2617302... source
 
 	return ret;
 }
@@ -502,15 +516,22 @@ static struct ion_handle *ion_handle_lookup(struct ion_client *client,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 struct ion_handle *ion_handle_get_by_id(struct ion_client *client,
 =======
 static struct ion_handle *ion_handle_get_by_id_nolock(struct ion_client *client,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+struct ion_handle *ion_handle_get_by_id(struct ion_client *client,
+>>>>>>> 2617302... source
 						int id)
 {
 	struct ion_handle *handle;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	mutex_lock(&client->lock);
 	handle = idr_find(&client->idr, id);
 	if (handle)
@@ -518,6 +539,7 @@ static struct ion_handle *ion_handle_get_by_id_nolock(struct ion_client *client,
 	mutex_unlock(&client->lock);
 
 	return handle ? handle : ERR_PTR(-EINVAL);
+<<<<<<< HEAD
 =======
 	handle = idr_find(&client->idr, id);
 	if (handle)
@@ -537,6 +559,8 @@ struct ion_handle *ion_handle_get_by_id(struct ion_client *client,
 
 	return handle;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 }
 
 static bool ion_handle_validate(struct ion_client *client,
@@ -578,6 +602,7 @@ static int ion_handle_add(struct ion_client *client, struct ion_handle *handle)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 struct ion_handle *ion_alloc(struct ion_client *client, size_t len,
 			     size_t align, unsigned int heap_id_mask,
 			     unsigned int flags)
@@ -586,6 +611,11 @@ static struct ion_handle *__ion_alloc(struct ion_client *client, size_t len,
 			     size_t align, unsigned int heap_id_mask,
 			     unsigned int flags, bool grab_handle)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+struct ion_handle *ion_alloc(struct ion_client *client, size_t len,
+			     size_t align, unsigned int heap_id_mask,
+			     unsigned int flags)
+>>>>>>> 2617302... source
 {
 	struct ion_handle *handle;
 	struct ion_device *dev = client->dev;
@@ -686,10 +716,13 @@ static struct ion_handle *__ion_alloc(struct ion_client *client, size_t len,
 
 	mutex_lock(&client->lock);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (grab_handle)
 		ion_handle_get(handle);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	ret = ion_handle_add(client, handle);
 	mutex_unlock(&client->lock);
 	if (ret) {
@@ -699,6 +732,7 @@ static struct ion_handle *__ion_alloc(struct ion_client *client, size_t len,
 
 	return handle;
 }
+<<<<<<< HEAD
 <<<<<<< HEAD
 EXPORT_SYMBOL(ion_alloc);
 
@@ -714,11 +748,17 @@ struct ion_handle *ion_alloc(struct ion_client *client, size_t len,
 EXPORT_SYMBOL(ion_alloc);
 
 static void ion_free_nolock(struct ion_client *client, struct ion_handle *handle)
+=======
+EXPORT_SYMBOL(ion_alloc);
+
+void ion_free(struct ion_client *client, struct ion_handle *handle)
+>>>>>>> 2617302... source
 {
 	bool valid_handle;
 
 	BUG_ON(client != handle->client);
 
+<<<<<<< HEAD
 	valid_handle = ion_handle_validate(client, handle);
 	if (!valid_handle) {
 		WARN(1, "%s: invalid handle passed to free.\n", __func__);
@@ -735,6 +775,8 @@ static void user_ion_free_nolock(struct ion_client *client, struct ion_handle *h
 	BUG_ON(client != handle->client);
 
 <<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	mutex_lock(&client->lock);
 	valid_handle = ion_handle_validate(client, handle);
 	if (!valid_handle) {
@@ -744,6 +786,7 @@ static void user_ion_free_nolock(struct ion_client *client, struct ion_handle *h
 	}
 	mutex_unlock(&client->lock);
 	ion_handle_put(handle);
+<<<<<<< HEAD
 =======
 	valid_handle = ion_handle_validate(client, handle);
 	if (!valid_handle) {
@@ -765,6 +808,8 @@ void ion_free(struct ion_client *client, struct ion_handle *handle)
 	ion_free_nolock(client, handle);
 	mutex_unlock(&client->lock);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 }
 EXPORT_SYMBOL(ion_free);
 
@@ -905,10 +950,14 @@ static int ion_debug_client_show(struct seq_file *s, void *unused)
 						     node);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		seq_printf(s, "%16.16s: %16zx : %16d : %12p",
 =======
 		seq_printf(s, "%16.16s: %16zx : %16d : %12pK",
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		seq_printf(s, "%16.16s: %16zx : %16d : %12p",
+>>>>>>> 2617302... source
 				handle->buffer->heap->name,
 				handle->buffer->size,
 				atomic_read(&handle->ref.refcount),
@@ -1264,10 +1313,14 @@ static void ion_vm_open(struct vm_area_struct *vma)
 	list_add(&vma_list->list, &buffer->vmas);
 	mutex_unlock(&buffer->lock);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_debug("%s: adding %p\n", __func__, vma);
 =======
 	pr_debug("%s: adding %pK\n", __func__, vma);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	pr_debug("%s: adding %p\n", __func__, vma);
+>>>>>>> 2617302... source
 }
 
 static void ion_vm_close(struct vm_area_struct *vma)
@@ -1283,10 +1336,14 @@ static void ion_vm_close(struct vm_area_struct *vma)
 		list_del(&vma_list->list);
 		kfree(vma_list);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_debug("%s: deleting %p\n", __func__, vma);
 =======
 		pr_debug("%s: deleting %pK\n", __func__, vma);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		pr_debug("%s: deleting %p\n", __func__, vma);
+>>>>>>> 2617302... source
 		break;
 	}
 	mutex_unlock(&buffer->lock);
@@ -1469,10 +1526,14 @@ struct ion_handle *ion_import_dma_buf(struct ion_client *client, int fd)
 	handle = ion_handle_lookup(client, buffer);
 	if (!IS_ERR(handle)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ion_handle_get(handle);
 =======
 		handle = ion_handle_get_check_overflow(handle);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		ion_handle_get(handle);
+>>>>>>> 2617302... source
 		mutex_unlock(&client->lock);
 		goto end;
 	}
@@ -1563,6 +1624,9 @@ static long ion_ioctl(struct file *filp, unsigned int cmd, unsigned long arg)
 		struct ion_handle *handle;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		handle = ion_alloc(client, data.allocation.len,
 						data.allocation.align,
 						data.allocation.heap_mask,
@@ -1570,6 +1634,7 @@ static long ion_ioctl(struct file *filp, unsigned int cmd, unsigned long arg)
 		if (IS_ERR(handle))
 			return PTR_ERR(handle);
 
+<<<<<<< HEAD
 =======
 		handle = __ion_alloc(client, data.allocation.len,
 						data.allocation.align,
@@ -1579,6 +1644,8 @@ static long ion_ioctl(struct file *filp, unsigned int cmd, unsigned long arg)
 			return PTR_ERR(handle);
 		pass_to_user(handle);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		data.allocation.handle = handle->id;
 
 		cleanup_handle = handle;
@@ -1589,11 +1656,15 @@ static long ion_ioctl(struct file *filp, unsigned int cmd, unsigned long arg)
 		struct ion_handle *handle;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		handle = ion_handle_get_by_id(client, data.handle.handle);
 		if (IS_ERR(handle))
 			return PTR_ERR(handle);
 		ion_free(client, handle);
 		ion_handle_put(handle);
+<<<<<<< HEAD
 =======
 		mutex_lock(&client->lock);
 		handle = ion_handle_get_by_id_nolock(client, data.handle.handle);
@@ -1605,6 +1676,8 @@ static long ion_ioctl(struct file *filp, unsigned int cmd, unsigned long arg)
 		ion_handle_put_nolock(handle);
 		mutex_unlock(&client->lock);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		break;
 	}
 	case ION_IOC_SHARE:
@@ -1626,10 +1699,14 @@ static long ion_ioctl(struct file *filp, unsigned int cmd, unsigned long arg)
 		struct ion_handle *handle;
 		handle = ion_import_dma_buf(client, data.fd.fd);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		if (IS_ERR(handle))
 			ret = PTR_ERR(handle);
 		else
 			data.handle.handle = handle->id;
+<<<<<<< HEAD
 =======
 		if (IS_ERR(handle)) {
 			ret = PTR_ERR(handle);
@@ -1641,6 +1718,8 @@ static long ion_ioctl(struct file *filp, unsigned int cmd, unsigned long arg)
 				data.handle.handle = handle->id;
 		}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		break;
 	}
 	case ION_IOC_SYNC:
@@ -1677,11 +1756,15 @@ static long ion_ioctl(struct file *filp, unsigned int cmd, unsigned long arg)
 	if (dir & _IOC_READ) {
 		if (copy_to_user((void __user *)arg, &data, _IOC_SIZE(cmd))) {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 			if (cleanup_handle)
 				ion_free(client, cleanup_handle);
 			return -EFAULT;
 		}
 	}
+<<<<<<< HEAD
 =======
 			if (cleanup_handle) {
 				mutex_lock(&client->lock);
@@ -1695,6 +1778,8 @@ static long ion_ioctl(struct file *filp, unsigned int cmd, unsigned long arg)
 	if (cleanup_handle)
 		ion_handle_put(cleanup_handle);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	return ret;
 }
 

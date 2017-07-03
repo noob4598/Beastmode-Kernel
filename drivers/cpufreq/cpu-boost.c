@@ -27,20 +27,30 @@
 #include <linux/time.h>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 //#ifdef CONFIG_STATE_NOTIFIER
 //#include <linux/state_notifier.h>
 //#endif
 
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 struct cpu_sync {
 	struct task_struct *thread;
 	wait_queue_head_t sync_wq;
 	struct delayed_work boost_rem;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct delayed_work input_boost_rem;
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	struct delayed_work input_boost_rem;
+>>>>>>> 2617302... source
 	int cpu;
 	spinlock_t lock;
 	bool pending;
@@ -50,9 +60,12 @@ struct cpu_sync {
 	unsigned int input_boost_min;
 	unsigned int task_load;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	unsigned int input_boost_freq;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 };
 
 /****************************************************************/
@@ -74,11 +87,16 @@ static unsigned int sync_threshold;
 module_param(sync_threshold, uint, 0644);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static unsigned int input_boost_freq;
 module_param(input_boost_freq, uint, 0644);
 =======
 static bool input_boost_enabled;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+static unsigned int input_boost_freq;
+module_param(input_boost_freq, uint, 0644);
+>>>>>>> 2617302... source
 
 static unsigned int input_boost_ms = 40;
 module_param(input_boost_ms, uint, 0644);
@@ -89,6 +107,7 @@ module_param(migration_load_threshold, uint, 0644);
 static bool load_based_syncs;
 module_param(load_based_syncs, bool, 0644);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static u64 last_input_time;
 #define MIN_INPUT_INTERVAL (150 * USEC_PER_MSEC)
@@ -166,6 +185,11 @@ static const struct kernel_param_ops param_ops_input_boost_freq = {
 module_param_cb(input_boost_freq, &param_ops_input_boost_freq, NULL, 0644);
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+static u64 last_input_time;
+#define MIN_INPUT_INTERVAL (150 * USEC_PER_MSEC)
+
+>>>>>>> 2617302... source
 /*
  * The CPUFREQ_ADJUST notifier is used to override the current policy min to
  * make sure policy min >= boost_min. The cpufreq framework then does the job
@@ -228,6 +252,9 @@ static void do_boost_rem(struct work_struct *work)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 static void do_input_boost_rem(struct work_struct *work)
 {
 	struct cpu_sync *s = container_of(work, struct cpu_sync,
@@ -237,6 +264,7 @@ static void do_input_boost_rem(struct work_struct *work)
 	s->input_boost_min = 0;
 	/* Force policy re-evaluation to trigger adjust notifier. */
 	cpufreq_update_policy(s->cpu);
+<<<<<<< HEAD
 =======
 static void update_policy_online(void)
 {
@@ -266,15 +294,21 @@ static void do_input_boost_rem(struct work_struct *work)
 	/* Update policies for all online CPUs */
 	update_policy_online();
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 }
 
 static int boost_mig_sync_thread(void *data)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int dest_cpu = (int) data;
 =======
 	int dest_cpu = (long) data;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	int dest_cpu = (int) data;
+>>>>>>> 2617302... source
 	int src_cpu, ret;
 	struct cpu_sync *s = &per_cpu(sync_info, dest_cpu);
 	struct cpufreq_policy dest_policy;
@@ -284,11 +318,15 @@ static int boost_mig_sync_thread(void *data)
 
 	while (1) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		wait_event(s->sync_wq, s->pending || kthread_should_stop());
 =======
 		wait_event_interruptible(s->sync_wq,
 					s->pending || kthread_should_stop());
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		wait_event(s->sync_wq, s->pending || kthread_should_stop());
+>>>>>>> 2617302... source
 #ifdef CONFIG_IRLED_GPIO
 		if (unlikely(gir_boost_disable)) {
 			pr_debug("[GPIO_IR][%s] continue~!(cpu:%d)\n", 
@@ -414,6 +452,9 @@ static struct notifier_block boost_migration_nb = {
 static void do_input_boost(struct work_struct *work)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	unsigned int i, ret;
 	struct cpu_sync *i_sync_info;
 	struct cpufreq_policy policy;
@@ -436,6 +477,7 @@ static void do_input_boost(struct work_struct *work)
 			msecs_to_jiffies(input_boost_ms));
 	}
 	put_online_cpus();
+<<<<<<< HEAD
 =======
 	unsigned int i;
 	struct cpu_sync *i_sync_info;
@@ -454,6 +496,8 @@ static void do_input_boost(struct work_struct *work)
 	queue_delayed_work(cpu_boost_wq, &input_boost_rem,
 					msecs_to_jiffies(input_boost_ms));
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 }
 
 static void cpuboost_input_event(struct input_handle *handle,
@@ -462,10 +506,14 @@ static void cpuboost_input_event(struct input_handle *handle,
 	u64 now;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!input_boost_freq)
 =======
 	if (!input_boost_enabled)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (!input_boost_freq)
+>>>>>>> 2617302... source
 		return;
 
 #ifdef CONFIG_IRLED_GPIO
@@ -478,10 +526,14 @@ static void cpuboost_input_event(struct input_handle *handle,
 
 	now = ktime_to_us(ktime_get());
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (now - last_input_time < MIN_INPUT_INTERVAL)
 =======
 	if (now - last_input_time < (input_boost_ms * USEC_PER_MSEC))
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (now - last_input_time < MIN_INPUT_INTERVAL)
+>>>>>>> 2617302... source
 		return;
 
 	if (work_pending(&input_boost_work))
@@ -575,9 +627,12 @@ static int cpu_boost_init(void)
 
 	INIT_WORK(&input_boost_work, do_input_boost);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	INIT_DELAYED_WORK(&input_boost_rem, do_input_boost_rem);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	for_each_possible_cpu(cpu) {
 		s = &per_cpu(sync_info, cpu);
@@ -587,6 +642,7 @@ static int cpu_boost_init(void)
 		spin_lock_init(&s->lock);
 		INIT_DELAYED_WORK(&s->boost_rem, do_boost_rem);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		INIT_DELAYED_WORK(&s->input_boost_rem, do_input_boost_rem);
 		s->thread = kthread_run(boost_mig_sync_thread, (void *)cpu,
 					"boost_sync/%d", cpu);
@@ -594,6 +650,11 @@ static int cpu_boost_init(void)
 		s->thread = kthread_run(boost_mig_sync_thread,
 				(void *) (long)cpu, "boost_sync/%d", cpu);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		INIT_DELAYED_WORK(&s->input_boost_rem, do_input_boost_rem);
+		s->thread = kthread_run(boost_mig_sync_thread, (void *)cpu,
+					"boost_sync/%d", cpu);
+>>>>>>> 2617302... source
 		set_cpus_allowed(s->thread, *cpumask_of(cpu));
 	}
 	atomic_notifier_chain_register(&migration_notifier_head,

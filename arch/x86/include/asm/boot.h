@@ -28,10 +28,14 @@
 #else /* !CONFIG_KERNEL_BZIP2 */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define BOOT_HEAP_SIZE	0x8000
 =======
 #define BOOT_HEAP_SIZE	0x10000
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+#define BOOT_HEAP_SIZE	0x8000
+>>>>>>> 2617302... source
 
 #endif /* !CONFIG_KERNEL_BZIP2 */
 

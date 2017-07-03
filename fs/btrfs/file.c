@@ -1594,6 +1594,9 @@ static ssize_t btrfs_file_aio_write(struct kiocb *iocb,
 
 	/*
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	 * we want to make sure fsync finds this change
 	 * but we haven't joined a transaction running right now.
 	 *
@@ -1605,16 +1608,23 @@ static ssize_t btrfs_file_aio_write(struct kiocb *iocb,
 	 * or the generation used for the next transaction if there isn't
 	 * one running right now.
 	 *
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	 * We also have to set last_sub_trans to the current log transid,
 	 * otherwise subsequent syncs to a file that's been synced in this
 	 * transaction will appear to have already occured.
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	BTRFS_I(inode)->last_trans = root->fs_info->generation + 1;
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	BTRFS_I(inode)->last_trans = root->fs_info->generation + 1;
+>>>>>>> 2617302... source
 	BTRFS_I(inode)->last_sub_trans = root->log_transid;
 	if (num_written > 0 || num_written == -EIOCBQUEUED) {
 		err = generic_write_sync(file, pos, num_written);
@@ -1713,6 +1723,9 @@ int btrfs_sync_file(struct file *file, loff_t start, loff_t end, int datasync)
 
 	/*
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	 * check the transaction that last modified this inode
 	 * and see if its already been committed
 	 */
@@ -1732,6 +1745,7 @@ int btrfs_sync_file(struct file *file, loff_t start, loff_t end, int datasync)
 	    root->fs_info->last_trans_committed) {
 		BTRFS_I(inode)->last_trans = 0;
 
+<<<<<<< HEAD
 =======
 	 * If the last transaction that changed this file was before the current
 	 * transaction and we have the full sync flag set in our inode, we can
@@ -1765,6 +1779,8 @@ int btrfs_sync_file(struct file *file, loff_t start, loff_t end, int datasync)
 	    (full_sync && BTRFS_I(inode)->last_trans <=
 	     root->fs_info->last_trans_committed)) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		/*
 		 * We'v had everything committed since the last time we were
 		 * modified so clear this flag in case it was set for whatever

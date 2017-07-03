@@ -158,10 +158,14 @@ struct ceph_msg {
 	bool more_to_follow;
 	bool needs_out_seq;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int front_max;
 =======
 	int front_alloc_len;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	int front_max;
+>>>>>>> 2617302... source
 	unsigned long ack_stamp;        /* tx: when we were acked */
 
 	struct ceph_msgpool *pool;

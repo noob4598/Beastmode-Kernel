@@ -39,11 +39,14 @@ int wa_create(struct wahc *wa, struct usb_interface *iface)
 	struct device *dev = &iface->dev;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (iface->cur_altsetting->desc.bNumEndpoints < 3)
 		return -ENODEV;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	result = wa_rpipes_create(wa);
 	if (result < 0)
 		goto error_rpipes_create;

@@ -1,8 +1,12 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* Copyright (c) 2014, The Linux Foundation. All rights reserved.
 =======
 /* Copyright (c) 2013-2014, The Linux Foundation. All rights reserved.
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+/* Copyright (c) 2014, The Linux Foundation. All rights reserved.
+>>>>>>> 2617302... source
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -15,6 +19,9 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 #include <linux/msm_mhi.h>
 #include <linux/module.h>
 #include <linux/kernel.h>
@@ -228,6 +235,7 @@ struct mhi_uci_ctxt_t {
 
 module_param(mhi_uci_msg_lvl , uint, S_IRUGO | S_IWUSR);
 MODULE_PARM_DESC(mhi_uci_msg_lvl, "uci dbg lvl");
+<<<<<<< HEAD
 =======
 /* MHI Includes */
 #include "mhi_uci.h"
@@ -261,6 +269,8 @@ enum {
 				16, 1, buf, (cnt < 16 ? cnt : 16), false); \
 	} while (0)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 static ssize_t mhi_uci_client_read(struct file *file, char __user *buf,
 		size_t count, loff_t *offp);
@@ -274,6 +284,9 @@ static long mhi_uci_ctl_ioctl(struct file *file, unsigned int cmd,
 					unsigned long arg);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 static struct mhi_uci_ctxt_t uci_ctxt;
 
 static enum MHI_STATUS mhi_init_inbound(struct uci_client *client_handle,
@@ -461,6 +474,7 @@ error:
 }
 
 static int mhi_uci_tiocm_set(struct uci_client *client_ctxt, u32 set, u32 clear)
+<<<<<<< HEAD
 =======
 mhi_uci_ctxt_t mhi_uci_ctxt;
 
@@ -521,6 +535,8 @@ static long mhi_uci_ctl_ioctl(struct file *file, unsigned int cmd,
 
 int mhi_uci_tiocm_set(uci_client *client_ctxt, u32 set, u32 clear)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 {
 	u8 status_set = 0;
 	u8 status_clear = 0;
@@ -530,35 +546,50 @@ int mhi_uci_tiocm_set(uci_client *client_ctxt, u32 set, u32 clear)
 
 	status_set |= (set & TIOCM_DTR) ? TIOCM_DTR : 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	status_clear |= (clear & TIOCM_DTR) ? TIOCM_DTR : 0;
 =======
 	status_clear |= (clear & TIOCM_DTR) ? TIOCM_DTR: 0;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	status_clear |= (clear & TIOCM_DTR) ? TIOCM_DTR : 0;
+>>>>>>> 2617302... source
 	old_status = client_ctxt->local_tiocm;
 	client_ctxt->local_tiocm |= status_set;
 	client_ctxt->local_tiocm &= ~status_clear;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	uci_log(UCI_DBG_VERBOSE,
 =======
 	mhi_uci_log(UCI_DBG_VERBOSE,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	uci_log(UCI_DBG_VERBOSE,
+>>>>>>> 2617302... source
 		"Old TIOCM0x%x for chan %d, Current TIOCM 0x%x\n",
 		old_status, client_ctxt->out_chan, client_ctxt->local_tiocm);
 	mutex_unlock(&client_ctxt->uci_ctxt->ctrl_mutex);
 
 	if (client_ctxt->local_tiocm != old_status) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		uci_log(UCI_DBG_VERBOSE,
 =======
 		mhi_uci_log(UCI_DBG_VERBOSE,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		uci_log(UCI_DBG_VERBOSE,
+>>>>>>> 2617302... source
 			"Setting TIOCM to 0x%x for chan %d\n",
 			client_ctxt->local_tiocm, client_ctxt->out_chan);
 		return mhi_uci_send_status_cmd(client_ctxt);
 	}
 	return 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 }
 
 static long mhi_uci_ctl_ioctl(struct file *file, unsigned int cmd,
@@ -617,6 +648,7 @@ static unsigned int mhi_uci_client_poll(struct file *file, poll_table *wait)
 	if (!atomic_read(&uci_ctxt.mhi_disabled) &&
 	    (mhi_get_free_desc(uci_handle->out_handle) > 0)) {
 		uci_log(UCI_DBG_VERBOSE,
+<<<<<<< HEAD
 =======
 
 }
@@ -637,20 +669,29 @@ static unsigned int mhi_uci_client_poll(struct file *file, poll_table *wait)
 	if (get_free_trbs(uci_handle->outbound_handle)) {
 		mhi_uci_log(UCI_DBG_VERBOSE,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		"Client can write chan %d\n", uci_handle->out_chan);
 		mask |= POLLOUT | POLLWRNORM;
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	uci_log(UCI_DBG_VERBOSE,
 =======
 	mhi_uci_log(UCI_DBG_VERBOSE,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	uci_log(UCI_DBG_VERBOSE,
+>>>>>>> 2617302... source
 		"Client attempted to poll chan %d, returning mask 0x%x\n",
 		uci_handle->in_chan, mask);
 	return mask;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 
 static int open_client_mhi_channels(struct uci_client *uci_client)
 {
@@ -749,6 +790,7 @@ handle_alloc_err:
 	msleep(50);
 	atomic_dec(&uci_handle->ref_count);
 	return r;
+<<<<<<< HEAD
 =======
 static int mhi_uci_client_open(struct inode *mhi_inode,
 				struct file *file_handle)
@@ -791,12 +833,17 @@ handle_alloc_err:
 	atomic_dec(&uci_client_handle->ref_count);
 	return ret_val;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 }
 
 static int mhi_uci_client_release(struct inode *mhi_inode,
 		struct file *file_handle)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	struct uci_client *uci_handle = file_handle->private_data;
 	struct mhi_uci_ctxt_t *uci_ctxt = uci_handle->uci_ctxt;
 	u32 retry_cnt = 100;
@@ -840,6 +887,7 @@ static int mhi_uci_client_release(struct inode *mhi_inode,
 			"Client close chan %d, ref count 0x%x\n",
 			iminor(mhi_inode),
 			atomic_read(&uci_handle->ref_count));
+<<<<<<< HEAD
 =======
 	uci_client *client_handle = file_handle->private_data;
 	u32 retry_cnt = 100;
@@ -870,6 +918,8 @@ static int mhi_uci_client_release(struct inode *mhi_inode,
 			"Client close chan %d, ref count 0x%x\n",
 			iminor(mhi_inode), atomic_read(&client_handle->ref_count));
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	}
 	return 0;
 }
@@ -877,6 +927,7 @@ static int mhi_uci_client_release(struct inode *mhi_inode,
 static ssize_t mhi_uci_client_read(struct file *file, char __user *buf,
 		size_t uspace_buf_size, loff_t *bytes_pending)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct uci_client *uci_handle = NULL;
 	uintptr_t phy_buf = 0;
@@ -886,11 +937,19 @@ static ssize_t mhi_uci_client_read(struct file *file, char __user *buf,
 	uintptr_t phy_buf = 0;
 	mhi_client_handle *client_handle = NULL;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	struct uci_client *uci_handle = NULL;
+	uintptr_t phy_buf = 0;
+	struct mhi_client_handle *client_handle = NULL;
+>>>>>>> 2617302... source
 	int ret_val = 0;
 	size_t buf_size = 0;
 	struct mutex *mutex;
 	u32 chan = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	ssize_t bytes_copied = 0;
 	u32 addr_offset = 0;
 	struct mhi_result result;
@@ -955,6 +1014,7 @@ static ssize_t mhi_uci_client_read(struct file *file, char __user *buf,
 			uci_log(UCI_DBG_ERROR,
 				"Detected pending reset, reporting chan %d\n",
 				chan);
+<<<<<<< HEAD
 =======
 	ssize_t phy_buf_size = 0;
 	ssize_t bytes_copied = 0;
@@ -997,27 +1057,38 @@ static ssize_t mhi_uci_client_read(struct file *file, char __user *buf,
 			mhi_uci_log(UCI_DBG_VERBOSE,
 				"Detected pending reset, reporting to client\n");
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 			atomic_dec(&uci_handle->avail_pkts);
 			uci_handle->mhi_status = 0;
 			mutex_unlock(mutex);
 			return -ENETRESET;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 			/* A valid packet was returned from MHI */
 		} else if (atomic_read(&uci_handle->avail_pkts) &&
 			   uci_handle->pkt_size != 0 &&
 			   uci_handle->pkt_loc != 0) {
 			uci_log(UCI_DBG_VERBOSE,
+<<<<<<< HEAD
 =======
 		} else if (atomic_read(&uci_handle->avail_pkts) &&
 			   phy_buf != 0 && phy_buf_size != 0) {
 			mhi_uci_log(UCI_DBG_VERBOSE,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 			"Got packet: avail pkts %d phy_adr 0x%lx, chan %d\n",
 					atomic_read(&uci_handle->avail_pkts),
 					phy_buf,
 					chan);
 			break;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 			/*
 			 * MHI did not return a valid packet, but we have one
 			 * which we did not finish returning to user
@@ -1037,6 +1108,7 @@ static ssize_t mhi_uci_client_read(struct file *file, char __user *buf,
 		addr_offset = uci_handle->pkt_size - *bytes_pending;
 		if (0 != copy_to_user(buf,
 				     uci_handle->pkt_loc + addr_offset,
+<<<<<<< HEAD
 =======
 		} else {
 			mhi_uci_log(UCI_DBG_CRITICAL,
@@ -1065,6 +1137,8 @@ static ssize_t mhi_uci_client_read(struct file *file, char __user *buf,
 		if (0 != copy_to_user(buf,
 				     (void *)(uintptr_t)pkt_loc + addr_offset,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 				     *bytes_pending)) {
 			ret_val = -EIO;
 			goto error;
@@ -1073,6 +1147,9 @@ static ssize_t mhi_uci_client_read(struct file *file, char __user *buf,
 		bytes_copied = *bytes_pending;
 		*bytes_pending = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		uci_log(UCI_DBG_VERBOSE,
 				"Copied 0x%x of 0x%x, chan %d\n",
 				bytes_copied, (u32)*bytes_pending, chan);
@@ -1082,6 +1159,7 @@ static ssize_t mhi_uci_client_read(struct file *file, char __user *buf,
 				     (void *)(uintptr_t)uci_handle->pkt_loc +
 				     addr_offset,
 				     uspace_buf_size) != 0) {
+<<<<<<< HEAD
 =======
 		mhi_uci_log(UCI_DBG_VERBOSE,
 				"Copied 0x%x of 0x%x, chan %d\n",
@@ -1094,22 +1172,31 @@ static ssize_t mhi_uci_client_read(struct file *file, char __user *buf,
 				     (void *)(uintptr_t)pkt_loc + addr_offset,
 				     uspace_buf_size)) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 			ret_val = -EIO;
 			goto error;
 		}
 		bytes_copied = uspace_buf_size;
 		*bytes_pending -= uspace_buf_size;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		uci_log(UCI_DBG_VERBOSE,
 =======
 		mhi_uci_log(UCI_DBG_VERBOSE,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		uci_log(UCI_DBG_VERBOSE,
+>>>>>>> 2617302... source
 				"Copied 0x%x of 0x%x,chan %d\n",
 				bytes_copied,
 				(u32)*bytes_pending,
 				chan);
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	/* We finished with this buffer, map it back */
 	if (*bytes_pending == 0) {
 		uci_log(UCI_DBG_VERBOSE, "Pkt loc %p ,chan %d\n",
@@ -1127,6 +1214,7 @@ static ssize_t mhi_uci_client_read(struct file *file, char __user *buf,
 
 		if (MHI_STATUS_SUCCESS != ret_val) {
 			uci_log(UCI_DBG_ERROR,
+<<<<<<< HEAD
 =======
 
 	DUMP_BUFFER("uci_read: ", bytes_copied, buf);
@@ -1145,10 +1233,13 @@ static ssize_t mhi_uci_client_read(struct file *file, char __user *buf,
 		if (MHI_STATUS_SUCCESS != ret_val) {
 			mhi_uci_log(UCI_DBG_ERROR,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 					"Failed to recycle element\n");
 			ret_val = -EIO;
 			goto error;
 		}
+<<<<<<< HEAD
 <<<<<<< HEAD
 		uci_handle->pkt_loc = 0;
 	}
@@ -1157,6 +1248,11 @@ static ssize_t mhi_uci_client_read(struct file *file, char __user *buf,
 	}
 	mhi_uci_log(UCI_DBG_ERROR,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		uci_handle->pkt_loc = 0;
+	}
+	uci_log(UCI_DBG_VERBOSE,
+>>>>>>> 2617302... source
 			"Returning 0x%x bytes, 0x%x bytes left\n",
 			bytes_copied, (u32)*bytes_pending);
 	mutex_unlock(mutex);
@@ -1164,11 +1260,15 @@ static ssize_t mhi_uci_client_read(struct file *file, char __user *buf,
 error:
 	mutex_unlock(mutex);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	uci_log(UCI_DBG_ERROR, "Returning %d\n", ret_val);
 =======
 	mhi_uci_log(UCI_DBG_VERBOSE,
 			"Returning %d bytes\n", ret_val);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	uci_log(UCI_DBG_ERROR, "Returning %d\n", ret_val);
+>>>>>>> 2617302... source
 	return ret_val;
 }
 
@@ -1177,6 +1277,9 @@ static ssize_t mhi_uci_client_write(struct file *file,
 		size_t count, loff_t *offp)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	struct uci_client *uci_handle = NULL;
 	int ret_val = 0;
 	u32 chan = 0xFFFFFFFF;
@@ -1336,6 +1439,7 @@ static void process_rs232_state(struct mhi_result *result)
 	mutex_lock(&uci_ctxt.ctrl_mutex);
 	if (result->transaction_status != MHI_STATUS_SUCCESS) {
 		uci_log(UCI_DBG_ERROR,
+<<<<<<< HEAD
 =======
 	uci_client *uci_handle = NULL;
 	int ret_val = 0;
@@ -1751,11 +1855,16 @@ void process_rs232_state(mhi_result *result)
 	if (result->transaction_status != MHI_STATUS_SUCCESS) {
 		mhi_uci_log(UCI_DBG_ERROR,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 			"Non successful transfer code 0x%x\n",
 			 result->transaction_status);
 		goto error_bad_xfer;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	if (result->bytes_xferd != sizeof(struct rs232_ctrl_msg)) {
 		uci_log(UCI_DBG_ERROR,
 		"Buffer is of wrong size is: 0x%x: expected 0x%x\n",
@@ -1767,6 +1876,7 @@ void process_rs232_state(mhi_result *result)
 	rs232_pkt = dma_to_virt(NULL, result->payload_buf);
 	MHI_GET_CTRL_DEST_ID(CTRL_DEST_ID, rs232_pkt, chan);
 	client = &uci_ctxt.client_handles[chan / 2];
+<<<<<<< HEAD
 =======
 	if (result->bytes_xferd != sizeof(rs232_ctrl_msg)) {
 		mhi_uci_log(UCI_DBG_ERROR,
@@ -1780,6 +1890,8 @@ void process_rs232_state(mhi_result *result)
 	MHI_GET_CTRL_DEST_ID(CTRL_DEST_ID, rs232_pkt, chan);
 	client = &mhi_uci_ctxt.client_handle_list[chan / 2];
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 
 	MHI_GET_CTRL_MSG_ID(CTRL_MSG_ID, rs232_pkt, msg_id);
@@ -1798,6 +1910,9 @@ void process_rs232_state(mhi_result *result)
 error_bad_xfer:
 error_size:
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	memset(rs232_pkt, 0, sizeof(struct rs232_ctrl_msg));
 	dma_map_single(NULL, rs232_pkt,
 			sizeof(struct rs232_ctrl_msg),
@@ -2076,6 +2191,7 @@ module_init(mhi_uci_init);
 MODULE_LICENSE("GPL v2");
 MODULE_ALIAS("MHI_UCI");
 MODULE_DESCRIPTION("MHI UCI Driver");
+<<<<<<< HEAD
 =======
 	memset(rs232_pkt, 0, sizeof(rs232_ctrl_msg));
 	dma_map_single(NULL, rs232_pkt,
@@ -2139,3 +2255,5 @@ error:
 	return ret_val;
 }
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source

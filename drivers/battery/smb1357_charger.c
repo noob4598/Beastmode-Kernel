@@ -1893,6 +1893,9 @@ bool smb1357_hal_chg_get_property(struct i2c_client *client,
 			__func__, charger->charging_current, val->intval);
 		break;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 #if defined(CONFIG_BATTERY_SWELLING)
 	case POWER_SUPPLY_PROP_VOLTAGE_MAX:
 		smb1357_charger_i2c_read(client, VFLOAT_REG, &port);
@@ -1900,8 +1903,11 @@ bool smb1357_hal_chg_get_property(struct i2c_client *client,
 		pr_info("%s: Float voltage : 0x%x\n", __func__, val->intval);
 		break;
 #endif
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	default:
 		return false;
 	}
@@ -2054,11 +2060,17 @@ static enum power_supply_property smb1357_charger_props[] = {
 	POWER_SUPPLY_PROP_CURRENT_NOW,
 	POWER_SUPPLY_PROP_CHARGE_FULL_DESIGN,
 <<<<<<< HEAD
+<<<<<<< HEAD
 #if defined(CONFIG_BATTERY_SWELLING)
 	POWER_SUPPLY_PROP_VOLTAGE_MAX,
 #endif
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+#if defined(CONFIG_BATTERY_SWELLING)
+	POWER_SUPPLY_PROP_VOLTAGE_MAX,
+#endif
+>>>>>>> 2617302... source
 };
 
 static int smb1357_chg_get_property(struct power_supply *psy,
@@ -2073,11 +2085,17 @@ static int smb1357_chg_get_property(struct power_supply *psy,
 		val->intval = charger->charging_current_max;
 		break;
 <<<<<<< HEAD
+<<<<<<< HEAD
 #if defined(CONFIG_BATTERY_SWELLING)
 	case POWER_SUPPLY_PROP_VOLTAGE_MAX:
 #endif
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+#if defined(CONFIG_BATTERY_SWELLING)
+	case POWER_SUPPLY_PROP_VOLTAGE_MAX:
+#endif
+>>>>>>> 2617302... source
 	case POWER_SUPPLY_PROP_PRESENT:
 	case POWER_SUPPLY_PROP_ONLINE:
 	case POWER_SUPPLY_PROP_STATUS:
@@ -2111,11 +2129,17 @@ static int smb1357_chg_set_property(struct power_supply *psy,
 	const int usb_charging_current = charger->pdata->charging_current[
 		POWER_SUPPLY_TYPE_USB].fast_charging_current;
 <<<<<<< HEAD
+<<<<<<< HEAD
 #if defined(CONFIG_BATTERY_SWELLING)
 	u8 reg_data;
 #endif
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+#if defined(CONFIG_BATTERY_SWELLING)
+	u8 reg_data;
+#endif
+>>>>>>> 2617302... source
 
 	switch (psp) {
 	case POWER_SUPPLY_PROP_STATUS:
@@ -2314,6 +2338,9 @@ static int smb1357_chg_set_property(struct power_supply *psy,
 		break;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 #if defined(CONFIG_BATTERY_SWELLING)
 	case POWER_SUPPLY_PROP_VOLTAGE_MAX:
 		pr_info("%s: float voltage(%d)\n", __func__, val->intval);
@@ -2322,8 +2349,11 @@ static int smb1357_chg_set_property(struct power_supply *psy,
 		pr_info("%s: Float voltage set to : 0x%x\n", __func__, reg_data);
 		break;
 #endif
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	default:
 		return -EINVAL;
 	}

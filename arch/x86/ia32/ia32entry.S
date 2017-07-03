@@ -152,6 +152,7 @@ ENTRY(ia32_sysenter_target)
 	_ASM_EXTABLE(1b,ia32_badarg)
 	ASM_CLAC
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 	/*
@@ -164,6 +165,8 @@ ENTRY(ia32_sysenter_target)
 sysenter_flags_fixed:
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	orl     $TS_COMPAT,TI_status+THREAD_INFO(%rsp,RIP-ARGOFFSET)
 	testl   $_TIF_WORK_SYSCALL_ENTRY,TI_flags+THREAD_INFO(%rsp,RIP-ARGOFFSET)
 	CFI_REMEMBER_STATE
@@ -198,10 +201,13 @@ sysexit_from_sys_call:
 	ENABLE_INTERRUPTS_SYSEXIT32
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	CFI_RESTORE_STATE
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 #ifdef CONFIG_AUDITSYSCALL
 	.macro auditsys_entry_common
 	movl %esi,%r9d			/* 6th arg: 4th syscall arg */
@@ -245,9 +251,13 @@ sysexit_from_sys_call:
 
 sysenter_auditsys:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	CFI_RESTORE_STATE
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	CFI_RESTORE_STATE
+>>>>>>> 2617302... source
 	auditsys_entry_common
 	movl %ebp,%r9d			/* reload 6th syscall arg */
 	jmp sysenter_dispatch
@@ -257,6 +267,7 @@ sysexit_audit:
 #endif
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 sysenter_fix_flags:
 	pushq_cfi $(X86_EFLAGS_IF|X86_EFLAGS_FIXED)
@@ -264,6 +275,8 @@ sysenter_fix_flags:
 	jmp sysenter_flags_fixed
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 sysenter_tracesys:
 #ifdef CONFIG_AUDITSYSCALL
 	testl	$(_TIF_WORK_SYSCALL_ENTRY & ~_TIF_SYSCALL_AUDIT),TI_flags+THREAD_INFO(%rsp,RIP-ARGOFFSET)
@@ -436,9 +449,12 @@ ENTRY(ia32_syscall)
 	CFI_REL_OFFSET	rip,RIP-RIP
 	PARAVIRT_ADJUST_EXCEPTION_FRAME
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	ASM_CLAC			/* Do this early to minimize exposure */
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	SWAPGS
 	/*
 	 * No need to follow this irqs on/off section: the syscall

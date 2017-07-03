@@ -22,9 +22,12 @@
 #include <linux/net.h>
 #include <linux/rwsem.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <linux/security.h>
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 struct alg_type_list {
 	const struct af_alg_type *type;
@@ -80,10 +83,13 @@ int af_alg_register_type(const struct af_alg_type *type)
 
 	type->ops->owner = THIS_MODULE;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (type->ops_nokey)
 		type->ops_nokey->owner = THIS_MODULE;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	node->type = type;
 	list_add(&node->list, &alg_types);
 	err = 0;
@@ -134,6 +140,7 @@ int af_alg_release(struct socket *sock)
 EXPORT_SYMBOL_GPL(af_alg_release);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 void af_alg_release_parent(struct sock *sk)
 {
@@ -156,6 +163,8 @@ void af_alg_release_parent(struct sock *sk)
 EXPORT_SYMBOL_GPL(af_alg_release_parent);
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 static int alg_bind(struct socket *sock, struct sockaddr *uaddr, int addr_len)
 {
 	struct sock *sk = sock->sk;
@@ -164,9 +173,12 @@ static int alg_bind(struct socket *sock, struct sockaddr *uaddr, int addr_len)
 	const struct af_alg_type *type;
 	void *private;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	int err;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	if (sock->state == SS_CONNECTED)
 		return -EINVAL;
@@ -193,6 +205,7 @@ static int alg_bind(struct socket *sock, struct sockaddr *uaddr, int addr_len)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	lock_sock(sk);
 =======
 	err = -EBUSY;
@@ -200,25 +213,35 @@ static int alg_bind(struct socket *sock, struct sockaddr *uaddr, int addr_len)
 	if (ask->refcnt | ask->nokey_refcnt)
 		goto unlock;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	lock_sock(sk);
+>>>>>>> 2617302... source
 
 	swap(ask->type, type);
 	swap(ask->private, private);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 	err = 0;
 
 unlock:
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	release_sock(sk);
 
 	alg_do_release(type, private);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return 0;
 =======
 	return err;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	return 0;
+>>>>>>> 2617302... source
 }
 
 static int alg_setkey(struct sock *sk, char __user *ukey,
@@ -252,11 +275,15 @@ static int alg_setsockopt(struct socket *sock, int level, int optname,
 	struct alg_sock *ask = alg_sk(sk);
 	const struct af_alg_type *type;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	int err = -ENOPROTOOPT;
 
 	lock_sock(sk);
 	type = ask->type;
 
+<<<<<<< HEAD
 =======
 	int err = -EBUSY;
 
@@ -268,6 +295,8 @@ static int alg_setsockopt(struct socket *sock, int level, int optname,
 
 	err = -ENOPROTOOPT;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	if (level != SOL_ALG || !type)
 		goto unlock;
 
@@ -293,9 +322,12 @@ int af_alg_accept(struct sock *sk, struct socket *newsock)
 	const struct af_alg_type *type;
 	struct sock *sk2;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	unsigned int nokey;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	int err;
 
 	lock_sock(sk);
@@ -313,6 +345,9 @@ int af_alg_accept(struct sock *sk, struct socket *newsock)
 	sock_init_data(newsock, sk2);
 	sock_graft(sk2, newsock);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 
 	err = type->accept(ask->private, sk2);
 	if (err) {
@@ -325,6 +360,7 @@ int af_alg_accept(struct sock *sk, struct socket *newsock)
 	sock_hold(sk);
 	alg_sk(sk2)->parent = sk;
 	alg_sk(sk2)->type = type;
+<<<<<<< HEAD
 =======
 	security_sk_clone(sk, sk2);
 
@@ -346,16 +382,21 @@ int af_alg_accept(struct sock *sk, struct socket *newsock)
 	alg_sk(sk2)->type = type;
 	alg_sk(sk2)->nokey_refcnt = nokey;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	newsock->ops = type->ops;
 	newsock->state = SS_CONNECTED;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 	if (nokey)
 		newsock->ops = type->ops_nokey;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	err = 0;
 
 unlock:
@@ -545,11 +586,14 @@ void af_alg_complete(struct crypto_async_request *req, int err)
 	struct af_alg_completion *completion = req->data;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (err == -EINPROGRESS)
 		return;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	completion->err = err;
 	complete(&completion->completion);
 }

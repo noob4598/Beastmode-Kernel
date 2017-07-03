@@ -142,9 +142,12 @@ static void qt2_release(struct usb_serial *serial)
 	serial_priv = usb_get_serial_data(serial);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	usb_kill_urb(serial_priv->read_urb);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	usb_free_urb(serial_priv->read_urb);
 	kfree(serial_priv);
 }
@@ -412,22 +415,32 @@ static void qt2_close(struct usb_serial_port *port)
 	struct usb_serial *serial;
 	struct qt2_port_private *port_priv;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned long flags;
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	unsigned long flags;
+>>>>>>> 2617302... source
 	int i;
 
 	serial = port->serial;
 	port_priv = usb_get_serial_port_data(port);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	spin_lock_irqsave(&port_priv->urb_lock, flags);
 	usb_kill_urb(port_priv->write_urb);
 	port_priv->urb_in_use = false;
 	spin_unlock_irqrestore(&port_priv->urb_lock, flags);
+<<<<<<< HEAD
 =======
 	usb_kill_urb(port_priv->write_urb);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	/* flush the port transmit buffer */
 	i = usb_control_msg(serial->dev,

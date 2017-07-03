@@ -85,10 +85,13 @@ static inline u32 __attribute_const__ read_cpuid_cachetype(void)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 void cpuinfo_store_cpu(void);
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 #endif /* __ASSEMBLY__ */
 
 #endif

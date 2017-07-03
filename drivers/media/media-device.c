@@ -107,10 +107,15 @@ static long media_device_enum_entities(struct media_device *mdev,
 		strncpy(u_ent.name, ent->name, sizeof(u_ent.name));
 		u_ent.name[sizeof(u_ent.name) - 1] = '\0';
 <<<<<<< HEAD
+<<<<<<< HEAD
 	} else {
 		memset(u_ent.name, 0, sizeof(u_ent.name));
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	} else {
+		memset(u_ent.name, 0, sizeof(u_ent.name));
+>>>>>>> 2617302... source
 	}
 	u_ent.type = ent->type;
 	u_ent.revision = ent->revision;
@@ -146,12 +151,16 @@ static long __media_device_enum_links(struct media_device *mdev,
 
 		for (p = 0; p < entity->num_pads; p++) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			struct media_pad_desc pad = {0};
 =======
 			struct media_pad_desc pad;
 
 			memset(&pad, 0, sizeof(pad));
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			struct media_pad_desc pad = {0};
+>>>>>>> 2617302... source
 			media_device_kpad_to_upad(&entity->pads[p], &pad);
 			if (copy_to_user(&links->pads[p], &pad, sizeof(pad)))
 				return -EFAULT;
@@ -170,9 +179,12 @@ static long __media_device_enum_links(struct media_device *mdev,
 				continue;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 			memset(&link, 0, sizeof(link));
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 			media_device_kpad_to_upad(entity->links[l].source,
 						  &link.source);
 			media_device_kpad_to_upad(entity->links[l].sink,

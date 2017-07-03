@@ -40,6 +40,7 @@ unsigned int pipe_max_size = 1048576;
 unsigned int pipe_min_size = PAGE_SIZE;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 /* Maximum allocatable pages per user. Hard limit is unset by default, soft
  * matches default values.
@@ -48,6 +49,8 @@ unsigned long pipe_user_pages_hard;
 unsigned long pipe_user_pages_soft = PIPE_DEF_BUFFERS * INR_OPEN_CUR;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 /*
  * We use a start+len construction, which provides full use of the 
  * allocated memory.
@@ -411,9 +414,12 @@ pipe_read(struct kiocb *iocb, const struct iovec *_iov,
 			size_t chars = buf->len, remaining;
 			int error, atomic;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 			int offset;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 			if (chars > total_len)
 				chars = total_len;
@@ -428,6 +434,7 @@ pipe_read(struct kiocb *iocb, const struct iovec *_iov,
 			atomic = !iov_fault_in_pages_write(iov, chars);
 			remaining = chars;
 <<<<<<< HEAD
+<<<<<<< HEAD
 redo:
 			addr = ops->map(pipe, buf, atomic);
 			error = pipe_iov_copy_to_user(iov, addr, &buf->offset,
@@ -437,6 +444,11 @@ redo:
 			addr = ops->map(pipe, buf, atomic);
 			error = pipe_iov_copy_to_user(iov, addr, &offset,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+redo:
+			addr = ops->map(pipe, buf, atomic);
+			error = pipe_iov_copy_to_user(iov, addr, &buf->offset,
+>>>>>>> 2617302... source
 						      &remaining, atomic);
 			ops->unmap(pipe, buf, addr);
 			if (unlikely(error)) {
@@ -453,9 +465,12 @@ redo:
 			}
 			ret += chars;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 			buf->offset += chars;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 			buf->len -= chars;
 
 			/* Was it a packet buffer? Clean up and exit */
@@ -816,6 +831,7 @@ pipe_fasync(int fd, struct file *filp, int on)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 static void account_pipe_buffers(struct pipe_inode_info *pipe,
                                  unsigned long old, unsigned long new)
@@ -836,6 +852,8 @@ static bool too_many_pipe_buffers_hard(struct user_struct *user)
 }
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 struct pipe_inode_info *alloc_pipe_info(void)
 {
 	struct pipe_inode_info *pipe;
@@ -843,6 +861,9 @@ struct pipe_inode_info *alloc_pipe_info(void)
 	pipe = kzalloc(sizeof(struct pipe_inode_info), GFP_KERNEL);
 	if (pipe) {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		pipe->bufs = kzalloc(sizeof(struct pipe_buffer) * PIPE_DEF_BUFFERS, GFP_KERNEL);
 		if (pipe->bufs) {
 			init_waitqueue_head(&pipe->wait);
@@ -851,6 +872,7 @@ struct pipe_inode_info *alloc_pipe_info(void)
 			mutex_init(&pipe->mutex);
 			return pipe;
 		}
+<<<<<<< HEAD
 =======
 		unsigned long pipe_bufs = PIPE_DEF_BUFFERS;
 		struct user_struct *user = get_current_user();
@@ -872,6 +894,8 @@ struct pipe_inode_info *alloc_pipe_info(void)
 		}
 		free_uid(user);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		kfree(pipe);
 	}
 
@@ -883,10 +907,13 @@ void free_pipe_info(struct pipe_inode_info *pipe)
 	int i;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	account_pipe_buffers(pipe, pipe->buffers, 0);
 	free_uid(pipe->user);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	for (i = 0; i < pipe->buffers; i++) {
 		struct pipe_buffer *buf = pipe->bufs + i;
 		if (buf->ops)
@@ -1278,9 +1305,12 @@ static long pipe_set_size(struct pipe_inode_info *pipe, unsigned long nr_pages)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	account_pipe_buffers(pipe, pipe->buffers, nr_pages);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	pipe->curbuf = 0;
 	kfree(pipe->bufs);
 	pipe->bufs = bufs;
@@ -1353,6 +1383,7 @@ long pipe_fcntl(struct file *file, unsigned int cmd, unsigned long arg)
 			ret = -EPERM;
 			goto out;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		} else if ((too_many_pipe_buffers_hard(pipe->user) ||
 			    too_many_pipe_buffers_soft(pipe->user)) &&
@@ -1360,6 +1391,8 @@ long pipe_fcntl(struct file *file, unsigned int cmd, unsigned long arg)
 			ret = -EPERM;
 			goto out;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		}
 		ret = pipe_set_size(pipe, nr_pages);
 		break;

@@ -267,10 +267,14 @@ static void nuke(struct dummy *dum, struct dummy_ep *ep)
 static void stop_activity(struct dummy *dum)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct dummy_ep	*ep;
 =======
 	int i;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	struct dummy_ep	*ep;
+>>>>>>> 2617302... source
 
 	/* prevent any more requests */
 	dum->address = 0;
@@ -279,12 +283,17 @@ static void stop_activity(struct dummy *dum)
 
 	/* nuke any pending requests first, so driver i/o is quiesced */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	list_for_each_entry(ep, &dum->gadget.ep_list, ep.ep_list)
 		nuke(dum, ep);
 =======
 	for (i = 0; i < DUMMY_ENDPOINTS; ++i)
 		nuke(dum, &dum->ep[i]);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	list_for_each_entry(ep, &dum->gadget.ep_list, ep.ep_list)
+		nuke(dum, ep);
+>>>>>>> 2617302... source
 
 	/* driver now does any non-usb quiescing necessary */
 }

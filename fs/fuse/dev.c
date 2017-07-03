@@ -14,9 +14,12 @@
 #include <linux/uio.h>
 #include <linux/miscdevice.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <linux/namei.h>
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 #include <linux/pagemap.h>
 #include <linux/file.h>
 #include <linux/slab.h>
@@ -828,12 +831,17 @@ static int fuse_try_move_page(struct fuse_copy_state *cs, struct page **pagep)
 	newpage = buf->page;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (WARN_ON(!PageUptodate(newpage)))
 		return -EIO;
 =======
 	if (!PageUptodate(newpage))
 		SetPageUptodate(newpage);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (WARN_ON(!PageUptodate(newpage)))
+		return -EIO;
+>>>>>>> 2617302... source
 
 	ClearPageMappedToDisk(newpage);
 
@@ -1739,11 +1747,14 @@ static int fuse_notify(struct fuse_conn *fc, enum fuse_notify_code code,
 		       unsigned int size, struct fuse_copy_state *cs)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/* Don't try to move pages (yet) */
 	cs->move_pages = 0;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	switch (code) {
 	case FUSE_NOTIFY_POLL:
 		return fuse_notify_poll(fc, size, cs);
@@ -1887,12 +1898,15 @@ static ssize_t fuse_dev_do_write(struct fuse_conn *fc,
 
 	err = copy_out_args(cs, &req->out, nbytes);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (req->in.h.opcode == FUSE_CANONICAL_PATH) {
 		req->out.h.error = kern_path((char *)req->out.args[0].value, 0,
 							req->canonical_path);
 	}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	fuse_copy_finish(cs);
 
 	spin_lock(&fc->lock);

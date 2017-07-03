@@ -93,20 +93,28 @@ static void __init test_wakealarm(struct rtc_device *rtc, suspend_state_t state)
 
 	if (state == PM_SUSPEND_MEM) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		printk(info_test, pm_states[state]);
 =======
 		printk(info_test, pm_states[state].label);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		printk(info_test, pm_states[state]);
+>>>>>>> 2617302... source
 		status = pm_suspend(state);
 		if (status == -ENODEV)
 			state = PM_SUSPEND_STANDBY;
 	}
 	if (state == PM_SUSPEND_STANDBY) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		printk(info_test, pm_states[state]);
 =======
 		printk(info_test, pm_states[state].label);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		printk(info_test, pm_states[state]);
+>>>>>>> 2617302... source
 		status = pm_suspend(state);
 	}
 	if (status < 0)
@@ -145,6 +153,9 @@ static char warn_bad_state[] __initdata =
 static int __init setup_test_suspend(char *value)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	unsigned i;
 
 	/* "=mem" ==> "mem" */
@@ -157,6 +168,7 @@ static int __init setup_test_suspend(char *value)
 		test_state = (__force suspend_state_t) i;
 		return 0;
 	}
+<<<<<<< HEAD
 =======
 	suspend_state_t i;
 
@@ -169,6 +181,8 @@ static int __init setup_test_suspend(char *value)
 		}
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	printk(warn_bad_state, value);
 	return 0;
 }
@@ -186,17 +200,23 @@ static int __init test_suspend(void)
 	if (test_state == PM_SUSPEND_ON)
 		goto done;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!valid_state(test_state)) {
 		printk(warn_bad_state, pm_states[test_state]);
 =======
 	if (!pm_states[test_state].state) {
 		printk(warn_bad_state, pm_states[test_state].label);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (!valid_state(test_state)) {
+		printk(warn_bad_state, pm_states[test_state]);
+>>>>>>> 2617302... source
 		goto done;
 	}
 
 	/* RTCs have initialized by now too ... can we use one? */
 	dev = class_find_device(rtc_class, NULL, NULL, has_wakealarm);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (dev)
 		rtc = rtc_class_open(dev_name(dev));
@@ -206,6 +226,10 @@ static int __init test_suspend(void)
 		put_device(dev);
 	}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (dev)
+		rtc = rtc_class_open(dev_name(dev));
+>>>>>>> 2617302... source
 	if (!rtc) {
 		printk(warn_no_rtc);
 		goto done;

@@ -15,6 +15,7 @@ efivarfs is typically mounted like this,
 
 	mount -t efivarfs none /sys/firmware/efi/efivars
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 Due to the presence of numerous firmware bugs where removing non-standard
@@ -24,3 +25,5 @@ as immutable files.  This doesn't prevent removal - "chattr -i" will work -
 but it does prevent this kind of failure from being accomplished
 accidentally.
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source

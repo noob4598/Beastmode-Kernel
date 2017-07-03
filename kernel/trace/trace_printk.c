@@ -39,12 +39,15 @@ static inline struct trace_bprintk_fmt *lookup_format(const char *fmt)
 {
 	struct trace_bprintk_fmt *pos;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 	if (!fmt)
 		return ERR_PTR(-EINVAL);
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	list_for_each_entry(pos, &trace_bprintk_fmt_list, list) {
 		if (!strcmp(pos->fmt, fmt))
 			return pos;
@@ -67,11 +70,15 @@ void hold_module_trace_bprintk_format(const char **start, const char **end)
 		struct trace_bprintk_fmt *tb_fmt = lookup_format(*iter);
 		if (tb_fmt) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			*iter = tb_fmt->fmt;
 =======
 			if (!IS_ERR(tb_fmt))
 				*iter = tb_fmt->fmt;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			*iter = tb_fmt->fmt;
+>>>>>>> 2617302... source
 			continue;
 		}
 
@@ -285,6 +292,7 @@ static int t_show(struct seq_file *m, void *v)
 	int i;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	seq_printf(m, "0x%lx : \"", *(unsigned long *)fmt);
 =======
 	if (!*fmt)
@@ -292,6 +300,9 @@ static int t_show(struct seq_file *m, void *v)
 
 	seq_printf(m, "0x%lx : \"", 0L);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	seq_printf(m, "0x%lx : \"", *(unsigned long *)fmt);
+>>>>>>> 2617302... source
 
 	/*
 	 * Tabs and new lines need to be converted.

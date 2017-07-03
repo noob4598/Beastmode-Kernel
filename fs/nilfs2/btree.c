@@ -32,10 +32,13 @@
 #include "dat.h"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 static void __nilfs_btree_init(struct nilfs_bmap *bmap);
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 static struct nilfs_btree_path *nilfs_btree_alloc_path(void)
 {
 	struct nilfs_btree_path *path;
@@ -374,6 +377,7 @@ static int nilfs_btree_node_broken(const struct nilfs_btree_node *node,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 /**
  * nilfs_btree_root_broken - verify consistency of btree root node
@@ -404,6 +408,8 @@ static int nilfs_btree_root_broken(const struct nilfs_btree_node *node,
 }
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 int nilfs_btree_broken_node_block(struct buffer_head *bh)
 {
 	int ret;
@@ -1750,10 +1756,14 @@ nilfs_btree_commit_convert_and_insert(struct nilfs_bmap *btree,
 	/* convert and insert */
 	dat = NILFS_BMAP_USE_VBN(btree) ? nilfs_bmap_get_dat(btree) : NULL;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	nilfs_btree_init(btree);
 =======
 	__nilfs_btree_init(btree);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	nilfs_btree_init(btree);
+>>>>>>> 2617302... source
 	if (nreq != NULL) {
 		nilfs_bmap_commit_alloc_ptr(btree, dreq, dat);
 		nilfs_bmap_commit_alloc_ptr(btree, nreq, dat);
@@ -2335,14 +2345,19 @@ static const struct nilfs_bmap_operations nilfs_btree_ops_gc = {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 int nilfs_btree_init(struct nilfs_bmap *bmap)
 =======
 static void __nilfs_btree_init(struct nilfs_bmap *bmap)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+int nilfs_btree_init(struct nilfs_bmap *bmap)
+>>>>>>> 2617302... source
 {
 	bmap->b_ops = &nilfs_btree_ops;
 	bmap->b_nchildren_per_block =
 		NILFS_BTREE_NODE_NCHILDREN_MAX(nilfs_btree_node_size(bmap));
+<<<<<<< HEAD
 <<<<<<< HEAD
 	return 0;
 =======
@@ -2359,6 +2374,9 @@ int nilfs_btree_init(struct nilfs_bmap *bmap)
 		ret = -EIO;
 	return ret;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	return 0;
+>>>>>>> 2617302... source
 }
 
 void nilfs_btree_init_gc(struct nilfs_bmap *bmap)

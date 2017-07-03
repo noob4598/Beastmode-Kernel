@@ -5307,10 +5307,13 @@ static void __md_stop(struct mddev *mddev)
 {
 	mddev->ready = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	/* Ensure ->event_work is done */
 	flush_workqueue(md_misc_wq);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	mddev->pers->stop(mddev);
 	if (mddev->pers->sync_request && mddev->to_remove == NULL)
 		mddev->to_remove = &md_redundancy_group;
@@ -5634,6 +5637,7 @@ static int get_bitmap_file(struct mddev * mddev, void __user * arg)
 
 	if (md_allow_write(mddev))
 <<<<<<< HEAD
+<<<<<<< HEAD
 		file = kmalloc(sizeof(*file), GFP_NOIO);
 	else
 		file = kmalloc(sizeof(*file), GFP_KERNEL);
@@ -5642,6 +5646,11 @@ static int get_bitmap_file(struct mddev * mddev, void __user * arg)
 	else
 		file = kzalloc(sizeof(*file), GFP_KERNEL);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		file = kmalloc(sizeof(*file), GFP_NOIO);
+	else
+		file = kmalloc(sizeof(*file), GFP_KERNEL);
+>>>>>>> 2617302... source
 
 	if (!file)
 		goto out;
@@ -6233,10 +6242,14 @@ static int update_array_info(struct mddev *mddev, mdu_array_info_t *info)
 	    mddev->level         != info->level         ||
 /*	    mddev->layout        != info->layout        || */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	    !mddev->persistent	 != info->not_persistent||
 =======
 	    mddev->persistent	 != !info->not_persistent ||
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	    !mddev->persistent	 != info->not_persistent||
+>>>>>>> 2617302... source
 	    mddev->chunk_sectors != info->chunk_size >> 9 ||
 	    /* ignore bottom 8 bits of state, and allow SB_BITMAP_PRESENT to change */
 	    ((state^info->state) & 0xfffffe00)
@@ -7354,6 +7367,7 @@ void md_do_sync(struct md_thread *thread)
 	if (test_bit(MD_RECOVERY_DONE, &mddev->recovery))
 		return;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (mddev->ro) /* never try to sync a read-only array */
 		return;
 =======
@@ -7362,6 +7376,10 @@ void md_do_sync(struct md_thread *thread)
 		return;
 	}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (mddev->ro) /* never try to sync a read-only array */
+		return;
+>>>>>>> 2617302... source
 
 	if (test_bit(MD_RECOVERY_SYNC, &mddev->recovery)) {
 		if (test_bit(MD_RECOVERY_CHECK, &mddev->recovery))
@@ -7468,6 +7486,7 @@ void md_do_sync(struct md_thread *thread)
 				j = rdev->recovery_offset;
 		rcu_read_unlock();
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 		/* If there is a bitmap, we need to make sure all
@@ -7483,6 +7502,8 @@ void md_do_sync(struct md_thread *thread)
 			mddev->pers->quiesce(mddev, 0);
 		}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	}
 
 	printk(KERN_INFO "md: %s of RAID array %s\n", desc, mdname(mddev));
@@ -7827,9 +7848,12 @@ void md_check_recovery(struct mddev *mddev)
 			 * ->spare_active and clear saved_raid_disk
 			 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 			set_bit(MD_RECOVERY_INTR, &mddev->recovery);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 			md_reap_sync_thread(mddev);
 			clear_bit(MD_RECOVERY_NEEDED, &mddev->recovery);
 			goto unlock;
@@ -8524,11 +8548,15 @@ static int md_notify_reboot(struct notifier_block *this,
 			if (mddev->pers)
 				__md_stop_writes(mddev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			mddev->safemode = 2;
 =======
 			if (mddev->persistent)
 				mddev->safemode = 2;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			mddev->safemode = 2;
+>>>>>>> 2617302... source
 			mddev_unlock(mddev);
 		}
 		need_delay = 1;

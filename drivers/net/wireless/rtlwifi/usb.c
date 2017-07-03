@@ -120,10 +120,14 @@ static int _usbctrl_vendorreq_sync_read(struct usb_device *udev, u8 request,
 	do {
 		status = usb_control_msg(udev, pipe, request, reqtype, value,
 <<<<<<< HEAD
+<<<<<<< HEAD
 					 index, pdata, len, 0); /*max. timeout*/
 =======
 					 index, pdata, len, 1000);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+					 index, pdata, len, 0); /*max. timeout*/
+>>>>>>> 2617302... source
 		if (status < 0) {
 			/* firmware download is checksumed, don't retry */
 			if ((value >= FW_8192C_START_ADDRESS &&
@@ -828,9 +832,12 @@ static void rtl_usb_stop(struct ieee80211_hw *hw)
 	struct rtl_hal *rtlhal = rtl_hal(rtl_priv(hw));
 	struct rtl_usb *rtlusb = rtl_usbdev(rtl_usbpriv(hw));
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	struct urb *urb;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	/* should after adapter start and interrupt enable. */
 	set_hal_stop(rtlhal);
@@ -838,6 +845,7 @@ static void rtl_usb_stop(struct ieee80211_hw *hw)
 	/* Enable software */
 	SET_USB_STOP(rtlusb);
 	rtl_usb_deinit(hw);
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 
@@ -858,6 +866,8 @@ static void rtl_usb_stop(struct ieee80211_hw *hw)
 	}
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	rtlpriv->cfg->ops->hw_disable(hw);
 }
 

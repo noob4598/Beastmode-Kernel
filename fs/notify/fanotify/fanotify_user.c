@@ -70,10 +70,14 @@ static int create_fd(struct fsnotify_group *group,
 	pr_debug("%s: group=%p event=%p\n", __func__, group, event);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	client_fd = get_unused_fd();
 =======
 	client_fd = get_unused_fd_flags(group->fanotify_data.f_flags);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	client_fd = get_unused_fd();
+>>>>>>> 2617302... source
 	if (client_fd < 0)
 		return client_fd;
 
@@ -495,10 +499,14 @@ static int fanotify_find_path(int dfd, const char __user *filename,
 
 	/* you can only watch an inode if you have read permissions on it */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = inode_permission(path->dentry->d_inode, MAY_READ);
 =======
 	ret = inode_permission2(path->mnt, path->dentry->d_inode, MAY_READ);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	ret = inode_permission(path->dentry->d_inode, MAY_READ);
+>>>>>>> 2617302... source
 	if (ret)
 		path_put(path);
 out:

@@ -98,9 +98,13 @@ obj-$(CONFIG_MSM_RPM_LOG) += rpm_log.o
 obj-$(CONFIG_MSM_TZ_LOG) += tz_log.o
 obj-$(CONFIG_MSM_BUS_SCALING) += msm_bus/
 <<<<<<< HEAD
+<<<<<<< HEAD
 obj-$(CONFIG_MSM_BUSPM_DEV) += msm-buspm-dev.o
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+obj-$(CONFIG_MSM_BUSPM_DEV) += msm-buspm-dev.o
+>>>>>>> 2617302... source
 
 obj-$(CONFIG_MSM_EVENT_TIMER)		+= event_timer.o
 
@@ -154,6 +158,10 @@ obj-$(CONFIG_SEC_THERMISTOR) += sec_thermistor.o apq8084-thermistor.o
 obj-$(CONFIG_BT_BCM4358) += board-bluetooth-bcm4358.o
 obj-$(CONFIG_GSM_MODEM_SPRD6500) += board-sprd6500-spi.o board-sprd6500-modems.o
 <<<<<<< HEAD
+<<<<<<< HEAD
 obj-$(CONFIG_HAS_MACH_MEMUTILS) += memutils/
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+obj-$(CONFIG_HAS_MACH_MEMUTILS) += memutils/
+>>>>>>> 2617302... source

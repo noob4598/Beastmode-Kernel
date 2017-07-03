@@ -227,10 +227,14 @@ int dsp_clk_enable(enum dsp_clk_id clk_id)
 		status = omap_dm_timer_start(timer[clk_id - 1]);
 		break;
 <<<<<<< HEAD
+<<<<<<< HEAD
 #ifdef CONFIG_OMAP_MCBSP
 =======
 #ifdef CONFIG_SND_OMAP_SOC_MCBSP
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+#ifdef CONFIG_OMAP_MCBSP
+>>>>>>> 2617302... source
 	case MCBSP_CLK:
 		omap_mcbsp_request(MCBSP_ID(clk_id));
 		omap2_mcbsp_set_clks_src(MCBSP_ID(clk_id), MCBSP_CLKS_PAD_SRC);
@@ -307,10 +311,14 @@ int dsp_clk_disable(enum dsp_clk_id clk_id)
 		status = omap_dm_timer_stop(timer[clk_id - 1]);
 		break;
 <<<<<<< HEAD
+<<<<<<< HEAD
 #ifdef CONFIG_OMAP_MCBSP
 =======
 #ifdef CONFIG_SND_OMAP_SOC_MCBSP
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+#ifdef CONFIG_OMAP_MCBSP
+>>>>>>> 2617302... source
 	case MCBSP_CLK:
 		omap2_mcbsp_set_clks_src(MCBSP_ID(clk_id), MCBSP_CLKS_PRCM_SRC);
 		omap_mcbsp_free(MCBSP_ID(clk_id));

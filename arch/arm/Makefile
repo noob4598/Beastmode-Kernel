@@ -44,10 +44,13 @@ KBUILD_CFLAGS	+=-fstack-protector
 endif
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 KBUILD_CFLAGS	+=-fno-pic
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 ifeq ($(CONFIG_CPU_BIG_ENDIAN),y)
 KBUILD_CPPFLAGS	+= -mbig-endian
 AS		+= -EB
@@ -61,6 +64,7 @@ endif
 comma = ,
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #
 # The Scalar Replacement of Aggregates (SRA) optimization pass in GCC 4.9 and
@@ -71,6 +75,8 @@ comma = ,
 KBUILD_CFLAGS	+= $(call cc-option,-fno-ipa-sra)
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 # This selects which instruction set is used.
 # Note that GCC does not numerically define an architecture version
 # macro, but instead defines a whole series of macros which makes
@@ -99,9 +105,12 @@ arch-$(CONFIG_CPU_32v3)		:=-D__LINUX_ARM_ARCH__=3 -march=armv3
 # bigger problems.
 arch-$(CONFIG_ARCH_MSM_KRAIT)	:=-D__LINUX_ARM_ARCH__=7 $(call cc-option,-mcpu=cortex-a15,-march=armv7-a)
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 arch-$(CONFIG_MSM_CORTEX_A7)   :=-D__LINUX_ARM_ARCH__=7 $(call cc-option,-mcpu=cortex-a15,-march=armv7-a)
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 # This selects how we optimise for the processor.
 tune-$(CONFIG_CPU_ARM7TDMI)	:=-mtune=arm7tdmi

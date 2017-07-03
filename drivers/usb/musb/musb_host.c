@@ -582,6 +582,9 @@ musb_rx_reinit(struct musb *musb, struct musb_qh *qh, struct musb_hw_ep *ep)
 
 	/* scrub all previous state, clearing toggle */
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	} else {
 		csr = musb_readw(ep->regs, MUSB_RXCSR);
 		if (csr & MUSB_RXCSR_RXPKTRDY)
@@ -590,6 +593,7 @@ musb_rx_reinit(struct musb *musb, struct musb_qh *qh, struct musb_hw_ep *ep)
 
 		musb_h_flush_rxfifo(ep, MUSB_RXCSR_CLRDATATOG);
 	}
+<<<<<<< HEAD
 =======
 	}
 	csr = musb_readw(ep->regs, MUSB_RXCSR);
@@ -599,6 +603,8 @@ musb_rx_reinit(struct musb *musb, struct musb_qh *qh, struct musb_hw_ep *ep)
 
 	musb_h_flush_rxfifo(ep, MUSB_RXCSR_CLRDATATOG);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	/* target addr and (for multipoint) hub addr/port */
 	if (musb->is_multipoint) {
@@ -959,6 +965,7 @@ static void musb_bulk_nak_timeout(struct musb *musb, struct musb_hw_ep *ep,
 		dma = is_dma_capable() ? ep->rx_channel : NULL;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		/* clear nak timeout bit */
 		rx_csr = musb_readw(epio, MUSB_RXCSR);
 		rx_csr |= MUSB_RXCSR_H_WZC_BITS;
@@ -973,6 +980,11 @@ static void musb_bulk_nak_timeout(struct musb *musb, struct musb_hw_ep *ep,
 		rx_csr &= ~MUSB_RXCSR_H_REQPKT;
 		musb_writew(epio, MUSB_RXCSR, rx_csr);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		/* clear nak timeout bit */
+		rx_csr = musb_readw(epio, MUSB_RXCSR);
+		rx_csr |= MUSB_RXCSR_H_WZC_BITS;
+>>>>>>> 2617302... source
 		rx_csr &= ~MUSB_RXCSR_DATAERROR;
 		musb_writew(epio, MUSB_RXCSR, rx_csr);
 

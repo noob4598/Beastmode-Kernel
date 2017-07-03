@@ -308,12 +308,16 @@ static struct snd_pcm_chmap_elem *convert_chmap(int channels, unsigned int bits,
  * add this endpoint to the chip instance.
  * if a stream with the same endpoint already exists, append to it.
 <<<<<<< HEAD
+<<<<<<< HEAD
  * if not, create a new pcm stream.
 =======
  * if not, create a new pcm stream. note, fp is added to the substream
  * fmt_list and will be freed on the chip instance release. do not free
  * fp or do remove it from the substream fmt_list to avoid double-free.
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+ * if not, create a new pcm stream.
+>>>>>>> 2617302... source
  */
 int snd_usb_add_audio_stream(struct snd_usb_audio *chip,
 			     int stream,
@@ -650,9 +654,12 @@ int snd_usb_parse_audio_interface(struct snd_usb_audio *chip, int iface_no)
 		fp->clock = clock;
 		fp->chmap = convert_chmap(num_channels, chconfig, protocol);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		INIT_LIST_HEAD(&fp->list);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 		/* some quirks for attributes here */
 
@@ -698,9 +705,12 @@ int snd_usb_parse_audio_interface(struct snd_usb_audio *chip, int iface_no)
 		err = snd_usb_add_audio_stream(chip, stream, fp);
 		if (err < 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 			list_del(&fp->list); /* unlink for avoiding double-free */
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 			kfree(fp->rate_table);
 			kfree(fp->chmap);
 			kfree(fp);

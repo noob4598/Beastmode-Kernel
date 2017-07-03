@@ -41,9 +41,13 @@
 
 static int active_count;
 <<<<<<< HEAD
+<<<<<<< HEAD
 extern bool mdss_screen_on;
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+extern bool mdss_screen_on;
+>>>>>>> 2617302... source
 
 struct cpufreq_interactive_cpuinfo {
 	struct timer_list cpu_timer;
@@ -54,9 +58,13 @@ struct cpufreq_interactive_cpuinfo {
 	u64 cputime_speedadj;
 	u64 cputime_speedadj_timestamp;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u64 last_evaluated_jiffy;
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	u64 last_evaluated_jiffy;
+>>>>>>> 2617302... source
 	struct cpufreq_policy *policy;
 	struct cpufreq_frequency_table *freq_table;
 	unsigned int target_freq;
@@ -138,6 +146,9 @@ static u64 boostpulse_endtime;
 static int timer_slack_val = DEFAULT_TIMER_SLACK;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 /*
  * Whether to align timer windows across all CPUs. When
  * use_sched_load is true, this flag is ignored and windows
@@ -148,8 +159,11 @@ static bool align_windows = true;
 #define DEFAULT_SCREEN_OFF_MAX 1190400
 static unsigned long screen_off_max = DEFAULT_SCREEN_OFF_MAX;
 
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 static bool io_is_busy;
 
 #ifdef CONFIG_MODE_AUTO_CHANGE
@@ -160,6 +174,9 @@ struct cpufreq_loadinfo {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 /* Round to starting jiffy of next evaluation window */
 static u64 round_to_nw_start(u64 jif)
 {
@@ -175,8 +192,11 @@ static u64 round_to_nw_start(u64 jif)
 
 	return ret;
 }
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 static DEFINE_PER_CPU(struct cpufreq_loadinfo, loadinfo);
 
 static spinlock_t mode_lock;
@@ -265,10 +285,14 @@ static void cpufreq_interactive_timer_resched(
 	struct cpufreq_interactive_cpuinfo *pcpu)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u64 expires;
 =======
 	unsigned long expires;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	u64 expires;
+>>>>>>> 2617302... source
 	unsigned long flags;
 
 	spin_lock_irqsave(&pcpu->load_lock, flags);
@@ -278,10 +302,14 @@ static void cpufreq_interactive_timer_resched(
 	pcpu->cputime_speedadj = 0;
 	pcpu->cputime_speedadj_timestamp = pcpu->time_in_idle_timestamp;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	expires = round_to_nw_start(pcpu->last_evaluated_jiffy);
 =======
 	expires = jiffies + usecs_to_jiffies(timer_rate);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	expires = round_to_nw_start(pcpu->last_evaluated_jiffy);
+>>>>>>> 2617302... source
 	mod_timer_pinned(&pcpu->cpu_timer, expires);
 
 	if (timer_slack_val >= 0 && pcpu->target_freq > pcpu->policy->min) {
@@ -301,10 +329,14 @@ static void cpufreq_interactive_timer_start(int cpu, int time_override)
 	struct cpufreq_interactive_cpuinfo *pcpu = &per_cpu(cpuinfo, cpu);
 	unsigned long flags;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u64 expires = round_to_nw_start(pcpu->last_evaluated_jiffy);
 =======
 	unsigned long expires;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	u64 expires = round_to_nw_start(pcpu->last_evaluated_jiffy);
+>>>>>>> 2617302... source
 	if (time_override)
 		expires = jiffies + time_override;
 	else
@@ -488,9 +520,12 @@ static u64 update_load(int cpu)
 	cur_loadinfo->timestamp = now;
 #endif
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	return now;
 }
 
@@ -615,11 +650,14 @@ static void exit_mode(void)
 }
 #endif
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 static int need_retry;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 static void cpufreq_interactive_timer(unsigned long data)
 {
 	u64 now;
@@ -651,9 +689,13 @@ static void cpufreq_interactive_timer(unsigned long data)
 	delta_time = (unsigned int)(now - pcpu->cputime_speedadj_timestamp);
 	cputime_speedadj = pcpu->cputime_speedadj;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pcpu->last_evaluated_jiffy = get_jiffies_64();
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	pcpu->last_evaluated_jiffy = get_jiffies_64();
+>>>>>>> 2617302... source
 	spin_unlock_irqrestore(&pcpu->load_lock, flags);
 
 	if (WARN_ON_ONCE(!delta_time))
@@ -684,9 +726,12 @@ static void cpufreq_interactive_timer(unsigned long data)
 	spin_unlock_irqrestore(&mode_lock, flags);
 #endif
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	do_div(cputime_speedadj, delta_time);
 	loadadjfreq = (unsigned int)cputime_speedadj * 100;
 	cpu_load = loadadjfreq / pcpu->target_freq;
@@ -695,10 +740,14 @@ static void cpufreq_interactive_timer(unsigned long data)
 	pcpu->policy->util = cpu_load;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if ((go_hispeed_load && cpu_load >= go_hispeed_load) || boosted) {
 =======
 	if (cpu_load >= go_hispeed_load || boosted) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if ((go_hispeed_load && cpu_load >= go_hispeed_load) || boosted) {
+>>>>>>> 2617302... source
 		if (pcpu->target_freq < hispeed_freq) {
 			new_freq = hispeed_freq;
 		} else {
@@ -791,20 +840,27 @@ static void cpufreq_interactive_timer(unsigned long data)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 if (pcpu->target_freq == new_freq) {
 =======
 	if (pcpu->target_freq == new_freq &&
 		!(need_retry & (1 << data))) {
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+if (pcpu->target_freq == new_freq) {
+>>>>>>> 2617302... source
 		trace_cpufreq_interactive_already(
 			data, cpu_load, pcpu->target_freq,
 			pcpu->policy->cur, new_freq);
 		goto rearm_if_notmax;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	need_retry &= (~(1 << data));
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	trace_cpufreq_interactive_target(data, cpu_load, pcpu->target_freq,
 					 pcpu->policy->cur, new_freq);
@@ -907,10 +963,13 @@ static int cpufreq_interactive_speedchange_task(void *data)
 	cpumask_t tmp_mask;
 	unsigned long flags;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	int ret = 0;
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	struct cpufreq_interactive_cpuinfo *pcpu;
 
 	while (1) {
@@ -939,6 +998,7 @@ static int cpufreq_interactive_speedchange_task(void *data)
 
 			pcpu = &per_cpu(cpuinfo, cpu);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (!down_read_trylock(&pcpu->enable_sem))
 				continue;
 			if (!pcpu->governor_enabled) {
@@ -953,6 +1013,11 @@ static int cpufreq_interactive_speedchange_task(void *data)
 				pr_debug("%s : cpu%d governor is not enabled!!\n",
 					__func__, cpu);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			if (!down_read_trylock(&pcpu->enable_sem))
+				continue;
+			if (!pcpu->governor_enabled) {
+>>>>>>> 2617302... source
 				up_read(&pcpu->enable_sem);
 				continue;
 			}
@@ -966,6 +1031,9 @@ static int cpufreq_interactive_speedchange_task(void *data)
 			}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 if (unlikely(!mdss_screen_on))
 				if (max_freq > screen_off_max) max_freq = screen_off_max;
 
@@ -973,6 +1041,7 @@ if (unlikely(!mdss_screen_on))
 				__cpufreq_driver_target(pcpu->policy,
 							max_freq,
 							CPUFREQ_RELATION_H);
+<<<<<<< HEAD
 =======
 			if (max_freq != pcpu->policy->cur)
 				ret = __cpufreq_driver_target(pcpu->policy,
@@ -986,6 +1055,8 @@ if (unlikely(!mdss_screen_on))
 			}
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 			trace_cpufreq_interactive_setspeed(cpu,
 						     pcpu->target_freq,
 						     pcpu->policy->cur);
@@ -1139,10 +1210,14 @@ static ssize_t show_target_loads(
 			       i & 0x1 ? ":" : " ");
 #endif
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret += sprintf(buf + ret + 1, "\n");
 =======
 	sprintf(buf + ret - 1, "\n");
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	ret += sprintf(buf + ret + 1, "\n");
+>>>>>>> 2617302... source
 	spin_unlock_irqrestore(&target_loads_lock, flags);
 	return ret;
 }
@@ -1210,10 +1285,14 @@ static ssize_t show_above_hispeed_delay(
 			       i & 0x1 ? ":" : " ");
 #endif
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret += sprintf(buf + ret + 1, "\n");
 =======
 	sprintf(buf + ret - 1, "\n");
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	ret += sprintf(buf + ret + 1, "\n");
+>>>>>>> 2617302... source
 	spin_unlock_irqrestore(&above_hispeed_delay_lock, flags);
 	return ret;
 }
@@ -1340,6 +1419,9 @@ static struct global_attr sampling_down_factor_attr =
 		show_sampling_down_factor, store_sampling_down_factor);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 static ssize_t show_align_windows(struct kobject *kobj,
 				     struct attribute *attr, char *buf)
 {
@@ -1362,8 +1444,11 @@ static ssize_t store_align_windows(struct kobject *kobj,
 static struct global_attr align_windows_attr = __ATTR(align_windows, 0644,
 		show_align_windows, store_align_windows);
 
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 static ssize_t show_go_hispeed_load(struct kobject *kobj,
 				     struct attribute *attr, char *buf)
 {
@@ -1569,6 +1654,9 @@ static ssize_t store_boostpulse_duration(
 define_one_global_rw(boostpulse_duration);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 static ssize_t show_screen_off_maxfreq(struct kobject *kobj,
                                         struct attribute *attr, char *buf)
 {
@@ -1593,8 +1681,11 @@ static struct global_attr screen_off_maxfreq =
         __ATTR(screen_off_maxfreq, 0666, show_screen_off_maxfreq,
                 store_screen_off_maxfreq);
 
+<<<<<<< HEAD
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 static ssize_t show_io_is_busy(struct kobject *kobj,
 			struct attribute *attr, char *buf)
 {
@@ -1617,9 +1708,12 @@ static ssize_t store_io_is_busy(struct kobject *kobj,
 static struct global_attr io_is_busy_attr = __ATTR(io_is_busy, 0644,
 		show_io_is_busy, store_io_is_busy);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 #ifdef CONFIG_MODE_AUTO_CHANGE_BOOST
 static ssize_t show_bimc_hispeed_freq(struct kobject *kobj,
 			struct attribute *attr, char *buf)
@@ -1820,12 +1914,18 @@ static struct attribute *interactive_attributes[] = {
 	&boostpulse.attr,
 	&boostpulse_duration.attr,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	&screen_off_maxfreq.attr,
 	&io_is_busy_attr.attr,
 	&align_windows_attr.attr,
 =======
 	&io_is_busy_attr.attr,
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	&screen_off_maxfreq.attr,
+	&io_is_busy_attr.attr,
+	&align_windows_attr.attr,
+>>>>>>> 2617302... source
 	&sampling_down_factor_attr.attr,
 	&sync_freq_attr.attr,
 	&up_threshold_any_cpu_load_attr.attr,
@@ -1898,9 +1998,12 @@ static void cpufreq_param_set_init(void)
 }
 #endif
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 static int cpufreq_governor_interactive(struct cpufreq_policy *policy,
 		unsigned int event)
 {
@@ -1940,9 +2043,13 @@ static int cpufreq_governor_interactive(struct cpufreq_policy *policy,
 			del_timer_sync(&pcpu->cpu_timer);
 			del_timer_sync(&pcpu->cpu_slack_timer);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			pcpu->last_evaluated_jiffy = get_jiffies_64();
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			pcpu->last_evaluated_jiffy = get_jiffies_64();
+>>>>>>> 2617302... source
 			cpufreq_interactive_timer_start(j, 0);
 			pcpu->governor_enabled = 1;
 			up_write(&pcpu->enable_sem);
@@ -2020,6 +2127,7 @@ static int cpufreq_governor_interactive(struct cpufreq_policy *policy,
 
 			/* update target_freq firstly */
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (policy->max < pcpu->target_freq)
 				pcpu->target_freq = policy->max;
 =======
@@ -2028,6 +2136,10 @@ static int cpufreq_governor_interactive(struct cpufreq_policy *policy,
 				need_retry |= (1 << j);
 			}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			if (policy->max < pcpu->target_freq)
+				pcpu->target_freq = policy->max;
+>>>>>>> 2617302... source
 			/*
 			 * Delete and reschedule timer.
 			 * Else the timer callback may return without
@@ -2040,10 +2152,14 @@ static int cpufreq_governor_interactive(struct cpufreq_policy *policy,
 
 			if (pcpu->nr_timer_resched) {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 				if (pcpu->policy->max < pcpu->target_freq)
 					pcpu->target_freq = pcpu->policy->max;
 				if (pcpu->policy->min >= pcpu->target_freq)
 					pcpu->target_freq = pcpu->policy->min;
+<<<<<<< HEAD
 =======
 				if (pcpu->policy->max < pcpu->target_freq) {
 					pcpu->target_freq = pcpu->policy->max;
@@ -2054,6 +2170,8 @@ static int cpufreq_governor_interactive(struct cpufreq_policy *policy,
 					need_retry |= (1 << j);
 				}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 				/*
 				 * To avoid deferring load evaluation for a
 				 * long time rearm the timer for the same jiffy
@@ -2070,9 +2188,12 @@ static int cpufreq_governor_interactive(struct cpufreq_policy *policy,
 			} else if (policy->min >= pcpu->target_freq) {
 				pcpu->target_freq = policy->min;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 				need_retry |= (1 << j);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 				/*
 				 * Reschedule timer.
 				 * The governor needs more time to evaluate
@@ -2116,9 +2237,13 @@ static int __init cpufreq_interactive_init(void)
 	struct sched_param param = { .sched_priority = MAX_RT_PRIO-1 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mdss_screen_on = true;
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	mdss_screen_on = true;
+>>>>>>> 2617302... source
 	/* Initalize per-cpu timers */
 	for_each_possible_cpu(i) {
 		pcpu = &per_cpu(cpuinfo, i);

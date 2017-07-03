@@ -52,10 +52,14 @@ struct pcifront_device {
 
 struct pcifront_sd {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int domain;
 =======
 	struct pci_sysdata sd;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	int domain;
+>>>>>>> 2617302... source
 	struct pcifront_device *pdev;
 };
 
@@ -70,12 +74,16 @@ static inline void pcifront_init_sd(struct pcifront_sd *sd,
 				    struct pcifront_device *pdev)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	sd->domain = domain;
 =======
 	/* Because we do not expose that information via XenBus. */
 	sd->sd.node = first_online_node;
 	sd->sd.domain = domain;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	sd->domain = domain;
+>>>>>>> 2617302... source
 	sd->pdev = pdev;
 }
 
@@ -474,12 +482,17 @@ static int pcifront_scan_root(struct pcifront_device *pdev,
 		 domain, bus);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	bus_entry = kmalloc(sizeof(*bus_entry), GFP_KERNEL);
 	sd = kmalloc(sizeof(*sd), GFP_KERNEL);
 =======
 	bus_entry = kzalloc(sizeof(*bus_entry), GFP_KERNEL);
 	sd = kzalloc(sizeof(*sd), GFP_KERNEL);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	bus_entry = kmalloc(sizeof(*bus_entry), GFP_KERNEL);
+	sd = kmalloc(sizeof(*sd), GFP_KERNEL);
+>>>>>>> 2617302... source
 	if (!bus_entry || !sd) {
 		err = -ENOMEM;
 		goto err_out;

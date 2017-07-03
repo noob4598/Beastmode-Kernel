@@ -436,12 +436,16 @@ struct sec_battery_platform_data {
 	int swelling_low_temp_block;
 	int swelling_low_temp_recov;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int swelling_topoff_current;
 =======
 #ifndef CONFIG_SEC_KCCAT6_PROJECT
 	int swelling_topoff_current;
 #endif
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	int swelling_topoff_current;
+>>>>>>> 2617302... source
 
 	unsigned int swelling_high_chg_current;
 	unsigned int swelling_low_chg_current;

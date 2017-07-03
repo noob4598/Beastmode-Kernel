@@ -213,6 +213,7 @@
 
 #ifdef __KERNEL__
 <<<<<<< HEAD
+<<<<<<< HEAD
 #ifndef __ASSEMBLY__
 extern const char early_idt_handlers[NUM_EXCEPTION_VECTORS][2+2+5];
 =======
@@ -230,6 +231,10 @@ extern const char early_idt_handlers[NUM_EXCEPTION_VECTORS][2+2+5];
 
 extern const char early_idt_handler_array[NUM_EXCEPTION_VECTORS][EARLY_IDT_HANDLER_SIZE];
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+#ifndef __ASSEMBLY__
+extern const char early_idt_handlers[NUM_EXCEPTION_VECTORS][2+2+5];
+>>>>>>> 2617302... source
 
 /*
  * Load a segment. Fall back on loading the zero

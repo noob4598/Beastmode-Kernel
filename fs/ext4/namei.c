@@ -422,6 +422,9 @@ static __le32 ext4_dx_csum(struct inode *inode, struct ext4_dir_entry *dirent,
 	struct ext4_inode_info *ei = EXT4_I(inode);
 	__u32 csum;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 	__le32 save_csum;
 	int size;
 
@@ -431,6 +434,7 @@ static __le32 ext4_dx_csum(struct inode *inode, struct ext4_dir_entry *dirent,
 	csum = ext4_chksum(sbi, ei->i_csum_seed, (__u8 *)dirent, size);
 	csum = ext4_chksum(sbi, csum, (__u8 *)t, sizeof(struct dx_tail));
 	t->dt_checksum = save_csum;
+<<<<<<< HEAD
 =======
 	int size;
 	__u32 dummy_csum = 0;
@@ -441,6 +445,8 @@ static __le32 ext4_dx_csum(struct inode *inode, struct ext4_dir_entry *dirent,
 	csum = ext4_chksum(sbi, csum, (__u8 *)t, offset);
 	csum = ext4_chksum(sbi, csum, (__u8 *)&dummy_csum, sizeof(dummy_csum));
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 
 	return cpu_to_le32(csum);
 }
@@ -1535,10 +1541,14 @@ static struct dentry *ext4_lookup(struct inode *dir, struct dentry *dentry, unsi
 			return ERR_PTR(-EIO);
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 		inode = ext4_iget(dir->i_sb, ino);
 =======
 		inode = ext4_iget_normal(dir->i_sb, ino);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		inode = ext4_iget(dir->i_sb, ino);
+>>>>>>> 2617302... source
 		if (inode == ERR_PTR(-ESTALE)) {
 			EXT4_ERROR_INODE(dir,
 			 "deleted inode referenced: %u  at parent inode : %lu",
@@ -1583,10 +1593,14 @@ struct dentry *ext4_get_parent(struct dentry *child)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return d_obtain_alias(ext4_iget(child->d_inode->i_sb, ino));
 =======
 	return d_obtain_alias(ext4_iget_normal(child->d_inode->i_sb, ino));
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	return d_obtain_alias(ext4_iget(child->d_inode->i_sb, ino));
+>>>>>>> 2617302... source
 }
 
 /*
@@ -2006,10 +2020,14 @@ static int ext4_add_entry(handle_t *handle, struct dentry *dentry,
 {
 	struct inode *dir = dentry->d_parent->d_inode;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct buffer_head *bh;
 =======
 	struct buffer_head *bh = NULL;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	struct buffer_head *bh;
+>>>>>>> 2617302... source
 	struct ext4_dir_entry_2 *de;
 	struct ext4_dir_entry_tail *t;
 	struct super_block *sb;
@@ -2035,10 +2053,14 @@ static int ext4_add_entry(handle_t *handle, struct dentry *dentry,
 		if (retval == 1) {
 			retval = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 			return retval;
 =======
 			goto out;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			return retval;
+>>>>>>> 2617302... source
 		}
 	}
 
@@ -2046,10 +2068,14 @@ static int ext4_add_entry(handle_t *handle, struct dentry *dentry,
 		retval = ext4_dx_add_entry(handle, dentry, inode);
 		if (!retval || (retval != ERR_BAD_DX_DIR))
 <<<<<<< HEAD
+<<<<<<< HEAD
 			return retval;
 =======
 			goto out;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+			return retval;
+>>>>>>> 2617302... source
 		ext4_clear_inode_flag(dir, EXT4_INODE_INDEX);
 		dx_fallback++;
 		ext4_mark_inode_dirty(handle, dir);
@@ -2062,6 +2088,9 @@ static int ext4_add_entry(handle_t *handle, struct dentry *dentry,
 
 		retval = add_dirent_to_buf(handle, dentry, inode, NULL, bh);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2617302... source
 		if (retval != -ENOSPC) {
 			brelse(bh);
 			return retval;
@@ -2070,6 +2099,7 @@ static int ext4_add_entry(handle_t *handle, struct dentry *dentry,
 		if (blocks == 1 && !dx_fallback &&
 		    EXT4_HAS_COMPAT_FEATURE(sb, EXT4_FEATURE_COMPAT_DIR_INDEX))
 			return make_indexed_dir(handle, dentry, inode, bh);
+<<<<<<< HEAD
 =======
 		if (retval != -ENOSPC)
 			goto out;
@@ -2081,6 +2111,8 @@ static int ext4_add_entry(handle_t *handle, struct dentry *dentry,
 			goto out;
 		}
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 		brelse(bh);
 	}
 	bh = ext4_append(handle, dir, &block);
@@ -2097,9 +2129,12 @@ static int ext4_add_entry(handle_t *handle, struct dentry *dentry,
 
 	retval = add_dirent_to_buf(handle, dentry, inode, de, bh);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 out:
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	brelse(bh);
 	if (retval == 0)
 		ext4_set_inode_state(inode, EXT4_STATE_NEWENTRY);

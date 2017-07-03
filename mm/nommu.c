@@ -1899,10 +1899,14 @@ EXPORT_SYMBOL(unmap_mapping_range);
 int __vm_enough_memory(struct mm_struct *mm, long pages, int cap_sys_admin)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	unsigned long free, allowed, reserve;
 =======
 	long free, allowed, reserve;
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	unsigned long free, allowed, reserve;
+>>>>>>> 2617302... source
 
 	vm_acct_memory(pages);
 
@@ -1968,10 +1972,14 @@ int __vm_enough_memory(struct mm_struct *mm, long pages, int cap_sys_admin)
 	if (mm) {
 		reserve = sysctl_user_reserve_kbytes >> (PAGE_SHIFT - 10);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		allowed -= min(mm->total_vm / 32, reserve);
 =======
 		allowed -= min_t(long, mm->total_vm / 32, reserve);
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+		allowed -= min(mm->total_vm / 32, reserve);
+>>>>>>> 2617302... source
 	}
 
 	if (percpu_counter_read_positive(&vm_committed_as) < allowed)

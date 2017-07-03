@@ -351,11 +351,14 @@ key_ref_t keyring_search_aux(key_ref_t keyring_ref,
 		goto error;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (!match)
 		return ERR_PTR(-ENOKEY);
 
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+>>>>>>> 2617302... source
 	rcu_read_lock();
 
 	now = current_kernel_time();
@@ -520,11 +523,17 @@ key_ref_t keyring_search(key_ref_t keyring,
 			 const char *description)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (!type->match)
 		return ERR_PTR(-ENOKEY);
 
 =======
 >>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+=======
+	if (!type->match)
+		return ERR_PTR(-ENOKEY);
+
+>>>>>>> 2617302... source
 	return keyring_search_aux(keyring, current->cred,
 				  type, description, type->match, false);
 }
