@@ -15,6 +15,10 @@
  */
 #undef barrier
 #undef RELOC_HIDE
+<<<<<<< HEAD
+=======
+#undef OPTIMIZER_HIDE_VAR
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 #define barrier() __memory_barrier()
 
@@ -23,6 +27,15 @@
      __ptr = (unsigned long) (ptr);				\
     (typeof(ptr)) (__ptr + (off)); })
 
+<<<<<<< HEAD
+=======
+/* This should act as an optimization barrier on var.
+ * Given that this compiler does not have inline assembly, a compiler barrier
+ * is the best we can do.
+ */
+#define OPTIMIZER_HIDE_VAR(var) barrier()
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 /* Intel ECC compiler doesn't support __builtin_types_compatible_p() */
 #define __must_be_array(a) 0
 

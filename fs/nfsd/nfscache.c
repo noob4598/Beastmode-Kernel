@@ -129,6 +129,7 @@ nfsd_reply_cache_alloc(void)
 }
 
 static void
+<<<<<<< HEAD
 nfsd_reply_cache_unhash(struct svc_cacherep *rp)
 {
 	hlist_del_init(&rp->c_hash);
@@ -136,6 +137,8 @@ nfsd_reply_cache_unhash(struct svc_cacherep *rp)
 }
 
 static void
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 nfsd_reply_cache_free_locked(struct svc_cacherep *rp)
 {
 	if (rp->c_type == RC_REPLBUFF && rp->c_replvec.iov_base) {
@@ -228,6 +231,7 @@ hash_refile(struct svc_cacherep *rp)
 	hlist_add_head(&rp->c_hash, cache_hash + hash_32(rp->c_xid, maskbits));
 }
 
+<<<<<<< HEAD
 static inline bool
 nfsd_cache_entry_expired(struct svc_cacherep *rp)
 {
@@ -235,6 +239,8 @@ nfsd_cache_entry_expired(struct svc_cacherep *rp)
 	       time_after(jiffies, rp->c_timestamp + RC_EXPIRE);
 }
 
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 /*
  * Walk the LRU list and prune off entries that are older than RC_EXPIRE.
  * Also prune the oldest ones when the total exceeds the max number of entries.
@@ -245,8 +251,19 @@ prune_cache_entries(void)
 	struct svc_cacherep *rp, *tmp;
 
 	list_for_each_entry_safe(rp, tmp, &lru_head, c_lru) {
+<<<<<<< HEAD
 		if (!nfsd_cache_entry_expired(rp) &&
 		    num_drc_entries <= max_drc_entries)
+=======
+		/*
+		 * Don't free entries attached to calls that are still
+		 * in-progress, but do keep scanning the list.
+		 */
+		if (rp->c_state == RC_INPROG)
+			continue;
+		if (num_drc_entries <= max_drc_entries &&
+		    time_before(jiffies, rp->c_timestamp + RC_EXPIRE))
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 			break;
 		nfsd_reply_cache_free_locked(rp);
 	}
@@ -402,6 +419,7 @@ nfsd_cache_lookup(struct svc_rqst *rqstp)
 
 	/*
 	 * Since the common case is a cache miss followed by an insert,
+<<<<<<< HEAD
 	 * preallocate an entry. First, try to reuse the first entry on the LRU
 	 * if it works, then go ahead and prune the LRU list.
 	 */
@@ -418,6 +436,10 @@ nfsd_cache_lookup(struct svc_rqst *rqstp)
 
 	/* No expired ones available, allocate a new one. */
 	spin_unlock(&cache_lock);
+=======
+	 * preallocate an entry.
+	 */
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	rp = nfsd_reply_cache_alloc();
 	spin_lock(&cache_lock);
 	if (likely(rp)) {
@@ -425,7 +447,13 @@ nfsd_cache_lookup(struct svc_rqst *rqstp)
 		drc_mem_usage += sizeof(*rp);
 	}
 
+<<<<<<< HEAD
 search_cache:
+=======
+	/* go ahead and prune the cache */
+	prune_cache_entries();
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	found = nfsd_cache_search(rqstp, csum);
 	if (found) {
 		if (likely(rp))
@@ -439,6 +467,7 @@ search_cache:
 		goto out;
 	}
 
+<<<<<<< HEAD
 	/*
 	 * We're keeping the one we just allocated. Are we now over the
 	 * limit? Prune one off the tip of the LRU in trade for the one we
@@ -448,6 +477,8 @@ search_cache:
 		nfsd_reply_cache_free_locked(list_first_entry(&lru_head,
 						struct svc_cacherep, c_lru));
 
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	nfsdstats.rcmisses++;
 	rqstp->rq_cacherep = rp;
 	rp->c_state = RC_INPROG;

@@ -80,6 +80,10 @@ struct max86900_device_data
 	struct input_dev *hrm_input_dev;
 	struct mutex i2clock;
 	struct mutex activelock;
+<<<<<<< HEAD
+=======
+	struct mutex storelock;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	struct regulator *vdd_3p3;
 	const char *led_3p3;
 	bool *bio_status;

@@ -176,7 +176,16 @@ void bpf_jit_compile(struct sk_filter *fp)
 	}
 	cleanup_addr = proglen; /* epilogue address */
 
+<<<<<<< HEAD
 	for (pass = 0; pass < 10; pass++) {
+=======
+	/* JITed image shrinks with every pass and the loop iterates
+	 * until the image stops shrinking. Very large bpf programs
+	 * may converge on the last pass. In such case do one more
+	 * pass to emit the final image
+	 */
+	for (pass = 0; pass < 10 || image; pass++) {
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		u8 seen_or_pass0 = (pass == 0) ? (SEEN_XREG | SEEN_DATAREF | SEEN_MEM) : seen;
 		/* no prologue/epilogue for trivial filters (RET something) */
 		proglen = 0;

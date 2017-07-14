@@ -279,14 +279,22 @@ int32_t msm_sensor_driver_probe(void *setting)
 
 	/* Validate input parameters */
 	if (!setting) {
+<<<<<<< HEAD
 		pr_err("failed: slave_info %p", setting);
+=======
+		pr_err("failed: slave_info %pK", setting);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		return -EINVAL;
 	}
 
 	/* Allocate memory for slave info */
 	slave_info = kzalloc(sizeof(*slave_info), GFP_KERNEL);
 	if (!slave_info) {
+<<<<<<< HEAD
 		pr_err("failed: no memory slave_info %p", slave_info);
+=======
+		pr_err("failed: no memory slave_info %pK", slave_info);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		return -ENOMEM;
 	}
 
@@ -317,13 +325,21 @@ int32_t msm_sensor_driver_probe(void *setting)
 	/* Extract s_ctrl from camera id */
 	s_ctrl = g_sctrl[slave_info->camera_id];
 	if (!s_ctrl) {
+<<<<<<< HEAD
 		pr_err("failed: s_ctrl %p for camera_id %d", s_ctrl,
+=======
+		pr_err("failed: s_ctrl %pK for camera_id %d", s_ctrl,
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 			slave_info->camera_id);
 		rc = -EINVAL;
 		goto FREE_SLAVE_INFO;
 	}
 
+<<<<<<< HEAD
 	CDBG("s_ctrl[%d] %p", slave_info->camera_id, s_ctrl);
+=======
+	CDBG("s_ctrl[%d] %pK", slave_info->camera_id, s_ctrl);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	if (s_ctrl->is_probe_succeed == 1) {
 		/*
@@ -340,7 +356,11 @@ int32_t msm_sensor_driver_probe(void *setting)
 	/* Allocate memory for power up setting */
 	power_setting = kzalloc(sizeof(*power_setting) * size, GFP_KERNEL);
 	if (!power_setting) {
+<<<<<<< HEAD
 		pr_err("failed: no memory power_setting %p", power_setting);
+=======
+		pr_err("failed: no memory power_setting %pK", power_setting);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		rc = -ENOMEM;
 		goto FREE_SLAVE_INFO;
 	}
@@ -367,7 +387,11 @@ int32_t msm_sensor_driver_probe(void *setting)
 	power_down_setting =
 		kzalloc(sizeof(*power_setting) * size_down, GFP_KERNEL);
 	if (!power_down_setting) {
+<<<<<<< HEAD
 		pr_err("failed: no memory power_setting %p",
+=======
+		pr_err("failed: no memory power_setting %pK",
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 						power_down_setting);
 		rc = -ENOMEM;
 		goto FREE_POWER_SETTING;
@@ -415,7 +439,11 @@ int32_t msm_sensor_driver_probe(void *setting)
 
 	camera_info = kzalloc(sizeof(struct msm_camera_slave_info), GFP_KERNEL);
 	if (!camera_info) {
+<<<<<<< HEAD
 		pr_err("failed: no memory slave_info %p", camera_info);
+=======
+		pr_err("failed: no memory slave_info %pK", camera_info);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		goto FREE_POWER_DOWN_SETTING;
 
 	}
@@ -437,7 +465,11 @@ int32_t msm_sensor_driver_probe(void *setting)
 
 	/* Fill CCI master, slave address and CCI default params */
 	if (!s_ctrl->sensor_i2c_client) {
+<<<<<<< HEAD
 		pr_err("failed: sensor_i2c_client %p",
+=======
+		pr_err("failed: sensor_i2c_client %pK",
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 			s_ctrl->sensor_i2c_client);
 		rc = -EINVAL;
 		goto FREE_CAMERA_INFO;
@@ -450,7 +482,11 @@ int32_t msm_sensor_driver_probe(void *setting)
 
 	cci_client = s_ctrl->sensor_i2c_client->cci_client;
 	if (!cci_client) {
+<<<<<<< HEAD
 		pr_err("failed: cci_client %p", cci_client);
+=======
+		pr_err("failed: cci_client %pK", cci_client);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		goto FREE_CAMERA_INFO;
 	}
 	cci_client->cci_i2c_master = s_ctrl->cci_i2c_master;
@@ -619,7 +655,11 @@ static int32_t msm_sensor_driver_get_gpio_data(
 
 	/* Validate input paramters */
 	if (!sensordata || !of_node) {
+<<<<<<< HEAD
 		pr_err("failed: invalid params sensordata %p of_node %p",
+=======
+		pr_err("failed: invalid params sensordata %pK of_node %pK",
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 			sensordata, of_node);
 		return -EINVAL;
 	}
@@ -809,7 +849,11 @@ static int32_t msm_sensor_driver_parse(struct msm_sensor_ctrl_t *s_ctrl)
 	s_ctrl->sensor_i2c_client = kzalloc(sizeof(*s_ctrl->sensor_i2c_client),
 		GFP_KERNEL);
 	if (!s_ctrl->sensor_i2c_client) {
+<<<<<<< HEAD
 		pr_err("failed: no memory sensor_i2c_client %p",
+=======
+		pr_err("failed: no memory sensor_i2c_client %pK",
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 			s_ctrl->sensor_i2c_client);
 		return -ENOMEM;
 	}
@@ -818,7 +862,11 @@ static int32_t msm_sensor_driver_parse(struct msm_sensor_ctrl_t *s_ctrl)
 	s_ctrl->msm_sensor_mutex = kzalloc(sizeof(*s_ctrl->msm_sensor_mutex),
 		GFP_KERNEL);
 	if (!s_ctrl->msm_sensor_mutex) {
+<<<<<<< HEAD
 		pr_err("failed: no memory msm_sensor_mutex %p",
+=======
+		pr_err("failed: no memory msm_sensor_mutex %pK",
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 			s_ctrl->msm_sensor_mutex);
 		goto FREE_SENSOR_I2C_CLIENT;
 	}
@@ -847,7 +895,11 @@ static int32_t msm_sensor_driver_parse(struct msm_sensor_ctrl_t *s_ctrl)
 
 	/* Store sensor control structure in static database */
 	g_sctrl[s_ctrl->id] = s_ctrl;
+<<<<<<< HEAD
 	pr_err("g_sctrl[%d] %p", s_ctrl->id, g_sctrl[s_ctrl->id]);
+=======
+	pr_err("g_sctrl[%d] %pK", s_ctrl->id, g_sctrl[s_ctrl->id]);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	return rc;
 
@@ -873,7 +925,11 @@ static int32_t msm_sensor_driver_platform_probe(struct platform_device *pdev)
 	/* Create sensor control structure */
 	s_ctrl = kzalloc(sizeof(*s_ctrl), GFP_KERNEL);
 	if (!s_ctrl) {
+<<<<<<< HEAD
 		pr_err("failed: no memory s_ctrl %p", s_ctrl);
+=======
+		pr_err("failed: no memory s_ctrl %pK", s_ctrl);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		return -ENOMEM;
 	}
 
@@ -919,7 +975,11 @@ static int32_t msm_sensor_driver_i2c_probe(struct i2c_client *client,
 	/* Create sensor control structure */
 	s_ctrl = kzalloc(sizeof(*s_ctrl), GFP_KERNEL);
 	if (!s_ctrl) {
+<<<<<<< HEAD
 		pr_err("failed: no memory s_ctrl %p", s_ctrl);
+=======
+		pr_err("failed: no memory s_ctrl %pK", s_ctrl);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		return -ENOMEM;
 	}
 

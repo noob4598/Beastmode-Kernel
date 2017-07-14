@@ -214,6 +214,7 @@ err1:
 	return NULL;
 }
 
+<<<<<<< HEAD
 static int netlink_set_ring(struct sock *sk, struct nl_mmap_req *req,
 			    bool closing, bool tx_ring)
 {
@@ -233,6 +234,54 @@ static int netlink_set_ring(struct sock *sk, struct nl_mmap_req *req,
 		if (atomic_read(&ring->pending))
 			return -EBUSY;
 	}
+=======
+
+static void
+__netlink_set_ring(struct sock *sk, struct nl_mmap_req *req, bool tx_ring, void **pg_vec,
+		   unsigned int order)
+{
+	struct netlink_sock *nlk = nlk_sk(sk);
+	struct sk_buff_head *queue;
+	struct netlink_ring *ring;
+
+	queue = tx_ring ? &sk->sk_write_queue : &sk->sk_receive_queue;
+	ring  = tx_ring ? &nlk->tx_ring : &nlk->rx_ring;
+
+	spin_lock_bh(&queue->lock);
+
+	ring->frame_max		= req->nm_frame_nr - 1;
+	ring->head		= 0;
+	ring->frame_size	= req->nm_frame_size;
+	ring->pg_vec_pages	= req->nm_block_size / PAGE_SIZE;
+
+	swap(ring->pg_vec_len, req->nm_block_nr);
+	swap(ring->pg_vec_order, order);
+	swap(ring->pg_vec, pg_vec);
+
+	__skb_queue_purge(queue);
+	spin_unlock_bh(&queue->lock);
+
+	WARN_ON(atomic_read(&nlk->mapped));
+
+	if (pg_vec)
+		free_pg_vec(pg_vec, order, req->nm_block_nr);
+}
+
+static int netlink_set_ring(struct sock *sk, struct nl_mmap_req *req,
+			    bool tx_ring)
+{
+	struct netlink_sock *nlk = nlk_sk(sk);
+	struct netlink_ring *ring;
+	void **pg_vec = NULL;
+	unsigned int order = 0;
+
+	ring  = tx_ring ? &nlk->tx_ring : &nlk->rx_ring;
+
+	if (atomic_read(&nlk->mapped))
+		return -EBUSY;
+	if (atomic_read(&ring->pending))
+		return -EBUSY;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	if (req->nm_block_nr) {
 		if (ring->pg_vec != NULL)
@@ -264,6 +313,7 @@ static int netlink_set_ring(struct sock *sk, struct nl_mmap_req *req,
 			return -EINVAL;
 	}
 
+<<<<<<< HEAD
 	err = -EBUSY;
 	mutex_lock(&nlk->pg_vec_lock);
 	if (closing || atomic_read(&nlk->mapped) == 0) {
@@ -284,11 +334,25 @@ static int netlink_set_ring(struct sock *sk, struct nl_mmap_req *req,
 
 		WARN_ON(atomic_read(&nlk->mapped));
 	}
+=======
+	mutex_lock(&nlk->pg_vec_lock);
+	if (atomic_read(&nlk->mapped) == 0) {
+		__netlink_set_ring(sk, req, tx_ring, pg_vec, order);
+		mutex_unlock(&nlk->pg_vec_lock);
+		return 0;
+	}
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	mutex_unlock(&nlk->pg_vec_lock);
 
 	if (pg_vec)
 		free_pg_vec(pg_vec, order, req->nm_block_nr);
+<<<<<<< HEAD
 	return err;
+=======
+
+	return -EBUSY;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 }
 
 static void netlink_mm_open(struct vm_area_struct *vma)
@@ -374,14 +438,22 @@ out:
 	return err;
 }
 
+<<<<<<< HEAD
 static void netlink_frame_flush_dcache(const struct nl_mmap_hdr *hdr)
+=======
+static void netlink_frame_flush_dcache(const struct nl_mmap_hdr *hdr, unsigned int nm_len)
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 {
 #if ARCH_IMPLEMENTS_FLUSH_DCACHE_PAGE == 1
 	struct page *p_start, *p_end;
 
 	/* First page is flushed through netlink_{get,set}_status */
 	p_start = pgvec_to_page(hdr + PAGE_SIZE);
+<<<<<<< HEAD
 	p_end   = pgvec_to_page((void *)hdr + NL_MMAP_HDRLEN + hdr->nm_len - 1);
+=======
+	p_end   = pgvec_to_page((void *)hdr + NL_MMAP_HDRLEN + nm_len - 1);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	while (p_start <= p_end) {
 		flush_dcache_page(p_start);
 		p_start++;
@@ -399,9 +471,15 @@ static enum nl_mmap_status netlink_get_status(const struct nl_mmap_hdr *hdr)
 static void netlink_set_status(struct nl_mmap_hdr *hdr,
 			       enum nl_mmap_status status)
 {
+<<<<<<< HEAD
 	hdr->nm_status = status;
 	flush_dcache_page(pgvec_to_page(hdr));
 	smp_wmb();
+=======
+	smp_mb();
+	hdr->nm_status = status;
+	flush_dcache_page(pgvec_to_page(hdr));
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 }
 
 static struct nl_mmap_hdr *
@@ -500,7 +578,11 @@ static unsigned int netlink_poll(struct file *file, struct socket *sock,
 		while (nlk->cb != NULL && netlink_dump_space(nlk)) {
 			err = netlink_dump(sk);
 			if (err < 0) {
+<<<<<<< HEAD
 				sk->sk_err = err;
+=======
+				sk->sk_err = -err;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 				sk->sk_error_report(sk);
 				break;
 			}
@@ -563,6 +645,7 @@ static int netlink_mmap_sendmsg(struct sock *sk, struct msghdr *msg,
 	struct nl_mmap_hdr *hdr;
 	struct sk_buff *skb;
 	unsigned int maxlen;
+<<<<<<< HEAD
 	bool excl = true;
 	int err = 0, len = 0;
 
@@ -575,12 +658,21 @@ static int netlink_mmap_sendmsg(struct sock *sk, struct msghdr *msg,
 	    atomic_read(&nlk->mapped) > 1)
 		excl = false;
 
+=======
+	int err = 0, len = 0;
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	mutex_lock(&nlk->pg_vec_lock);
 
 	ring   = &nlk->tx_ring;
 	maxlen = ring->frame_size - NL_MMAP_HDRLEN;
 
 	do {
+<<<<<<< HEAD
+=======
+		unsigned int nm_len;
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		hdr = netlink_current_frame(ring, NL_MMAP_STATUS_VALID);
 		if (hdr == NULL) {
 			if (!(msg->msg_flags & MSG_DONTWAIT) &&
@@ -588,11 +680,18 @@ static int netlink_mmap_sendmsg(struct sock *sk, struct msghdr *msg,
 				schedule();
 			continue;
 		}
+<<<<<<< HEAD
 		if (hdr->nm_len > maxlen) {
+=======
+
+		nm_len = ACCESS_ONCE(hdr->nm_len);
+		if (nm_len > maxlen) {
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 			err = -EINVAL;
 			goto out;
 		}
 
+<<<<<<< HEAD
 		netlink_frame_flush_dcache(hdr);
 
 		if (likely(dst_portid == 0 && dst_group == 0 && excl)) {
@@ -617,6 +716,18 @@ static int netlink_mmap_sendmsg(struct sock *sk, struct msghdr *msg,
 			memcpy(skb->data, (void *)hdr + NL_MMAP_HDRLEN, hdr->nm_len);
 			netlink_set_status(hdr, NL_MMAP_STATUS_UNUSED);
 		}
+=======
+		netlink_frame_flush_dcache(hdr, nm_len);
+
+		skb = alloc_skb(nm_len, GFP_KERNEL);
+		if (skb == NULL) {
+			err = -ENOBUFS;
+			goto out;
+		}
+		__skb_put(skb, nm_len);
+		memcpy(skb->data, (void *)hdr + NL_MMAP_HDRLEN, nm_len);
+		netlink_set_status(hdr, NL_MMAP_STATUS_UNUSED);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 		netlink_increment_head(ring);
 
@@ -662,7 +773,11 @@ static void netlink_queue_mmaped_skb(struct sock *sk, struct sk_buff *skb)
 	hdr->nm_pid	= NETLINK_CB(skb).creds.pid;
 	hdr->nm_uid	= from_kuid(sk_user_ns(sk), NETLINK_CB(skb).creds.uid);
 	hdr->nm_gid	= from_kgid(sk_user_ns(sk), NETLINK_CB(skb).creds.gid);
+<<<<<<< HEAD
 	netlink_frame_flush_dcache(hdr);
+=======
+	netlink_frame_flush_dcache(hdr, hdr->nm_len);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	netlink_set_status(hdr, NL_MMAP_STATUS_VALID);
 
 	NETLINK_CB(skb).flags |= NETLINK_SKB_DELIVERED;
@@ -782,10 +897,17 @@ static void netlink_sock_destruct(struct sock *sk)
 
 		memset(&req, 0, sizeof(req));
 		if (nlk->rx_ring.pg_vec)
+<<<<<<< HEAD
 			netlink_set_ring(sk, &req, true, false);
 		memset(&req, 0, sizeof(req));
 		if (nlk->tx_ring.pg_vec)
 			netlink_set_ring(sk, &req, true, true);
+=======
+			__netlink_set_ring(sk, &req, false, NULL, 0);
+		memset(&req, 0, sizeof(req));
+		if (nlk->tx_ring.pg_vec)
+			__netlink_set_ring(sk, &req, true, NULL, 0);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	}
 #endif /* CONFIG_NETLINK_MMAP */
 
@@ -1232,7 +1354,13 @@ retry:
 bool __netlink_ns_capable(const struct netlink_skb_parms *nsp,
 			struct user_namespace *user_ns, int cap)
 {
+<<<<<<< HEAD
 	return sk_ns_capable(nsp->sk, user_ns, cap);
+=======
+	return ((nsp->flags & NETLINK_SKB_DST) ||
+		file_ns_capable(nsp->sk->sk_socket->file, user_ns, cap)) &&
+		ns_capable(user_ns, cap);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 }
 EXPORT_SYMBOL(__netlink_ns_capable);
 
@@ -1284,7 +1412,10 @@ bool netlink_net_capable(const struct sk_buff *skb, int cap)
 }
 EXPORT_SYMBOL(netlink_net_capable);
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 static inline int netlink_allowed(const struct socket *sock, unsigned int flag)
 {
 	return (nl_table[sock->sk->sk_protocol].flags & flag) ||
@@ -2036,7 +2167,11 @@ static int netlink_setsockopt(struct socket *sock, int level, int optname,
 			return -EINVAL;
 		if (copy_from_user(&req, optval, sizeof(req)))
 			return -EFAULT;
+<<<<<<< HEAD
 		err = netlink_set_ring(sk, &req, false,
+=======
+		err = netlink_set_ring(sk, &req,
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 				       optname == NETLINK_TX_RING);
 		break;
 	}
@@ -2119,6 +2254,10 @@ static int netlink_sendmsg(struct kiocb *kiocb, struct socket *sock,
 	struct sk_buff *skb;
 	int err;
 	struct scm_cookie scm;
+<<<<<<< HEAD
+=======
+	u32 netlink_skb_flags = 0;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	if (msg->msg_flags&MSG_OOB)
 		return -EOPNOTSUPP;
@@ -2140,6 +2279,10 @@ static int netlink_sendmsg(struct kiocb *kiocb, struct socket *sock,
 		if ((dst_group || dst_portid) &&
 		    !netlink_allowed(sock, NL_CFG_F_NONROOT_SEND))
 			goto out;
+<<<<<<< HEAD
+=======
+		netlink_skb_flags |= NETLINK_SKB_DST;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	} else {
 		dst_portid = nlk->dst_portid;
 		dst_group = nlk->dst_group;
@@ -2169,6 +2312,10 @@ static int netlink_sendmsg(struct kiocb *kiocb, struct socket *sock,
 	NETLINK_CB(skb).portid	= nlk->portid;
 	NETLINK_CB(skb).dst_group = dst_group;
 	NETLINK_CB(skb).creds	= siocb->scm->creds;
+<<<<<<< HEAD
+=======
+	NETLINK_CB(skb).flags	= netlink_skb_flags;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	err = -EFAULT;
 	if (memcpy_fromiovec(skb_put(skb, len), msg->msg_iov, len)) {
@@ -2268,7 +2415,11 @@ static int netlink_recvmsg(struct kiocb *kiocb, struct socket *sock,
 	if (nlk->cb && atomic_read(&sk->sk_rmem_alloc) <= sk->sk_rcvbuf / 2) {
 		ret = netlink_dump(sk);
 		if (ret) {
+<<<<<<< HEAD
 			sk->sk_err = ret;
+=======
+			sk->sk_err = -ret;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 			sk->sk_error_report(sk);
 		}
 	}
@@ -2475,6 +2626,10 @@ static int netlink_dump(struct sock *sk)
 	struct netlink_callback *cb;
 	struct sk_buff *skb = NULL;
 	struct nlmsghdr *nlh;
+<<<<<<< HEAD
+=======
+	struct module *module;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	int len, err = -ENOBUFS;
 	int alloc_size;
 
@@ -2524,9 +2679,16 @@ static int netlink_dump(struct sock *sk)
 	if (cb->done)
 		cb->done(cb);
 	nlk->cb = NULL;
+<<<<<<< HEAD
 	mutex_unlock(nlk->cb_mutex);
 
 	module_put(cb->module);
+=======
+	module = cb->module;
+	mutex_unlock(nlk->cb_mutex);
+
+	module_put(module);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	netlink_consume_callback(cb);
 	return 0;
 

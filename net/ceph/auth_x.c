@@ -73,7 +73,11 @@ static int ceph_x_decrypt(struct ceph_crypto_key *secret,
 		return -EINVAL;
 
 	dout("ceph_x_decrypt len %d\n", len);
+<<<<<<< HEAD
 	if (*obuf == NULL){
+=======
+	if (*obuf == NULL) {
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		*obuf = kmalloc(len, GFP_NOFS);
 		if (!*obuf)
 			return -ENOMEM;
@@ -134,8 +138,13 @@ static void remove_ticket_handler(struct ceph_auth_client *ac,
 }
 
 static int process_one_ticket(struct ceph_auth_client *ac,
+<<<<<<< HEAD
 				    struct ceph_crypto_key *secret,
 				    void **p, void *end)
+=======
+			      struct ceph_crypto_key *secret,
+			      void **p, void *end)
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 {
 	struct ceph_x_info *xi = ac->private;
 	int type;
@@ -171,7 +180,11 @@ static int process_one_ticket(struct ceph_auth_client *ac,
 		goto out;
 	}
 
+<<<<<<< HEAD
 	/* blob for me*/
+=======
+	/* blob for me */
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	dlen = ceph_x_decrypt(secret, p, end, &dbuf, 0);
 	if (dlen <= 0) {
 		ret = dlen;
@@ -203,7 +216,11 @@ static int process_one_ticket(struct ceph_auth_client *ac,
 		/* encrypted */
 		dout(" encrypted ticket\n");
 		dlen = ceph_x_decrypt(&old_key, p, end, &ticket_buf, 0);
+<<<<<<< HEAD
 		if (dlen < 0){
+=======
+		if (dlen < 0) {
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 			ret = dlen;
 			goto out;
 		}

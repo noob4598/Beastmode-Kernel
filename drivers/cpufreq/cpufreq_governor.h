@@ -257,6 +257,11 @@ static ssize_t show_sampling_rate_min_gov_pol				\
 	return sprintf(buf, "%u\n", dbs_data->min_sampling_rate);	\
 }
 
+<<<<<<< HEAD
+=======
+extern struct mutex cpufreq_governor_lock;
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 void dbs_check_cpu(struct dbs_data *dbs_data, int cpu);
 bool need_load_eval(struct cpu_dbs_common_info *cdbs,
 		unsigned int sampling_rate);

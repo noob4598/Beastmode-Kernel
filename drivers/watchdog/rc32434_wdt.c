@@ -237,7 +237,11 @@ static long rc32434_wdt_ioctl(struct file *file, unsigned int cmd,
 			return -EINVAL;
 		/* Fall through */
 	case WDIOC_GETTIMEOUT:
+<<<<<<< HEAD
 		return copy_to_user(argp, &timeout, sizeof(int));
+=======
+		return copy_to_user(argp, &timeout, sizeof(int)) ? -EFAULT : 0;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	default:
 		return -ENOTTY;
 	}

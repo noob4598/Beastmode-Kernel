@@ -181,6 +181,16 @@ have_snum:
 		head = &hashinfo->bhash[inet_bhashfn(net, snum,
 				hashinfo->bhash_size)];
 		spin_lock(&head->lock);
+<<<<<<< HEAD
+=======
+
+		if (inet_is_reserved_local_port(snum) &&
+		    !sysctl_reserved_port_bind) {
+			ret = 1;
+			goto fail_unlock;
+		}
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		inet_bind_bucket_for_each(tb, &head->chain)
 			if (net_eq(ib_net(tb), net) && tb->port == snum)
 				goto tb_found;
@@ -692,6 +702,11 @@ struct sock *inet_csk_clone_lock(const struct sock *sk,
 
 		newsk->sk_mark = inet_rsk(req)->ir_mark;
 
+<<<<<<< HEAD
+=======
+		inet_sk(newsk)->mc_list = NULL;
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		newicsk->icsk_retransmits = 0;
 		newicsk->icsk_backoff	  = 0;
 		newicsk->icsk_probes_out  = 0;

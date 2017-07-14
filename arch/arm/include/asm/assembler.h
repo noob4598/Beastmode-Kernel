@@ -58,8 +58,15 @@
  */
 #if __LINUX_ARM_ARCH__ >= 5
 #define PLD(code...)	code
+<<<<<<< HEAD
 #else
 #define PLD(code...)
+=======
+#define NO_PLD(code...)
+#else
+#define PLD(code...)
+#define NO_PLD(code...) code
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 #endif
 
 /*

@@ -1792,8 +1792,21 @@ static void bnx2x_get_ringparam(struct net_device *dev,
 
 	ering->rx_max_pending = MAX_RX_AVAIL;
 
+<<<<<<< HEAD
 	if (bp->rx_ring_size)
 		ering->rx_pending = bp->rx_ring_size;
+=======
+	/* If size isn't already set, we give an estimation of the number
+	 * of buffers we'll have. We're neglecting some possible conditions
+	 * [we couldn't know for certain at this point if number of queues
+	 * might shrink] but the number would be correct for the likely
+	 * scenario.
+	 */
+	if (bp->rx_ring_size)
+		ering->rx_pending = bp->rx_ring_size;
+	else if (BNX2X_NUM_RX_QUEUES(bp))
+		ering->rx_pending = MAX_RX_AVAIL / BNX2X_NUM_RX_QUEUES(bp);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	else
 		ering->rx_pending = MAX_RX_AVAIL;
 

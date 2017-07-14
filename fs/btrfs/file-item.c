@@ -403,7 +403,11 @@ int btrfs_lookup_csums_range(struct btrfs_root *root, u64 start, u64 end,
 	ret = 0;
 fail:
 	while (ret < 0 && !list_empty(&tmplist)) {
+<<<<<<< HEAD
 		sums = list_entry(&tmplist, struct btrfs_ordered_sum, list);
+=======
+		sums = list_entry(tmplist.next, struct btrfs_ordered_sum, list);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		list_del(&sums->list);
 		kfree(sums);
 	}
@@ -754,7 +758,11 @@ again:
 				found_next = 1;
 			if (ret != 0)
 				goto insert;
+<<<<<<< HEAD
 			slot = 0;
+=======
+			slot = path->slots[0];
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		}
 		btrfs_item_key_to_cpu(path->nodes[0], &found_key, slot);
 		if (found_key.objectid != BTRFS_EXTENT_CSUM_OBJECTID ||

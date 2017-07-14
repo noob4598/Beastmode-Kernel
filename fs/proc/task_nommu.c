@@ -216,7 +216,11 @@ static void *m_start(struct seq_file *m, loff_t *pos)
 	if (!priv->task)
 		return ERR_PTR(-ESRCH);
 
+<<<<<<< HEAD
 	mm = mm_access(priv->task, PTRACE_MODE_READ);
+=======
+	mm = mm_access(priv->task, PTRACE_MODE_READ_FSCREDS);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	if (!mm || IS_ERR(mm)) {
 		put_task_struct(priv->task);
 		priv->task = NULL;

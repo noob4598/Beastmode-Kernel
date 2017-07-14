@@ -437,6 +437,10 @@ extern const struct dev_pm_ops usb_hcd_pci_pm_ops;
 #endif /* CONFIG_PCI */
 
 /* pci-ish (pdev null is ok) buffer alloc/mapping support */
+<<<<<<< HEAD
+=======
+void usb_init_pool_max(void);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 int hcd_buffer_create(struct usb_hcd *hcd);
 void hcd_buffer_destroy(struct usb_hcd *hcd);
 

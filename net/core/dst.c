@@ -267,10 +267,23 @@ again:
 }
 EXPORT_SYMBOL(dst_destroy);
 
+<<<<<<< HEAD
+=======
+static void dst_destroy_rcu(struct rcu_head *head)
+{
+	struct dst_entry *dst = container_of(head, struct dst_entry, rcu_head);
+
+	dst = dst_destroy(dst);
+	if (dst)
+		__dst_free(dst);
+}
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 void dst_release(struct dst_entry *dst)
 {
 	if (dst) {
 		int newrefcnt;
+<<<<<<< HEAD
 
 		newrefcnt = atomic_dec_return(&dst->__refcnt);
 		WARN_ON(newrefcnt < 0);
@@ -279,6 +292,16 @@ void dst_release(struct dst_entry *dst)
 			if (dst)
 				__dst_free(dst);
 		}
+=======
+		unsigned short nocache = dst->flags & DST_NOCACHE;
+
+		newrefcnt = atomic_dec_return(&dst->__refcnt);
+		if (unlikely(newrefcnt < 0))
+			net_warn_ratelimited("%s: dst:%p refcnt:%d\n",
+					     __func__, dst, newrefcnt);
+		if (!newrefcnt && unlikely(nocache))
+			call_rcu(&dst->rcu_head, dst_destroy_rcu);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	}
 }
 EXPORT_SYMBOL(dst_release);

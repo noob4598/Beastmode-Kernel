@@ -24,6 +24,7 @@
 #include <linux/i2c/synaptics_rmi.h>
 #include <linux/regulator/consumer.h>
 
+<<<<<<< HEAD
 #ifdef CONFIG_FB
 #include <linux/notifier.h>
 #include <linux/fb.h>
@@ -31,6 +32,16 @@
 #include <linux/earlysuspend.h>
 #endif
 
+=======
+#ifdef CONFIG_HAS_EARLYSUSPEND
+#include <linux/earlysuspend.h>
+#endif
+
+#ifdef CONFIG_POWERSUSPEND
+#include <linux/powersuspend.h>
+#endif
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 #ifdef CONFIG_INPUT_BOOSTER
 #include <linux/input/input_booster.h>
 #endif
@@ -46,10 +57,22 @@
 #define DEFAULT_DISABLE	0
 
 /* feature define */
+<<<<<<< HEAD
 #define USE_OPEN_CLOSE	/* Use when CONFIG_HAS_EARLYSUSPEND is disabled */
 #define REPORT_2D_W
 #define REDUCE_I2C_DATA_LENGTH
 #define USE_SENSOR_SLEEP
+=======
+#ifdef CONFIG_POWERSUSPEND
+#undef USE_OPEN_CLOSE
+#undef USE_SENSOR_SLEEP
+#else
+#define USE_OPEN_CLOSE	/* Use when CONFIG_HAS_EARLYSUSPEND is disabled */
+#define USE_SENSOR_SLEEP
+#endif
+#define REPORT_2D_W
+#define REDUCE_I2C_DATA_LENGTH
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 
 
@@ -64,7 +87,10 @@
 #define CHECK_BASE_FIRMWARE
 #define USE_ACTIVE_REPORT_RATE
 #define USE_F51_OFFSET_CALCULATE
+<<<<<<< HEAD
 #define USE_STYLUS
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 #define USE_DETECTION_FLAG2
 #define USE_EDGE_EXCLUSION
 
@@ -92,7 +118,10 @@
 #define CHECK_BASE_FIRMWARE
 #define USE_ACTIVE_REPORT_RATE
 #define USE_F51_OFFSET_CALCULATE
+<<<<<<< HEAD
 #define USE_STYLUS
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 #define USE_DETECTION_FLAG2
 #define USE_EDGE_EXCLUSION
 
@@ -440,7 +469,11 @@
 #endif
 
 
+<<<<<<< HEAD
 extern int system_rev;
+=======
+extern unsigned int system_rev;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 struct synaptics_rmi4_f01_device_status {
 	union {
@@ -999,12 +1032,20 @@ struct synaptics_rmi4_data {
 	struct mutex rmi4_io_ctrl_mutex;
 	struct mutex rmi4_reflash_mutex;
 	struct timer_list f51_finger_timer;
+<<<<<<< HEAD
 #ifdef CONFIG_FB
 	struct notifier_block fb_notif;
 #else
 #ifdef CONFIG_HAS_EARLYSUSPEND
 	struct early_suspend early_suspend;
 #endif
+=======
+
+#ifdef CONFIG_HAS_EARLYSUSPEND
+	struct early_suspend early_suspend;
+#elif defined(CONFIG_POWERSUSPEND)
+	struct power_suspend power_suspend;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 #endif
 	const char *firmware_name;
 

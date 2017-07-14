@@ -14,6 +14,10 @@
 #include <linux/gpio.h>
 
 #define GLENFARCLAS_PMIC_IRQ_BASE	IRQ_BOARD_START
+<<<<<<< HEAD
+=======
+#define BANFF_PMIC_IRQ_BASE		(IRQ_BOARD_START + 64)
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 #define PCA935X_GPIO_BASE		GPIO_BOARD_START
 #define CODEC_GPIO_BASE			(GPIO_BOARD_START + 8)

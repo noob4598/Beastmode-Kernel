@@ -141,8 +141,11 @@ static struct regulator_ops arizona_ldo1_ops = {
 	.map_voltage = regulator_map_voltage_linear,
 	.get_voltage_sel = regulator_get_voltage_sel_regmap,
 	.set_voltage_sel = regulator_set_voltage_sel_regmap,
+<<<<<<< HEAD
 	.get_bypass = regulator_get_bypass_regmap,
 	.set_bypass = regulator_set_bypass_regmap,
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 };
 
 static const struct regulator_desc arizona_ldo1 = {

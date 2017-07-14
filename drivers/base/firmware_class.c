@@ -552,10 +552,15 @@ static void fw_dev_release(struct device *dev)
 	module_put(THIS_MODULE);
 }
 
+<<<<<<< HEAD
 static int firmware_uevent(struct device *dev, struct kobj_uevent_env *env)
 {
 	struct firmware_priv *fw_priv = to_firmware_priv(dev);
 
+=======
+static int do_firmware_uevent(struct firmware_priv *fw_priv, struct kobj_uevent_env *env)
+{
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	if (add_uevent_var(env, "FIRMWARE=%s", fw_priv->buf->fw_id))
 		return -ENOMEM;
 	if (add_uevent_var(env, "TIMEOUT=%i", loading_timeout))
@@ -566,6 +571,21 @@ static int firmware_uevent(struct device *dev, struct kobj_uevent_env *env)
 	return 0;
 }
 
+<<<<<<< HEAD
+=======
+static int firmware_uevent(struct device *dev, struct kobj_uevent_env *env)
+{
+	struct firmware_priv *fw_priv = to_firmware_priv(dev);
+	int err = 0;
+
+	mutex_lock(&fw_lock);
+	if (fw_priv->buf)
+		err = do_firmware_uevent(fw_priv, env);
+	mutex_unlock(&fw_lock);
+	return err;
+}
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 static struct class firmware_class = {
 	.name		= "firmware",
 	.class_attrs	= firmware_class_attrs,
@@ -1174,6 +1194,12 @@ static int _request_firmware(struct fw_desc *desc)
 	if (!desc->firmware_p)
 		return -EINVAL;
 
+<<<<<<< HEAD
+=======
+	if (!desc->name || desc->name[0] == '\0')
+		return -EINVAL;
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	ret = _request_firmware_prepare(&fw, desc);
 	if (ret <= 0) /* error or already assigned */
 		goto out;

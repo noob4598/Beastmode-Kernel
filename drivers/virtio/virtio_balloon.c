@@ -177,6 +177,11 @@ static void leak_balloon(struct virtio_balloon *vb, size_t num)
 	num = min(num, ARRAY_SIZE(vb->pfns));
 
 	mutex_lock(&vb->balloon_lock);
+<<<<<<< HEAD
+=======
+	/* We can't release more pages than taken */
+	num = min(num, (size_t)vb->num_pages);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	for (vb->num_pfns = 0; vb->num_pfns < num;
 	     vb->num_pfns += VIRTIO_BALLOON_PAGES_PER_PAGE) {
 		page = balloon_page_dequeue(vb_dev_info);
@@ -347,6 +352,11 @@ static int init_vqs(struct virtio_balloon *vb)
 		 * Prime this virtqueue with one buffer so the hypervisor can
 		 * use it to signal us later.
 		 */
+<<<<<<< HEAD
+=======
+		update_balloon_stats(vb);
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		sg_init_one(&sg, vb->stats, sizeof vb->stats);
 		if (virtqueue_add_outbuf(vb->stats_vq, &sg, 1, vb, GFP_KERNEL)
 		    < 0)

@@ -203,6 +203,7 @@ save_context_wfi:
 	 */
 	ldr	r1, kernel_flush
 	blx	r1
+<<<<<<< HEAD
 	/*
 	 * The kernel doesn't interwork: v7_flush_dcache_all in particluar will
 	 * always return in Thumb state when CONFIG_THUMB2_KERNEL is enabled.
@@ -220,6 +221,10 @@ save_context_wfi:
 /*
  * Local variables
  */
+=======
+	b	omap3_do_wfi
+ENDPROC(omap34xx_cpu_suspend)
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 omap3_do_wfi_sram_addr:
 	.word omap3_do_wfi_sram
 kernel_flush:
@@ -364,10 +369,14 @@ exit_nonoff_modes:
  * ===================================
  */
 	ldmfd	sp!, {r4 - r11, pc}	@ restore regs and return
+<<<<<<< HEAD
 
 /*
  * Local variables
  */
+=======
+ENDPROC(omap3_do_wfi)
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 sdrc_power:
 	.word	SDRC_POWER_V
 cm_idlest1_core:

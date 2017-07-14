@@ -83,9 +83,18 @@ static int fib_map_alloc(struct aac_dev *dev)
 
 void aac_fib_map_free(struct aac_dev *dev)
 {
+<<<<<<< HEAD
 	pci_free_consistent(dev->pdev,
 	  dev->max_fib_size * (dev->scsi_host_ptr->can_queue + AAC_NUM_MGT_FIB),
 	  dev->hw_fib_va, dev->hw_fib_pa);
+=======
+	if (dev->hw_fib_va && dev->max_fib_size) {
+		pci_free_consistent(dev->pdev,
+		(dev->max_fib_size *
+		(dev->scsi_host_ptr->can_queue + AAC_NUM_MGT_FIB)),
+		dev->hw_fib_va, dev->hw_fib_pa);
+	}
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	dev->hw_fib_va = NULL;
 	dev->hw_fib_pa = 0;
 }
@@ -587,10 +596,17 @@ int aac_fib_send(u16 command, struct fib *fibptr, unsigned long size,
 					}
 					return -EFAULT;
 				}
+<<<<<<< HEAD
 				/* We used to udelay() here but that absorbed
 				 * a CPU when a timeout occured. Not very
 				 * useful. */
 				cpu_relax();
+=======
+				/*
+				 * Allow other processes / CPUS to use core
+				 */
+				schedule();
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 			}
 		} else if (down_interruptible(&fibptr->event_wait)) {
 			/* Do nothing ... satisfy
@@ -1917,6 +1933,13 @@ int aac_command_thread(void *data)
 		if (difference <= 0)
 			difference = 1;
 		set_current_state(TASK_INTERRUPTIBLE);
+<<<<<<< HEAD
+=======
+
+		if (kthread_should_stop())
+			break;
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		schedule_timeout(difference);
 
 		if (kthread_should_stop())

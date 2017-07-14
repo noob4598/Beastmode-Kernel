@@ -460,6 +460,7 @@ grid_check_error:
 #endif
 
 #ifdef BATTERY_SAVING_MODE
+<<<<<<< HEAD
 static ssize_t epen_saving_mode_show(struct device *dev,
 								   struct device_attribute *attr,
 								   char *buf)
@@ -469,6 +470,8 @@ static ssize_t epen_saving_mode_show(struct device *dev,
 	return snprintf(buf, PAGE_SIZE, "%d\n", wac_i2c->battery_saving_mode);
 }
 
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 static ssize_t epen_saving_mode_store(struct device *dev,
 				struct device_attribute *attr, const char *buf,
 				size_t count)
@@ -652,7 +655,11 @@ static DEVICE_ATTR(epen_connection,
 
 #ifdef BATTERY_SAVING_MODE
 static DEVICE_ATTR(epen_saving_mode,
+<<<<<<< HEAD
 		   S_IRUGO | S_IWUSR | S_IWGRP, epen_saving_mode_show, epen_saving_mode_store);
+=======
+		   S_IWUSR | S_IWGRP, NULL, epen_saving_mode_store);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 #endif
 #ifdef WACOM_BOOSTER
 static DEVICE_ATTR(boost_level,

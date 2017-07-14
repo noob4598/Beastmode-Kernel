@@ -558,7 +558,11 @@ static void perf_syscall_enter(void *ignore, struct pt_regs *regs, long id)
 
 	syscall_nr = trace_get_syscall_nr(current, regs);
 	if (syscall_nr < 0 || syscall_nr >= NR_syscalls)
+<<<<<<< HEAD
  		return;
+=======
+		return;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	if (!test_bit(syscall_nr, enabled_perf_enter_syscalls))
 		return;
 
@@ -634,7 +638,11 @@ static void perf_syscall_exit(void *ignore, struct pt_regs *regs, long ret)
 
 	syscall_nr = trace_get_syscall_nr(current, regs);
 	if (syscall_nr < 0 || syscall_nr >= NR_syscalls)
+<<<<<<< HEAD
  		return;
+=======
+		return;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	if (!test_bit(syscall_nr, enabled_perf_exit_syscalls))
 		return;
 

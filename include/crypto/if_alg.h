@@ -30,6 +30,12 @@ struct alg_sock {
 
 	struct sock *parent;
 
+<<<<<<< HEAD
+=======
+	unsigned int refcnt;
+	unsigned int nokey_refcnt;
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	const struct af_alg_type *type;
 	void *private;
 };
@@ -49,8 +55,15 @@ struct af_alg_type {
 	void (*release)(void *private);
 	int (*setkey)(void *private, const u8 *key, unsigned int keylen);
 	int (*accept)(void *private, struct sock *sk);
+<<<<<<< HEAD
 
 	struct proto_ops *ops;
+=======
+	int (*accept_nokey)(void *private, struct sock *sk);
+
+	struct proto_ops *ops;
+	struct proto_ops *ops_nokey;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	struct module *owner;
 	char name[14];
 };
@@ -64,6 +77,10 @@ int af_alg_register_type(const struct af_alg_type *type);
 int af_alg_unregister_type(const struct af_alg_type *type);
 
 int af_alg_release(struct socket *sock);
+<<<<<<< HEAD
+=======
+void af_alg_release_parent(struct sock *sk);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 int af_alg_accept(struct sock *sk, struct socket *newsock);
 
 int af_alg_make_sg(struct af_alg_sgl *sgl, void __user *addr, int len,
@@ -80,11 +97,14 @@ static inline struct alg_sock *alg_sk(struct sock *sk)
 	return (struct alg_sock *)sk;
 }
 
+<<<<<<< HEAD
 static inline void af_alg_release_parent(struct sock *sk)
 {
 	sock_put(alg_sk(sk)->parent);
 }
 
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 static inline void af_alg_init_completion(struct af_alg_completion *completion)
 {
 	init_completion(&completion->completion);

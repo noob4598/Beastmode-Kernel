@@ -603,7 +603,11 @@ int iscsi_copy_param_list(
 	param_list = kzalloc(sizeof(struct iscsi_param_list), GFP_KERNEL);
 	if (!param_list) {
 		pr_err("Unable to allocate memory for struct iscsi_param_list.\n");
+<<<<<<< HEAD
 		goto err_out;
+=======
+		return -1;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	}
 	INIT_LIST_HEAD(&param_list->param_list);
 	INIT_LIST_HEAD(&param_list->extra_response_list);
@@ -806,6 +810,7 @@ static void iscsi_check_proposer_for_optional_reply(struct iscsi_param *param)
 		if (!strcmp(param->name, MAXRECVDATASEGMENTLENGTH))
 			SET_PSTATE_REPLY_OPTIONAL(param);
 		/*
+<<<<<<< HEAD
 		 * The GlobalSAN iSCSI Initiator for MacOSX does
 		 * not respond to MaxBurstLength, FirstBurstLength,
 		 * DefaultTime2Wait or DefaultTime2Retain parameter keys.
@@ -822,6 +827,8 @@ static void iscsi_check_proposer_for_optional_reply(struct iscsi_param *param)
 		if (!strcmp(param->name, DEFAULTTIME2RETAIN))
 			SET_PSTATE_REPLY_OPTIONAL(param);
 		/*
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		 * Required for gPXE iSCSI boot client
 		 */
 		if (!strcmp(param->name, MAXCONNECTIONS))

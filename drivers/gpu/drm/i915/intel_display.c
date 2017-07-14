@@ -7052,9 +7052,15 @@ static void do_intel_finish_page_flip(struct drm_device *dev,
 
 	wake_up_all(&dev_priv->pending_flip_queue);
 
+<<<<<<< HEAD
 	queue_work(dev_priv->wq, &work->work);
 
 	trace_i915_flip_complete(intel_crtc->plane, work->pending_flip_obj);
+=======
+	trace_i915_flip_complete(intel_crtc->plane, work->pending_flip_obj);
+
+	queue_work(dev_priv->wq, &work->work);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 }
 
 void intel_finish_page_flip(struct drm_device *dev, int pipe)
@@ -9123,6 +9129,7 @@ void intel_modeset_init(struct drm_device *dev)
 	intel_disable_fbc(dev);
 }
 
+<<<<<<< HEAD
 static void
 intel_connector_break_all_links(struct intel_connector *connector)
 {
@@ -9132,6 +9139,8 @@ intel_connector_break_all_links(struct intel_connector *connector)
 	connector->encoder->base.crtc = NULL;
 }
 
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 static void intel_enable_pipe_a(struct drm_device *dev)
 {
 	struct intel_connector *connector;
@@ -9213,8 +9222,22 @@ static void intel_sanitize_crtc(struct intel_crtc *crtc)
 			if (connector->encoder->base.crtc != &crtc->base)
 				continue;
 
+<<<<<<< HEAD
 			intel_connector_break_all_links(connector);
 		}
+=======
+			connector->base.dpms = DRM_MODE_DPMS_OFF;
+			connector->base.encoder = NULL;
+		}
+		/* multiple connectors may have the same encoder:
+		 *  handle them and break crtc link separately */
+		list_for_each_entry(connector, &dev->mode_config.connector_list,
+				    base.head)
+			if (connector->encoder->base.crtc == &crtc->base) {
+				connector->encoder->base.crtc = NULL;
+				connector->encoder->connectors_active = false;
+			}
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 		WARN_ON(crtc->active);
 		crtc->base.enabled = false;
@@ -9285,6 +9308,11 @@ static void intel_sanitize_encoder(struct intel_encoder *encoder)
 				      drm_get_encoder_name(&encoder->base));
 			encoder->disable(encoder);
 		}
+<<<<<<< HEAD
+=======
+		encoder->base.crtc = NULL;
+		encoder->connectors_active = false;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 		/* Inconsistent output/port/pipe state happens presumably due to
 		 * a bug in one of the get_hw_state functions. Or someplace else
@@ -9295,8 +9323,13 @@ static void intel_sanitize_encoder(struct intel_encoder *encoder)
 				    base.head) {
 			if (connector->encoder != encoder)
 				continue;
+<<<<<<< HEAD
 
 			intel_connector_break_all_links(connector);
+=======
+			connector->base.dpms = DRM_MODE_DPMS_OFF;
+			connector->base.encoder = NULL;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		}
 	}
 	/* Enabled encoders without active connectors will be fixed in

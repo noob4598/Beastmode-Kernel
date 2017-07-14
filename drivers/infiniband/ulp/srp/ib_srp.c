@@ -93,6 +93,10 @@ static void srp_send_completion(struct ib_cq *cq, void *target_ptr);
 static int srp_cm_handler(struct ib_cm_id *cm_id, struct ib_cm_event *event);
 
 static struct scsi_transport_template *ib_srp_transport_template;
+<<<<<<< HEAD
+=======
+static struct workqueue_struct *srp_remove_wq;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 static struct ib_client srp_client = {
 	.name   = "srp",
@@ -456,7 +460,11 @@ static bool srp_queue_remove_work(struct srp_target_port *target)
 	spin_unlock_irq(&target->lock);
 
 	if (changed)
+<<<<<<< HEAD
 		queue_work(system_long_wq, &target->remove_work);
+=======
+		queue_work(srp_remove_wq, &target->remove_work);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	return changed;
 }
@@ -1409,6 +1417,15 @@ err_unmap:
 err_iu:
 	srp_put_tx_iu(target, iu, SRP_IU_CMD);
 
+<<<<<<< HEAD
+=======
+	/*
+	 * Avoid that the loops that iterate over the request ring can
+	 * encounter a dangling SCSI command pointer.
+	 */
+	req->scmnd = NULL;
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	spin_lock_irqsave(&target->lock, flags);
 	list_add(&req->list, &target->free_reqs);
 
@@ -2524,9 +2541,16 @@ static void srp_remove_one(struct ib_device *device)
 		spin_unlock(&host->target_lock);
 
 		/*
+<<<<<<< HEAD
 		 * Wait for target port removal tasks.
 		 */
 		flush_workqueue(system_long_wq);
+=======
+		 * Wait for tl_err and target port removal tasks.
+		 */
+		flush_workqueue(system_long_wq);
+		flush_workqueue(srp_remove_wq);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 		kfree(host);
 	}
@@ -2571,16 +2595,34 @@ static int __init srp_init_module(void)
 		indirect_sg_entries = cmd_sg_entries;
 	}
 
+<<<<<<< HEAD
 	ib_srp_transport_template =
 		srp_attach_transport(&ib_srp_transport_functions);
 	if (!ib_srp_transport_template)
 		return -ENOMEM;
+=======
+	srp_remove_wq = create_workqueue("srp_remove");
+	if (IS_ERR(srp_remove_wq)) {
+		ret = PTR_ERR(srp_remove_wq);
+		goto out;
+	}
+
+	ret = -ENOMEM;
+	ib_srp_transport_template =
+		srp_attach_transport(&ib_srp_transport_functions);
+	if (!ib_srp_transport_template)
+		goto destroy_wq;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	ret = class_register(&srp_class);
 	if (ret) {
 		pr_err("couldn't register class infiniband_srp\n");
+<<<<<<< HEAD
 		srp_release_transport(ib_srp_transport_template);
 		return ret;
+=======
+		goto release_tr;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	}
 
 	ib_sa_register_client(&srp_sa_client);
@@ -2588,6 +2630,7 @@ static int __init srp_init_module(void)
 	ret = ib_register_client(&srp_client);
 	if (ret) {
 		pr_err("couldn't register IB client\n");
+<<<<<<< HEAD
 		srp_release_transport(ib_srp_transport_template);
 		ib_sa_unregister_client(&srp_sa_client);
 		class_unregister(&srp_class);
@@ -2595,6 +2638,24 @@ static int __init srp_init_module(void)
 	}
 
 	return 0;
+=======
+		goto unreg_sa;
+	}
+
+out:
+	return ret;
+
+unreg_sa:
+	ib_sa_unregister_client(&srp_sa_client);
+	class_unregister(&srp_class);
+
+release_tr:
+	srp_release_transport(ib_srp_transport_template);
+
+destroy_wq:
+	destroy_workqueue(srp_remove_wq);
+	goto out;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 }
 
 static void __exit srp_cleanup_module(void)
@@ -2603,6 +2664,10 @@ static void __exit srp_cleanup_module(void)
 	ib_sa_unregister_client(&srp_sa_client);
 	class_unregister(&srp_class);
 	srp_release_transport(ib_srp_transport_template);
+<<<<<<< HEAD
+=======
+	destroy_workqueue(srp_remove_wq);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 }
 
 module_init(srp_init_module);

@@ -197,5 +197,10 @@ module_exit(crc32_pclmul_mod_fini);
 MODULE_AUTHOR("Alexander Boyko <alexander_boyko@xyratex.com>");
 MODULE_LICENSE("GPL");
 
+<<<<<<< HEAD
 MODULE_ALIAS("crc32");
 MODULE_ALIAS("crc32-pclmul");
+=======
+MODULE_ALIAS_CRYPTO("crc32");
+MODULE_ALIAS_CRYPTO("crc32-pclmul");
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03

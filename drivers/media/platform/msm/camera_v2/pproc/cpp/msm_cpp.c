@@ -919,7 +919,11 @@ static void cpp_load_fw(struct cpp_device *cpp_dev, char *fw_name_bin)
 		rc = request_firmware(&fw, fw_name_bin, dev);
 		if (rc) {
 			dev_err(dev,
+<<<<<<< HEAD
 				"Failed to locate blob %s from device %p, Error: %d\n",
+=======
+				"Fail to loc blob %s from dev %pK, Error: %d\n",
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 				fw_name_bin, dev, rc);
 		}
 		if (NULL != fw)
@@ -1018,7 +1022,11 @@ static int cpp_open_node(struct v4l2_subdev *sd, struct v4l2_subdev_fh *fh)
 		return -ENODEV;
 	}
 
+<<<<<<< HEAD
 	CPP_DBG("open %d %p\n", i, &fh->vfh);
+=======
+	CPP_DBG("open %d %pK\n", i, &fh->vfh);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	cpp_dev->cpp_open_cnt++;
 	if (cpp_dev->cpp_open_cnt == 1) {
 
@@ -1048,7 +1056,11 @@ static int cpp_close_node(struct v4l2_subdev *sd, struct v4l2_subdev_fh *fh)
 	struct msm_device_queue *eventData_q = NULL;
 
 	if (!cpp_dev) {
+<<<<<<< HEAD
 		pr_err("failed: cpp_dev %p\n", cpp_dev);
+=======
+		pr_err("failed: cpp_dev %pK\n", cpp_dev);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		return -EINVAL;
 	}
 	mutex_lock(&cpp_dev->mutex);
@@ -1107,9 +1119,15 @@ static int cpp_close_node(struct v4l2_subdev *sd, struct v4l2_subdev_fh *fh)
 		pr_debug("DEBUG_R1: 0x%x\n",
 			msm_camera_io_r(cpp_dev->cpp_hw_base + 0x8C));
 		msm_camera_io_w(0x0, cpp_dev->base + MSM_CPP_MICRO_CLKEN_CTL);
+<<<<<<< HEAD
 		cpp_deinit_mem(cpp_dev);
 		iommu_detach_device(cpp_dev->domain, cpp_dev->iommu_ctx);
 		cpp_release_hardware(cpp_dev);
+=======
+		cpp_release_hardware(cpp_dev);
+		iommu_detach_device(cpp_dev->domain, cpp_dev->iommu_ctx);
+		cpp_deinit_mem(cpp_dev);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		msm_cpp_empty_list(processing_q, list_frame);
 		msm_cpp_empty_list(eventData_q, list_eventdata);
 		cpp_dev->state = CPP_STATE_OFF;
@@ -1228,8 +1246,12 @@ static void msm_cpp_do_timeout_work(struct work_struct *work)
 		jiffies);
 	if (!work || !this_frame ||
 		cpp_timer.data.cpp_dev->state != CPP_STATE_ACTIVE) {
+<<<<<<< HEAD
 		pr_err("Invalid work:%p or this_frame:%p state:%d\n", work,
 			this_frame, cpp_timer.data.cpp_dev->state);
+=======
+		pr_err("Invalid work:%pK\n", work);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		mutex_unlock(&cpp_timer.data.cpp_dev->mutex);
 		return;
 	}
@@ -1403,6 +1425,21 @@ static int msm_cpp_cfg(struct cpp_device *cpp_dev,
 
 	new_frame->cpp_cmd_msg = cpp_frame_msg;
 
+<<<<<<< HEAD
+=======
+	if (cpp_frame_msg == NULL ||
+		(new_frame->msg_len < MSM_CPP_MIN_FRAME_LENGTH)) {
+		pr_err("%s %d Length is not correct or frame message is missing\n",
+			__func__, __LINE__);
+		return -EINVAL;
+	}
+
+	if (cpp_frame_msg[new_frame->msg_len - 1] != MSM_CPP_MSG_ID_TRAILER) {
+		pr_err("%s %d Invalid frame message\n", __func__, __LINE__);
+		return -EINVAL;
+	}
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	in_phyaddr = msm_cpp_fetch_buffer_info(cpp_dev,
 		&new_frame->input_buffer_info,
 		((new_frame->identity >> 16) & 0xFFFF),
@@ -1499,6 +1536,15 @@ static int msm_cpp_cfg(struct cpp_device *cpp_dev,
 		goto ERROR3;
 	}
 
+<<<<<<< HEAD
+=======
+	if ((stripe_base + num_stripes*27 + 1) != new_frame->msg_len) {
+		pr_err("Invalid frame message\n");
+		rc = -EINVAL;
+		goto ERROR3;
+	}
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	for (i = 0; i < num_stripes; i++) {
 		cpp_frame_msg[stripe_base + 5 + i*27] +=
 			(uint32_t) in_phyaddr;
@@ -1592,6 +1638,7 @@ void msm_cpp_clean_queue(struct cpp_device *cpp_dev)
 	}
 }
 
+<<<<<<< HEAD
 long msm_cpp_subdev_ioctl(struct v4l2_subdev *sd,
 			unsigned int cmd, void *arg)
 {
@@ -1604,12 +1651,66 @@ long msm_cpp_subdev_ioctl(struct v4l2_subdev *sd,
 		return -EINVAL;
 	}
 
+=======
+static int msm_cpp_validate_input(unsigned int cmd, void *arg,
+	struct msm_camera_v4l2_ioctl_t **ioctl_ptr)
+{
+	switch (cmd) {
+	case MSM_SD_SHUTDOWN:
+		break;
+	default: {
+		if (ioctl_ptr == NULL) {
+			pr_err("Wrong ioctl_ptr for cmd %u\n", cmd);
+			return -EINVAL;
+		}
+
+		*ioctl_ptr = arg;
+		if ((*ioctl_ptr == NULL) ||
+			(*ioctl_ptr)->ioctl_ptr == NULL) {
+			pr_err("Error invalid ioctl argument cmd %u", cmd);
+			return -EINVAL;
+		}
+		break;
+	}
+	}
+	return 0;
+}
+
+long msm_cpp_subdev_ioctl(struct v4l2_subdev *sd,
+			unsigned int cmd, void *arg)
+{
+	struct cpp_device *cpp_dev = NULL;
+	struct msm_camera_v4l2_ioctl_t *ioctl_ptr = NULL;
+	int rc = 0;
+
+	if (sd == NULL) {
+		pr_err("sd %pK\n", sd);
+		return -EINVAL;
+	}
+	cpp_dev = v4l2_get_subdevdata(sd);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	if (cpp_dev == NULL) {
 		pr_err("cpp_dev is null\n");
 		return -EINVAL;
 	}
 
+<<<<<<< HEAD
 	mutex_lock(&cpp_dev->mutex);
+=======
+	if (_IOC_DIR(cmd) == _IOC_NONE) {
+		pr_err("Invalid ioctl/subdev cmd %u", cmd);
+		return -EINVAL;
+	}
+
+	rc = msm_cpp_validate_input(cmd, arg, &ioctl_ptr);
+	if (rc != 0) {
+		pr_err("input validation failed\n");
+		return rc;
+	}
+
+	mutex_lock(&cpp_dev->mutex);
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	CPP_DBG("E cmd: 0x%x\n", cmd);
 	switch (cmd) {
 	case VIDIOC_MSM_CPP_GET_HW_INFO: {
@@ -1850,8 +1951,12 @@ long msm_cpp_subdev_ioctl(struct v4l2_subdev *sd,
 			return -EINVAL;
 		}
 
+<<<<<<< HEAD
 		if ((ioctl_ptr->len == 0) ||
 		    (ioctl_ptr->len > sizeof(uint32_t))) {
+=======
+		if (ioctl_ptr->len != sizeof(uint32_t)) {
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 			mutex_unlock(&cpp_dev->mutex);
 			return -EINVAL;
 		}

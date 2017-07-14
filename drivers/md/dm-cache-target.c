@@ -1954,6 +1954,11 @@ static int cache_create(struct cache_args *ca, struct cache **result)
 	ti->num_discard_bios = 1;
 	ti->discards_supported = true;
 	ti->discard_zeroes_data_unsupported = true;
+<<<<<<< HEAD
+=======
+	/* Discard bios must be split on a block boundary */
+	ti->split_discard_bios = true;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	cache->features = ca->features;
 	ti->per_bio_data_size = get_per_bio_data_size(cache);

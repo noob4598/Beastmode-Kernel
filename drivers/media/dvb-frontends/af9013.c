@@ -606,6 +606,13 @@ static int af9013_set_frontend(struct dvb_frontend *fe)
 			}
 		}
 
+<<<<<<< HEAD
+=======
+		/* Return an error if can't find bandwidth or the right clock */
+		if (i == ARRAY_SIZE(coeff_lut))
+			return -EINVAL;
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		ret = af9013_wr_regs(state, 0xae00, coeff_lut[i].val,
 			sizeof(coeff_lut[i].val));
 	}

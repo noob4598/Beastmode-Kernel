@@ -558,6 +558,12 @@ static int usbhsg_ep_enable(struct usb_ep *ep,
 	struct usbhs_priv *priv = usbhsg_gpriv_to_priv(gpriv);
 	struct usbhs_pipe *pipe;
 	int ret = -EIO;
+<<<<<<< HEAD
+=======
+	unsigned long flags;
+
+	usbhs_lock(priv, flags);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	/*
 	 * if it already have pipe,
@@ -566,7 +572,12 @@ static int usbhsg_ep_enable(struct usb_ep *ep,
 	if (uep->pipe) {
 		usbhs_pipe_clear(uep->pipe);
 		usbhs_pipe_sequence_data0(uep->pipe);
+<<<<<<< HEAD
 		return 0;
+=======
+		ret = 0;
+		goto usbhsg_ep_enable_end;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	}
 
 	pipe = usbhs_pipe_malloc(priv,
@@ -594,6 +605,12 @@ static int usbhsg_ep_enable(struct usb_ep *ep,
 		ret = 0;
 	}
 
+<<<<<<< HEAD
+=======
+usbhsg_ep_enable_end:
+	usbhs_unlock(priv, flags);
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	return ret;
 }
 

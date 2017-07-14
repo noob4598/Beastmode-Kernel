@@ -1049,6 +1049,10 @@ static int garmin_write_bulk(struct usb_serial_port *port,
 		   "%s - usb_submit_urb(write bulk) failed with status = %d\n",
 				__func__, status);
 		count = status;
+<<<<<<< HEAD
+=======
+		kfree(buffer);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	}
 
 	/* we are done with this urb, so let the host driver

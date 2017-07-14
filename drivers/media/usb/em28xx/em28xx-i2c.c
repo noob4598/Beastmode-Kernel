@@ -469,9 +469,14 @@ static int em28xx_i2c_xfer(struct i2c_adapter *i2c_adap,
 	int addr, rc, i;
 	u8 reg;
 
+<<<<<<< HEAD
 	rc = rt_mutex_trylock(&dev->i2c_bus_lock);
 	if (rc < 0)
 		return rc;
+=======
+	if (!rt_mutex_trylock(&dev->i2c_bus_lock))
+		return -EAGAIN;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	/* Switch I2C bus if needed */
 	if (bus != dev->cur_i2c_bus &&

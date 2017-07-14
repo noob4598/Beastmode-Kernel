@@ -70,8 +70,12 @@ int cpupri_find(struct cpupri *cp, struct task_struct *p,
 	int idx = 0;
 	int task_pri = convert_prio(p->prio);
 
+<<<<<<< HEAD
 	if (task_pri >= MAX_RT_PRIO)
 		return 0;
+=======
+	BUG_ON(task_pri >= CPUPRI_NR_PRIORITIES);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	for (idx = 0; idx < task_pri; idx++) {
 		struct cpupri_vec *vec  = &cp->pri_to_cpu[idx];

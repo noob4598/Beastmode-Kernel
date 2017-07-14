@@ -351,6 +351,14 @@ static ssize_t store_cmd(struct device *dev, struct device_attribute *devattr,
 		return -EINVAL;
 	}
 
+<<<<<<< HEAD
+=======
+	if (strlen(buf) >= CMD_STR_LEN) {		
+		tsp_debug_err(true, &info->client->dev, "%s: cmd length is over (%s,%d)!!\n", __func__, buf, (int)strlen(buf));
+		return -EINVAL;
+	}
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	if (info->cmd_is_running == true) {
 		tsp_debug_err(true, &info->client->dev, "ft_cmd: other cmd is running.\n");
 		if (strncmp("clear_cover_mode", buf, 16) == 0) {
@@ -425,7 +433,11 @@ static ssize_t store_cmd(struct device *dev, struct device_attribute *devattr,
 				param_cnt++;
 			}
 			cur++;
+<<<<<<< HEAD
 		} while (cur - buf <= len);
+=======
+		} while ((cur - buf <= len) && (param_cnt < CMD_PARAM_NUM));
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	}
 	tsp_debug_info(true, &info->client->dev, "cmd = %s\n", ft_cmd_ptr->cmd_name);
 	for (i = 0; i < param_cnt; i++)
@@ -504,13 +516,21 @@ static ssize_t cmd_list_show(struct device *dev,
 {
 	struct fts_ts_info *info = dev_get_drvdata(dev);
 	int ii = 0;
+<<<<<<< HEAD
 	char buffer[info->cmd_buffer_size];
+=======
+	char buffer[info->cmd_buffer_size + 30];
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	char buffer_name[CMD_STR_LEN];
 
 	snprintf(buffer, 30, "++factory command list++\n");
 	while (strncmp(stm_ft_cmds[ii].cmd_name, "not_support_cmd", 16) != 0) {
 		snprintf(buffer_name, CMD_STR_LEN, "%s\n", stm_ft_cmds[ii].cmd_name);
+<<<<<<< HEAD
 		strcat(buffer, buffer_name);
+=======
+		strncat(buffer, buffer_name, (int)strlen(buffer_name));
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		ii++;
 	}
 

@@ -667,6 +667,10 @@ static int tda10071_set_frontend(struct dvb_frontend *fe)
 	struct dtv_frontend_properties *c = &fe->dtv_property_cache;
 	int ret, i;
 	u8 mode, rolloff, pilot, inversion, div;
+<<<<<<< HEAD
+=======
+	fe_modulation_t modulation;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	dev_dbg(&priv->i2c->dev, "%s: delivery_system=%d modulation=%d " \
 		"frequency=%d symbol_rate=%d inversion=%d pilot=%d " \
@@ -701,10 +705,19 @@ static int tda10071_set_frontend(struct dvb_frontend *fe)
 
 	switch (c->delivery_system) {
 	case SYS_DVBS:
+<<<<<<< HEAD
+=======
+		modulation = QPSK;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		rolloff = 0;
 		pilot = 2;
 		break;
 	case SYS_DVBS2:
+<<<<<<< HEAD
+=======
+		modulation = c->modulation;
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		switch (c->rolloff) {
 		case ROLLOFF_20:
 			rolloff = 2;
@@ -749,7 +762,11 @@ static int tda10071_set_frontend(struct dvb_frontend *fe)
 
 	for (i = 0, mode = 0xff; i < ARRAY_SIZE(TDA10071_MODCOD); i++) {
 		if (c->delivery_system == TDA10071_MODCOD[i].delivery_system &&
+<<<<<<< HEAD
 			c->modulation == TDA10071_MODCOD[i].modulation &&
+=======
+			modulation == TDA10071_MODCOD[i].modulation &&
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 			c->fec_inner == TDA10071_MODCOD[i].fec) {
 			mode = TDA10071_MODCOD[i].val;
 			dev_dbg(&priv->i2c->dev, "%s: mode found=%02x\n",

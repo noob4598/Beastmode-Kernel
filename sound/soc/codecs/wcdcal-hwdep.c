@@ -1,5 +1,9 @@
 /*
+<<<<<<< HEAD
  * Copyright (c) 2014, The Linux Foundation. All rights reserved.
+=======
+ * Copyright (c) 2014-2015, The Linux Foundation. All rights reserved.
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -82,7 +86,12 @@ static int wcdcal_hwdep_ioctl_shared(struct snd_hwdep *hw,
 		return -EFAULT;
 	}
 	data = fw[fw_user.cal_type]->data;
+<<<<<<< HEAD
 	memcpy(data, fw_user.buffer, fw_user.size);
+=======
+	if (copy_from_user(data, fw_user.buffer, fw_user.size))
+		return -EFAULT;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	fw[fw_user.cal_type]->size = fw_user.size;
 	mutex_lock(&fw_data->lock);
 	set_bit(WCDCAL_RECIEVED, &fw_data->wcdcal_state[fw_user.cal_type]);

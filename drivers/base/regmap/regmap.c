@@ -114,7 +114,11 @@ bool regmap_readable(struct regmap *map, unsigned int reg)
 
 bool regmap_volatile(struct regmap *map, unsigned int reg)
 {
+<<<<<<< HEAD
 	if (!regmap_readable(map, reg))
+=======
+	if (!map->format.format_write && !regmap_readable(map, reg))
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		return false;
 
 	if (map->volatile_reg)
@@ -1177,7 +1181,11 @@ int _regmap_write(struct regmap *map, unsigned int reg,
 	}
 
 #ifdef LOG_DEVICE
+<<<<<<< HEAD
 	if (strcmp(dev_name(map->dev), LOG_DEVICE) == 0)
+=======
+	if (map->dev && strcmp(dev_name(map->dev), LOG_DEVICE) == 0)
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		dev_info(map->dev, "%x <= %x\n", reg, val);
 #endif
 
@@ -1437,7 +1445,11 @@ static int _regmap_read(struct regmap *map, unsigned int reg,
 	ret = map->reg_read(context, reg, val);
 	if (ret == 0) {
 #ifdef LOG_DEVICE
+<<<<<<< HEAD
 		if (strcmp(dev_name(map->dev), LOG_DEVICE) == 0)
+=======
+		if (map->dev && strcmp(dev_name(map->dev), LOG_DEVICE) == 0)
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 			dev_info(map->dev, "%x => %x\n", reg, *val);
 #endif
 
@@ -1586,7 +1598,11 @@ int regmap_bulk_read(struct regmap *map, unsigned int reg, void *val,
 					  &ival);
 			if (ret != 0)
 				return ret;
+<<<<<<< HEAD
 			memcpy(val + (i * val_bytes), &ival, val_bytes);
+=======
+			map->format.format_val(val + (i * val_bytes), ival, 0);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		}
 	}
 

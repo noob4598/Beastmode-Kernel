@@ -931,6 +931,14 @@ static int validate_vid_hdr(const struct ubi_device *ubi,
 		goto bad;
 	}
 
+<<<<<<< HEAD
+=======
+	if (data_size > ubi->leb_size) {
+		ubi_err("bad data_size");
+		goto bad;
+	}
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	if (vol_type == UBI_VID_STATIC) {
 		/*
 		 * Although from high-level point of view static volumes may

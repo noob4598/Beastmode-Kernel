@@ -1200,7 +1200,11 @@ ep0_write (struct file *fd, const char __user *buf, size_t len, loff_t *ptr)
 	/* data and/or status stage for control request */
 	} else if (dev->state == STATE_DEV_SETUP) {
 
+<<<<<<< HEAD
 		/* IN DATA+STATUS caller makes len <= wLength */
+=======
+		len = min_t(size_t, len, dev->setup_wLength);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		if (dev->setup_in) {
 			retval = setup_req (dev->gadget->ep0, dev->req, len);
 			if (retval == 0) {
@@ -1509,7 +1513,11 @@ gadgetfs_setup (struct usb_gadget *gadget, const struct usb_ctrlrequest *ctrl)
 		}
 		break;
 
+<<<<<<< HEAD
 #ifndef	CONFIG_USB_GADGET_PXA25X
+=======
+#ifndef	CONFIG_USB_PXA25X
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	/* PXA automagically handles this request too */
 	case USB_REQ_GET_CONFIGURATION:
 		if (ctrl->bRequestType != 0x80)
@@ -1834,10 +1842,19 @@ static struct usb_gadget_driver probe_driver = {
  * such as configuration notifications.
  */
 
+<<<<<<< HEAD
 static int is_valid_config (struct usb_config_descriptor *config)
 {
 	return config->bDescriptorType == USB_DT_CONFIG
 		&& config->bLength == USB_DT_CONFIG_SIZE
+=======
+static int is_valid_config(struct usb_config_descriptor *config,
+		unsigned int total)
+{
+	return config->bDescriptorType == USB_DT_CONFIG
+		&& config->bLength == USB_DT_CONFIG_SIZE
+		&& total >= USB_DT_CONFIG_SIZE
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		&& config->bConfigurationValue != 0
 		&& (config->bmAttributes & USB_CONFIG_ATT_ONE) != 0
 		&& (config->bmAttributes & USB_CONFIG_ATT_WAKEUP) == 0;
@@ -1854,7 +1871,12 @@ dev_config (struct file *fd, const char __user *buf, size_t len, loff_t *ptr)
 	u32			tag;
 	char			*kbuf;
 
+<<<<<<< HEAD
 	if (len < (USB_DT_CONFIG_SIZE + USB_DT_DEVICE_SIZE + 4))
+=======
+	if ((len < (USB_DT_CONFIG_SIZE + USB_DT_DEVICE_SIZE + 4)) ||
+	    (len > PAGE_SIZE * 4))
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		return -EINVAL;
 
 	/* we might need to change message format someday */
@@ -1878,7 +1900,12 @@ dev_config (struct file *fd, const char __user *buf, size_t len, loff_t *ptr)
 	/* full or low speed config */
 	dev->config = (void *) kbuf;
 	total = le16_to_cpu(dev->config->wTotalLength);
+<<<<<<< HEAD
 	if (!is_valid_config (dev->config) || total >= length)
+=======
+	if (!is_valid_config(dev->config, total) ||
+			total > length - USB_DT_DEVICE_SIZE)
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		goto fail;
 	kbuf += total;
 	length -= total;
@@ -1887,10 +1914,20 @@ dev_config (struct file *fd, const char __user *buf, size_t len, loff_t *ptr)
 	if (kbuf [1] == USB_DT_CONFIG) {
 		dev->hs_config = (void *) kbuf;
 		total = le16_to_cpu(dev->hs_config->wTotalLength);
+<<<<<<< HEAD
 		if (!is_valid_config (dev->hs_config) || total >= length)
 			goto fail;
 		kbuf += total;
 		length -= total;
+=======
+		if (!is_valid_config(dev->hs_config, total) ||
+				total > length - USB_DT_DEVICE_SIZE)
+			goto fail;
+		kbuf += total;
+		length -= total;
+	} else {
+		dev->hs_config = NULL;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	}
 
 	/* could support multiple configs, using another encoding! */

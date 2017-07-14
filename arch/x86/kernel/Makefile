@@ -27,6 +27,10 @@ obj-$(CONFIG_X86_64)	+= sys_x86_64.o x8664_ksyms_64.o
 obj-y			+= syscall_$(BITS).o
 obj-$(CONFIG_X86_64)	+= vsyscall_64.o
 obj-$(CONFIG_X86_64)	+= vsyscall_emu_64.o
+<<<<<<< HEAD
+=======
+obj-$(CONFIG_X86_ESPFIX64)	+= espfix_64.o
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 obj-y			+= bootflag.o e820.o
 obj-y			+= pci-dma.o quirks.o topology.o kdebugfs.o
 obj-y			+= alternative.o i8253.o pci-nommu.o hw_breakpoint.o

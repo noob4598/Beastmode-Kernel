@@ -20,6 +20,10 @@
 #include <asm/hypervisor.h>
 #include <asm/nmi.h>
 #include <asm/x86_init.h>
+<<<<<<< HEAD
+=======
+#include <asm/geode.h>
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 unsigned int __read_mostly cpu_khz;	/* TSC clocks / usec, not used here */
 EXPORT_SYMBOL(cpu_khz);
@@ -380,7 +384,11 @@ static unsigned long quick_pit_calibrate(void)
 			goto success;
 		}
 	}
+<<<<<<< HEAD
 	pr_err("Fast TSC calibration failed\n");
+=======
+	pr_info("Fast TSC calibration failed\n");
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	return 0;
 
 success:
@@ -806,6 +814,7 @@ EXPORT_SYMBOL_GPL(mark_tsc_unstable);
 
 static void __init check_system_tsc_reliable(void)
 {
+<<<<<<< HEAD
 #ifdef CONFIG_MGEODE_LX
 	/* RTSC counts during suspend */
 #define RTSC_SUSP 0x100
@@ -815,6 +824,19 @@ static void __init check_system_tsc_reliable(void)
 	/* Geode_LX - the OLPC CPU has a very reliable TSC */
 	if (res_low & RTSC_SUSP)
 		tsc_clocksource_reliable = 1;
+=======
+#if defined(CONFIG_MGEODEGX1) || defined(CONFIG_MGEODE_LX) || defined(CONFIG_X86_GENERIC)
+	if (is_geode_lx()) {
+		/* RTSC counts during suspend */
+#define RTSC_SUSP 0x100
+		unsigned long res_low, res_high;
+
+		rdmsr_safe(MSR_GEODE_BUSCONT_CONF0, &res_low, &res_high);
+		/* Geode_LX - the OLPC CPU has a very reliable TSC */
+		if (res_low & RTSC_SUSP)
+			tsc_clocksource_reliable = 1;
+	}
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 #endif
 	if (boot_cpu_has(X86_FEATURE_TSC_RELIABLE))
 		tsc_clocksource_reliable = 1;
@@ -968,14 +990,25 @@ void __init tsc_init(void)
 
 	x86_init.timers.tsc_pre_init();
 
+<<<<<<< HEAD
 	if (!cpu_has_tsc)
 		return;
+=======
+	if (!cpu_has_tsc) {
+		setup_clear_cpu_cap(X86_FEATURE_TSC_DEADLINE_TIMER);
+		return;
+	}
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	tsc_khz = x86_platform.calibrate_tsc();
 	cpu_khz = tsc_khz;
 
 	if (!tsc_khz) {
 		mark_tsc_unstable("could not calculate TSC khz");
+<<<<<<< HEAD
+=======
+		setup_clear_cpu_cap(X86_FEATURE_TSC_DEADLINE_TIMER);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		return;
 	}
 

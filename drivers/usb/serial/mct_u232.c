@@ -377,14 +377,30 @@ static void mct_u232_msr_to_state(struct usb_serial_port *port,
 
 static int mct_u232_port_probe(struct usb_serial_port *port)
 {
+<<<<<<< HEAD
 	struct mct_u232_private *priv;
 
+=======
+	struct usb_serial *serial = port->serial;
+	struct mct_u232_private *priv;
+
+	/* check first to simplify error handling */
+	if (!serial->port[1] || !serial->port[1]->interrupt_in_urb) {
+		dev_err(&port->dev, "expected endpoint missing\n");
+		return -ENODEV;
+	}
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	priv = kzalloc(sizeof(*priv), GFP_KERNEL);
 	if (!priv)
 		return -ENOMEM;
 
 	/* Use second interrupt-in endpoint for reading. */
+<<<<<<< HEAD
 	priv->read_urb = port->serial->port[1]->interrupt_in_urb;
+=======
+	priv->read_urb = serial->port[1]->interrupt_in_urb;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	priv->read_urb->context = port;
 
 	spin_lock_init(&priv->lock);

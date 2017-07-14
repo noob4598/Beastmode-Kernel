@@ -227,15 +227,25 @@ nfqnl_flush(struct nfqnl_instance *queue, nfqnl_cmpfn cmpfn, unsigned long data)
 	spin_unlock_bh(&queue->lock);
 }
 
+<<<<<<< HEAD
 static void
 nfqnl_zcopy(struct sk_buff *to, const struct sk_buff *from, int len, int hlen)
 {
 	int i, j = 0;
 	int plen = 0; /* length of skb->head fragment */
+=======
+static int
+nfqnl_zcopy(struct sk_buff *to, struct sk_buff *from, int len, int hlen)
+{
+	int i, j = 0;
+	int plen = 0; /* length of skb->head fragment */
+	int ret;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	struct page *page;
 	unsigned int offset;
 
 	/* dont bother with small payloads */
+<<<<<<< HEAD
 	if (len <= skb_tailroom(to)) {
 		skb_copy_bits(from, 0, skb_put(to, len), len);
 		return;
@@ -243,6 +253,15 @@ nfqnl_zcopy(struct sk_buff *to, const struct sk_buff *from, int len, int hlen)
 
 	if (hlen) {
 		skb_copy_bits(from, 0, skb_put(to, hlen), hlen);
+=======
+	if (len <= skb_tailroom(to))
+		return skb_copy_bits(from, 0, skb_put(to, len), len);
+
+	if (hlen) {
+		ret = skb_copy_bits(from, 0, skb_put(to, hlen), hlen);
+		if (unlikely(ret))
+			return ret;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		len -= hlen;
 	} else {
 		plen = min_t(int, skb_headlen(from), len);
@@ -260,6 +279,14 @@ nfqnl_zcopy(struct sk_buff *to, const struct sk_buff *from, int len, int hlen)
 	to->len += len + plen;
 	to->data_len += len + plen;
 
+<<<<<<< HEAD
+=======
+	if (unlikely(skb_orphan_frags(from, GFP_ATOMIC))) {
+		skb_tx_error(from);
+		return -ENOMEM;
+	}
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	for (i = 0; i < skb_shinfo(from)->nr_frags; i++) {
 		if (!len)
 			break;
@@ -270,6 +297,11 @@ nfqnl_zcopy(struct sk_buff *to, const struct sk_buff *from, int len, int hlen)
 		j++;
 	}
 	skb_shinfo(to)->nr_frags = j;
+<<<<<<< HEAD
+=======
+
+	return 0;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 }
 
 static int nfqnl_put_packet_info(struct sk_buff *nlskb, struct sk_buff *packet)
@@ -355,13 +387,24 @@ nfqnl_build_packet_message(struct nfqnl_instance *queue,
 
 	skb = nfnetlink_alloc_skb(&init_net, size, queue->peer_portid,
 				  GFP_ATOMIC);
+<<<<<<< HEAD
 	if (!skb)
 		return NULL;
+=======
+	if (!skb) {
+		skb_tx_error(entskb);
+		return NULL;
+	}
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	nlh = nlmsg_put(skb, 0, 0,
 			NFNL_SUBSYS_QUEUE << 8 | NFQNL_MSG_PACKET,
 			sizeof(struct nfgenmsg), 0);
 	if (!nlh) {
+<<<<<<< HEAD
+=======
+		skb_tx_error(entskb);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		kfree_skb(skb);
 		return NULL;
 	}
@@ -481,13 +524,22 @@ nfqnl_build_packet_message(struct nfqnl_instance *queue,
 		nla->nla_type = NFQA_PAYLOAD;
 		nla->nla_len = nla_attr_size(data_len);
 
+<<<<<<< HEAD
 		nfqnl_zcopy(skb, entskb, data_len, hlen);
+=======
+		if (nfqnl_zcopy(skb, entskb, data_len, hlen))
+			goto nla_put_failure;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	}
 
 	nlh->nlmsg_len = skb->len;
 	return skb;
 
 nla_put_failure:
+<<<<<<< HEAD
+=======
+	skb_tx_error(entskb);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	kfree_skb(skb);
 	net_err_ratelimited("nf_queue: error creating packet message\n");
 	return NULL;

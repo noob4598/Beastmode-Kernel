@@ -858,13 +858,21 @@ static void dump_throttled_rt_tasks(struct rt_rq *rt_rq)
 out:
 #ifdef CONFIG_PANIC_ON_RT_THROTTLING
 	/*
+<<<<<<< HEAD
 	 * Use pr_err() in the BUG() case since printk_sched() will
+=======
+	 * Use pr_err() in the BUG() case since printk_deferred() will
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	 * not get flushed and deadlock is not a concern.
 	 */
 	pr_err("%s", buf);
 	BUG();
 #else
+<<<<<<< HEAD
 	printk_sched("%s", buf);
+=======
+	printk_deferred("%s", buf);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 #endif
 }
 
@@ -1403,6 +1411,18 @@ static struct task_struct *_pick_next_task_rt(struct rq *rq)
 		rt_rq = group_rt_rq(rt_se);
 	} while (rt_rq);
 
+<<<<<<< HEAD
+=======
+	/*
+	 * Force update of rq->clock_task in case we failed to do so in
+	 * put_prev_task. A stale value can cause us to over-charge execution
+	 * time to real-time task, that could trigger throttling unnecessarily
+	 */
+	if (rq->skip_clock_update > 0) {
+		rq->skip_clock_update = 0;
+		update_rq_clock(rq);
+	}
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	p = rt_task_of(rt_se);
 	p->se.exec_start = rq->clock_task;
 

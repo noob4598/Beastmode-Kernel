@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 /* Copyright (c) 2012-2013, The Linux Foundation. All rights reserved.
+=======
+/* Copyright (c) 2012-2016, The Linux Foundation. All rights reserved.
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -56,7 +60,11 @@ static int get_device_address(struct smem_client *smem_client,
 	struct ion_client *clnt = NULL;
 
 	if (!iova || !buffer_size || !hndl || !smem_client) {
+<<<<<<< HEAD
 		dprintk(VIDC_ERR, "Invalid params: %p, %p, %p, %p\n",
+=======
+		dprintk(VIDC_ERR, "Invalid params: %pK, %pK, %pK, %pK\n",
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 				smem_client, hndl, iova, buffer_size);
 		return -EINVAL;
 	}
@@ -112,7 +120,11 @@ static void put_device_address(struct smem_client *smem_client,
 	struct ion_client *clnt = NULL;
 
 	if (!hndl || !smem_client) {
+<<<<<<< HEAD
 		dprintk(VIDC_WARN, "Invalid params: %p, %p\n",
+=======
+		dprintk(VIDC_WARN, "Invalid params: %pK, %pK\n",
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 				smem_client, hndl);
 		return;
 	}
@@ -146,7 +158,11 @@ static int ion_user_to_kernel(struct smem_client *client, int fd, u32 offset,
 
 	hndl = ion_import_dma_buf(client->clnt, fd);
 	if (IS_ERR_OR_NULL(hndl)) {
+<<<<<<< HEAD
 		dprintk(VIDC_ERR, "Failed to get handle: %p, %d, %d, %p\n",
+=======
+		dprintk(VIDC_ERR, "Failed to get handle: %pK, %d, %d, %pK\n",
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 				client, fd, offset, hndl);
 		rc = -ENOMEM;
 		goto fail_import_fd;
@@ -175,7 +191,11 @@ static int ion_user_to_kernel(struct smem_client *client, int fd, u32 offset,
 	mem->device_addr = iova;
 	mem->size = buffer_size;
 	dprintk(VIDC_DBG,
+<<<<<<< HEAD
 		"%s: ion_handle = 0x%p, fd = %d, device_addr = 0x%x, size = %d, kvaddr = 0x%p, buffer_type = %d\n",
+=======
+		"%s: ion_handle = 0x%pK, fd = %d, device_addr = 0x%x, size = %d, kvaddr = 0x%pK, buffer_type = %d\n",
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		__func__, mem->smem_priv, fd, (u32)mem->device_addr,
 		mem->size, mem->kvaddr, mem->buffer_type);
 	return rc;
@@ -218,7 +238,11 @@ static int alloc_ion_mem(struct smem_client *client, size_t size, u32 align,
 	hndl = ion_alloc(client->clnt, size, align, heap_mask, flags);
 	if (IS_ERR_OR_NULL(hndl)) {
 		dprintk(VIDC_ERR,
+<<<<<<< HEAD
 		"Failed to allocate shared memory = %p, %d, %d, 0x%x\n",
+=======
+		"Failed to allocate shared memory = %pK, %d, %d, 0x%x\n",
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		client, size, align, flags);
 		rc = -ENOMEM;
 		goto fail_shared_mem_alloc;
@@ -248,7 +272,11 @@ static int alloc_ion_mem(struct smem_client *client, size_t size, u32 align,
 	mem->device_addr = iova;
 	mem->size = size;
 	dprintk(VIDC_DBG,
+<<<<<<< HEAD
 		"%s: ion_handle = 0x%p, device_addr = 0x%x, size = %d, kvaddr = 0x%p, buffer_type = %d\n",
+=======
+		"%s: ion_handle = 0x%pK, device_addr = 0x%x, size = %d, kvaddr = 0x%pK, buffer_type = %d\n",
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		__func__, mem->smem_priv, (u32)mem->device_addr,
 		mem->size, mem->kvaddr, mem->buffer_type);
 	return rc;
@@ -265,7 +293,11 @@ static void free_ion_mem(struct smem_client *client, struct msm_smem *mem)
 	int domain, partition, rc;
 
 	dprintk(VIDC_DBG,
+<<<<<<< HEAD
 		"%s: ion_handle = 0x%p, device_addr = 0x%x, size = %d, kvaddr = 0x%p, buffer_type = %d\n",
+=======
+		"%s: ion_handle = 0x%pK, device_addr = 0x%x, size = %d, kvaddr = 0x%pK, buffer_type = %d\n",
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		__func__, mem->smem_priv, (u32)mem->device_addr,
 		mem->size, mem->kvaddr, mem->buffer_type);
 	rc = msm_smem_get_domain_partition((void *)client, mem->flags,
@@ -330,6 +362,25 @@ struct msm_smem *msm_smem_user_to_kernel(void *clt, int fd, u32 offset,
 	return mem;
 }
 
+<<<<<<< HEAD
+=======
+bool msm_smem_compare_buffers(void *clt, int fd, void *priv)
+{
+	struct smem_client *client = clt;
+	struct ion_handle *handle = NULL;
+	bool ret = false;
+	if (!clt || !priv) {
+		dprintk(VIDC_ERR, "Invalid params: %p, %p\n",
+			clt, priv);
+		return false;
+	}
+	handle = ion_import_dma_buf(client->clnt, fd);
+	ret = handle == priv;
+	handle ? ion_free(client->clnt, handle) : 0;
+	return ret;
+}
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 static int ion_cache_operations(struct smem_client *client,
 	struct msm_smem *mem, enum smem_cache_ops cache_op)
 {
@@ -337,7 +388,11 @@ static int ion_cache_operations(struct smem_client *client,
 	int rc = 0;
 	int msm_cache_ops = 0;
 	if (!mem || !client) {
+<<<<<<< HEAD
 		dprintk(VIDC_ERR, "Invalid params: %p, %p\n",
+=======
+		dprintk(VIDC_ERR, "Invalid params: %pK, %pK\n",
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 			mem, client);
 		return -EINVAL;
 	}
@@ -384,7 +439,11 @@ int msm_smem_cache_operations(void *clt, struct msm_smem *mem,
 	struct smem_client *client = clt;
 	int rc = 0;
 	if (!client) {
+<<<<<<< HEAD
 		dprintk(VIDC_ERR, "Invalid params: %p\n",
+=======
+		dprintk(VIDC_ERR, "Invalid params: %pK\n",
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 			client);
 		return -EINVAL;
 	}

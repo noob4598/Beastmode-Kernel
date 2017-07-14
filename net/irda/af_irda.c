@@ -1039,8 +1039,16 @@ static int irda_connect(struct socket *sock, struct sockaddr *uaddr,
 	}
 
 	/* Check if we have opened a local TSAP */
+<<<<<<< HEAD
 	if (!self->tsap)
 		irda_open_tsap(self, LSAP_ANY, addr->sir_name);
+=======
+	if (!self->tsap) {
+		err = irda_open_tsap(self, LSAP_ANY, addr->sir_name);
+		if (err)
+			goto out;
+	}
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	/* Move to connecting socket, start sending Connect Requests */
 	sock->state = SS_CONNECTING;

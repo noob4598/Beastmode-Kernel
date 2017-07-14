@@ -1475,6 +1475,7 @@ void send_sigtrap(struct task_struct *tsk, struct pt_regs *regs,
 	force_sig_info(SIGTRAP, &info, tsk);
 }
 
+<<<<<<< HEAD
 
 #ifdef CONFIG_X86_32
 # define IS_IA32	1
@@ -1484,6 +1485,8 @@ void send_sigtrap(struct task_struct *tsk, struct pt_regs *regs,
 # define IS_IA32	0
 #endif
 
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 /*
  * We must return the syscall number to actually look up in the table.
  * This can be -1L to skip running any syscall at all.
@@ -1521,7 +1524,11 @@ long syscall_trace_enter(struct pt_regs *regs)
 	if (unlikely(test_thread_flag(TIF_SYSCALL_TRACEPOINT)))
 		trace_sys_enter(regs, regs->orig_ax);
 
+<<<<<<< HEAD
 	if (IS_IA32)
+=======
+	if (is_ia32_task())
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		audit_syscall_entry(AUDIT_ARCH_I386,
 				    regs->orig_ax,
 				    regs->bx, regs->cx,

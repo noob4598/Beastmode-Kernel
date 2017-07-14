@@ -850,7 +850,11 @@ static int iio_buffer_update_demux(struct iio_dev *indio_dev,
 
 	/* Now we have the two masks, work from least sig and build up sizes */
 	for_each_set_bit(out_ind,
+<<<<<<< HEAD
 			 indio_dev->active_scan_mask,
+=======
+			 buffer->scan_mask,
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 			 indio_dev->masklength) {
 		in_ind = find_next_bit(indio_dev->active_scan_mask,
 				       indio_dev->masklength,

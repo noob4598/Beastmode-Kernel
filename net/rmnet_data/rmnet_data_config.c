@@ -467,6 +467,14 @@ void rmnet_config_netlink_msg_handler(struct sk_buff *skb)
 	nlmsg_header = (struct nlmsghdr *) skb->data;
 	rmnet_header = (struct rmnet_nl_msg_s *) nlmsg_data(nlmsg_header);
 
+<<<<<<< HEAD
+=======
+	if (!nlmsg_header->nlmsg_pid ||
+	    (nlmsg_header->nlmsg_len < sizeof(struct nlmsghdr) +
+				       sizeof(struct rmnet_nl_msg_s)))
+		return;
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	LOGL("Netlink message pid=%d, seq=%d, length=%d, rmnet_type=%d",
 		nlmsg_header->nlmsg_pid,
 		nlmsg_header->nlmsg_seq,

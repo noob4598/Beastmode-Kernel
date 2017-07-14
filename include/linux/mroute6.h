@@ -115,7 +115,11 @@ struct mfc6_cache {
 
 struct rtmsg;
 extern int ip6mr_get_route(struct net *net, struct sk_buff *skb,
+<<<<<<< HEAD
 			   struct rtmsg *rtm, int nowait);
+=======
+			   struct rtmsg *rtm, int nowait, u32 portid);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 #ifdef CONFIG_IPV6_MROUTE
 extern struct sock *mroute6_socket(struct net *net, struct sk_buff *skb);

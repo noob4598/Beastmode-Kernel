@@ -2,11 +2,19 @@
  * fs/sdcardfs/mmap.c
  *
  * Copyright (c) 2013 Samsung Electronics Co. Ltd
+<<<<<<< HEAD
  *   Authors: Daeho Jeong, Woojoong Lee, Seunghwan Hyun, 
  *               Sunghwan Yun, Sungjong Seo
  *                      
  * This program has been developed as a stackable file system based on
  * the WrapFS which written by 
+=======
+ *   Authors: Daeho Jeong, Woojoong Lee, Seunghwan Hyun,
+ *               Sunghwan Yun, Sungjong Seo
+ *
+ * This program has been developed as a stackable file system based on
+ * the WrapFS which written by
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
  *
  * Copyright (c) 1998-2011 Erez Zadok
  * Copyright (c) 2009     Shrikar Archak
@@ -23,6 +31,7 @@
 static int sdcardfs_fault(struct vm_area_struct *vma, struct vm_fault *vmf)
 {
 	int err;
+<<<<<<< HEAD
 	struct file *file, *lower_file;
 	const struct vm_operations_struct *lower_vm_ops;
 	struct vm_area_struct lower_vma;
@@ -45,6 +54,48 @@ static int sdcardfs_fault(struct vm_area_struct *vma, struct vm_fault *vmf)
 	 */
 	lower_vma.vm_file = lower_file;
 	err = lower_vm_ops->fault(&lower_vma, vmf);
+=======
+	struct file *file;
+	const struct vm_operations_struct *lower_vm_ops;
+
+	file = (struct file *)vma->vm_private_data;
+	lower_vm_ops = SDCARDFS_F(file)->lower_vm_ops;
+	BUG_ON(!lower_vm_ops);
+
+	err = lower_vm_ops->fault(vma, vmf);
+	return err;
+}
+
+static void sdcardfs_vm_open(struct vm_area_struct *vma)
+{
+	struct file *file = (struct file *)vma->vm_private_data;
+
+	get_file(file);
+}
+
+static void sdcardfs_vm_close(struct vm_area_struct *vma)
+{
+	struct file *file = (struct file *)vma->vm_private_data;
+
+	fput(file);
+}
+
+static int sdcardfs_page_mkwrite(struct vm_area_struct *vma,
+			       struct vm_fault *vmf)
+{
+	int err = 0;
+	struct file *file;
+	const struct vm_operations_struct *lower_vm_ops;
+
+	file = (struct file *)vma->vm_private_data;
+	lower_vm_ops = SDCARDFS_F(file)->lower_vm_ops;
+	BUG_ON(!lower_vm_ops);
+	if (!lower_vm_ops->page_mkwrite)
+		goto out;
+
+	err = lower_vm_ops->page_mkwrite(vma, vmf);
+out:
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	return err;
 }
 
@@ -52,6 +103,7 @@ static ssize_t sdcardfs_direct_IO(int rw, struct kiocb *iocb,
 			      const struct iovec *iov, loff_t offset,
 			      unsigned long nr_segs)
 {
+<<<<<<< HEAD
 	/* 
 	 * This function returns zero on purpose in order to support direct IO.
 	 * __dentry_open checks a_ops->direct_IO and returns EINVAL if it is null.
@@ -74,9 +126,26 @@ static ssize_t sdcardfs_direct_IO(int rw, struct kiocb *iocb,
  */
 const struct address_space_operations sdcardfs_aops = {
 	/* empty on purpose */
+=======
+	/*
+	 * This function should never be called directly.  We need it
+	 * to exist, to get past a check in open_check_o_direct(),
+	 * which is called from do_last().
+	 */
+	return -EINVAL;
+}
+
+const struct address_space_operations sdcardfs_aops = {
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	.direct_IO	= sdcardfs_direct_IO,
 };
 
 const struct vm_operations_struct sdcardfs_vm_ops = {
 	.fault		= sdcardfs_fault,
+<<<<<<< HEAD
+=======
+	.page_mkwrite	= sdcardfs_page_mkwrite,
+	.open		= sdcardfs_vm_open,
+	.close		= sdcardfs_vm_close,
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 };

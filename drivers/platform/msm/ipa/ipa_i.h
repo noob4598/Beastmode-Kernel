@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 /* Copyright (c) 2012-2014, The Linux Foundation. All rights reserved.
+=======
+/* Copyright (c) 2012-2017, The Linux Foundation. All rights reserved.
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -122,7 +126,11 @@
 
 #define IPA_HW_TABLE_ALIGNMENT(start_ofst) \
 	(((start_ofst) + 127) & ~127)
+<<<<<<< HEAD
 #define IPA_RT_FLT_HW_RULE_BUF_SIZE	(128)
+=======
+#define IPA_RT_FLT_HW_RULE_BUF_SIZE	(256)
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 /**
  * struct ipa_mem_buffer - IPA memory buffer
@@ -196,6 +204,10 @@ struct ipa_rt_tbl {
  * @offset_entry: entry's offset
  * @cookie: cookie used for validity check
  * @ref_cnt: reference counter of raouting table
+<<<<<<< HEAD
+=======
+ * @user_deleted: is the header deleted by the user?
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
  */
 struct ipa_hdr_entry {
 	struct list_head link;
@@ -207,6 +219,10 @@ struct ipa_hdr_entry {
 	u32 cookie;
 	u32 ref_cnt;
 	int id;
+<<<<<<< HEAD
+=======
+	bool user_deleted;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 };
 
 /**
@@ -892,8 +908,14 @@ void ipa_disable_clks(void);
 void ipa_inc_client_enable_clks(void);
 void ipa_dec_client_disable_clks(void);
 int ipa_interrupts_init(u32 ipa_irq, u32 ee, struct device *ipa_dev);
+<<<<<<< HEAD
 int __ipa_del_rt_rule(u32 rule_hdl);
 int __ipa_del_hdr(u32 hdr_hdl);
+=======
+int ipa_del_hdr_by_user(struct ipa_ioc_del_hdr *hdls, bool by_user);
+int __ipa_del_rt_rule(u32 rule_hdl);
+int __ipa_del_hdr(u32 hdr_hdl, bool by_user);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 int __ipa_release_hdr(u32 hdr_hdl);
 int _ipa_read_gen_reg_v1_0(char *buff, int max_len);
 int _ipa_read_gen_reg_v1_1(char *buff, int max_len);

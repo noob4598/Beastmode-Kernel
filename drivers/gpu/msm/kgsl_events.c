@@ -44,6 +44,7 @@ static void _kgsl_event_worker(struct work_struct *work)
 	struct kgsl_event *event = container_of(work, struct kgsl_event, work);
 	int id = KGSL_CONTEXT_ID(event->context);
 
+<<<<<<< HEAD
 #if defined(CONFIG_FB_MSM_MDSS_FENCE_DBG)
 	xlog_fence((char*)__func__, "ctx", id,
 		"ts", event->timestamp,
@@ -51,6 +52,8 @@ static void _kgsl_event_worker(struct work_struct *work)
 		"age", jiffies - event->created,
 		NULL, 0, 0);
 #endif
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	trace_kgsl_fire_event(id, event->timestamp, event->result,
 		jiffies - event->created, event->func);
 
@@ -209,11 +212,14 @@ int kgsl_add_event(struct kgsl_device *device, struct kgsl_event_group *group,
 	event->created = jiffies;
 
 	INIT_WORK(&event->work, _kgsl_event_worker);
+<<<<<<< HEAD
 #if defined(CONFIG_FB_MSM_MDSS_FENCE_DBG)
 	xlog_fence((char*)__func__, "register_event ctx", KGSL_CONTEXT_ID(context),
 		"ts", timestamp,
 		NULL, 0, NULL, 0, NULL, 0, 0);
 #endif
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	trace_kgsl_register_event(KGSL_CONTEXT_ID(context), timestamp, func);
 

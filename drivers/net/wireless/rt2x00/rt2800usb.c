@@ -1020,6 +1020,10 @@ static struct usb_device_id rt2800usb_device_table[] = {
 	{ USB_DEVICE(0x07d1, 0x3c16) },
 	{ USB_DEVICE(0x07d1, 0x3c17) },
 	{ USB_DEVICE(0x2001, 0x3c1b) },
+<<<<<<< HEAD
+=======
+	{ USB_DEVICE(0x2001, 0x3c25) },
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	/* Draytek */
 	{ USB_DEVICE(0x07fa, 0x7712) },
 	/* DVICO */
@@ -1091,6 +1095,10 @@ static struct usb_device_id rt2800usb_device_table[] = {
 	/* Ovislink */
 	{ USB_DEVICE(0x1b75, 0x3071) },
 	{ USB_DEVICE(0x1b75, 0x3072) },
+<<<<<<< HEAD
+=======
+	{ USB_DEVICE(0x1b75, 0xa200) },
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	/* Para */
 	{ USB_DEVICE(0x20b8, 0x8888) },
 	/* Pegatron */

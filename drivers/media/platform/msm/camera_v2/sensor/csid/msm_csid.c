@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 /* Copyright (c) 2011-2014, The Linux Foundation. All rights reserved.
+=======
+/* Copyright (c) 2011-2016, The Linux Foundation. All rights reserved.
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -116,7 +120,11 @@ static int msm_csid_config(struct csid_device *csid_dev,
 	void __iomem *csidbase;
 	csidbase = csid_dev->base;
 	if (!csidbase || !csid_params) {
+<<<<<<< HEAD
 		pr_err("%s:%d csidbase %p, csid params %p\n", __func__,
+=======
+		pr_err("%s:%d csidbase %pK, csid params %pK\n", __func__,
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 			__LINE__, csidbase, csid_params);
 		return -EINVAL;
 	}
@@ -153,6 +161,7 @@ static int msm_csid_config(struct csid_device *csid_dev,
 static irqreturn_t msm_csid_irq(int irq_num, void *data)
 {
 	uint32_t irq;
+<<<<<<< HEAD
 	struct csid_device *csid_dev ;//prevent
 	void __iomem *csidbase;
 
@@ -162,14 +171,20 @@ static irqreturn_t msm_csid_irq(int irq_num, void *data)
 	}//prevent
 
 	csid_dev = data;
+=======
+	struct csid_device *csid_dev = data;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	if (!csid_dev || ! csid_dev->base) {
 		pr_err("%s:%d csid_dev NULL\n", __func__, __LINE__);
 		return IRQ_HANDLED;
 	}
 
+<<<<<<< HEAD
 	csidbase = csid_dev->base;
 
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	irq = msm_camera_io_r(csid_dev->base + CSID_IRQ_STATUS_ADDR);
 	CDBG("%s CSID%d_IRQ_STATUS_ADDR = 0x%x\n",
 		 __func__, csid_dev->pdev->id, irq);
@@ -326,7 +341,11 @@ static int32_t msm_csid_cmd(struct csid_device *csid_dev, void *arg)
 	struct csid_cfg_data *cdata = (struct csid_cfg_data *)arg;
 
 	if (!csid_dev || !cdata) {
+<<<<<<< HEAD
 		pr_err("%s:%d csid_dev %p, cdata %p\n", __func__, __LINE__,
+=======
+		pr_err("%s:%d csid_dev %pK, cdata %pK\n", __func__, __LINE__,
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 			csid_dev, cdata);
 		return -EINVAL;
 	}
@@ -349,7 +368,11 @@ static int32_t msm_csid_cmd(struct csid_device *csid_dev, void *arg)
 			break;
 		}
 		if (csid_params.lut_params.num_cid < 1 ||
+<<<<<<< HEAD
 			csid_params.lut_params.num_cid > 16) {
+=======
+			csid_params.lut_params.num_cid > MAX_CID) {
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 			pr_err("%s: %d num_cid outside range\n",
 				 __func__, __LINE__);
 			rc = -EINVAL;
@@ -379,6 +402,13 @@ static int32_t msm_csid_cmd(struct csid_device *csid_dev, void *arg)
 			}
 			csid_params.lut_params.vc_cfg[i] = vc_cfg;
 		}
+<<<<<<< HEAD
+=======
+		if (rc < 0) {
+			pr_err("%s:%d failed\n", __func__, __LINE__);
+			break;
+		}
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		rc = msm_csid_config(csid_dev, &csid_params);
 		for (i--; i >= 0; i--)
 			kfree(csid_params.lut_params.vc_cfg[i]);

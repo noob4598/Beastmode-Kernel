@@ -668,6 +668,7 @@ void adreno_coresight_stop(struct adreno_device *adreno_dev);
 void adreno_coresight_remove(struct kgsl_device *device);
 
 bool adreno_hw_isidle(struct kgsl_device *device);
+<<<<<<< HEAD
 #if defined (CONFIG_FB_MSM_MDSS_FENCE_DBG)
 void xlog_fence(char *name, char *data0_name, u32 data0,
 				char *data1_name, u32 data1,
@@ -676,6 +677,8 @@ void xlog_fence(char *name, char *data0_name, u32 data0,
 				char *data4_name, u32 data4, u32 data5);
 void xlog_fence_dump(void);
 #endif
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 static inline int adreno_is_a3xx(struct adreno_device *adreno_dev)
 {

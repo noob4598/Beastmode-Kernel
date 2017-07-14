@@ -6,6 +6,10 @@
 #include <linux/slab.h>
 #include <linux/security.h>
 #include <linux/syscalls.h>
+<<<<<<< HEAD
+=======
+#include <linux/user_namespace.h>
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 #include <asm/uaccess.h>
 
 /* init to 2 - one for init_task, one to ensure it is never freed */
@@ -233,6 +237,17 @@ out:
 	return i;
 }
 
+<<<<<<< HEAD
+=======
+bool may_setgroups(void)
+{
+	struct user_namespace *user_ns = current_user_ns();
+
+	return ns_capable(user_ns, CAP_SETGID) &&
+		userns_may_setgroups(user_ns);
+}
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 /*
  *	SMP: Our groups are copy-on-write. We can set them safely
  *	without another task interfering.
@@ -243,7 +258,11 @@ SYSCALL_DEFINE2(setgroups, int, gidsetsize, gid_t __user *, grouplist)
 	struct group_info *group_info;
 	int retval;
 
+<<<<<<< HEAD
 	if (!nsown_capable(CAP_SETGID))
+=======
+	if (!may_setgroups())
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		return -EPERM;
 	if ((unsigned)gidsetsize > NGROUPS_MAX)
 		return -EINVAL;

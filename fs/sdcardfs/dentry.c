@@ -2,11 +2,19 @@
  * fs/sdcardfs/dentry.c
  *
  * Copyright (c) 2013 Samsung Electronics Co. Ltd
+<<<<<<< HEAD
  *   Authors: Daeho Jeong, Woojoong Lee, Seunghwan Hyun, 
  *               Sunghwan Yun, Sungjong Seo
  *                      
  * This program has been developed as a stackable file system based on
  * the WrapFS which written by 
+=======
+ *   Authors: Daeho Jeong, Woojoong Lee, Seunghwan Hyun,
+ *               Sunghwan Yun, Sungjong Seo
+ *
+ * This program has been developed as a stackable file system based on
+ * the WrapFS which written by
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
  *
  * Copyright (c) 1998-2011 Erez Zadok
  * Copyright (c) 2009     Shrikar Archak
@@ -45,8 +53,14 @@ static int sdcardfs_d_revalidate(struct dentry *dentry, unsigned int flags)
 	}
 	spin_unlock(&dentry->d_lock);
 
+<<<<<<< HEAD
 	/* check uninitialized obb_dentry and  
 	 * whether the base obbpath has been changed or not */
+=======
+	/* check uninitialized obb_dentry and
+	 * whether the base obbpath has been changed or not
+	 */
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	if (is_obbpath_invalid(dentry)) {
 		d_drop(dentry);
 		return 0;
@@ -74,6 +88,7 @@ static int sdcardfs_d_revalidate(struct dentry *dentry, unsigned int flags)
 		goto out;
 	}
 
+<<<<<<< HEAD
 	if (dentry == lower_dentry) {
 		err = 0;
 		panic("sdcardfs: dentry is equal to lower_dentry\n");
@@ -93,6 +108,17 @@ static int sdcardfs_d_revalidate(struct dentry *dentry, unsigned int flags)
 		err = 0;
 	} else if (strncasecmp(dentry->d_name.name, lower_dentry->d_name.name,
 				dentry->d_name.len) != 0) {
+=======
+	if (dentry < lower_dentry) {
+		spin_lock(&dentry->d_lock);
+		spin_lock_nested(&lower_dentry->d_lock, DENTRY_D_LOCK_NESTED);
+	} else {
+		spin_lock(&lower_dentry->d_lock);
+		spin_lock_nested(&dentry->d_lock, DENTRY_D_LOCK_NESTED);
+	}
+
+	if (!qstr_case_eq(&dentry->d_name, &lower_dentry->d_name)) {
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		__d_drop(dentry);
 		err = 0;
 	}
@@ -116,6 +142,7 @@ out:
 static void sdcardfs_d_release(struct dentry *dentry)
 {
 	/* release and reset the lower paths */
+<<<<<<< HEAD
 	if(has_graft_path(dentry)) {
 		sdcardfs_put_reset_orig_path(dentry);
 	}
@@ -128,6 +155,18 @@ static int sdcardfs_hash_ci(const struct dentry *dentry,
 				const struct inode *inode, struct qstr *qstr)
 {
 	/* 
+=======
+	if (has_graft_path(dentry))
+		sdcardfs_put_reset_orig_path(dentry);
+	sdcardfs_put_reset_lower_path(dentry);
+	free_dentry_private_data(dentry);
+}
+
+static int sdcardfs_hash_ci(const struct dentry *dentry,
+				const struct inode *inode, struct qstr *qstr)
+{
+	/*
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	 * This function is copy of vfat_hashi.
 	 * FIXME Should we support national language?
 	 *       Refer to vfat_hashi()
@@ -138,12 +177,19 @@ static int sdcardfs_hash_ci(const struct dentry *dentry,
 	unsigned long hash;
 
 	name = qstr->name;
+<<<<<<< HEAD
 	//len = vfat_striptail_len(qstr);
 	len = qstr->len; 
 
 	hash = init_name_hash();
 	while (len--)
 		//hash = partial_name_hash(nls_tolower(t, *name++), hash);
+=======
+	len = qstr->len;
+
+	hash = init_name_hash();
+	while (len--)
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		hash = partial_name_hash(tolower(*name++), hash);
 	qstr->hash = end_name_hash(hash);
 
@@ -153,11 +199,16 @@ static int sdcardfs_hash_ci(const struct dentry *dentry,
 /*
  * Case insensitive compare of two vfat names.
  */
+<<<<<<< HEAD
 static int sdcardfs_cmp_ci(const struct dentry *parent, 
+=======
+static int sdcardfs_cmp_ci(const struct dentry *parent,
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		const struct inode *pinode,
 		const struct dentry *dentry, const struct inode *inode,
 		unsigned int len, const char *str, const struct qstr *name)
 {
+<<<<<<< HEAD
 	/* This function is copy of vfat_cmpi */
 	// FIXME Should we support national language? 
 	//struct nls_table *t = MSDOS_SB(parent->d_sb)->nls_io;
@@ -175,14 +226,36 @@ static int sdcardfs_cmp_ci(const struct dentry *parent,
 	if (name->len == len) {
 		if (strncasecmp(name->name, str, len) == 0)
 			return 0; 
+=======
+	/* FIXME Should we support national language? */
+
+	if (name->len == len) {
+		if (str_n_case_eq(name->name, str, len))
+			return 0;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	}
 	return 1;
 }
 
+<<<<<<< HEAD
 const struct dentry_operations sdcardfs_ci_dops = {
 	.d_revalidate	= sdcardfs_d_revalidate,
 	.d_release	= sdcardfs_d_release,
 	.d_hash 	= sdcardfs_hash_ci, 
 	.d_compare	= sdcardfs_cmp_ci,
+=======
+static void sdcardfs_canonical_path(const struct path *path,
+				struct path *actual_path)
+{
+	sdcardfs_get_real_lower(path->dentry, actual_path);
+}
+
+const struct dentry_operations sdcardfs_ci_dops = {
+	.d_revalidate	= sdcardfs_d_revalidate,
+	.d_release	= sdcardfs_d_release,
+	.d_hash	= sdcardfs_hash_ci,
+	.d_compare	= sdcardfs_cmp_ci,
+	.d_canonical_path = sdcardfs_canonical_path,
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 };
 

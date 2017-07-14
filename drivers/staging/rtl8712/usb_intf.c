@@ -144,6 +144,10 @@ static struct usb_device_id rtl871x_usb_id_tbl[] = {
 	{USB_DEVICE(0x0DF6, 0x0058)},
 	{USB_DEVICE(0x0DF6, 0x0049)},
 	{USB_DEVICE(0x0DF6, 0x004C)},
+<<<<<<< HEAD
+=======
+	{USB_DEVICE(0x0DF6, 0x006C)},
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	{USB_DEVICE(0x0DF6, 0x0064)},
 	/* Skyworth */
 	{USB_DEVICE(0x14b2, 0x3300)},

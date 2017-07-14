@@ -3,7 +3,10 @@
  *
  * Copyright (c) 2012 Samsung Electronics Co., Ltd.
  *	Minsung Kim <ms925.kim@samsung.com>
+<<<<<<< HEAD
  * Copyright (c) 2016 Chris Roberts (freeza@gmail.com)
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 as
@@ -32,12 +35,15 @@ static LIST_HEAD(cpufreq_limit_requests);
 #ifdef CONFIG_SEC_PM
 static int suspend_boost = 1190400;
 module_param(suspend_boost, uint, 0644);
+<<<<<<< HEAD
 static int min_limit_freq = 1267200;
 module_param(min_limit_freq, uint, 0644);
 static int max_limit_freq = 0;
 module_param(max_limit_freq, uint, 0644);
 static int enable_user_limit_freq = 0;
 module_param(enable_user_limit_freq, uint, 0644);
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 #endif
 
 /**
@@ -62,6 +68,7 @@ struct cpufreq_limit_handle *cpufreq_limit_get(unsigned long min_freq,
 	pr_debug("%s: %s,%lu,%lu\n", __func__, handle->label, handle->min,
 			handle->max);
 
+<<<<<<< HEAD
 if (enable_user_limit_freq == 0) {
 	handle->min = min_freq;
 	handle->max = max_freq;
@@ -70,6 +77,10 @@ else {
 	handle->min = min_limit_freq;
 	handle->max = max_limit_freq;
  }
+=======
+	handle->min = min_freq;
+	handle->max = max_freq;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	if (strlen(label) < sizeof(handle->label))
 		strcpy(handle->label, label);

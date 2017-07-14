@@ -1392,9 +1392,15 @@ void rtl_watchdog_wq_callback(void *data)
 		if (((rtlpriv->link_info.num_rx_inperiod +
 		      rtlpriv->link_info.num_tx_inperiod) > 8) ||
 		    (rtlpriv->link_info.num_rx_inperiod > 2))
+<<<<<<< HEAD
 			rtlpriv->enter_ps = true;
 		else
 			rtlpriv->enter_ps = false;
+=======
+			rtlpriv->enter_ps = false;
+		else
+			rtlpriv->enter_ps = true;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 		/* LeisurePS only work in infra mode. */
 		schedule_work(&rtlpriv->works.lps_change_work);

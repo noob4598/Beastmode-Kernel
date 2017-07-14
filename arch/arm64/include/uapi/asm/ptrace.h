@@ -75,6 +75,10 @@ struct user_fpsimd_state {
 	__uint128_t	vregs[32];
 	__u32		fpsr;
 	__u32		fpcr;
+<<<<<<< HEAD
+=======
+	__u32		__reserved[2];
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 };
 
 struct user_hwdebug_state {

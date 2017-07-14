@@ -31,6 +31,11 @@
 #include "alloc.h"
 #include "dat.h"
 
+<<<<<<< HEAD
+=======
+static void __nilfs_btree_init(struct nilfs_bmap *bmap);
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 static struct nilfs_btree_path *nilfs_btree_alloc_path(void)
 {
 	struct nilfs_btree_path *path;
@@ -368,6 +373,37 @@ static int nilfs_btree_node_broken(const struct nilfs_btree_node *node,
 	return ret;
 }
 
+<<<<<<< HEAD
+=======
+/**
+ * nilfs_btree_root_broken - verify consistency of btree root node
+ * @node: btree root node to be examined
+ * @ino: inode number
+ *
+ * Return Value: If node is broken, 1 is returned. Otherwise, 0 is returned.
+ */
+static int nilfs_btree_root_broken(const struct nilfs_btree_node *node,
+				   unsigned long ino)
+{
+	int level, flags, nchildren;
+	int ret = 0;
+
+	level = nilfs_btree_node_get_level(node);
+	flags = nilfs_btree_node_get_flags(node);
+	nchildren = nilfs_btree_node_get_nchildren(node);
+
+	if (unlikely(level < NILFS_BTREE_LEVEL_NODE_MIN ||
+		     level >= NILFS_BTREE_LEVEL_MAX ||
+		     nchildren < 0 ||
+		     nchildren > NILFS_BTREE_ROOT_NCHILDREN_MAX)) {
+		pr_crit("NILFS: bad btree root (inode number=%lu): level = %d, flags = 0x%x, nchildren = %d\n",
+			ino, level, flags, nchildren);
+		ret = 1;
+	}
+	return ret;
+}
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 int nilfs_btree_broken_node_block(struct buffer_head *bh)
 {
 	int ret;
@@ -1713,7 +1749,11 @@ nilfs_btree_commit_convert_and_insert(struct nilfs_bmap *btree,
 
 	/* convert and insert */
 	dat = NILFS_BMAP_USE_VBN(btree) ? nilfs_bmap_get_dat(btree) : NULL;
+<<<<<<< HEAD
 	nilfs_btree_init(btree);
+=======
+	__nilfs_btree_init(btree);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	if (nreq != NULL) {
 		nilfs_bmap_commit_alloc_ptr(btree, dreq, dat);
 		nilfs_bmap_commit_alloc_ptr(btree, nreq, dat);
@@ -2294,12 +2334,31 @@ static const struct nilfs_bmap_operations nilfs_btree_ops_gc = {
 	.bop_gather_data	=	NULL,
 };
 
+<<<<<<< HEAD
 int nilfs_btree_init(struct nilfs_bmap *bmap)
+=======
+static void __nilfs_btree_init(struct nilfs_bmap *bmap)
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 {
 	bmap->b_ops = &nilfs_btree_ops;
 	bmap->b_nchildren_per_block =
 		NILFS_BTREE_NODE_NCHILDREN_MAX(nilfs_btree_node_size(bmap));
+<<<<<<< HEAD
 	return 0;
+=======
+}
+
+int nilfs_btree_init(struct nilfs_bmap *bmap)
+{
+	int ret = 0;
+
+	__nilfs_btree_init(bmap);
+
+	if (nilfs_btree_root_broken(nilfs_btree_get_root(bmap),
+				    bmap->b_inode->i_ino))
+		ret = -EIO;
+	return ret;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 }
 
 void nilfs_btree_init_gc(struct nilfs_bmap *bmap)

@@ -232,7 +232,11 @@ const struct cntry_locales_custom translate_custom_table[] = {
 	{"IE", "IE", 5},
 	{"IL", "IL", 14},
 	{"IT", "IT", 4},
+<<<<<<< HEAD
 	{"JP", "JP", 968},
+=======
+	{"JP", "JP", 45},
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	{"JO", "JO", 3},
 	{"KE", "SA", 0},
 	{"KW", "KW", 5},
@@ -300,8 +304,13 @@ const struct cntry_locales_custom translate_custom_table[] = {
 #else
 	{"KR", "KR", 48},
 #endif
+<<<<<<< HEAD
 	{"RU", "RU", 988},
 	{"UA", "UA", 16},
+=======
+	{"RU", "RU", 13},
+	{"UA", "UA", 8},
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	{"GT", "GT", 1},
 	{"MN", "MN", 1},
 	{"NI", "NI", 2},

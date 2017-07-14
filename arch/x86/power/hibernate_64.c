@@ -17,11 +17,17 @@
 #include <asm/page.h>
 #include <asm/pgtable.h>
 #include <asm/mtrr.h>
+<<<<<<< HEAD
 #include <asm/suspend.h>
 
 /* References to section boundaries */
 extern const void __nosave_begin, __nosave_end;
 
+=======
+#include <asm/sections.h>
+#include <asm/suspend.h>
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 /* Defined in hibernate_asm_64.S */
 extern int restore_image(void);
 

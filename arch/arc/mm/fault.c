@@ -59,8 +59,12 @@ void do_page_fault(struct pt_regs *regs, int write, unsigned long address,
 	struct mm_struct *mm = tsk->mm;
 	siginfo_t info;
 	int fault, ret;
+<<<<<<< HEAD
 	unsigned int flags = FAULT_FLAG_ALLOW_RETRY | FAULT_FLAG_KILLABLE |
 				(write ? FAULT_FLAG_WRITE : 0);
+=======
+	unsigned int flags = FAULT_FLAG_ALLOW_RETRY | FAULT_FLAG_KILLABLE;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	/*
 	 * We fault-in kernel-space virtual memory on-demand. The
@@ -88,6 +92,11 @@ void do_page_fault(struct pt_regs *regs, int write, unsigned long address,
 	if (in_atomic() || !mm)
 		goto no_context;
 
+<<<<<<< HEAD
+=======
+	if (user_mode(regs))
+		flags |= FAULT_FLAG_USER;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 retry:
 	down_read(&mm->mmap_sem);
 	vma = find_vma(mm, address);
@@ -115,12 +124,19 @@ good_area:
 	if (write) {
 		if (!(vma->vm_flags & VM_WRITE))
 			goto bad_area;
+<<<<<<< HEAD
+=======
+		flags |= FAULT_FLAG_WRITE;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	} else {
 		if (!(vma->vm_flags & (VM_READ | VM_EXEC)))
 			goto bad_area;
 	}
 
+<<<<<<< HEAD
 survive:
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	/*
 	 * If for any reason at all we couldn't handle the fault,
 	 * make sure we exit gracefully rather than endlessly redo
@@ -159,6 +175,11 @@ survive:
 	/* TBD: switch to pagefault_out_of_memory() */
 	if (fault & VM_FAULT_OOM)
 		goto out_of_memory;
+<<<<<<< HEAD
+=======
+	else if (fault & VM_FAULT_SIGSEGV)
+		goto bad_area;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	else if (fault & VM_FAULT_SIGBUS)
 		goto do_sigbus;
 
@@ -200,6 +221,7 @@ no_context:
 	die("Oops", regs, address, cause_code);
 
 out_of_memory:
+<<<<<<< HEAD
 	if (is_global_init(tsk)) {
 		yield();
 		goto survive;
@@ -208,6 +230,14 @@ out_of_memory:
 
 	if (user_mode(regs))
 		do_group_exit(SIGKILL);	/* This will never return */
+=======
+	up_read(&mm->mmap_sem);
+
+	if (user_mode(regs)) {
+		pagefault_out_of_memory();
+		return;
+	}
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	goto no_context;
 

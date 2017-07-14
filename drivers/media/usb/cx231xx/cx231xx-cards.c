@@ -452,7 +452,11 @@ struct cx231xx_board cx231xx_boards[] = {
 		.output_mode = OUT_MODE_VIP11,
 		.demod_xfer_mode = 0,
 		.ctl_pin_status_mask = 0xFFFFFFC4,
+<<<<<<< HEAD
 		.agc_analog_digital_select_gpio = 0x00,	/* According with PV cxPolaris.inf file */
+=======
+		.agc_analog_digital_select_gpio = 0x1c,
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		.tuner_sif_gpio = -1,
 		.tuner_scl_gpio = -1,
 		.tuner_sda_gpio = -1,

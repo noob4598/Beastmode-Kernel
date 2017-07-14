@@ -1829,7 +1829,11 @@ static void iucv_callback_txdone(struct iucv_path *path,
 		spin_lock_irqsave(&list->lock, flags);
 
 		while (list_skb != (struct sk_buff *)list) {
+<<<<<<< HEAD
 			if (msg->tag != IUCV_SKB_CB(list_skb)->tag) {
+=======
+			if (msg->tag == IUCV_SKB_CB(list_skb)->tag) {
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 				this = list_skb;
 				break;
 			}

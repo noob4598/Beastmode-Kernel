@@ -76,7 +76,11 @@ static int lpc32xx_read_raw(struct iio_dev *indio_dev,
 
 	if (mask == IIO_CHAN_INFO_RAW) {
 		mutex_lock(&indio_dev->mlock);
+<<<<<<< HEAD
 		clk_enable(info->clk);
+=======
+		clk_prepare_enable(info->clk);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		/* Measurement setup */
 		__raw_writel(AD_INTERNAL | (chan->address) | AD_REFp | AD_REFm,
 			LPC32XX_ADC_SELECT(info->adc_base));
@@ -84,7 +88,11 @@ static int lpc32xx_read_raw(struct iio_dev *indio_dev,
 		__raw_writel(AD_PDN_CTRL | AD_STROBE,
 			LPC32XX_ADC_CTRL(info->adc_base));
 		wait_for_completion(&info->completion); /* set by ISR */
+<<<<<<< HEAD
 		clk_disable(info->clk);
+=======
+		clk_disable_unprepare(info->clk);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		*val = info->value;
 		mutex_unlock(&indio_dev->mlock);
 

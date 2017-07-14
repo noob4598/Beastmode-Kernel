@@ -67,8 +67,13 @@ int amd_cache_northbridges(void)
 	while ((misc = next_northbridge(misc, amd_nb_misc_ids)) != NULL)
 		i++;
 
+<<<<<<< HEAD
 	if (i == 0)
 		return 0;
+=======
+	if (!i)
+		return -ENODEV;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	nb = kzalloc(i * sizeof(struct amd_northbridge), GFP_KERNEL);
 	if (!nb)

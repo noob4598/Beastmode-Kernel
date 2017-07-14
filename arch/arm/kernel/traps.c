@@ -371,15 +371,27 @@ void arm_notify_die(const char *str, struct pt_regs *regs,
 int is_valid_bugaddr(unsigned long pc)
 {
 #ifdef CONFIG_THUMB2_KERNEL
+<<<<<<< HEAD
 	unsigned short bkpt;
 #else
 	unsigned long bkpt;
+=======
+	u16 bkpt;
+	u16 insn = __opcode_to_mem_thumb16(BUG_INSTR_VALUE);
+#else
+	u32 bkpt;
+	u32 insn = __opcode_to_mem_arm(BUG_INSTR_VALUE);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 #endif
 
 	if (probe_kernel_address((unsigned *)pc, bkpt))
 		return 0;
 
+<<<<<<< HEAD
 	return bkpt == BUG_INSTR_VALUE;
+=======
+	return bkpt == insn;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 }
 
 #endif

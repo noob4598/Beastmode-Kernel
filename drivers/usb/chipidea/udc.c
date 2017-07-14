@@ -2200,8 +2200,11 @@ static int udc_start(struct ci13xxx *ci)
 	struct device *dev = ci->dev;
 	int retval = 0;
 
+<<<<<<< HEAD
 	spin_lock_init(&ci->lock);
 
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	ci->gadget.ops          = &usb_gadget_ops;
 	ci->gadget.speed        = USB_SPEED_UNKNOWN;
 	ci->gadget.max_speed    = USB_SPEED_HIGH;

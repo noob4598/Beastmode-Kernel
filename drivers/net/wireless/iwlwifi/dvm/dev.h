@@ -670,7 +670,10 @@ struct iwl_priv {
 	unsigned long reload_jiffies;
 	int reload_count;
 	bool ucode_loaded;
+<<<<<<< HEAD
 	bool init_ucode_run;		/* Don't run init uCode again */
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	u8 plcp_delta_threshold;
 

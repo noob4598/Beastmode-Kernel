@@ -384,7 +384,11 @@ int qmi_filter_request_send(struct ipa_install_fltr_rule_req_msg_v01 *req)
 	if (req->filter_spec_list_len == 0) {
 		IPAWANDBG("IPACM pass zero rules to Q6\n");
 	} else {
+<<<<<<< HEAD
 		IPAWANDBG("IPACM pass %d rules to Q6\n",
+=======
+		IPAWANDBG("IPACM pass %u rules to Q6\n",
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		req->filter_spec_list_len);
 	}
 
@@ -421,15 +425,39 @@ int qmi_filter_notify_send(struct ipa_fltr_installed_notif_req_msg_v01 *req)
 {
 	struct ipa_fltr_installed_notif_resp_msg_v01 resp;
 	struct msg_desc req_desc, resp_desc;
+<<<<<<< HEAD
 	int rc = 0;
+=======
+	int rc = 0, i = 0;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	/* check if the filter rules from IPACM is valid */
 	if (req->filter_index_list_len == 0) {
 		IPAERR(" delete UL filter rule for pipe %d\n",
 		req->source_pipe_index);
 		return -EINVAL;
+<<<<<<< HEAD
 	}
 
+=======
+	} else if (req->filter_index_list_len > QMI_IPA_MAX_FILTERS_V01) {
+		IPAWANERR(" UL filter rule for pipe %d exceed max (%u)\n",
+		req->source_pipe_index,
+		req->filter_index_list_len);
+		return -EINVAL;
+	} else if (req->filter_index_list[0].filter_index == 0 &&
+		req->source_pipe_index !=
+		ipa_get_ep_mapping(IPA_CLIENT_APPS_LAN_WAN_PROD)) {
+		IPAWANERR(" get index wrong for pipe %d\n",
+			req->source_pipe_index);
+		for (i = 0; i < req->filter_index_list_len; i++)
+			IPAWANERR(" %d-st handle %d index %d\n",
+				i,
+				req->filter_index_list[i].filter_handle,
+				req->filter_index_list[i].filter_index);
+		return -EINVAL;
+	}
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	req_desc.max_msg_len =
 	QMI_IPA_FILTER_INSTALLED_NOTIF_REQ_MAX_MSG_LEN_V01;
 	req_desc.msg_id = QMI_IPA_FILTER_INSTALLED_NOTIF_REQ_V01;

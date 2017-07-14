@@ -8,6 +8,7 @@
 
 #include <linux/ceph/types.h>
 
+<<<<<<< HEAD
 /* This seemed to be the easiest place to define these */
 
 #define	U8_MAX	((u8)(~0U))
@@ -25,6 +26,8 @@
 #define	S32_MIN	((s32)(-S32_MAX - 1))
 #define	S64_MIN	((s64)(-S64_MAX - 1LL))
 
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 /*
  * in all cases,
  *   void **p     pointer to position pointer

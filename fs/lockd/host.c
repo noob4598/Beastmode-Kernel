@@ -116,7 +116,11 @@ static struct nlm_host *nlm_alloc_host(struct nlm_lookup_host_info *ni,
 		atomic_inc(&nsm->sm_count);
 	else {
 		host = NULL;
+<<<<<<< HEAD
 		nsm = nsm_get_handle(ni->sap, ni->salen,
+=======
+		nsm = nsm_get_handle(ni->net, ni->sap, ni->salen,
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 					ni->hostname, ni->hostname_len);
 		if (unlikely(nsm == NULL)) {
 			dprintk("lockd: %s failed; no nsm handle\n",
@@ -534,17 +538,29 @@ static struct nlm_host *next_host_state(struct hlist_head *cache,
 
 /**
  * nlm_host_rebooted - Release all resources held by rebooted host
+<<<<<<< HEAD
+=======
+ * @net:  network namespace
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
  * @info: pointer to decoded results of NLM_SM_NOTIFY call
  *
  * We were notified that the specified host has rebooted.  Release
  * all resources held by that peer.
  */
+<<<<<<< HEAD
 void nlm_host_rebooted(const struct nlm_reboot *info)
+=======
+void nlm_host_rebooted(const struct net *net, const struct nlm_reboot *info)
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 {
 	struct nsm_handle *nsm;
 	struct nlm_host	*host;
 
+<<<<<<< HEAD
 	nsm = nsm_reboot_lookup(info);
+=======
+	nsm = nsm_reboot_lookup(net, info);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	if (unlikely(nsm == NULL))
 		return;
 

@@ -131,7 +131,11 @@ void ftrace_likely_update(struct ftrace_branch_data *f, int val, int expect);
  */
 #define if(cond, ...) __trace_if( (cond , ## __VA_ARGS__) )
 #define __trace_if(cond) \
+<<<<<<< HEAD
 	if (__builtin_constant_p((cond)) ? !!(cond) :			\
+=======
+	if (__builtin_constant_p(!!(cond)) ? !!(cond) :			\
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	({								\
 		int ______r;						\
 		static struct ftrace_branch_data			\
@@ -170,6 +174,13 @@ void ftrace_likely_update(struct ftrace_branch_data *f, int val, int expect);
     (typeof(ptr)) (__ptr + (off)); })
 #endif
 
+<<<<<<< HEAD
+=======
+#ifndef OPTIMIZER_HIDE_VAR
+#define OPTIMIZER_HIDE_VAR(var) barrier()
+#endif
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 /* Not-quite-unique ID. */
 #ifndef __UNIQUE_ID
 # define __UNIQUE_ID(prefix) __PASTE(__PASTE(__UNIQUE_ID_, prefix), __LINE__)

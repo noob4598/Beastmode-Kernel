@@ -1804,6 +1804,7 @@ vsock_stream_recvmsg(struct kiocb *kiocb,
 	else if (sk->sk_shutdown & RCV_SHUTDOWN)
 		err = 0;
 
+<<<<<<< HEAD
 	if (copied > 0) {
 		/* We only do these additional bookkeeping/notification steps
 		 * if we actually copied something out of the queue pair
@@ -1825,6 +1826,10 @@ vsock_stream_recvmsg(struct kiocb *kiocb,
 		}
 		err = copied;
 	}
+=======
+	if (copied > 0)
+		err = copied;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 out_wait:
 	finish_wait(sk_sleep(sk), &wait);

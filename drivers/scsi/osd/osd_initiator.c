@@ -1570,6 +1570,10 @@ static struct request *_make_request(struct request_queue *q, bool has_write,
 		if (unlikely(!req))
 			return ERR_PTR(-ENOMEM);
 
+<<<<<<< HEAD
+=======
+		blk_rq_set_block_pc(req);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		return req;
 	}
 }
@@ -1590,7 +1594,10 @@ static int _init_blk_request(struct osd_request *or,
 	}
 
 	or->request = req;
+<<<<<<< HEAD
 	req->cmd_type = REQ_TYPE_BLOCK_PC;
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	req->cmd_flags |= REQ_QUIET;
 
 	req->timeout = or->timeout;
@@ -1608,7 +1615,11 @@ static int _init_blk_request(struct osd_request *or,
 				ret = PTR_ERR(req);
 				goto out;
 			}
+<<<<<<< HEAD
 			req->cmd_type = REQ_TYPE_BLOCK_PC;
+=======
+			blk_rq_set_block_pc(req);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 			or->in.req = or->request->next_rq = req;
 		}
 	} else if (has_in)

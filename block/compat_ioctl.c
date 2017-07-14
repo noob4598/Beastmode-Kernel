@@ -689,6 +689,10 @@ long compat_blkdev_ioctl(struct file *file, unsigned cmd, unsigned long arg)
 	case BLKROSET:
 	case BLKDISCARD:
 	case BLKSECDISCARD:
+<<<<<<< HEAD
+=======
+	case BLKZEROOUT:
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	/*
 	 * the ones below are implemented in blkdev_locked_ioctl,
 	 * but we call blkdev_ioctl, which gets the lock for us

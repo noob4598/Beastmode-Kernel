@@ -16,6 +16,7 @@
 
 #include "base.h"
 
+<<<<<<< HEAD
 #define ONL_CONT_MODE_SYSFS 	0	// core online status controlled by sysfs (mpdecision)
 #define ONL_CONT_MODE_ONLINE 	1	// core is forced online
 #define ONL_CONT_MODE_OFFLINE	2	// core is forced offline 
@@ -28,6 +29,8 @@ static int online_control_mode[4] = {ONL_CONT_MODE_SYSFS,
 									ONL_CONT_MODE_SYSFS, 
 									ONL_CONT_MODE_SYSFS};
 
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 struct bus_type cpu_subsys = {
 	.name = "cpu",
 	.dev_name = "cpu",
@@ -60,21 +63,28 @@ static ssize_t __ref store_online(struct device *dev,
 				  const char *buf, size_t count)
 {
 	struct cpu *cpu = container_of(dev, struct cpu, dev);
+<<<<<<< HEAD
 struct device *dev3;
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	int cpuid = cpu->dev.id;
 	int from_nid, to_nid;
 	ssize_t ret;
 
+<<<<<<< HEAD
 // AP: this sysfs only works when control mode is in sysfs-mode
 	if (online_control_mode[cpu->dev.id] != ONL_CONT_MODE_SYSFS)
 		return count;
 
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	cpu_hotplug_driver_lock();
 	switch (buf[0]) {
 	case '0':
 		ret = cpu_down(cpuid);
 		if (!ret)
 			kobject_uevent(&dev->kobj, KOBJ_OFFLINE);
+<<<<<<< HEAD
 // handling if core lock4_3 is active for fourth core
 		if ((cpu->dev.id == ID_CPU_CORE_3) && 
 			(online_control_mode[ID_CPU_CORE_4] == ONL_CONT_MODE_LOCK4_3))
@@ -84,6 +94,8 @@ struct device *dev3;
 			if (!ret)
 				kobject_uevent(&dev3->kobj, KOBJ_OFFLINE);
 		}
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		break;
 	case '1':
 		from_nid = cpu_to_node(cpuid);
@@ -99,6 +111,7 @@ struct device *dev3;
 
 		if (!ret)
 			kobject_uevent(&dev->kobj, KOBJ_ONLINE);
+<<<<<<< HEAD
 // handling if core lock4_3 is active for fourth core
 		if ((cpu->dev.id == ID_CPU_CORE_3) && 
 			(online_control_mode[3] == ONL_CONT_MODE_LOCK4_3))
@@ -108,6 +121,8 @@ struct device *dev3;
 			if (!ret)
 				kobject_uevent(&dev3->kobj, KOBJ_ONLINE);
 		}
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		break;
 	default:
 		ret = -EINVAL;
@@ -120,6 +135,7 @@ struct device *dev3;
 }
 static DEVICE_ATTR(online, 0644, show_online, store_online);
 
+<<<<<<< HEAD
 static ssize_t show_online_control(struct device *dev,
 			   struct device_attribute *attr,
 			   char *buf)
@@ -201,6 +217,11 @@ static void __cpuinit register_cpu_control(struct cpu *cpu)
 {
 	device_create_file(&cpu->dev, &dev_attr_online);
 device_create_file(&cpu->dev, &dev_attr_online_control);
+=======
+static void __cpuinit register_cpu_control(struct cpu *cpu)
+{
+	device_create_file(&cpu->dev, &dev_attr_online);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 }
 void unregister_cpu(struct cpu *cpu)
 {

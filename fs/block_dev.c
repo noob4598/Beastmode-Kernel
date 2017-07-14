@@ -613,7 +613,11 @@ static struct block_device *bd_acquire(struct inode *inode)
 	return bdev;
 }
 
+<<<<<<< HEAD
 int sb_is_blkdev_sb(struct super_block *sb)
+=======
+static inline int sb_is_blkdev_sb(struct super_block *sb)
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 {
 	return sb == blockdev_superblock;
 }
@@ -655,7 +659,11 @@ static bool bd_may_claim(struct block_device *bdev, struct block_device *whole,
 		return true;	 /* already a holder */
 	else if (bdev->bd_holder != NULL)
 		return false; 	 /* held by someone else */
+<<<<<<< HEAD
 	else if (bdev->bd_contains == bdev)
+=======
+	else if (whole == bdev)
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		return true;  	 /* is a whole device which isn't held */
 
 	else if (whole->bd_holder == bd_may_claim)
@@ -1692,6 +1700,10 @@ void iterate_bdevs(void (*func)(struct block_device *, void *), void *arg)
 	spin_lock(&inode_sb_list_lock);
 	list_for_each_entry(inode, &blockdev_superblock->s_inodes, i_sb_list) {
 		struct address_space *mapping = inode->i_mapping;
+<<<<<<< HEAD
+=======
+		struct block_device *bdev;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 		spin_lock(&inode->i_lock);
 		if (inode->i_state & (I_FREEING|I_WILL_FREE|I_NEW) ||
@@ -1712,8 +1724,17 @@ void iterate_bdevs(void (*func)(struct block_device *, void *), void *arg)
 		 */
 		iput(old_inode);
 		old_inode = inode;
+<<<<<<< HEAD
 
 		func(I_BDEV(inode), arg);
+=======
+		bdev = I_BDEV(inode);
+
+		mutex_lock(&bdev->bd_mutex);
+		if (bdev->bd_openers)
+			func(bdev, arg);
+		mutex_unlock(&bdev->bd_mutex);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 		spin_lock(&inode_sb_list_lock);
 	}

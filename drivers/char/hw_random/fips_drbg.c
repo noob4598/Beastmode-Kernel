@@ -1,5 +1,9 @@
 /*
+<<<<<<< HEAD
  * Copyright (c) 2014, The Linux Foundation. All rights reserved.
+=======
+ * Copyright (c) 2014-2015, The Linux Foundation. All rights reserved.
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -74,7 +78,11 @@ int get_entropy_callback(void *ctx, void *buf)
 	if (NULL == buf)
 		return FIPS140_PRNG_ERR;
 
+<<<<<<< HEAD
 	ret_val = msm_rng_direct_read(msm_rng_dev, buf);
+=======
+	ret_val = msm_rng_direct_read(msm_rng_dev, buf, Q_HW_DRBG_BLOCK_BYTES);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	if ((size_t)ret_val != Q_HW_DRBG_BLOCK_BYTES)
 		return ret_val;
 
@@ -111,6 +119,11 @@ do_fips_drbg_init(struct fips_drbg_ctx_s *ctx,
 		reseed_interval > CTR_DRBG_MAX_RESEED_INTERVAL)
 		reseed_interval = CTR_DRBG_MAX_RESEED_INTERVAL;
 
+<<<<<<< HEAD
+=======
+	mutex_init(&ctx->drbg_lock);
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	/* fill in callback related fields in ctx */
 	ctx->get_entropy_callback = callback;
 	ctx->get_entropy_callback_ctx = callback_ctx;
@@ -206,18 +219,32 @@ fips_drbg_reseed(struct fips_drbg_ctx_s *ctx)
 	}
 
 	if (!memcmp(entropy_pool,
+<<<<<<< HEAD
 		    ctx->prev_hw_drbg_block,
 		    Q_HW_DRBG_BLOCK_BYTES)) {
+=======
+			ctx->prev_hw_drbg_block,
+			Q_HW_DRBG_BLOCK_BYTES)) {
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		memset(entropy_pool, 0, Q_HW_DRBG_BLOCK_BYTES);
 		return FIPS140_PRNG_ERR;
 	} else
 		memcpy(ctx->prev_hw_drbg_block,
+<<<<<<< HEAD
 		       entropy_pool,
 		       Q_HW_DRBG_BLOCK_BYTES);
 
 	init_rv = ctr_drbg_reseed(&ctx->ctr_drbg_ctx,
 				  entropy_pool,
 				  8 * MSM_ENTROPY_BUFFER_SIZE);
+=======
+				entropy_pool,
+				Q_HW_DRBG_BLOCK_BYTES);
+
+	init_rv = ctr_drbg_reseed(&ctx->ctr_drbg_ctx,
+				entropy_pool,
+				8*MSM_ENTROPY_BUFFER_SIZE);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	/* Zeroize the buffer for security. */
 	memset(entropy_pool, 0, Q_HW_DRBG_BLOCK_BYTES);
@@ -241,12 +268,20 @@ fips_drbg_gen(struct fips_drbg_ctx_s *ctx, void *tgt, size_t len)
 	2^19 bits. */
 
 	enum ctr_drbg_status_t gen_rv;
+<<<<<<< HEAD
 	int rv;
+=======
+	int rv = FIPS140_PRNG_ERR;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	if (ctx == NULL || ctx->magic != MAGIC)
 		return FIPS140_PRNG_ERR;
 	if (tgt == NULL && len > 0)
 		return FIPS140_PRNG_ERR;
+<<<<<<< HEAD
+=======
+	mutex_lock(&ctx->drbg_lock);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	while (len > 0) {
 		size_t req_len;
 
@@ -265,6 +300,7 @@ fips_drbg_gen(struct fips_drbg_ctx_s *ctx, void *tgt, size_t len)
 			break;
 		case CTR_DRBG_NEEDS_RESEED:
 			rv = fips_drbg_reseed(ctx);
+<<<<<<< HEAD
 			if (rv != 0)
 				return rv;
 			break;
@@ -274,6 +310,19 @@ fips_drbg_gen(struct fips_drbg_ctx_s *ctx, void *tgt, size_t len)
 	}
 
 	return 0;
+=======
+			if (FIPS140_PRNG_OK != rv)
+				goto err;
+			break;
+		default:
+			goto err;
+		}
+	}
+	rv = FIPS140_PRNG_OK;
+err:
+	mutex_unlock(&ctx->drbg_lock);
+	return rv;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 }
 
 /* free resources and zeroize state */

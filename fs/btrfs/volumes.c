@@ -1384,6 +1384,25 @@ out:
 	return ret;
 }
 
+<<<<<<< HEAD
+=======
+/*
+ * Function to update ctime/mtime for a given device path.
+ * Mainly used for ctime/mtime based probe like libblkid.
+ */
+static void update_dev_time(char *path_name)
+{
+	struct file *filp;
+
+	filp = filp_open(path_name, O_RDWR, 0);
+	if (!filp)
+		return;
+	file_update_time(filp);
+	filp_close(filp, NULL);
+	return;
+}
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 static int btrfs_rm_dev_item(struct btrfs_root *root,
 			     struct btrfs_device *device)
 {
@@ -1612,11 +1631,20 @@ int btrfs_rm_device(struct btrfs_root *root, char *device_path)
 		struct btrfs_fs_devices *fs_devices;
 		fs_devices = root->fs_info->fs_devices;
 		while (fs_devices) {
+<<<<<<< HEAD
 			if (fs_devices->seed == cur_devices)
 				break;
 			fs_devices = fs_devices->seed;
 		}
 		fs_devices->seed = cur_devices->seed;
+=======
+			if (fs_devices->seed == cur_devices) {
+				fs_devices->seed = cur_devices->seed;
+				break;
+			}
+			fs_devices = fs_devices->seed;
+		}
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		cur_devices->seed = NULL;
 		lock_chunks(root);
 		__btrfs_close_devices(cur_devices);
@@ -1642,10 +1670,21 @@ int btrfs_rm_device(struct btrfs_root *root, char *device_path)
 
 	ret = 0;
 
+<<<<<<< HEAD
 	/* Notify udev that device has changed */
 	if (bdev)
 		btrfs_kobject_uevent(bdev, KOBJ_CHANGE);
 
+=======
+	if (bdev) {
+		/* Notify udev that device has changed */
+		btrfs_kobject_uevent(bdev, KOBJ_CHANGE);
+
+		/* Update ctime/mtime for device path for libblkid */
+		update_dev_time(device_path);
+	}
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 error_brelse:
 	brelse(bh);
 	if (bdev)
@@ -1817,7 +1856,10 @@ static int btrfs_prepare_sprout(struct btrfs_root *root)
 	fs_devices->seeding = 0;
 	fs_devices->num_devices = 0;
 	fs_devices->open_devices = 0;
+<<<<<<< HEAD
 	fs_devices->total_devices = 0;
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	fs_devices->seed = seed_devices;
 
 	generate_random_uuid(fs_devices->fsid);
@@ -2089,6 +2131,11 @@ int btrfs_init_new_device(struct btrfs_root *root, char *device_path)
 		ret = btrfs_commit_transaction(trans, root);
 	}
 
+<<<<<<< HEAD
+=======
+	/* Update ctime/mtime for libblkid */
+	update_dev_time(device_path);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	return ret;
 
 error_trans:

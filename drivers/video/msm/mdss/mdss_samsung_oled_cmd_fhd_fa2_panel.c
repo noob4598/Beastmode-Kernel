@@ -526,7 +526,11 @@ int mdss_dsi_panel_partial_update(struct mdss_panel_data *pdata)
 	ctrl = container_of(pdata, struct mdss_dsi_ctrl_pdata,
 				panel_data);
 	mipi  = &pdata->panel_info.mipi;
+<<<<<<< HEAD
 	pr_debug("%s: ctrl=%p ndx=%d\n", __func__, ctrl, ctrl->ndx);
+=======
+	pr_debug("%s: ctrl=%pK ndx=%d\n", __func__, ctrl, ctrl->ndx);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	caset[1] = (((pdata->panel_info.roi_x) & 0xFF00) >> 8);
 	caset[2] = (((pdata->panel_info.roi_x) & 0xFF));
@@ -2129,7 +2133,11 @@ static int mdss_dsi_panel_on(struct mdss_panel_data *pdata)
 	msd.ctrl_pdata = ctrl;
 
 	pr_debug("mdss_dsi_panel_on DSI_MODE = %d ++\n",msd.pdata->panel_info.mipi.mode);
+<<<<<<< HEAD
 	pr_info("%s: ctrl=%p ndx=%d\n", __func__, ctrl, ctrl->ndx);
+=======
+	pr_info("%s: ctrl=%pK ndx=%d\n", __func__, ctrl, ctrl->ndx);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	if (mdss_dsi_sync_wait_enable(ctrl)) {
 		if (ctrl->ndx == DSI_CTRL_0) {
@@ -2264,7 +2272,11 @@ static int mdss_dsi_panel_off(struct mdss_panel_data *pdata)
 	msd.dstat.on = 0;
 	msd.mfd->resume_state = MIPI_SUSPEND_STATE;
 
+<<<<<<< HEAD
 	pr_info("%s: ctrl=%p ndx=%d\n", __func__, ctrl, ctrl->ndx);
+=======
+	pr_info("%s: ctrl=%pK ndx=%d\n", __func__, ctrl, ctrl->ndx);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	if (mdss_dsi_sync_wait_enable(ctrl)) {
 		if (ctrl->ndx == DSI_CTRL_0) {
@@ -3335,7 +3347,11 @@ static void load_tuning_file(char *filename)
 	filp = filp_open(filename, O_RDONLY, 0);
 	if (IS_ERR(filp)) {
 		printk(KERN_ERR "%s File open failed\n", __func__);
+<<<<<<< HEAD
 		return;
+=======
+		goto err;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	}
 
 	l = filp->f_path.dentry->d_inode->i_size;
@@ -3345,7 +3361,11 @@ static void load_tuning_file(char *filename)
 	if (dp == NULL) {
 		pr_info("Can't not alloc memory for tuning file load\n");
 		filp_close(filp, current->files);
+<<<<<<< HEAD
 		return;
+=======
+		goto err;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	}
 	pos = 0;
 	memset(dp, 0, l);
@@ -3358,7 +3378,11 @@ static void load_tuning_file(char *filename)
 		pr_info("vfs_read() filed ret : %d\n", ret);
 		kfree(dp);
 		filp_close(filp, current->files);
+<<<<<<< HEAD
 		return;
+=======
+		goto err;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	}
 
 	filp_close(filp, current->files);
@@ -3368,6 +3392,13 @@ static void load_tuning_file(char *filename)
 	sending_tune_cmd(dp, l);
 
 	kfree(dp);
+<<<<<<< HEAD
+=======
+
+	return;
+err:
+	set_fs(fs);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 }
 
 int mdnie_adb_test;

@@ -128,8 +128,13 @@ bool prcmu_pending_irq(void)
  */
 bool prcmu_is_cpu_in_wfi(int cpu)
 {
+<<<<<<< HEAD
 	return readl(PRCM_ARM_WFI_STANDBY) & cpu ? PRCM_ARM_WFI_STANDBY_WFI1 :
 		     PRCM_ARM_WFI_STANDBY_WFI0;
+=======
+	return readl(PRCM_ARM_WFI_STANDBY) &
+		(cpu ? PRCM_ARM_WFI_STANDBY_WFI1 : PRCM_ARM_WFI_STANDBY_WFI0);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 }
 
 /*

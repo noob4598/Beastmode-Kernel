@@ -557,7 +557,12 @@ fatal_error:
 
 static int cpmac_start_xmit(struct sk_buff *skb, struct net_device *dev)
 {
+<<<<<<< HEAD
 	int queue, len;
+=======
+	int queue;
+	unsigned int len;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	struct cpmac_desc *desc;
 	struct cpmac_priv *priv = netdev_priv(dev);
 
@@ -567,7 +572,11 @@ static int cpmac_start_xmit(struct sk_buff *skb, struct net_device *dev)
 	if (unlikely(skb_padto(skb, ETH_ZLEN)))
 		return NETDEV_TX_OK;
 
+<<<<<<< HEAD
 	len = max(skb->len, ETH_ZLEN);
+=======
+	len = max_t(unsigned int, skb->len, ETH_ZLEN);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	queue = skb_get_queue_mapping(skb);
 	netif_stop_subqueue(dev, queue);
 
@@ -1241,7 +1250,11 @@ int cpmac_init(void)
 		goto fail_alloc;
 	}
 
+<<<<<<< HEAD
 #warning FIXME: unhardcode gpio&reset bits
+=======
+	/* FIXME: unhardcode gpio&reset bits */
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	ar7_gpio_disable(26);
 	ar7_gpio_disable(27);
 	ar7_device_reset(AR7_RESET_BIT_CPMAC_LO);

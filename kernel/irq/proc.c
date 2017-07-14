@@ -12,6 +12,10 @@
 #include <linux/seq_file.h>
 #include <linux/interrupt.h>
 #include <linux/kernel_stat.h>
+<<<<<<< HEAD
+=======
+#include <linux/mutex.h>
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 #include "internals.h"
 
@@ -348,18 +352,41 @@ void register_handler_proc(unsigned int irq, struct irqaction *action)
 
 void register_irq_proc(unsigned int irq, struct irq_desc *desc)
 {
+<<<<<<< HEAD
 	char name [MAX_NAMELEN];
 
 	if (!root_irq_dir || (desc->irq_data.chip == &no_irq_chip) || desc->dir)
 		return;
 
+=======
+	static DEFINE_MUTEX(register_lock);
+	char name [MAX_NAMELEN];
+
+	if (!root_irq_dir || (desc->irq_data.chip == &no_irq_chip))
+		return;
+
+	/*
+	 * irq directories are registered only when a handler is
+	 * added, not when the descriptor is created, so multiple
+	 * tasks might try to register at the same time.
+	 */
+	mutex_lock(&register_lock);
+
+	if (desc->dir)
+		goto out_unlock;
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	memset(name, 0, MAX_NAMELEN);
 	sprintf(name, "%d", irq);
 
 	/* create /proc/irq/1234 */
 	desc->dir = proc_mkdir(name, root_irq_dir);
 	if (!desc->dir)
+<<<<<<< HEAD
 		return;
+=======
+		goto out_unlock;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 #ifdef CONFIG_SMP
 	/* create /proc/irq/<irq>/smp_affinity */
@@ -380,10 +407,20 @@ void register_irq_proc(unsigned int irq, struct irq_desc *desc)
 
 	proc_create_data("spurious", 0444, desc->dir,
 			 &irq_spurious_proc_fops, (void *)(long)irq);
+<<<<<<< HEAD
+=======
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	proc_create_data("disable_depth", 0444, desc->dir,
 			 &irq_disable_depth_proc_fops, (void *)(long)irq);
 	proc_create_data("wake_depth", 0444, desc->dir,
 			 &irq_wake_depth_proc_fops, (void *)(long)irq);
+<<<<<<< HEAD
+=======
+
+out_unlock:
+	mutex_unlock(&register_lock);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 }
 
 void unregister_irq_proc(unsigned int irq, struct irq_desc *desc)

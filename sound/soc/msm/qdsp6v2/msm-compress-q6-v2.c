@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 /* Copyright (c) 2012-2014, The Linux Foundation. All rights reserved.
+=======
+/* Copyright (c) 2012-2016, The Linux Foundation. All rights reserved.
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -514,7 +518,11 @@ static void populate_codec_list(struct msm_compr_audio *prtd)
 			COMPR_PLAYBACK_MIN_NUM_FRAGMENTS;
 	prtd->compr_cap.max_fragments =
 			COMPR_PLAYBACK_MAX_NUM_FRAGMENTS;
+<<<<<<< HEAD
 	prtd->compr_cap.num_codecs = 8;
+=======
+	prtd->compr_cap.num_codecs = 9;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	prtd->compr_cap.codecs[0] = SND_AUDIOCODEC_MP3;
 	prtd->compr_cap.codecs[1] = SND_AUDIOCODEC_AAC;
 	prtd->compr_cap.codecs[2] = SND_AUDIOCODEC_AC3;
@@ -523,6 +531,10 @@ static void populate_codec_list(struct msm_compr_audio *prtd)
 	prtd->compr_cap.codecs[5] = SND_AUDIOCODEC_PCM;
 	prtd->compr_cap.codecs[6] = SND_AUDIOCODEC_WMA;
 	prtd->compr_cap.codecs[7] = SND_AUDIOCODEC_WMA_PRO;
+<<<<<<< HEAD
+=======
+	prtd->compr_cap.codecs[8] = SND_AUDIOCODEC_FLAC;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 }
 
 static int msm_compr_send_media_format_block(struct snd_compr_stream *cstream,
@@ -533,6 +545,10 @@ static int msm_compr_send_media_format_block(struct snd_compr_stream *cstream,
 	struct asm_aac_cfg aac_cfg;
 	struct asm_wma_cfg wma_cfg;
 	struct asm_wmapro_cfg wma_pro_cfg;
+<<<<<<< HEAD
+=======
+	struct asm_flac_cfg flac_cfg;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	int ret = 0;
 	uint16_t bit_width = 16;
 
@@ -626,6 +642,33 @@ static int msm_compr_send_media_format_block(struct snd_compr_stream *cstream,
 	case FORMAT_MP2:
 		pr_info("%s: SND_AUDIOCODEC_MP2\n", __func__);
 		break;
+<<<<<<< HEAD
+=======
+	case FORMAT_FLAC:
+		pr_debug("%s: SND_AUDIOCODEC_FLAC\n", __func__);
+		memset(&flac_cfg, 0x0, sizeof(struct asm_flac_cfg));
+		flac_cfg.ch_cfg = prtd->num_channels;
+		flac_cfg.sample_rate = prtd->sample_rate;
+		flac_cfg.stream_info_present = 1;
+		flac_cfg.sample_size =
+			prtd->codec_param.codec.options.flac_dec.sample_size;
+		flac_cfg.min_blk_size =
+			prtd->codec_param.codec.options.flac_dec.min_blk_size;
+		flac_cfg.max_blk_size =
+			prtd->codec_param.codec.options.flac_dec.max_blk_size;
+		flac_cfg.max_frame_size =
+			prtd->codec_param.codec.options.flac_dec.max_frame_size;
+		flac_cfg.min_frame_size =
+			prtd->codec_param.codec.options.flac_dec.min_frame_size;
+
+		ret = q6asm_stream_media_format_block_flac(prtd->audio_client,
+							&flac_cfg, stream_id);
+		if (ret < 0)
+			pr_err("%s: CMD Format block failed ret %d\n",
+				__func__, ret);
+
+		break;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	default:
 		pr_info("%s, unsupported format, skip", __func__);
 		break;
@@ -654,6 +697,14 @@ static int msm_compr_configure_dsp(struct snd_compr_stream *cstream)
 		.rampingcurve = SOFT_VOLUME_CURVE_LINEAR,
 	};
 
+<<<<<<< HEAD
+=======
+	if (prtd->codec_param.codec.format == SNDRV_PCM_FORMAT_S24_LE)
+		bits_per_sample = 24;
+	if (prtd->codec_param.codec.format == SNDRV_PCM_FORMAT_S32_LE)
+		bits_per_sample = 32;
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	if (prtd->compr_passthr != LEGACY_PCM) {
 		ret = q6asm_open_write_compressed(ac, prtd->codec,
 						  prtd->compr_passthr);
@@ -942,6 +993,10 @@ static int msm_compr_free(struct snd_compr_stream *cstream)
 	kfree(pdata->audio_effects[soc_prtd->dai_link->be_id]);
 	kfree(pdata->dec_params[soc_prtd->dai_link->be_id]);
 	kfree(prtd);
+<<<<<<< HEAD
+=======
+	runtime->private_data = NULL;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	return 0;
 }
@@ -995,9 +1050,24 @@ static int msm_compr_set_params(struct snd_compr_stream *cstream,
 	case SNDRV_PCM_RATE_48000:
 		prtd->sample_rate = 48000;
 		break;
+<<<<<<< HEAD
 	case SNDRV_PCM_RATE_96000:
 		prtd->sample_rate = 96000;
 		break;
+=======
+	case SNDRV_PCM_RATE_64000:
+		prtd->sample_rate = 64000;
+		break;
+	case SNDRV_PCM_RATE_88200:
+		prtd->sample_rate = 88200;
+		break;
+	case SNDRV_PCM_RATE_96000:
+		prtd->sample_rate = 96000;
+		break;
+	case SNDRV_PCM_RATE_176400:
+		prtd->sample_rate = 176400;
+		break;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	case SNDRV_PCM_RATE_192000:
 		prtd->sample_rate = 192000;
 		break;
@@ -1071,6 +1141,15 @@ static int msm_compr_set_params(struct snd_compr_stream *cstream,
 		break;
 	}
 
+<<<<<<< HEAD
+=======
+	case SND_AUDIOCODEC_FLAC: {
+		pr_debug("%s: SND_AUDIOCODEC_FLAC\n", __func__);
+		prtd->codec = FORMAT_FLAC;
+		break;
+	}
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	default:
 		pr_err("codec not supported, id =%d\n", params->codec.id);
 		return -EINVAL;
@@ -1743,7 +1822,11 @@ static int msm_compr_get_caps(struct snd_compr_stream *cstream,
 		memcpy(arg, &prtd->compr_cap, sizeof(struct snd_compr_caps));
 	} else {
 		ret = -EINVAL;
+<<<<<<< HEAD
 		pr_err("%s: arg (0x%p), prtd (0x%p)\n", __func__, arg, prtd);
+=======
+		pr_err("%s: arg (0x%pK), prtd (0x%pK)\n", __func__, arg, prtd);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	}
 
 	return ret;
@@ -1783,6 +1866,11 @@ static int msm_compr_get_codec_caps(struct snd_compr_stream *cstream,
 		break;
 	case SND_AUDIOCODEC_EAC3:
 		break;
+<<<<<<< HEAD
+=======
+	case SND_AUDIOCODEC_FLAC:
+		break;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	default:
 		pr_err("%s: Unsupported audio codec %d\n",
 			__func__, codec->codec);
@@ -1973,6 +2061,10 @@ static int msm_compr_send_dec_params(struct snd_compr_stream *cstream,
 	switch (prtd->codec) {
 	case FORMAT_MP3:
 	case FORMAT_MPEG4_AAC:
+<<<<<<< HEAD
+=======
+	case FORMAT_FLAC:
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		pr_debug("%s: no runtime parameters for codec: %d\n", __func__,
 			 prtd->codec);
 		break;
@@ -2119,7 +2211,11 @@ static int msm_compr_audio_effects_config_info(struct snd_kcontrol *kcontrol,
 					       struct snd_ctl_elem_info *uinfo)
 {
 	uinfo->type = SNDRV_CTL_ELEM_TYPE_INTEGER;
+<<<<<<< HEAD
 	uinfo->count = 128;
+=======
+	uinfo->count = MAX_PP_PARAMS_SZ;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	uinfo->value.integer.min = 0;
 	uinfo->value.integer.max = 0xFFFFFFFF;
 	return 0;

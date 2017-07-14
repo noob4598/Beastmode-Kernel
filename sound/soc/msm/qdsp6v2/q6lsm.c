@@ -1,5 +1,9 @@
 /*
+<<<<<<< HEAD
  * Copyright (c) 2013-2015, Linux Foundation. All rights reserved.
+=======
+ * Copyright (c) 2013-2016, Linux Foundation. All rights reserved.
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -80,7 +84,11 @@ static int q6lsm_callback(struct apr_client_data *data, void *priv)
 	uint32_t *payload;
 
 	if (!client || !data) {
+<<<<<<< HEAD
 		pr_err("%s: client %p data %p\n",
+=======
+		pr_err("%s: client %pK data %pK\n",
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 			__func__, client, data);
 		WARN_ON(1);
 		return -EINVAL;
@@ -256,6 +264,10 @@ void q6lsm_client_free(struct lsm_client *client)
 	q6lsm_mmap_apr_dereg();
 	mutex_destroy(&client->cmd_lock);
 	kfree(client);
+<<<<<<< HEAD
+=======
+	client = NULL;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 }
 
 /*
@@ -666,7 +678,11 @@ int q6lsm_register_sound_model(struct lsm_client *client,
 	rmb();
 	cmd.mem_map_handle = client->sound_model.mem_map_handle;
 
+<<<<<<< HEAD
 	pr_debug("%s: addr %pa, size %d, handle 0x%x\n", __func__,
+=======
+	pr_debug("%s: addr %pK, size %d, handle 0x%x\n", __func__,
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		&client->sound_model.phys, cmd.model_size, cmd.mem_map_handle);
 	rc = q6lsm_apr_send_pkt(client, client->apr, &cmd, true, NULL);
 	if (rc)
@@ -740,7 +756,11 @@ static int q6lsm_memory_map_regions(struct lsm_client *client,
 	int rc;
 	int cmd_size = 0;
 
+<<<<<<< HEAD
 	pr_debug("%s: dma_addr_p 0x%pa, dma_buf_sz %d, mmap_p 0x%p, session %d\n",
+=======
+	pr_debug("%s: dma_addr_p 0x%pK, dma_buf_sz %d, mmap_p 0x%pK, session %d\n",
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		__func__, &dma_addr_p, dma_buf_sz, mmap_p,
 		client->session);
 	if (CHECK_SESSION(client->session)) {
@@ -960,7 +980,11 @@ int q6lsm_snd_model_buf_alloc(struct lsm_client *client, size_t len)
 	size_t pad_zero = 0, total_mem = 0;
 
 	if (!client || len <= LSM_ALIGN_BOUNDARY) {
+<<<<<<< HEAD
 		pr_err("%s: client %p len %zu\n",
+=======
+		pr_err("%s: client %pK len %zu\n",
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 			__func__, client, len);
 		return rc;
 	}
@@ -1012,8 +1036,13 @@ int q6lsm_snd_model_buf_alloc(struct lsm_client *client, size_t len)
 	memcpy((client->sound_model.data + pad_zero +
 		client->sound_model.size),
 	       (uint32_t *)lsm_cal.cal_kvaddr, client->lsm_cal_size);
+<<<<<<< HEAD
 	pr_debug("%s: Copy cal start virt_addr %p phy_addr %pa\n"
 			 "Offset cal virtual Addr %p\n", __func__,
+=======
+	pr_debug("%s: Copy cal start virt_addr %pK phy_addr %pK\n"
+			 "Offset cal virtual Addr %pK\n", __func__,
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 			 client->sound_model.data, &client->sound_model.phys,
 			 (pad_zero + client->sound_model.data +
 			 client->sound_model.size));

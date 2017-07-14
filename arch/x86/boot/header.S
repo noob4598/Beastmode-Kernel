@@ -91,10 +91,16 @@ bs_die:
 
 	.section ".bsdata", "a"
 bugger_off_msg:
+<<<<<<< HEAD
 	.ascii	"Direct floppy boot is not supported. "
 	.ascii	"Use a boot loader program instead.\r\n"
 	.ascii	"\n"
 	.ascii	"Remove disk and press any key to reboot ...\r\n"
+=======
+	.ascii	"Use a boot loader.\r\n"
+	.ascii	"\n"
+	.ascii	"Remove disk and press any key to reboot...\r\n"
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	.byte	0
 
 #ifdef CONFIG_EFI_STUB
@@ -108,7 +114,11 @@ coff_header:
 #else
 	.word	0x8664				# x86-64
 #endif
+<<<<<<< HEAD
 	.word	3				# nr_sections
+=======
+	.word	4				# nr_sections
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	.long	0 				# TimeDateStamp
 	.long	0				# PointerToSymbolTable
 	.long	1				# NumberOfSymbols
@@ -250,6 +260,28 @@ section_table:
 	.word	0				# NumberOfLineNumbers
 	.long	0x60500020			# Characteristics (section flags)
 
+<<<<<<< HEAD
+=======
+	#
+	# The offset & size fields are filled in by build.c.
+	#
+	.ascii	".bss"
+	.byte	0
+	.byte	0
+	.byte	0
+	.byte	0
+	.long	0
+	.long	0x0
+	.long	0				# Size of initialized data
+						# on disk
+	.long	0x0
+	.long	0				# PointerToRelocations
+	.long	0				# PointerToLineNumbers
+	.word	0				# NumberOfRelocations
+	.word	0				# NumberOfLineNumbers
+	.long	0xc8000080			# Characteristics (section flags)
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 #endif /* CONFIG_EFI_STUB */
 
 	# Kernel attributes; used by setup.  This is part 1 of the

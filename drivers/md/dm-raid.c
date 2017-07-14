@@ -325,8 +325,12 @@ static int validate_region_size(struct raid_set *rs, unsigned long region_size)
 		 */
 		if (min_region_size > (1 << 13)) {
 			/* If not a power of 2, make it the next power of 2 */
+<<<<<<< HEAD
 			if (min_region_size & (min_region_size - 1))
 				region_size = 1 << fls(region_size);
+=======
+			region_size = roundup_pow_of_two(min_region_size);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 			DMINFO("Choosing default region size of %lu sectors",
 			       region_size);
 		} else {
@@ -785,8 +789,12 @@ struct dm_raid_superblock {
 	__le32 layout;
 	__le32 stripe_sectors;
 
+<<<<<<< HEAD
 	__u8 pad[452];		/* Round struct to 512 bytes. */
 				/* Always set to 0 when writing. */
+=======
+	/* Remainder of a logical block is zero-filled when writing (see super_sync()). */
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 } __packed;
 
 static int read_disk_sb(struct md_rdev *rdev, int size)
@@ -823,7 +831,11 @@ static void super_sync(struct mddev *mddev, struct md_rdev *rdev)
 		    test_bit(Faulty, &(rs->dev[i].rdev.flags)))
 			failed_devices |= (1ULL << i);
 
+<<<<<<< HEAD
 	memset(sb, 0, sizeof(*sb));
+=======
+	memset(sb + 1, 0, rdev->sb_size - sizeof(*sb));
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	sb->magic = cpu_to_le32(DM_RAID_MAGIC);
 	sb->features = cpu_to_le32(0);	/* No features yet */
@@ -858,7 +870,15 @@ static int super_load(struct md_rdev *rdev, struct md_rdev *refdev)
 	uint64_t events_sb, events_refsb;
 
 	rdev->sb_start = 0;
+<<<<<<< HEAD
 	rdev->sb_size = sizeof(*sb);
+=======
+	rdev->sb_size = bdev_logical_block_size(rdev->meta_bdev);
+	if (rdev->sb_size < sizeof(*sb) || rdev->sb_size > PAGE_SIZE) {
+		DMERR("superblock size of a logical block is no longer valid");
+		return -EINVAL;
+	}
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	ret = read_disk_sb(rdev, rdev->sb_size);
 	if (ret)

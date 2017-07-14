@@ -216,6 +216,10 @@ struct max86900_device_data
 	struct input_dev *uv_input_dev;
 	struct mutex i2clock;
 	struct mutex activelock;
+<<<<<<< HEAD
+=======
+	struct mutex storelock;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	struct delayed_work uv_sr_work_queue;
 	struct delayed_work reenable_work_queue;
 	const char *vdd_1p8;

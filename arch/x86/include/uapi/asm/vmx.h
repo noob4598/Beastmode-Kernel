@@ -65,7 +65,13 @@
 #define EXIT_REASON_EOI_INDUCED         45
 #define EXIT_REASON_EPT_VIOLATION       48
 #define EXIT_REASON_EPT_MISCONFIG       49
+<<<<<<< HEAD
 #define EXIT_REASON_PREEMPTION_TIMER    52
+=======
+#define EXIT_REASON_INVEPT              50
+#define EXIT_REASON_PREEMPTION_TIMER    52
+#define EXIT_REASON_INVVPID             53
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 #define EXIT_REASON_WBINVD              54
 #define EXIT_REASON_XSETBV              55
 #define EXIT_REASON_APIC_WRITE          56
@@ -111,6 +117,10 @@
 	{ EXIT_REASON_EOI_INDUCED,           "EOI_INDUCED" }, \
 	{ EXIT_REASON_INVALID_STATE,         "INVALID_STATE" }, \
 	{ EXIT_REASON_INVD,                  "INVD" }, \
+<<<<<<< HEAD
+=======
+	{ EXIT_REASON_INVVPID,               "INVVPID" }, \
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	{ EXIT_REASON_INVPCID,               "INVPCID" }, \
 	{ EXIT_REASON_PREEMPTION_TIMER,      "PREEMPTION_TIMER" }
 

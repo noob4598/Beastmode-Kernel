@@ -301,7 +301,11 @@ extern void			inet6_rt_notify(int event, struct rt6_info *rt,
 						struct nl_info *info);
 
 extern void			fib6_run_gc(unsigned long expires,
+<<<<<<< HEAD
 					    struct net *net);
+=======
+					    struct net *net, bool force);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 extern void			fib6_gc_cleanup(void);
 

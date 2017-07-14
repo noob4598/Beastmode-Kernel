@@ -125,10 +125,17 @@ static void warn_bad_vsyscall(const char *level, struct pt_regs *regs,
 	if (!show_unhandled_signals)
 		return;
 
+<<<<<<< HEAD
 	pr_notice_ratelimited("%s%s[%d] %s ip:%lx cs:%lx sp:%lx ax:%lx si:%lx di:%lx\n",
 			      level, current->comm, task_pid_nr(current),
 			      message, regs->ip, regs->cs,
 			      regs->sp, regs->ax, regs->si, regs->di);
+=======
+	printk_ratelimited("%s%s[%d] %s ip:%lx cs:%lx sp:%lx ax:%lx si:%lx di:%lx\n",
+			   level, current->comm, task_pid_nr(current),
+			   message, regs->ip, regs->cs,
+			   regs->sp, regs->ax, regs->si, regs->di);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 }
 
 static int addr_to_vsyscall_nr(unsigned long addr)

@@ -123,6 +123,7 @@ static __le32 ext4_xattr_block_csum(struct inode *inode,
 {
 	struct ext4_sb_info *sbi = EXT4_SB(inode->i_sb);
 	__u32 csum;
+<<<<<<< HEAD
 	__le32 save_csum;
 	__le64 dsk_block_nr = cpu_to_le64(block_nr);
 
@@ -134,6 +135,20 @@ static __le32 ext4_xattr_block_csum(struct inode *inode,
 			   EXT4_BLOCK_SIZE(inode->i_sb));
 
 	hdr->h_checksum = save_csum;
+=======
+	__le64 dsk_block_nr = cpu_to_le64(block_nr);
+	__u32 dummy_csum = 0;
+	int offset = offsetof(struct ext4_xattr_header, h_checksum);
+
+	csum = ext4_chksum(sbi, sbi->s_csum_seed, (__u8 *)&dsk_block_nr,
+			   sizeof(dsk_block_nr));
+	csum = ext4_chksum(sbi, csum, (__u8 *)hdr, offset);
+	csum = ext4_chksum(sbi, csum, (__u8 *)&dummy_csum, sizeof(dummy_csum));
+	offset += sizeof(dummy_csum);
+	csum = ext4_chksum(sbi, csum, (__u8 *)hdr + offset,
+			   EXT4_BLOCK_SIZE(inode->i_sb) - offset);
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	return cpu_to_le32(csum);
 }
 
@@ -189,6 +204,7 @@ ext4_listxattr(struct dentry *dentry, char *buffer, size_t size)
 }
 
 static int
+<<<<<<< HEAD
 ext4_xattr_check_names(struct ext4_xattr_entry *entry, void *end)
 {
 	while (!IS_LAST_ENTRY(entry)) {
@@ -197,6 +213,30 @@ ext4_xattr_check_names(struct ext4_xattr_entry *entry, void *end)
 			return -EIO;
 		entry = next;
 	}
+=======
+ext4_xattr_check_names(struct ext4_xattr_entry *entry, void *end,
+		       void *value_start)
+{
+	struct ext4_xattr_entry *e = entry;
+
+	while (!IS_LAST_ENTRY(e)) {
+		struct ext4_xattr_entry *next = EXT4_XATTR_NEXT(e);
+		if ((void *)next >= end)
+			return -EIO;
+		e = next;
+	}
+
+	while (!IS_LAST_ENTRY(entry)) {
+		if (entry->e_value_size != 0 &&
+		    (value_start + le16_to_cpu(entry->e_value_offs) <
+		     (void *)e + sizeof(__u32) ||
+		     value_start + le16_to_cpu(entry->e_value_offs) +
+		    le32_to_cpu(entry->e_value_size) > end))
+			return -EIO;
+		entry = EXT4_XATTR_NEXT(entry);
+	}
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	return 0;
 }
 
@@ -213,7 +253,12 @@ ext4_xattr_check_block(struct inode *inode, struct buffer_head *bh)
 		return -EIO;
 	if (!ext4_xattr_block_csum_verify(inode, bh->b_blocknr, BHDR(bh)))
 		return -EIO;
+<<<<<<< HEAD
 	error = ext4_xattr_check_names(BFIRST(bh), bh->b_data + bh->b_size);
+=======
+	error = ext4_xattr_check_names(BFIRST(bh), bh->b_data + bh->b_size,
+				       bh->b_data);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	if (!error)
 		set_buffer_verified(bh);
 	return error;
@@ -329,7 +374,11 @@ ext4_xattr_ibody_get(struct inode *inode, int name_index, const char *name,
 	header = IHDR(inode, raw_inode);
 	entry = IFIRST(header);
 	end = (void *)raw_inode + EXT4_SB(inode->i_sb)->s_inode_size;
+<<<<<<< HEAD
 	error = ext4_xattr_check_names(entry, end);
+=======
+	error = ext4_xattr_check_names(entry, end, entry);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	if (error)
 		goto cleanup;
 	error = ext4_xattr_find_entry(&entry, name_index, name,
@@ -457,7 +506,11 @@ ext4_xattr_ibody_list(struct dentry *dentry, char *buffer, size_t buffer_size)
 	raw_inode = ext4_raw_inode(&iloc);
 	header = IHDR(inode, raw_inode);
 	end = (void *)raw_inode + EXT4_SB(inode->i_sb)->s_inode_size;
+<<<<<<< HEAD
 	error = ext4_xattr_check_names(IFIRST(header), end);
+=======
+	error = ext4_xattr_check_names(IFIRST(header), end, IFIRST(header));
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	if (error)
 		goto cleanup;
 	error = ext4_xattr_list_entries(dentry, IFIRST(header),
@@ -972,7 +1025,12 @@ int ext4_xattr_ibody_find(struct inode *inode, struct ext4_xattr_info *i,
 	is->s.here = is->s.first;
 	is->s.end = (void *)raw_inode + EXT4_SB(inode->i_sb)->s_inode_size;
 	if (ext4_test_inode_state(inode, EXT4_STATE_XATTR)) {
+<<<<<<< HEAD
 		error = ext4_xattr_check_names(IFIRST(header), is->s.end);
+=======
+		error = ext4_xattr_check_names(IFIRST(header), is->s.end,
+					       IFIRST(header));
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		if (error)
 			return error;
 		/* Find the named attribute. */

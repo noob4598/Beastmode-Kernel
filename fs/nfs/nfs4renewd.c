@@ -88,10 +88,25 @@ nfs4_renew_state(struct work_struct *work)
 			}
 			nfs_expire_all_delegations(clp);
 		} else {
+<<<<<<< HEAD
 			/* Queue an asynchronous RENEW. */
 			ops->sched_state_renewal(clp, cred, renew_flags);
 			put_rpccred(cred);
 			goto out_exp;
+=======
+			int ret;
+
+			/* Queue an asynchronous RENEW. */
+			ret = ops->sched_state_renewal(clp, cred, renew_flags);
+			put_rpccred(cred);
+			switch (ret) {
+			default:
+				goto out_exp;
+			case -EAGAIN:
+			case -ENOMEM:
+				break;
+			}
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		}
 	} else {
 		dprintk("%s: failed to call renewd. Reason: lease not expired \n",

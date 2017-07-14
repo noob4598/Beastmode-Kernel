@@ -799,7 +799,11 @@ static int suspend_prepare(struct regulator_dev *rdev, suspend_state_t state)
 static void print_constraints(struct regulator_dev *rdev)
 {
 	struct regulation_constraints *constraints = rdev->constraints;
+<<<<<<< HEAD
 	char buf[80] = "";
+=======
+	char buf[160] = "";
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	int count = 0;
 	int ret;
 
@@ -1442,7 +1446,11 @@ struct regulator *regulator_get_exclusive(struct device *dev, const char *id)
 }
 EXPORT_SYMBOL_GPL(regulator_get_exclusive);
 
+<<<<<<< HEAD
 /* Locks held by regulator_put() */
+=======
+/* regulator_list_mutex lock held by regulator_put() */
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 static void _regulator_put(struct regulator *regulator)
 {
 	struct regulator_dev *rdev;
@@ -1452,21 +1460,34 @@ static void _regulator_put(struct regulator *regulator)
 
 	rdev = regulator->rdev;
 
+<<<<<<< HEAD
 	mutex_lock(&rdev->mutex);
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	debugfs_remove_recursive(regulator->debugfs);
 
 	/* remove any sysfs entries */
 	if (regulator->dev)
 		sysfs_remove_link(&rdev->dev.kobj, regulator->supply_name);
+<<<<<<< HEAD
+=======
+	mutex_lock(&rdev->mutex);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	kfree(regulator->supply_name);
 	list_del(&regulator->list);
 	kfree(regulator);
 
 	rdev->open_count--;
 	rdev->exclusive = 0;
+<<<<<<< HEAD
 
 	module_put(rdev->owner);
 	mutex_unlock(&rdev->mutex);
+=======
+	mutex_unlock(&rdev->mutex);
+
+	module_put(rdev->owner);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 }
 
 /**
@@ -1566,6 +1587,11 @@ static void regulator_ena_gpio_free(struct regulator_dev *rdev)
 				gpio_free(pin->gpio);
 				list_del(&pin->list);
 				kfree(pin);
+<<<<<<< HEAD
+=======
+				rdev->ena_pin = NULL;
+				return;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 			} else {
 				pin->request_count--;
 			}
@@ -1628,10 +1654,19 @@ static int _regulator_do_enable(struct regulator_dev *rdev)
 	trace_regulator_enable(rdev_get_name(rdev));
 
 	if (rdev->ena_pin) {
+<<<<<<< HEAD
 		ret = regulator_ena_gpio_ctrl(rdev, true);
 		if (ret < 0)
 			return ret;
 		rdev->ena_gpio_state = 1;
+=======
+		if (!rdev->ena_gpio_state) {
+			ret = regulator_ena_gpio_ctrl(rdev, true);
+			if (ret < 0)
+				return ret;
+			rdev->ena_gpio_state = 1;
+		}
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	} else if (rdev->desc->ops->enable) {
 		ret = rdev->desc->ops->enable(rdev);
 		if (ret < 0)
@@ -1737,10 +1772,19 @@ static int _regulator_do_disable(struct regulator_dev *rdev)
 	trace_regulator_disable(rdev_get_name(rdev));
 
 	if (rdev->ena_pin) {
+<<<<<<< HEAD
 		ret = regulator_ena_gpio_ctrl(rdev, false);
 		if (ret < 0)
 			return ret;
 		rdev->ena_gpio_state = 0;
+=======
+		if (rdev->ena_gpio_state) {
+			ret = regulator_ena_gpio_ctrl(rdev, false);
+			if (ret < 0)
+				return ret;
+			rdev->ena_gpio_state = 0;
+		}
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	} else if (rdev->desc->ops->disable) {
 		ret = rdev->desc->ops->disable(rdev);
@@ -4097,12 +4141,15 @@ regulator_register(const struct regulator_desc *regulator_desc,
 				 config->ena_gpio, ret);
 			goto wash;
 		}
+<<<<<<< HEAD
 
 		if (config->ena_gpio_flags & GPIOF_OUT_INIT_HIGH)
 			rdev->ena_gpio_state = 1;
 
 		if (config->ena_gpio_invert)
 			rdev->ena_gpio_state = !rdev->ena_gpio_state;
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	}
 
 	/* set regulator constraints */
@@ -4270,9 +4317,17 @@ int regulator_suspend_finish(void)
 	list_for_each_entry(rdev, &regulator_list, list) {
 		mutex_lock(&rdev->mutex);
 		if (rdev->use_count > 0  || rdev->constraints->always_on) {
+<<<<<<< HEAD
 			error = _regulator_do_enable(rdev);
 			if (error)
 				ret = error;
+=======
+			if (!_regulator_is_enabled(rdev)) {
+				error = _regulator_do_enable(rdev);
+				if (error)
+					ret = error;
+			}
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		} else {
 			if (!has_full_constraints)
 				goto unlock;

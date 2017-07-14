@@ -991,6 +991,7 @@ static struct platform_driver clock_krait_8974_driver = {
 	},
 };
 
+<<<<<<< HEAD
 ssize_t vc_get_vdd(char *buf)
 {
         struct clk_vdd_class *vdd = krait0_clk.c.vdd_class;
@@ -1034,6 +1035,8 @@ void vc_set_vdd(const char *buf)
         }
 }
 
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 static int __init clock_krait_8974_init(void)
 {
 	return platform_driver_register(&clock_krait_8974_driver);

@@ -117,7 +117,11 @@ struct ks_bridge {
 struct ks_bridge *__ksb[NO_BRIDGE_INSTANCES];
 
 /* by default debugging is enabled */
+<<<<<<< HEAD
 static unsigned int enable_dbg = 1;
+=======
+static unsigned int enable_dbg = 0;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 module_param(enable_dbg, uint, S_IRUGO | S_IWUSR);
 
 static void

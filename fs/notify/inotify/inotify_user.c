@@ -349,7 +349,11 @@ static int inotify_find_inode(const char __user *dirname, struct path *path, uns
 	if (error)
 		return error;
 	/* you can only watch an inode if you have read permissions on it */
+<<<<<<< HEAD
 	error = inode_permission(path->dentry->d_inode, MAY_READ);
+=======
+	error = inode_permission2(path->mnt, path->dentry->d_inode, MAY_READ);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	if (error)
 		path_put(path);
 	return error;
@@ -738,6 +742,11 @@ SYSCALL_DEFINE3(inotify_add_watch, int, fd, const char __user *, pathname,
 	struct fsnotify_group *group;
 	struct inode *inode;
 	struct path path;
+<<<<<<< HEAD
+=======
+	struct path alteredpath;
+	struct path *canonical_path = &path;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	struct fd f;
 	int ret;
 	unsigned flags = 0;
@@ -765,13 +774,31 @@ SYSCALL_DEFINE3(inotify_add_watch, int, fd, const char __user *, pathname,
 	if (ret)
 		goto fput_and_out;
 
+<<<<<<< HEAD
 	/* inode held in place by reference to path; group by fget on fd */
 	inode = path.dentry->d_inode;
+=======
+	/* support stacked filesystems */
+	if(path.dentry && path.dentry->d_op) {
+		if (path.dentry->d_op->d_canonical_path) {
+			path.dentry->d_op->d_canonical_path(&path, &alteredpath);
+			canonical_path = &alteredpath;
+			path_put(&path);
+		}
+	}
+
+	/* inode held in place by reference to path; group by fget on fd */
+	inode = canonical_path->dentry->d_inode;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	group = f.file->private_data;
 
 	/* create/update an inode mark */
 	ret = inotify_update_watch(group, inode, mask);
+<<<<<<< HEAD
 	path_put(&path);
+=======
+	path_put(canonical_path);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 fput_and_out:
 	fdput(f);
 	return ret;

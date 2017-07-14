@@ -699,6 +699,13 @@ asmlinkage void __init start_kernel(void)
 	if (efi_enabled(EFI_RUNTIME_SERVICES))
 		efi_enter_virtual_mode();
 #endif
+<<<<<<< HEAD
+=======
+#ifdef CONFIG_X86_ESPFIX64
+	/* Should be run before the first non-init thread is created */
+	init_espfix_bsp();
+#endif
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	thread_info_cache_init();
 	cred_init();
 	fork_init(totalram_pages);

@@ -150,17 +150,29 @@ void ping_hash(struct sock *sk)
 void ping_unhash(struct sock *sk)
 {
 	struct inet_sock *isk = inet_sk(sk);
+<<<<<<< HEAD
 	pr_debug("ping_unhash(isk=%p,isk->num=%u)\n", isk, isk->inet_num);
 	if (sk_hashed(sk)) {
 		write_lock_bh(&ping_table.lock);
+=======
+
+	pr_debug("ping_v4_unhash(isk=%p,isk->num=%u)\n", isk, isk->inet_num);
+	write_lock_bh(&ping_table.lock);
+	if (sk_hashed(sk)) {
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		hlist_nulls_del(&sk->sk_nulls_node);
 		sk_nulls_node_init(&sk->sk_nulls_node);
 		sock_put(sk);
 		isk->inet_num = 0;
 		isk->inet_sport = 0;
 		sock_prot_inuse_add(sock_net(sk), sk->sk_prot, -1);
+<<<<<<< HEAD
 		write_unlock_bh(&ping_table.lock);
 	}
+=======
+	}
+	write_unlock_bh(&ping_table.lock);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 }
 EXPORT_SYMBOL_GPL(ping_unhash);
 
@@ -639,6 +651,11 @@ static int ping_v4_push_pending_frames(struct sock *sk, struct pingfakehdr *pfh,
 {
 	struct sk_buff *skb = skb_peek(&sk->sk_write_queue);
 
+<<<<<<< HEAD
+=======
+	if (!skb)
+		return 0;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	pfh->wcheck = csum_partial((char *)&pfh->icmph,
 		sizeof(struct icmphdr), pfh->wcheck);
 	pfh->icmph.checksum = csum_fold(pfh->wcheck);
@@ -651,9 +668,19 @@ int ping_common_sendmsg(int family, struct msghdr *msg, size_t len,
 			void *user_icmph, size_t icmph_len) {
 	u8 type, code;
 
+<<<<<<< HEAD
 	if (len > 0xFFFF)
 		return -EMSGSIZE;
 
+=======
+	if (len > 0xFFFF || len < icmph_len)
+		return -EMSGSIZE;
+
+	/* Must have at least a full ICMP header. */
+	if (len < icmph_len)
+		return -EINVAL;
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	/*
 	 *	Check the flags.
 	 */
@@ -977,8 +1004,16 @@ void ping_rcv(struct sk_buff *skb)
 
 	sk = ping_lookup(net, skb, ntohs(icmph->un.echo.id));
 	if (sk != NULL) {
+<<<<<<< HEAD
 		pr_debug("rcv on socket %p\n", sk);
 		ping_queue_rcv_skb(sk, skb_get(skb));
+=======
+		struct sk_buff *skb2 = skb_clone(skb, GFP_ATOMIC);
+
+		pr_debug("rcv on socket %p\n", sk);
+		if (skb2)
+			ping_queue_rcv_skb(sk, skb2);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		sock_put(sk);
 		return;
 	}

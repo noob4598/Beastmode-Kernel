@@ -150,6 +150,11 @@ void snd_ctl_notify(struct snd_card *card, unsigned int mask,
 	
 	if (snd_BUG_ON(!card || !id))
 		return;
+<<<<<<< HEAD
+=======
+	if (card->shutdown)
+		return;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	read_lock(&card->ctl_files_rwlock);
 #if defined(CONFIG_SND_MIXER_OSS) || defined(CONFIG_SND_MIXER_OSS_MODULE)
 	card->mixer_oss_change_count++;
@@ -290,8 +295,13 @@ static bool snd_ctl_remove_numid_conflict(struct snd_card *card,
 	struct snd_kcontrol *kctl;
 
 	/* Make sure that the ids assigned to the control do not wrap around */
+<<<<<<< HEAD
 		if (card->last_numid >= UINT_MAX - count)
 					card->last_numid = 0;
+=======
+	if (card->last_numid >= UINT_MAX - count)
+		card->last_numid = 0;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	list_for_each_entry(kctl, &card->controls, list) {
 		if (kctl->id.numid < card->last_numid + 1 + count &&
@@ -1168,6 +1178,13 @@ static int snd_ctl_elem_add(struct snd_ctl_file *file,
 
 	if (info->count < 1)
 		return -EINVAL;
+<<<<<<< HEAD
+=======
+	if (!*info->id.name)
+		return -EINVAL;
+	if (strnlen(info->id.name, sizeof(info->id.name)) >= sizeof(info->id.name))
+		return -EINVAL;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	access = info->access == 0 ? SNDRV_CTL_ELEM_ACCESS_READWRITE :
 		(info->access & (SNDRV_CTL_ELEM_ACCESS_READWRITE|
 				 SNDRV_CTL_ELEM_ACCESS_INACTIVE|
@@ -1321,6 +1338,11 @@ static int snd_ctl_tlv_ioctl(struct snd_ctl_file *file,
 		return -EFAULT;
 	if (tlv.length < sizeof(unsigned int) * 2)
 		return -EINVAL;
+<<<<<<< HEAD
+=======
+	if (!tlv.numid)
+		return -EINVAL;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	down_read(&card->controls_rwsem);
 	kctl = snd_ctl_find_numid(card, tlv.numid);
 	if (kctl == NULL) {

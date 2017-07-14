@@ -119,7 +119,10 @@ struct ade7758_state {
 	u8			*tx;
 	u8			*rx;
 	struct mutex		buf_lock;
+<<<<<<< HEAD
 	const struct iio_chan_spec *ade7758_ring_channels;
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	struct spi_transfer	ring_xfer[4];
 	struct spi_message	ring_msg;
 	/*

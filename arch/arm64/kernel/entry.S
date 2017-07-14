@@ -275,7 +275,10 @@ el1_sp_pc:
 	 * Stack or PC alignment exception handling
 	 */
 	mrs	x0, far_el1
+<<<<<<< HEAD
 	mov	x1, x25
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	mov	x2, sp
 	b	do_sp_pc_abort
 el1_undef:
@@ -491,7 +494,11 @@ el0_inv:
 	mov	x0, sp
 	mov	x1, #BAD_SYNC
 	mrs	x2, esr_el1
+<<<<<<< HEAD
 	b	bad_mode
+=======
+	b	bad_el0_sync
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 ENDPROC(el0_sync)
 
 	.align	6

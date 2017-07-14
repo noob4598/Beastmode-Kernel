@@ -245,6 +245,14 @@ static int stk1160_stop_streaming(struct stk1160 *dev)
 	if (mutex_lock_interruptible(&dev->v4l_lock))
 		return -ERESTARTSYS;
 
+<<<<<<< HEAD
+=======
+	/*
+	 * Once URBs are cancelled, the URB complete handler
+	 * won't be running. This is required to safely release the
+	 * current buffer (dev->isoc_ctl.buf).
+	 */
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	stk1160_cancel_isoc(dev);
 
 	/*
@@ -665,8 +673,21 @@ void stk1160_clear_queue(struct stk1160 *dev)
 		stk1160_info("buffer [%p/%d] aborted\n",
 				buf, buf->vb.v4l2_buf.index);
 	}
+<<<<<<< HEAD
 	/* It's important to clear current buffer */
 	dev->isoc_ctl.buf = NULL;
+=======
+
+	/* It's important to release the current buffer */
+	if (dev->isoc_ctl.buf) {
+		buf = dev->isoc_ctl.buf;
+		dev->isoc_ctl.buf = NULL;
+
+		vb2_buffer_done(&buf->vb, VB2_BUF_STATE_ERROR);
+		stk1160_info("buffer [%p/%d] aborted\n",
+				buf, buf->vb.v4l2_buf.index);
+	}
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	spin_unlock_irqrestore(&dev->buf_lock, flags);
 }
 

@@ -292,7 +292,11 @@ int yama_ptrace_access_check(struct task_struct *child,
 		return rc;
 
 	/* require ptrace target be a child of ptracer on attach */
+<<<<<<< HEAD
 	if (mode == PTRACE_MODE_ATTACH) {
+=======
+	if (mode & PTRACE_MODE_ATTACH) {
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		switch (ptrace_scope) {
 		case YAMA_SCOPE_DISABLED:
 			/* No additional restrictions. */
@@ -318,7 +322,11 @@ int yama_ptrace_access_check(struct task_struct *child,
 		}
 	}
 
+<<<<<<< HEAD
 	if (rc) {
+=======
+	if (rc && (mode & PTRACE_MODE_NOAUDIT) == 0) {
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		printk_ratelimited(KERN_NOTICE
 			"ptrace of pid %d was attempted by: %s (pid %d)\n",
 			child->pid, current->comm, current->pid);

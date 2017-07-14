@@ -1388,8 +1388,14 @@ static void __invalidate_snapshot(struct dm_snapshot *s, int err)
 	dm_table_event(s->ti->table);
 }
 
+<<<<<<< HEAD
 static void pending_complete(struct dm_snap_pending_exception *pe, int success)
 {
+=======
+static void pending_complete(void *context, int success)
+{
+	struct dm_snap_pending_exception *pe = context;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	struct dm_exception *e;
 	struct dm_snapshot *s = pe->snap;
 	struct bio *origin_bios = NULL;
@@ -1439,8 +1445,11 @@ out:
 		full_bio->bi_end_io = pe->full_bio_end_io;
 		full_bio->bi_private = pe->full_bio_private;
 	}
+<<<<<<< HEAD
 	free_pending_exception(pe);
 
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	increment_pending_exceptions_done_count();
 
 	up_write(&s->lock);
@@ -1457,6 +1466,7 @@ out:
 	}
 
 	retry_origin_bios(s, origin_bios);
+<<<<<<< HEAD
 }
 
 static void commit_callback(void *context, int success)
@@ -1464,12 +1474,17 @@ static void commit_callback(void *context, int success)
 	struct dm_snap_pending_exception *pe = context;
 
 	pending_complete(pe, success);
+=======
+
+	free_pending_exception(pe);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 }
 
 static void complete_exception(struct dm_snap_pending_exception *pe)
 {
 	struct dm_snapshot *s = pe->snap;
 
+<<<<<<< HEAD
 	if (unlikely(pe->copy_error))
 		pending_complete(pe, 0);
 
@@ -1477,6 +1492,11 @@ static void complete_exception(struct dm_snap_pending_exception *pe)
 		/* Update the metadata if we are persistent */
 		s->store->type->commit_exception(s->store, &pe->e,
 						 commit_callback, pe);
+=======
+	/* Update the metadata if we are persistent */
+	s->store->type->commit_exception(s->store, &pe->e, !pe->copy_error,
+					 pending_complete, pe);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 }
 
 /*

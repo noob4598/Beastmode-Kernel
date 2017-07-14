@@ -42,6 +42,10 @@ struct pipe_buffer {
  *	@fasync_readers: reader side fasync
  *	@fasync_writers: writer side fasync
  *	@bufs: the circular array of pipe buffers
+<<<<<<< HEAD
+=======
+ *	@user: the user who created this pipe
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
  **/
 struct pipe_inode_info {
 	struct mutex mutex;
@@ -57,6 +61,10 @@ struct pipe_inode_info {
 	struct fasync_struct *fasync_readers;
 	struct fasync_struct *fasync_writers;
 	struct pipe_buffer *bufs;
+<<<<<<< HEAD
+=======
+	struct user_struct *user;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 };
 
 /*
@@ -140,6 +148,11 @@ void pipe_unlock(struct pipe_inode_info *);
 void pipe_double_lock(struct pipe_inode_info *, struct pipe_inode_info *);
 
 extern unsigned int pipe_max_size, pipe_min_size;
+<<<<<<< HEAD
+=======
+extern unsigned long pipe_user_pages_hard;
+extern unsigned long pipe_user_pages_soft;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 int pipe_proc_fn(struct ctl_table *, int, void __user *, size_t *, loff_t *);
 
 

@@ -20,8 +20,13 @@
  * zsmalloc mapping modes
  *
  * NOTE: These only make a difference when a mapped object spans pages.
+<<<<<<< HEAD
  *       They also have no effect when PGTABLE_MAPPING is selected.
 */
+=======
+ * They also have no effect when PGTABLE_MAPPING is selected.
+ */
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 enum zs_mapmode {
 	ZS_MM_RW, /* normal read-write mapping */
 	ZS_MM_RO, /* read-only (no copy-out at unmap time) */
@@ -34,6 +39,7 @@ enum zs_mapmode {
 	 */
 };
 
+<<<<<<< HEAD
 struct zs_ops {
 	struct page * (*alloc)(gfp_t);
 	void (*free)(struct page *);
@@ -45,12 +51,25 @@ struct zs_pool *zs_create_pool(gfp_t flags, struct zs_ops *ops);
 void zs_destroy_pool(struct zs_pool *pool);
 
 unsigned long zs_malloc(struct zs_pool *pool, size_t size, gfp_t flags);
+=======
+struct zs_pool;
+
+struct zs_pool *zs_create_pool(char *name, gfp_t flags);
+void zs_destroy_pool(struct zs_pool *pool);
+
+unsigned long zs_malloc(struct zs_pool *pool, size_t size);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 void zs_free(struct zs_pool *pool, unsigned long obj);
 
 void *zs_map_object(struct zs_pool *pool, unsigned long handle,
 			enum zs_mapmode mm);
 void zs_unmap_object(struct zs_pool *pool, unsigned long handle);
 
+<<<<<<< HEAD
 u64 zs_get_total_size_bytes(struct zs_pool *pool);
+=======
+unsigned long zs_get_total_pages(struct zs_pool *pool);
+unsigned long zs_compact(struct zs_pool *pool);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 #endif

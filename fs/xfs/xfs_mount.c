@@ -689,7 +689,12 @@ xfs_sb_verify(
 	 * Only check the in progress field for the primary superblock as
 	 * mkfs.xfs doesn't clear it from secondary superblocks.
 	 */
+<<<<<<< HEAD
 	return xfs_mount_validate_sb(mp, &sb, bp->b_bn == XFS_SB_DADDR,
+=======
+	return xfs_mount_validate_sb(mp, &sb,
+				     bp->b_maps[0].bm_bn == XFS_SB_DADDR,
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 				     check_version);
 }
 

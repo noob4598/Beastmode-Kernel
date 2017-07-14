@@ -299,7 +299,10 @@ struct mlx4_en_cq {
 	struct mlx4_cq          mcq;
 	struct mlx4_hwq_resources wqres;
 	int                     ring;
+<<<<<<< HEAD
 	spinlock_t              lock;
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	struct net_device      *dev;
 	struct napi_struct	napi;
 	int size;

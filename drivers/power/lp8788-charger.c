@@ -417,8 +417,15 @@ static int lp8788_psy_register(struct platform_device *pdev,
 	pchg->battery.num_properties = ARRAY_SIZE(lp8788_battery_prop);
 	pchg->battery.get_property = lp8788_battery_get_property;
 
+<<<<<<< HEAD
 	if (power_supply_register(&pdev->dev, &pchg->battery))
 		return -EPERM;
+=======
+	if (power_supply_register(&pdev->dev, &pchg->battery)) {
+		power_supply_unregister(&pchg->charger);
+		return -EPERM;
+	}
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	return 0;
 }

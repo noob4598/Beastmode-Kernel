@@ -69,7 +69,10 @@ config ARCH_APQ8084
 	select MSM_DEVFREQ_CPUBW
 	select MSM_PIL
 	select ENABLE_VMALLOC_SAVINGS
+<<<<<<< HEAD
 	select MSM_ULTRASOUND_B
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	select MAXIMUM_CURRENT_THROTTLING
 	select MSM_IRQ
 	select PINCTRL
@@ -1213,6 +1216,7 @@ config MSM_SCM
 	bool "Secure Channel Manager (SCM) support"
 	default n
 
+<<<<<<< HEAD
 config MSM_BUSPM_DEV
 	tristate "MSM Bus Performance Monitor Kernel Module"
 	depends on MSM_BUS_SCALING
@@ -1223,6 +1227,8 @@ config MSM_BUSPM_DEV
 	  allocate physical memory which is used by bus performance hardware to
 	  dump performance data.
 
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 config MSM_TZ_LOG
 	tristate "MSM Trust Zone (TZ) Log Driver"
 	depends on DEBUG_FS
@@ -1791,12 +1797,15 @@ config KRAIT_REGULATOR
 	 regulators running in ganged mode inside the PMIC. Enable
 	 this option to support such configurations.
 
+<<<<<<< HEAD
 config HAS_MACH_MEMUTILS
 	default n
 	bool "Motorola MSM memcpy enhancements"
 	help
 	 Faster memcpy performance for Krait
 
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 config BT_BCM4358
 	bool "Enable BCM4358 driver"
 	default n

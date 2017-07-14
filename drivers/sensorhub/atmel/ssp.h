@@ -48,26 +48,42 @@
 #include "ssp_sensorhub.h"
 #endif
 
+<<<<<<< HEAD
 #define SSP_DBG		1
 #ifdef CONFIG_SEC_DEBUG
 #define SSP_SEC_DEBUG	1
 #else
 #define SSP_SEC_DEBUG	0
 #endif
+=======
+#define SSP_DBG		0
+#define SSP_DATA_DBG 0
+#define SSP_FUNC_DBG 0
+#define SSP_SEC_DEBUG	0
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 #define SUCCESS		1
 #define FAIL		0
 #define ERROR		-1
 
+<<<<<<< HEAD
+=======
+/* ssp mcu device ID */
+#define DEVICE_ID		0x55
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 #define FACTORY_DATA_MAX	100
 
 #if SSP_DBG
 #define SSP_FUNC_DBG 1
 #define SSP_DATA_DBG 0
 
+<<<<<<< HEAD
 /* ssp mcu device ID */
 #define DEVICE_ID		0x55
 
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 #define ssp_dbg(format, ...) do { \
 	printk(KERN_INFO format, ##__VA_ARGS__); \
 	} while (0)

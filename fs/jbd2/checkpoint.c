@@ -440,7 +440,11 @@ int jbd2_cleanup_journal_tail(journal_t *journal)
 	unsigned long	blocknr;
 
 	if (is_journal_aborted(journal))
+<<<<<<< HEAD
 		return 1;
+=======
+		return -EIO;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	if (!jbd2_journal_get_log_tail(journal, &first_tid, &blocknr))
 		return 1;
@@ -455,10 +459,16 @@ int jbd2_cleanup_journal_tail(journal_t *journal)
 	 * jbd2_cleanup_journal_tail() doesn't get called all that often.
 	 */
 	if (journal->j_flags & JBD2_BARRIER)
+<<<<<<< HEAD
 		blkdev_issue_flush(journal->j_fs_dev, GFP_KERNEL, NULL);
 
 	__jbd2_update_log_tail(journal, first_tid, blocknr);
 	return 0;
+=======
+		blkdev_issue_flush(journal->j_fs_dev, GFP_NOFS, NULL);
+
+	return __jbd2_update_log_tail(journal, first_tid, blocknr);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 }
 
 

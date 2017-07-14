@@ -2,6 +2,13 @@
 #define __LINUX_PAGEISOLATION_H
 
 #ifdef CONFIG_MEMORY_ISOLATION
+<<<<<<< HEAD
+=======
+static inline bool has_isolate_pageblock(struct zone *zone)
+{
+	return zone->nr_isolate_pageblock;
+}
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 static inline bool is_migrate_isolate_page(struct page *page)
 {
 	return get_pageblock_migratetype(page) == MIGRATE_ISOLATE;
@@ -11,6 +18,13 @@ static inline bool is_migrate_isolate(int migratetype)
 	return migratetype == MIGRATE_ISOLATE;
 }
 #else
+<<<<<<< HEAD
+=======
+static inline bool has_isolate_pageblock(struct zone *zone)
+{
+	return false;
+}
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 static inline bool is_migrate_isolate_page(struct page *page)
 {
 	return false;

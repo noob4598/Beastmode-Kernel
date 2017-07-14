@@ -975,6 +975,18 @@ unknown:
 		break;
 	}
 	/* host either stalls (value < 0) or reports success */
+<<<<<<< HEAD
+=======
+	if (value >= 0) {
+		req->length = value;
+		req->zero = value < wLength;
+		value = usb_ep_queue(cdev->gadget->ep0, req, GFP_ATOMIC);
+		if (value < 0) {
+			ERROR(dev, "%s:%d Error!\n", __func__, __LINE__);
+			req->status = 0;
+		}
+	}
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	return value;
 }
 

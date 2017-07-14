@@ -14,8 +14,16 @@
  * See the file COPYING for more details.
  */
 
+<<<<<<< HEAD
 #include <linux/errno.h>
 #include <linux/types.h>
+=======
+#include <linux/smp.h>
+#include <linux/errno.h>
+#include <linux/types.h>
+#include <linux/percpu.h>
+#include <linux/cpumask.h>
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 #include <linux/rcupdate.h>
 #include <linux/static_key.h>
 
@@ -259,6 +267,7 @@ static inline void tracepoint_synchronize_unregister(void)
  * "void *__data, proto" as the callback prototype.
  */
 #define DECLARE_TRACE_NOARGS(name)					\
+<<<<<<< HEAD
 		__DECLARE_TRACE(name, void, , 1, void *__data, __data)
 
 #define DECLARE_TRACE(name, proto, args)				\
@@ -268,6 +277,21 @@ static inline void tracepoint_synchronize_unregister(void)
 
 #define DECLARE_TRACE_CONDITION(name, proto, args, cond)		\
 	__DECLARE_TRACE(name, PARAMS(proto), PARAMS(args), PARAMS(cond), \
+=======
+	__DECLARE_TRACE(name, void, ,					\
+			cpu_online(raw_smp_processor_id()),		\
+			void *__data, __data)
+
+#define DECLARE_TRACE(name, proto, args)				\
+	__DECLARE_TRACE(name, PARAMS(proto), PARAMS(args),		\
+			cpu_online(raw_smp_processor_id()),		\
+			PARAMS(void *__data, proto),			\
+			PARAMS(__data, args))
+
+#define DECLARE_TRACE_CONDITION(name, proto, args, cond)		\
+	__DECLARE_TRACE(name, PARAMS(proto), PARAMS(args),		\
+			cpu_online(raw_smp_processor_id()) && (PARAMS(cond)), \
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 			PARAMS(void *__data, proto),			\
 			PARAMS(__data, args))
 

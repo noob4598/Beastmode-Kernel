@@ -4,7 +4,11 @@
  *  Copyright (C) 2008 Intel Corp
  *  Copyright (C) 2008 Zhang Rui <rui.zhang@intel.com>
  *  Copyright (C) 2008 Sujith Thomas <sujith.thomas@intel.com>
+<<<<<<< HEAD
  *  Copyright (c) 2013, The Linux Foundation. All rights reserved.
+=======
+ *  Copyright (c) 2013-2014, The Linux Foundation. All rights reserved.
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
  *
  *  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  *
@@ -159,13 +163,51 @@ int sensor_get_id(char *name)
 }
 EXPORT_SYMBOL(sensor_get_id);
 
+<<<<<<< HEAD
+=======
+static void init_sensor_trip(struct sensor_info *sensor)
+{
+	int ret = 0, i = 0;
+	enum thermal_trip_type type;
+
+	for (i = 0; ((sensor->max_idx == -1) ||
+		(sensor->min_idx == -1)) &&
+		(sensor->tz->ops->get_trip_type) &&
+		(i < sensor->tz->trips); i++) {
+
+		sensor->tz->ops->get_trip_type(sensor->tz, i, &type);
+		if (type == THERMAL_TRIP_CONFIGURABLE_HI)
+			sensor->max_idx = i;
+		if (type == THERMAL_TRIP_CONFIGURABLE_LOW)
+			sensor->min_idx = i;
+		type = 0;
+	}
+
+	ret = sensor->tz->ops->get_trip_temp(sensor->tz,
+		sensor->min_idx, &sensor->threshold_min);
+	if (ret)
+		pr_err("Unable to get MIN trip temp. sensor:%d err:%d\n",
+				sensor->sensor_id, ret);
+
+	ret = sensor->tz->ops->get_trip_temp(sensor->tz,
+		sensor->max_idx, &sensor->threshold_max);
+	if (ret)
+		pr_err("Unable to get MAX trip temp. sensor:%d err:%d\n",
+				sensor->sensor_id, ret);
+}
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 static int __update_sensor_thresholds(struct sensor_info *sensor)
 {
 	long max_of_low_thresh = LONG_MIN;
 	long min_of_high_thresh = LONG_MAX;
 	struct sensor_threshold *pos, *var;
+<<<<<<< HEAD
 	enum thermal_trip_type type;
 	int i, ret = 0;
+=======
+	int ret = 0;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	if (!sensor->tz->ops->set_trip_temp ||
 		!sensor->tz->ops->activate_trip_type ||
@@ -175,6 +217,7 @@ static int __update_sensor_thresholds(struct sensor_info *sensor)
 		goto update_done;
 	}
 
+<<<<<<< HEAD
 	for (i = 0; ((sensor->max_idx == -1) || (sensor->min_idx == -1)) &&
 		(sensor->tz->ops->get_trip_type) && (i < sensor->tz->trips);
 		i++) {
@@ -188,6 +231,10 @@ static int __update_sensor_thresholds(struct sensor_info *sensor)
 		sensor->tz->ops->get_trip_temp(sensor->tz,
 			THERMAL_TRIP_CONFIGURABLE_HI, &sensor->threshold_max);
 	}
+=======
+	if ((sensor->max_idx == -1) || (sensor->min_idx == -1))
+		init_sensor_trip(sensor);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	list_for_each_entry_safe(pos, var, &sensor->threshold_list, list) {
 		if (!pos->active)
@@ -450,7 +497,11 @@ int sensor_init(struct thermal_zone_device *tz)
 
 	sensor->sensor_id = tz->id;
 	sensor->tz = tz;
+<<<<<<< HEAD
 	sensor->threshold_min = 0;
+=======
+	sensor->threshold_min = LONG_MIN;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	sensor->threshold_max = LONG_MAX;
 	sensor->max_idx = -1;
 	sensor->min_idx = -1;
@@ -1327,7 +1378,11 @@ temp_crit_show(struct device *dev, struct device_attribute *attr,
 	long temperature;
 	int ret;
 
+<<<<<<< HEAD
 	ret = tz->ops->get_trip_temp(tz, 0, &temperature);
+=======
+	ret = tz->ops->get_crit_temp(tz, &temperature);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	if (ret)
 		return ret;
 

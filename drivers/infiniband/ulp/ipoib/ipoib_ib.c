@@ -979,8 +979,22 @@ static void __ipoib_ib_dev_flush(struct ipoib_dev_priv *priv,
 	}
 
 	if (level == IPOIB_FLUSH_LIGHT) {
+<<<<<<< HEAD
 		ipoib_mark_paths_invalid(dev);
 		ipoib_mcast_dev_flush(dev);
+=======
+		int oper_up;
+		ipoib_mark_paths_invalid(dev);
+		/* Set IPoIB operation as down to prevent races between:
+		 * the flush flow which leaves MCG and on the fly joins
+		 * which can happen during that time. mcast restart task
+		 * should deal with join requests we missed.
+		 */
+		oper_up = test_and_clear_bit(IPOIB_FLAG_OPER_UP, &priv->flags);
+		ipoib_mcast_dev_flush(dev);
+		if (oper_up)
+			set_bit(IPOIB_FLAG_OPER_UP, &priv->flags);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	}
 
 	if (level >= IPOIB_FLUSH_NORMAL)

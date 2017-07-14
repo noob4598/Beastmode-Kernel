@@ -62,6 +62,10 @@ struct inet_connection_sock_af_ops {
 	void	    (*addr2sockaddr)(struct sock *sk, struct sockaddr *);
 	int	    (*bind_conflict)(const struct sock *sk,
 				     const struct inet_bind_bucket *tb, bool relax);
+<<<<<<< HEAD
+=======
+	void	    (*mtu_reduced)(struct sock *sk);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 };
 
 /** inet_connection_sock - INET connection oriented sock

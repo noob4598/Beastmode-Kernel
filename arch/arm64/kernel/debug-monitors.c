@@ -279,8 +279,15 @@ int kernel_active_single_step(void)
 /* ptrace API */
 void user_enable_single_step(struct task_struct *task)
 {
+<<<<<<< HEAD
 	set_ti_thread_flag(task_thread_info(task), TIF_SINGLESTEP);
 	set_regs_spsr_ss(task_pt_regs(task));
+=======
+	struct thread_info *ti = task_thread_info(task);
+
+	if (!test_and_set_ti_thread_flag(ti, TIF_SINGLESTEP))
+		set_regs_spsr_ss(task_pt_regs(task));
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 }
 
 void user_disable_single_step(struct task_struct *task)

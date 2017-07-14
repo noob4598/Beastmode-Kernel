@@ -507,6 +507,16 @@ static struct ctl_table ipv4_table[] = {
 		.proc_handler	= proc_do_large_bitmap,
 	},
 	{
+<<<<<<< HEAD
+=======
+		.procname	= "reserved_port_bind",
+		.data		= &sysctl_reserved_port_bind,
+		.maxlen		= sizeof(int),
+		.mode		= 0644,
+		.proc_handler	= proc_dointvec
+	},
+	{
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		.procname	= "igmp_max_memberships",
 		.data		= &sysctl_igmp_max_memberships,
 		.maxlen		= sizeof(int),

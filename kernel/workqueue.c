@@ -610,6 +610,38 @@ static void set_work_pool_and_clear_pending(struct work_struct *work,
 	 */
 	smp_wmb();
 	set_work_data(work, (unsigned long)pool_id << WORK_OFFQ_POOL_SHIFT, 0);
+<<<<<<< HEAD
+=======
+	/*
+	 * The following mb guarantees that previous clear of a PENDING bit
+	 * will not be reordered with any speculative LOADS or STORES from
+	 * work->current_func, which is executed afterwards.  This possible
+	 * reordering can lead to a missed execution on attempt to qeueue
+	 * the same @work.  E.g. consider this case:
+	 *
+	 *   CPU#0                         CPU#1
+	 *   ----------------------------  --------------------------------
+	 *
+	 * 1  STORE event_indicated
+	 * 2  queue_work_on() {
+	 * 3    test_and_set_bit(PENDING)
+	 * 4 }                             set_..._and_clear_pending() {
+	 * 5                                 set_work_data() # clear bit
+	 * 6                                 smp_mb()
+	 * 7                               work->current_func() {
+	 * 8				      LOAD event_indicated
+	 *				   }
+	 *
+	 * Without an explicit full barrier speculative LOAD on line 8 can
+	 * be executed before CPU#0 does STORE on line 1.  If that happens,
+	 * CPU#0 observes the PENDING bit is still set and new execution of
+	 * a @work is not queued in a hope, that CPU#1 will eventually
+	 * finish the queued @work.  Meanwhile CPU#1 does not see
+	 * event_indicated is set, because speculative LOAD was executed
+	 * before actual STORE.
+	 */
+	smp_mb();
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 }
 
 static void clear_work_data(struct work_struct *work)
@@ -1451,8 +1483,11 @@ static void __queue_delayed_work(int cpu, struct workqueue_struct *wq,
 		return;
 	}
 
+<<<<<<< HEAD
 	timer_stats_timer_set_start_info(&dwork->timer);
 
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	dwork->wq = wq;
 	dwork->cpu = cpu;
 	timer->expires = jiffies + delay;
@@ -1885,6 +1920,15 @@ static void send_mayday(struct work_struct *work)
 
 	/* mayday mayday mayday */
 	if (list_empty(&pwq->mayday_node)) {
+<<<<<<< HEAD
+=======
+		/*
+		 * If @pwq is for an unbound wq, its base ref may be put at
+		 * any time due to an attribute change.  Pin @pwq until the
+		 * rescuer is done with it.
+		 */
+		get_pwq(pwq);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		list_add_tail(&pwq->mayday_node, &wq->maydays);
 		wake_up_process(wq->rescuer->task);
 	}
@@ -1932,17 +1976,26 @@ static void pool_mayday_timeout(unsigned long __pool)
  * spin_lock_irq(pool->lock) which may be released and regrabbed
  * multiple times.  Does GFP_KERNEL allocations.  Called only from
  * manager.
+<<<<<<< HEAD
  *
  * RETURNS:
  * %false if no action was taken and pool->lock stayed locked, %true
  * otherwise.
  */
 static bool maybe_create_worker(struct worker_pool *pool)
+=======
+ */
+static void maybe_create_worker(struct worker_pool *pool)
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 __releases(&pool->lock)
 __acquires(&pool->lock)
 {
 	if (!need_to_create_worker(pool))
+<<<<<<< HEAD
 		return false;
+=======
+		return;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 restart:
 	spin_unlock_irq(&pool->lock);
 
@@ -1959,7 +2012,11 @@ restart:
 			start_worker(worker);
 			if (WARN_ON_ONCE(need_to_create_worker(pool)))
 				goto restart;
+<<<<<<< HEAD
 			return true;
+=======
+			return;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		}
 
 		if (!need_to_create_worker(pool))
@@ -1976,7 +2033,11 @@ restart:
 	spin_lock_irq(&pool->lock);
 	if (need_to_create_worker(pool))
 		goto restart;
+<<<<<<< HEAD
 	return true;
+=======
+	return;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 }
 
 /**
@@ -1989,6 +2050,7 @@ restart:
  * LOCKING:
  * spin_lock_irq(pool->lock) which may be released and regrabbed
  * multiple times.  Called only from manager.
+<<<<<<< HEAD
  *
  * RETURNS:
  * %false if no action was taken and pool->lock stayed locked, %true
@@ -1998,6 +2060,11 @@ static bool maybe_destroy_workers(struct worker_pool *pool)
 {
 	bool ret = false;
 
+=======
+ */
+static void maybe_destroy_workers(struct worker_pool *pool)
+{
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	while (too_many_workers(pool)) {
 		struct worker *worker;
 		unsigned long expires;
@@ -2011,10 +2078,14 @@ static bool maybe_destroy_workers(struct worker_pool *pool)
 		}
 
 		destroy_worker(worker);
+<<<<<<< HEAD
 		ret = true;
 	}
 
 	return ret;
+=======
+	}
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 }
 
 /**
@@ -2034,13 +2105,23 @@ static bool maybe_destroy_workers(struct worker_pool *pool)
  * multiple times.  Does GFP_KERNEL allocations.
  *
  * RETURNS:
+<<<<<<< HEAD
  * spin_lock_irq(pool->lock) which may be released and regrabbed
  * multiple times.  Does GFP_KERNEL allocations.
+=======
+ * %false if the pool doesn't need management and the caller can safely
+ * start processing works, %true if management function was performed and
+ * the conditions that the caller verified before calling the function may
+ * no longer be true.
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
  */
 static bool manage_workers(struct worker *worker)
 {
 	struct worker_pool *pool = worker->pool;
+<<<<<<< HEAD
 	bool ret = false;
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	/*
 	 * Managership is governed by two mutexes - manager_arb and
@@ -2064,7 +2145,11 @@ static bool manage_workers(struct worker *worker)
 	 * manager_mutex.
 	 */
 	if (!mutex_trylock(&pool->manager_arb))
+<<<<<<< HEAD
 		return ret;
+=======
+		return false;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	/*
 	 * With manager arbitration won, manager_mutex would be free in
@@ -2074,7 +2159,10 @@ static bool manage_workers(struct worker *worker)
 		spin_unlock_irq(&pool->lock);
 		mutex_lock(&pool->manager_mutex);
 		spin_lock_irq(&pool->lock);
+<<<<<<< HEAD
 		ret = true;
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	}
 
 	pool->flags &= ~POOL_MANAGE_WORKERS;
@@ -2083,12 +2171,21 @@ static bool manage_workers(struct worker *worker)
 	 * Destroy and then create so that may_start_working() is true
 	 * on return.
 	 */
+<<<<<<< HEAD
 	ret |= maybe_destroy_workers(pool);
 	ret |= maybe_create_worker(pool);
 
 	mutex_unlock(&pool->manager_mutex);
 	mutex_unlock(&pool->manager_arb);
 	return ret;
+=======
+	maybe_destroy_workers(pool);
+	maybe_create_worker(pool);
+
+	mutex_unlock(&pool->manager_mutex);
+	mutex_unlock(&pool->manager_arb);
+	return true;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 }
 
 /**
@@ -2369,6 +2466,10 @@ static int rescuer_thread(void *__rescuer)
 	struct worker *rescuer = __rescuer;
 	struct workqueue_struct *wq = rescuer->rescue_wq;
 	struct list_head *scheduled = &rescuer->scheduled;
+<<<<<<< HEAD
+=======
+	bool should_stop;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	set_user_nice(current, RESCUER_NICE_LEVEL);
 
@@ -2380,11 +2481,23 @@ static int rescuer_thread(void *__rescuer)
 repeat:
 	set_current_state(TASK_INTERRUPTIBLE);
 
+<<<<<<< HEAD
 	if (kthread_should_stop()) {
 		__set_current_state(TASK_RUNNING);
 		rescuer->task->flags &= ~PF_WQ_WORKER;
 		return 0;
 	}
+=======
+	/*
+	 * By the time the rescuer is requested to stop, the workqueue
+	 * shouldn't have any work pending, but @wq->maydays may still have
+	 * pwq(s) queued.  This can happen by non-rescuer workers consuming
+	 * all the work items before the rescuer got to them.  Go through
+	 * @wq->maydays processing before acting on should_stop so that the
+	 * list is always empty on exit.
+	 */
+	should_stop = kthread_should_stop();
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	/* see whether any pwq is asking for help */
 	spin_lock_irq(&wq_mayday_lock);
@@ -2416,6 +2529,15 @@ repeat:
 		process_scheduled_works(rescuer);
 
 		/*
+<<<<<<< HEAD
+=======
+		 * Put the reference grabbed by send_mayday().  @pool won't
+		 * go away while we're holding its lock.
+		 */
+		put_pwq(pwq);
+
+		/*
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		 * Leave this pool.  If keep_working() is %true, notify a
 		 * regular worker; otherwise, we end up with 0 concurrency
 		 * and stalling the execution.
@@ -2430,6 +2552,15 @@ repeat:
 
 	spin_unlock_irq(&wq_mayday_lock);
 
+<<<<<<< HEAD
+=======
+	if (should_stop) {
+		__set_current_state(TASK_RUNNING);
+		rescuer->task->flags &= ~PF_WQ_WORKER;
+		return 0;
+	}
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	/* rescuers should never participate in concurrency management */
 	WARN_ON_ONCE(!(rescuer->flags & WORKER_NOT_RUNNING));
 	schedule();
@@ -2864,19 +2995,70 @@ bool flush_work(struct work_struct *work)
 }
 EXPORT_SYMBOL_GPL(flush_work);
 
+<<<<<<< HEAD
 static bool __cancel_work_timer(struct work_struct *work, bool is_dwork)
 {
+=======
+struct cwt_wait {
+	wait_queue_t		wait;
+	struct work_struct	*work;
+};
+
+static int cwt_wakefn(wait_queue_t *wait, unsigned mode, int sync, void *key)
+{
+	struct cwt_wait *cwait = container_of(wait, struct cwt_wait, wait);
+
+	if (cwait->work != key)
+		return 0;
+	return autoremove_wake_function(wait, mode, sync, key);
+}
+
+static bool __cancel_work_timer(struct work_struct *work, bool is_dwork)
+{
+	static DECLARE_WAIT_QUEUE_HEAD(cancel_waitq);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	unsigned long flags;
 	int ret;
 
 	do {
 		ret = try_to_grab_pending(work, is_dwork, &flags);
 		/*
+<<<<<<< HEAD
 		 * If someone else is canceling, wait for the same event it
 		 * would be waiting for before retrying.
 		 */
 		if (unlikely(ret == -ENOENT))
 			flush_work(work);
+=======
+		 * If someone else is already canceling, wait for it to
+		 * finish.  flush_work() doesn't work for PREEMPT_NONE
+		 * because we may get scheduled between @work's completion
+		 * and the other canceling task resuming and clearing
+		 * CANCELING - flush_work() will return false immediately
+		 * as @work is no longer busy, try_to_grab_pending() will
+		 * return -ENOENT as @work is still being canceled and the
+		 * other canceling task won't be able to clear CANCELING as
+		 * we're hogging the CPU.
+		 *
+		 * Let's wait for completion using a waitqueue.  As this
+		 * may lead to the thundering herd problem, use a custom
+		 * wake function which matches @work along with exclusive
+		 * wait and wakeup.
+		 */
+		if (unlikely(ret == -ENOENT)) {
+			struct cwt_wait cwait;
+
+			init_wait(&cwait.wait);
+			cwait.wait.func = cwt_wakefn;
+			cwait.work = work;
+
+			prepare_to_wait_exclusive(&cancel_waitq, &cwait.wait,
+						  TASK_UNINTERRUPTIBLE);
+			if (work_is_canceling(work))
+				schedule();
+			finish_wait(&cancel_waitq, &cwait.wait);
+		}
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	} while (unlikely(ret < 0));
 
 	/* tell other tasks trying to grab @work to back off */
@@ -2885,6 +3067,19 @@ static bool __cancel_work_timer(struct work_struct *work, bool is_dwork)
 
 	flush_work(work);
 	clear_work_data(work);
+<<<<<<< HEAD
+=======
+
+	/*
+	 * Paired with prepare_to_wait() above so that either
+	 * waitqueue_active() is visible here or !work_is_canceling() is
+	 * visible there.
+	 */
+	smp_mb();
+	if (waitqueue_active(&cancel_waitq))
+		__wake_up(&cancel_waitq, TASK_NORMAL, 1, work);
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	return ret;
 }
 
@@ -3363,6 +3558,10 @@ int workqueue_sysfs_register(struct workqueue_struct *wq)
 		}
 	}
 
+<<<<<<< HEAD
+=======
+	dev_set_uevent_suppress(&wq_dev->dev, false);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	kobject_uevent(&wq_dev->dev.kobj, KOBJ_ADD);
 	return 0;
 }
@@ -4056,7 +4255,12 @@ static void wq_update_unbound_numa(struct workqueue_struct *wq, int cpu,
 	if (!pwq) {
 		pr_warning("workqueue: allocation failed while updating NUMA affinity of \"%s\"\n",
 			   wq->name);
+<<<<<<< HEAD
 		goto out_unlock;
+=======
+		mutex_lock(&wq->mutex);
+		goto use_dfl_pwq;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	}
 
 	/*
@@ -4956,7 +5160,11 @@ static void __init wq_numa_init(void)
 	BUG_ON(!tbl);
 
 	for_each_node(node)
+<<<<<<< HEAD
 		BUG_ON(!alloc_cpumask_var_node(&tbl[node], GFP_KERNEL,
+=======
+		BUG_ON(!zalloc_cpumask_var_node(&tbl[node], GFP_KERNEL,
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 				node_online(node) ? node : NUMA_NO_NODE));
 
 	for_each_possible_cpu(cpu) {

@@ -775,6 +775,12 @@ void tick_broadcast_setup_oneshot(struct clock_event_device *bc)
 {
 	int cpu = smp_processor_id();
 
+<<<<<<< HEAD
+=======
+	if (!bc)
+		return;
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	/* Set it up only once ! */
 	if (bc->event_handler != tick_handle_oneshot_broadcast) {
 		int was_periodic = bc->mode == CLOCK_EVT_MODE_PERIODIC;

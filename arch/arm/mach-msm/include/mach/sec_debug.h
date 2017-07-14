@@ -55,11 +55,14 @@ static inline int sec_debug_init(void)
 	return 0;
 }
 
+<<<<<<< HEAD
 #ifdef CONFIG_SEC_PERIPHERAL_SECURE_CHK
 static inline void sec_peripheral_secure_check_fail(void)
 {
 }
 #endif
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 static inline int sec_debug_dump_stack(void)  
 {
 	return 0;

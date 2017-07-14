@@ -50,7 +50,12 @@ union intel_x86_pebs_dse {
 #define OP_LH (P(OP, LOAD) | P(LVL, HIT))
 #define SNOOP_NONE_MISS (P(SNOOP, NONE) | P(SNOOP, MISS))
 
+<<<<<<< HEAD
 static const u64 pebs_data_source[] = {
+=======
+/* Version for Sandy Bridge and later */
+static u64 pebs_data_source[] = {
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	P(OP, LOAD) | P(LVL, MISS) | P(LVL, L3) | P(SNOOP, NA),/* 0x00:ukn L3 */
 	OP_LH | P(LVL, L1)  | P(SNOOP, NONE),	/* 0x01: L1 local */
 	OP_LH | P(LVL, LFB) | P(SNOOP, NONE),	/* 0x02: LFB hit */
@@ -69,6 +74,17 @@ static const u64 pebs_data_source[] = {
 	OP_LH | P(LVL, UNC) | P(SNOOP, NONE), /* 0x0f: uncached */
 };
 
+<<<<<<< HEAD
+=======
+/* Patch up minor differences in the bits */
+void __init intel_pmu_pebs_data_source_nhm(void)
+{
+	pebs_data_source[0x05] = OP_LH | P(LVL, L3)  | P(SNOOP, HIT);
+	pebs_data_source[0x06] = OP_LH | P(LVL, L3)  | P(SNOOP, HITM);
+	pebs_data_source[0x07] = OP_LH | P(LVL, L3)  | P(SNOOP, HITM);
+}
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 static u64 precise_store_data(u64 status)
 {
 	union intel_x86_pebs_dse dse;

@@ -15,6 +15,7 @@
 #include <linux/seq_file.h>
 #include <linux/debugfs.h>
 #include <trace/events/power.h>
+<<<<<<< HEAD
 #include <linux/moduleparam.h>
 
 static bool enable_si_ws = true;
@@ -34,6 +35,8 @@ module_param(enable_ssp_ws, bool, 0644);
 static bool enable_bcm4773_ws = true;
 module_param(enable_bcm4773_ws, bool, 0644);
 
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 #include "power.h"
 
@@ -401,6 +404,7 @@ static void wakeup_source_activate(struct wakeup_source *ws)
 {
 	unsigned int cec;
 
+<<<<<<< HEAD
 if (!enable_si_ws && !strcmp(ws->name, "sensor_ind"))
 		return;
 
@@ -425,6 +429,8 @@ if (!enable_ssp_ws && !strcmp(ws->name, "ssp_wake_lock"))
 if (!enable_bcm4773_ws && !strcmp(ws->name, "bcm4773_wake_lock"))
 		return;
 
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	/*
 	 * active wakeup source should bring the system
 	 * out of PM_SUSPEND_FREEZE state

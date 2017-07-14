@@ -1213,6 +1213,10 @@ void sctp_assoc_update(struct sctp_association *asoc,
 	asoc->c = new->c;
 	asoc->peer.rwnd = new->peer.rwnd;
 	asoc->peer.sack_needed = new->peer.sack_needed;
+<<<<<<< HEAD
+=======
+	asoc->peer.auth_capable = new->peer.auth_capable;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	asoc->peer.i = new->peer.i;
 	sctp_tsnmap_init(&asoc->peer.tsn_map, SCTP_TSN_MAP_INITIAL,
 			 asoc->peer.i.initial_tsn, GFP_ATOMIC);
@@ -1296,11 +1300,15 @@ void sctp_assoc_update(struct sctp_association *asoc,
 	asoc->peer.peer_hmacs = new->peer.peer_hmacs;
 	new->peer.peer_hmacs = NULL;
 
+<<<<<<< HEAD
 	sctp_auth_key_put(asoc->asoc_shared_key);
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	sctp_auth_asoc_init_active_key(asoc, GFP_ATOMIC);
 }
 
 /* Update the retran path for sending a retransmitted packet.
+<<<<<<< HEAD
  * Round-robin through the active transports, else round-robin
  * through the inactive transports as this is the next best thing
  * we can try.
@@ -1367,16 +1375,121 @@ void sctp_assoc_update_retran_path(struct sctp_association *asoc)
 /* Choose the transport for sending retransmit packet.  */
 struct sctp_transport *sctp_assoc_choose_alter_transport(
 	struct sctp_association *asoc, struct sctp_transport *last_sent_to)
+=======
+ * See also RFC4960, 6.4. Multi-Homed SCTP Endpoints:
+ *
+ *   When there is outbound data to send and the primary path
+ *   becomes inactive (e.g., due to failures), or where the
+ *   SCTP user explicitly requests to send data to an
+ *   inactive destination transport address, before reporting
+ *   an error to its ULP, the SCTP endpoint should try to send
+ *   the data to an alternate active destination transport
+ *   address if one exists.
+ *
+ *   When retransmitting data that timed out, if the endpoint
+ *   is multihomed, it should consider each source-destination
+ *   address pair in its retransmission selection policy.
+ *   When retransmitting timed-out data, the endpoint should
+ *   attempt to pick the most divergent source-destination
+ *   pair from the original source-destination pair to which
+ *   the packet was transmitted.
+ *
+ *   Note: Rules for picking the most divergent source-destination
+ *   pair are an implementation decision and are not specified
+ *   within this document.
+ *
+ * Our basic strategy is to round-robin transports in priorities
+ * according to sctp_state_prio_map[] e.g., if no such
+ * transport with state SCTP_ACTIVE exists, round-robin through
+ * SCTP_UNKNOWN, etc. You get the picture.
+ */
+static const u8 sctp_trans_state_to_prio_map[] = {
+	[SCTP_ACTIVE]   = 3,    /* best case */
+	[SCTP_UNKNOWN]  = 2,
+	[SCTP_PF]       = 1,
+	[SCTP_INACTIVE] = 0,    /* worst case */
+};
+
+static u8 sctp_trans_score(const struct sctp_transport *trans)
+{
+	return sctp_trans_state_to_prio_map[trans->state];
+}
+
+static struct sctp_transport *sctp_trans_elect_best(struct sctp_transport *curr,
+                                                    struct sctp_transport *best)
+{
+	if (best == NULL)
+		return curr;
+
+	return sctp_trans_score(curr) > sctp_trans_score(best) ? curr : best;
+}
+
+void sctp_assoc_update_retran_path(struct sctp_association *asoc)
+{
+	struct sctp_transport *trans = asoc->peer.retran_path;
+	struct sctp_transport *trans_next = NULL;
+
+	/* We're done as we only have the one and only path. */
+	if (asoc->peer.transport_count == 1)
+		return;
+	/* If active_path and retran_path are the same and active,
+	 * then this is the only active path. Use it.
+	 */
+	if (asoc->peer.active_path == asoc->peer.retran_path &&
+	    asoc->peer.active_path->state == SCTP_ACTIVE)
+		return;
+
+	/* Iterate from retran_path's successor back to retran_path. */
+	for (trans = list_next_entry(trans, transports); 1;
+	     trans = list_next_entry(trans, transports)) {
+		/* Manually skip the head element. */
+		if (&trans->transports == &asoc->peer.transport_addr_list)
+			continue;
+		if (trans->state == SCTP_UNCONFIRMED)
+			continue;
+		trans_next = sctp_trans_elect_best(trans, trans_next);
+		/* Active is good enough for immediate return. */
+		if (trans_next->state == SCTP_ACTIVE)
+			break;
+		/* We've reached the end, time to update path. */
+		if (trans == asoc->peer.retran_path)
+			break;
+	}
+
+	if (trans_next != NULL)
+		asoc->peer.retran_path = trans_next;
+
+	SCTP_DEBUG_PRINTK_IPADDR("sctp_assoc_update_retran_path:association"
+				 " %p updated new path to addr: ",
+				 " port: %d\n",
+				 asoc,
+				 (&asoc->peer.retran_path->ipaddr),
+				 ntohs(asoc->peer.retran_path->ipaddr.v4.sin_port));
+}
+
+struct sctp_transport *
+sctp_assoc_choose_alter_transport(struct sctp_association *asoc,
+				  struct sctp_transport *last_sent_to)
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 {
 	/* If this is the first time packet is sent, use the active path,
 	 * else use the retran path. If the last packet was sent over the
 	 * retran path, update the retran path and use it.
 	 */
+<<<<<<< HEAD
 	if (!last_sent_to)
 		return asoc->peer.active_path;
 	else {
 		if (last_sent_to == asoc->peer.retran_path)
 			sctp_assoc_update_retran_path(asoc);
+=======
+	if (last_sent_to == NULL) {
+		return asoc->peer.active_path;
+	} else {
+		if (last_sent_to == asoc->peer.retran_path)
+			sctp_assoc_update_retran_path(asoc);
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		return asoc->peer.retran_path;
 	}
 }
@@ -1658,6 +1771,11 @@ struct sctp_chunk *sctp_assoc_lookup_asconf_ack(
 	 * ack chunk whose serial number matches that of the request.
 	 */
 	list_for_each_entry(ack, &asoc->asconf_ack_list, transmitted_list) {
+<<<<<<< HEAD
+=======
+		if (sctp_chunk_pending(ack))
+			continue;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		if (ack->subh.addip_hdr->serial == serial) {
 			sctp_chunk_hold(ack);
 			return ack;

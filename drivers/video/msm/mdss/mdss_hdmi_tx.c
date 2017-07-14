@@ -1026,7 +1026,11 @@ static int hdmi_tx_sysfs_create(struct hdmi_tx_ctrl *hdmi_ctrl,
 		return rc;
 	}
 	hdmi_ctrl->kobj = &fbi->dev->kobj;
+<<<<<<< HEAD
 	DEV_DBG("%s: sysfs group %p\n", __func__, hdmi_ctrl->kobj);
+=======
+	DEV_DBG("%s: sysfs group %pK\n", __func__, hdmi_ctrl->kobj);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	return 0;
 } /* hdmi_tx_sysfs_create */
@@ -3632,8 +3636,13 @@ static int hdmi_tx_init_resource(struct hdmi_tx_ctrl *hdmi_ctrl)
 				hdmi_tx_io_name(i));
 			goto error;
 		}
+<<<<<<< HEAD
 		DEV_INFO("%s: '%s': start = 0x%x, len=0x%x\n", __func__,
 			hdmi_tx_io_name(i), (u32)pdata->io[i].base,
+=======
+		DEV_INFO("%s: '%s': start = 0x%pK, len=0x%x\n", __func__,
+			hdmi_tx_io_name(i), pdata->io[i].base,
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 			pdata->io[i].len);
 	}
 

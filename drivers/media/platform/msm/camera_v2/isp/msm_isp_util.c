@@ -13,7 +13,13 @@
 #include <linux/io.h>
 #include <media/v4l2-subdev.h>
 #include <linux/ratelimit.h>
+<<<<<<< HEAD
 
+=======
+#ifdef CONFIG_MSM_AVTIMER
+#include <linux/avtimer_kernel.h>
+#endif
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 #include "msm.h"
 #include "msm_isp_util.h"
 #include "msm_isp_axi_util.h"
@@ -305,14 +311,22 @@ static int msm_isp_get_max_clk_rate(struct vfe_device *vfe_dev, long *rate)
 	long          round_rate = 0;
 
 	if (!vfe_dev || !rate) {
+<<<<<<< HEAD
 		pr_err("%s:%d failed: vfe_dev %p rate %p\n", __func__, __LINE__,
+=======
+		pr_err("%s:%d failed: vfe_dev %pK rate %pK\n", __func__, __LINE__,
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 			vfe_dev, rate);
 		return -EINVAL;
 	}
 
 	*rate = 0;
 	if (!vfe_dev->hw_info) {
+<<<<<<< HEAD
 		pr_err("%s:%d failed: vfe_dev->hw_info %p\n", __func__,
+=======
+		pr_err("%s:%d failed: vfe_dev->hw_info %pK\n", __func__,
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 			__LINE__, vfe_dev->hw_info);
 		return -EINVAL;
 	}
@@ -440,10 +454,17 @@ long msm_isp_ioctl(struct v4l2_subdev *sd,
 
 	if (!vfe_dev || !vfe_dev->vfe_vbif_base ||
 		!vfe_dev->vfe_base) {
+<<<<<<< HEAD
 		pr_err("%s:%d failed: invalid params %p\n",
 			__func__, __LINE__, vfe_dev);
 		if (vfe_dev)
 			pr_err("%s:%d failed %p %p\n", __func__,
+=======
+		pr_err("%s:%d failed: invalid params %pK\n",
+			__func__, __LINE__, vfe_dev);
+		if (vfe_dev)
+			pr_err("%s:%d failed %pK %pK\n", __func__,
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 				__LINE__, vfe_dev->vfe_base,
 				vfe_dev->vfe_vbif_base);
 		return -EINVAL;
@@ -564,13 +585,21 @@ static int msm_isp_send_hw_cmd(struct vfe_device *vfe_dev,
 	uint32_t *cfg_data, uint32_t cmd_len)
 {
 	if (!vfe_dev || !reg_cfg_cmd) {
+<<<<<<< HEAD
 		pr_err("%s:%d failed: vfe_dev %p reg_cfg_cmd %p\n", __func__,
+=======
+		pr_err("%s:%d failed: vfe_dev %pK reg_cfg_cmd %pK\n", __func__,
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 			__LINE__, vfe_dev, reg_cfg_cmd);
 		return -EINVAL;
 	}
 	if ((reg_cfg_cmd->cmd_type != VFE_CFG_MASK) &&
 		(!cfg_data || !cmd_len)) {
+<<<<<<< HEAD
 		pr_err("%s:%d failed: cmd type %d cfg_data %p cmd_len %d\n",
+=======
+		pr_err("%s:%d failed: cmd type %d cfg_data %pK cmd_len %d\n",
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 			__func__, __LINE__, reg_cfg_cmd->cmd_type, cfg_data,
 			cmd_len);
 		return -EINVAL;
@@ -613,7 +642,12 @@ static int msm_isp_send_hw_cmd(struct vfe_device *vfe_dev,
 	case VFE_READ_DMI_16BIT:
 	case VFE_READ_DMI_32BIT:
 	case VFE_READ_DMI_64BIT: {
+<<<<<<< HEAD
 		if (reg_cfg_cmd->cmd_type == VFE_WRITE_DMI_64BIT) {
+=======
+		if (reg_cfg_cmd->cmd_type == VFE_WRITE_DMI_64BIT ||
+			reg_cfg_cmd->cmd_type == VFE_READ_DMI_64BIT) {
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 			if ((reg_cfg_cmd->u.dmi_info.hi_tbl_offset <=
 				reg_cfg_cmd->u.dmi_info.lo_tbl_offset) ||
 				(reg_cfg_cmd->u.dmi_info.hi_tbl_offset -
@@ -897,7 +931,11 @@ int msm_isp_proc_cmd_list(struct vfe_device *vfe_dev, void *arg)
 	struct msm_vfe_cfg_cmd_list cmd, cmd_next;
 
 	if (!vfe_dev || !arg) {
+<<<<<<< HEAD
 		pr_err("%s:%d failed: vfe_dev %p arg %p", __func__, __LINE__,
+=======
+		pr_err("%s:%d failed: vfe_dev %pK arg %pK", __func__, __LINE__,
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 			vfe_dev, arg);
 		return -EINVAL;
 	}
@@ -1124,8 +1162,11 @@ void msm_isp_update_error_frame_count(struct vfe_device *vfe_dev)
 {
 	struct msm_vfe_error_info *error_info = &vfe_dev->error_info;
 	error_info->info_dump_frame_count++;
+<<<<<<< HEAD
 	if (error_info->info_dump_frame_count == 0)
 		error_info->info_dump_frame_count++;
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 }
 
 void msm_isp_process_error_info(struct vfe_device *vfe_dev)
@@ -1350,7 +1391,12 @@ irqreturn_t msm_isp_process_irq(int irq_num, void *data)
 	error_mask1 &= irq_status1;
 	irq_status0 &= ~error_mask0;
 	irq_status1 &= ~error_mask1;
+<<<<<<< HEAD
 	if ((error_mask0 != 0) || (error_mask1 != 0))
+=======
+	if (!vfe_dev->ignore_error &&
+			((error_mask0 != 0) || (error_mask1 != 0)))
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		msm_isp_update_error_info(vfe_dev, error_mask0, error_mask1);
 
 	if ((irq_status0 == 0) && (irq_status1 == 0) &&

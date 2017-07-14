@@ -161,7 +161,11 @@ static int msm_isp_prepare_v4l2_buf(struct msm_isp_buf_mgr *buf_mgr,
 		ion_import_dma_buf(buf_mgr->client,
 			v4l2_buf->m.planes[i].m.userptr);
 		if (IS_ERR_OR_NULL(handle)) {
+<<<<<<< HEAD
 			pr_err("%s: buf has null/error ION handle %p\n",
+=======
+			pr_err("%s: buf has null/error ION handle %pK\n",
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 				__func__, handle);
 			goto ion_map_error;
 		}
@@ -319,6 +323,13 @@ static int msm_isp_buf_unprepare(struct msm_isp_buf_mgr *buf_mgr,
 
 	for (i = 0; i < bufq->num_bufs; i++) {
 		buf_info = msm_isp_get_buf_ptr(bufq, i);
+<<<<<<< HEAD
+=======
+		if (!buf_info) {
+			pr_err("%s: buf not found\n", __func__);
+			return rc;
+		}
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		spin_lock_irqsave(&buf_info->lock, flags1);
 		if (buf_info->state == MSM_ISP_BUFFER_STATE_UNUSED ||
 				buf_info->state ==
@@ -389,6 +400,13 @@ static int msm_isp_get_buf(struct msm_isp_buf_mgr *buf_mgr, uint32_t id,
 		pr_err("%s: Invalid bufq\n", __func__);
 		return rc;
 	}
+<<<<<<< HEAD
+=======
+	if (!bufq->bufq_handle) {
+		pr_err("%s: Invalid bufq handle\n", __func__);
+		return rc;
+	}
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	*buf_info = NULL;
 	spin_lock_irqsave(&bufq->bufq_lock, flags1);

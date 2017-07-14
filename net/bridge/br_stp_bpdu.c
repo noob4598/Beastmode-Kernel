@@ -153,7 +153,11 @@ void br_stp_rcv(const struct stp_proto *proto, struct sk_buff *skb,
 	if (buf[0] != 0 || buf[1] != 0 || buf[2] != 0)
 		goto err;
 
+<<<<<<< HEAD
 	p = br_port_get_rcu(dev);
+=======
+	p = br_port_get_check_rcu(dev);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	if (!p)
 		goto err;
 

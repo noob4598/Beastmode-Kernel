@@ -392,7 +392,11 @@ static struct cpuidle_device apm_cpuidle_device;
 /*
  * Local variables
  */
+<<<<<<< HEAD
 static struct {
+=======
+__visible struct {
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	unsigned long	offset;
 	unsigned short	segment;
 } apm_bios_entry;

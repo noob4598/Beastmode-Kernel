@@ -1154,14 +1154,29 @@ static int synaptics_rmi4_irq_enable(struct synaptics_rmi4_data *rmi4_data,
 	return retval;
 }
 
+<<<<<<< HEAD
 static void synaptics_rmi4_set_intr_mask(struct synaptics_rmi4_fn *fhandler,
 		struct synaptics_rmi4_fn_desc *fd,
 		unsigned int intr_count)
+=======
+static int synaptics_rmi4_set_intr_mask(struct synaptics_rmi4_fn *fhandler,
+					struct synaptics_rmi4_fn_desc *fd,
+					unsigned int intr_count)
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 {
 	unsigned char ii;
 	unsigned char intr_offset;
 
 	fhandler->intr_reg_num = (intr_count + 7) / 8;
+<<<<<<< HEAD
+=======
+	if (fhandler->intr_reg_num >= MAX_INTR_REGISTERS) {
+		fhandler->intr_reg_num = 0;
+		fhandler->num_of_data_sources = 0;
+		fhandler->intr_mask = 0;
+		return -EINVAL;
+	}
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	if (fhandler->intr_reg_num != 0)
 		fhandler->intr_reg_num -= 1;
 
@@ -1174,7 +1189,11 @@ static void synaptics_rmi4_set_intr_mask(struct synaptics_rmi4_fn *fhandler,
 			ii++)
 		fhandler->intr_mask |= 1 << ii;
 
+<<<<<<< HEAD
 	return;
+=======
+	return 0;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 }
 
 static int synaptics_rmi4_f01_init(struct synaptics_rmi4_data *rmi4_data,
@@ -1182,12 +1201,23 @@ static int synaptics_rmi4_f01_init(struct synaptics_rmi4_data *rmi4_data,
 		struct synaptics_rmi4_fn_desc *fd,
 		unsigned int intr_count)
 {
+<<<<<<< HEAD
+=======
+	int retval;
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	fhandler->fn_number = fd->fn_number;
 	fhandler->num_of_data_sources = fd->intr_src_count;
 	fhandler->data = NULL;
 	fhandler->extra = NULL;
 
+<<<<<<< HEAD
 	synaptics_rmi4_set_intr_mask(fhandler, fd, intr_count);
+=======
+	retval = synaptics_rmi4_set_intr_mask(fhandler, fd, intr_count);
+	if (retval < 0)
+		return retval;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	rmi4_data->f01_query_base_addr = fd->query_base_addr;
 	rmi4_data->f01_ctrl_base_addr = fd->ctrl_base_addr;
@@ -1257,7 +1287,13 @@ static int synaptics_rmi4_f11_init(struct synaptics_rmi4_data *rmi4_data,
 
 	rmi4_data->max_touch_width = MAX_F11_TOUCH_WIDTH;
 
+<<<<<<< HEAD
 	synaptics_rmi4_set_intr_mask(fhandler, fd, intr_count);
+=======
+	retval = synaptics_rmi4_set_intr_mask(fhandler, fd, intr_count);
+	if (retval < 0)
+		return retval;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	abs_data_size = query[5] & MASK_2BIT;
 	abs_data_blk_size = 3 + (2 * (abs_data_size == 0 ? 1 : 0));
@@ -1452,7 +1488,13 @@ static int synaptics_rmi4_f12_init(struct synaptics_rmi4_data *rmi4_data,
 	rmi4_data->max_touch_width = max(rmi4_data->num_of_rx,
 			rmi4_data->num_of_tx);
 
+<<<<<<< HEAD
 	synaptics_rmi4_set_intr_mask(fhandler, fd, intr_count);
+=======
+	retval = synaptics_rmi4_set_intr_mask(fhandler, fd, intr_count);
+	if (retval < 0)
+		return retval;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	/* Allocate memory for finger data storage space */
 	fhandler->data_size = num_of_fingers * size_of_2d_data;
@@ -1601,7 +1643,13 @@ static int synaptics_rmi4_f1a_init(struct synaptics_rmi4_data *rmi4_data,
 	fhandler->fn_number = fd->fn_number;
 	fhandler->num_of_data_sources = fd->intr_src_count;
 
+<<<<<<< HEAD
 	synaptics_rmi4_set_intr_mask(fhandler, fd, intr_count);
+=======
+	retval = synaptics_rmi4_set_intr_mask(fhandler, fd, intr_count);
+	if (retval < 0)
+		return retval;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	retval = synaptics_rmi4_f1a_alloc_mem(rmi4_data, fhandler);
 	if (retval < 0)

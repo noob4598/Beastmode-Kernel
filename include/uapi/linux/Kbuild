@@ -21,6 +21,10 @@ header-y += netfilter_ipv6/
 header-y += usb/
 header-y += wimax/
 header-y += mfd/
+<<<<<<< HEAD
+=======
+header-y += nfc/
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 genhdr-y += version.h
 

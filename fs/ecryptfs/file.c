@@ -90,6 +90,10 @@ static ssize_t ecryptfs_read_update_atime(struct kiocb *iocb,
 }
 
 struct ecryptfs_getdents_callback {
+<<<<<<< HEAD
+=======
+	struct dir_context ctx;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	void *dirent;
 	struct dentry *dentry;
 	filldir_t filldir;
@@ -137,11 +141,23 @@ static int ecryptfs_readdir(struct file *file, void *dirent, filldir_t filldir)
 	int rc;
 	struct file *lower_file;
 	struct inode *inode;
+<<<<<<< HEAD
 	struct ecryptfs_getdents_callback buf;
+=======
+	struct ecryptfs_getdents_callback buf = {
+		.dirent = dirent,
+		.dentry = file->f_path.dentry,
+		.filldir = filldir,
+		.filldir_called = 0,
+		.entries_written = 0,
+		.ctx.actor = ecryptfs_filldir
+	};
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	lower_file = ecryptfs_file_to_lower(file);
 	lower_file->f_pos = file->f_pos;
 	inode = file_inode(file);
+<<<<<<< HEAD
 	memset(&buf, 0, sizeof(buf));
 	buf.dirent = dirent;
 	buf.dentry = file->f_path.dentry;
@@ -149,6 +165,9 @@ static int ecryptfs_readdir(struct file *file, void *dirent, filldir_t filldir)
 	buf.filldir_called = 0;
 	buf.entries_written = 0;
 	rc = vfs_readdir(lower_file, ecryptfs_filldir, (void *)&buf);
+=======
+	rc = iterate_dir(lower_file, &buf.ctx);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	file->f_pos = lower_file->f_pos;
 	if (rc < 0)
 		goto out;
@@ -273,6 +292,22 @@ out:
 	return rc;
 }
 
+<<<<<<< HEAD
+=======
+static int ecryptfs_mmap(struct file *file, struct vm_area_struct *vma)
+{
+	struct file *lower_file = ecryptfs_file_to_lower(file);
+	/*
+	 * Don't allow mmap on top of file systems that don't support it
+	 * natively.  If FILESYSTEM_MAX_STACK_DEPTH > 2 or ecryptfs
+	 * allows recursive mounting, this will need to be extended.
+	 */
+	if (!lower_file->f_op->mmap)
+		return -ENODEV;
+	return generic_file_mmap(file, vma);
+}
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 /**
  * ecryptfs_open
  * @inode: inode speciying file to open
@@ -286,7 +321,10 @@ static int ecryptfs_open(struct inode *inode, struct file *file)
 {
 	int rc = 0;
 	struct ecryptfs_crypt_stat *crypt_stat = NULL;
+<<<<<<< HEAD
 	struct ecryptfs_mount_crypt_stat *mount_crypt_stat;
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	struct dentry *ecryptfs_dentry = file->f_path.dentry;
 	/* Private value of ecryptfs_dentry allocated in
 	 * ecryptfs_lookup() */
@@ -298,6 +336,7 @@ static int ecryptfs_open(struct inode *inode, struct file *file)
 	struct timespec ts;
 #endif
 
+<<<<<<< HEAD
 	mount_crypt_stat = &ecryptfs_superblock_to_private(
 		ecryptfs_dentry->d_sb)->mount_crypt_stat;
 	if ((mount_crypt_stat->flags & ECRYPTFS_ENCRYPTED_VIEW_ENABLED)
@@ -309,6 +348,8 @@ static int ecryptfs_open(struct inode *inode, struct file *file)
 		rc = -EPERM;
 		goto out;
 	}
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	/* Released in ecryptfs_release or end of function if failure */
 	file_info = kmem_cache_zalloc(ecryptfs_file_info_cache, GFP_KERNEL);
 	ecryptfs_set_file_private(file, file_info);
@@ -738,7 +779,11 @@ const struct file_operations ecryptfs_main_fops = {
 #ifdef CONFIG_COMPAT
 	.compat_ioctl = ecryptfs_compat_ioctl,
 #endif
+<<<<<<< HEAD
 	.mmap = generic_file_mmap,
+=======
+	.mmap = ecryptfs_mmap,
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	.open = ecryptfs_open,
 	.flush = ecryptfs_flush,
 	.release = ecryptfs_release,

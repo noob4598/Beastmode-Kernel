@@ -224,7 +224,12 @@ vfe_remap_failed:
 	msm_cam_clk_enable(&vfe_dev->pdev->dev, msm_vfe44_clk_info,
 		vfe_dev->vfe_clk, ARRAY_SIZE(msm_vfe44_clk_info), 0);
 clk_enable_failed:
+<<<<<<< HEAD
 	regulator_disable(vfe_dev->fs_vfe);
+=======
+	if (vfe_dev->fs_vfe)
+		regulator_disable(vfe_dev->fs_vfe);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 fs_failed:
 	msm_isp_deinit_bandwidth_mgr(ISP_VFE0 + vfe_dev->pdev->id);
 bus_scale_register_failed:
@@ -321,6 +326,7 @@ static void msm_vfe44_process_violation_status(
 	if (!violation_status)
 		return;
 
+<<<<<<< HEAD
 	if (violation_status == 0)
 		pr_err("%s: camif violation\n", __func__);
 	if (violation_status == 1)
@@ -380,6 +386,67 @@ static void msm_vfe44_process_violation_status(
 	if (violation_status == 30)
 		pr_err("%s: abf violation\n", __func__);
 	if (violation_status == 31)
+=======
+	if (violation_status & (1 << 0))
+		pr_err("%s: camif violation\n", __func__);
+	if (violation_status & (1 << 1))
+		pr_err("%s: black violation\n", __func__);
+	if (violation_status & (1 << 2))
+		pr_err("%s: rolloff violation\n", __func__);
+	if (violation_status & (1 << 3))
+		pr_err("%s: demux violation\n", __func__);
+	if (violation_status & (1 << 4))
+		pr_err("%s: demosaic violation\n", __func__);
+	if (violation_status & (1 << 5))
+		pr_err("%s: wb violation\n", __func__);
+	if (violation_status & (1 << 6))
+		pr_err("%s: clf violation\n", __func__);
+	if (violation_status & (1 << 7))
+		pr_err("%s: color correct violation\n", __func__);
+	if (violation_status & (1 << 8))
+		pr_err("%s: rgb lut violation\n", __func__);
+	if (violation_status & (1 << 9))
+		pr_err("%s: la violation\n", __func__);
+	if (violation_status & (1 << 10))
+		pr_err("%s: chroma enhance violation\n", __func__);
+	if (violation_status & (1 << 11))
+		pr_err("%s: chroma supress mce violation\n", __func__);
+	if (violation_status & (1 << 12))
+		pr_err("%s: skin enhance violation\n", __func__);
+	if (violation_status & (1 << 13))
+		pr_err("%s: color tranform enc violation\n", __func__);
+	if (violation_status & (1 << 14))
+		pr_err("%s: color tranform view violation\n", __func__);
+	if (violation_status & (1 << 15))
+		pr_err("%s: scale enc y violation\n", __func__);
+	if (violation_status & (1 << 16))
+		pr_err("%s: scale enc cbcr violation\n", __func__);
+	if (violation_status & (1 << 17))
+		pr_err("%s: scale view y violation\n", __func__);
+	if (violation_status & (1 << 18))
+		pr_err("%s: scale view cbcr violation\n", __func__);
+	if (violation_status & (1 << 21))
+		pr_err("%s: crop enc y violation\n", __func__);
+	if (violation_status & (1 << 22))
+		pr_err("%s: crop enc cbcr violation\n", __func__);
+	if (violation_status & (1 << 23))
+		pr_err("%s: crop view y violation\n", __func__);
+	if (violation_status & (1 << 24))
+		pr_err("%s: crop view cbcr violation\n", __func__);
+	if (violation_status & (1 << 25))
+		pr_err("%s: realign buf y violation\n", __func__);
+	if (violation_status & (1 << 26))
+		pr_err("%s: realign buf cb violation\n", __func__);
+	if (violation_status & (1 << 27))
+		pr_err("%s: realign buf cr violation\n", __func__);
+	if (violation_status & (1 << 28))
+		pr_err("%s: ltm violation\n", __func__);
+	if (violation_status & (1 << 29))
+		pr_err("%s: ltm cov violation\n", __func__);
+	if (violation_status & (1 << 30))
+		pr_err("%s: abf violation\n", __func__);
+	if (violation_status & (1 << 31))
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		pr_err("%s: bpc violation\n", __func__);
 }
 
@@ -823,8 +890,15 @@ static void msm_vfe44_update_camif_state(struct vfe_device *vfe_dev,
 		msm_camera_io_w_mb(0x0, vfe_dev->vfe_base + 0x2F4);
 		vfe_dev->axi_data.src_info[VFE_PIX_0].active = 0;
 	} else if (update_state == DISABLE_CAMIF_IMMEDIATELY) {
+<<<<<<< HEAD
 		msm_camera_io_w_mb(0x6, vfe_dev->vfe_base + 0x2F4);
 		vfe_dev->axi_data.src_info[VFE_PIX_0].active = 0;
+=======
+		vfe_dev->ignore_error = 1;
+		msm_camera_io_w_mb(0x6, vfe_dev->vfe_base + 0x2F4);
+		vfe_dev->axi_data.src_info[VFE_PIX_0].active = 0;
+		vfe_dev->ignore_error = 0;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	}
 }
 
@@ -999,8 +1073,12 @@ static void msm_vfe44_cfg_axi_ub_equal_default(
 	uint8_t num_used_wms = 0;
 	uint32_t prop_size = 0;
 	uint32_t wm_ub_size;
+<<<<<<< HEAD
 	uint32_t delta;
 
+=======
+	uint64_t delta;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	for (i = 0; i < axi_data->hw_info->num_wm; i++) {
 		if (axi_data->free_wm[i] > 0) {
 			num_used_wms++;
@@ -1011,10 +1089,18 @@ static void msm_vfe44_cfg_axi_ub_equal_default(
 		axi_data->hw_info->min_wm_ub * num_used_wms;
 	for (i = 0; i < axi_data->hw_info->num_wm; i++) {
 		if (axi_data->free_wm[i]) {
+<<<<<<< HEAD
 			delta =
 				((axi_data->wm_image_size[i] / OVERFLOW_DEVIDER) *
 					prop_size)/ (total_image_size / OVERFLOW_DEVIDER);
 			wm_ub_size = axi_data->hw_info->min_wm_ub + delta;
+=======
+			delta = (uint64_t)axi_data->wm_image_size[i] *
+					(uint64_t)prop_size;
+			do_div(delta, total_image_size);
+			wm_ub_size = axi_data->hw_info->min_wm_ub +
+				(uint32_t)delta;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 			msm_camera_io_w(ub_offset << 16 | (wm_ub_size - 1),
 				vfe_dev->vfe_base + VFE44_WM_BASE(i) + 0x10);
 			ub_offset += wm_ub_size;

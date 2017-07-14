@@ -176,7 +176,11 @@ SYSCALL_DEFINE2(setgroups16, int, gidsetsize, old_gid_t __user *, grouplist)
 	struct group_info *group_info;
 	int retval;
 
+<<<<<<< HEAD
 	if (!nsown_capable(CAP_SETGID))
+=======
+	if (!may_setgroups())
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		return -EPERM;
 	if ((unsigned)gidsetsize > NGROUPS_MAX)
 		return -EINVAL;

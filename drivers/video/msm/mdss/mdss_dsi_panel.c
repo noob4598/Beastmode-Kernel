@@ -22,12 +22,21 @@
 #include <linux/qpnp/pwm.h>
 #include <linux/err.h>
 
+<<<<<<< HEAD
 #ifdef CONFIG_STATE_NOTIFIER
 #include <linux/state_notifier.h>
 #endif
 
 #include "mdss_dsi.h"
 
+=======
+#include "mdss_dsi.h"
+
+#ifdef CONFIG_POWERSUSPEND
+#include <linux/powersuspend.h>
+#endif
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 #if defined(CONFIG_FB_MSM_MDSS_SAMSUNG)
 #include "mdss_debug.h"
 #include "samsung/ss_dsi_panel_common.h"
@@ -41,8 +50,11 @@ extern struct work_struct  esd_irq_work;
 
 DEFINE_LED_TRIGGER(bl_led_trigger);
 
+<<<<<<< HEAD
 bool mdss_screen_on = true;
 
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 void mdss_dsi_panel_pwm_cfg(struct mdss_dsi_ctrl_pdata *ctrl)
 {
 	ctrl->pwm_bl = pwm_request(ctrl->pwm_lpg_chan, "lcd-bklt");
@@ -220,12 +232,20 @@ static void mdss_dsi_panel_bklt_dcs(struct mdss_dsi_ctrl_pdata *ctrl, int level)
 #if defined(CONFIG_FB_MSM_MDSS_SAMSUNG)
 	if (pinfo->blank_state != MDSS_PANEL_BLANK_UNBLANK){
 		pr_err("%s: level(%d), blank_state(%d)\n", __func__, level, pinfo->blank_state);
+<<<<<<< HEAD
 		return;
+=======
+		if (level <= 1)
+			return;
+		if (ctrl->low_power_config)
+			ctrl->low_power_config(&ctrl->panel_data, 0);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	}
 	else if (!pinfo->panel_state){
 		pr_err("%s: panel_state is 0\n", __func__);
 		return;
 	}
+<<<<<<< HEAD
 	else {
 		/*
 		*	To avoid DSI0 & DSI1 twice update.
@@ -237,6 +257,17 @@ static void mdss_dsi_panel_bklt_dcs(struct mdss_dsi_ctrl_pdata *ctrl, int level)
 			mdss_samsung_brightness_dcs(ctrl, level);
 			return;
 		}
+=======
+	/*
+	*	To avoid DSI0 & DSI1 twice update.
+	*	Triggered by cmd_sync_wait_trigger.
+	*/
+	if (ctrl->cmd_sync_wait_broadcast && !ctrl->cmd_sync_wait_trigger)
+		return;
+	else {
+		mdss_samsung_brightness_dcs(ctrl, level);
+		return;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	}
 #endif
 
@@ -381,7 +412,11 @@ int mdss_dsi_panel_reset(struct mdss_panel_data *pdata, int enable)
 			pr_err("%s: Reset panel done\n", __func__);
 		}
 	}else {
+<<<<<<< HEAD
 #if defined(CONFIG_FB_MSM_MDSS_SAMSUNG)
+=======
+#if defined(CONFIG_FB_MSM_MDSS_SAMSUNG) && !defined(CONFIG_SEC_LENTIS_PROJECT)
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		if (ctrl_pdata->cmd_sync_wait_broadcast && ctrl_pdata->cmd_sync_wait_trigger)
 			return 0; /*off reset :have to controlled on dsi 0 on broadcast*/
 #endif
@@ -683,15 +718,22 @@ static int mdss_dsi_panel_on(struct mdss_panel_data *pdata)
 		return -EINVAL;
 	}
 
+<<<<<<< HEAD
 	mdss_screen_on = true;
 #ifdef CONFIG_STATE_NOTIFIER
 		state_resume();
 #endif
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	pinfo = &pdata->panel_info;
 	ctrl = container_of(pdata, struct mdss_dsi_ctrl_pdata,
 				panel_data);
 
+<<<<<<< HEAD
 	pr_info("%s: ctrl=%p ndx=%d\n", __func__, ctrl, ctrl->ndx);
+=======
+	pr_debug("%s: ctrl=%pK ndx=%d\n", __func__, ctrl, ctrl->ndx);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 #if defined(CONFIG_FB_MSM_MDSS_SAMSUNG)
 	if (ctrl->ndx == DSI_CTRL_0)
@@ -734,6 +776,13 @@ static int mdss_dsi_panel_on(struct mdss_panel_data *pdata)
 			mdss_dsi_panel_cmds_send(ctrl, &ctrl->on_cmds);
 #endif
 
+<<<<<<< HEAD
+=======
+#ifdef CONFIG_POWERSUSPEND
+	set_power_suspend_state_panel_hook(POWER_SUSPEND_INACTIVE);
+#endif
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	end:
 
 #if defined(CONFIG_FB_MSM_MDSS_SAMSUNG)
@@ -768,7 +817,11 @@ static int mdss_dsi_panel_off(struct mdss_panel_data *pdata)
 	ctrl = container_of(pdata, struct mdss_dsi_ctrl_pdata,
 				panel_data);
 
+<<<<<<< HEAD
 	pr_info("%s: ctrl=%p ndx=%d\n", __func__, ctrl, ctrl->ndx);
+=======
+	pr_debug("%s: ctrl=%pK ndx=%d\n", __func__, ctrl, ctrl->ndx);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 #if defined(CONFIG_FB_MSM_MDSS_SAMSUNG)
 	if (pinfo->esd_check_enabled) {
@@ -801,9 +854,14 @@ static int mdss_dsi_panel_off(struct mdss_panel_data *pdata)
 	pinfo->panel_state = false;
 #endif
 
+<<<<<<< HEAD
 mdss_screen_on = false;
 #ifdef CONFIG_STATE_NOTIFIER
 		state_suspend();
+=======
+#ifdef CONFIG_POWERSUSPEND
+	set_power_suspend_state_panel_hook(POWER_SUSPEND_ACTIVE);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 #endif
 
 end:
@@ -827,7 +885,11 @@ static int mdss_dsi_panel_low_power_config(struct mdss_panel_data *pdata,
 	ctrl = container_of(pdata, struct mdss_dsi_ctrl_pdata,
 				panel_data);
 
+<<<<<<< HEAD
 	pr_debug("%s: ctrl=%p ndx=%d enable=%d\n", __func__, ctrl, ctrl->ndx,
+=======
+	pr_debug("%s: ctrl=%pK ndx=%d enable=%d\n", __func__, ctrl, ctrl->ndx,
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		enable);
 
 	/* Any panel specific low power commands/config */

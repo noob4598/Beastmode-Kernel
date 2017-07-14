@@ -332,7 +332,11 @@ int msm_jpeg_hw_exec_cmds(struct msm_jpeg_hw_cmd *hw_cmd_p, uint32_t m_cmds,
 	uint32_t data;
 
 	while (m_cmds--) {
+<<<<<<< HEAD
 		if (hw_cmd_p->offset > max_size) {
+=======
+		if (hw_cmd_p->offset >= max_size) {
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 			JPEG_PR_ERR("%s:%d] %d exceed hw region %d\n", __func__,
 				__LINE__, hw_cmd_p->offset, max_size);
 			return -EFAULT;
@@ -388,7 +392,11 @@ void msm_jpeg_io_dump(void *base, int size)
 	int i;
 	u32 *p = (u32 *) addr;
 	u32 data;
+<<<<<<< HEAD
 	JPEG_DBG_HIGH("%s:%d] %p %d", __func__, __LINE__, addr, size);
+=======
+	JPEG_DBG_HIGH("%s:%d] %pK %d", __func__, __LINE__, addr, size);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	line_str[0] = '\0';
 	p_str = line_str;
 	for (i = 0; i < size/4; i++) {

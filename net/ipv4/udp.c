@@ -106,6 +106,10 @@
 #include <net/route.h>
 #include <net/checksum.h>
 #include <net/xfrm.h>
+<<<<<<< HEAD
+=======
+#include <net/ip.h>
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 #include <trace/events/udp.h>
 #include <linux/static_key.h>
 #include <trace/events/skb.h>
@@ -254,6 +258,14 @@ int udp_lib_get_port(struct sock *sk, unsigned short snum,
 	} else {
 		hslot = udp_hashslot(udptable, net, snum);
 		spin_lock_bh(&hslot->lock);
+<<<<<<< HEAD
+=======
+
+		if (inet_is_reserved_local_port(snum) &&
+		    !sysctl_reserved_port_bind)
+			goto fail_unlock;
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		if (hslot->count > 10) {
 			int exist;
 			unsigned int slot2 = udp_sk(sk)->udp_portaddr_hash ^ snum;
@@ -1209,6 +1221,10 @@ int udp_recvmsg(struct kiocb *iocb, struct sock *sk, struct msghdr *msg,
 	int peeked, off = 0;
 	int err;
 	int is_udplite = IS_UDPLITE(sk);
+<<<<<<< HEAD
+=======
+	bool checksum_valid = false;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	bool slow;
 
 	if (flags & MSG_ERRQUEUE)
@@ -1234,17 +1250,30 @@ try_again:
 	 */
 
 	if (copied < ulen || UDP_SKB_CB(skb)->partial_cov) {
+<<<<<<< HEAD
 		if (udp_lib_checksum_complete(skb))
 			goto csum_copy_err;
 	}
 
 	if (skb_csum_unnecessary(skb))
+=======
+		checksum_valid = !udp_lib_checksum_complete(skb);
+		if (!checksum_valid)
+			goto csum_copy_err;
+	}
+
+	if (checksum_valid || skb_csum_unnecessary(skb))
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		err = skb_copy_datagram_iovec(skb, sizeof(struct udphdr),
 					      msg->msg_iov, copied);
 	else {
 		err = skb_copy_and_csum_datagram_iovec(skb,
 						       sizeof(struct udphdr),
+<<<<<<< HEAD
 						       msg->msg_iov);
+=======
+						       msg->msg_iov, copied);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 		if (err == -EINVAL)
 			goto csum_copy_err;
@@ -1293,7 +1322,11 @@ csum_copy_err:
 		UDP_INC_STATS_USER(sock_net(sk), UDP_MIB_INERRORS, is_udplite);
 	}
 	unlock_sock_fast(sk, slow);
+<<<<<<< HEAD
 	
+=======
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	/* starting over for a new packet, but check if we need to yield */
 	cond_resched();
 	msg->msg_flags &= ~MSG_TRUNC;
@@ -1975,6 +2008,23 @@ unsigned int udp_poll(struct file *file, struct socket *sock, poll_table *wait)
 }
 EXPORT_SYMBOL(udp_poll);
 
+<<<<<<< HEAD
+=======
+int udp_abort(struct sock *sk, int err)
+{
+	lock_sock(sk);
+
+	sk->sk_err = err;
+	sk->sk_error_report(sk);
+	udp_disconnect(sk, 0);
+
+	release_sock(sk);
+
+	return 0;
+}
+EXPORT_SYMBOL_GPL(udp_abort);
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 struct proto udp_prot = {
 	.name		   = "UDP",
 	.owner		   = THIS_MODULE,
@@ -2006,6 +2056,10 @@ struct proto udp_prot = {
 	.compat_getsockopt = compat_udp_getsockopt,
 #endif
 	.clear_sk	   = sk_prot_clear_portaddr_nulls,
+<<<<<<< HEAD
+=======
+	.diag_destroy	   = udp_abort,
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 };
 EXPORT_SYMBOL(udp_prot);
 

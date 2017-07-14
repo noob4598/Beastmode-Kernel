@@ -559,8 +559,13 @@ static int dirty_ctr(struct dm_target *ti, unsigned argc, char **argv)
 	v->hash_dev_block_bits = ffs(num) - 1;
 
 	if (sscanf(argv[5], "%llu%c", &num_ll, &dummy) != 1 ||
+<<<<<<< HEAD
 	    num_ll << (v->data_dev_block_bits - SECTOR_SHIFT) !=
 	    (sector_t)num_ll << (v->data_dev_block_bits - SECTOR_SHIFT)) {
+=======
+	    (sector_t)(num_ll << (v->data_dev_block_bits - SECTOR_SHIFT))
+	    >> (v->data_dev_block_bits - SECTOR_SHIFT) != num_ll) {
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		ti->error = "Invalid data blocks";
 		r = -EINVAL;
 		goto bad;
@@ -574,8 +579,13 @@ static int dirty_ctr(struct dm_target *ti, unsigned argc, char **argv)
 	}
 
 	if (sscanf(argv[6], "%llu%c", &num_ll, &dummy) != 1 ||
+<<<<<<< HEAD
 	    num_ll << (v->hash_dev_block_bits - SECTOR_SHIFT) !=
 	    (sector_t)num_ll << (v->hash_dev_block_bits - SECTOR_SHIFT)) {
+=======
+	    (sector_t)(num_ll << (v->hash_dev_block_bits - SECTOR_SHIFT))
+	    >> (v->hash_dev_block_bits - SECTOR_SHIFT) != num_ll) {
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		ti->error = "Invalid hash start";
 		r = -EINVAL;
 		goto bad;

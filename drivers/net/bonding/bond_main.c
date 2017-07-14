@@ -876,6 +876,26 @@ static void bond_mc_swap(struct bonding *bond, struct slave *new_active,
 	}
 }
 
+<<<<<<< HEAD
+=======
+static struct slave *bond_get_old_active(struct bonding *bond,
+					 struct slave *new_active)
+{
+	struct slave *slave;
+	int i;
+
+	bond_for_each_slave(bond, slave, i) {
+		if (slave == new_active)
+			continue;
+
+		if (ether_addr_equal(bond->dev->dev_addr, slave->dev->dev_addr))
+			return slave;
+	}
+
+	return NULL;
+}
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 /*
  * bond_do_fail_over_mac
  *
@@ -919,6 +939,12 @@ static void bond_do_fail_over_mac(struct bonding *bond,
 		write_unlock_bh(&bond->curr_slave_lock);
 		read_unlock(&bond->lock);
 
+<<<<<<< HEAD
+=======
+		if (!old_active)
+			old_active = bond_get_old_active(bond, new_active);
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		if (old_active) {
 			memcpy(tmp_mac, new_active->dev->dev_addr, ETH_ALEN);
 			memcpy(saddr.sa_data, old_active->dev->dev_addr,
@@ -1545,9 +1571,16 @@ int bond_enslave(struct net_device *bond_dev, struct net_device *slave_dev)
 			   bond_dev->name, slave_dev->name);
 	}
 
+<<<<<<< HEAD
 	/* already enslaved */
 	if (slave_dev->flags & IFF_SLAVE) {
 		pr_debug("Error, Device was already enslaved\n");
+=======
+	/* already in-use? */
+	if (netdev_is_rx_handler_busy(slave_dev)) {
+		netdev_err(bond_dev,
+			   "Error: Device is in use and cannot be enslaved\n");
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		return -EBUSY;
 	}
 
@@ -2188,6 +2221,10 @@ static int  bond_release_and_destroy(struct net_device *bond_dev,
 		bond_dev->priv_flags |= IFF_DISABLE_NETPOLL;
 		pr_info("%s: destroying bond %s.\n",
 			bond_dev->name, bond_dev->name);
+<<<<<<< HEAD
+=======
+		bond_remove_proc_entry(bond);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		unregister_netdevice(bond_dev);
 	}
 	return ret;
@@ -4995,6 +5032,10 @@ static int __init bonding_init(void)
 out:
 	return res;
 err:
+<<<<<<< HEAD
+=======
+	bond_destroy_debugfs();
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	rtnl_link_unregister(&bond_link_ops);
 err_link:
 	unregister_pernet_subsys(&bond_net_ops);

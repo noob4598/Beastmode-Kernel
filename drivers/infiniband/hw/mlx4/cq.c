@@ -239,11 +239,21 @@ struct ib_cq *mlx4_ib_create_cq(struct ib_device *ibdev, int entries, int vector
 	if (context)
 		if (ib_copy_to_udata(udata, &cq->mcq.cqn, sizeof (__u32))) {
 			err = -EFAULT;
+<<<<<<< HEAD
 			goto err_dbmap;
+=======
+			goto err_cq_free;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		}
 
 	return &cq->ibcq;
 
+<<<<<<< HEAD
+=======
+err_cq_free:
+	mlx4_cq_free(dev->dev, &cq->mcq);
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 err_dbmap:
 	if (context)
 		mlx4_ib_db_unmap_user(to_mucontext(context), &cq->db);

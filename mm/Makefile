@@ -61,4 +61,9 @@ obj-$(CONFIG_CLEANCACHE) += cleancache.o
 obj-$(CONFIG_MEMORY_ISOLATION) += page_isolation.o
 obj-$(CONFIG_PAGE_OWNER) += pageowner.o
 obj-$(CONFIG_ZBUD)	+= zbud.o
+<<<<<<< HEAD
 obj-$(CONFIG_ZSMALLOC_NEW) += zsmalloc.o
+=======
+obj-$(CONFIG_ZPOOL)	+= zpool.o
+obj-$(CONFIG_ZSMALLOC)	+= zsmalloc.o
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03

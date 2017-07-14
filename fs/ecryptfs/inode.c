@@ -180,7 +180,14 @@ static int ecryptfs_interpose(struct dentry *lower_dentry,
 
 	if (IS_ERR(inode))
 		return PTR_ERR(inode);
+<<<<<<< HEAD
 	d_instantiate(dentry, inode);
+=======
+
+	d_instantiate(dentry, inode);
+	if(d_unhashed(dentry))
+		d_rehash(dentry);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 #ifdef CONFIG_SDP
 	if(S_ISDIR(inode->i_mode) && dentry) {
@@ -339,6 +346,11 @@ int ecryptfs_initialize_file(struct dentry *ecryptfs_dentry,
 		if(!rc && (in_egroup_p(AID_KNOX_DLP) || in_egroup_p(AID_KNOX_DLP_RESTRICTED))) {
 			/* TODO: Can DLP files be created while in locked state? */
 			crypt_stat->flags |= ECRYPTFS_DLP_ENABLED;
+<<<<<<< HEAD
+=======
+			getnstimeofday(&crypt_stat->expiry.expiry_time);
+			crypt_stat->expiry.expiry_time.tv_sec += 600;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 #if DLP_DEBUG
 			printk(KERN_ERR "DLP %s: current->pid : %d\n", __func__, current->tgid);
 			printk(KERN_ERR "DLP %s: crypt_stat->mount_crypt_stat->userid : %d\n", __func__, crypt_stat->mount_crypt_stat->userid);
@@ -444,7 +456,13 @@ ecryptfs_create(struct inode *directory_inode, struct dentry *ecryptfs_dentry,
 		goto out;
 	}
 	unlock_new_inode(ecryptfs_inode);
+<<<<<<< HEAD
 	d_add(ecryptfs_dentry, ecryptfs_inode);
+=======
+	d_instantiate(ecryptfs_dentry, ecryptfs_inode);
+	if(d_unhashed(ecryptfs_dentry))
+		d_rehash(ecryptfs_dentry);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 out:
 	return rc;
 }
@@ -1474,8 +1492,36 @@ static ssize_t
 ecryptfs_getxattr(struct dentry *dentry, const char *name, void *value,
 		  size_t size)
 {
+<<<<<<< HEAD
 	return ecryptfs_getxattr_lower(ecryptfs_dentry_to_lower(dentry), name,
 				       value, size);
+=======
+#ifdef CONFIG_DLP
+	int rc = 0;
+	struct ecryptfs_crypt_stat *crypt_stat = NULL;
+
+	rc = ecryptfs_getxattr_lower(ecryptfs_dentry_to_lower(dentry), name,
+			value, size);
+
+	if ((rc == -ENODATA) && (!strcmp(name, KNOX_DLP_XATTR_NAME))) {
+		if (dentry->d_inode) {
+			crypt_stat = &ecryptfs_inode_to_private(dentry->d_inode)->crypt_stat;
+		}
+		if (crypt_stat && (crypt_stat->expiry.expiry_time.tv_sec > 0)) {
+			memcpy(value, &crypt_stat->expiry, sizeof(struct knox_dlp_data));
+			rc = 0;
+		} else if (crypt_stat && (crypt_stat->flags & ECRYPTFS_DLP_ENABLED)) {
+			/* TODO: We should never come here */
+			rc = -EFAULT;
+		}
+	}
+	return rc;
+
+#else
+	return ecryptfs_getxattr_lower(ecryptfs_dentry_to_lower(dentry), name,
+				       value, size);
+#endif
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 }
 
 static ssize_t

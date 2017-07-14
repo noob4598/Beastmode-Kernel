@@ -286,7 +286,11 @@ struct ak4113 {
 	ak4113_write_t *write;
 	ak4113_read_t *read;
 	void *private_data;
+<<<<<<< HEAD
 	unsigned int init:1;
+=======
+	atomic_t wq_processing;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	spinlock_t lock;
 	unsigned char regmap[AK4113_WRITABLE_REGS];
 	struct snd_kcontrol *kctls[AK4113_CONTROLS];

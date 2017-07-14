@@ -78,6 +78,10 @@ static int modeset_init(struct drm_device *dev)
 	if ((priv->num_encoders == 0) || (priv->num_connectors == 0)) {
 		/* oh nos! */
 		dev_err(dev->dev, "no encoders/connectors found\n");
+<<<<<<< HEAD
+=======
+		drm_mode_config_cleanup(dev);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		return -ENXIO;
 	}
 
@@ -116,6 +120,10 @@ static int tilcdc_unload(struct drm_device *dev)
 	struct tilcdc_drm_private *priv = dev->dev_private;
 	struct tilcdc_module *mod, *cur;
 
+<<<<<<< HEAD
+=======
+	drm_fbdev_cma_fini(priv->fbdev);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	drm_kms_helper_poll_fini(dev);
 	drm_mode_config_cleanup(dev);
 	drm_vblank_cleanup(dev);
@@ -169,33 +177,56 @@ static int tilcdc_load(struct drm_device *dev, unsigned long flags)
 	dev->dev_private = priv;
 
 	priv->wq = alloc_ordered_workqueue("tilcdc", 0);
+<<<<<<< HEAD
+=======
+	if (!priv->wq) {
+		ret = -ENOMEM;
+		goto fail_free_priv;
+	}
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
 	if (!res) {
 		dev_err(dev->dev, "failed to get memory resource\n");
 		ret = -EINVAL;
+<<<<<<< HEAD
 		goto fail;
+=======
+		goto fail_free_wq;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	}
 
 	priv->mmio = ioremap_nocache(res->start, resource_size(res));
 	if (!priv->mmio) {
 		dev_err(dev->dev, "failed to ioremap\n");
 		ret = -ENOMEM;
+<<<<<<< HEAD
 		goto fail;
+=======
+		goto fail_free_wq;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	}
 
 	priv->clk = clk_get(dev->dev, "fck");
 	if (IS_ERR(priv->clk)) {
 		dev_err(dev->dev, "failed to get functional clock\n");
 		ret = -ENODEV;
+<<<<<<< HEAD
 		goto fail;
+=======
+		goto fail_iounmap;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	}
 
 	priv->disp_clk = clk_get(dev->dev, "dpll_disp_ck");
 	if (IS_ERR(priv->clk)) {
 		dev_err(dev->dev, "failed to get display clock\n");
 		ret = -ENODEV;
+<<<<<<< HEAD
 		goto fail;
+=======
+		goto fail_put_clk;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	}
 
 #ifdef CONFIG_CPU_FREQ
@@ -205,7 +236,11 @@ static int tilcdc_load(struct drm_device *dev, unsigned long flags)
 			CPUFREQ_TRANSITION_NOTIFIER);
 	if (ret) {
 		dev_err(dev->dev, "failed to register cpufreq notifier\n");
+<<<<<<< HEAD
 		goto fail;
+=======
+		goto fail_put_disp_clk;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	}
 #endif
 
@@ -237,13 +272,21 @@ static int tilcdc_load(struct drm_device *dev, unsigned long flags)
 	ret = modeset_init(dev);
 	if (ret < 0) {
 		dev_err(dev->dev, "failed to initialize mode setting\n");
+<<<<<<< HEAD
 		goto fail;
+=======
+		goto fail_cpufreq_unregister;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	}
 
 	ret = drm_vblank_init(dev, 1);
 	if (ret < 0) {
 		dev_err(dev->dev, "failed to initialize vblank\n");
+<<<<<<< HEAD
 		goto fail;
+=======
+		goto fail_mode_config_cleanup;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	}
 
 	pm_runtime_get_sync(dev->dev);
@@ -251,7 +294,11 @@ static int tilcdc_load(struct drm_device *dev, unsigned long flags)
 	pm_runtime_put_sync(dev->dev);
 	if (ret < 0) {
 		dev_err(dev->dev, "failed to install IRQ handler\n");
+<<<<<<< HEAD
 		goto fail;
+=======
+		goto fail_vblank_cleanup;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	}
 
 	platform_set_drvdata(pdev, dev);
@@ -259,13 +306,56 @@ static int tilcdc_load(struct drm_device *dev, unsigned long flags)
 	priv->fbdev = drm_fbdev_cma_init(dev, 16,
 			dev->mode_config.num_crtc,
 			dev->mode_config.num_connector);
+<<<<<<< HEAD
+=======
+	if (IS_ERR(priv->fbdev)) {
+		ret = PTR_ERR(priv->fbdev);
+		goto fail_irq_uninstall;
+	}
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	drm_kms_helper_poll_init(dev);
 
 	return 0;
 
+<<<<<<< HEAD
 fail:
 	tilcdc_unload(dev);
+=======
+fail_irq_uninstall:
+	pm_runtime_get_sync(dev->dev);
+	drm_irq_uninstall(dev);
+	pm_runtime_put_sync(dev->dev);
+
+fail_vblank_cleanup:
+	drm_vblank_cleanup(dev);
+
+fail_mode_config_cleanup:
+	drm_mode_config_cleanup(dev);
+
+fail_cpufreq_unregister:
+	pm_runtime_disable(dev->dev);
+#ifdef CONFIG_CPU_FREQ
+	cpufreq_unregister_notifier(&priv->freq_transition,
+			CPUFREQ_TRANSITION_NOTIFIER);
+fail_put_disp_clk:
+	clk_put(priv->disp_clk);
+#endif
+
+fail_put_clk:
+	clk_put(priv->clk);
+
+fail_iounmap:
+	iounmap(priv->mmio);
+
+fail_free_wq:
+	flush_workqueue(priv->wq);
+	destroy_workqueue(priv->wq);
+
+fail_free_priv:
+	dev->dev_private = NULL;
+	kfree(priv);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	return ret;
 }
 
@@ -596,10 +686,17 @@ static int __init tilcdc_drm_init(void)
 static void __exit tilcdc_drm_fini(void)
 {
 	DBG("fini");
+<<<<<<< HEAD
 	tilcdc_tfp410_fini();
 	tilcdc_slave_fini();
 	tilcdc_panel_fini();
 	platform_driver_unregister(&tilcdc_platform_driver);
+=======
+	platform_driver_unregister(&tilcdc_platform_driver);
+	tilcdc_panel_fini();
+	tilcdc_slave_fini();
+	tilcdc_tfp410_fini();
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 }
 
 late_initcall(tilcdc_drm_init);

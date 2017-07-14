@@ -52,6 +52,11 @@
 #define REISER2FS_SUPER_MAGIC_STRING	"ReIsEr2Fs"
 #define REISER2FS_JR_SUPER_MAGIC_STRING	"ReIsEr3Fs"
 
+<<<<<<< HEAD
+=======
+#define SDCARDFS_SUPER_MAGIC	0x5dca2df5
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 #define SMB_SUPER_MAGIC		0x517B
 #define CGROUP_SUPER_MAGIC	0x27e0eb
 
@@ -73,6 +78,9 @@
 #define ANON_INODE_FS_MAGIC	0x09041934
 
 
+<<<<<<< HEAD
 #define SDCARDFS_SUPER_MAGIC    0xb550ca10
 
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 #endif /* __LINUX_MAGIC_H__ */

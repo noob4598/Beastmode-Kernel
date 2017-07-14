@@ -208,9 +208,15 @@ static int kill_proc(struct task_struct *t, unsigned long addr, int trapno,
 #endif
 	si.si_addr_lsb = compound_trans_order(compound_head(page)) + PAGE_SHIFT;
 
+<<<<<<< HEAD
 	if ((flags & MF_ACTION_REQUIRED) && t == current) {
 		si.si_code = BUS_MCEERR_AR;
 		ret = force_sig_info(SIGBUS, &si, t);
+=======
+	if ((flags & MF_ACTION_REQUIRED) && t->mm == current->mm) {
+		si.si_code = BUS_MCEERR_AR;
+		ret = force_sig_info(SIGBUS, &si, current);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	} else {
 		/*
 		 * Don't use force here, it's convenient if the signal
@@ -383,10 +389,19 @@ static void kill_procs(struct list_head *to_kill, int forcekill, int trapno,
 	}
 }
 
+<<<<<<< HEAD
 static int task_early_kill(struct task_struct *tsk)
 {
 	if (!tsk->mm)
 		return 0;
+=======
+static int task_early_kill(struct task_struct *tsk, int force_early)
+{
+	if (!tsk->mm)
+		return 0;
+	if (force_early)
+		return 1;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	if (tsk->flags & PF_MCE_PROCESS)
 		return !!(tsk->flags & PF_MCE_EARLY);
 	return sysctl_memory_failure_early_kill;
@@ -396,7 +411,11 @@ static int task_early_kill(struct task_struct *tsk)
  * Collect processes when the error hit an anonymous page.
  */
 static void collect_procs_anon(struct page *page, struct list_head *to_kill,
+<<<<<<< HEAD
 			      struct to_kill **tkc)
+=======
+			      struct to_kill **tkc, int force_early)
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 {
 	struct vm_area_struct *vma;
 	struct task_struct *tsk;
@@ -412,7 +431,11 @@ static void collect_procs_anon(struct page *page, struct list_head *to_kill,
 	for_each_process (tsk) {
 		struct anon_vma_chain *vmac;
 
+<<<<<<< HEAD
 		if (!task_early_kill(tsk))
+=======
+		if (!task_early_kill(tsk, force_early))
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 			continue;
 		anon_vma_interval_tree_foreach(vmac, &av->rb_root,
 					       pgoff, pgoff) {
@@ -431,7 +454,11 @@ static void collect_procs_anon(struct page *page, struct list_head *to_kill,
  * Collect processes when the error hit a file mapped page.
  */
 static void collect_procs_file(struct page *page, struct list_head *to_kill,
+<<<<<<< HEAD
 			      struct to_kill **tkc)
+=======
+			      struct to_kill **tkc, int force_early)
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 {
 	struct vm_area_struct *vma;
 	struct task_struct *tsk;
@@ -442,7 +469,11 @@ static void collect_procs_file(struct page *page, struct list_head *to_kill,
 	for_each_process(tsk) {
 		pgoff_t pgoff = page->index << (PAGE_CACHE_SHIFT - PAGE_SHIFT);
 
+<<<<<<< HEAD
 		if (!task_early_kill(tsk))
+=======
+		if (!task_early_kill(tsk, force_early))
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 			continue;
 
 		vma_interval_tree_foreach(vma, &mapping->i_mmap, pgoff,
@@ -468,7 +499,12 @@ static void collect_procs_file(struct page *page, struct list_head *to_kill,
  * First preallocate one tokill structure outside the spin locks,
  * so that we can kill at least one process reasonably reliable.
  */
+<<<<<<< HEAD
 static void collect_procs(struct page *page, struct list_head *tokill)
+=======
+static void collect_procs(struct page *page, struct list_head *tokill,
+				int force_early)
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 {
 	struct to_kill *tk;
 
@@ -479,9 +515,15 @@ static void collect_procs(struct page *page, struct list_head *tokill)
 	if (!tk)
 		return;
 	if (PageAnon(page))
+<<<<<<< HEAD
 		collect_procs_anon(page, tokill, &tk);
 	else
 		collect_procs_file(page, tokill, &tk);
+=======
+		collect_procs_anon(page, tokill, &tk, force_early);
+	else
+		collect_procs_file(page, tokill, &tk, force_early);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	kfree(tk);
 }
 
@@ -966,7 +1008,11 @@ static int hwpoison_user_mappings(struct page *p, unsigned long pfn,
 	 * there's nothing that can be done.
 	 */
 	if (kill)
+<<<<<<< HEAD
 		collect_procs(ppage, &tokill);
+=======
+		collect_procs(ppage, &tokill, flags & MF_ACTION_REQUIRED);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	ret = try_to_unmap(ppage, ttu);
 	if (ret != SWAP_SUCCESS)
@@ -1084,6 +1130,7 @@ int memory_failure(unsigned long pfn, int trapno, int flags)
 			return 0;
 		} else if (PageHuge(hpage)) {
 			/*
+<<<<<<< HEAD
 			 * Check "just unpoisoned", "filter hit", and
 			 * "race with other subpage."
 			 */
@@ -1093,6 +1140,18 @@ int memory_failure(unsigned long pfn, int trapno, int flags)
 			    || (p != hpage && TestSetPageHWPoison(hpage))) {
 				atomic_long_sub(nr_pages, &num_poisoned_pages);
 				return 0;
+=======
+			 * Check "filter hit" and "race with other subpage."
+			 */
+			lock_page(hpage);
+			if (PageHWPoison(hpage)) {
+				if ((hwpoison_filter(p) && TestClearPageHWPoison(p))
+				    || (p != hpage && TestSetPageHWPoison(hpage))) {
+					atomic_long_sub(nr_pages, &num_poisoned_pages);
+					unlock_page(hpage);
+					return 0;
+				}
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 			}
 			set_page_hwpoison_huge_page(hpage);
 			res = dequeue_hwpoisoned_huge_page(hpage);
@@ -1114,10 +1173,17 @@ int memory_failure(unsigned long pfn, int trapno, int flags)
 	 * The check (unnecessarily) ignores LRU pages being isolated and
 	 * walked by the page reclaim code, however that's not a big loss.
 	 */
+<<<<<<< HEAD
 	if (!PageHuge(p) && !PageTransTail(p)) {
 		if (!PageLRU(p))
 			shake_page(p, 0);
 		if (!PageLRU(p)) {
+=======
+	if (!PageHuge(p)) {
+		if (!PageLRU(hpage))
+			shake_page(hpage, 0);
+		if (!PageLRU(hpage)) {
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 			/*
 			 * shake_page could have turned it free.
 			 */
@@ -1153,6 +1219,11 @@ int memory_failure(unsigned long pfn, int trapno, int flags)
 	 */
 	if (!PageHWPoison(p)) {
 		printk(KERN_ERR "MCE %#lx: just unpoisoned\n", pfn);
+<<<<<<< HEAD
+=======
+		atomic_long_sub(nr_pages, &num_poisoned_pages);
+		put_page(hpage);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		res = 0;
 		goto out;
 	}
@@ -1467,7 +1538,13 @@ static int get_any_page(struct page *page, unsigned long pfn, int flags)
 		 * Did it turn free?
 		 */
 		ret = __get_any_page(page, pfn, 0);
+<<<<<<< HEAD
 		if (!PageLRU(page)) {
+=======
+		if (ret == 1 && !PageLRU(page)) {
+			/* Drop page reference which is from __get_any_page() */
+			put_page(page);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 			pr_info("soft_offline: %#lx: unknown non LRU page type %lx\n",
 				pfn, page->flags);
 			return -EIO;

@@ -1436,9 +1436,18 @@ int jbd2_journal_stop(handle_t *handle)
 	 * to perform a synchronous write.  We do this to detect the
 	 * case where a single process is doing a stream of sync
 	 * writes.  No point in waiting for joiners in that case.
+<<<<<<< HEAD
 	 */
 	pid = current->pid;
 	if (handle->h_sync && journal->j_last_sync_writer != pid) {
+=======
+	 *
+	 * Setting max_batch_time to 0 disables this completely.
+	 */
+	pid = current->pid;
+	if (handle->h_sync && journal->j_last_sync_writer != pid &&
+	    journal->j_max_batch_time) {
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		u64 commit_time, trans_time;
 
 		journal->j_last_sync_writer = pid;
@@ -1921,6 +1930,10 @@ static int journal_unmap_buffer(journal_t *journal, struct buffer_head *bh,
 
 		if (!buffer_dirty(bh)) {
 			/* bdflush has written it.  We can drop it now */
+<<<<<<< HEAD
+=======
+			__jbd2_journal_remove_checkpoint(jh);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 			goto zap_buffer;
 		}
 
@@ -1950,6 +1963,10 @@ static int journal_unmap_buffer(journal_t *journal, struct buffer_head *bh,
 				/* The orphan record's transaction has
 				 * committed.  We can cleanse this buffer */
 				clear_buffer_jbddirty(bh);
+<<<<<<< HEAD
+=======
+				__jbd2_journal_remove_checkpoint(jh);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 				goto zap_buffer;
 			}
 		}

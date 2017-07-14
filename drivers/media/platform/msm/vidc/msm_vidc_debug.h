@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 /* Copyright (c) 2012-2014, The Linux Foundation. All rights reserved.
+=======
+/* Copyright (c) 2012-2014, 2017 The Linux Foundation. All rights reserved.
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -115,6 +119,10 @@ struct dentry *msm_vidc_debugfs_init_inst(struct msm_vidc_inst *inst,
 		struct dentry *parent);
 void msm_vidc_debugfs_update(struct msm_vidc_inst *inst,
 		enum msm_vidc_debugfs_event e);
+<<<<<<< HEAD
+=======
+void msm_vidc_debugfs_deinit_drv(void);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 static inline void tic(struct msm_vidc_inst *i, enum profiling_points p,
 				 char *b)
@@ -151,10 +159,19 @@ static inline void show_stats(struct msm_vidc_inst *i)
 	for (x = 0; x < MAX_PROFILING_POINTS; x++) {
 		if ((i->debug.pdata[x].name[0])  &&
 			(msm_vidc_debug & VIDC_PROF)) {
+<<<<<<< HEAD
 			dprintk(VIDC_PROF, "%s averaged %d ms/sample\n",
 				i->debug.pdata[x].name,
 				i->debug.pdata[x].cumulative /
 					i->debug.samples);
+=======
+			if (i->debug.samples) {
+				dprintk(VIDC_PROF, "%s averaged %d ms/sample\n",
+					i->debug.pdata[x].name,
+					i->debug.pdata[x].cumulative /
+					i->debug.samples);
+			}
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 			dprintk(VIDC_PROF, "%s Samples: %d\n",
 					i->debug.pdata[x].name,
 					i->debug.samples);

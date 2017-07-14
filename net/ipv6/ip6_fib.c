@@ -638,6 +638,32 @@ static inline bool rt6_qualify_for_ecmp(struct rt6_info *rt)
 	       RTF_GATEWAY;
 }
 
+<<<<<<< HEAD
+=======
+static void fib6_purge_rt(struct rt6_info *rt, struct fib6_node *fn,
+			  struct net *net)
+{
+	if (atomic_read(&rt->rt6i_ref) != 1) {
+		/* This route is used as dummy address holder in some split
+		 * nodes. It is not leaked, but it still holds other resources,
+		 * which must be released in time. So, scan ascendant nodes
+		 * and replace dummy references to this route with references
+		 * to still alive ones.
+		 */
+		while (fn) {
+			if (!(fn->fn_flags & RTN_RTINFO) && fn->leaf == rt) {
+				fn->leaf = fib6_find_prefix(net, fn);
+				atomic_inc(&fn->leaf->rt6i_ref);
+				rt6_release(rt);
+			}
+			fn = fn->parent;
+		}
+		/* No more references are possible at this point. */
+		BUG_ON(atomic_read(&rt->rt6i_ref) != 1);
+	}
+}
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 /*
  *	Insert routing information in a node.
  */
@@ -775,11 +801,19 @@ add:
 		rt->dst.rt6_next = iter->dst.rt6_next;
 		atomic_inc(&rt->rt6i_ref);
 		inet6_rt_notify(RTM_NEWROUTE, rt, info);
+<<<<<<< HEAD
 		rt6_release(iter);
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		if (!(fn->fn_flags & RTN_RTINFO)) {
 			info->nl_net->ipv6.rt6_stats->fib_route_nodes++;
 			fn->fn_flags |= RTN_RTINFO;
 		}
+<<<<<<< HEAD
+=======
+		fib6_purge_rt(iter, fn, info->nl_net);
+		rt6_release(iter);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	}
 
 	return 0;
@@ -1284,6 +1318,7 @@ static void fib6_del_route(struct fib6_node *fn, struct rt6_info **rtp,
 		fn = fib6_repair_tree(net, fn);
 	}
 
+<<<<<<< HEAD
 	if (atomic_read(&rt->rt6i_ref) != 1) {
 		/* This route is used as dummy address holder in some split
 		 * nodes. It is not leaked, but it still holds other resources,
@@ -1302,6 +1337,9 @@ static void fib6_del_route(struct fib6_node *fn, struct rt6_info **rtp,
 		/* No more references are possible at this point. */
 		BUG_ON(atomic_read(&rt->rt6i_ref) != 1);
 	}
+=======
+	fib6_purge_rt(rt, fn, net);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	inet6_rt_notify(RTM_DELROUTE, rt, info);
 	rt6_release(rt);
@@ -1418,7 +1456,11 @@ static int fib6_walk_continue(struct fib6_walker_t *w)
 
 				if (w->skip) {
 					w->skip--;
+<<<<<<< HEAD
 					continue;
+=======
+					goto skip;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 				}
 
 				err = w->func(w);
@@ -1428,6 +1470,10 @@ static int fib6_walk_continue(struct fib6_walker_t *w)
 				w->count++;
 				continue;
 			}
+<<<<<<< HEAD
+=======
+skip:
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 			w->state = FWS_U;
 		case FWS_U:
 			if (fn == w->root)
@@ -1640,6 +1686,7 @@ static int fib6_age(struct rt6_info *rt, void *arg)
 
 static DEFINE_SPINLOCK(fib6_gc_lock);
 
+<<<<<<< HEAD
 void fib6_run_gc(unsigned long expires, struct net *net)
 {
 	if (expires != ~0UL) {
@@ -1653,14 +1700,37 @@ void fib6_run_gc(unsigned long expires, struct net *net)
 		}
 		gc_args.timeout = net->ipv6.sysctl.ip6_rt_gc_interval;
 	}
+=======
+void fib6_run_gc(unsigned long expires, struct net *net, bool force)
+{
+	unsigned long now;
+
+	if (force) {
+		spin_lock_bh(&fib6_gc_lock);
+	} else if (!spin_trylock_bh(&fib6_gc_lock)) {
+		mod_timer(&net->ipv6.ip6_fib_timer, jiffies + HZ);
+		return;
+	}
+	gc_args.timeout = expires ? (int)expires :
+			  net->ipv6.sysctl.ip6_rt_gc_interval;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	gc_args.more = icmp6_dst_gc();
 
 	fib6_clean_all(net, fib6_age, 0, NULL);
+<<<<<<< HEAD
 
 	if (gc_args.more)
 		mod_timer(&net->ipv6.ip6_fib_timer,
 			  round_jiffies(jiffies
+=======
+	now = jiffies;
+	net->ipv6.ip6_rt_last_gc = now;
+
+	if (gc_args.more)
+		mod_timer(&net->ipv6.ip6_fib_timer,
+			  round_jiffies(now
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 					+ net->ipv6.sysctl.ip6_rt_gc_interval));
 	else
 		del_timer(&net->ipv6.ip6_fib_timer);
@@ -1669,7 +1739,11 @@ void fib6_run_gc(unsigned long expires, struct net *net)
 
 static void fib6_gc_timer_cb(unsigned long arg)
 {
+<<<<<<< HEAD
 	fib6_run_gc(0, (struct net *)arg);
+=======
+	fib6_run_gc(0, (struct net *)arg, true);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 }
 
 static int __net_init fib6_net_init(struct net *net)

@@ -126,11 +126,24 @@ int config_ep_by_speed(struct usb_gadget *g,
 
 ep_found:
 	/* commit results */
+<<<<<<< HEAD
 	_ep->maxpacket = usb_endpoint_maxp(chosen_desc);
 	_ep->desc = chosen_desc;
 	_ep->comp_desc = NULL;
 	_ep->maxburst = 0;
 	_ep->mult = 0;
+=======
+	_ep->maxpacket = usb_endpoint_maxp(chosen_desc) & 0x7ff;
+	_ep->desc = chosen_desc;
+	_ep->comp_desc = NULL;
+	_ep->maxburst = 0;
+	_ep->mult = 1;
+
+	if (g->speed == USB_SPEED_HIGH && (usb_endpoint_xfer_isoc(_ep->desc) ||
+				usb_endpoint_xfer_int(_ep->desc)))
+		_ep->mult = ((usb_endpoint_maxp(_ep->desc) & 0x1800) >> 11) + 1;
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	if (!want_comp_desc)
 		return 0;
 
@@ -147,7 +160,11 @@ ep_found:
 		switch (usb_endpoint_type(_ep->desc)) {
 		case USB_ENDPOINT_XFER_ISOC:
 			/* mult: bits 1:0 of bmAttributes */
+<<<<<<< HEAD
 			_ep->mult = comp_desc->bmAttributes & 0x3;
+=======
+			_ep->mult = (comp_desc->bmAttributes & 0x3) + 1;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		case USB_ENDPOINT_XFER_BULK:
 		case USB_ENDPOINT_XFER_INT:
 			_ep->maxburst = comp_desc->bMaxBurst + 1;
@@ -559,7 +576,11 @@ static int bos_desc(struct usb_composite_dev *cdev)
 #ifdef CONFIG_USB_ANDROID_SAMSUNG_COMPOSITE
 	usb_ext->bmAttributes = 0;
 #else
+<<<<<<< HEAD
 	usb_ext->bmAttributes = cpu_to_le32(USB_LPM_SUPPORT);
+=======
+	usb_ext->bmAttributes = cpu_to_le32(USB_LPM_SUPPORT | USB_BESL_SUPPORT);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 #endif
 
 	if (gadget_is_superspeed(cdev->gadget)) {
@@ -1326,7 +1347,11 @@ composite_setup(struct usb_gadget *gadget, const struct usb_ctrlrequest *ctrl)
 					cdev->desc.bcdUSB = cpu_to_le16(0x0210);
 				}
 			} else if (gadget->l1_supported) {
+<<<<<<< HEAD
 				cdev->desc.bcdUSB = cpu_to_le16(0x0201);
+=======
+				cdev->desc.bcdUSB = cpu_to_le16(0x0210);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 				DBG(cdev, "Config HS device with LPM(L1)\n");
 			}
 
@@ -1422,9 +1447,13 @@ composite_setup(struct usb_gadget *gadget, const struct usb_ctrlrequest *ctrl)
 		value = min(w_length, (u16) 1);
 		break;
 
+<<<<<<< HEAD
 	/* function drivers must handle get/set altsetting; if there's
 	 * no get() method, we know only altsetting zero works.
 	 */
+=======
+	/* function drivers must handle get/set altsetting */
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	case USB_REQ_SET_INTERFACE:
 		if (ctrl->bRequestType != USB_RECIP_INTERFACE)
 			goto unknown;
@@ -1433,7 +1462,17 @@ composite_setup(struct usb_gadget *gadget, const struct usb_ctrlrequest *ctrl)
 		f = cdev->config->interface[intf];
 		if (!f)
 			break;
+<<<<<<< HEAD
 		if (w_value && !f->set_alt)
+=======
+
+		/*
+		 * If there's no get_alt() method, we know only altsetting zero
+		 * works. There is no need to check if set_alt() is not NULL
+		 * as we check this in usb_add_function().
+		 */
+		if (w_value && !f->get_alt)
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 			break;
 		/*
 		 * We put interfaces in default settings (alt 0)

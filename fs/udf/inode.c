@@ -1270,13 +1270,29 @@ update_time:
 	return 0;
 }
 
+<<<<<<< HEAD
+=======
+/*
+ * Maximum length of linked list formed by ICB hierarchy. The chosen number is
+ * arbitrary - just that we hopefully don't limit any real use of rewritten
+ * inode on write-once media but avoid looping for too long on corrupted media.
+ */
+#define UDF_MAX_ICB_NESTING 1024
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 static void __udf_read_inode(struct inode *inode)
 {
 	struct buffer_head *bh = NULL;
 	struct fileEntry *fe;
 	uint16_t ident;
 	struct udf_inode_info *iinfo = UDF_I(inode);
+<<<<<<< HEAD
 
+=======
+	unsigned int indirections = 0;
+
+reread:
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	/*
 	 * Set defaults, but the inode is still incomplete!
 	 * Note: get_new_inode() sets the following on a new inode:
@@ -1313,13 +1329,17 @@ static void __udf_read_inode(struct inode *inode)
 		ibh = udf_read_ptagged(inode->i_sb, &iinfo->i_location, 1,
 					&ident);
 		if (ident == TAG_IDENT_IE && ibh) {
+<<<<<<< HEAD
 			struct buffer_head *nbh = NULL;
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 			struct kernel_lb_addr loc;
 			struct indirectEntry *ie;
 
 			ie = (struct indirectEntry *)ibh->b_data;
 			loc = lelb_to_cpu(ie->indirectICB.extLocation);
 
+<<<<<<< HEAD
 			if (ie->indirectICB.extLength &&
 				(nbh = udf_read_ptagged(inode->i_sb, &loc, 0,
 							&ident))) {
@@ -1335,6 +1355,22 @@ static void __udf_read_inode(struct inode *inode)
 					return;
 				}
 				brelse(nbh);
+=======
+			if (ie->indirectICB.extLength) {
+				brelse(bh);
+				brelse(ibh);
+				memcpy(&iinfo->i_location, &loc,
+				       sizeof(struct kernel_lb_addr));
+				if (++indirections > UDF_MAX_ICB_NESTING) {
+					udf_err(inode->i_sb,
+						"too many ICBs in ICB hierarchy"
+						" (max %d supported)\n",
+						UDF_MAX_ICB_NESTING);
+					make_bad_inode(inode);
+					return;
+				}
+				goto reread;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 			}
 		}
 		brelse(ibh);
@@ -1488,6 +1524,19 @@ static void udf_fill_inode(struct inode *inode, struct buffer_head *bh)
 		iinfo->i_checkpoint = le32_to_cpu(efe->checkpoint);
 	}
 
+<<<<<<< HEAD
+=======
+	/*
+	 * Sanity check length of allocation descriptors and extended attrs to
+	 * avoid integer overflows
+	 */
+	if (iinfo->i_lenEAttr > inode->i_sb->s_blocksize || iinfo->i_lenAlloc > inode->i_sb->s_blocksize)
+		return;
+	/* Now do exact checks */
+	if (udf_file_entry_alloc_offset(inode) + iinfo->i_lenAlloc > inode->i_sb->s_blocksize)
+		return;
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	switch (fe->icbTag.fileType) {
 	case ICBTAG_FILE_TYPE_DIRECTORY:
 		inode->i_op = &udf_dir_inode_operations;
@@ -2038,14 +2087,38 @@ void udf_write_aext(struct inode *inode, struct extent_position *epos,
 		epos->offset += adsize;
 }
 
+<<<<<<< HEAD
+=======
+/*
+ * Only 1 indirect extent in a row really makes sense but allow upto 16 in case
+ * someone does some weird stuff.
+ */
+#define UDF_MAX_INDIR_EXTS 16
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 int8_t udf_next_aext(struct inode *inode, struct extent_position *epos,
 		     struct kernel_lb_addr *eloc, uint32_t *elen, int inc)
 {
 	int8_t etype;
+<<<<<<< HEAD
+=======
+	unsigned int indirections = 0;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	while ((etype = udf_current_aext(inode, epos, eloc, elen, inc)) ==
 	       (EXT_NEXT_EXTENT_ALLOCDECS >> 30)) {
 		int block;
+<<<<<<< HEAD
+=======
+
+		if (++indirections > UDF_MAX_INDIR_EXTS) {
+			udf_err(inode->i_sb,
+				"too many indirect extents in inode %lu\n",
+				inode->i_ino);
+			return -1;
+		}
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		epos->block = *eloc;
 		epos->offset = sizeof(struct allocExtDesc);
 		brelse(epos->bh);

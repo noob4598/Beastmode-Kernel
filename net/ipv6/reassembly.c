@@ -111,7 +111,14 @@ bool ip6_frag_match(struct inet_frag_queue *q, void *a)
 	return	fq->id == arg->id &&
 		fq->user == arg->user &&
 		ipv6_addr_equal(&fq->saddr, arg->src) &&
+<<<<<<< HEAD
 		ipv6_addr_equal(&fq->daddr, arg->dst);
+=======
+		ipv6_addr_equal(&fq->daddr, arg->dst) &&
+		(arg->iif == fq->iif ||
+		 !(ipv6_addr_type(arg->dst) & (IPV6_ADDR_MULTICAST |
+					       IPV6_ADDR_LINKLOCAL)));
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 }
 EXPORT_SYMBOL(ip6_frag_match);
 
@@ -180,7 +187,11 @@ static void ip6_frag_expire(unsigned long data)
 
 static __inline__ struct frag_queue *
 fq_find(struct net *net, __be32 id, const struct in6_addr *src,
+<<<<<<< HEAD
 	const struct in6_addr *dst, u8 ecn)
+=======
+	const struct in6_addr *dst, int iif, u8 ecn)
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 {
 	struct inet_frag_queue *q;
 	struct ip6_create_arg arg;
@@ -190,6 +201,10 @@ fq_find(struct net *net, __be32 id, const struct in6_addr *src,
 	arg.user = IP6_DEFRAG_LOCAL_DELIVER;
 	arg.src = src;
 	arg.dst = dst;
+<<<<<<< HEAD
+=======
+	arg.iif = iif;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	arg.ecn = ecn;
 
 	read_lock(&ip6_frags.lock);
@@ -552,13 +567,23 @@ static int ipv6_frag_rcv(struct sk_buff *skb)
 		return 1;
 	}
 
+<<<<<<< HEAD
+=======
+	if (!net->ipv6.frags.high_thresh)
+		goto fail_mem;
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	evicted = inet_frag_evictor(&net->ipv6.frags, &ip6_frags, false);
 	if (evicted)
 		IP6_ADD_STATS_BH(net, ip6_dst_idev(skb_dst(skb)),
 				 IPSTATS_MIB_REASMFAILS, evicted);
 
 	fq = fq_find(net, fhdr->identification, &hdr->saddr, &hdr->daddr,
+<<<<<<< HEAD
 		     ip6_frag_ecn(hdr));
+=======
+		     skb->dev ? skb->dev->ifindex : 0, ip6_frag_ecn(hdr));
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	if (fq != NULL) {
 		int ret;
 
@@ -571,6 +596,10 @@ static int ipv6_frag_rcv(struct sk_buff *skb)
 		return ret;
 	}
 
+<<<<<<< HEAD
+=======
+fail_mem:
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	IP6_INC_STATS_BH(net, ip6_dst_idev(skb_dst(skb)), IPSTATS_MIB_REASMFAILS);
 	kfree_skb(skb);
 	return -1;

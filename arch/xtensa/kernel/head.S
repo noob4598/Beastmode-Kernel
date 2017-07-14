@@ -118,7 +118,11 @@ ENTRY(_startup)
 	wsr	a0, icountlevel
 
 	.set	_index, 0
+<<<<<<< HEAD
 	.rept	XCHAL_NUM_DBREAK - 1
+=======
+	.rept	XCHAL_NUM_DBREAK
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	wsr	a0, SREG_DBREAKC + _index
 	.set	_index, _index + 1
 	.endr

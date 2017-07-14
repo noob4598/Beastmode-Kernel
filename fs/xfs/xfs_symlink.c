@@ -272,7 +272,11 @@ xfs_readlink_bmap(
 			cur_chunk += sizeof(struct xfs_dsymlink_hdr);
 		}
 
+<<<<<<< HEAD
 		memcpy(link + offset, bp->b_addr, byte_cnt);
+=======
+		memcpy(link + offset, cur_chunk, byte_cnt);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 		pathlen -= byte_cnt;
 		offset += byte_cnt;

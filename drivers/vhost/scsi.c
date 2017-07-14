@@ -820,6 +820,26 @@ static int vhost_scsi_map_iov_to_sgl(struct tcm_vhost_cmd *tv_cmd,
 	return 0;
 }
 
+<<<<<<< HEAD
+=======
+static int vhost_scsi_to_tcm_attr(int attr)
+{
+	switch (attr) {
+	case VIRTIO_SCSI_S_SIMPLE:
+		return MSG_SIMPLE_TAG;
+	case VIRTIO_SCSI_S_ORDERED:
+		return MSG_ORDERED_TAG;
+	case VIRTIO_SCSI_S_HEAD:
+		return MSG_HEAD_TAG;
+	case VIRTIO_SCSI_S_ACA:
+		return MSG_ACA_TAG;
+	default:
+		break;
+	}
+	return MSG_SIMPLE_TAG;
+}
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 static void tcm_vhost_submission_work(struct work_struct *work)
 {
 	struct tcm_vhost_cmd *tv_cmd =
@@ -846,9 +866,15 @@ static void tcm_vhost_submission_work(struct work_struct *work)
 	rc = target_submit_cmd_map_sgls(se_cmd, tv_nexus->tvn_se_sess,
 			tv_cmd->tvc_cdb, &tv_cmd->tvc_sense_buf[0],
 			tv_cmd->tvc_lun, tv_cmd->tvc_exp_data_len,
+<<<<<<< HEAD
 			tv_cmd->tvc_task_attr, tv_cmd->tvc_data_direction,
 			0, sg_ptr, tv_cmd->tvc_sgl_count,
 			sg_bidi_ptr, sg_no_bidi);
+=======
+			vhost_scsi_to_tcm_attr(tv_cmd->tvc_task_attr),
+			tv_cmd->tvc_data_direction, 0, sg_ptr,
+			tv_cmd->tvc_sgl_count, sg_bidi_ptr, sg_no_bidi);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	if (rc < 0) {
 		transport_send_check_condition_and_sense(se_cmd,
 				TCM_LOGICAL_UNIT_COMMUNICATION_FAILURE, 0);
@@ -1071,7 +1097,11 @@ static void tcm_vhost_send_evt(struct vhost_scsi *vs, struct tcm_vhost_tpg *tpg,
 		 * lun[4-7] need to be zero according to virtio-scsi spec.
 		 */
 		evt->event.lun[0] = 0x01;
+<<<<<<< HEAD
 		evt->event.lun[1] = tpg->tport_tpgt & 0xFF;
+=======
+		evt->event.lun[1] = tpg->tport_tpgt;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		if (lun->unpacked_lun >= 256)
 			evt->event.lun[2] = lun->unpacked_lun >> 8 | 0x40 ;
 		evt->event.lun[3] = lun->unpacked_lun & 0xFF;
@@ -1150,6 +1180,10 @@ static int vhost_scsi_set_endpoint(
 	struct vhost_scsi *vs,
 	struct vhost_scsi_target *t)
 {
+<<<<<<< HEAD
+=======
+	struct se_portal_group *se_tpg;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	struct tcm_vhost_tport *tv_tport;
 	struct tcm_vhost_tpg *tv_tpg;
 	struct tcm_vhost_tpg **vs_tpg;
@@ -1197,6 +1231,24 @@ static int vhost_scsi_set_endpoint(
 				ret = -EEXIST;
 				goto out;
 			}
+<<<<<<< HEAD
+=======
+			/*
+			 * In order to ensure individual vhost-scsi configfs
+			 * groups cannot be removed while in use by vhost ioctl,
+			 * go ahead and take an explicit se_tpg->tpg_group.cg_item
+			 * dependency now.
+			 */
+			se_tpg = &tv_tpg->se_tpg;
+			ret = configfs_depend_item(se_tpg->se_tpg_tfo->tf_subsys,
+						   &se_tpg->tpg_group.cg_item);
+			if (ret) {
+				pr_warn("configfs_depend_item() failed: %d\n", ret);
+				kfree(vs_tpg);
+				mutex_unlock(&tv_tpg->tv_tpg_mutex);
+				goto out;
+			}
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 			tv_tpg->tv_tpg_vhost_count++;
 			tv_tpg->vhost_scsi = vs;
 			vs_tpg[tv_tpg->tport_tpgt] = tv_tpg;
@@ -1240,6 +1292,10 @@ static int vhost_scsi_clear_endpoint(
 	struct vhost_scsi *vs,
 	struct vhost_scsi_target *t)
 {
+<<<<<<< HEAD
+=======
+	struct se_portal_group *se_tpg;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	struct tcm_vhost_tport *tv_tport;
 	struct tcm_vhost_tpg *tv_tpg;
 	struct vhost_virtqueue *vq;
@@ -1288,6 +1344,16 @@ static int vhost_scsi_clear_endpoint(
 		vs->vs_tpg[target] = NULL;
 		match = true;
 		mutex_unlock(&tv_tpg->tv_tpg_mutex);
+<<<<<<< HEAD
+=======
+		/*
+		 * Release se_tpg->tpg_group.cg_item configfs dependency now
+		 * to allow vhost-scsi WWPN se_tpg->tpg_group shutdown to occur.
+		 */
+		se_tpg = &tv_tpg->se_tpg;
+		configfs_undepend_item(se_tpg->se_tpg_tfo->tf_subsys,
+				       &se_tpg->tpg_group.cg_item);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	}
 	if (match) {
 		for (i = 0; i < VHOST_SCSI_MAX_VQ; i++) {
@@ -1853,12 +1919,20 @@ static struct se_portal_group *tcm_vhost_make_tpg(struct se_wwn *wwn,
 			struct tcm_vhost_tport, tport_wwn);
 
 	struct tcm_vhost_tpg *tpg;
+<<<<<<< HEAD
 	unsigned long tpgt;
+=======
+	u16 tpgt;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	int ret;
 
 	if (strstr(name, "tpgt_") != name)
 		return ERR_PTR(-EINVAL);
+<<<<<<< HEAD
 	if (kstrtoul(name + 5, 10, &tpgt) || tpgt > UINT_MAX)
+=======
+	if (kstrtou16(name + 5, 10, &tpgt) || tpgt >= VHOST_SCSI_MAX_TARGET)
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		return ERR_PTR(-EINVAL);
 
 	tpg = kzalloc(sizeof(struct tcm_vhost_tpg), GFP_KERNEL);

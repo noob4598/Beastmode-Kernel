@@ -32,7 +32,10 @@
 #include <linux/mutex.h>
 #include <linux/shmem_fs.h>
 #include <linux/ashmem.h>
+<<<<<<< HEAD
 #include <asm/cacheflush.h>
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 #define ASHMEM_NAME_PREFIX "dev/ashmem/"
 #define ASHMEM_NAME_PREFIX_LEN (sizeof(ASHMEM_NAME_PREFIX) - 1)
@@ -712,6 +715,7 @@ done:
 }
 #endif
 
+<<<<<<< HEAD
 static int ashmem_cache_op(struct ashmem_area *asma,
 	void (*cache_func)(unsigned long vstart, unsigned long length,
 				unsigned long pstart))
@@ -757,6 +761,8 @@ done:
 	return ret;
 }
 
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 static long ashmem_ioctl(struct file *file, unsigned int cmd, unsigned long arg)
 {
 	struct ashmem_area *asma = file->private_data;
@@ -802,6 +808,7 @@ static long ashmem_ioctl(struct file *file, unsigned int cmd, unsigned long arg)
 			ashmem_shrink(&ashmem_shrinker, &sc);
 		}
 		break;
+<<<<<<< HEAD
 	case ASHMEM_CACHE_FLUSH_RANGE:
 		ret = ashmem_cache_op(asma, &clean_and_invalidate_caches);
 		break;
@@ -811,6 +818,8 @@ static long ashmem_ioctl(struct file *file, unsigned int cmd, unsigned long arg)
 	case ASHMEM_CACHE_INV_RANGE:
 		ret = ashmem_cache_op(asma, &invalidate_caches);
 		break;
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	}
 
 	return ret;
@@ -833,11 +842,36 @@ static long compat_ashmem_ioctl(struct file *file, unsigned int cmd, unsigned lo
 }
 #endif
 
+<<<<<<< HEAD
 static int is_ashmem_file(struct file *file)
 {
 	char fname[256], *name;
 	name = dentry_path(file->f_dentry, fname, 256);
 	return strcmp(name, "/ashmem") ? 0 : 1;
+=======
+static const struct file_operations ashmem_fops = {
+	.owner = THIS_MODULE,
+	.open = ashmem_open,
+	.release = ashmem_release,
+	.read = ashmem_read,
+	.llseek = ashmem_llseek,
+	.mmap = ashmem_mmap,
+	.unlocked_ioctl = ashmem_ioctl,
+#ifdef CONFIG_COMPAT
+	.compat_ioctl = compat_ashmem_ioctl,
+#endif
+};
+
+static struct miscdevice ashmem_misc = {
+	.minor = MISC_DYNAMIC_MINOR,
+	.name = "ashmem",
+	.fops = &ashmem_fops,
+};
+
+static int is_ashmem_file(struct file *file)
+{
+	return (file->f_op == &ashmem_fops);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 }
 
 int get_ashmem_file(int fd, struct file **filp, struct file **vm_file,
@@ -886,6 +920,7 @@ void put_ashmem_file(struct file *file)
 }
 EXPORT_SYMBOL(put_ashmem_file);
 
+<<<<<<< HEAD
 static const struct file_operations ashmem_fops = {
 	.owner = THIS_MODULE,
 	.open = ashmem_open,
@@ -905,6 +940,8 @@ static struct miscdevice ashmem_misc = {
 	.fops = &ashmem_fops,
 };
 
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 static int __init ashmem_init(void)
 {
 	int ret;

@@ -103,7 +103,10 @@ struct drm_tegra_submit {
 	__u32 num_waitchks;
 	__u32 waitchk_mask;
 	__u32 timeout;
+<<<<<<< HEAD
 	__u32 pad;
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	__u64 syncpts;
 	__u64 cmdbufs;
 	__u64 relocs;

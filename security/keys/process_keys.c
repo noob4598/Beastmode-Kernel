@@ -125,13 +125,26 @@ error:
 }
 
 /*
+<<<<<<< HEAD
  * Install a fresh thread keyring directly to new credentials.  This keyring is
  * allowed to overrun the quota.
+=======
+ * Install a thread keyring to the given credentials struct if it didn't have
+ * one already.  This is allowed to overrun the quota.
+ *
+ * Return: 0 if a thread keyring is now present; -errno on failure.
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
  */
 int install_thread_keyring_to_cred(struct cred *new)
 {
 	struct key *keyring;
 
+<<<<<<< HEAD
+=======
+	if (new->thread_keyring)
+		return 0;
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	keyring = keyring_alloc("_tid", new->uid, new->gid, new,
 				KEY_POS_ALL | KEY_USR_VIEW,
 				KEY_ALLOC_QUOTA_OVERRUN, NULL);
@@ -143,7 +156,13 @@ int install_thread_keyring_to_cred(struct cred *new)
 }
 
 /*
+<<<<<<< HEAD
  * Install a fresh thread keyring, discarding the old one.
+=======
+ * Install a thread keyring to the current task if it didn't have one already.
+ *
+ * Return: 0 if a thread keyring is now present; -errno on failure.
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
  */
 static int install_thread_keyring(void)
 {
@@ -154,8 +173,11 @@ static int install_thread_keyring(void)
 	if (!new)
 		return -ENOMEM;
 
+<<<<<<< HEAD
 	BUG_ON(new->thread_keyring);
 
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	ret = install_thread_keyring_to_cred(new);
 	if (ret < 0) {
 		abort_creds(new);
@@ -166,17 +188,28 @@ static int install_thread_keyring(void)
 }
 
 /*
+<<<<<<< HEAD
  * Install a process keyring directly to a credentials struct.
  *
  * Returns -EEXIST if there was already a process keyring, 0 if one installed,
  * and other value on any other error
+=======
+ * Install a process keyring to the given credentials struct if it didn't have
+ * one already.  This is allowed to overrun the quota.
+ *
+ * Return: 0 if a process keyring is now present; -errno on failure.
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
  */
 int install_process_keyring_to_cred(struct cred *new)
 {
 	struct key *keyring;
 
 	if (new->process_keyring)
+<<<<<<< HEAD
 		return -EEXIST;
+=======
+		return 0;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	keyring = keyring_alloc("_pid", new->uid, new->gid, new,
 				KEY_POS_ALL | KEY_USR_VIEW,
@@ -189,11 +222,17 @@ int install_process_keyring_to_cred(struct cred *new)
 }
 
 /*
+<<<<<<< HEAD
  * Make sure a process keyring is installed for the current process.  The
  * existing process keyring is not replaced.
  *
  * Returns 0 if there is a process keyring by the end of this function, some
  * error otherwise.
+=======
+ * Install a process keyring to the current task if it didn't have one already.
+ *
+ * Return: 0 if a process keyring is now present; -errno on failure.
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
  */
 static int install_process_keyring(void)
 {
@@ -207,14 +246,26 @@ static int install_process_keyring(void)
 	ret = install_process_keyring_to_cred(new);
 	if (ret < 0) {
 		abort_creds(new);
+<<<<<<< HEAD
 		return ret != -EEXIST ? ret : 0;
+=======
+		return ret;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	}
 
 	return commit_creds(new);
 }
 
 /*
+<<<<<<< HEAD
  * Install a session keyring directly to a credentials struct.
+=======
+ * Install the given keyring as the session keyring of the given credentials
+ * struct, replacing the existing one if any.  If the given keyring is NULL,
+ * then install a new anonymous session keyring.
+ *
+ * Return: 0 on success; -errno on failure.
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
  */
 int install_session_keyring_to_cred(struct cred *cred, struct key *keyring)
 {
@@ -249,8 +300,16 @@ int install_session_keyring_to_cred(struct cred *cred, struct key *keyring)
 }
 
 /*
+<<<<<<< HEAD
  * Install a session keyring, discarding the old one.  If a keyring is not
  * supplied, an empty one is invented.
+=======
+ * Install the given keyring as the session keyring of the current task,
+ * replacing the existing one if any.  If the given keyring is NULL, then
+ * install a new anonymous session keyring.
+ *
+ * Return: 0 on success; -errno on failure.
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
  */
 static int install_session_keyring(struct key *keyring)
 {

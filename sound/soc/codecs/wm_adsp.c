@@ -964,6 +964,10 @@ static int wm_adsp_load_coeff(struct wm_adsp *dsp)
 			  file, blocks, pos - firmware->size);
 
 out_fw:
+<<<<<<< HEAD
+=======
+	regmap_async_complete(regmap);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	release_firmware(firmware);
 	wm_adsp_buf_free(&buf_list);
 out:
@@ -1284,3 +1288,8 @@ int wm_adsp2_init(struct wm_adsp *adsp, bool dvfs)
 	return 0;
 }
 EXPORT_SYMBOL_GPL(wm_adsp2_init);
+<<<<<<< HEAD
+=======
+
+MODULE_LICENSE("GPL v2");
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03

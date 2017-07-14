@@ -1055,12 +1055,15 @@ struct qib_devdata {
 	/* control high-level access to EEPROM */
 	struct mutex eep_lock;
 	uint64_t traffic_wds;
+<<<<<<< HEAD
 	/* active time is kept in seconds, but logged in hours */
 	atomic_t active_time;
 	/* Below are nominal shadow of EEPROM, new since last EEPROM update */
 	uint8_t eep_st_errs[QIB_EEP_LOG_CNT];
 	uint8_t eep_st_new_errs[QIB_EEP_LOG_CNT];
 	uint16_t eep_hrs;
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	/*
 	 * masks for which bits of errs, hwerrs that cause
 	 * each of the counters to increment.
@@ -1278,8 +1281,12 @@ int qib_twsi_blk_rd(struct qib_devdata *dd, int dev, int addr, void *buffer,
 int qib_twsi_blk_wr(struct qib_devdata *dd, int dev, int addr,
 		    const void *buffer, int len);
 void qib_get_eeprom_info(struct qib_devdata *);
+<<<<<<< HEAD
 int qib_update_eeprom_log(struct qib_devdata *dd);
 void qib_inc_eeprom_err(struct qib_devdata *dd, u32 eidx, u32 incr);
+=======
+#define qib_inc_eeprom_err(dd, eidx, incr)
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 void qib_dump_lookup_output_queue(struct qib_devdata *);
 void qib_force_pio_avail_update(struct qib_devdata *);
 void qib_clear_symerror_on_linkup(unsigned long opaque);
@@ -1474,6 +1481,7 @@ extern struct mutex qib_mutex;
  * first to avoid possible serial port delays from printk.
  */
 #define qib_early_err(dev, fmt, ...) \
+<<<<<<< HEAD
 	do { \
 		dev_err(dev, fmt, ##__VA_ARGS__); \
 	} while (0)
@@ -1495,6 +1503,24 @@ extern struct mutex qib_mutex;
 	do { \
 		dev_info(&(pcidev)->dev, fmt, ##__VA_ARGS__); \
 	} while (0)
+=======
+	dev_err(dev, fmt, ##__VA_ARGS__)
+
+#define qib_dev_err(dd, fmt, ...) \
+	dev_err(&(dd)->pcidev->dev, "%s: " fmt, \
+		qib_get_unit_name((dd)->unit), ##__VA_ARGS__)
+
+#define qib_dev_warn(dd, fmt, ...) \
+	dev_warn(&(dd)->pcidev->dev, "%s: " fmt, \
+		qib_get_unit_name((dd)->unit), ##__VA_ARGS__)
+
+#define qib_dev_porterr(dd, port, fmt, ...) \
+	dev_err(&(dd)->pcidev->dev, "%s: IB%u:%u " fmt, \
+		qib_get_unit_name((dd)->unit), (dd)->unit, (port), \
+		##__VA_ARGS__)
+#define qib_devinfo(pcidev, fmt, ...) \
+	dev_info(&(pcidev)->dev, fmt, ##__VA_ARGS__)
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 /*
  * this is used for formatting hw error messages...

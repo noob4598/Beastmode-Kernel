@@ -168,11 +168,20 @@ get_entry(const void *base, unsigned int offset)
 
 /* All zeroes == unconditional rule. */
 /* Mildly perf critical (only if packet tracing is on) */
+<<<<<<< HEAD
 static inline bool unconditional(const struct ipt_ip *ip)
 {
 	static const struct ipt_ip uncond;
 
 	return memcmp(ip, &uncond, sizeof(uncond)) == 0;
+=======
+static inline bool unconditional(const struct ipt_entry *e)
+{
+	static const struct ipt_ip uncond;
+
+	return e->target_offset == sizeof(struct ipt_entry) &&
+	       memcmp(&e->ip, &uncond, sizeof(uncond)) == 0;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 #undef FWINV
 }
 
@@ -229,11 +238,18 @@ get_chainname_rulenum(const struct ipt_entry *s, const struct ipt_entry *e,
 	} else if (s == e) {
 		(*rulenum)++;
 
+<<<<<<< HEAD
 		if (s->target_offset == sizeof(struct ipt_entry) &&
 		    strcmp(t->target.u.kernel.target->name,
 			   XT_STANDARD_TARGET) == 0 &&
 		   t->verdict < 0 &&
 		   unconditional(&s->ip)) {
+=======
+		if (unconditional(s) &&
+		    strcmp(t->target.u.kernel.target->name,
+			   XT_STANDARD_TARGET) == 0 &&
+		   t->verdict < 0) {
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 			/* Tail of chains: STANDARD target (return/policy) */
 			*comment = *chainname == hookname
 				? comments[NF_IP_TRACE_COMMENT_POLICY]
@@ -472,11 +488,18 @@ mark_source_chains(const struct xt_table_info *newinfo,
 			e->comefrom |= ((1 << hook) | (1 << NF_INET_NUMHOOKS));
 
 			/* Unconditional return/END. */
+<<<<<<< HEAD
 			if ((e->target_offset == sizeof(struct ipt_entry) &&
 			     (strcmp(t->target.u.user.name,
 				     XT_STANDARD_TARGET) == 0) &&
 			     t->verdict < 0 && unconditional(&e->ip)) ||
 			    visited) {
+=======
+			if ((unconditional(e) &&
+			     (strcmp(t->target.u.user.name,
+				     XT_STANDARD_TARGET) == 0) &&
+			     t->verdict < 0) || visited) {
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 				unsigned int oldpos, size;
 
 				if ((strcmp(t->target.u.user.name,
@@ -517,6 +540,11 @@ mark_source_chains(const struct xt_table_info *newinfo,
 				size = e->next_offset;
 				e = (struct ipt_entry *)
 					(entry0 + pos + size);
+<<<<<<< HEAD
+=======
+				if (pos + size >= newinfo->size)
+					return 0;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 				e->counters.pcnt = pos;
 				pos += size;
 			} else {
@@ -538,6 +566,11 @@ mark_source_chains(const struct xt_table_info *newinfo,
 				} else {
 					/* ... this is a fallthru */
 					newpos = pos + e->next_offset;
+<<<<<<< HEAD
+=======
+					if (newpos >= newinfo->size)
+						return 0;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 				}
 				e = (struct ipt_entry *)
 					(entry0 + newpos);
@@ -565,6 +598,7 @@ static void cleanup_match(struct xt_entry_match *m, struct net *net)
 }
 
 static int
+<<<<<<< HEAD
 check_entry(const struct ipt_entry *e, const char *name)
 {
 	const struct xt_entry_target *t;
@@ -586,6 +620,8 @@ check_entry(const struct ipt_entry *e, const char *name)
 }
 
 static int
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 check_match(struct xt_entry_match *m, struct xt_mtchk_param *par)
 {
 	const struct ipt_ip *ip = par->entryinfo;
@@ -662,10 +698,13 @@ find_check_entry(struct ipt_entry *e, struct net *net, const char *name,
 	struct xt_mtchk_param mtpar;
 	struct xt_entry_match *ematch;
 
+<<<<<<< HEAD
 	ret = check_entry(e, name);
 	if (ret)
 		return ret;
 
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	j = 0;
 	mtpar.net	= net;
 	mtpar.table     = name;
@@ -709,7 +748,11 @@ static bool check_underflow(const struct ipt_entry *e)
 	const struct xt_entry_target *t;
 	unsigned int verdict;
 
+<<<<<<< HEAD
 	if (!unconditional(&e->ip))
+=======
+	if (!unconditional(e))
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		return false;
 	t = ipt_get_target_c(e);
 	if (strcmp(t->u.user.name, XT_STANDARD_TARGET) != 0)
@@ -729,9 +772,17 @@ check_entry_size_and_hooks(struct ipt_entry *e,
 			   unsigned int valid_hooks)
 {
 	unsigned int h;
+<<<<<<< HEAD
 
 	if ((unsigned long)e % __alignof__(struct ipt_entry) != 0 ||
 	    (unsigned char *)e + sizeof(struct ipt_entry) >= limit) {
+=======
+	int err;
+
+	if ((unsigned long)e % __alignof__(struct ipt_entry) != 0 ||
+	    (unsigned char *)e + sizeof(struct ipt_entry) >= limit ||
+	    (unsigned char *)e + e->next_offset > limit) {
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		duprintf("Bad offset %p\n", e);
 		return -EINVAL;
 	}
@@ -743,6 +794,17 @@ check_entry_size_and_hooks(struct ipt_entry *e,
 		return -EINVAL;
 	}
 
+<<<<<<< HEAD
+=======
+	if (!ip_checkentry(&e->ip))
+		return -EINVAL;
+
+	err = xt_check_entry_offsets(e, e->elems, e->target_offset,
+				     e->next_offset);
+	if (err)
+		return err;
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	/* Check hooks & underflows */
 	for (h = 0; h < NF_INET_NUMHOOKS; h++) {
 		if (!(valid_hooks & (1 << h)))
@@ -751,9 +813,15 @@ check_entry_size_and_hooks(struct ipt_entry *e,
 			newinfo->hook_entry[h] = hook_entries[h];
 		if ((unsigned char *)e - base == underflows[h]) {
 			if (!check_underflow(e)) {
+<<<<<<< HEAD
 				pr_err("Underflows must be unconditional and "
 				       "use the STANDARD target with "
 				       "ACCEPT/DROP\n");
+=======
+				pr_debug("Underflows must be unconditional and "
+					 "use the STANDARD target with "
+					 "ACCEPT/DROP\n");
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 				return -EINVAL;
 			}
 			newinfo->underflow[h] = underflows[h];
@@ -1231,8 +1299,15 @@ __do_replace(struct net *net, const char *name, unsigned int valid_hooks,
 
 	xt_free_table_info(oldinfo);
 	if (copy_to_user(counters_ptr, counters,
+<<<<<<< HEAD
 			 sizeof(struct xt_counters) * num_counters) != 0)
 		ret = -EFAULT;
+=======
+			 sizeof(struct xt_counters) * num_counters) != 0) {
+		/* Silent error, can't fail, new table is already in place */
+		net_warn_ratelimited("iptables: counters copy to user failed while replacing table\n");
+	}
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	vfree(counters);
 	xt_table_unlock(t);
 	return ret;
@@ -1261,6 +1336,12 @@ do_replace(struct net *net, const void __user *user, unsigned int len)
 	/* overflow check */
 	if (tmp.num_counters >= INT_MAX / sizeof(struct xt_counters))
 		return -ENOMEM;
+<<<<<<< HEAD
+=======
+	if (tmp.num_counters == 0)
+		return -EINVAL;
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	tmp.name[sizeof(tmp.name)-1] = 0;
 
 	newinfo = xt_alloc_table_info(tmp.size);
@@ -1302,16 +1383,20 @@ do_add_counters(struct net *net, const void __user *user,
 	unsigned int i, curcpu;
 	struct xt_counters_info tmp;
 	struct xt_counters *paddc;
+<<<<<<< HEAD
 	unsigned int num_counters;
 	const char *name;
 	int size;
 	void *ptmp;
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	struct xt_table *t;
 	const struct xt_table_info *private;
 	int ret = 0;
 	void *loc_cpu_entry;
 	struct ipt_entry *iter;
 	unsigned int addend;
+<<<<<<< HEAD
 #ifdef CONFIG_COMPAT
 	struct compat_xt_counters_info compat_tmp;
 
@@ -1352,6 +1437,14 @@ do_add_counters(struct net *net, const void __user *user,
 	}
 
 	t = xt_find_table_lock(net, AF_INET, name);
+=======
+
+	paddc = xt_copy_counters_from_user(user, len, &tmp, compat);
+	if (IS_ERR(paddc))
+		return PTR_ERR(paddc);
+
+	t = xt_find_table_lock(net, AF_INET, tmp.name);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	if (IS_ERR_OR_NULL(t)) {
 		ret = t ? PTR_ERR(t) : -ENOENT;
 		goto free;
@@ -1359,7 +1452,11 @@ do_add_counters(struct net *net, const void __user *user,
 
 	local_bh_disable();
 	private = t->private;
+<<<<<<< HEAD
 	if (private->number != num_counters) {
+=======
+	if (private->number != tmp.num_counters) {
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		ret = -EINVAL;
 		goto unlock_up_free;
 	}
@@ -1438,7 +1535,10 @@ compat_copy_entry_to_user(struct ipt_entry *e, void __user **dstptr,
 
 static int
 compat_find_calc_match(struct xt_entry_match *m,
+<<<<<<< HEAD
 		       const char *name,
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		       const struct ipt_ip *ip,
 		       unsigned int hookmask,
 		       int *size)
@@ -1474,21 +1574,34 @@ check_compat_entry_size_and_hooks(struct compat_ipt_entry *e,
 				  struct xt_table_info *newinfo,
 				  unsigned int *size,
 				  const unsigned char *base,
+<<<<<<< HEAD
 				  const unsigned char *limit,
 				  const unsigned int *hook_entries,
 				  const unsigned int *underflows,
 				  const char *name)
+=======
+				  const unsigned char *limit)
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 {
 	struct xt_entry_match *ematch;
 	struct xt_entry_target *t;
 	struct xt_target *target;
 	unsigned int entry_offset;
 	unsigned int j;
+<<<<<<< HEAD
 	int ret, off, h;
 
 	duprintf("check_compat_entry_size_and_hooks %p\n", e);
 	if ((unsigned long)e % __alignof__(struct compat_ipt_entry) != 0 ||
 	    (unsigned char *)e + sizeof(struct compat_ipt_entry) >= limit) {
+=======
+	int ret, off;
+
+	duprintf("check_compat_entry_size_and_hooks %p\n", e);
+	if ((unsigned long)e % __alignof__(struct compat_ipt_entry) != 0 ||
+	    (unsigned char *)e + sizeof(struct compat_ipt_entry) >= limit ||
+	    (unsigned char *)e + e->next_offset > limit) {
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		duprintf("Bad offset %p, limit = %p\n", e, limit);
 		return -EINVAL;
 	}
@@ -1500,8 +1613,16 @@ check_compat_entry_size_and_hooks(struct compat_ipt_entry *e,
 		return -EINVAL;
 	}
 
+<<<<<<< HEAD
 	/* For purposes of check_entry casting the compat entry is fine */
 	ret = check_entry((struct ipt_entry *)e, name);
+=======
+	if (!ip_checkentry(&e->ip))
+		return -EINVAL;
+
+	ret = xt_compat_check_entry_offsets(e, e->elems,
+					    e->target_offset, e->next_offset);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	if (ret)
 		return ret;
 
@@ -1509,8 +1630,13 @@ check_compat_entry_size_and_hooks(struct compat_ipt_entry *e,
 	entry_offset = (void *)e - (void *)base;
 	j = 0;
 	xt_ematch_foreach(ematch, e) {
+<<<<<<< HEAD
 		ret = compat_find_calc_match(ematch, name,
 					     &e->ip, e->comefrom, &off);
+=======
+		ret = compat_find_calc_match(ematch, &e->ip, e->comefrom,
+					     &off);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		if (ret != 0)
 			goto release_matches;
 		++j;
@@ -1533,6 +1659,7 @@ check_compat_entry_size_and_hooks(struct compat_ipt_entry *e,
 	if (ret)
 		goto out;
 
+<<<<<<< HEAD
 	/* Check hooks & underflows */
 	for (h = 0; h < NF_INET_NUMHOOKS; h++) {
 		if ((unsigned char *)e - base == hook_entries[h])
@@ -1544,6 +1671,8 @@ check_compat_entry_size_and_hooks(struct compat_ipt_entry *e,
 	/* Clear counters and comefrom */
 	memset(&e->counters, 0, sizeof(e->counters));
 	e->comefrom = 0;
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	return 0;
 
 out:
@@ -1557,19 +1686,31 @@ release_matches:
 	return ret;
 }
 
+<<<<<<< HEAD
 static int
 compat_copy_entry_from_user(struct compat_ipt_entry *e, void **dstptr,
 			    unsigned int *size, const char *name,
+=======
+static void
+compat_copy_entry_from_user(struct compat_ipt_entry *e, void **dstptr,
+			    unsigned int *size,
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 			    struct xt_table_info *newinfo, unsigned char *base)
 {
 	struct xt_entry_target *t;
 	struct xt_target *target;
 	struct ipt_entry *de;
 	unsigned int origsize;
+<<<<<<< HEAD
 	int ret, h;
 	struct xt_entry_match *ematch;
 
 	ret = 0;
+=======
+	int h;
+	struct xt_entry_match *ematch;
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	origsize = *size;
 	de = (struct ipt_entry *)*dstptr;
 	memcpy(de, e, sizeof(struct ipt_entry));
@@ -1578,23 +1719,34 @@ compat_copy_entry_from_user(struct compat_ipt_entry *e, void **dstptr,
 	*dstptr += sizeof(struct ipt_entry);
 	*size += sizeof(struct ipt_entry) - sizeof(struct compat_ipt_entry);
 
+<<<<<<< HEAD
 	xt_ematch_foreach(ematch, e) {
 		ret = xt_compat_match_from_user(ematch, dstptr, size);
 		if (ret != 0)
 			return ret;
 	}
+=======
+	xt_ematch_foreach(ematch, e)
+		xt_compat_match_from_user(ematch, dstptr, size);
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	de->target_offset = e->target_offset - (origsize - *size);
 	t = compat_ipt_get_target(e);
 	target = t->u.kernel.target;
 	xt_compat_target_from_user(t, dstptr, size);
 
 	de->next_offset = e->next_offset - (origsize - *size);
+<<<<<<< HEAD
+=======
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	for (h = 0; h < NF_INET_NUMHOOKS; h++) {
 		if ((unsigned char *)de - base < newinfo->hook_entry[h])
 			newinfo->hook_entry[h] -= origsize - *size;
 		if ((unsigned char *)de - base < newinfo->underflow[h])
 			newinfo->underflow[h] -= origsize - *size;
 	}
+<<<<<<< HEAD
 	return ret;
 }
 
@@ -1631,10 +1783,13 @@ compat_check_entry(struct ipt_entry *e, struct net *net, const char *name)
 		cleanup_match(ematch, net);
 	}
 	return ret;
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 }
 
 static int
 translate_compat_table(struct net *net,
+<<<<<<< HEAD
 		       const char *name,
 		       unsigned int valid_hooks,
 		       struct xt_table_info **pinfo,
@@ -1643,17 +1798,27 @@ translate_compat_table(struct net *net,
 		       unsigned int number,
 		       unsigned int *hook_entries,
 		       unsigned int *underflows)
+=======
+		       struct xt_table_info **pinfo,
+		       void **pentry0,
+		       const struct compat_ipt_replace *compatr)
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 {
 	unsigned int i, j;
 	struct xt_table_info *newinfo, *info;
 	void *pos, *entry0, *entry1;
 	struct compat_ipt_entry *iter0;
+<<<<<<< HEAD
 	struct ipt_entry *iter1;
+=======
+	struct ipt_replace repl;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	unsigned int size;
 	int ret;
 
 	info = *pinfo;
 	entry0 = *pentry0;
+<<<<<<< HEAD
 	size = total_size;
 	info->number = number;
 
@@ -1662,10 +1827,15 @@ translate_compat_table(struct net *net,
 		info->hook_entry[i] = 0xFFFFFFFF;
 		info->underflow[i] = 0xFFFFFFFF;
 	}
+=======
+	size = compatr->size;
+	info->number = compatr->num_entries;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	duprintf("translate_compat_table: size %u\n", info->size);
 	j = 0;
 	xt_compat_lock(AF_INET);
+<<<<<<< HEAD
 	xt_compat_init_offsets(AF_INET, number);
 	/* Walk through entries, checking offsets. */
 	xt_entry_foreach(iter0, entry0, total_size) {
@@ -1675,12 +1845,21 @@ translate_compat_table(struct net *net,
 							hook_entries,
 							underflows,
 							name);
+=======
+	xt_compat_init_offsets(AF_INET, compatr->num_entries);
+	/* Walk through entries, checking offsets. */
+	xt_entry_foreach(iter0, entry0, compatr->size) {
+		ret = check_compat_entry_size_and_hooks(iter0, info, &size,
+							entry0,
+							entry0 + compatr->size);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		if (ret != 0)
 			goto out_unlock;
 		++j;
 	}
 
 	ret = -EINVAL;
+<<<<<<< HEAD
 	if (j != number) {
 		duprintf("translate_compat_table: %u not %u entries\n",
 			 j, number);
@@ -1704,11 +1883,20 @@ translate_compat_table(struct net *net,
 		}
 	}
 
+=======
+	if (j != compatr->num_entries) {
+		duprintf("translate_compat_table: %u not %u entries\n",
+			 j, compatr->num_entries);
+		goto out_unlock;
+	}
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	ret = -ENOMEM;
 	newinfo = xt_alloc_table_info(size);
 	if (!newinfo)
 		goto out_unlock;
 
+<<<<<<< HEAD
 	newinfo->number = number;
 	for (i = 0; i < NF_INET_NUMHOOKS; i++) {
 		newinfo->hook_entry[i] = info->hook_entry[i];
@@ -1770,6 +1958,43 @@ translate_compat_table(struct net *net,
 	for_each_possible_cpu(i)
 		if (newinfo->entries[i] && newinfo->entries[i] != entry1)
 			memcpy(newinfo->entries[i], entry1, newinfo->size);
+=======
+	newinfo->number = compatr->num_entries;
+	for (i = 0; i < NF_INET_NUMHOOKS; i++) {
+		newinfo->hook_entry[i] = compatr->hook_entry[i];
+		newinfo->underflow[i] = compatr->underflow[i];
+	}
+	entry1 = newinfo->entries[raw_smp_processor_id()];
+	pos = entry1;
+	size = compatr->size;
+	xt_entry_foreach(iter0, entry0, compatr->size)
+		compat_copy_entry_from_user(iter0, &pos, &size,
+					    newinfo, entry1);
+
+	/* all module references in entry0 are now gone.
+	 * entry1/newinfo contains a 64bit ruleset that looks exactly as
+	 * generated by 64bit userspace.
+	 *
+	 * Call standard translate_table() to validate all hook_entrys,
+	 * underflows, check for loops, etc.
+	 */
+	xt_compat_flush_offsets(AF_INET);
+	xt_compat_unlock(AF_INET);
+
+	memcpy(&repl, compatr, sizeof(*compatr));
+
+	for (i = 0; i < NF_INET_NUMHOOKS; i++) {
+		repl.hook_entry[i] = newinfo->hook_entry[i];
+		repl.underflow[i] = newinfo->underflow[i];
+	}
+
+	repl.num_counters = 0;
+	repl.counters = NULL;
+	repl.size = newinfo->size;
+	ret = translate_table(net, newinfo, entry1, &repl);
+	if (ret)
+		goto free_newinfo;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	*pinfo = newinfo;
 	*pentry0 = entry1;
@@ -1778,17 +2003,28 @@ translate_compat_table(struct net *net,
 
 free_newinfo:
 	xt_free_table_info(newinfo);
+<<<<<<< HEAD
 out:
 	xt_entry_foreach(iter0, entry0, total_size) {
+=======
+	return ret;
+out_unlock:
+	xt_compat_flush_offsets(AF_INET);
+	xt_compat_unlock(AF_INET);
+	xt_entry_foreach(iter0, entry0, compatr->size) {
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		if (j-- == 0)
 			break;
 		compat_release_entry(iter0);
 	}
 	return ret;
+<<<<<<< HEAD
 out_unlock:
 	xt_compat_flush_offsets(AF_INET);
 	xt_compat_unlock(AF_INET);
 	goto out;
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 }
 
 static int
@@ -1808,6 +2044,12 @@ compat_do_replace(struct net *net, void __user *user, unsigned int len)
 		return -ENOMEM;
 	if (tmp.num_counters >= INT_MAX / sizeof(struct xt_counters))
 		return -ENOMEM;
+<<<<<<< HEAD
+=======
+	if (tmp.num_counters == 0)
+		return -EINVAL;
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	tmp.name[sizeof(tmp.name)-1] = 0;
 
 	newinfo = xt_alloc_table_info(tmp.size);
@@ -1822,10 +2064,14 @@ compat_do_replace(struct net *net, void __user *user, unsigned int len)
 		goto free_newinfo;
 	}
 
+<<<<<<< HEAD
 	ret = translate_compat_table(net, tmp.name, tmp.valid_hooks,
 				     &newinfo, &loc_cpu_entry, tmp.size,
 				     tmp.num_entries, tmp.hook_entry,
 				     tmp.underflow);
+=======
+	ret = translate_compat_table(net, &newinfo, &loc_cpu_entry, &tmp);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	if (ret != 0)
 		goto free_newinfo;
 

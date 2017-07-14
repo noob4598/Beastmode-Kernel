@@ -1771,7 +1771,11 @@ int drbd_send(struct drbd_tconn *tconn, struct socket *sock,
  * do we need to block DRBD_SIG if sock == &meta.socket ??
  * otherwise wake_asender() might interrupt some send_*Ack !
  */
+<<<<<<< HEAD
 		rv = kernel_sendmsg(sock, &msg, &iov, 1, size);
+=======
+		rv = kernel_sendmsg(sock, &msg, &iov, 1, iov.iov_len);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		if (rv == -EAGAIN) {
 			if (we_should_drop_the_connection(tconn, sock))
 				break;

@@ -78,6 +78,10 @@
 #include <linux/atomic.h>
 #include <net/dst.h>
 #include <net/checksum.h>
+<<<<<<< HEAD
+=======
+#include <net/tcp_states.h>
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 struct cgroup;
 struct cgroup_subsys;
@@ -686,6 +690,11 @@ enum sock_flags {
 	SOCK_SELECT_ERR_QUEUE, /* Wake select on error queue */
 };
 
+<<<<<<< HEAD
+=======
+#define SK_FLAGS_TIMESTAMP ((1UL << SOCK_TIMESTAMP) | (1UL << SOCK_TIMESTAMPING_RX_SOFTWARE))
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 static inline void sock_copy_flags(struct sock *nsk, struct sock *osk)
 {
 	nsk->sk_flags = osk->sk_flags;
@@ -796,6 +805,17 @@ static inline __must_check int sk_add_backlog(struct sock *sk, struct sk_buff *s
 	if (sk_rcvqueues_full(sk, skb, limit))
 		return -ENOBUFS;
 
+<<<<<<< HEAD
+=======
+	/*
+	 * If the skb was allocated from pfmemalloc reserves, only
+	 * allow SOCK_MEMALLOC sockets to use it as this socket is
+	 * helping free memory
+	 */
+	if (skb_pfmemalloc(skb) && !sock_flag(sk, SOCK_MEMALLOC))
+		return -ENOMEM;
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	__sk_add_backlog(sk, skb);
 	sk->sk_backlog.len += skb->truesize;
 	return 0;
@@ -946,7 +966,10 @@ struct proto {
 						struct sk_buff *skb);
 
 	void		(*release_cb)(struct sock *sk);
+<<<<<<< HEAD
 	void		(*mtu_reduced)(struct sock *sk);
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	/* Keeping track of sk's, looking them up, and port selection methods. */
 	void			(*hash)(struct sock *sk);
@@ -1012,6 +1035,10 @@ struct proto {
 	void			(*destroy_cgroup)(struct mem_cgroup *memcg);
 	struct cg_proto		*(*proto_cgroup)(struct mem_cgroup *memcg);
 #endif
+<<<<<<< HEAD
+=======
+	int			(*diag_destroy)(struct sock *sk, int err);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 };
 
 /*
@@ -1362,7 +1389,11 @@ static inline struct inode *SOCK_INODE(struct socket *socket)
  * Functions for memory accounting
  */
 extern int __sk_mem_schedule(struct sock *sk, int size, int kind);
+<<<<<<< HEAD
 extern void __sk_mem_reclaim(struct sock *sk);
+=======
+void __sk_mem_reclaim(struct sock *sk, int amount);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 #define SK_MEM_QUANTUM ((int)PAGE_SIZE)
 #define SK_MEM_QUANTUM_SHIFT ilog2(SK_MEM_QUANTUM)
@@ -1403,7 +1434,11 @@ static inline void sk_mem_reclaim(struct sock *sk)
 	if (!sk_has_account(sk))
 		return;
 	if (sk->sk_forward_alloc >= SK_MEM_QUANTUM)
+<<<<<<< HEAD
 		__sk_mem_reclaim(sk);
+=======
+		__sk_mem_reclaim(sk, sk->sk_forward_alloc);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 }
 
 static inline void sk_mem_reclaim_partial(struct sock *sk)
@@ -1411,7 +1446,11 @@ static inline void sk_mem_reclaim_partial(struct sock *sk)
 	if (!sk_has_account(sk))
 		return;
 	if (sk->sk_forward_alloc > SK_MEM_QUANTUM)
+<<<<<<< HEAD
 		__sk_mem_reclaim(sk);
+=======
+		__sk_mem_reclaim(sk, sk->sk_forward_alloc - 1);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 }
 
 static inline void sk_mem_charge(struct sock *sk, int size)
@@ -1426,6 +1465,19 @@ static inline void sk_mem_uncharge(struct sock *sk, int size)
 	if (!sk_has_account(sk))
 		return;
 	sk->sk_forward_alloc += size;
+<<<<<<< HEAD
+=======
+
+	/* Avoid a possible overflow.
+	 * TCP send queues can make this happen, if sk_mem_reclaim()
+	 * is not called and more than 2 GBytes are released at once.
+	 *
+	 * If we reach 2 MBytes, reclaim 1 MBytes right now, there is
+	 * no need to hold that much forward allocation anyway.
+	 */
+	if (unlikely(sk->sk_forward_alloc >= 1 << 21))
+		__sk_mem_reclaim(sk, 1 << 20);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 }
 
 static inline void sk_wmem_free_skb(struct sock *sk, struct sk_buff *skb)
@@ -1525,6 +1577,10 @@ extern struct sk_buff		*sock_rmalloc(struct sock *sk,
 					      gfp_t priority);
 extern void			sock_wfree(struct sk_buff *skb);
 extern void			sock_rfree(struct sk_buff *skb);
+<<<<<<< HEAD
+=======
+extern void			sock_efree(struct sk_buff *skb);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 extern void			sock_edemux(struct sk_buff *skb);
 
 extern int			sock_setsockopt(struct socket *sock, int level,
@@ -1741,8 +1797,13 @@ sk_dst_get(struct sock *sk)
 
 	rcu_read_lock();
 	dst = rcu_dereference(sk->sk_dst_cache);
+<<<<<<< HEAD
 	if (dst)
 		dst_hold(dst);
+=======
+	if (dst && !atomic_inc_not_zero(&dst->__refcnt))
+		dst = NULL;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	rcu_read_unlock();
 	return dst;
 }
@@ -1781,9 +1842,17 @@ __sk_dst_set(struct sock *sk, struct dst_entry *dst)
 static inline void
 sk_dst_set(struct sock *sk, struct dst_entry *dst)
 {
+<<<<<<< HEAD
 	spin_lock(&sk->sk_dst_lock);
 	__sk_dst_set(sk, dst);
 	spin_unlock(&sk->sk_dst_lock);
+=======
+	struct dst_entry *old_dst;
+
+	sk_tx_queue_clear(sk);
+	old_dst = xchg((__force struct dst_entry **)&sk->sk_dst_cache, dst);
+	dst_release(old_dst);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 }
 
 static inline void
@@ -1795,9 +1864,13 @@ __sk_dst_reset(struct sock *sk)
 static inline void
 sk_dst_reset(struct sock *sk)
 {
+<<<<<<< HEAD
 	spin_lock(&sk->sk_dst_lock);
 	__sk_dst_reset(sk);
 	spin_unlock(&sk->sk_dst_lock);
+=======
+	sk_dst_set(sk, NULL);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 }
 
 extern struct dst_entry *__sk_dst_check(struct sock *sk, u32 cookie);
@@ -2258,14 +2331,33 @@ static inline struct sock *skb_steal_sock(struct sk_buff *skb)
 	return NULL;
 }
 
+<<<<<<< HEAD
+=======
+/* This helper checks if a socket is a full socket,
+ * ie _not_ a timewait or request socket.
+ * TODO: Check for TCPF_NEW_SYN_RECV when that starts to exist.
+ */
+static inline bool sk_fullsock(const struct sock *sk)
+{
+	return (1 << sk->sk_state) & ~(TCPF_TIME_WAIT);
+}
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 extern void sock_enable_timestamp(struct sock *sk, int flag);
 extern int sock_get_timestamp(struct sock *, struct timeval __user *);
 extern int sock_get_timestampns(struct sock *, struct timespec __user *);
 
 bool sk_ns_capable(const struct sock *sk,
+<<<<<<< HEAD
 		struct user_namespace *user_ns, int cap);
 bool sk_capable(const struct sock *sk, int cap);
 bool sk_net_capable(const struct sock *sk, int cap);
+=======
+		   struct user_namespace *user_ns, int cap);
+bool sk_capable(const struct sock *sk, int cap);
+bool sk_net_capable(const struct sock *sk, int cap);
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 /*
  *	Enable debug/info messages
  */

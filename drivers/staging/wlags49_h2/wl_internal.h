@@ -1014,7 +1014,11 @@ static inline void wl_unlock(struct wl_private *lp,
 /* Interrupt enable disable functions                               */
 /********************************************************************/
 
+<<<<<<< HEAD
 extern inline void wl_act_int_on(struct wl_private *lp)
+=======
+static inline void wl_act_int_on(struct wl_private *lp)
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 {
 	/*
 	 * Only do something when the driver is handling
@@ -1026,7 +1030,11 @@ extern inline void wl_act_int_on(struct wl_private *lp)
 	}
 }
 
+<<<<<<< HEAD
 extern inline void wl_act_int_off(struct wl_private *lp)
+=======
+static inline void wl_act_int_off(struct wl_private *lp)
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 {
 	/*
 	 * Only do something when the driver is handling

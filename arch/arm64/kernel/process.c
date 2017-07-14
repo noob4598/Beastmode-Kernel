@@ -182,9 +182,33 @@ void exit_thread(void)
 {
 }
 
+<<<<<<< HEAD
 void flush_thread(void)
 {
 	fpsimd_flush_thread();
+=======
+static void tls_thread_flush(void)
+{
+	asm ("msr tpidr_el0, xzr");
+
+	if (is_compat_task()) {
+		current->thread.tp_value = 0;
+
+		/*
+		 * We need to ensure ordering between the shadow state and the
+		 * hardware state, so that we don't corrupt the hardware state
+		 * with a stale shadow state during context switch.
+		 */
+		barrier();
+		asm ("msr tpidrro_el0, xzr");
+	}
+}
+
+void flush_thread(void)
+{
+	fpsimd_flush_thread();
+	tls_thread_flush();
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	flush_ptrace_hw_breakpoint(current);
 }
 

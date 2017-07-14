@@ -154,7 +154,11 @@ static ssize_t sel_write_enforce(struct file *file, const char __user *buf,
 		goto out;
 
 	/* No partial writes. */
+<<<<<<< HEAD
 	length = EINVAL;
+=======
+	length = -EINVAL;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	if (*ppos != 0)
 		goto out;
 
@@ -1216,7 +1220,11 @@ static void sel_remove_entries(struct dentry *de)
 	spin_lock(&de->d_lock);
 	node = de->d_subdirs.next;
 	while (node != &de->d_subdirs) {
+<<<<<<< HEAD
 		struct dentry *d = list_entry(node, struct dentry, d_u.d_child);
+=======
+		struct dentry *d = list_entry(node, struct dentry, d_child);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 		spin_lock_nested(&d->d_lock, DENTRY_D_LOCK_NESTED);
 		list_del_init(node);
@@ -1690,12 +1698,20 @@ static void sel_remove_classes(void)
 
 	list_for_each(class_node, &class_dir->d_subdirs) {
 		struct dentry *class_subdir = list_entry(class_node,
+<<<<<<< HEAD
 					struct dentry, d_u.d_child);
+=======
+					struct dentry, d_child);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		struct list_head *class_subdir_node;
 
 		list_for_each(class_subdir_node, &class_subdir->d_subdirs) {
 			struct dentry *d = list_entry(class_subdir_node,
+<<<<<<< HEAD
 						struct dentry, d_u.d_child);
+=======
+						struct dentry, d_child);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 			if (d->d_inode)
 				if (d->d_inode->i_mode & S_IFDIR)

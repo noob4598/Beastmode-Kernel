@@ -175,5 +175,9 @@ module_exit(sha1_mod_fini);
 
 MODULE_LICENSE("GPL");
 MODULE_DESCRIPTION("SHA1 Secure Hash Algorithm (ARM)");
+<<<<<<< HEAD
 MODULE_ALIAS("sha1");
+=======
+MODULE_ALIAS_CRYPTO("sha1");
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 MODULE_AUTHOR("David McCullough <ucdevel@gmail.com>");

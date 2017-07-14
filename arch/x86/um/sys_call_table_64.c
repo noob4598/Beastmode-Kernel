@@ -46,7 +46,11 @@ typedef void (*sys_call_ptr_t)(void);
 
 extern void sys_ni_syscall(void);
 
+<<<<<<< HEAD
 const sys_call_ptr_t sys_call_table[] __cacheline_aligned = {
+=======
+const sys_call_ptr_t sys_call_table[] ____cacheline_aligned = {
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	/*
 	 * Smells like a compiler bug -- it doesn't work
 	 * when the & below is removed.

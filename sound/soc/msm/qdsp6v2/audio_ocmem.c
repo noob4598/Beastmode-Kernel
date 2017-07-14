@@ -243,7 +243,11 @@ int audio_ocmem_enable(int cid)
 	struct ocmem_buf *buf = NULL;
 	struct avcs_cmd_rsp_get_low_power_segments_info_t *lp_segptr;
 
+<<<<<<< HEAD
 	pr_debug("%s, %p\n", __func__, &audio_ocmem_lcl);
+=======
+	pr_debug("%s, %pK\n", __func__, &audio_ocmem_lcl);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	atomic_set(&audio_ocmem_lcl.audio_state, OCMEM_STATE_DEFAULT);
 	if (audio_ocmem_lcl.lp_memseg_ptr == NULL) {
 		/* Retrieve low power segments */

@@ -428,6 +428,10 @@ static bool intel_crt_detect_ddc(struct drm_connector *connector)
 	struct drm_i915_private *dev_priv = crt->base.base.dev->dev_private;
 	struct edid *edid;
 	struct i2c_adapter *i2c;
+<<<<<<< HEAD
+=======
+	bool ret = false;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	BUG_ON(crt->base.type != INTEL_OUTPUT_ANALOG);
 
@@ -444,17 +448,28 @@ static bool intel_crt_detect_ddc(struct drm_connector *connector)
 		 */
 		if (!is_digital) {
 			DRM_DEBUG_KMS("CRT detected via DDC:0x50 [EDID]\n");
+<<<<<<< HEAD
 			return true;
 		}
 
 		DRM_DEBUG_KMS("CRT not detected via DDC:0x50 [EDID reports a digital panel]\n");
+=======
+			ret = true;
+		} else {
+			DRM_DEBUG_KMS("CRT not detected via DDC:0x50 [EDID reports a digital panel]\n");
+		}
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	} else {
 		DRM_DEBUG_KMS("CRT not detected via DDC:0x50 [no valid EDID found]\n");
 	}
 
 	kfree(edid);
 
+<<<<<<< HEAD
 	return false;
+=======
+	return ret;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 }
 
 static enum drm_connector_status
@@ -702,7 +717,11 @@ static const struct drm_encoder_funcs intel_crt_enc_funcs = {
 	.destroy = intel_encoder_destroy,
 };
 
+<<<<<<< HEAD
 static int __init intel_no_crt_dmi_callback(const struct dmi_system_id *id)
+=======
+static int intel_no_crt_dmi_callback(const struct dmi_system_id *id)
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 {
 	DRM_INFO("Skipping CRT initialization for %s\n", id->ident);
 	return 1;

@@ -13,7 +13,11 @@
 /* PAGE_SHIFT determines the page size */
 #define PAGE_SHIFT		12
 #define PAGE_SIZE		(_AC(1,UL) << PAGE_SHIFT)
+<<<<<<< HEAD
 #define PAGE_MASK		(~(PAGE_SIZE-1))
+=======
+#define PAGE_MASK		(~((1 << PAGE_SHIFT) - 1))
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 #ifndef __ASSEMBLY__
 

@@ -563,4 +563,8 @@ MODULE_DESCRIPTION("VIA PadLock AES algorithm support");
 MODULE_LICENSE("GPL");
 MODULE_AUTHOR("Michal Ludvig");
 
+<<<<<<< HEAD
 MODULE_ALIAS("aes");
+=======
+MODULE_ALIAS_CRYPTO("aes");
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03

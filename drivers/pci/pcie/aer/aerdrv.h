@@ -76,7 +76,10 @@ struct aer_rpc {
 					 * recovery on the same
 					 * root port hierarchy
 					 */
+<<<<<<< HEAD
 	wait_queue_head_t wait_release;
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 };
 
 struct aer_broadcast_data {

@@ -348,6 +348,12 @@ void __init paging_init(void)
 
 	empty_zero_page = virt_to_page(zero_page);
 
+<<<<<<< HEAD
+=======
+	/* Ensure the zero page is visible to the page table walker */
+	dsb();
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	/*
 	 * TTBR0 is only used for the identity mapping at this stage. Make it
 	 * point to zero page to avoid speculatively fetching new entries.

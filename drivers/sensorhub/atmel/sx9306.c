@@ -869,6 +869,7 @@ static ssize_t sx9306_sim_type_store(struct device *dev,
 }
 #endif
 
+<<<<<<< HEAD
 static ssize_t sx9306_grip_flush_store(struct device *dev,
 	struct device_attribute *attr, const char *buf, size_t size)
 {
@@ -890,6 +891,8 @@ static ssize_t sx9306_grip_flush_store(struct device *dev,
 	return size;
 }
 
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 static DEVICE_ATTR(menual_calibrate, S_IRUGO | S_IWUSR | S_IWGRP,
 		sx9306_get_offset_calibration_show,
 		sx9306_set_offset_calibration_store);
@@ -916,7 +919,10 @@ static DEVICE_ATTR(normal_threshold, S_IRUGO | S_IWUSR | S_IWGRP,
 static DEVICE_ATTR(sim_type, S_IRUGO | S_IWUSR | S_IWGRP,
 		sx9306_sim_type_show, sx9306_sim_type_store);
 #endif
+<<<<<<< HEAD
 static DEVICE_ATTR(grip_flush, S_IWUSR | S_IWGRP, NULL, sx9306_grip_flush_store);
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 static struct device_attribute *sensor_attrs[] = {
 	&dev_attr_menual_calibrate,
@@ -932,7 +938,10 @@ static struct device_attribute *sensor_attrs[] = {
 	&dev_attr_normal_threshold,
 	&dev_attr_onoff,
 	&dev_attr_calibration,
+<<<<<<< HEAD
 	&dev_attr_grip_flush,
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 #ifdef CONFIG_SENSORS_GRIP_SIMDET
 	&dev_attr_sim_type,
 #endif

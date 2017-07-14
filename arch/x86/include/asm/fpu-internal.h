@@ -370,7 +370,11 @@ static inline void drop_fpu(struct task_struct *tsk)
 	preempt_disable();
 	tsk->fpu_counter = 0;
 	__drop_fpu(tsk);
+<<<<<<< HEAD
 	clear_used_math();
+=======
+	clear_stopped_child_used_math(tsk);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	preempt_enable();
 }
 

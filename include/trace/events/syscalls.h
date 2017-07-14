@@ -1,5 +1,9 @@
 #undef TRACE_SYSTEM
 #define TRACE_SYSTEM raw_syscalls
+<<<<<<< HEAD
+=======
+#undef TRACE_INCLUDE_FILE
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 #define TRACE_INCLUDE_FILE syscalls
 
 #if !defined(_TRACE_EVENTS_SYSCALLS_H) || defined(TRACE_HEADER_MULTI_READ)

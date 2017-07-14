@@ -339,8 +339,15 @@ static int ext4_update_inline_data(handle_t *handle, struct inode *inode,
 
 	len -= EXT4_MIN_INLINE_DATA_SIZE;
 	value = kzalloc(len, GFP_NOFS);
+<<<<<<< HEAD
 	if (!value)
 		goto out;
+=======
+	if (!value) {
+		error = -ENOMEM;
+		goto out;
+	}
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	error = ext4_xattr_ibody_get(inode, i.name_index, i.name,
 				     value, len);
@@ -1145,10 +1152,16 @@ static int ext4_finish_convert_inline_dir(handle_t *handle,
 	set_buffer_uptodate(dir_block);
 	err = ext4_handle_dirty_dirent_node(handle, inode, dir_block);
 	if (err)
+<<<<<<< HEAD
 		goto out;
 	set_buffer_verified(dir_block);
 out:
 	return err;
+=======
+		return err;
+	set_buffer_verified(dir_block);
+	return ext4_mark_inode_dirty(handle, inode);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 }
 
 static int ext4_convert_inline_data_nolock(handle_t *handle,

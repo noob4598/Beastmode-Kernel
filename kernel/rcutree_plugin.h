@@ -2249,6 +2249,10 @@ static int rcu_nocb_kthread(void *arg)
 				cl++;
 			c++;
 			local_bh_enable();
+<<<<<<< HEAD
+=======
+			cond_resched();
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 			list = next;
 		}
 		trace_rcu_batch_end(rdp->rsp->name, c, !!list, 0, 0, 1);

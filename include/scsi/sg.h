@@ -4,6 +4,7 @@
 #include <linux/compiler.h>
 
 /*
+<<<<<<< HEAD
    History:
     Started: Aug 9 by Lawrence Foard (entropy@world.std.com), to allow user
      process control of SCSI devices.
@@ -69,12 +70,40 @@ Major new features in SG 3.x driver (cf SG 2.x drivers)
  packaged as sg3_utils (for the lk 2.4 and 2.6 series) and sg_utils
  (for the lk 2.2 series).
 */
+=======
+ * History:
+ *  Started: Aug 9 by Lawrence Foard (entropy@world.std.com), to allow user
+ *   process control of SCSI devices.
+ *  Development Sponsored by Killy Corp. NY NY
+ *
+ * Original driver (sg.h):
+ *       Copyright (C) 1992 Lawrence Foard
+ * Version 2 and 3 extensions to driver:
+ *	Copyright (C) 1998 - 2014 Douglas Gilbert
+ *
+ *  Version: 3.5.36 (20140603)
+ *  This version is for 2.6 and 3 series kernels.
+ *
+ * Documentation
+ * =============
+ * A web site for the SG device driver can be found at:
+ *	http://sg.danny.cz/sg  [alternatively check the MAINTAINERS file]
+ * The documentation for the sg version 3 driver can be found at:
+ *	http://sg.danny.cz/sg/p/sg_v3_ho.html
+ * Also see: <kernel_source>/Documentation/scsi/scsi-generic.txt
+ *
+ * For utility and test programs see: http://sg.danny.cz/sg/sg3_utils.html
+ */
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 #ifdef __KERNEL__
 extern int sg_big_buff; /* for sysctl */
 #endif
 
+<<<<<<< HEAD
 /* New interface introduced in the 3.x SG drivers follows */
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 typedef struct sg_iovec /* same structure as used by readv() Linux system */
 {                       /* call. It defines one scatter-gather element. */
@@ -87,7 +116,11 @@ typedef struct sg_io_hdr
 {
     int interface_id;           /* [i] 'S' for SCSI generic (required) */
     int dxfer_direction;        /* [i] data transfer direction  */
+<<<<<<< HEAD
     unsigned char cmd_len;      /* [i] SCSI command length ( <= 16 bytes) */
+=======
+    unsigned char cmd_len;      /* [i] SCSI command length */
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
     unsigned char mx_sb_len;    /* [i] max length to write to sbp */
     unsigned short iovec_count; /* [i] 0 implies no scatter gather */
     unsigned int dxfer_len;     /* [i] byte count of data transfer */

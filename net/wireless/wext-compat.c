@@ -1345,6 +1345,11 @@ static struct iw_statistics *cfg80211_wireless_stats(struct net_device *dev)
 	memcpy(bssid, wdev->current_bss->pub.bssid, ETH_ALEN);
 	wdev_unlock(wdev);
 
+<<<<<<< HEAD
+=======
+	memset(&sinfo, 0, sizeof(sinfo));
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	if (rdev_get_station(rdev, dev, bssid, &sinfo))
 		return NULL;
 

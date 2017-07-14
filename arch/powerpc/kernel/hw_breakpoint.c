@@ -228,8 +228,15 @@ int __kprobes hw_breakpoint_handler(struct die_args *args)
 	rcu_read_lock();
 
 	bp = __get_cpu_var(bp_per_reg);
+<<<<<<< HEAD
 	if (!bp)
 		goto out;
+=======
+	if (!bp) {
+		rc = NOTIFY_DONE;
+		goto out;
+	}
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	info = counter_arch_bp(bp);
 
 	/*

@@ -173,7 +173,11 @@ static int sk_diag_fill(struct sock *sk, struct sk_buff *skb,
 
 	if ((req->pdiag_show & PACKET_SHOW_FILTER) &&
 	    sock_diag_put_filterinfo(may_report_filterinfo, sk, skb,
+<<<<<<< HEAD
 	    			     PACKET_DIAG_FILTER))
+=======
+				     PACKET_DIAG_FILTER))
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		goto out_nlmsg_trim;
 
 	return nlmsg_end(skb, nlh);
@@ -189,9 +193,17 @@ static int packet_diag_dump(struct sk_buff *skb, struct netlink_callback *cb)
 	struct packet_diag_req *req;
 	struct net *net;
 	struct sock *sk;
+<<<<<<< HEAD
 
 	net = sock_net(skb->sk);
 	req = nlmsg_data(cb->nlh);
+=======
+	bool may_report_filterinfo;
+
+	net = sock_net(skb->sk);
+	req = nlmsg_data(cb->nlh);
+	may_report_filterinfo = netlink_net_capable(cb->skb, CAP_NET_ADMIN);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	mutex_lock(&net->packet.sklist_lock);
 	sk_for_each(sk, &net->packet.sklist) {

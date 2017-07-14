@@ -1545,9 +1545,15 @@ static int virtnet_probe(struct virtio_device *vdev)
 	/* Do we support "hardware" checksums? */
 	if (virtio_has_feature(vdev, VIRTIO_NET_F_CSUM)) {
 		/* This opens up the world of extra features. */
+<<<<<<< HEAD
 		dev->hw_features |= NETIF_F_HW_CSUM|NETIF_F_SG|NETIF_F_FRAGLIST;
 		if (csum)
 			dev->features |= NETIF_F_HW_CSUM|NETIF_F_SG|NETIF_F_FRAGLIST;
+=======
+		dev->hw_features |= NETIF_F_HW_CSUM | NETIF_F_SG;
+		if (csum)
+			dev->features |= NETIF_F_HW_CSUM | NETIF_F_SG;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 		if (virtio_has_feature(vdev, VIRTIO_NET_F_GSO)) {
 			dev->hw_features |= NETIF_F_TSO | NETIF_F_UFO

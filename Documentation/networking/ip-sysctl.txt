@@ -698,6 +698,14 @@ ip_local_reserved_ports - list of comma separated ranges
 
 	Default: Empty
 
+<<<<<<< HEAD
+=======
+reserved_port_bind - BOOLEAN
+	If set, allows explicit bind requests to applications requesting
+	any port within the range of ip_local_reserved_ports.
+	Default: 1
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 ip_nonlocal_bind - BOOLEAN
 	If set, allows processes to bind() to non-local IP addresses,
 	which can be quite useful - but may break some applications.
@@ -1357,6 +1365,7 @@ ndisc_notify - BOOLEAN
 	1 - Generate unsolicited neighbour advertisements when device is brought
 	    up or hardware address changes.
 
+<<<<<<< HEAD
 optimistic_dad - BOOLEAN
 	Whether to perform Optimistic Duplicate Address Detection (RFC 4429).
 	0: disabled (default)
@@ -1370,6 +1379,8 @@ use_optimistic - BOOLEAN
 	0: disabled (default)
 	1: enabled
 
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 icmp/*:
 ratelimit - INTEGER
 	Limit the maximal rates for sending ICMPv6 packets.

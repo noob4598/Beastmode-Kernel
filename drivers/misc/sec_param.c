@@ -10,13 +10,19 @@
 #include <linux/module.h>
 #include <linux/device.h>
 #include <linux/slab.h>
+<<<<<<< HEAD
 #include <linux/workqueue.h>
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 #include <linux/fs.h>
 #include <linux/uaccess.h>
 #include <linux/sec_param.h>
 #include <linux/file.h>
 #include <linux/syscalls.h>
+<<<<<<< HEAD
 #include <linux/delay.h>
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 #define PARAM_RD	0
 #define PARAM_WR	1
@@ -29,6 +35,7 @@
 #endif
 #define SEC_PARAM_FILE_OFFSET (SEC_PARAM_FILE_SIZE - 0x100000)
 
+<<<<<<< HEAD
 static DEFINE_MUTEX(sec_param_mutex);
 
 /* single global instance */
@@ -38,54 +45,89 @@ struct sec_param_data_s sched_sec_param_data;
 int sec_param_sysfs_init(void);
 
 static void param_sec_operation(struct work_struct *work)
+=======
+/* single global instance */
+struct sec_param_data *param_data;
+
+static bool param_sec_operation(void *value, int offset,
+		int size, int direction)
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 {
 	/* Read from PARAM(parameter) partition  */
 	struct file *filp;
 	mm_segment_t fs;
 	int ret = true;
+<<<<<<< HEAD
 	struct sec_param_data_s *sched_param_data =
 		container_of(work, struct sec_param_data_s, sec_param_work);
 	
 	int flag = (sched_param_data->direction == PARAM_WR) ? (O_RDWR | O_SYNC) : O_RDONLY;
 
 	pr_debug("%s %p %x %d %d\n", __func__, sched_param_data->value, sched_param_data->offset, sched_param_data->size, sched_param_data->direction);
+=======
+	int flag = (direction == PARAM_WR) ? (O_RDWR | O_SYNC) : O_RDONLY;
+
+	pr_debug("%s %p %x %d %d\n", __func__, value, offset, size, direction);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	filp = filp_open(SEC_PARAM_FILE_NAME, flag, 0);
 
 	if (IS_ERR(filp)) {
 		pr_err("%s: filp_open failed. (%ld)\n",
 				__func__, PTR_ERR(filp));
+<<<<<<< HEAD
 		complete(&sched_sec_param_data.work);
 		return;
+=======
+		return false;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	}
 
 	fs = get_fs();
 	set_fs(get_ds());
 
+<<<<<<< HEAD
 	ret = filp->f_op->llseek(filp, sched_param_data->offset, SEEK_SET);
+=======
+	ret = filp->f_op->llseek(filp, offset, SEEK_SET);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	if (ret < 0) {
 		pr_err("%s FAIL LLSEEK\n", __func__);
 		ret = false;
 		goto param_sec_debug_out;
 	}
 
+<<<<<<< HEAD
 	if (sched_param_data->direction == PARAM_RD)
 		ret = filp->f_op->read(filp, (char __user *)sched_param_data->value,
 				sched_param_data->size, &filp->f_pos);
 	else if (sched_param_data->direction == PARAM_WR)
 		ret = filp->f_op->write(filp, (char __user *)sched_param_data->value,
 				sched_param_data->size, &filp->f_pos);
+=======
+	if (direction == PARAM_RD)
+		ret = filp->f_op->read(filp, (char __user *)value,
+				size, &filp->f_pos);
+	else if (direction == PARAM_WR)
+		ret = filp->f_op->write(filp, (char __user *)value,
+				size, &filp->f_pos);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 param_sec_debug_out:
 	set_fs(fs);
 	filp_close(filp, NULL);
+<<<<<<< HEAD
 	complete(&sched_sec_param_data.work);
 	return;
+=======
+	return ret;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 }
 
 bool sec_open_param(void)
 {
 	int ret = true;
+<<<<<<< HEAD
 	
 	pr_info("%s start \n",__func__);
 
@@ -131,10 +173,32 @@ bool sec_write_param(void)
 	pr_info("%s end\n",__func__);
 
 	mutex_unlock(&sec_param_mutex);
+=======
+	int offset = SEC_PARAM_FILE_OFFSET;
+
+	if (param_data != NULL)
+		return true;
+
+	param_data = kmalloc(sizeof(struct sec_param_data), GFP_KERNEL);
+
+	ret = param_sec_operation(param_data, offset,
+			sizeof(struct sec_param_data), PARAM_RD);
+
+	if (!ret) {
+		kfree(param_data);
+		param_data = NULL;
+		pr_err("%s PARAM OPEN FAIL\n", __func__);
+		return false;
+	}
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	return ret;
 
 }
+<<<<<<< HEAD
+=======
+EXPORT_SYMBOL(sec_open_param);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 bool sec_get_param(enum sec_param_index index, void *value)
 {
@@ -202,6 +266,10 @@ EXPORT_SYMBOL(sec_get_param);
 bool sec_set_param(enum sec_param_index index, void *value)
 {
 	int ret = true;
+<<<<<<< HEAD
+=======
+	int offset = SEC_PARAM_FILE_OFFSET;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	ret = sec_open_param();
 	if (!ret)
@@ -260,6 +328,7 @@ bool sec_set_param(enum sec_param_index index, void *value)
 		return false;
 	}
 
+<<<<<<< HEAD
 	ret = sec_write_param();
 
 	return ret;
@@ -290,6 +359,13 @@ static void __exit sec_param_work_exit(void)
 	pr_info("%s: exit\n", __func__);
 }
 
+=======
+	return param_sec_operation(param_data, offset,
+			sizeof(struct sec_param_data), PARAM_WR);
+}
+EXPORT_SYMBOL(sec_set_param);
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 /* ##########################################################
  * #
  * # SEC PARAM Driver sysfs file
@@ -372,6 +448,10 @@ failed_create_dev:
 	class_destroy(sec_param_class);
 	return ret;
 }
+<<<<<<< HEAD
 
 module_init(sec_param_work_init);
 module_exit(sec_param_work_exit);
+=======
+module_init(sec_param_sysfs_init);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03

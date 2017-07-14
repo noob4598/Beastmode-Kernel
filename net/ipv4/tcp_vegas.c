@@ -218,7 +218,12 @@ static void tcp_vegas_cong_avoid(struct sock *sk, u32 ack, u32 in_flight)
 			 * This is:
 			 *     (actual rate in segments) * baseRTT
 			 */
+<<<<<<< HEAD
 			target_cwnd = tp->snd_cwnd * vegas->baseRTT / rtt;
+=======
+			target_cwnd = (u64)tp->snd_cwnd * vegas->baseRTT;
+			do_div(target_cwnd, rtt);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 			/* Calculate the difference between the window we had,
 			 * and the window we would like to have. This quantity

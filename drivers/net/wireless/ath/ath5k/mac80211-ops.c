@@ -511,8 +511,12 @@ ath5k_set_key(struct ieee80211_hw *hw, enum set_key_cmd cmd,
 			break;
 		return -EOPNOTSUPP;
 	default:
+<<<<<<< HEAD
 		WARN_ON(1);
 		return -EINVAL;
+=======
+		return -EOPNOTSUPP;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	}
 
 	mutex_lock(&ah->lock);

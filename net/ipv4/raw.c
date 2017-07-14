@@ -387,7 +387,11 @@ static int raw_send_hdrinc(struct sock *sk, struct flowi4 *fl4,
 		iph->check   = 0;
 		iph->tot_len = htons(length);
 		if (!iph->id)
+<<<<<<< HEAD
 			ip_select_ident(skb, &rt->dst, NULL);
+=======
+			ip_select_ident(skb, NULL);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 		iph->check = ip_fast_csum((unsigned char *)iph, iph->ihl);
 	}

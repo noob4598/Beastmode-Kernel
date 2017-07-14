@@ -50,7 +50,11 @@
 /* for lpm mode check */
 extern int poweroff_charging;
 
+<<<<<<< HEAD
 extern int system_rev;
+=======
+extern unsigned int system_rev;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 extern struct otg_notify *get_otg_notify(void);
 
@@ -1925,11 +1929,14 @@ static int max77843_muic_handle_attach(struct max77843_muic_info *info,
 						if(poweroff_charging || irq == -1) {
 							max77843_muic_start_check_hv(info);
 							max77843_muic_set_hv(info);
+<<<<<<< HEAD
 							if (info->cable_name == EXTCON_HV_PREPARE) {
 								pr_info("%s, cable_type is Prepare  [%d]\n",
 										__func__, info->cable_name);
 								return 0;
 							}
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 						}
 					}
 				}

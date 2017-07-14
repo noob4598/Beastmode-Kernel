@@ -475,7 +475,11 @@ config ARM_CHARLCD
 	  still useful.
 
 config BMP085
+<<<<<<< HEAD
 	bool
+=======
+	tristate
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	depends on SYSFS
 
 config BMP085_I2C

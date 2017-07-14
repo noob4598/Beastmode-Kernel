@@ -28,7 +28,12 @@ struct serio {
 
 	struct serio_device_id id;
 
+<<<<<<< HEAD
 	spinlock_t lock;		/* protects critical sections from port's interrupt handler */
+=======
+	/* Protects critical sections from port's interrupt handler */
+	spinlock_t lock;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	int (*write)(struct serio *, unsigned char);
 	int (*open)(struct serio *);
@@ -37,16 +42,41 @@ struct serio {
 	void (*stop)(struct serio *);
 
 	struct serio *parent;
+<<<<<<< HEAD
 	struct list_head child_node;	/* Entry in parent->children list */
 	struct list_head children;
 	unsigned int depth;		/* level of nesting in serio hierarchy */
 
 	struct serio_driver *drv;	/* accessed from interrupt, must be protected by serio->lock and serio->sem */
 	struct mutex drv_mutex;		/* protects serio->drv so attributes can pin driver */
+=======
+	/* Entry in parent->children list */
+	struct list_head child_node;
+	struct list_head children;
+	/* Level of nesting in serio hierarchy */
+	unsigned int depth;
+
+	/*
+	 * serio->drv is accessed from interrupt handlers; when modifying
+	 * caller should acquire serio->drv_mutex and serio->lock.
+	 */
+	struct serio_driver *drv;
+	/* Protects serio->drv so attributes can pin current driver */
+	struct mutex drv_mutex;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	struct device dev;
 
 	struct list_head node;
+<<<<<<< HEAD
+=======
+
+	/*
+	 * For use by PS/2 layer when several ports share hardware and
+	 * may get indigestion when exposed to concurrent access (i8042).
+	 */
+	struct mutex *ps2_cmd_mutex;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 };
 #define to_serio_port(d)	container_of(d, struct serio, dev)
 

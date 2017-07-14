@@ -1042,7 +1042,10 @@ struct ubifs_debug_info;
  *
  * @mst_node: master node
  * @mst_offs: offset of valid master node
+<<<<<<< HEAD
  * @mst_mutex: protects the master node area, @mst_node, and @mst_offs
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
  *
  * @max_bu_buf_len: maximum bulk-read buffer length
  * @bu_mutex: protects the pre-allocated bulk-read buffer and @c->bu
@@ -1282,7 +1285,10 @@ struct ubifs_info {
 
 	struct ubifs_mst_node *mst_node;
 	int mst_offs;
+<<<<<<< HEAD
 	struct mutex mst_mutex;
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	int max_bu_buf_len;
 	struct mutex bu_mutex;

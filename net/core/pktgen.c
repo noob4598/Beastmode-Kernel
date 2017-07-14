@@ -3377,8 +3377,15 @@ static int pktgen_thread_worker(void *arg)
 	pktgen_rem_thread(t);
 
 	/* Wait for kthread_stop */
+<<<<<<< HEAD
 	while (!kthread_should_stop()) {
 		set_current_state(TASK_INTERRUPTIBLE);
+=======
+	for (;;) {
+		set_current_state(TASK_INTERRUPTIBLE);
+		if (kthread_should_stop())
+			break;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		schedule();
 	}
 	__set_current_state(TASK_RUNNING);

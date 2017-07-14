@@ -393,8 +393,13 @@ static void giveback(struct driver_data *drv_data)
 			cs_deassert(drv_data);
 	}
 
+<<<<<<< HEAD
 	spi_finalize_current_message(drv_data->master);
 	drv_data->cur_chip = NULL;
+=======
+	drv_data->cur_chip = NULL;
+	spi_finalize_current_message(drv_data->master);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 }
 
 static void reset_sccr1(struct driver_data *drv_data)
@@ -546,6 +551,13 @@ static irqreturn_t ssp_int(int irq, void *dev_id)
 	if (!(sccr1_reg & SSCR1_TIE))
 		mask &= ~SSSR_TFS;
 
+<<<<<<< HEAD
+=======
+	/* Ignore RX timeout interrupt if it is disabled */
+	if (!(sccr1_reg & SSCR1_TINTE))
+		mask &= ~SSSR_TINT;
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	if (!(status & mask))
 		return IRQ_NONE;
 
@@ -1324,7 +1336,13 @@ static int pxa2xx_spi_suspend(struct device *dev)
 	if (status != 0)
 		return status;
 	write_SSCR0(0, drv_data->ioaddr);
+<<<<<<< HEAD
 	clk_disable_unprepare(ssp->clk);
+=======
+
+	if (!pm_runtime_suspended(dev))
+		clk_disable_unprepare(ssp->clk);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	return 0;
 }
@@ -1338,7 +1356,12 @@ static int pxa2xx_spi_resume(struct device *dev)
 	pxa2xx_spi_dma_resume(drv_data);
 
 	/* Enable the SSP clock */
+<<<<<<< HEAD
 	clk_prepare_enable(ssp->clk);
+=======
+	if (!pm_runtime_suspended(dev))
+		clk_prepare_enable(ssp->clk);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	/* Start the queue running */
 	status = spi_master_resume(drv_data->master);

@@ -124,7 +124,11 @@
 				/* Device Bus parameters are required */
 
 				/* Read parameters */
+<<<<<<< HEAD
 				devbus,bus-width    = <8>;
+=======
+				devbus,bus-width    = <16>;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 				devbus,turn-off-ps  = <60000>;
 				devbus,badr-skew-ps = <0>;
 				devbus,acc-first-ps = <124000>;

@@ -244,8 +244,15 @@ int __frontswap_store(struct page *page)
 		  the (older) page from frontswap
 		 */
 		inc_frontswap_failed_stores();
+<<<<<<< HEAD
 		if (dup)
 			__frontswap_clear(sis, offset);
+=======
+		if (dup) {
+			__frontswap_clear(sis, offset);
+			frontswap_ops->invalidate_page(type, offset);
+		}
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	}
 	if (frontswap_writethrough_enabled)
 		/* report failure so swap also writes to swap device */

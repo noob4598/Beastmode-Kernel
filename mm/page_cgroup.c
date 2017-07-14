@@ -170,6 +170,10 @@ static void free_page_cgroup(void *addr)
 			sizeof(struct page_cgroup) * PAGES_PER_SECTION;
 
 		BUG_ON(PageReserved(page));
+<<<<<<< HEAD
+=======
+		kmemleak_free(addr);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		free_pages_exact(addr, table_size);
 	}
 }

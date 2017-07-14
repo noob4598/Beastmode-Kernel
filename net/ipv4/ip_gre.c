@@ -652,6 +652,10 @@ static const struct net_device_ops ipgre_netdev_ops = {
 static void ipgre_tunnel_setup(struct net_device *dev)
 {
 	dev->netdev_ops		= &ipgre_netdev_ops;
+<<<<<<< HEAD
+=======
+	dev->type		= ARPHRD_IPGRE;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	ip_tunnel_setup(dev, ipgre_net_id);
 }
 
@@ -690,7 +694,10 @@ static int ipgre_tunnel_init(struct net_device *dev)
 	memcpy(dev->dev_addr, &iph->saddr, 4);
 	memcpy(dev->broadcast, &iph->daddr, 4);
 
+<<<<<<< HEAD
 	dev->type		= ARPHRD_IPGRE;
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	dev->flags		= IFF_NOARP;
 	dev->priv_flags		&= ~IFF_XMIT_DST_RELEASE;
 	dev->addr_len		= 4;

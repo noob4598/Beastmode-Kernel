@@ -769,12 +769,24 @@ static void acpi_device_notify(acpi_handle handle, u32 event, void *data)
 	device->driver->ops.notify(device, event);
 }
 
+<<<<<<< HEAD
 static acpi_status acpi_device_notify_fixed(void *data)
+=======
+static void acpi_device_notify_fixed(void *data)
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 {
 	struct acpi_device *device = data;
 
 	/* Fixed hardware devices have no handles */
 	acpi_device_notify(NULL, ACPI_FIXED_HARDWARE_EVENT, device);
+<<<<<<< HEAD
+=======
+}
+
+static acpi_status acpi_device_fixed_event(void *data)
+{
+	acpi_os_execute(OSL_NOTIFY_HANDLER, acpi_device_notify_fixed, data);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	return AE_OK;
 }
 
@@ -785,12 +797,20 @@ static int acpi_device_install_notify_handler(struct acpi_device *device)
 	if (device->device_type == ACPI_BUS_TYPE_POWER_BUTTON)
 		status =
 		    acpi_install_fixed_event_handler(ACPI_EVENT_POWER_BUTTON,
+<<<<<<< HEAD
 						     acpi_device_notify_fixed,
+=======
+						     acpi_device_fixed_event,
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 						     device);
 	else if (device->device_type == ACPI_BUS_TYPE_SLEEP_BUTTON)
 		status =
 		    acpi_install_fixed_event_handler(ACPI_EVENT_SLEEP_BUTTON,
+<<<<<<< HEAD
 						     acpi_device_notify_fixed,
+=======
+						     acpi_device_fixed_event,
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 						     device);
 	else
 		status = acpi_install_notify_handler(device->handle,
@@ -807,10 +827,17 @@ static void acpi_device_remove_notify_handler(struct acpi_device *device)
 {
 	if (device->device_type == ACPI_BUS_TYPE_POWER_BUTTON)
 		acpi_remove_fixed_event_handler(ACPI_EVENT_POWER_BUTTON,
+<<<<<<< HEAD
 						acpi_device_notify_fixed);
 	else if (device->device_type == ACPI_BUS_TYPE_SLEEP_BUTTON)
 		acpi_remove_fixed_event_handler(ACPI_EVENT_SLEEP_BUTTON,
 						acpi_device_notify_fixed);
+=======
+						acpi_device_fixed_event);
+	else if (device->device_type == ACPI_BUS_TYPE_SLEEP_BUTTON)
+		acpi_remove_fixed_event_handler(ACPI_EVENT_SLEEP_BUTTON,
+						acpi_device_fixed_event);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	else
 		acpi_remove_notify_handler(device->handle, ACPI_DEVICE_NOTIFY,
 					   acpi_device_notify);

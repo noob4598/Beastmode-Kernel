@@ -15,7 +15,12 @@
 #include "internal.h"
 
 struct inode *efivarfs_get_inode(struct super_block *sb,
+<<<<<<< HEAD
 				const struct inode *dir, int mode, dev_t dev)
+=======
+				const struct inode *dir, int mode,
+				dev_t dev, bool is_removable)
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 {
 	struct inode *inode = new_inode(sb);
 
@@ -23,6 +28,10 @@ struct inode *efivarfs_get_inode(struct super_block *sb,
 		inode->i_ino = get_next_ino();
 		inode->i_mode = mode;
 		inode->i_atime = inode->i_mtime = inode->i_ctime = CURRENT_TIME;
+<<<<<<< HEAD
+=======
+		inode->i_flags = is_removable ? 0 : S_IMMUTABLE;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		switch (mode & S_IFMT) {
 		case S_IFREG:
 			inode->i_fop = &efivarfs_file_operations;
@@ -102,13 +111,21 @@ static void efivarfs_hex_to_guid(const char *str, efi_guid_t *guid)
 static int efivarfs_create(struct inode *dir, struct dentry *dentry,
 			  umode_t mode, bool excl)
 {
+<<<<<<< HEAD
 	struct inode *inode;
 	struct efivar_entry *var;
 	int namelen, i = 0, err = 0;
+=======
+	struct inode *inode = NULL;
+	struct efivar_entry *var;
+	int namelen, i = 0, err = 0;
+	bool is_removable = false;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	if (!efivarfs_valid_name(dentry->d_name.name, dentry->d_name.len))
 		return -EINVAL;
 
+<<<<<<< HEAD
 	inode = efivarfs_get_inode(dir->i_sb, dir, mode, 0);
 	if (!inode)
 		return -ENOMEM;
@@ -118,6 +135,11 @@ static int efivarfs_create(struct inode *dir, struct dentry *dentry,
 		err = -ENOMEM;
 		goto out;
 	}
+=======
+	var = kzalloc(sizeof(struct efivar_entry), GFP_KERNEL);
+	if (!var)
+		return -ENOMEM;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	/* length of the variable name itself: remove GUID and separator */
 	namelen = dentry->d_name.len - EFI_VARIABLE_GUID_LEN - 1;
@@ -125,6 +147,19 @@ static int efivarfs_create(struct inode *dir, struct dentry *dentry,
 	efivarfs_hex_to_guid(dentry->d_name.name + namelen + 1,
 			&var->var.VendorGuid);
 
+<<<<<<< HEAD
+=======
+	if (efivar_variable_is_removable(var->var.VendorGuid,
+					 dentry->d_name.name, namelen))
+		is_removable = true;
+
+	inode = efivarfs_get_inode(dir->i_sb, dir, mode, 0, is_removable);
+	if (!inode) {
+		err = -ENOMEM;
+		goto out;
+	}
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	for (i = 0; i < namelen; i++)
 		var->var.VariableName[i] = dentry->d_name.name[i];
 
@@ -138,7 +173,12 @@ static int efivarfs_create(struct inode *dir, struct dentry *dentry,
 out:
 	if (err) {
 		kfree(var);
+<<<<<<< HEAD
 		iput(inode);
+=======
+		if (inode)
+			iput(inode);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	}
 	return err;
 }

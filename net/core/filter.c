@@ -67,9 +67,16 @@ static inline void *load_pointer(const struct sk_buff *skb, int k,
 }
 
 /**
+<<<<<<< HEAD
  *	sk_filter - run a packet through a socket filter
  *	@sk: sock associated with &sk_buff
  *	@skb: buffer to filter
+=======
+ *	sk_filter_trim_cap - run a packet through a socket filter
+ *	@sk: sock associated with &sk_buff
+ *	@skb: buffer to filter
+ *	@cap: limit on how short the eBPF program may trim the packet
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
  *
  * Run the filter code and then cut skb->data to correct size returned by
  * sk_run_filter. If pkt_len is 0 we toss packet. If skb->len is smaller
@@ -78,7 +85,11 @@ static inline void *load_pointer(const struct sk_buff *skb, int k,
  * be accepted or -EPERM if the packet should be tossed.
  *
  */
+<<<<<<< HEAD
 int sk_filter(struct sock *sk, struct sk_buff *skb)
+=======
+int sk_filter_trim_cap(struct sock *sk, struct sk_buff *skb, unsigned int cap)
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 {
 	int err;
 	struct sk_filter *filter;
@@ -99,14 +110,22 @@ int sk_filter(struct sock *sk, struct sk_buff *skb)
 	filter = rcu_dereference(sk->sk_filter);
 	if (filter) {
 		unsigned int pkt_len = SK_RUN_FILTER(filter, skb);
+<<<<<<< HEAD
 
 		err = pkt_len ? pskb_trim(skb, pkt_len) : -EPERM;
+=======
+		err = pkt_len ? pskb_trim(skb, max(cap, pkt_len)) : -EPERM;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	}
 	rcu_read_unlock();
 
 	return err;
 }
+<<<<<<< HEAD
 EXPORT_SYMBOL(sk_filter);
+=======
+EXPORT_SYMBOL(sk_filter_trim_cap);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 /**
  *	sk_run_filter - run a filter on a socket
@@ -355,6 +374,11 @@ load_b:
 
 			if (skb_is_nonlinear(skb))
 				return 0;
+<<<<<<< HEAD
+=======
+			if (skb->len < sizeof(struct nlattr))
+				return 0;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 			if (A > skb->len - sizeof(struct nlattr))
 				return 0;
 
@@ -371,11 +395,20 @@ load_b:
 
 			if (skb_is_nonlinear(skb))
 				return 0;
+<<<<<<< HEAD
+=======
+			if (skb->len < sizeof(struct nlattr))
+				return 0;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 			if (A > skb->len - sizeof(struct nlattr))
 				return 0;
 
 			nla = (struct nlattr *)&skb->data[A];
+<<<<<<< HEAD
 			if (nla->nla_len > A - skb->len)
+=======
+			if (nla->nla_len > skb->len - A)
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 				return 0;
 
 			nla = nla_find_nested(nla, X);

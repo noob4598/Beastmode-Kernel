@@ -176,7 +176,11 @@ acpi_ex_system_memory_space_handler(u32 function,
 		if (!mem_info->mapped_logical_address) {
 			ACPI_ERROR((AE_INFO,
 				    "Could not map memory at 0x%8.8X%8.8X, size %u",
+<<<<<<< HEAD
 				    ACPI_FORMAT_NATIVE_UINT(address),
+=======
+				    ACPI_FORMAT_UINT64(address),
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 				    (u32) map_length));
 			mem_info->mapped_length = 0;
 			return_ACPI_STATUS(AE_NO_MEMORY);
@@ -197,8 +201,12 @@ acpi_ex_system_memory_space_handler(u32 function,
 
 	ACPI_DEBUG_PRINT((ACPI_DB_INFO,
 			  "System-Memory (width %u) R/W %u Address=%8.8X%8.8X\n",
+<<<<<<< HEAD
 			  bit_width, function,
 			  ACPI_FORMAT_NATIVE_UINT(address)));
+=======
+			  bit_width, function, ACPI_FORMAT_UINT64(address)));
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	/*
 	 * Perform the memory read or write
@@ -300,8 +308,12 @@ acpi_ex_system_io_space_handler(u32 function,
 
 	ACPI_DEBUG_PRINT((ACPI_DB_INFO,
 			  "System-IO (width %u) R/W %u Address=%8.8X%8.8X\n",
+<<<<<<< HEAD
 			  bit_width, function,
 			  ACPI_FORMAT_NATIVE_UINT(address)));
+=======
+			  bit_width, function, ACPI_FORMAT_UINT64(address)));
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	/* Decode the function parameter */
 

@@ -44,6 +44,7 @@ config FB_MSM_MDSS_MDP3
 	The MDP3 provides support for an older version display controller
 	included in latest display sub-system, known as MDSS.
 
+<<<<<<< HEAD
 config FB_MSM_MDSS_KCAL_CTRL
 	depends on FB_MSM_MDSS
 	bool "MDSS color control"
@@ -51,6 +52,8 @@ config FB_MSM_MDSS_KCAL_CTRL
 	  Enable sysfs for rgb/lut control for mdss-mdp display controllers
 	  in the MDSS sub-system.
 
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 config MDNIE_LITE_TUNING
 	bool "MDNIe lite panel tuning"
 	default n
@@ -87,6 +90,7 @@ config FB_MSM_DUAL_DSI_MODE
 	bool "Using Dual-dsi mode"
 	default n
 
+<<<<<<< HEAD
 config FB_MSM_MDSS_DSI_DBG
 	bool "DSI dbg support"
 	default n
@@ -95,6 +99,8 @@ config FB_MSM_MDSS_FENCE_DBG
 	bool "FENCE dbg support"
 	default n
 
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 config FB_MSM_CAMERA_CSC
 	default n
 	bool "Support SAMSUNG CAMERA CSC"

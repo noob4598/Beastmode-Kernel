@@ -408,7 +408,11 @@ int ubi_compare_lebs(struct ubi_device *ubi, const struct ubi_ainf_peb *aeb,
 		second_is_newer = !second_is_newer;
 	} else {
 		dbg_bld("PEB %d CRC is OK", pnum);
+<<<<<<< HEAD
 		bitflips = !!err;
+=======
+		bitflips |= !!err;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	}
 	mutex_unlock(&ubi->buf_mutex);
 

@@ -58,6 +58,10 @@
 #include <asm/asm.h>
 #include <asm/context_tracking.h>
 #include <asm/smap.h>
+<<<<<<< HEAD
+=======
+#include <asm/pgtable_types.h>
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 #include <linux/err.h>
 
 /* Avoid __ASSEMBLER__'ifying <linux/audit.h> just for this.  */
@@ -121,7 +125,12 @@ GLOBAL(ftrace_graph_call)
 	jmp ftrace_stub
 #endif
 
+<<<<<<< HEAD
 GLOBAL(ftrace_stub)
+=======
+/* This is weak to keep gas from relaxing the jumps */
+WEAK(ftrace_stub)
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	retq
 END(ftrace_caller)
 
@@ -365,7 +374,11 @@ ENDPROC(native_usergs_sysret64)
 	/*CFI_REL_OFFSET	ss,0*/
 	pushq_cfi %rax /* rsp */
 	CFI_REL_OFFSET	rsp,0
+<<<<<<< HEAD
 	pushq_cfi $(X86_EFLAGS_IF|X86_EFLAGS_BIT1) /* eflags - interrupts on */
+=======
+	pushq_cfi $(X86_EFLAGS_IF|X86_EFLAGS_FIXED) /* eflags - interrupts on */
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	/*CFI_REL_OFFSET	rflags,0*/
 	pushq_cfi $__KERNEL_CS /* cs */
 	/*CFI_REL_OFFSET	cs,0*/
@@ -556,11 +569,22 @@ ENTRY(ret_from_fork)
 	testl $3, CS-ARGOFFSET(%rsp)		# from kernel_thread?
 	jz   1f
 
+<<<<<<< HEAD
 	testl $_TIF_IA32, TI_flags(%rcx)	# 32-bit compat task needs IRET
 	jnz  int_ret_from_sys_call
 
 	RESTORE_TOP_OF_STACK %rdi, -ARGOFFSET
 	jmp ret_from_sys_call			# go to the SYSRET fastpath
+=======
+	/*
+	 * By the time we get here, we have no idea whether our pt_regs,
+	 * ti flags, and ti status came from the 64-bit SYSCALL fast path,
+	 * the slow path, or one of the ia32entry paths.
+	 * Use int_ret_from_sys_call to return, since it can safely handle
+	 * all of the above.
+	 */
+	jmp  int_ret_from_sys_call
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 1:
 	subq $REST_SKIP, %rsp	# leave space for volatiles
@@ -1056,6 +1080,7 @@ restore_args:
 
 irq_return:
 	INTERRUPT_RETURN
+<<<<<<< HEAD
 	_ASM_EXTABLE(irq_return, bad_iret)
 
 #ifdef CONFIG_PARAVIRT
@@ -1082,6 +1107,54 @@ bad_iret:
 	jmp general_protection
 
 	.previous
+=======
+
+ENTRY(native_iret)
+	/*
+	 * Are we returning to a stack segment from the LDT?  Note: in
+	 * 64-bit mode SS:RSP on the exception stack is always valid.
+	 */
+#ifdef CONFIG_X86_ESPFIX64
+	testb $4,(SS-RIP)(%rsp)
+	jnz native_irq_return_ldt
+#endif
+
+.global native_irq_return_iret
+native_irq_return_iret:
+	/*
+	 * This may fault.  Non-paranoid faults on return to userspace are
+	 * handled by fixup_bad_iret.  These include #SS, #GP, and #NP.
+	 * Double-faults due to espfix64 are handled in do_double_fault.
+	 * Other faults here are fatal.
+	 */
+	iretq
+
+#ifdef CONFIG_X86_ESPFIX64
+native_irq_return_ldt:
+	pushq_cfi %rax
+	pushq_cfi %rdi
+	SWAPGS
+	movq PER_CPU_VAR(espfix_waddr),%rdi
+	movq %rax,(0*8)(%rdi)	/* RAX */
+	movq (2*8)(%rsp),%rax	/* RIP */
+	movq %rax,(1*8)(%rdi)
+	movq (3*8)(%rsp),%rax	/* CS */
+	movq %rax,(2*8)(%rdi)
+	movq (4*8)(%rsp),%rax	/* RFLAGS */
+	movq %rax,(3*8)(%rdi)
+	movq (6*8)(%rsp),%rax	/* SS */
+	movq %rax,(5*8)(%rdi)
+	movq (5*8)(%rsp),%rax	/* RSP */
+	movq %rax,(4*8)(%rdi)
+	andl $0xffff0000,%eax
+	popq_cfi %rdi
+	orq PER_CPU_VAR(espfix_stack),%rax
+	SWAPGS
+	movq %rax,%rsp
+	popq_cfi %rax
+	jmp native_irq_return_iret
+#endif
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	/* edi: workmask, edx: work */
 retint_careful:
@@ -1127,9 +1200,15 @@ ENTRY(retint_kernel)
 	call preempt_schedule_irq
 	jmp exit_intr
 #endif
+<<<<<<< HEAD
 
 	CFI_ENDPROC
 END(common_interrupt)
+=======
+	CFI_ENDPROC
+END(common_interrupt)
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 /*
  * End of kprobes section
  */
@@ -1468,7 +1547,11 @@ apicinterrupt HYPERVISOR_CALLBACK_VECTOR \
 
 paranoidzeroentry_ist debug do_debug DEBUG_STACK
 paranoidzeroentry_ist int3 do_int3 DEBUG_STACK
+<<<<<<< HEAD
 paranoiderrorentry stack_segment do_stack_segment
+=======
+errorentry stack_segment do_stack_segment
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 #ifdef CONFIG_XEN
 zeroentry xen_debug do_debug
 zeroentry xen_int3 do_int3
@@ -1578,6 +1661,7 @@ error_sti:
 
 /*
  * There are two places in the kernel that can potentially fault with
+<<<<<<< HEAD
  * usergs. Handle them here. The exception handlers after iret run with
  * kernel gs again, so don't set the user space flag. B stepping K8s
  * sometimes report an truncated RIP for IRET exceptions returning to
@@ -1588,6 +1672,17 @@ error_kernelspace:
 	leaq irq_return(%rip),%rcx
 	cmpq %rcx,RIP+8(%rsp)
 	je error_swapgs
+=======
+ * usergs. Handle them here.  B stepping K8s sometimes report a
+ * truncated RIP for IRET exceptions returning to compat mode. Check
+ * for these here too.
+ */
+error_kernelspace:
+	incl %ebx
+	leaq native_irq_return_iret(%rip),%rcx
+	cmpq %rcx,RIP+8(%rsp)
+	je error_bad_iret
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	movl %ecx,%eax	/* zero extend */
 	cmpq %rax,RIP+8(%rsp)
 	je bstep_iret
@@ -1598,7 +1693,19 @@ error_kernelspace:
 bstep_iret:
 	/* Fix truncated RIP */
 	movq %rcx,RIP+8(%rsp)
+<<<<<<< HEAD
 	jmp error_swapgs
+=======
+	/* fall through */
+
+error_bad_iret:
+	SWAPGS
+	mov %rsp,%rdi
+	call fixup_bad_iret
+	mov %rax,%rsp
+	decl %ebx	/* Return to usergs */
+	jmp error_sti
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	CFI_ENDPROC
 END(error_entry)
 

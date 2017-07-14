@@ -159,6 +159,15 @@ static int snd_ivtv_pcm_capture_open(struct snd_pcm_substream *substream)
 
 	/* Instruct the CX2341[56] to start sending packets */
 	snd_ivtv_lock(itvsc);
+<<<<<<< HEAD
+=======
+
+	if (ivtv_init_on_first_open(itv)) {
+		snd_ivtv_unlock(itvsc);
+		return -ENXIO;
+	}
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	s = &itv->streams[IVTV_ENC_STREAM_TYPE_PCM];
 
 	v4l2_fh_init(&item.fh, s->vdev);

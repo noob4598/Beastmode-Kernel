@@ -127,7 +127,16 @@ static int omap_rng_probe(struct platform_device *pdev)
 	dev_set_drvdata(&pdev->dev, priv);
 
 	pm_runtime_enable(&pdev->dev);
+<<<<<<< HEAD
 	pm_runtime_get_sync(&pdev->dev);
+=======
+	ret = pm_runtime_get_sync(&pdev->dev);
+	if (ret < 0) {
+		dev_err(&pdev->dev, "Failed to runtime_get device: %d\n", ret);
+		pm_runtime_put_noidle(&pdev->dev);
+		goto err_ioremap;
+	}
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	ret = hwrng_register(&omap_rng_ops);
 	if (ret)
@@ -182,8 +191,20 @@ static int omap_rng_suspend(struct device *dev)
 static int omap_rng_resume(struct device *dev)
 {
 	struct omap_rng_private_data *priv = dev_get_drvdata(dev);
+<<<<<<< HEAD
 
 	pm_runtime_get_sync(dev);
+=======
+	int ret;
+
+	ret = pm_runtime_get_sync(dev);
+	if (ret < 0) {
+		dev_err(dev, "Failed to runtime_get device: %d\n", ret);
+		pm_runtime_put_noidle(dev);
+		return ret;
+	}
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	omap_rng_write_reg(priv, RNG_MASK_REG, 0x1);
 
 	return 0;

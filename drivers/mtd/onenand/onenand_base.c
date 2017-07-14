@@ -2610,6 +2610,10 @@ static int onenand_default_block_markbad(struct mtd_info *mtd, loff_t ofs)
  */
 static int onenand_block_markbad(struct mtd_info *mtd, loff_t ofs)
 {
+<<<<<<< HEAD
+=======
+	struct onenand_chip *this = mtd->priv;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	int ret;
 
 	ret = onenand_block_isbad(mtd, ofs);
@@ -2621,7 +2625,11 @@ static int onenand_block_markbad(struct mtd_info *mtd, loff_t ofs)
 	}
 
 	onenand_get_device(mtd, FL_WRITING);
+<<<<<<< HEAD
 	ret = mtd_block_markbad(mtd, ofs);
+=======
+	ret = this->block_markbad(mtd, ofs);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	onenand_release_device(mtd);
 	return ret;
 }

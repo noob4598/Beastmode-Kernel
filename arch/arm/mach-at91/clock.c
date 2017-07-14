@@ -947,6 +947,10 @@ static int __init at91_clock_reset(void)
 	}
 
 	at91_pmc_write(AT91_PMC_SCDR, scdr);
+<<<<<<< HEAD
+=======
+	at91_pmc_write(AT91_PMC_PCDR, pcdr);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	if (cpu_is_sama5d3())
 		at91_pmc_write(AT91_PMC_PCDR1, pcdr1);
 

@@ -5,6 +5,10 @@
  *  SD support Copyright (C) 2004 Ian Molton, All Rights Reserved.
  *  Copyright (C) 2005-2008 Pierre Ossman, All Rights Reserved.
  *  MMCv4 support Copyright (C) 2006 Philip Langdale, All Rights Reserved.
+<<<<<<< HEAD
+=======
+ *  ftrace support Copyright (C) 2013 Sony Mobile Communications AB, All Rights Reserved.
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 as
@@ -52,6 +56,10 @@
 #else
 #define ST_LOG(fmt,...)
 #endif
+<<<<<<< HEAD
+=======
+#include <trace/events/mmc.h>
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 /* If the device is not responding */
 #define MMC_CORE_TIMEOUT_MS	(10 * 60 * 1000) /* 10 minute timeout */
@@ -76,8 +84,13 @@ static const unsigned freqs[] = { 400000, 300000, 200000, 100000 };
  * performance cost, and for other reasons may not always be desired.
  * So we allow it it to be disabled.
  */
+<<<<<<< HEAD
 bool use_spi_crc = 0;
 module_param(use_spi_crc, bool, 0644);
+=======
+bool use_spi_crc = 1;
+module_param(use_spi_crc, bool, 0);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 /*
  * We normally treat cards as removed during suspend if they are not
@@ -304,6 +317,13 @@ void mmc_request_done(struct mmc_host *host, struct mmc_request *mrq)
 			cmd->resp[0], cmd->resp[1],
 			cmd->resp[2], cmd->resp[3]);
 
+<<<<<<< HEAD
+=======
+		trace_mmc_req_done( mmc_hostname(host), cmd->opcode, err,
+				cmd->resp[0], cmd->resp[1],
+				cmd->resp[2], cmd->resp[3]);
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		if (mrq->data) {
 #ifdef CONFIG_MMC_PERF_PROFILING
 			if (host->perf_enable) {
@@ -357,13 +377,33 @@ mmc_start_request(struct mmc_host *host, struct mmc_request *mrq)
 	unsigned int i, sz;
 	struct scatterlist *sg;
 #endif
+<<<<<<< HEAD
+=======
+	unsigned int blksz = 0;
+	unsigned int blocks = 0;
+
+	if (mrq->data) {
+		blksz = mrq->data->blksz;
+		blocks = mrq->data->blocks;
+	}
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	if (mrq->sbc) {
 		pr_debug("<%s: starting CMD%u arg %08x flags %08x>\n",
 			 mmc_hostname(host), mrq->sbc->opcode,
 			 mrq->sbc->arg, mrq->sbc->flags);
+<<<<<<< HEAD
 	}
 
+=======
+		trace_mmc_start_req_sbc( mmc_hostname(host), mrq->sbc->opcode,
+				mrq->sbc->arg, mrq->sbc->flags, blksz, blocks);
+	}
+
+	trace_mmc_start_req_cmd( mmc_hostname(host), mrq->cmd->opcode,
+			mrq->cmd->arg, mrq->cmd->flags, blksz, blocks);
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	pr_debug("%s: starting CMD%u arg %08x flags %08x\n",
 		 mmc_hostname(host), mrq->cmd->opcode,
 		 mrq->cmd->arg, mrq->cmd->flags);
@@ -606,8 +646,13 @@ static void mmc_wait_data_done(struct mmc_request *mrq)
 	struct mmc_context_info *context_info = &mrq->host->context_info;
 
 	spin_lock_irqsave(&context_info->lock, flags);
+<<<<<<< HEAD
 	mrq->host->context_info.is_done_rcv = true;
 	wake_up_interruptible(&mrq->host->context_info.wait);
+=======
+	context_info->is_done_rcv = true;
+	wake_up_interruptible(&context_info->wait);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	spin_unlock_irqrestore(&context_info->lock, flags);
 }
 
@@ -689,8 +734,15 @@ static bool mmc_should_stop_curr_req(struct mmc_host *host)
 	    (host->areq->cmd_flags & REQ_FUA))
 		return false;
 
+<<<<<<< HEAD
 	remainder = (host->ops->get_xfer_remain) ?
 		host->ops->get_xfer_remain(host) : -1;
+=======
+	mmc_host_clk_hold(host);
+	remainder = (host->ops->get_xfer_remain) ?
+		host->ops->get_xfer_remain(host) : -1;
+	mmc_host_clk_release(host);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	return (remainder > 0);
 }
 
@@ -715,6 +767,10 @@ static int mmc_stop_request(struct mmc_host *host)
 				mmc_hostname(host));
 		return -ENOTSUPP;
 	}
+<<<<<<< HEAD
+=======
+	mmc_host_clk_hold(host);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	err = host->ops->stop_request(host);
 	if (err) {
 		pr_err("%s: Call to host->ops->stop_request() failed (%d)\n",
@@ -749,6 +805,10 @@ static int mmc_stop_request(struct mmc_host *host)
 		goto out;
 	}
 out:
+<<<<<<< HEAD
+=======
+	mmc_host_clk_release(host);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	return err;
 }
 
@@ -1426,11 +1486,19 @@ void mmc_set_data_timeout(struct mmc_data *data, const struct mmc_card *card)
 	/*
 	 * Some cards require longer data read timeout than indicated in CSD.
 	 * Address this by setting the read timeout to a "reasonably high"
+<<<<<<< HEAD
 	 * value. For the cards tested, 300ms has proven enough. If necessary,
 	 * this value can be increased if other problematic cards require this.
 	 */
 	if (mmc_card_long_read_time(card) && data->flags & MMC_DATA_READ) {
 		data->timeout_ns = 300000000;
+=======
+	 * value. For the cards tested, 600ms has proven enough. If necessary,
+	 * this value can be increased if other problematic cards require this.
+	 */
+	if (mmc_card_long_read_time(card) && data->flags & MMC_DATA_READ) {
+		data->timeout_ns = 600000000;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		data->timeout_clks = 0;
 	}
 
@@ -3365,13 +3433,27 @@ int _mmc_detect_card_removed(struct mmc_host *host)
 {
 	int ret;
 
+<<<<<<< HEAD
 	if ((host->caps & MMC_CAP_NONREMOVABLE) || !host->bus_ops->alive)
+=======
+	if ((host->caps & MMC_CAP_NONREMOVABLE) || (host->bus_ops && !host->bus_ops->alive))
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		return 0;
 
 	if (!host->card || mmc_card_removed(host->card))
 		return 1;
 
+<<<<<<< HEAD
 	ret = host->bus_ops->alive(host);
+=======
+	if (host->bus_ops)
+		ret = host->bus_ops->alive(host);
+	else {
+		if (host->card)
+			mmc_card_set_removed(host->card);
+		return 1;
+	}
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	/*
 	 * Card detect status and alive check may be out of sync if card is
@@ -3385,7 +3467,11 @@ int _mmc_detect_card_removed(struct mmc_host *host)
 		pr_debug("%s: card removed too slowly\n", mmc_hostname(host));
 	}
 
+<<<<<<< HEAD
 	if (ret) {
+=======
+	if (ret && host->card) {
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		mmc_card_set_removed(host->card);
 		pr_debug("%s: card remove detected\n", mmc_hostname(host));
 		ST_LOG("<%s> %s: card remove detected\n", __func__,mmc_hostname(host));
@@ -3444,6 +3530,13 @@ void mmc_rescan(struct work_struct *work)
 		return;
 	host->rescan_entered = 1;
 
+<<<<<<< HEAD
+=======
+	/* If there is a card present */
+	if (host->card)
+		extend_wakelock = true;
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	mmc_bus_get(host);
 	mmc_rpm_hold(host, &host->class_dev);
 
@@ -3456,6 +3549,7 @@ void mmc_rescan(struct work_struct *work)
 		host->bus_ops->detect(host);
 
 	host->detect_change = 0;
+<<<<<<< HEAD
 	/* If the card was removed the bus will be marked
 	 * as dead - extend the wakelock so userspace
 	 * can respond */
@@ -3468,6 +3562,8 @@ void mmc_rescan(struct work_struct *work)
 	 * can respond */
 	if (host->bus_dead)
 		extend_wakelock = 1;
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	/*
 	 * Let mmc_bus_put() free the bus/bus_ops if we've found that
@@ -3480,6 +3576,10 @@ void mmc_rescan(struct work_struct *work)
 	if (host->bus_ops != NULL) {
 		mmc_rpm_release(host, &host->class_dev);
 		mmc_bus_put(host);
+<<<<<<< HEAD
+=======
+		extend_wakelock = false;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		goto out;
 	}
 
@@ -3507,7 +3607,12 @@ void mmc_rescan(struct work_struct *work)
 	mmc_release_host(host);
 	mmc_rpm_release(host, &host->class_dev);
  out:
+<<<<<<< HEAD
 	if (extend_wakelock)
+=======
+	/* only extend the wakelock, if suspend has not started yet */
+	if (extend_wakelock && !host->rescan_disable)
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		wake_lock_timeout(&host->detect_wake_lock, HZ / 2);
 
 	if (host->caps & MMC_CAP_NEEDS_POLL)
@@ -3816,6 +3921,13 @@ int mmc_suspend_host(struct mmc_host *host)
 
 	trace_mmc_suspend_host(mmc_hostname(host), err,
 			ktime_to_us(ktime_sub(ktime_get(), start)));
+<<<<<<< HEAD
+=======
+
+	if (host->card && host->card->type == MMC_TYPE_SD)
+		mdelay(50);
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	return err;
 out:
 	if (!(host->card && mmc_card_sdio(host->card)))
@@ -3908,16 +4020,25 @@ int mmc_pm_notify(struct notifier_block *notify_block,
 			spin_unlock_irqrestore(&host->lock, flags);
 			break;
 		}
+<<<<<<< HEAD
+=======
+
+		/* since its suspending anyway, disable rescan */
+		host->rescan_disable = 1;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		spin_unlock_irqrestore(&host->lock, flags);
 
 		/* Wait for pending detect work to be completed */
 		if (!(host->caps & MMC_CAP_NEEDS_POLL))
 			flush_work(&host->detect.work);
 
+<<<<<<< HEAD
 		spin_lock_irqsave(&host->lock, flags);
 		host->rescan_disable = 1;
 		spin_unlock_irqrestore(&host->lock, flags);
 
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		/*
 		 * In some cases, the detect work might be scheduled
 		 * just before rescan_disable is set to true.
@@ -3925,6 +4046,16 @@ int mmc_pm_notify(struct notifier_block *notify_block,
 		 */
 		cancel_delayed_work_sync(&host->detect);
 
+<<<<<<< HEAD
+=======
+		/*
+		 * It is possible that the wake-lock has been acquired, since
+		 * its being suspended, release the wakelock
+		 */
+		if (wake_lock_active(&host->detect_wake_lock))
+			wake_unlock(&host->detect_wake_lock);
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		if (!host->bus_ops || host->bus_ops->suspend)
 			break;
 
@@ -3942,12 +4073,16 @@ int mmc_pm_notify(struct notifier_block *notify_block,
 	case PM_POST_SUSPEND:
 	case PM_POST_HIBERNATION:
 	case PM_POST_RESTORE:
+<<<<<<< HEAD
 
 		spin_lock_irqsave(&host->lock, flags);
 		if (mmc_bus_manual_resume(host)) {
 			spin_unlock_irqrestore(&host->lock, flags);
 			break;
 		}
+=======
+		spin_lock_irqsave(&host->lock, flags);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		host->rescan_disable = 0;
 		spin_unlock_irqrestore(&host->lock, flags);
 		mmc_detect_change(host, 0);

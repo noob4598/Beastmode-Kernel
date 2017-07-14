@@ -309,7 +309,11 @@ static void nx_of_update_msc(struct device   *dev,
 		     ((bytes_so_far + sizeof(struct msc_triplet)) <= lenp) &&
 		     i < msc->triplets;
 		     i++) {
+<<<<<<< HEAD
 			if (msc->fc > NX_MAX_FC || msc->mode > NX_MAX_MODE) {
+=======
+			if (msc->fc >= NX_MAX_FC || msc->mode >= NX_MAX_MODE) {
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 				dev_err(dev, "unknown function code/mode "
 					"combo: %d/%d (ignored)\n", msc->fc,
 					msc->mode);

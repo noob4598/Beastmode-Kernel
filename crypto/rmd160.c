@@ -371,3 +371,7 @@ module_exit(rmd160_mod_fini);
 MODULE_LICENSE("GPL");
 MODULE_AUTHOR("Adrian-Ken Rueegsegger <ken@codelabs.ch>");
 MODULE_DESCRIPTION("RIPEMD-160 Message Digest");
+<<<<<<< HEAD
+=======
+MODULE_ALIAS_CRYPTO("rmd160");
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03

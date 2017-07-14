@@ -361,6 +361,17 @@ static int uvc_commit_video(struct uvc_streaming *stream,
  * Clocks and timestamps
  */
 
+<<<<<<< HEAD
+=======
+static inline void uvc_video_get_ts(struct timespec *ts)
+{
+	if (uvc_clock_param == CLOCK_MONOTONIC)
+		ktime_get_ts(ts);
+	else
+		ktime_get_real_ts(ts);
+}
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 static void
 uvc_video_clock_decode(struct uvc_streaming *stream, struct uvc_buffer *buf,
 		       const __u8 *data, int len)
@@ -420,7 +431,11 @@ uvc_video_clock_decode(struct uvc_streaming *stream, struct uvc_buffer *buf,
 	stream->clock.last_sof = dev_sof;
 
 	host_sof = usb_get_current_frame_number(stream->dev->udev);
+<<<<<<< HEAD
 	ktime_get_ts(&ts);
+=======
+	uvc_video_get_ts(&ts);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	/* The UVC specification allows device implementations that can't obtain
 	 * the USB frame number to keep their own frame counters as long as they
@@ -1010,10 +1025,14 @@ static int uvc_video_decode_start(struct uvc_streaming *stream,
 			return -ENODATA;
 		}
 
+<<<<<<< HEAD
 		if (uvc_clock_param == CLOCK_MONOTONIC)
 			ktime_get_ts(&ts);
 		else
 			ktime_get_real_ts(&ts);
+=======
+		uvc_video_get_ts(&ts);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 		buf->buf.v4l2_buf.sequence = stream->sequence;
 		buf->buf.v4l2_buf.timestamp.tv_sec = ts.tv_sec;

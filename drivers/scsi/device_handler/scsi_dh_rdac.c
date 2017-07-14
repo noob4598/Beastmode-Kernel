@@ -279,6 +279,10 @@ static struct request *get_rdac_req(struct scsi_device *sdev,
 				"get_rdac_req: blk_get_request failed.\n");
 		return NULL;
 	}
+<<<<<<< HEAD
+=======
+	blk_rq_set_block_pc(rq);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	if (buflen && blk_rq_map_kern(q, rq, buffer, buflen, GFP_NOIO)) {
 		blk_put_request(rq);
@@ -287,7 +291,10 @@ static struct request *get_rdac_req(struct scsi_device *sdev,
 		return NULL;
 	}
 
+<<<<<<< HEAD
 	rq->cmd_type = REQ_TYPE_BLOCK_PC;
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	rq->cmd_flags |= REQ_FAILFAST_DEV | REQ_FAILFAST_TRANSPORT |
 			 REQ_FAILFAST_DRIVER;
 	rq->retries = RDAC_RETRIES;
@@ -569,7 +576,11 @@ static int mode_select_handle_sense(struct scsi_device *sdev,
 			/*
 			 * Command Lock contention
 			 */
+<<<<<<< HEAD
 			err = SCSI_DH_RETRY;
+=======
+			err = SCSI_DH_IMM_RETRY;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		break;
 	default:
 		break;
@@ -619,6 +630,11 @@ retry:
 		err = mode_select_handle_sense(sdev, h->sense);
 		if (err == SCSI_DH_RETRY && retry_cnt--)
 			goto retry;
+<<<<<<< HEAD
+=======
+		if (err == SCSI_DH_IMM_RETRY)
+			goto retry;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	}
 	if (err == SCSI_DH_OK) {
 		h->state = RDAC_STATE_ACTIVE;

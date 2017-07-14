@@ -18,7 +18,10 @@
 #define THREAD_SIZE_ORDER	1
 #define THREAD_SIZE		(PAGE_SIZE << THREAD_SIZE_ORDER)
 
+<<<<<<< HEAD
 #define STACKFAULT_STACK 0
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 #define DOUBLEFAULT_STACK 1
 #define NMI_STACK 0
 #define DEBUG_STACK 0

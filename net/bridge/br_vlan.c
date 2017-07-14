@@ -202,7 +202,11 @@ bool br_allowed_ingress(struct net_bridge *br, struct net_port_vlans *v,
 	 * rejected.
 	 */
 	if (!v)
+<<<<<<< HEAD
 		return false;
+=======
+		goto drop;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	if (br_vlan_get_tag(skb, vid)) {
 		u16 pvid = br_get_pvid(v);
@@ -212,7 +216,11 @@ bool br_allowed_ingress(struct net_bridge *br, struct net_port_vlans *v,
 		 * traffic belongs to.
 		 */
 		if (pvid == VLAN_N_VID)
+<<<<<<< HEAD
 			return false;
+=======
+			goto drop;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 		/* PVID is set on this port.  Any untagged ingress
 		 * frame is considered to belong to this vlan.
@@ -224,7 +232,12 @@ bool br_allowed_ingress(struct net_bridge *br, struct net_port_vlans *v,
 	/* Frame had a valid vlan tag.  See if vlan is allowed */
 	if (test_bit(*vid, v->vlan_bitmap))
 		return true;
+<<<<<<< HEAD
 
+=======
+drop:
+	kfree_skb(skb);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	return false;
 }
 

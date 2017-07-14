@@ -134,8 +134,11 @@ struct jffs2_sb_info {
 	struct rw_semaphore wbuf_sem;	/* Protects the write buffer */
 
 	struct delayed_work wbuf_dwork; /* write-buffer write-out work */
+<<<<<<< HEAD
 	int wbuf_queued;                /* non-zero delayed work is queued */
 	spinlock_t wbuf_dwork_lock;     /* protects wbuf_dwork and and wbuf_queued */
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	unsigned char *oobbuf;
 	int oobavail; /* How many bytes are available for JFFS2 in OOB */

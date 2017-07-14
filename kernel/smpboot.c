@@ -110,7 +110,11 @@ static int smpboot_thread_fn(void *data)
 		set_current_state(TASK_INTERRUPTIBLE);
 		preempt_disable();
 		if (kthread_should_stop()) {
+<<<<<<< HEAD
 			set_current_state(TASK_RUNNING);
+=======
+			__set_current_state(TASK_RUNNING);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 			preempt_enable();
 			if (ht->cleanup)
 				ht->cleanup(td->cpu, cpu_online(td->cpu));
@@ -136,17 +140,29 @@ static int smpboot_thread_fn(void *data)
 		/* Check for state change setup */
 		switch (td->status) {
 		case HP_THREAD_NONE:
+<<<<<<< HEAD
+=======
+			__set_current_state(TASK_RUNNING);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 			preempt_enable();
 			if (ht->setup)
 				ht->setup(td->cpu);
 			td->status = HP_THREAD_ACTIVE;
+<<<<<<< HEAD
 			preempt_disable();
 			break;
 		case HP_THREAD_PARKED:
+=======
+			continue;
+
+		case HP_THREAD_PARKED:
+			__set_current_state(TASK_RUNNING);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 			preempt_enable();
 			if (ht->unpark)
 				ht->unpark(td->cpu);
 			td->status = HP_THREAD_ACTIVE;
+<<<<<<< HEAD
 			preempt_disable();
 			break;
 		}
@@ -156,6 +172,16 @@ static int smpboot_thread_fn(void *data)
 			schedule();
 		} else {
 			set_current_state(TASK_RUNNING);
+=======
+			continue;
+		}
+
+		if (!ht->thread_should_run(td->cpu)) {
+			preempt_enable_no_resched();
+			schedule();
+		} else {
+			__set_current_state(TASK_RUNNING);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 			preempt_enable();
 			ht->thread_fn(td->cpu);
 		}
@@ -279,6 +305,10 @@ int smpboot_register_percpu_thread(struct smp_hotplug_thread *plug_thread)
 	unsigned int cpu;
 	int ret = 0;
 
+<<<<<<< HEAD
+=======
+	get_online_cpus();
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	mutex_lock(&smpboot_threads_lock);
 	for_each_online_cpu(cpu) {
 		ret = __smpboot_create_thread(plug_thread, cpu);
@@ -291,6 +321,10 @@ int smpboot_register_percpu_thread(struct smp_hotplug_thread *plug_thread)
 	list_add(&plug_thread->list, &hotplug_threads);
 out:
 	mutex_unlock(&smpboot_threads_lock);
+<<<<<<< HEAD
+=======
+	put_online_cpus();
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	return ret;
 }
 EXPORT_SYMBOL_GPL(smpboot_register_percpu_thread);

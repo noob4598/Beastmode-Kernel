@@ -30,7 +30,10 @@
 #include <linux/vmalloc.h>
 #include <linux/aio.h>
 #include "logger.h"
+<<<<<<< HEAD
 #include "logger_interface.h"
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 #include <asm/ioctls.h>
 #ifdef CONFIG_SEC_DEBUG
@@ -433,12 +436,15 @@ static void do_write_log(struct logger_log *log, const void *buf, size_t count)
 {
 	size_t len;
 
+<<<<<<< HEAD
 	// if logger mode is disabled, terminate instantly
 	if (logger_mode == 0)
 	{
 			return;
 	} 
 
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	len = min(count, log->size - log->w_off);
 	memcpy(log->buffer + log->w_off, buf, len);
 
@@ -462,12 +468,15 @@ static ssize_t do_write_log_from_user(struct logger_log *log,
 {
 	size_t len;
 
+<<<<<<< HEAD
 	// if logger mode is disabled, terminate instantly
 	if (logger_mode == 0)
 	{
 			return 0;
 	} 
 
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	len = min(count, log->size - log->w_off);
 	if (len && copy_from_user(log->buffer + log->w_off, buf, len))
 		return -EFAULT;
@@ -516,7 +525,11 @@ static ssize_t logger_aio_write(struct kiocb *iocb, const struct iovec *iov,
 			 unsigned long nr_segs, loff_t ppos)
 {
 	struct logger_log *log = file_get_log(iocb->ki_filp);
+<<<<<<< HEAD
 	size_t orig = log->w_off;
+=======
+	size_t orig;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	struct logger_entry header;
 	struct timespec now;
 	ssize_t ret = 0;
@@ -537,6 +550,11 @@ static ssize_t logger_aio_write(struct kiocb *iocb, const struct iovec *iov,
 
 	mutex_lock(&log->mutex);
 
+<<<<<<< HEAD
+=======
+	orig = log->w_off;
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	/*
 	 * Fix up any readers, pulling them forward to the first readable
 	 * entry after (what will be) the new write offset. We do this now

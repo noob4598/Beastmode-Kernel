@@ -492,23 +492,37 @@ static void acpi_global_event_handler(u32 event_type, acpi_handle device,
 static int get_status(u32 index, acpi_event_status *status,
 		      acpi_handle *handle)
 {
+<<<<<<< HEAD
 	int result = 0;
 
 	if (index >= num_gpes + ACPI_NUM_FIXED_EVENTS)
 		goto end;
+=======
+	int result;
+
+	if (index >= num_gpes + ACPI_NUM_FIXED_EVENTS)
+		return -EINVAL;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	if (index < num_gpes) {
 		result = acpi_get_gpe_device(index, handle);
 		if (result) {
 			ACPI_EXCEPTION((AE_INFO, AE_NOT_FOUND,
 					"Invalid GPE 0x%x", index));
+<<<<<<< HEAD
 			goto end;
+=======
+			return result;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		}
 		result = acpi_get_gpe_status(*handle, index, status);
 	} else if (index < (num_gpes + ACPI_NUM_FIXED_EVENTS))
 		result = acpi_get_event_status(index - num_gpes, status);
 
+<<<<<<< HEAD
 end:
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	return result;
 }
 

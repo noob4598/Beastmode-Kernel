@@ -79,7 +79,11 @@ static u64 zswap_duplicate_entry;
 **********************************/
 /* Enable/disable zswap (enabled by default, fixed at boot for now) */
 static bool zswap_enabled = 1;
+<<<<<<< HEAD
 module_param_named(enabled, zswap_enabled, bool, 0644);
+=======
+module_param_named(enabled, zswap_enabled, bool, 0);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 /* Compressor to be used by zswap (fixed at boot for now) */
 #define ZSWAP_COMPRESSOR_DEFAULT "lzo"
@@ -781,9 +785,12 @@ static int zswap_frontswap_store(unsigned type, pgoff_t offset,
 	u8 *tmpdst;
 #endif
 
+<<<<<<< HEAD
 	if (!zswap_enabled)
 		return -EPERM;
 
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	if (!tree) {
 		ret = -ENODEV;
 		goto reject;
@@ -1134,6 +1141,11 @@ static inline void __exit zswap_debugfs_exit(void) { }
 **********************************/
 static int __init init_zswap(void)
 {
+<<<<<<< HEAD
+=======
+	if (!zswap_enabled)
+		return 0;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	pr_info("loading zswap\n");
 	if (zswap_entry_cache_create()) {

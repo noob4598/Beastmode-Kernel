@@ -136,7 +136,11 @@ WL18XX_DEBUGFS_FWSTATS_FILE(rx_filter, protection_filter, "%u");
 WL18XX_DEBUGFS_FWSTATS_FILE(rx_filter, accum_arp_pend_requests, "%u");
 WL18XX_DEBUGFS_FWSTATS_FILE(rx_filter, max_arp_queue_dep, "%u");
 
+<<<<<<< HEAD
 WL18XX_DEBUGFS_FWSTATS_FILE(rx_rate, rx_frames_per_rates, "%u");
+=======
+WL18XX_DEBUGFS_FWSTATS_FILE_ARRAY(rx_rate, rx_frames_per_rates, 50);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 WL18XX_DEBUGFS_FWSTATS_FILE_ARRAY(aggr_size, tx_agg_vs_rate,
 				  AGGR_STATS_TX_AGG*AGGR_STATS_TX_RATE);

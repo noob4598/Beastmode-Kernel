@@ -636,6 +636,7 @@ static int __init early_mem(char *p)
 }
 early_param("mem", early_mem);
 
+<<<<<<< HEAD
 static int __init msm_hw_rev_setup(char *p)
 {
 	system_rev = memparse(p, NULL);
@@ -643,6 +644,22 @@ static int __init msm_hw_rev_setup(char *p)
 	return 0;
 }
 early_param("androidboot.revision", msm_hw_rev_setup);
+=======
+#ifdef CONFIG_SEC_LENTIS_PROJECT
+#define BOARD_REV	"androidboot.revision"
+#else
+#define BOARD_REV	"board_rev"
+#endif
+
+static int __init msm_hw_rev_setup(char *p)
+{
+	system_rev = memparse(p, NULL);
+
+	printk(BOARD_REV " %x\n", system_rev);
+	return 0;
+}
+early_param(BOARD_REV, msm_hw_rev_setup);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 static void __init request_standard_resources(struct machine_desc *mdesc)
 {
@@ -928,9 +945,18 @@ static const char *hwcap_str[] = {
 
 static int c_show(struct seq_file *m, void *v)
 {
+<<<<<<< HEAD
 	int i, j;
 	u32 cpuid;
 
+=======
+	int i;
+
+	seq_printf(m, "Processor\t: %s rev %d (%s)\n",
+		   cpu_name, read_cpuid_id() & 15, elf_platform);
+
+#if defined(CONFIG_SMP)
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	for_each_present_cpu(i) {
 		/*
 		 * glibc reads /proc/cpuinfo to determine the number of
@@ -938,6 +964,7 @@ static int c_show(struct seq_file *m, void *v)
 		 * "processor".  Give glibc what it expects.
 		 */
 		seq_printf(m, "processor\t: %d\n", i);
+<<<<<<< HEAD
 		cpuid = is_smp() ? per_cpu(cpu_data, i).cpuid : read_cpuid_id();
 		seq_printf(m, "model name\t: %s rev %d (%s)\n",
 			   cpu_name, cpuid & 15, elf_platform);
@@ -980,6 +1007,47 @@ static int c_show(struct seq_file *m, void *v)
 		}
 		seq_printf(m, "CPU revision\t: %d\n\n", cpuid & 15);
 	}
+=======
+		seq_printf(m, "BogoMIPS\t: %lu.%02lu\n\n",
+			   per_cpu(cpu_data, i).loops_per_jiffy / (500000UL/HZ),
+			   (per_cpu(cpu_data, i).loops_per_jiffy / (5000UL/HZ)) % 100);
+	}
+#else /* CONFIG_SMP */
+	seq_printf(m, "BogoMIPS\t: %lu.%02lu\n",
+		   loops_per_jiffy / (500000/HZ),
+		   (loops_per_jiffy / (5000/HZ)) % 100);
+#endif
+
+	/* dump out the processor features */
+	seq_puts(m, "Features\t: ");
+
+	for (i = 0; hwcap_str[i]; i++)
+		if (elf_hwcap & (1 << i))
+			seq_printf(m, "%s ", hwcap_str[i]);
+
+	seq_printf(m, "\nCPU implementer\t: 0x%02x\n", read_cpuid_id() >> 24);
+	seq_printf(m, "CPU architecture: %s\n", proc_arch[cpu_architecture()]);
+
+	if ((read_cpuid_id() & 0x0008f000) == 0x00000000) {
+		/* pre-ARM7 */
+		seq_printf(m, "CPU part\t: %07x\n", read_cpuid_id() >> 4);
+	} else {
+		if ((read_cpuid_id() & 0x0008f000) == 0x00007000) {
+			/* ARM7 */
+			seq_printf(m, "CPU variant\t: 0x%02x\n",
+				   (read_cpuid_id() >> 16) & 127);
+		} else {
+			/* post-ARM7 */
+			seq_printf(m, "CPU variant\t: 0x%x\n",
+				   (read_cpuid_id() >> 20) & 15);
+		}
+		seq_printf(m, "CPU part\t: 0x%03x\n",
+			   (read_cpuid_id() >> 4) & 0xfff);
+	}
+	seq_printf(m, "CPU revision\t: %d\n", read_cpuid_id() & 15);
+
+	seq_puts(m, "\n");
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	seq_printf(m, "Hardware\t: %s\n", machine_name);
 	seq_printf(m, "Revision\t: %04x\n", system_rev);

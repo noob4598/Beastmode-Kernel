@@ -346,6 +346,13 @@ static ssize_t ipath_diagpkt_write(struct file *fp,
 			ret = -EFAULT;
 			goto bail;
 		}
+<<<<<<< HEAD
+=======
+		dp.len = odp.len;
+		dp.unit = odp.unit;
+		dp.data = odp.data;
+		dp.pbc_wd = 0;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	} else {
 		ret = -EINVAL;
 		goto bail;

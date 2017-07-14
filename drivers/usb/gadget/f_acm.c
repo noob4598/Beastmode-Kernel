@@ -585,11 +585,20 @@ static int acm_set_alt(struct usb_function *f, unsigned intf, unsigned alt)
 		if (acm->notify->driver_data) {
 			VDBG(cdev, "reset acm control interface %d\n", intf);
 			usb_ep_disable(acm->notify);
+<<<<<<< HEAD
 		} else {
 			VDBG(cdev, "init acm ctrl interface %d\n", intf);
 			if (config_ep_by_speed(cdev->gadget, f, acm->notify))
 				return -EINVAL;
 		}
+=======
+		}
+
+		if (!acm->notify->desc)
+			if (config_ep_by_speed(cdev->gadget, f, acm->notify))
+				return -EINVAL;
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		usb_ep_enable(acm->notify);
 		acm->notify->driver_data = acm;
 
@@ -689,14 +698,24 @@ static int acm_notify_serial_state(struct f_acm *acm)
 {
 	struct usb_composite_dev *cdev = acm->port.func.config->cdev;
 	int			status;
+<<<<<<< HEAD
+=======
+	__le16			serial_state;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	unsigned long flags;
 
 	spin_lock_irqsave(&acm->lock, flags);
 	if (acm->notify_req) {
 		DBG(cdev, "acm ttyGS%d serial state %04x\n",
 				acm->port_num, acm->serial_state);
+<<<<<<< HEAD
 		status = acm_cdc_notify(acm, USB_CDC_NOTIFY_SERIAL_STATE,
 				0, &acm->serial_state, sizeof(acm->serial_state));
+=======
+		serial_state = cpu_to_le16(acm->serial_state);
+		status = acm_cdc_notify(acm, USB_CDC_NOTIFY_SERIAL_STATE,
+				0, &serial_state, sizeof(acm->serial_state));
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	} else {
 		acm->pending = true;
 		status = 0;
@@ -905,7 +924,13 @@ static void acm_unbind(struct usb_configuration *c, struct usb_function *f)
 #ifdef CONFIG_USB_DUN_SUPPORT
         modem_unregister();
 #endif
+<<<<<<< HEAD
 	acm_string_defs[0].id = 0;
+=======
+#ifndef CONFIG_USB_ANDROID_SAMSUNG_COMPOSITE
+	acm_string_defs[0].id = 0;
+#endif
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	usb_free_all_descriptors(f);
 	if (acm->notify_req)
 		gs_free_req(acm->notify, acm->notify_req);

@@ -138,4 +138,9 @@ module_exit(blowfish_mod_fini);
 
 MODULE_LICENSE("GPL");
 MODULE_DESCRIPTION("Blowfish Cipher Algorithm");
+<<<<<<< HEAD
 MODULE_ALIAS("blowfish");
+=======
+MODULE_ALIAS_CRYPTO("blowfish");
+MODULE_ALIAS_CRYPTO("blowfish-generic");
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03

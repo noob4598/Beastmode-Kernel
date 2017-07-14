@@ -96,7 +96,11 @@ static void icmpv6_err(struct sk_buff *skb, struct inet6_skb_parm *opt,
 
 	if (!(type & ICMPV6_INFOMSG_MASK))
 		if (icmp6->icmp6_type == ICMPV6_ECHO_REQUEST)
+<<<<<<< HEAD
 			ping_err(skb, offset, info);
+=======
+			ping_err(skb, offset, ntohl(info));
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 }
 
 static int icmpv6_rcv(struct sk_buff *skb);

@@ -176,6 +176,11 @@ int msm_jpeg_platform_init(struct platform_device *pdev,
 	struct msm_jpeg_device *pgmn_dev =
 		(struct msm_jpeg_device *) context;
 
+<<<<<<< HEAD
+=======
+	pgmn_dev->state = MSM_JPEG_IDLE;
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	jpeg_mem = platform_get_resource(pdev, IORESOURCE_MEM, 0);
 	if (!jpeg_mem) {
 		JPEG_PR_ERR("%s: no mem resource?\n", __func__);
@@ -275,6 +280,10 @@ int msm_jpeg_platform_init(struct platform_device *pdev,
 	pgmn_dev->jpeg_client = msm_ion_client_create(-1, pdev->name);
 	JPEG_DBG("%s:%d] success\n", __func__, __LINE__);
 
+<<<<<<< HEAD
+=======
+	pgmn_dev->state = MSM_JPEG_INIT;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	return rc;
 
 fail_request_irq:
@@ -349,6 +358,10 @@ int msm_jpeg_platform_release(struct resource *mem, void *base, int irq,
 	iounmap(base);
 	release_mem_region(mem->start, resource_size(mem));
 	ion_client_destroy(pgmn_dev->jpeg_client);
+<<<<<<< HEAD
+=======
+	pgmn_dev->state = MSM_JPEG_IDLE;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	JPEG_DBG("%s:%d] success\n", __func__, __LINE__);
 	return result;
 }

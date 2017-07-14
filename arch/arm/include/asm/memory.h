@@ -98,23 +98,34 @@
 #define TASK_UNMAPPED_BASE	UL(0x00000000)
 #endif
 
+<<<<<<< HEAD
 #ifndef PHYS_OFFSET
 #define PHYS_OFFSET 		UL(CONFIG_DRAM_BASE)
 #endif
 
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 #ifndef END_MEM
 #define END_MEM     		(UL(CONFIG_DRAM_BASE) + CONFIG_DRAM_SIZE)
 #endif
 
 #ifndef PAGE_OFFSET
+<<<<<<< HEAD
 #define PAGE_OFFSET		(PHYS_OFFSET)
+=======
+#define PAGE_OFFSET		PLAT_PHYS_OFFSET
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 #endif
 
 /*
  * The module can be at any place in ram in nommu mode.
  */
 #define MODULES_END		(END_MEM)
+<<<<<<< HEAD
 #define MODULES_VADDR		(PHYS_OFFSET)
+=======
+#define MODULES_VADDR		PAGE_OFFSET
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 #define XIP_VIRT_ADDR(physaddr)  (physaddr)
 
@@ -141,6 +152,19 @@
 #define page_to_phys(page)	(__pfn_to_phys(page_to_pfn(page)))
 #define phys_to_page(phys)	(pfn_to_page(__phys_to_pfn(phys)))
 
+<<<<<<< HEAD
+=======
+/*
+ * PLAT_PHYS_OFFSET is the offset (from zero) of the start of physical
+ * memory.  This is used for XIP and NoMMU kernels, or by kernels which
+ * have their own mach/memory.h.  Assembly code must always use
+ * PLAT_PHYS_OFFSET and not PHYS_OFFSET.
+ */
+#ifndef PLAT_PHYS_OFFSET
+#define PLAT_PHYS_OFFSET	UL(CONFIG_PHYS_OFFSET)
+#endif
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 #ifndef __ASSEMBLY__
 
 /*
@@ -183,6 +207,7 @@ static inline unsigned long __phys_to_virt(unsigned long x)
 	return t;
 }
 #else
+<<<<<<< HEAD
 #define __virt_to_phys(x)	((x) - PAGE_OFFSET + PHYS_OFFSET)
 #define __phys_to_virt(x)	((x) - PHYS_OFFSET + PAGE_OFFSET)
 #endif
@@ -199,6 +224,17 @@ static inline unsigned long __phys_to_virt(unsigned long x)
 
 #ifndef __ASSEMBLY__
 
+=======
+
+#define PHYS_OFFSET	PLAT_PHYS_OFFSET
+
+#define __virt_to_phys(x)	((x) - PAGE_OFFSET + PHYS_OFFSET)
+#define __phys_to_virt(x)	((x) - PHYS_OFFSET + PAGE_OFFSET)
+
+#endif
+#endif
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 /*
  * PFNs are used to describe any physical page; this means
  * PFN 0 == physical address 0.
@@ -207,7 +243,11 @@ static inline unsigned long __phys_to_virt(unsigned long x)
  * direct-mapped view.  We assume this is the first page
  * of RAM in the mem_map as well.
  */
+<<<<<<< HEAD
 #define PHYS_PFN_OFFSET	(PHYS_OFFSET >> PAGE_SHIFT)
+=======
+#define PHYS_PFN_OFFSET	((unsigned long)(PHYS_OFFSET >> PAGE_SHIFT))
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 /*
  * These are *only* valid on the kernel direct mapped RAM memory.
@@ -275,7 +315,12 @@ static inline __deprecated void *bus_to_virt(unsigned long x)
 #define ARCH_PFN_OFFSET		PHYS_PFN_OFFSET
 
 #define virt_to_page(kaddr)	pfn_to_page(__pa(kaddr) >> PAGE_SHIFT)
+<<<<<<< HEAD
 #define virt_addr_valid(kaddr)	((unsigned long)(kaddr) >= PAGE_OFFSET && (unsigned long)(kaddr) < (unsigned long)high_memory)
+=======
+#define virt_addr_valid(kaddr)	(((unsigned long)(kaddr) >= PAGE_OFFSET && (unsigned long)(kaddr) < (unsigned long)high_memory) \
+					&& pfn_valid(__pa(kaddr) >> PAGE_SHIFT) )
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 /*
  * Set if the architecture speculatively fetches data into cache.

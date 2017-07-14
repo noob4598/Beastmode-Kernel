@@ -135,12 +135,20 @@ static int l2tp_ip6_recv(struct sk_buff *skb)
 	struct l2tp_tunnel *tunnel = NULL;
 	int length;
 
+<<<<<<< HEAD
 	/* Point to L2TP header */
 	optr = ptr = skb->data;
 
 	if (!pskb_may_pull(skb, 4))
 		goto discard;
 
+=======
+	if (!pskb_may_pull(skb, 4))
+		goto discard;
+
+	/* Point to L2TP header */
+	optr = ptr = skb->data;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	session_id = ntohl(*((__be32 *) ptr));
 	ptr += 4;
 
@@ -168,6 +176,12 @@ static int l2tp_ip6_recv(struct sk_buff *skb)
 		if (!pskb_may_pull(skb, length))
 			goto discard;
 
+<<<<<<< HEAD
+=======
+		/* Point to L2TP header */
+		optr = ptr = skb->data;
+		ptr += 4;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		pr_debug("%s: ip recv\n", tunnel->name);
 		print_hex_dump_bytes("", DUMP_PREFIX_OFFSET, ptr, length);
 	}
@@ -264,8 +278,11 @@ static int l2tp_ip6_bind(struct sock *sk, struct sockaddr *uaddr, int addr_len)
 	int addr_type;
 	int err;
 
+<<<<<<< HEAD
 	if (!sock_flag(sk, SOCK_ZAPPED))
 		return -EINVAL;
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	if (addr->l2tp_family != AF_INET6)
 		return -EINVAL;
 	if (addr_len < sizeof(*addr))
@@ -291,6 +308,12 @@ static int l2tp_ip6_bind(struct sock *sk, struct sockaddr *uaddr, int addr_len)
 	lock_sock(sk);
 
 	err = -EINVAL;
+<<<<<<< HEAD
+=======
+	if (!sock_flag(sk, SOCK_ZAPPED))
+		goto out_unlock;
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	if (sk->sk_state != TCP_CLOSE)
 		goto out_unlock;
 
@@ -485,6 +508,10 @@ static int l2tp_ip6_sendmsg(struct kiocb *iocb, struct sock *sk,
 		(struct sockaddr_l2tpip6 *) msg->msg_name;
 	struct in6_addr *daddr, *final_p, final;
 	struct ipv6_pinfo *np = inet6_sk(sk);
+<<<<<<< HEAD
+=======
+	struct ipv6_txoptions *opt_to_free = NULL;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	struct ipv6_txoptions *opt = NULL;
 	struct ip6_flowlabel *flowlabel = NULL;
 	struct dst_entry *dst = NULL;
@@ -575,8 +602,15 @@ static int l2tp_ip6_sendmsg(struct kiocb *iocb, struct sock *sk,
 			opt = NULL;
 	}
 
+<<<<<<< HEAD
 	if (opt == NULL)
 		opt = np->opt;
+=======
+	if (!opt) {
+		opt = txopt_get(np);
+		opt_to_free = opt;
+	}
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	if (flowlabel)
 		opt = fl6_merge_options(&opt_space, flowlabel, opt);
 	opt = ipv6_fixup_options(&opt_space, opt);
@@ -637,6 +671,10 @@ done:
 	dst_release(dst);
 out:
 	fl6_sock_release(flowlabel);
+<<<<<<< HEAD
+=======
+	txopt_put(opt_to_free);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	return err < 0 ? err : len;
 
@@ -714,7 +752,11 @@ static struct proto l2tp_ip6_prot = {
 	.bind		   = l2tp_ip6_bind,
 	.connect	   = l2tp_ip6_connect,
 	.disconnect	   = l2tp_ip6_disconnect,
+<<<<<<< HEAD
 	.ioctl		   = udp_ioctl,
+=======
+	.ioctl		   = l2tp_ioctl,
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	.destroy	   = l2tp_ip6_destroy_sock,
 	.setsockopt	   = ipv6_setsockopt,
 	.getsockopt	   = ipv6_getsockopt,

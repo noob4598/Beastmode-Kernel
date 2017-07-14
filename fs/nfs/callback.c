@@ -128,22 +128,37 @@ nfs41_callback_svc(void *vrqstp)
 		if (try_to_freeze())
 			continue;
 
+<<<<<<< HEAD
 		prepare_to_wait(&serv->sv_cb_waitq, &wq, TASK_INTERRUPTIBLE);
+=======
+		prepare_to_wait(&serv->sv_cb_waitq, &wq, TASK_UNINTERRUPTIBLE);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		spin_lock_bh(&serv->sv_cb_lock);
 		if (!list_empty(&serv->sv_cb_list)) {
 			req = list_first_entry(&serv->sv_cb_list,
 					struct rpc_rqst, rq_bc_list);
 			list_del(&req->rq_bc_list);
 			spin_unlock_bh(&serv->sv_cb_lock);
+<<<<<<< HEAD
+=======
+			finish_wait(&serv->sv_cb_waitq, &wq);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 			dprintk("Invoking bc_svc_process()\n");
 			error = bc_svc_process(serv, req, rqstp);
 			dprintk("bc_svc_process() returned w/ error code= %d\n",
 				error);
 		} else {
 			spin_unlock_bh(&serv->sv_cb_lock);
+<<<<<<< HEAD
 			schedule();
 		}
 		finish_wait(&serv->sv_cb_waitq, &wq);
+=======
+			/* schedule_timeout to game the hung task watchdog */
+			schedule_timeout(60 * HZ);
+			finish_wait(&serv->sv_cb_waitq, &wq);
+		}
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	}
 	return 0;
 }
@@ -300,6 +315,10 @@ static int nfs_callback_up_net(int minorversion, struct svc_serv *serv, struct n
 err_socks:
 	svc_rpcb_cleanup(serv, net);
 err_bind:
+<<<<<<< HEAD
+=======
+	nn->cb_users[minorversion]--;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	dprintk("NFS: Couldn't create callback socket: err = %d; "
 			"net = %p\n", ret, net);
 	return ret;

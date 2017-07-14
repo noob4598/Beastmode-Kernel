@@ -479,6 +479,10 @@ extern const u8 *tcp_parse_md5sig_option(const struct tcphdr *th);
  */
 
 extern void tcp_v4_send_check(struct sock *sk, struct sk_buff *skb);
+<<<<<<< HEAD
+=======
+void tcp_v4_mtu_reduced(struct sock *sk);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 extern int tcp_v4_conn_request(struct sock *sk, struct sk_buff *skb);
 extern struct sock * tcp_create_openreq_child(struct sock *sk,
 					      struct request_sock *req,
@@ -1047,6 +1051,10 @@ static inline void tcp_prequeue_init(struct tcp_sock *tp)
 }
 
 extern bool tcp_prequeue(struct sock *sk, struct sk_buff *skb);
+<<<<<<< HEAD
+=======
+int tcp_filter(struct sock *sk, struct sk_buff *skb);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 #undef STATE_TRACE
 
@@ -1061,6 +1069,11 @@ extern void tcp_set_state(struct sock *sk, int state);
 
 extern void tcp_done(struct sock *sk);
 
+<<<<<<< HEAD
+=======
+int tcp_abort(struct sock *sk, int err);
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 static inline void tcp_sack_reset(struct tcp_options_received *rx_opt)
 {
 	rx_opt->dsack = 0;
@@ -1410,6 +1423,11 @@ static inline void tcp_check_send_head(struct sock *sk, struct sk_buff *skb_unli
 {
 	if (sk->sk_send_head == skb_unlinked)
 		sk->sk_send_head = NULL;
+<<<<<<< HEAD
+=======
+	if (tcp_sk(sk)->highest_sack == skb_unlinked)
+		tcp_sk(sk)->highest_sack = NULL;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 }
 
 static inline void tcp_init_send_head(struct sock *sk)

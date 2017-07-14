@@ -196,6 +196,7 @@ struct ffs_data {
 
 	/* filled by __ffs_data_got_descs() */
 	/*
+<<<<<<< HEAD
 	 * Real descriptors are 16 bytes after raw_descs (so you need
 	 * to skip 16 bytes (ie. ffs->raw_descs + 16) to get to the
 	 * first full speed descriptor).  raw_descs_length and
@@ -207,6 +208,16 @@ struct ffs_data {
 	unsigned			raw_fs_hs_descs_length;
 	unsigned			raw_ss_descs_offset;
 	unsigned			raw_ss_descs_length;
+=======
+	 * raw_descs_data is what you kfree, raw_descs points inside of
+	 * raw_descs_data, where full speed, high speed and super speed
+	 * descriptors start.  raw_descs_length is the length of all those
+	 * descriptors.
+	 */
+	const void			*raw_descs_data;
+	const void			*raw_descs;
+	unsigned			raw_descs_length;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	unsigned			fs_descs_count;
 	unsigned			hs_descs_count;
 	unsigned			ss_descs_count;
@@ -1398,7 +1409,11 @@ static void ffs_data_clear(struct ffs_data *ffs)
 	if (ffs->epfiles)
 		ffs_epfiles_destroy(ffs->epfiles, ffs->eps_count);
 
+<<<<<<< HEAD
 	kfree(ffs->raw_descs);
+=======
+	kfree(ffs->raw_descs_data);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	kfree(ffs->raw_strings);
 	kfree(ffs->stringtabs);
 }
@@ -1410,14 +1425,21 @@ static void ffs_data_reset(struct ffs_data *ffs)
 	ffs_data_clear(ffs);
 
 	ffs->epfiles = NULL;
+<<<<<<< HEAD
+=======
+	ffs->raw_descs_data = NULL;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	ffs->raw_descs = NULL;
 	ffs->raw_strings = NULL;
 	ffs->stringtabs = NULL;
 
 	ffs->raw_descs_length = 0;
+<<<<<<< HEAD
 	ffs->raw_fs_hs_descs_length = 0;
 	ffs->raw_ss_descs_offset = 0;
 	ffs->raw_ss_descs_length = 0;
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	ffs->fs_descs_count = 0;
 	ffs->hs_descs_count = 0;
 	ffs->ss_descs_count = 0;
@@ -1459,6 +1481,7 @@ static int functionfs_bind(struct ffs_data *ffs, struct usb_composite_dev *cdev)
 	ffs->ep0req->context = ffs;
 
 	lang = ffs->stringtabs;
+<<<<<<< HEAD
 #if defined (CONFIG_USB_ANDROID_SAMSUNG_COMPOSITE)
 	if(lang == NULL)
 		pr_info("%s: stringtabs is NULL\n", __func__);
@@ -1472,6 +1495,16 @@ static int functionfs_bind(struct ffs_data *ffs, struct usb_composite_dev *cdev)
 			str->id = id;
 	}
 #endif
+=======
+	if (lang) {
+		for (; *lang; ++lang) {
+			struct usb_string *str = (*lang)->strings;
+			int id = ffs->first_id;
+			for (; str->s; ++id, ++str)
+				str->id = id;
+		}
+	}
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	ffs->gadget = cdev->gadget;
 	ffs_data_get(ffs);
 	return 0;
@@ -1650,7 +1683,15 @@ static int ffs_func_eps_enable(struct ffs_function *func)
 		else
 			desc_idx = 0;
 
+<<<<<<< HEAD
 		ds = ep->descs[desc_idx];
+=======
+		/* fall-back to lower speed if desc missing for current speed */
+		do {
+			ds = ep->descs[desc_idx];
+		} while (!ds && --desc_idx >= 0);
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		if (!ds) {
 			ret = -EINVAL;
 			break;
@@ -1905,6 +1946,7 @@ static int __ffs_data_do_entity(enum ffs_entity_type type,
 static int __ffs_data_got_descs(struct ffs_data *ffs,
 				char *const _data, size_t len)
 {
+<<<<<<< HEAD
 	unsigned fs_count, hs_count, ss_count = 0;
 	int fs_len, hs_len, ss_len, ss_magic, ret = -EINVAL;
 	char *data = _data;
@@ -1919,6 +1961,59 @@ static int __ffs_data_got_descs(struct ffs_data *ffs,
 
 	data += 16;
 	len  -= 16;
+=======
+	unsigned fs_count = 0, hs_count = 0, ss_count = 0, flags = 0;
+	int fs_len = 0, hs_len = 0, ss_len = 0, ret = -EINVAL;
+	char *data = _data;
+	char *raw_descs;
+
+	ENTER();
+
+	if (get_unaligned_le32(data + 4) != len)
+		goto error;
+
+	switch (get_unaligned_le32(data)) {
+	case FUNCTIONFS_DESCRIPTORS_MAGIC:
+		fs_count = get_unaligned_le32(data +  8);
+		hs_count = get_unaligned_le32(data + 12);
+		data += 16;
+		len  -= 16;
+		break;
+	case FUNCTIONFS_DESCRIPTORS_MAGIC_V2:
+		flags = get_unaligned_le32(data + 8);
+		data += 12;
+		len  -= 12;
+		if (flags & FUNCTIONFS_HAS_FS_DESC) {
+		    fs_count = get_unaligned_le32(data);
+		    data += 4;
+		    len  -= 4;
+		}
+		if (flags & FUNCTIONFS_HAS_HS_DESC) {
+		    hs_count = get_unaligned_le32(data);
+		    data += 4;
+		    len  -= 4;
+		}
+		if (flags & FUNCTIONFS_HAS_SS_DESC) {
+		    ss_count = get_unaligned_le32(data);
+		    data += 4;
+		    len  -= 4;
+		}
+		if (flags & FUNCTIONFS_HAS_MS_OS_DESC) {
+		    data += 4;
+		    len  -= 4;
+		}
+		break;
+	default:
+		pr_err("FUNCTIONFS_DESCRIPTORS ???\n");
+		goto error;
+	}
+
+	if (!fs_count && !hs_count && !ss_count)
+		goto error;
+
+	/* Start of first descriptor. */
+	raw_descs = data;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	if (likely(fs_count)) {
 		fs_len = ffs_do_descs(fs_count, data, len,
@@ -1930,8 +2025,11 @@ static int __ffs_data_got_descs(struct ffs_data *ffs,
 
 		data += fs_len;
 		len  -= fs_len;
+<<<<<<< HEAD
 	} else {
 		fs_len = 0;
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	}
 
 	if (likely(hs_count)) {
@@ -1941,6 +2039,7 @@ static int __ffs_data_got_descs(struct ffs_data *ffs,
 			ret = hs_len;
 			goto error;
 		}
+<<<<<<< HEAD
 	} else {
 		hs_len = 0;
 	}
@@ -1955,20 +2054,27 @@ static int __ffs_data_got_descs(struct ffs_data *ffs,
 		data += hs_len + 8;
 		len  -= hs_len + 8;
 	} else {
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		data += hs_len;
 		len  -= hs_len;
 	}
 
+<<<<<<< HEAD
 	if (!fs_count && !hs_count && !ss_count)
 		goto einval;
 
 	if (ss_count) {
+=======
+	if (likely(ss_count)) {
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		ss_len = ffs_do_descs(ss_count, data, len,
 				   __ffs_data_do_entity, ffs);
 		if (unlikely(ss_len < 0)) {
 			ret = ss_len;
 			goto error;
 		}
+<<<<<<< HEAD
 		ret = ss_len;
 	} else {
 		ss_len = 0;
@@ -1992,6 +2098,19 @@ static int __ffs_data_got_descs(struct ffs_data *ffs,
 
 einval:
 	ret = -EINVAL;
+=======
+	}
+
+	ffs->raw_descs_data		 = _data;
+	ffs->raw_descs			 = raw_descs;
+	ffs->raw_descs_length		 = fs_len + hs_len + ss_len;
+	ffs->fs_descs_count		 = fs_count;
+	ffs->hs_descs_count		 = hs_count;
+	ffs->ss_descs_count		 = ss_count;
+
+	return 0;
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 error:
 	kfree(_data);
 	return ret;
@@ -2366,6 +2485,7 @@ static int ffs_func_bind(struct usb_configuration *c,
 
 	/* Zero */
 	memset(data->eps, 0, sizeof data->eps);
+<<<<<<< HEAD
 	/* Copy only raw (hs,fs) descriptors (until ss_magic and ss_count) */
 	memcpy(data->raw_descs, ffs->raw_descs + 16,
 				ffs->raw_fs_hs_descs_length);
@@ -2374,6 +2494,10 @@ static int ffs_func_bind(struct usb_configuration *c,
 		memcpy(data->raw_descs + ffs->raw_fs_hs_descs_length,
 			ffs->raw_descs + ffs->raw_ss_descs_offset,
 			ffs->raw_ss_descs_length);
+=======
+	/* Copy descriptors */
+	memcpy(data->raw_descs, ffs->raw_descs, ffs->raw_descs_length);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	memset(data->inums, 0xff, sizeof data->inums);
 	for (ret = ffs->eps_count; ret; --ret)

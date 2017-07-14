@@ -552,6 +552,10 @@ struct vdec_output_frameinfo {
 	enum vdec_picture pic_type;
 	void *client_data;
 	void *input_frame_clientdata;
+<<<<<<< HEAD
+=======
+	struct vdec_picsize picsize;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	struct vdec_framesize framesize;
 	enum vdec_interlaced_format interlaced_format;
 	struct vdec_aspectratioinfo aspect_ratio_info;

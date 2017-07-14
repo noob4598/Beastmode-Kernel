@@ -40,7 +40,10 @@
 #include <asm/fixmap.h>
 
 static pgd_t *save_pgd __initdata;
+<<<<<<< HEAD
 static unsigned long efi_flags __initdata;
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 static void __init early_code_mapping_set_exec(int executable)
 {
@@ -66,7 +69,10 @@ void __init efi_call_phys_prelog(void)
 	int n_pgds;
 
 	early_code_mapping_set_exec(1);
+<<<<<<< HEAD
 	local_irq_save(efi_flags);
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	n_pgds = DIV_ROUND_UP((max_pfn << PAGE_SHIFT), PGDIR_SIZE);
 	save_pgd = kmalloc(n_pgds * sizeof(pgd_t), GFP_KERNEL);
@@ -90,7 +96,10 @@ void __init efi_call_phys_epilog(void)
 		set_pgd(pgd_offset_k(pgd * PGDIR_SIZE), save_pgd[pgd]);
 	kfree(save_pgd);
 	__flush_tlb_all();
+<<<<<<< HEAD
 	local_irq_restore(efi_flags);
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	early_code_mapping_set_exec(0);
 }
 

@@ -395,9 +395,15 @@ static int dwc3_omap_remove(struct platform_device *pdev)
 	struct dwc3_omap	*omap = platform_get_drvdata(pdev);
 
 	dwc3_omap_disable_irqs(omap);
+<<<<<<< HEAD
 	pm_runtime_put_sync(&pdev->dev);
 	pm_runtime_disable(&pdev->dev);
 	device_for_each_child(&pdev->dev, NULL, dwc3_omap_remove_core);
+=======
+	device_for_each_child(&pdev->dev, NULL, dwc3_omap_remove_core);
+	pm_runtime_put_sync(&pdev->dev);
+	pm_runtime_disable(&pdev->dev);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	return 0;
 }

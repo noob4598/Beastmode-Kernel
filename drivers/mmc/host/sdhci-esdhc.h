@@ -40,7 +40,11 @@
 #define ESDHC_DMA_SYSCTL	0x40c
 #define ESDHC_DMA_SNOOP		0x00000040
 
+<<<<<<< HEAD
 #define ESDHC_HOST_CONTROL_RES	0x05
+=======
+#define ESDHC_HOST_CONTROL_RES	0x01
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 static inline void esdhc_set_clock(struct sdhci_host *host, unsigned int clock)
 {

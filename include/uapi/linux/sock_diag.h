@@ -4,6 +4,10 @@
 #include <linux/types.h>
 
 #define SOCK_DIAG_BY_FAMILY 20
+<<<<<<< HEAD
+=======
+#define SOCK_DESTROY_BACKPORT 21
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 struct sock_diag_req {
 	__u8	sdiag_family;

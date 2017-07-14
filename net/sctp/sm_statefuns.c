@@ -177,6 +177,12 @@ sctp_chunk_length_valid(struct sctp_chunk *chunk,
 {
 	__u16 chunk_length = ntohs(chunk->chunk_hdr->length);
 
+<<<<<<< HEAD
+=======
+	/* Previously already marked? */
+	if (unlikely(chunk->pdiscard))
+		return 0;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	if (unlikely(chunk_length < required_length))
 		return 0;
 
@@ -364,7 +370,11 @@ sctp_disposition_t sctp_sf_do_5_1B_init(struct net *net,
 
 	/* Verify the INIT chunk before processing it. */
 	err_chunk = NULL;
+<<<<<<< HEAD
 	if (!sctp_verify_init(net, asoc, chunk->chunk_hdr->type,
+=======
+	if (!sctp_verify_init(net, ep, asoc, chunk->chunk_hdr->type,
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 			      (sctp_init_chunk_t *)chunk->chunk_hdr, chunk,
 			      &err_chunk)) {
 		/* This chunk contains fatal error. It is to be discarded.
@@ -531,7 +541,11 @@ sctp_disposition_t sctp_sf_do_5_1C_ack(struct net *net,
 
 	/* Verify the INIT chunk before processing it. */
 	err_chunk = NULL;
+<<<<<<< HEAD
 	if (!sctp_verify_init(net, asoc, chunk->chunk_hdr->type,
+=======
+	if (!sctp_verify_init(net, ep, asoc, chunk->chunk_hdr->type,
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 			      (sctp_init_chunk_t *)chunk->chunk_hdr, chunk,
 			      &err_chunk)) {
 
@@ -1437,7 +1451,11 @@ static sctp_disposition_t sctp_sf_do_unexpected_init(
 
 	/* Verify the INIT chunk before processing it. */
 	err_chunk = NULL;
+<<<<<<< HEAD
 	if (!sctp_verify_init(net, asoc, chunk->chunk_hdr->type,
+=======
+	if (!sctp_verify_init(net, ep, asoc, chunk->chunk_hdr->type,
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 			      (sctp_init_chunk_t *)chunk->chunk_hdr, chunk,
 			      &err_chunk)) {
 		/* This chunk contains fatal error. It is to be discarded.
@@ -1782,9 +1800,28 @@ static sctp_disposition_t sctp_sf_do_dupcook_a(struct net *net,
 	/* Update the content of current association. */
 	sctp_add_cmd_sf(commands, SCTP_CMD_UPDATE_ASSOC, SCTP_ASOC(new_asoc));
 	sctp_add_cmd_sf(commands, SCTP_CMD_EVENT_ULP, SCTP_ULPEVENT(ev));
+<<<<<<< HEAD
 	sctp_add_cmd_sf(commands, SCTP_CMD_NEW_STATE,
 			SCTP_STATE(SCTP_STATE_ESTABLISHED));
 	sctp_add_cmd_sf(commands, SCTP_CMD_REPLY, SCTP_CHUNK(repl));
+=======
+	if (sctp_state(asoc, SHUTDOWN_PENDING) &&
+	    (sctp_sstate(asoc->base.sk, CLOSING) ||
+	     sock_flag(asoc->base.sk, SOCK_DEAD))) {
+		/* if were currently in SHUTDOWN_PENDING, but the socket
+		 * has been closed by user, don't transition to ESTABLISHED.
+		 * Instead trigger SHUTDOWN bundled with COOKIE_ACK.
+		 */
+		sctp_add_cmd_sf(commands, SCTP_CMD_REPLY, SCTP_CHUNK(repl));
+		return sctp_sf_do_9_2_start_shutdown(net, ep, asoc,
+						     SCTP_ST_CHUNK(0), NULL,
+						     commands);
+	} else {
+		sctp_add_cmd_sf(commands, SCTP_CMD_NEW_STATE,
+				SCTP_STATE(SCTP_STATE_ESTABLISHED));
+		sctp_add_cmd_sf(commands, SCTP_CMD_REPLY, SCTP_CHUNK(repl));
+	}
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	return SCTP_DISPOSITION_CONSUME;
 
 nomem_ev:
@@ -3412,6 +3449,15 @@ sctp_disposition_t sctp_sf_ootb(struct net *net,
 			return sctp_sf_violation_chunklen(net, ep, asoc, type, arg,
 						  commands);
 
+<<<<<<< HEAD
+=======
+		/* Report violation if chunk len overflows */
+		ch_end = ((__u8 *)ch) + WORD_ROUND(ntohs(ch->length));
+		if (ch_end > skb_tail_pointer(skb))
+			return sctp_sf_violation_chunklen(net, ep, asoc, type, arg,
+						  commands);
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		/* Now that we know we at least have a chunk header,
 		 * do things that are type appropriate.
 		 */
@@ -3443,12 +3489,15 @@ sctp_disposition_t sctp_sf_ootb(struct net *net,
 			}
 		}
 
+<<<<<<< HEAD
 		/* Report violation if chunk len overflows */
 		ch_end = ((__u8 *)ch) + WORD_ROUND(ntohs(ch->length));
 		if (ch_end > skb_tail_pointer(skb))
 			return sctp_sf_violation_chunklen(net, ep, asoc, type, arg,
 						  commands);
 
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		ch = (sctp_chunkhdr_t *) ch_end;
 	} while (ch_end < skb_tail_pointer(skb));
 
@@ -3580,9 +3629,13 @@ sctp_disposition_t sctp_sf_do_asconf(struct net *net,
 	struct sctp_chunk	*asconf_ack = NULL;
 	struct sctp_paramhdr	*err_param = NULL;
 	sctp_addiphdr_t		*hdr;
+<<<<<<< HEAD
 	union sctp_addr_param	*addr_param;
 	__u32			serial;
 	int			length;
+=======
+	__u32			serial;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	if (!sctp_vtag_verify(chunk, asoc)) {
 		sctp_add_cmd_sf(commands, SCTP_CMD_REPORT_BAD_TAG,
@@ -3607,6 +3660,7 @@ sctp_disposition_t sctp_sf_do_asconf(struct net *net,
 	hdr = (sctp_addiphdr_t *)chunk->skb->data;
 	serial = ntohl(hdr->serial);
 
+<<<<<<< HEAD
 	addr_param = (union sctp_addr_param *)hdr->params;
 	length = ntohs(addr_param->p.length);
 	if (length < sizeof(sctp_paramhdr_t))
@@ -3618,6 +3672,10 @@ sctp_disposition_t sctp_sf_do_asconf(struct net *net,
 			    (sctp_paramhdr_t *)((void *)addr_param + length),
 			    (void *)chunk->chunk_end,
 			    &err_param))
+=======
+	/* Verify the ASCONF chunk before processing it. */
+	if (!sctp_verify_asconf(asoc, chunk, true, &err_param))
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		return sctp_sf_violation_paramlen(net, ep, asoc, type, arg,
 						  (void *)err_param, commands);
 
@@ -3735,10 +3793,14 @@ sctp_disposition_t sctp_sf_do_asconf_ack(struct net *net,
 	rcvd_serial = ntohl(addip_hdr->serial);
 
 	/* Verify the ASCONF-ACK chunk before processing it. */
+<<<<<<< HEAD
 	if (!sctp_verify_asconf(asoc,
 	    (sctp_paramhdr_t *)addip_hdr->params,
 	    (void *)asconf_ack->chunk_end,
 	    &err_param))
+=======
+	if (!sctp_verify_asconf(asoc, asconf_ack, false, &err_param))
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		return sctp_sf_violation_paramlen(net, ep, asoc, type, arg,
 			   (void *)err_param, commands);
 
@@ -4833,7 +4895,12 @@ sctp_disposition_t sctp_sf_do_9_1_prm_abort(
 
 	retval = SCTP_DISPOSITION_CONSUME;
 
+<<<<<<< HEAD
 	sctp_add_cmd_sf(commands, SCTP_CMD_REPLY, SCTP_CHUNK(abort));
+=======
+	if (abort)
+		sctp_add_cmd_sf(commands, SCTP_CMD_REPLY, SCTP_CHUNK(abort));
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	/* Even if we can't send the ABORT due to low memory delete the
 	 * TCB.  This is a departure from our typical NOMEM handling.
@@ -4970,7 +5037,12 @@ sctp_disposition_t sctp_sf_cookie_wait_prm_abort(
 			SCTP_TO(SCTP_EVENT_TIMEOUT_T1_INIT));
 	retval = SCTP_DISPOSITION_CONSUME;
 
+<<<<<<< HEAD
 	sctp_add_cmd_sf(commands, SCTP_CMD_REPLY, SCTP_CHUNK(abort));
+=======
+	if (abort)
+		sctp_add_cmd_sf(commands, SCTP_CMD_REPLY, SCTP_CHUNK(abort));
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	sctp_add_cmd_sf(commands, SCTP_CMD_NEW_STATE,
 			SCTP_STATE(SCTP_STATE_CLOSED));

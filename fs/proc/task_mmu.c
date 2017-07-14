@@ -162,7 +162,11 @@ static void *m_start(struct seq_file *m, loff_t *pos)
 	if (!priv->task)
 		return ERR_PTR(-ESRCH);
 
+<<<<<<< HEAD
 	mm = mm_access(priv->task, PTRACE_MODE_READ);
+=======
+	mm = mm_access(priv->task, PTRACE_MODE_READ_FSCREDS);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	if (!mm || IS_ERR(mm))
 		return mm;
 	down_read(&mm->mmap_sem);
@@ -270,11 +274,15 @@ show_map_vma(struct seq_file *m, struct vm_area_struct *vma, int is_pid)
 
 	/* We don't show the stack guard page in /proc/maps */
 	start = vma->vm_start;
+<<<<<<< HEAD
 	if (stack_guard_page_start(vma, start))
 		start += PAGE_SIZE;
 	end = vma->vm_end;
 	if (stack_guard_page_end(vma, end))
 		end -= PAGE_SIZE;
+=======
+	end = vma->vm_end;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	seq_setwidth(m, 25 + sizeof(void *) * 6 - 1);
 	seq_printf(m, "%08lx-%08lx %c%c%c%c %08llx %02x:%02x %lu ",
@@ -1120,7 +1128,11 @@ static ssize_t pagemap_read(struct file *file, char __user *buf,
 	if (!pm.buffer)
 		goto out_task;
 
+<<<<<<< HEAD
 	mm = mm_access(task, PTRACE_MODE_READ);
+=======
+	mm = mm_access(task, PTRACE_MODE_READ_FSCREDS);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	ret = PTR_ERR(mm);
 	if (!mm || IS_ERR(mm))
 		goto out_free;
@@ -1186,9 +1198,25 @@ out:
 	return ret;
 }
 
+<<<<<<< HEAD
 const struct file_operations proc_pagemap_operations = {
 	.llseek		= mem_lseek, /* borrow this */
 	.read		= pagemap_read,
+=======
+static int pagemap_open(struct inode *inode, struct file *file)
+{
+	/* do not disclose physical addresses to unprivileged
+	   userspace (closes a rowhammer attack vector) */
+	if (!capable(CAP_SYS_ADMIN))
+		return -EPERM;
+	return 0;
+}
+
+const struct file_operations proc_pagemap_operations = {
+	.llseek		= mem_lseek, /* borrow this */
+	.read		= pagemap_read,
+	.open		= pagemap_open,
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 };
 #endif /* CONFIG_PROC_PAGE_MONITOR */
 

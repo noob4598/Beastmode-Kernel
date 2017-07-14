@@ -96,12 +96,15 @@ enum hrtimer_restart {
  * @function:	timer expiry callback function
  * @base:	pointer to the timer base (per cpu and per clock)
  * @state:	state information (See bit values above)
+<<<<<<< HEAD
  * @start_site:	timer statistics field to store the site where the timer
  *		was started
  * @start_comm: timer statistics field to store the name of the process which
  *		started the timer
  * @start_pid: timer statistics field to store the pid of the task which
  *		started the timer
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
  *
  * The hrtimer structure must be initialized by hrtimer_init()
  */
@@ -111,11 +114,14 @@ struct hrtimer {
 	enum hrtimer_restart		(*function)(struct hrtimer *);
 	struct hrtimer_clock_base	*base;
 	unsigned long			state;
+<<<<<<< HEAD
 #ifdef CONFIG_TIMER_STATS
 	int				start_pid;
 	void				*start_site;
 	char				start_comm[16];
 #endif
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 };
 
 /**

@@ -712,7 +712,11 @@ static int max8997_muic_probe(struct platform_device *pdev)
 		goto err_irq;
 	}
 
+<<<<<<< HEAD
 	if (pdata->muic_pdata) {
+=======
+	if (pdata && pdata->muic_pdata) {
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		struct max8997_muic_platform_data *muic_pdata
 			= pdata->muic_pdata;
 

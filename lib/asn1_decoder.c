@@ -33,6 +33,10 @@ static const unsigned char asn1_op_lengths[ASN1_OP__NR] = {
 	[ASN1_OP_COND_FAIL]			= 1,
 	[ASN1_OP_COMPLETE]			= 1,
 	[ASN1_OP_ACT]				= 1         + 1,
+<<<<<<< HEAD
+=======
+	[ASN1_OP_MAYBE_ACT]			= 1         + 1,
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	[ASN1_OP_RETURN]			= 1,
 	[ASN1_OP_END_SEQ]			= 1,
 	[ASN1_OP_END_SEQ_OF]			= 1     + 1,
@@ -69,7 +73,11 @@ next_tag:
 
 	/* Extract a tag from the data */
 	tag = data[dp++];
+<<<<<<< HEAD
 	if (tag == 0) {
+=======
+	if (tag == ASN1_EOC) {
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		/* It appears to be an EOC. */
 		if (data[dp++] != 0)
 			goto invalid_eoc;
@@ -91,10 +99,15 @@ next_tag:
 
 	/* Extract the length */
 	len = data[dp++];
+<<<<<<< HEAD
 	if (len <= 0x7f) {
 		dp += len;
 		goto next_tag;
 	}
+=======
+	if (len <= 0x7f)
+		goto check_length;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	if (unlikely(len == ASN1_INDEFINITE_LENGTH)) {
 		/* Indefinite length */
@@ -105,6 +118,7 @@ next_tag:
 	}
 
 	n = len - 0x80;
+<<<<<<< HEAD
 	if (unlikely(n > sizeof(size_t) - 1))
 		goto length_too_long;
 	if (unlikely(n > datalen - dp))
@@ -113,6 +127,20 @@ next_tag:
 		len <<= 8;
 		len |= data[dp++];
 	}
+=======
+	if (unlikely(n > sizeof(len) - 1))
+		goto length_too_long;
+	if (unlikely(n > datalen - dp))
+		goto data_overrun_error;
+	len = 0;
+	for (; n > 0; n--) {
+		len <<= 8;
+		len |= data[dp++];
+	}
+check_length:
+	if (len > datalen - dp)
+		goto data_overrun_error;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	dp += len;
 	goto next_tag;
 
@@ -140,7 +168,11 @@ error:
  * @decoder: The decoder definition (produced by asn1_compiler)
  * @context: The caller's context (to be passed to the action functions)
  * @data: The encoded data
+<<<<<<< HEAD
  * @datasize: The size of the encoded data
+=======
+ * @datalen: The size of the encoded data
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
  *
  * Decode BER/DER/CER encoded ASN.1 data according to a bytecode pattern
  * produced by asn1_compiler.  Action functions are called on marked tags to
@@ -177,6 +209,10 @@ int asn1_ber_decoder(const struct asn1_decoder *decoder,
 	unsigned char flags = 0;
 #define FLAG_INDEFINITE_LENGTH	0x01
 #define FLAG_MATCHED		0x02
+<<<<<<< HEAD
+=======
+#define FLAG_LAST_MATCHED	0x04 /* Last tag matched */
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 #define FLAG_CONS		0x20 /* Corresponds to CONS bit in the opcode tag
 				      * - ie. whether or not we are going to parse
 				      *   a compound type.
@@ -208,9 +244,15 @@ next_op:
 		unsigned char tmp;
 
 		/* Skip conditional matches if possible */
+<<<<<<< HEAD
 		if ((op & ASN1_OP_MATCH__COND &&
 		     flags & FLAG_MATCHED) ||
 		    dp == datalen) {
+=======
+		if ((op & ASN1_OP_MATCH__COND && flags & FLAG_MATCHED) ||
+		    (op & ASN1_OP_MATCH__SKIP && dp == datalen)) {
+			flags &= ~FLAG_LAST_MATCHED;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 			pc += asn1_op_lengths[op];
 			goto next_op;
 		}
@@ -422,8 +464,20 @@ next_op:
 		pc += asn1_op_lengths[op];
 		goto next_op;
 
+<<<<<<< HEAD
 	case ASN1_OP_ACT:
 		ret = actions[machine[pc + 1]](context, hdr, tag, data + tdp, len);
+=======
+	case ASN1_OP_MAYBE_ACT:
+		if (!(flags & FLAG_LAST_MATCHED)) {
+			pc += asn1_op_lengths[op];
+			goto next_op;
+		}
+	case ASN1_OP_ACT:
+		ret = actions[machine[pc + 1]](context, hdr, tag, data + tdp, len);
+		if (ret < 0)
+			return ret;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		pc += asn1_op_lengths[op];
 		goto next_op;
 
@@ -431,6 +485,10 @@ next_op:
 		if (unlikely(jsp <= 0))
 			goto jump_stack_underflow;
 		pc = jump_stack[--jsp];
+<<<<<<< HEAD
+=======
+		flags |= FLAG_MATCHED | FLAG_LAST_MATCHED;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		goto next_op;
 
 	default:
@@ -438,7 +496,12 @@ next_op:
 	}
 
 	/* Shouldn't reach here */
+<<<<<<< HEAD
 	pr_err("ASN.1 decoder error: Found reserved opcode (%u)\n", op);
+=======
+	pr_err("ASN.1 decoder error: Found reserved opcode (%u) pc=%zu\n",
+	       op, pc);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	return -EBADMSG;
 
 data_overrun_error:

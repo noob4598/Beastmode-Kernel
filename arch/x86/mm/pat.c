@@ -505,11 +505,16 @@ static inline int range_is_allowed(unsigned long pfn, unsigned long size)
 		return 1;
 
 	while (cursor < to) {
+<<<<<<< HEAD
 		if (!devmem_is_allowed(pfn)) {
 			printk(KERN_INFO "Program %s tried to access /dev/mem between [mem %#010Lx-%#010Lx]\n",
 				current->comm, from, to - 1);
 			return 0;
 		}
+=======
+		if (!devmem_is_allowed(pfn))
+			return 0;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		cursor += PAGE_SIZE;
 		pfn++;
 	}

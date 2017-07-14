@@ -580,7 +580,11 @@ int key_reject_and_link(struct key *key,
 
 	mutex_unlock(&key_construction_mutex);
 
+<<<<<<< HEAD
 	if (keyring)
+=======
+	if (keyring && link_ret == 0)
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		__key_link_end(keyring, key->type, prealloc);
 
 	/* wake up anyone waiting for a key to be constructed */

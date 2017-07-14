@@ -51,11 +51,15 @@
 
 #else /* CONFIG_SMP */
 
+<<<<<<< HEAD
 #define smp_mb()	barrier()
 #define smp_rmb()	barrier()
 #define smp_wmb()	barrier()
 #define smp_read_barrier_depends()	do { } while (0)
 #define set_mb(var, value) do { var = value; barrier(); } while (0)
+=======
+#include <asm-generic/barrier.h>
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 #endif /* CONFIG_SMP */
 

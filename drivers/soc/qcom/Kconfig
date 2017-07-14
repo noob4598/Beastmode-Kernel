@@ -110,6 +110,7 @@ config MAXIMUM_CURRENT_THROTTLING
 	  turn on/off CPU based current throttling by setting the
 	  credit/upper limit in the CPU registers.
 
+<<<<<<< HEAD
 config MSM_LIMITER
 	bool "MSM Frequency Limiter Driver"
 	default y
@@ -126,6 +127,8 @@ config STATE_HELPER
 	depends on STATE_NOTIFIER
 default y
 
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 source "drivers/soc/qcom/memshare/Kconfig"
 
 endif # ARCH_MSM

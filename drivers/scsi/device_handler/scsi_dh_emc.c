@@ -280,6 +280,10 @@ static struct request *get_req(struct scsi_device *sdev, int cmd,
 		return NULL;
 	}
 
+<<<<<<< HEAD
+=======
+	blk_rq_set_block_pc(rq);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	rq->cmd_len = COMMAND_SIZE(cmd);
 	rq->cmd[0] = cmd;
 
@@ -304,7 +308,10 @@ static struct request *get_req(struct scsi_device *sdev, int cmd,
 		break;
 	}
 
+<<<<<<< HEAD
 	rq->cmd_type = REQ_TYPE_BLOCK_PC;
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	rq->cmd_flags |= REQ_FAILFAST_DEV | REQ_FAILFAST_TRANSPORT |
 			 REQ_FAILFAST_DRIVER;
 	rq->timeout = CLARIION_TIMEOUT;

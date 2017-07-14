@@ -77,7 +77,11 @@ struct platform_device *__init imx_alloc_mx3_camera(
 
 	pdev = platform_device_alloc("mx3-camera", 0);
 	if (!pdev)
+<<<<<<< HEAD
 		goto err;
+=======
+		return ERR_PTR(-ENOMEM);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	pdev->dev.dma_mask = kmalloc(sizeof(*pdev->dev.dma_mask), GFP_KERNEL);
 	if (!pdev->dev.dma_mask)

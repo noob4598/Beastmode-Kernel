@@ -313,7 +313,10 @@ static void pppoe_flush_dev(struct net_device *dev)
 			if (po->pppoe_dev == dev &&
 			    sk->sk_state & (PPPOX_CONNECTED | PPPOX_BOUND | PPPOX_ZOMBIE)) {
 				pppox_unbind_sock(sk);
+<<<<<<< HEAD
 				sk->sk_state = PPPOX_ZOMBIE;
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 				sk->sk_state_change(sk);
 				po->pppoe_dev = NULL;
 				dev_put(dev);
@@ -570,7 +573,11 @@ static int pppoe_release(struct socket *sock)
 
 	po = pppox_sk(sk);
 
+<<<<<<< HEAD
 	if (sk->sk_state & (PPPOX_CONNECTED | PPPOX_BOUND | PPPOX_ZOMBIE)) {
+=======
+	if (po->pppoe_dev) {
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		dev_put(po->pppoe_dev);
 		po->pppoe_dev = NULL;
 	}
@@ -675,7 +682,11 @@ static int pppoe_connect(struct socket *sock, struct sockaddr *uservaddr,
 		po->chan.hdrlen = (sizeof(struct pppoe_hdr) +
 				   dev->hard_header_len);
 
+<<<<<<< HEAD
 		po->chan.mtu = dev->mtu - sizeof(struct pppoe_hdr);
+=======
+		po->chan.mtu = dev->mtu - sizeof(struct pppoe_hdr) - 2;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		po->chan.private = sk;
 		po->chan.ops = &pppoe_chan_ops;
 

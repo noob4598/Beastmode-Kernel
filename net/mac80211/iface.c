@@ -1746,7 +1746,10 @@ void ieee80211_remove_interfaces(struct ieee80211_local *local)
 	}
 	mutex_unlock(&local->iflist_mtx);
 	unregister_netdevice_many(&unreg_list);
+<<<<<<< HEAD
 	list_del(&unreg_list);
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	list_for_each_entry_safe(sdata, tmp, &wdev_list, list) {
 		list_del(&sdata->list);

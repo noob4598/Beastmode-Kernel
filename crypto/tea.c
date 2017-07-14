@@ -270,8 +270,14 @@ static void __exit tea_mod_fini(void)
 	crypto_unregister_algs(tea_algs, ARRAY_SIZE(tea_algs));
 }
 
+<<<<<<< HEAD
 MODULE_ALIAS("xtea");
 MODULE_ALIAS("xeta");
+=======
+MODULE_ALIAS_CRYPTO("tea");
+MODULE_ALIAS_CRYPTO("xtea");
+MODULE_ALIAS_CRYPTO("xeta");
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 module_init(tea_mod_init);
 module_exit(tea_mod_fini);

@@ -498,7 +498,11 @@ void __init orion_ge00_switch_init(struct dsa_platform_data *d, int irq)
 
 	d->netdev = &orion_ge00.dev;
 	for (i = 0; i < d->nr_chips; i++)
+<<<<<<< HEAD
 		d->chip[i].mii_bus = &orion_ge00_shared.dev;
+=======
+		d->chip[i].mii_bus = &orion_ge_mvmdio.dev;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	orion_switch_device.dev.platform_data = d;
 
 	platform_device_register(&orion_switch_device);

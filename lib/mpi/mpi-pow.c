@@ -64,8 +64,18 @@ int mpi_powm(MPI res, MPI base, MPI exp, MPI mod)
 	if (!esize) {
 		/* Exponent is zero, result is 1 mod MOD, i.e., 1 or 0
 		 * depending on if MOD equals 1.  */
+<<<<<<< HEAD
 		rp[0] = 1;
 		res->nlimbs = (msize == 1 && mod->d[0] == 1) ? 0 : 1;
+=======
+		res->nlimbs = (msize == 1 && mod->d[0] == 1) ? 0 : 1;
+		if (res->nlimbs) {
+			if (mpi_resize(res, 1) < 0)
+				goto enomem;
+			rp = res->d;
+			rp[0] = 1;
+		}
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		res->sign = 0;
 		goto leave;
 	}

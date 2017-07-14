@@ -276,7 +276,11 @@ static void dwc3_ep0_stall_and_restart(struct dwc3 *dwc)
 
 	/* stall is always issued on EP0 */
 	dep = dwc->eps[0];
+<<<<<<< HEAD
 	__dwc3_gadget_ep_set_halt(dep, 1);
+=======
+	__dwc3_gadget_ep_set_halt(dep, 1, false);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	dep->flags = DWC3_EP_ENABLED;
 	dwc->delayed_status = false;
 
@@ -497,7 +501,11 @@ static int dwc3_ep0_handle_feature(struct dwc3 *dwc,
 				return -EINVAL;
 			if (set == 0 && (dep->flags & DWC3_EP_WEDGE))
 				break;
+<<<<<<< HEAD
 			ret = __dwc3_gadget_ep_set_halt(dep, set);
+=======
+			ret = __dwc3_gadget_ep_set_halt(dep, set, true);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 			if (ret)
 				return -EINVAL;
 			break;
@@ -865,6 +873,14 @@ static void dwc3_ep0_complete_data(struct dwc3 *dwc,
 		unsigned maxp = ep0->endpoint.maxpacket;
 
 		transfer_size += (maxp - (transfer_size % maxp));
+<<<<<<< HEAD
+=======
+
+		/* Maximum of DWC3_EP0_BOUNCE_SIZE can only be received */
+		if (transfer_size > DWC3_EP0_BOUNCE_SIZE)
+			transfer_size = DWC3_EP0_BOUNCE_SIZE;
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		transferred = min_t(u32, ur->length,
 				transfer_size - length);
 		memcpy(ur->buf, dwc->ep0_bounce, transferred);
@@ -979,11 +995,22 @@ static void __dwc3_ep0_do_control_data(struct dwc3 *dwc,
 			return;
 		}
 
+<<<<<<< HEAD
 		WARN_ON(req->request.length > DWC3_EP0_BOUNCE_SIZE);
 
 		maxpacket = dep->endpoint.maxpacket;
 		transfer_size = roundup(req->request.length, maxpacket);
 
+=======
+		maxpacket = dep->endpoint.maxpacket;
+		transfer_size = roundup(req->request.length, maxpacket);
+
+		if (transfer_size > DWC3_EP0_BOUNCE_SIZE) {
+			dev_WARN(dwc->dev, "bounce buf can't handle req len\n");
+			transfer_size = DWC3_EP0_BOUNCE_SIZE;
+		}
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		dwc->ep0_bounced = true;
 
 		/*

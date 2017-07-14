@@ -69,6 +69,10 @@
 #define PTE_TYPE_PAGE		(_AT(pteval_t, 3) << 0)
 #define PTE_BUFFERABLE		(_AT(pteval_t, 1) << 2)		/* AttrIndx[0] */
 #define PTE_CACHEABLE		(_AT(pteval_t, 1) << 3)		/* AttrIndx[1] */
+<<<<<<< HEAD
+=======
+#define PTE_AP2			(_AT(pteval_t, 1) << 7)		/* AP[2] */
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 #define PTE_EXT_SHARED		(_AT(pteval_t, 3) << 8)		/* SH[1:0], inner shareable */
 #define PTE_EXT_AF		(_AT(pteval_t, 1) << 10)	/* Access Flag */
 #define PTE_EXT_NG		(_AT(pteval_t, 1) << 11)	/* nG */

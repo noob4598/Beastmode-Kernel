@@ -253,6 +253,10 @@ struct ar9170 {
 	atomic_t rx_work_urbs;
 	atomic_t rx_pool_urbs;
 	kernel_ulong_t features;
+<<<<<<< HEAD
+=======
+	bool usb_ep_cmd_is_bulk;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	/* firmware settings */
 	struct completion fw_load_wait;

@@ -552,10 +552,21 @@ void wcd9xxx_enable_high_perf_mode(struct snd_soc_codec *codec,
 
 	if (req_type == WCD9XXX_CLSAB_REQ_ENABLE) {
 		clsh_d->ncp_users[NCP_FCLK_LEVEL_8]++;
+<<<<<<< HEAD
+=======
+		snd_soc_write(codec, WCD9XXX_A_RX_HPH_BIAS_PA,
+					WCD9XXX_A_RX_HPH_BIAS_PA__POR);
+		snd_soc_write(codec, WCD9XXX_A_RX_HPH_L_PA_CTL, 0x48);
+		snd_soc_write(codec, WCD9XXX_A_RX_HPH_R_PA_CTL, 0x48);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		snd_soc_update_bits(codec, WCD9XXX_A_RX_HPH_CHOP_CTL,
 					0x20, 0x00);
 		wcd9xxx_chargepump_request(codec, true);
 		wcd9xxx_enable_anc_delay(codec, true);
+<<<<<<< HEAD
+=======
+		wcd9xxx_enable_buck(codec, clsh_d, false);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		if (clsh_d->ncp_users[NCP_FCLK_LEVEL_8] > 0)
 			snd_soc_update_bits(codec, WCD9XXX_A_NCP_STATIC,
 						0x0F, 0x08);
@@ -567,6 +578,15 @@ void wcd9xxx_enable_high_perf_mode(struct snd_soc_codec *codec,
 	} else {
 		snd_soc_update_bits(codec, WCD9XXX_A_RX_HPH_CHOP_CTL,
 					0x20, 0x20);
+<<<<<<< HEAD
+=======
+		snd_soc_write(codec, WCD9XXX_A_RX_HPH_L_PA_CTL,
+					WCD9XXX_A_RX_HPH_L_PA_CTL__POR);
+		snd_soc_write(codec, WCD9XXX_A_RX_HPH_R_PA_CTL,
+					WCD9XXX_A_RX_HPH_R_PA_CTL__POR);
+		snd_soc_write(codec, WCD9XXX_A_RX_HPH_BIAS_PA, 0x55);
+		wcd9xxx_enable_buck(codec, clsh_d, true);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		wcd9xxx_chargepump_request(codec, false);
 		wcd9xxx_enable_anc_delay(codec, false);
 		clsh_d->ncp_users[NCP_FCLK_LEVEL_8]--;
@@ -1037,6 +1057,17 @@ static void wcd9xxx_clsh_state_hph_lo(struct snd_soc_codec *codec,
 							NCP_FCLK_LEVEL_8);
 			}
 
+<<<<<<< HEAD
+=======
+			if ((clsh_d->state & (~req_state)) ==
+						WCD9XXX_CLSH_STATE_LO) {
+				wcd9xxx_set_fclk_get_ncp(codec, clsh_d,
+							NCP_FCLK_LEVEL_5);
+				wcd9xxx_set_fclk_put_ncp(codec, clsh_d,
+							NCP_FCLK_LEVEL_8);
+			}
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 			if (req_state & WCD9XXX_CLSH_STATE_HPH_ST) {
 				usleep_range(BUCK_SETTLE_TIME_US,
 						BUCK_SETTLE_TIME_US + 10);

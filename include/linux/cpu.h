@@ -125,22 +125,34 @@ enum {
 		{ .notifier_call = fn, .priority = pri };	\
 	__register_cpu_notifier(&fn##_nb);			\
 }
+<<<<<<< HEAD
 #else /* #if defined(CONFIG_HOTPLUG_CPU) || !defined(MODULE) */
 #define cpu_notifier(fn, pri)	do { (void)(fn); } while (0)
 #define __cpu_notifier(fn, pri)	do { (void)(fn); } while (0)
 #endif /* #else #if defined(CONFIG_HOTPLUG_CPU) || !defined(MODULE) */
 
 #ifdef CONFIG_HOTPLUG_CPU
+=======
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 extern int register_cpu_notifier(struct notifier_block *nb);
 extern int __register_cpu_notifier(struct notifier_block *nb);
 extern void unregister_cpu_notifier(struct notifier_block *nb);
 extern void __unregister_cpu_notifier(struct notifier_block *nb);
+<<<<<<< HEAD
 #else
 
 #ifndef MODULE
 extern int register_cpu_notifier(struct notifier_block *nb);
 extern int __register_cpu_notifier(struct notifier_block *nb);
 #else
+=======
+
+#else /* #if defined(CONFIG_HOTPLUG_CPU) || !defined(MODULE) */
+#define cpu_notifier(fn, pri)	do { (void)(fn); } while (0)
+#define __cpu_notifier(fn, pri)	do { (void)(fn); } while (0)
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 static inline int register_cpu_notifier(struct notifier_block *nb)
 {
 	return 0;
@@ -150,7 +162,10 @@ static inline int __register_cpu_notifier(struct notifier_block *nb)
 {
 	return 0;
 }
+<<<<<<< HEAD
 #endif
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 static inline void unregister_cpu_notifier(struct notifier_block *nb)
 {

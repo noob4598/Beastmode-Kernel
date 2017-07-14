@@ -40,7 +40,12 @@ static void smp2p_int_stats(struct seq_file *s)
 				pid != SMP2P_REMOTE_MOCK_PROC)
 			continue;
 
+<<<<<<< HEAD
 		seq_printf(s, "| %5s (%d) | %11u | %10u | %10u | %p | %08x |\n",
+=======
+		seq_printf(s,
+			"| %5s (%d) | %11u | %10u | %10u | %pK | %08x |\n",
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 			int_cfg[pid].name,
 			pid, int_cfg[pid].in_int_id,
 			int_cfg[pid].in_interrupt_count,

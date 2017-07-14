@@ -74,7 +74,11 @@ static int ak4641_put_deemph(struct snd_kcontrol *kcontrol,
 {
 	struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
 	struct ak4641_priv *ak4641 = snd_soc_codec_get_drvdata(codec);
+<<<<<<< HEAD
 	int deemph = ucontrol->value.enumerated.item[0];
+=======
+	int deemph = ucontrol->value.integer.value[0];
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	if (deemph > 1)
 		return -EINVAL;
@@ -90,7 +94,11 @@ static int ak4641_get_deemph(struct snd_kcontrol *kcontrol,
 	struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
 	struct ak4641_priv *ak4641 = snd_soc_codec_get_drvdata(codec);
 
+<<<<<<< HEAD
 	ucontrol->value.enumerated.item[0] = ak4641->deemph;
+=======
+	ucontrol->value.integer.value[0] = ak4641->deemph;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	return 0;
 };
 

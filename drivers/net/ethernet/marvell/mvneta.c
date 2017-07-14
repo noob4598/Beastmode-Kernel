@@ -99,6 +99,7 @@
 #define      MVNETA_CPU_RXQ_ACCESS_ALL_MASK      0x000000ff
 #define      MVNETA_CPU_TXQ_ACCESS_ALL_MASK      0x0000ff00
 #define MVNETA_RXQ_TIME_COAL_REG(q)              (0x2580 + ((q) << 2))
+<<<<<<< HEAD
 #define MVNETA_INTR_NEW_CAUSE                    0x25a0
 #define      MVNETA_RX_INTR_MASK(nr_rxqs)        (((1 << nr_rxqs) - 1) << 8)
 #define MVNETA_INTR_NEW_MASK                     0x25a4
@@ -109,6 +110,58 @@
 #define MVNETA_INTR_ENABLE                       0x25b8
 #define      MVNETA_TXQ_INTR_ENABLE_ALL_MASK     0x0000ff00
 #define      MVNETA_RXQ_INTR_ENABLE_ALL_MASK     0xff000000
+=======
+
+/* Exception Interrupt Port/Queue Cause register */
+
+#define MVNETA_INTR_NEW_CAUSE                    0x25a0
+#define MVNETA_INTR_NEW_MASK                     0x25a4
+
+/* bits  0..7  = TXQ SENT, one bit per queue.
+ * bits  8..15 = RXQ OCCUP, one bit per queue.
+ * bits 16..23 = RXQ FREE, one bit per queue.
+ * bit  29 = OLD_REG_SUM, see old reg ?
+ * bit  30 = TX_ERR_SUM, one bit for 4 ports
+ * bit  31 = MISC_SUM,   one bit for 4 ports
+ */
+#define      MVNETA_TX_INTR_MASK(nr_txqs)        (((1 << nr_txqs) - 1) << 0)
+#define      MVNETA_TX_INTR_MASK_ALL             (0xff << 0)
+#define      MVNETA_RX_INTR_MASK(nr_rxqs)        (((1 << nr_rxqs) - 1) << 8)
+#define      MVNETA_RX_INTR_MASK_ALL             (0xff << 8)
+
+#define MVNETA_INTR_OLD_CAUSE                    0x25a8
+#define MVNETA_INTR_OLD_MASK                     0x25ac
+
+/* Data Path Port/Queue Cause Register */
+#define MVNETA_INTR_MISC_CAUSE                   0x25b0
+#define MVNETA_INTR_MISC_MASK                    0x25b4
+
+#define      MVNETA_CAUSE_PHY_STATUS_CHANGE      BIT(0)
+#define      MVNETA_CAUSE_LINK_CHANGE            BIT(1)
+#define      MVNETA_CAUSE_PTP                    BIT(4)
+
+#define      MVNETA_CAUSE_INTERNAL_ADDR_ERR      BIT(7)
+#define      MVNETA_CAUSE_RX_OVERRUN             BIT(8)
+#define      MVNETA_CAUSE_RX_CRC_ERROR           BIT(9)
+#define      MVNETA_CAUSE_RX_LARGE_PKT           BIT(10)
+#define      MVNETA_CAUSE_TX_UNDERUN             BIT(11)
+#define      MVNETA_CAUSE_PRBS_ERR               BIT(12)
+#define      MVNETA_CAUSE_PSC_SYNC_CHANGE        BIT(13)
+#define      MVNETA_CAUSE_SERDES_SYNC_ERR        BIT(14)
+
+#define      MVNETA_CAUSE_BMU_ALLOC_ERR_SHIFT    16
+#define      MVNETA_CAUSE_BMU_ALLOC_ERR_ALL_MASK   (0xF << MVNETA_CAUSE_BMU_ALLOC_ERR_SHIFT)
+#define      MVNETA_CAUSE_BMU_ALLOC_ERR_MASK(pool) (1 << (MVNETA_CAUSE_BMU_ALLOC_ERR_SHIFT + (pool)))
+
+#define      MVNETA_CAUSE_TXQ_ERROR_SHIFT        24
+#define      MVNETA_CAUSE_TXQ_ERROR_ALL_MASK     (0xFF << MVNETA_CAUSE_TXQ_ERROR_SHIFT)
+#define      MVNETA_CAUSE_TXQ_ERROR_MASK(q)      (1 << (MVNETA_CAUSE_TXQ_ERROR_SHIFT + (q)))
+
+#define MVNETA_INTR_ENABLE                       0x25b8
+#define      MVNETA_TXQ_INTR_ENABLE_ALL_MASK     0x0000ff00
+#define      MVNETA_RXQ_INTR_ENABLE_ALL_MASK     0xff000000  // note: neta says it's 0x000000FF
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 #define MVNETA_RXQ_CMD                           0x2680
 #define      MVNETA_RXQ_DISABLE_SHIFT            8
 #define      MVNETA_RXQ_ENABLE_MASK              0x000000ff
@@ -170,6 +223,7 @@
 /* Various constants */
 
 /* Coalescing */
+<<<<<<< HEAD
 #define MVNETA_TXDONE_COAL_PKTS		16
 #define MVNETA_RX_COAL_PKTS		32
 #define MVNETA_RX_COAL_USEC		100
@@ -177,6 +231,12 @@
 /* Timer */
 #define MVNETA_TX_DONE_TIMER_PERIOD	10
 
+=======
+#define MVNETA_TXDONE_COAL_PKTS		0	/* interrupt per packet */
+#define MVNETA_RX_COAL_PKTS		32
+#define MVNETA_RX_COAL_USEC		100
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 /* Napi polling weight */
 #define MVNETA_RX_POLL_WEIGHT		64
 
@@ -219,10 +279,19 @@
 
 #define MVNETA_RX_BUF_SIZE(pkt_size)   ((pkt_size) + NET_SKB_PAD)
 
+<<<<<<< HEAD
 struct mvneta_stats {
 	struct	u64_stats_sync syncp;
 	u64	packets;
 	u64	bytes;
+=======
+struct mvneta_pcpu_stats {
+	struct	u64_stats_sync syncp;
+	u64	rx_packets;
+	u64	rx_bytes;
+	u64	tx_packets;
+	u64	tx_bytes;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 };
 
 struct mvneta_port {
@@ -230,16 +299,22 @@ struct mvneta_port {
 	void __iomem *base;
 	struct mvneta_rx_queue *rxqs;
 	struct mvneta_tx_queue *txqs;
+<<<<<<< HEAD
 	struct timer_list tx_done_timer;
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	struct net_device *dev;
 
 	u32 cause_rx_tx;
 	struct napi_struct napi;
 
+<<<<<<< HEAD
 	/* Flags */
 	unsigned long flags;
 #define MVNETA_F_TX_DONE_TIMER_BIT  0
 
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	/* Napi weight */
 	int weight;
 
@@ -248,8 +323,12 @@ struct mvneta_port {
 	u8 mcast_count[256];
 	u16 tx_ring_size;
 	u16 rx_ring_size;
+<<<<<<< HEAD
 	struct mvneta_stats tx_stats;
 	struct mvneta_stats rx_stats;
+=======
+	struct mvneta_pcpu_stats *stats;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	struct mii_bus *mii_bus;
 	struct phy_device *phy_dev;
@@ -428,6 +507,7 @@ struct rtnl_link_stats64 *mvneta_get_stats64(struct net_device *dev,
 {
 	struct mvneta_port *pp = netdev_priv(dev);
 	unsigned int start;
+<<<<<<< HEAD
 
 	memset(stats, 0, sizeof(struct rtnl_link_stats64));
 
@@ -443,6 +523,31 @@ struct rtnl_link_stats64 *mvneta_get_stats64(struct net_device *dev,
 		stats->tx_packets = pp->tx_stats.packets;
 		stats->tx_bytes	= pp->tx_stats.bytes;
 	} while (u64_stats_fetch_retry_bh(&pp->tx_stats.syncp, start));
+=======
+	int cpu;
+
+	for_each_possible_cpu(cpu) {
+		struct mvneta_pcpu_stats *cpu_stats;
+		u64 rx_packets;
+		u64 rx_bytes;
+		u64 tx_packets;
+		u64 tx_bytes;
+
+		cpu_stats = per_cpu_ptr(pp->stats, cpu);
+		do {
+			start = u64_stats_fetch_begin_bh(&cpu_stats->syncp);
+			rx_packets = cpu_stats->rx_packets;
+			rx_bytes   = cpu_stats->rx_bytes;
+			tx_packets = cpu_stats->tx_packets;
+			tx_bytes   = cpu_stats->tx_bytes;
+		} while (u64_stats_fetch_retry_bh(&cpu_stats->syncp, start));
+
+		stats->rx_packets += rx_packets;
+		stats->rx_bytes   += rx_bytes;
+		stats->tx_packets += tx_packets;
+		stats->tx_bytes   += tx_bytes;
+	}
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	stats->rx_errors	= dev->stats.rx_errors;
 	stats->rx_dropped	= dev->stats.rx_dropped;
@@ -869,7 +974,11 @@ static void mvneta_defaults_set(struct mvneta_port *pp)
 	/* Set CPU queue access map - all CPUs have access to all RX
 	 * queues and to all TX queues
 	 */
+<<<<<<< HEAD
 	for (cpu = 0; cpu < CONFIG_NR_CPUS; cpu++)
+=======
+	for_each_present_cpu(cpu)
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		mvreg_write(pp, MVNETA_CPU_MAP(cpu),
 			    (MVNETA_CPU_RXQ_ACCESS_ALL_MASK |
 			     MVNETA_CPU_TXQ_ACCESS_ALL_MASK));
@@ -1063,6 +1172,7 @@ static void mvneta_tx_done_pkts_coal_set(struct mvneta_port *pp,
 	txq->done_pkts_coal = value;
 }
 
+<<<<<<< HEAD
 /* Trigger tx done timer in MVNETA_TX_DONE_TIMER_PERIOD msecs */
 static void mvneta_add_tx_done_timer(struct mvneta_port *pp)
 {
@@ -1074,6 +1184,8 @@ static void mvneta_add_tx_done_timer(struct mvneta_port *pp)
 }
 
 
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 /* Handle rx descriptor fill by setting buf_cookie and buf_phys_addr */
 static void mvneta_rx_desc_fill(struct mvneta_rx_desc *rx_desc,
 				u32 phys_addr, u32 cookie)
@@ -1145,7 +1257,11 @@ static u32 mvneta_txq_desc_csum(int l3_offs, int l3_proto,
 	command =  l3_offs    << MVNETA_TX_L3_OFF_SHIFT;
 	command |= ip_hdr_len << MVNETA_TX_IP_HLEN_SHIFT;
 
+<<<<<<< HEAD
 	if (l3_proto == swab16(ETH_P_IP))
+=======
+	if (l3_proto == htons(ETH_P_IP))
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		command |= MVNETA_TXD_IP_CSUM;
 	else
 		command |= MVNETA_TX_L3_IP6;
@@ -1354,6 +1470,11 @@ static int mvneta_rx(struct mvneta_port *pp, int rx_todo,
 {
 	struct net_device *dev = pp->dev;
 	int rx_done, rx_filled;
+<<<<<<< HEAD
+=======
+	u32 rcvd_pkts = 0;
+	u32 rcvd_bytes = 0;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	/* Get number of received packets */
 	rx_done = mvneta_rxq_busy_desc_num_get(pp, rxq);
@@ -1391,10 +1512,15 @@ static int mvneta_rx(struct mvneta_port *pp, int rx_todo,
 
 		rx_bytes = rx_desc->data_size -
 			(ETH_FCS_LEN + MVNETA_MH_SIZE);
+<<<<<<< HEAD
 		u64_stats_update_begin(&pp->rx_stats.syncp);
 		pp->rx_stats.packets++;
 		pp->rx_stats.bytes += rx_bytes;
 		u64_stats_update_end(&pp->rx_stats.syncp);
+=======
+		rcvd_pkts++;
+		rcvd_bytes += rx_bytes;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 		/* Linux processing */
 		skb_reserve(skb, MVNETA_MH_SIZE);
@@ -1415,6 +1541,18 @@ static int mvneta_rx(struct mvneta_port *pp, int rx_todo,
 		}
 	}
 
+<<<<<<< HEAD
+=======
+	if (rcvd_pkts) {
+		struct mvneta_pcpu_stats *stats = this_cpu_ptr(pp->stats);
+
+		u64_stats_update_begin(&stats->syncp);
+		stats->rx_packets += rcvd_pkts;
+		stats->rx_bytes   += rcvd_bytes;
+		u64_stats_update_end(&stats->syncp);
+	}
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	/* Update rxq management counters */
 	mvneta_rxq_desc_num_update(pp, rxq, rx_done, rx_filled);
 
@@ -1545,16 +1683,26 @@ static int mvneta_tx(struct sk_buff *skb, struct net_device *dev)
 
 out:
 	if (frags > 0) {
+<<<<<<< HEAD
 		u64_stats_update_begin(&pp->tx_stats.syncp);
 		pp->tx_stats.packets++;
 		pp->tx_stats.bytes += skb->len;
 		u64_stats_update_end(&pp->tx_stats.syncp);
 
+=======
+		struct mvneta_pcpu_stats *stats = this_cpu_ptr(pp->stats);
+
+		u64_stats_update_begin(&stats->syncp);
+		stats->tx_packets++;
+		stats->tx_bytes  += skb->len;
+		u64_stats_update_end(&stats->syncp);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	} else {
 		dev->stats.tx_dropped++;
 		dev_kfree_skb_any(skb);
 	}
 
+<<<<<<< HEAD
 	if (txq->count >= MVNETA_TXDONE_COAL_PKTS)
 		mvneta_txq_done(pp, txq);
 
@@ -1564,6 +1712,8 @@ out:
 	if (txq->count == frags && frags > 0)
 		mvneta_add_tx_done_timer(pp);
 
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	return NETDEV_TX_OK;
 }
 
@@ -1839,14 +1989,30 @@ static int mvneta_poll(struct napi_struct *napi, int budget)
 
 	/* Read cause register */
 	cause_rx_tx = mvreg_read(pp, MVNETA_INTR_NEW_CAUSE) &
+<<<<<<< HEAD
 		MVNETA_RX_INTR_MASK(rxq_number);
+=======
+		(MVNETA_RX_INTR_MASK(rxq_number) | MVNETA_TX_INTR_MASK(txq_number));
+
+	/* Release Tx descriptors */
+	if (cause_rx_tx & MVNETA_TX_INTR_MASK_ALL) {
+		int tx_todo = 0;
+
+		mvneta_tx_done_gbe(pp, (cause_rx_tx & MVNETA_TX_INTR_MASK_ALL), &tx_todo);
+		cause_rx_tx &= ~MVNETA_TX_INTR_MASK_ALL;
+	}
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	/* For the case where the last mvneta_poll did not process all
 	 * RX packets
 	 */
 	cause_rx_tx |= pp->cause_rx_tx;
 	if (rxq_number > 1) {
+<<<<<<< HEAD
 		while ((cause_rx_tx != 0) && (budget > 0)) {
+=======
+		while ((cause_rx_tx & MVNETA_RX_INTR_MASK_ALL) && (budget > 0)) {
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 			int count;
 			struct mvneta_rx_queue *rxq;
 			/* get rx queue number from cause_rx_tx */
@@ -1878,7 +2044,11 @@ static int mvneta_poll(struct napi_struct *napi, int budget)
 		napi_complete(napi);
 		local_irq_save(flags);
 		mvreg_write(pp, MVNETA_INTR_NEW_MASK,
+<<<<<<< HEAD
 			    MVNETA_RX_INTR_MASK(rxq_number));
+=======
+			    MVNETA_RX_INTR_MASK(rxq_number) | MVNETA_TX_INTR_MASK(txq_number));
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		local_irq_restore(flags);
 	}
 
@@ -1886,6 +2056,7 @@ static int mvneta_poll(struct napi_struct *napi, int budget)
 	return rx_done;
 }
 
+<<<<<<< HEAD
 /* tx done timer callback */
 static void mvneta_tx_done_timer_callback(unsigned long data)
 {
@@ -1906,6 +2077,8 @@ static void mvneta_tx_done_timer_callback(unsigned long data)
 		mvneta_add_tx_done_timer(pp);
 }
 
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 /* Handle rxq fill: allocates rxq skbs; called when initializing a port */
 static int mvneta_rxq_fill(struct mvneta_port *pp, struct mvneta_rx_queue *rxq,
 			   int num)
@@ -2155,7 +2328,11 @@ static void mvneta_start_dev(struct mvneta_port *pp)
 
 	/* Unmask interrupts */
 	mvreg_write(pp, MVNETA_INTR_NEW_MASK,
+<<<<<<< HEAD
 		    MVNETA_RX_INTR_MASK(rxq_number));
+=======
+		    MVNETA_RX_INTR_MASK(rxq_number) | MVNETA_TX_INTR_MASK(txq_number));
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	phy_start(pp->phy_dev);
 	netif_tx_start_all_queues(pp->dev);
@@ -2188,6 +2365,7 @@ static void mvneta_stop_dev(struct mvneta_port *pp)
 	mvneta_rx_reset(pp);
 }
 
+<<<<<<< HEAD
 /* tx timeout callback - display a message and stop/start the network device */
 static void mvneta_tx_timeout(struct net_device *dev)
 {
@@ -2198,6 +2376,8 @@ static void mvneta_tx_timeout(struct net_device *dev)
 	mvneta_start_dev(pp);
 }
 
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 /* Return positive if MTU is valid */
 static int mvneta_check_mtu_valid(struct net_device *dev, int mtu)
 {
@@ -2306,7 +2486,11 @@ static void mvneta_adjust_link(struct net_device *ndev)
 
 			if (phydev->speed == SPEED_1000)
 				val |= MVNETA_GMAC_CONFIG_GMII_SPEED;
+<<<<<<< HEAD
 			else
+=======
+			else if (phydev->speed == SPEED_100)
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 				val |= MVNETA_GMAC_CONFIG_MII_SPEED;
 
 			mvreg_write(pp, MVNETA_GMAC_AUTONEG_CONFIG, val);
@@ -2426,8 +2610,11 @@ static int mvneta_stop(struct net_device *dev)
 	free_irq(dev->irq, pp);
 	mvneta_cleanup_rxqs(pp);
 	mvneta_cleanup_txqs(pp);
+<<<<<<< HEAD
 	del_timer(&pp->tx_done_timer);
 	clear_bit(MVNETA_F_TX_DONE_TIMER_BIT, &pp->flags);
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	return 0;
 }
@@ -2548,7 +2735,10 @@ static const struct net_device_ops mvneta_netdev_ops = {
 	.ndo_set_rx_mode     = mvneta_set_rx_mode,
 	.ndo_set_mac_address = mvneta_set_mac_addr,
 	.ndo_change_mtu      = mvneta_change_mtu,
+<<<<<<< HEAD
 	.ndo_tx_timeout      = mvneta_tx_timeout,
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	.ndo_get_stats64     = mvneta_get_stats64,
 };
 
@@ -2729,10 +2919,13 @@ static int mvneta_probe(struct platform_device *pdev)
 
 	pp = netdev_priv(dev);
 
+<<<<<<< HEAD
 	pp->tx_done_timer.function = mvneta_tx_done_timer_callback;
 	init_timer(&pp->tx_done_timer);
 	clear_bit(MVNETA_F_TX_DONE_TIMER_BIT, &pp->flags);
 
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	pp->weight = MVNETA_RX_POLL_WEIGHT;
 	pp->phy_node = phy_node;
 	pp->phy_interface = phy_mode;
@@ -2751,7 +2944,16 @@ static int mvneta_probe(struct platform_device *pdev)
 
 	clk_prepare_enable(pp->clk);
 
+<<<<<<< HEAD
 	pp->tx_done_timer.data = (unsigned long)dev;
+=======
+	/* Alloc per-cpu stats */
+	pp->stats = alloc_percpu(struct mvneta_pcpu_stats);
+	if (!pp->stats) {
+		err = -ENOMEM;
+		goto err_clk;
+	}
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	pp->tx_ring_size = MVNETA_MAX_TXD;
 	pp->rx_ring_size = MVNETA_MAX_RXD;
@@ -2762,7 +2964,11 @@ static int mvneta_probe(struct platform_device *pdev)
 	err = mvneta_init(pp, phy_addr);
 	if (err < 0) {
 		dev_err(&pdev->dev, "can't init eth hal\n");
+<<<<<<< HEAD
 		goto err_clk;
+=======
+		goto err_free_stats;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	}
 	mvneta_port_power_up(pp, phy_mode);
 
@@ -2791,6 +2997,11 @@ static int mvneta_probe(struct platform_device *pdev)
 
 err_deinit:
 	mvneta_deinit(pp);
+<<<<<<< HEAD
+=======
+err_free_stats:
+	free_percpu(pp->stats);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 err_clk:
 	clk_disable_unprepare(pp->clk);
 err_unmap:
@@ -2811,6 +3022,10 @@ static int mvneta_remove(struct platform_device *pdev)
 	unregister_netdev(dev);
 	mvneta_deinit(pp);
 	clk_disable_unprepare(pp->clk);
+<<<<<<< HEAD
+=======
+	free_percpu(pp->stats);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	iounmap(pp->base);
 	irq_dispose_mapping(dev->irq);
 	free_netdev(dev);

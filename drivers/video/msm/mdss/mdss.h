@@ -246,6 +246,7 @@ int mdss_iommu_ctrl(int enable);
 int mdss_bus_scale_set_quota(int client, u64 ab_quota, u64 ib_quota);
 void mdss_enable_irq_wake(bool enable);
 
+<<<<<<< HEAD
 #if defined (CONFIG_FB_MSM_MDSS_DSI_DBG)
 int mdss_mdp_debug_bus(void);
 void xlog(const char *name, u32 data0, u32 data1, u32 data2, u32 data3, u32 data4, u32 data5);
@@ -261,6 +262,8 @@ void xlog_fence(char *name, char *data0_name, u32 data0,
 void xlog_fence_dump(void);
 #endif
 
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 static inline struct ion_client *mdss_get_ionclient(void)
 {
 	if (!mdss_res)

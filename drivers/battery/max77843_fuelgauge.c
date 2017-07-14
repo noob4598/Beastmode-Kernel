@@ -16,9 +16,12 @@
 #include <linux/mfd/max77843-private.h>
 #include <linux/of_gpio.h>
 #include <linux/debugfs.h>
+<<<<<<< HEAD
 #ifdef CONFIG_STATE_HELPER
 #include <linux/state_helper.h>
 #endif
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 #include <linux/seq_file.h>
 #include <linux/battery/fuelgauge/max77843_fuelgauge.h>
 
@@ -1542,9 +1545,12 @@ static int max77843_fg_get_property(struct power_supply *psy,
 
 			/* get only integer part */
 			val->intval /= 10;
+<<<<<<< HEAD
 #ifdef CONFIG_STATE_HELPER
 		batt_level_notify(val->intval);
 #endif
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 			/* check whether doing the wake_unlock */
 			if ((val->intval > fuelgauge->pdata->fuel_alert_soc) &&

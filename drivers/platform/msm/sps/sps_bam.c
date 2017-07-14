@@ -715,6 +715,10 @@ int sps_bam_pipe_connect(struct sps_pipe *bam_pipe,
 	void *desc_buf = NULL;
 	u32 pipe_index;
 	int result;
+<<<<<<< HEAD
+=======
+	unsigned long flags;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	/* Clear the client pipe state and hw init struct */
 	pipe_clear(bam_pipe);
@@ -908,8 +912,15 @@ int sps_bam_pipe_connect(struct sps_pipe *bam_pipe,
 
 	/* Indicate initialization is complete */
 	dev->pipes[pipe_index] = bam_pipe;
+<<<<<<< HEAD
 	dev->pipe_active_mask |= 1UL << pipe_index;
 	list_add_tail(&bam_pipe->list, &dev->pipes_q);
+=======
+	spin_lock_irqsave(&dev->isr_lock, flags);
+	dev->pipe_active_mask |= 1UL << pipe_index;
+	list_add_tail(&bam_pipe->list, &dev->pipes_q);
+	spin_unlock_irqrestore(&dev->isr_lock, flags);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	bam_pipe->state |= BAM_STATE_INIT;
 	result = 0;
@@ -938,6 +949,10 @@ int sps_bam_pipe_disconnect(struct sps_bam *dev, u32 pipe_index)
 {
 	struct sps_pipe *pipe;
 	int result;
+<<<<<<< HEAD
+=======
+	unsigned long flags;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	if (pipe_index >= dev->props.num_pipes) {
 		SPS_ERR("sps:Invalid BAM %pa pipe: %d\n", BAM_ID(dev),
@@ -949,8 +964,15 @@ int sps_bam_pipe_disconnect(struct sps_bam *dev, u32 pipe_index)
 	pipe = dev->pipes[pipe_index];
 	if (BAM_PIPE_IS_ASSIGNED(pipe)) {
 		if ((dev->pipe_active_mask & (1UL << pipe_index))) {
+<<<<<<< HEAD
 			list_del(&pipe->list);
 			dev->pipe_active_mask &= ~(1UL << pipe_index);
+=======
+			spin_lock_irqsave(&dev->isr_lock, flags);
+			list_del(&pipe->list);
+			dev->pipe_active_mask &= ~(1UL << pipe_index);
+			spin_unlock_irqrestore(&dev->isr_lock, flags);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		}
 		dev->pipe_remote_mask &= ~(1UL << pipe_index);
 		if (pipe->connect.options & SPS_O_NO_DISABLE)
@@ -2018,6 +2040,10 @@ int sps_bam_get_free_count(struct sps_bam *dev, u32 pipe_index,
 int sps_bam_set_satellite(struct sps_bam *dev, u32 pipe_index)
 {
 	struct sps_pipe *pipe = dev->pipes[pipe_index];
+<<<<<<< HEAD
+=======
+	unsigned long flags;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	/*
 	 * Switch to satellite control is only supported on processor
@@ -2059,8 +2085,15 @@ int sps_bam_set_satellite(struct sps_bam *dev, u32 pipe_index)
 	}
 
 	/* Indicate satellite control */
+<<<<<<< HEAD
 	list_del(&pipe->list);
 	dev->pipe_active_mask &= ~(1UL << pipe_index);
+=======
+	spin_lock_irqsave(&dev->isr_lock, flags);
+	list_del(&pipe->list);
+	dev->pipe_active_mask &= ~(1UL << pipe_index);
+	spin_unlock_irqrestore(&dev->isr_lock, flags);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	dev->pipe_remote_mask |= pipe->pipe_index_mask;
 	pipe->state |= BAM_STATE_REMOTE;
 

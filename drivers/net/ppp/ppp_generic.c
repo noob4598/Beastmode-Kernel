@@ -601,7 +601,11 @@ static long ppp_ioctl(struct file *file, unsigned int cmd, unsigned long arg)
 			if (file == ppp->owner)
 				ppp_shutdown_interface(ppp);
 		}
+<<<<<<< HEAD
 		if (atomic_long_read(&file->f_count) <= 2) {
+=======
+		if (atomic_long_read(&file->f_count) < 2) {
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 			ppp_release(NULL, file);
 			err = 0;
 		} else
@@ -716,10 +720,15 @@ static long ppp_ioctl(struct file *file, unsigned int cmd, unsigned long arg)
 			val &= 0xffff;
 		}
 		vj = slhc_init(val2+1, val+1);
+<<<<<<< HEAD
 		if (!vj) {
 			netdev_err(ppp->dev,
 				   "PPP: no memory (VJ compressor)\n");
 			err = -ENOMEM;
+=======
+		if (IS_ERR(vj)) {
+			err = PTR_ERR(vj);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 			break;
 		}
 		ppp_lock(ppp);
@@ -2222,7 +2231,11 @@ int ppp_register_net_channel(struct net *net, struct ppp_channel *chan)
 
 	pch->ppp = NULL;
 	pch->chan = chan;
+<<<<<<< HEAD
 	pch->chan_net = net;
+=======
+	pch->chan_net = get_net(net);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	chan->ppp = pch;
 	init_ppp_file(&pch->file, CHANNEL);
 	pch->file.hdrlen = chan->hdrlen;
@@ -2925,6 +2938,12 @@ ppp_disconnect_channel(struct channel *pch)
  */
 static void ppp_destroy_channel(struct channel *pch)
 {
+<<<<<<< HEAD
+=======
+	put_net(pch->chan_net);
+	pch->chan_net = NULL;
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	atomic_dec(&channel_count);
 
 	if (!pch->file.dead) {

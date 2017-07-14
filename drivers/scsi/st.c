@@ -484,7 +484,11 @@ static int st_scsi_execute(struct st_request *SRpnt, const unsigned char *cmd,
 	if (!req)
 		return DRIVER_ERROR << 24;
 
+<<<<<<< HEAD
 	req->cmd_type = REQ_TYPE_BLOCK_PC;
+=======
+	blk_rq_set_block_pc(req);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	req->cmd_flags |= REQ_QUIET;
 
 	mdata->null_mapped = 1;
@@ -1262,9 +1266,15 @@ static int st_open(struct inode *inode, struct file *filp)
 	spin_lock(&st_use_lock);
 	STp->in_use = 0;
 	spin_unlock(&st_use_lock);
+<<<<<<< HEAD
 	scsi_tape_put(STp);
 	if (resumed)
 		scsi_autopm_put_device(STp->device);
+=======
+	if (resumed)
+		scsi_autopm_put_device(STp->device);
+	scsi_tape_put(STp);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	return retval;
 
 }

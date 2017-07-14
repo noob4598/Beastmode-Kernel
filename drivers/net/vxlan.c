@@ -1093,7 +1093,11 @@ static netdev_tx_t vxlan_xmit_one(struct sk_buff *skb, struct net_device *dev,
 	iph->daddr	= dst;
 	iph->saddr	= fl4.saddr;
 	iph->ttl	= ttl ? : ip4_dst_hoplimit(&rt->dst);
+<<<<<<< HEAD
 	__ip_select_ident(iph, &rt->dst, (skb_shinfo(skb)->gso_segs ?: 1) - 1);
+=======
+	__ip_select_ident(iph, skb_shinfo(skb)->gso_segs ?: 1);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	nf_reset(skb);
 
@@ -1314,7 +1318,11 @@ static void vxlan_setup(struct net_device *dev)
 
 	eth_hw_addr_random(dev);
 	ether_setup(dev);
+<<<<<<< HEAD
 	dev->hard_header_len = ETH_HLEN + VXLAN_HEADROOM;
+=======
+	dev->needed_headroom = ETH_HLEN + VXLAN_HEADROOM;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	dev->netdev_ops = &vxlan_netdev_ops;
 	dev->destructor = vxlan_free;
@@ -1386,7 +1394,11 @@ static int vxlan_validate(struct nlattr *tb[], struct nlattr *data[])
 
 	if (data[IFLA_VXLAN_ID]) {
 		__u32 id = nla_get_u32(data[IFLA_VXLAN_ID]);
+<<<<<<< HEAD
 		if (id >= VXLAN_VID_MASK)
+=======
+		if (id >= VXLAN_N_VID)
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 			return -ERANGE;
 	}
 
@@ -1454,7 +1466,11 @@ static int vxlan_newlink(struct net *net, struct net_device *dev,
 			dev->mtu = lowerdev->mtu - VXLAN_HEADROOM;
 
 		/* update header length based on lower device */
+<<<<<<< HEAD
 		dev->hard_header_len = lowerdev->hard_header_len +
+=======
+		dev->needed_headroom = lowerdev->hard_header_len +
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 				       VXLAN_HEADROOM;
 	}
 

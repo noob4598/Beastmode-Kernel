@@ -686,7 +686,11 @@ int mdss_mdp_overlay_pipe_setup(struct msm_fb_data_type *mfd,
 		}
 
 		if (pipe == NULL) {
+<<<<<<< HEAD
 			pr_err("error allocating pipe. flags=0x%x\n",
+=======
+			pr_err_ratelimited("error allocating pipe. flags=0x%x\n",
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 				req->flags);
 			return -ENODEV;
 		}
@@ -1303,9 +1307,12 @@ static int __overlay_queue_pipes(struct msm_fb_data_type *mfd)
 		/* ensure pipes are always reconfigured after power off/on */
 		if (ctl->play_cnt == 0||ctl->roi_changed) {
 			pipe->params_changed++;
+<<<<<<< HEAD
 #if defined (CONFIG_FB_MSM_MDSS_DSI_DBG)
 			MDSS_XLOG(__func__,pipe->num, pipe->type, pipe->flags, 0, 0, 0);
 #endif
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		}
 
 		if (pipe->back_buf.num_planes) {
@@ -2904,16 +2911,30 @@ static int __mdss_overlay_src_split_sort(struct msm_fb_data_type *mfd,
 		__overlay_swap_func);
 
 	for (i = 0; i < num_ovs; i++) {
+<<<<<<< HEAD
 		if (ovs[i].dst_rect.x < left_lm_w) {
 			if (left_lm_zo_cnt[ovs[i].z_order] == 2) {
 				pr_err("more than 2 ov @ stage%d on left lm\n",
+=======
+		if (ovs[i].z_order >= MDSS_MDP_MAX_STAGE) {
+			pr_err("invalid stage:%u\n", ovs[i].z_order);
+			return -EINVAL;
+		}
+		if (ovs[i].dst_rect.x < left_lm_w) {
+			if (left_lm_zo_cnt[ovs[i].z_order] == 2) {
+				pr_err("more than 2 ov @ stage%u on left lm\n",
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 					ovs[i].z_order);
 				return -EINVAL;
 			}
 			left_lm_zo_cnt[ovs[i].z_order]++;
 		} else {
 			if (right_lm_zo_cnt[ovs[i].z_order] == 2) {
+<<<<<<< HEAD
 				pr_err("more than 2 ov @ stage%d on right lm\n",
+=======
+				pr_err("more than 2 ov @ stage%u on right lm\n",
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 					ovs[i].z_order);
 				return -EINVAL;
 			}

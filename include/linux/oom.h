@@ -53,6 +53,12 @@ static inline bool oom_task_origin(const struct task_struct *p)
 extern unsigned long oom_badness(struct task_struct *p,
 		struct mem_cgroup *memcg, const nodemask_t *nodemask,
 		unsigned long totalpages);
+<<<<<<< HEAD
+=======
+
+extern int oom_kills_count(void);
+extern void note_oom_kill(void);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 extern void oom_kill_process(struct task_struct *p, gfp_t gfp_mask, int order,
 			     unsigned int points, unsigned long totalpages,
 			     struct mem_cgroup *memcg, nodemask_t *nodemask,

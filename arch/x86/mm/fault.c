@@ -812,11 +812,16 @@ do_sigbus(struct pt_regs *regs, unsigned long error_code, unsigned long address,
 	  unsigned int fault)
 {
 	struct task_struct *tsk = current;
+<<<<<<< HEAD
 	struct mm_struct *mm = tsk->mm;
 	int code = BUS_ADRERR;
 
 	up_read(&mm->mmap_sem);
 
+=======
+	int code = BUS_ADRERR;
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	/* Kernel mode? Handle exceptions or die: */
 	if (!(error_code & PF_USER)) {
 		no_context(regs, error_code, address, SIGBUS, BUS_ADRERR);
@@ -842,6 +847,7 @@ do_sigbus(struct pt_regs *regs, unsigned long error_code, unsigned long address,
 	force_sig_info_fault(SIGBUS, code, address, tsk, fault);
 }
 
+<<<<<<< HEAD
 static noinline int
 mm_fault_error(struct pt_regs *regs, unsigned long error_code,
 	       unsigned long address, unsigned int fault)
@@ -859,10 +865,21 @@ mm_fault_error(struct pt_regs *regs, unsigned long error_code,
 	}
 	if (!(fault & VM_FAULT_ERROR))
 		return 0;
+=======
+static noinline void
+mm_fault_error(struct pt_regs *regs, unsigned long error_code,
+	       unsigned long address, unsigned int fault)
+{
+	if (fatal_signal_pending(current) && !(error_code & PF_USER)) {
+		no_context(regs, error_code, address, 0, 0);
+		return;
+	}
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	if (fault & VM_FAULT_OOM) {
 		/* Kernel mode? Handle exceptions or die: */
 		if (!(error_code & PF_USER)) {
+<<<<<<< HEAD
 			up_read(&current->mm->mmap_sem);
 			no_context(regs, error_code, address,
 				   SIGSEGV, SEGV_MAPERR);
@@ -871,6 +888,13 @@ mm_fault_error(struct pt_regs *regs, unsigned long error_code,
 
 		up_read(&current->mm->mmap_sem);
 
+=======
+			no_context(regs, error_code, address,
+				   SIGSEGV, SEGV_MAPERR);
+			return;
+		}
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		/*
 		 * We ran out of memory, call the OOM killer, and return the
 		 * userspace (which will retry the fault, or kill us if we got
@@ -881,10 +905,18 @@ mm_fault_error(struct pt_regs *regs, unsigned long error_code,
 		if (fault & (VM_FAULT_SIGBUS|VM_FAULT_HWPOISON|
 			     VM_FAULT_HWPOISON_LARGE))
 			do_sigbus(regs, error_code, address, fault);
+<<<<<<< HEAD
 		else
 			BUG();
 	}
 	return 1;
+=======
+		else if (fault & VM_FAULT_SIGSEGV)
+			bad_area_nosemaphore(regs, error_code, address);
+		else
+			BUG();
+	}
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 }
 
 static int spurious_fault_check(unsigned long error_code, pte_t *pte)
@@ -1017,9 +1049,13 @@ __do_page_fault(struct pt_regs *regs, unsigned long error_code)
 	unsigned long address;
 	struct mm_struct *mm;
 	int fault;
+<<<<<<< HEAD
 	int write = error_code & PF_WRITE;
 	unsigned int flags = FAULT_FLAG_ALLOW_RETRY | FAULT_FLAG_KILLABLE |
 					(write ? FAULT_FLAG_WRITE : 0);
+=======
+	unsigned int flags = FAULT_FLAG_ALLOW_RETRY | FAULT_FLAG_KILLABLE;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	tsk = current;
 	mm = tsk->mm;
@@ -1089,6 +1125,10 @@ __do_page_fault(struct pt_regs *regs, unsigned long error_code)
 	if (user_mode_vm(regs)) {
 		local_irq_enable();
 		error_code |= PF_USER;
+<<<<<<< HEAD
+=======
+		flags |= FAULT_FLAG_USER;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	} else {
 		if (regs->flags & X86_EFLAGS_IF)
 			local_irq_enable();
@@ -1113,6 +1153,12 @@ __do_page_fault(struct pt_regs *regs, unsigned long error_code)
 		return;
 	}
 
+<<<<<<< HEAD
+=======
+	if (error_code & PF_WRITE)
+		flags |= FAULT_FLAG_WRITE;
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	/*
 	 * When running in the kernel we expect faults to occur only to
 	 * addresses in user space.  All other faults represent errors in
@@ -1191,9 +1237,24 @@ good_area:
 	 */
 	fault = handle_mm_fault(mm, vma, address, flags);
 
+<<<<<<< HEAD
 	if (unlikely(fault & (VM_FAULT_RETRY|VM_FAULT_ERROR))) {
 		if (mm_fault_error(regs, error_code, address, fault))
 			return;
+=======
+	/*
+	 * If we need to retry but a fatal signal is pending, handle the
+	 * signal first. We do not need to release the mmap_sem because it
+	 * would already be released in __lock_page_or_retry in mm/filemap.c.
+	 */
+	if (unlikely((fault & VM_FAULT_RETRY) && fatal_signal_pending(current)))
+		return;
+
+	if (unlikely(fault & VM_FAULT_ERROR)) {
+		up_read(&mm->mmap_sem);
+		mm_fault_error(regs, error_code, address, fault);
+		return;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	}
 
 	/*

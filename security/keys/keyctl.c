@@ -86,6 +86,13 @@ SYSCALL_DEFINE5(add_key, const char __user *, _type,
 		if (!*description) {
 			kfree(description);
 			description = NULL;
+<<<<<<< HEAD
+=======
+		} else if ((description[0] == '.') &&
+			   (strncmp(type, "keyring", 7) == 0)) {
+			ret = -EPERM;
+			goto error2;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		}
 	}
 
@@ -271,7 +278,12 @@ error:
  * Create and join an anonymous session keyring or join a named session
  * keyring, creating it if necessary.  A named session keyring must have Search
  * permission for it to be joined.  Session keyrings without this permit will
+<<<<<<< HEAD
  * be skipped over.
+=======
+ * be skipped over.  It is not permitted for userspace to create or join
+ * keyrings whose name begin with a dot.
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
  *
  * If successful, the ID of the joined session keyring will be returned.
  */
@@ -288,12 +300,24 @@ long keyctl_join_session_keyring(const char __user *_name)
 			ret = PTR_ERR(name);
 			goto error;
 		}
+<<<<<<< HEAD
+=======
+
+		ret = -EPERM;
+		if (name[0] == '.')
+			goto error_name;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	}
 
 	/* join the session */
 	ret = join_session_keyring(name);
+<<<<<<< HEAD
 	kfree(name);
 
+=======
+error_name:
+	kfree(name);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 error:
 	return ret;
 }
@@ -744,6 +768,7 @@ long keyctl_read_key(key_serial_t keyid, char __user *buffer, size_t buflen)
 
 	/* the key is probably readable - now try to read it */
 can_read_key:
+<<<<<<< HEAD
 	ret = key_validate(key);
 	if (ret == 0) {
 		ret = -EOPNOTSUPP;
@@ -754,6 +779,18 @@ can_read_key:
 			ret = key->type->read(key, buffer, buflen);
 			up_read(&key->sem);
 		}
+=======
+	ret = -EOPNOTSUPP;
+	if (key->type->read) {
+		/* Read the data with the semaphore held (since we might sleep)
+		 * to protect against the key being updated or revoked.
+		 */
+		down_read(&key->sem);
+		ret = key_validate(key);
+		if (ret == 0)
+			ret = key->type->read(key, buffer, buflen);
+		up_read(&key->sem);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	}
 
 error2:
@@ -1240,8 +1277,13 @@ error:
  * Read or set the default keyring in which request_key() will cache keys and
  * return the old setting.
  *
+<<<<<<< HEAD
  * If a process keyring is specified then this will be created if it doesn't
  * yet exist.  The old setting will be returned if successful.
+=======
+ * If a thread or process keyring is specified then it will be created if it
+ * doesn't yet exist.  The old setting will be returned if successful.
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
  */
 long keyctl_set_reqkey_keyring(int reqkey_defl)
 {
@@ -1266,11 +1308,16 @@ long keyctl_set_reqkey_keyring(int reqkey_defl)
 
 	case KEY_REQKEY_DEFL_PROCESS_KEYRING:
 		ret = install_process_keyring_to_cred(new);
+<<<<<<< HEAD
 		if (ret < 0) {
 			if (ret != -EEXIST)
 				goto error;
 			ret = 0;
 		}
+=======
+		if (ret < 0)
+			goto error;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		goto set;
 
 	case KEY_REQKEY_DEFL_DEFAULT:

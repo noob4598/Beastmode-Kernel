@@ -160,6 +160,7 @@ void rt2x00queue_align_frame(struct sk_buff *skb)
 	skb_trim(skb, frame_length);
 }
 
+<<<<<<< HEAD
 void rt2x00queue_insert_l2pad(struct sk_buff *skb, unsigned int header_length)
 {
 	unsigned int payload_length = skb->len - header_length;
@@ -204,11 +205,35 @@ void rt2x00queue_remove_l2pad(struct sk_buff *skb, unsigned int header_length)
 	 */
 	unsigned int l2pad = (skb->len > header_length) ?
 				L2PAD_SIZE(header_length) : 0;
+=======
+/*
+ * H/W needs L2 padding between the header and the paylod if header size
+ * is not 4 bytes aligned.
+ */
+void rt2x00queue_insert_l2pad(struct sk_buff *skb, unsigned int hdr_len)
+{
+	unsigned int l2pad = (skb->len > hdr_len) ? L2PAD_SIZE(hdr_len) : 0;
 
 	if (!l2pad)
 		return;
 
+	skb_push(skb, l2pad);
+	memmove(skb->data, skb->data + l2pad, hdr_len);
+}
+
+void rt2x00queue_remove_l2pad(struct sk_buff *skb, unsigned int hdr_len)
+{
+	unsigned int l2pad = (skb->len > hdr_len) ? L2PAD_SIZE(hdr_len) : 0;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
+
+	if (!l2pad)
+		return;
+
+<<<<<<< HEAD
 	memmove(skb->data + l2pad, skb->data, header_length);
+=======
+	memmove(skb->data + l2pad, skb->data, hdr_len);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	skb_pull(skb, l2pad);
 }
 

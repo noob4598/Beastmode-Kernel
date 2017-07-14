@@ -204,6 +204,12 @@ int parse_dek_packet(char *data,
 	char temp_comm[PKG_NAME_SIZE]; //test
 	int temp_euid;
 
+<<<<<<< HEAD
+=======
+	if (crypt_stat->file_version == 0)
+		return -EPERM;
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	(*packet_size) = 0;
 
 	if (data[(*packet_size)++] != ECRYPTFS_DEK_PACKET_TYPE) {
@@ -233,8 +239,17 @@ int parse_dek_packet(char *data,
 
 		crypt_stat->sdp_dek.type = get_unaligned_be32(data + *packet_size);
 		(*packet_size) += 4;
+<<<<<<< HEAD
 		crypt_stat->sdp_dek.len = get_unaligned_be32(data + *packet_size);
 		(*packet_size) += 4;
+=======
+		if(crypt_stat->sdp_dek.type < 0 || crypt_stat->sdp_dek.type > 6)
+			return -EINVAL;
+		crypt_stat->sdp_dek.len = get_unaligned_be32(data + *packet_size);
+		(*packet_size) += 4;
+		if(crypt_stat->sdp_dek.len <= 0 || crypt_stat->sdp_dek.len > DEK_MAXLEN)
+			return -EFAULT;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		memcpy(crypt_stat->sdp_dek.buf, &data[*packet_size], crypt_stat->sdp_dek.len);
 		(*packet_size) += crypt_stat->sdp_dek.len;
 	}

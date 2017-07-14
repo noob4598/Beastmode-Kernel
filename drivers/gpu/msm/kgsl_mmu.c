@@ -693,6 +693,13 @@ kgsl_mmu_get_gpuaddr(struct kgsl_pagetable *pagetable,
 	if (kgsl_memdesc_has_guard_page(memdesc))
 		size += PAGE_SIZE;
 
+<<<<<<< HEAD
+=======
+	if (size < memdesc->size) {
+		memdesc->size = 0;
+		return -EINVAL;
+	}
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	/*
 	 * Allocate aligned virtual addresses for iommu. This allows
 	 * more efficient pagetable entries if the physical memory
@@ -700,8 +707,24 @@ kgsl_mmu_get_gpuaddr(struct kgsl_pagetable *pagetable,
 	 */
 
 	if (kgsl_memdesc_use_cpu_map(memdesc)) {
+<<<<<<< HEAD
 		if (memdesc->gpuaddr == 0)
 			return -EINVAL;
+=======
+		uint64_t end = memdesc->gpuaddr + size;
+		if (memdesc->gpuaddr == 0)
+			return -EINVAL;
+
+		/*
+		 * Validate the GPU address range for memory mapping request
+		 * for user allocated buffers before setting the bitmap.
+		 */
+		if ((end >= (KGSL_MMU_GLOBAL_MEM_BASE - SZ_1M)) ||
+				(end <  memdesc->gpuaddr)) {
+			memdesc->gpuaddr = 0;
+			return -EINVAL;
+		}
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		bitmap_set(pagetable->mem_bitmap,
 			(int) (memdesc->gpuaddr >> PAGE_SHIFT),
 			(int) (size >> PAGE_SHIFT));

@@ -172,4 +172,9 @@ module_exit(ghash_mod_exit);
 
 MODULE_LICENSE("GPL");
 MODULE_DESCRIPTION("GHASH Message Digest Algorithm");
+<<<<<<< HEAD
 MODULE_ALIAS("ghash");
+=======
+MODULE_ALIAS_CRYPTO("ghash");
+MODULE_ALIAS_CRYPTO("ghash-generic");
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03

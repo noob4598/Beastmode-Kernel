@@ -55,6 +55,12 @@ static __u32 vmbus_get_next_version(__u32 current_version)
 	case (VERSION_WIN8):
 		return VERSION_WIN7;
 
+<<<<<<< HEAD
+=======
+	case (VERSION_WIN8_1):
+		return VERSION_WIN8;
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	case (VERSION_WS2008):
 	default:
 		return VERSION_INVAL;
@@ -80,6 +86,12 @@ static int vmbus_negotiate_version(struct vmbus_channel_msginfo *msginfo,
 			(void *)((unsigned long)vmbus_connection.monitor_pages +
 				 PAGE_SIZE));
 
+<<<<<<< HEAD
+=======
+	if (version == VERSION_WIN8_1)
+		msg->target_vcpu = hv_context.vp_index[smp_processor_id()];
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	/*
 	 * Add to list before we send the request since we may
 	 * receive the response before returning from this routine
@@ -298,9 +310,19 @@ static void process_chn_event(u32 relid)
 		 */
 
 		do {
+<<<<<<< HEAD
 			hv_begin_read(&channel->inbound);
 			channel->onchannel_callback(arg);
 			bytes_to_read = hv_end_read(&channel->inbound);
+=======
+			if (read_state)
+				hv_begin_read(&channel->inbound);
+			channel->onchannel_callback(arg);
+			if (read_state)
+				bytes_to_read = hv_end_read(&channel->inbound);
+			else
+				bytes_to_read = 0;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		} while (read_state && (bytes_to_read != 0));
 	} else {
 		pr_err("no channel callback for relid - %u\n", relid);
@@ -383,10 +405,28 @@ int vmbus_post_msg(void *buffer, size_t buflen)
 	 * insufficient resources. Retry the operation a couple of
 	 * times before giving up.
 	 */
+<<<<<<< HEAD
 	while (retries < 3) {
 		ret =  hv_post_message(conn_id, 1, buffer, buflen);
 		if (ret != HV_STATUS_INSUFFICIENT_BUFFERS)
 			return ret;
+=======
+	while (retries < 10) {
+		ret = hv_post_message(conn_id, 1, buffer, buflen);
+
+		switch (ret) {
+		case HV_STATUS_INSUFFICIENT_BUFFERS:
+			ret = -ENOMEM;
+		case -ENOMEM:
+			break;
+		case HV_STATUS_SUCCESS:
+			return ret;
+		default:
+			pr_err("hv_post_msg() failed; error code:%d\n", ret);
+			return -EINVAL;
+		}
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		retries++;
 		msleep(100);
 	}

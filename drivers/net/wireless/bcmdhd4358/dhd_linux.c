@@ -161,10 +161,13 @@ extern void dhd_dump_eapol_4way_message(char *dump_data, bool direction);
 #endif
 
 #include <wl_android.h>
+<<<<<<< HEAD
 #include <linux/moduleparam.h>
 
 static int wl_divide = 1;
 module_param(wl_divide, int, 0644);
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 /* Maximum STA per radio */
 #define DHD_MAX_STA     32
@@ -9266,7 +9269,11 @@ int dhd_os_wake_lock_timeout(dhd_pub_t *pub)
 #ifdef CONFIG_HAS_WAKELOCK
 		if (dhd->wakelock_rx_timeout_enable)
 			wake_lock_timeout(&dhd->wl_rxwake,
+<<<<<<< HEAD
 				msecs_to_jiffies(dhd->wakelock_rx_timeout_enable)/wl_divide);
+=======
+				msecs_to_jiffies(dhd->wakelock_rx_timeout_enable));
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		if (dhd->wakelock_ctrl_timeout_enable)
 			wake_lock_timeout(&dhd->wl_ctrlwake,
 				msecs_to_jiffies(dhd->wakelock_ctrl_timeout_enable));

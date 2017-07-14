@@ -34,6 +34,10 @@
 #include <linux/dmi.h>
 #include <linux/slab.h>
 #include <linux/suspend.h>
+<<<<<<< HEAD
+=======
+#include <linux/delay.h>
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 #include <asm/unaligned.h>
 
 #ifdef CONFIG_ACPI_PROCFS_POWER
@@ -1081,6 +1085,31 @@ static struct dmi_system_id bat_dmi_table[] = {
 	{},
 };
 
+<<<<<<< HEAD
+=======
+/*
+ * Some machines'(E,G Lenovo Z480) ECs are not stable
+ * during boot up and this causes battery driver fails to be
+ * probed due to failure of getting battery information
+ * from EC sometimes. After several retries, the operation
+ * may work. So add retry code here and 20ms sleep between
+ * every retries.
+ */
+static int acpi_battery_update_retry(struct acpi_battery *battery)
+{
+	int retry, ret;
+
+	for (retry = 5; retry; retry--) {
+		ret = acpi_battery_update(battery);
+		if (!ret)
+			break;
+
+		msleep(20);
+	}
+	return ret;
+}
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 static int acpi_battery_add(struct acpi_device *device)
 {
 	int result = 0;
@@ -1100,9 +1129,17 @@ static int acpi_battery_add(struct acpi_device *device)
 	if (ACPI_SUCCESS(acpi_get_handle(battery->device->handle,
 			"_BIX", &handle)))
 		set_bit(ACPI_BATTERY_XINFO_PRESENT, &battery->flags);
+<<<<<<< HEAD
 	result = acpi_battery_update(battery);
 	if (result)
 		goto fail;
+=======
+
+	result = acpi_battery_update_retry(battery);
+	if (result)
+		goto fail;
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 #ifdef CONFIG_ACPI_PROCFS_POWER
 	result = acpi_battery_add_fs(device);
 #endif

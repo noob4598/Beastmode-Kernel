@@ -246,6 +246,13 @@ static const struct input_device_id adreno_input_ids[] = {
 	{
 		.flags = INPUT_DEVICE_ID_MATCH_EVBIT,
 		.evbit = { BIT_MASK(EV_ABS) },
+<<<<<<< HEAD
+=======
+		/* assumption: MT_.._X & MT_.._Y are in the same long */
+		.absbit = { [BIT_WORD(ABS_MT_POSITION_X)] =
+				BIT_MASK(ABS_MT_POSITION_X) |
+				BIT_MASK(ABS_MT_POSITION_Y) },
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	},
 	{ },
 };
@@ -538,7 +545,11 @@ int adreno_perfcounter_query_group(struct adreno_device *adreno_dev,
 		return 0;
 	}
 
+<<<<<<< HEAD
 	t = min_t(int, group->reg_count, count);
+=======
+	t = min_t(unsigned int, group->reg_count, count);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	buf = kmalloc(t * sizeof(unsigned int), GFP_KERNEL);
 	if (buf == NULL) {
@@ -1560,7 +1571,11 @@ static int adreno_of_get_pdata(struct platform_device *pdev)
 
 	if (of_property_read_u32(pdev->dev.of_node, "qcom,idle-timeout",
 		&pdata->idle_timeout))
+<<<<<<< HEAD
 		pdata->idle_timeout = HZ/12;
+=======
+		pdata->idle_timeout = 80;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	pdata->strtstp_sleepwake = of_property_read_bool(pdev->dev.of_node,
 						"qcom,strtstp-sleepwake");

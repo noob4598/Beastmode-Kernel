@@ -108,7 +108,11 @@ int kvm_cpu_get_interrupt(struct kvm_vcpu *v)
 
 	vector = kvm_cpu_get_extint(v);
 
+<<<<<<< HEAD
 	if (kvm_apic_vid_enabled(v->kvm) || vector != -1)
+=======
+	if (vector != -1)
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		return vector;			/* PIC */
 
 	return kvm_get_apic_interrupt(v);	/* APIC */

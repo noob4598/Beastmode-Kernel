@@ -1605,6 +1605,10 @@ static int unlink1(struct usb_hcd *hcd, struct urb *urb, int status)
 int usb_hcd_unlink_urb (struct urb *urb, int status)
 {
 	struct usb_hcd		*hcd;
+<<<<<<< HEAD
+=======
+	struct usb_device	*udev = urb->dev;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	int			retval = -EIDRM;
 	unsigned long		flags;
 
@@ -1616,12 +1620,17 @@ int usb_hcd_unlink_urb (struct urb *urb, int status)
 	spin_lock_irqsave(&hcd_urb_unlink_lock, flags);
 	if (atomic_read(&urb->use_count) > 0) {
 		retval = 0;
+<<<<<<< HEAD
 		usb_get_dev(urb->dev);
+=======
+		usb_get_dev(udev);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	}
 	spin_unlock_irqrestore(&hcd_urb_unlink_lock, flags);
 	if (retval == 0) {
 		hcd = bus_to_hcd(urb->dev->bus);
 		retval = unlink1(hcd, urb, status);
+<<<<<<< HEAD
 		usb_put_dev(urb->dev);
 	}
 
@@ -1630,6 +1639,15 @@ int usb_hcd_unlink_urb (struct urb *urb, int status)
 	else if (retval != -EIDRM && retval != -EBUSY)
 		dev_dbg(&urb->dev->dev, "hcd_unlink_urb %p fail %d\n",
 				urb, retval);
+=======
+		if (retval == 0)
+			retval = -EINPROGRESS;
+		else if (retval != -EIDRM && retval != -EBUSY)
+			dev_dbg(&udev->dev, "hcd_unlink_urb %p fail %d\n",
+					urb, retval);
+		usb_put_dev(udev);
+	}
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	return retval;
 }
 
@@ -1961,6 +1979,11 @@ int usb_alloc_streams(struct usb_interface *interface,
 		return -EINVAL;
 	if (dev->speed != USB_SPEED_SUPER)
 		return -EINVAL;
+<<<<<<< HEAD
+=======
+	if (dev->state < USB_STATE_CONFIGURED)
+		return -ENODEV;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	/* Streams only apply to bulk endpoints. */
 	for (i = 0; i < num_eps; i++)

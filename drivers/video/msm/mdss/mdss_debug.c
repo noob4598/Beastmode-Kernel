@@ -90,7 +90,11 @@ static ssize_t mdss_debug_base_offset_read(struct file *file,
 {
 	struct mdss_debug_base *dbg = file->private_data;
 	int len = 0;
+<<<<<<< HEAD
 	char buf[24];
+=======
+	char buf[24] = {'\0'};
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	if (!dbg)
 		return -ENODEV;
@@ -99,10 +103,17 @@ static ssize_t mdss_debug_base_offset_read(struct file *file,
 		return 0;	/* the end */
 
 	len = snprintf(buf, sizeof(buf), "0x%08zx %zx\n", dbg->off, dbg->cnt);
+<<<<<<< HEAD
 	if (len < 0)
 		return 0;
 
 	if (copy_to_user(buff, buf, len))
+=======
+	if (len < 0 || len >= sizeof(buf))
+		return 0;
+
+	if ((count < sizeof(buf)) || copy_to_user(buff, buf, len))
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		return -EFAULT;
 
 	*ppos += len;	/* increase offset */
@@ -358,11 +369,19 @@ static ssize_t mdss_debug_factor_write(struct file *file,
 
 	if (strnchr(buf, count, '/')) {
 		/* Parsing buf as fraction */
+<<<<<<< HEAD
 		if (sscanf(buf, "%d/%d", &numer, &denom) != 2)
 			return -EFAULT;
 	} else {
 		/* Parsing buf as percentage */
 		if (sscanf(buf, "%d", &numer) != 1)
+=======
+		if (sscanf(buf, "%u/%u", &numer, &denom) != 2)
+			return -EFAULT;
+	} else {
+		/* Parsing buf as percentage */
+		if (kstrtouint(buf, 0, &numer))
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 			return -EFAULT;
 		denom = 100;
 	}
@@ -382,7 +401,11 @@ static ssize_t mdss_debug_factor_read(struct file *file,
 {
 	struct mdss_fudge_factor *factor = file->private_data;
 	int len = 0;
+<<<<<<< HEAD
 	char buf[32];
+=======
+	char buf[32] = {'\0'};
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	if (!factor)
 		return -ENODEV;
@@ -392,10 +415,17 @@ static ssize_t mdss_debug_factor_read(struct file *file,
 
 	len = snprintf(buf, sizeof(buf), "%d/%d\n",
 			factor->numer, factor->denom);
+<<<<<<< HEAD
 	if (len < 0)
 		return 0;
 
 	if (copy_to_user(buff, buf, len))
+=======
+	if (len < 0 || len >= sizeof(buf))
+		return 0;
+
+	if ((count < sizeof(buf)) || copy_to_user(buff, buf, len))
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		return -EFAULT;
 
 	*ppos += len;	/* increase offset */
@@ -546,9 +576,15 @@ void mdss_dump_reg(char __iomem *base, int len)
 		x8 = readl_relaxed(addr+0x8);
 		xc = readl_relaxed(addr+0xc);
 #if defined(CONFIG_FB_MSM_MDSS_SAMSUNG)
+<<<<<<< HEAD
 		pr_err("%04x : %08x %08x %08x %08x\n", i * 16, x0, x4, x8, xc);
 #else
 		pr_info("%p : %08x %08x %08x %08x\n", addr, x0, x4, x8, xc);
+=======
+		pr_info("%04x : %08x %08x %08x %08x\n", i * 16, x0, x4, x8, xc);
+#else
+		pr_info("%pK : %08x %08x %08x %08x\n", addr, x0, x4, x8, xc);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 #endif
 		addr += 16;
 	}
@@ -619,7 +655,11 @@ static inline struct mdss_mdp_misr_map *mdss_misr_get_map(u32 block_id)
 {
 	struct mdss_mdp_misr_map *map;
 
+<<<<<<< HEAD
 	if (block_id > DISPLAY_MISR_MDP) {
+=======
+	if (block_id > DISPLAY_MISR_HDMI && block_id != DISPLAY_MISR_MDP) {
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		pr_err("MISR Block id (%d) out of range\n", block_id);
 		return NULL;
 	}
@@ -670,6 +710,15 @@ int mdss_misr_set(struct mdss_data_type *mdata,
 	bool is_valid_wb_mixer = true;
 	bool use_mdp_up_misr = false;
 
+<<<<<<< HEAD
+=======
+	if (!mdata || !req || !ctl) {
+		pr_err("Invalid input params: mdata = %pK req = %pK ctl = %pK",
+			mdata, req, ctl);
+		return -EINVAL;
+	}
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	map = mdss_misr_get_map(req->block_id);
 	use_mdp_up_misr = switch_mdp_misr_offset(map, mdata->mdp_rev,
 				req->block_id);

@@ -30,10 +30,17 @@
 
 #include "power.h"
 
+<<<<<<< HEAD
 const char *const pm_states[PM_SUSPEND_MAX] = {
 	[PM_SUSPEND_FREEZE]	= "freeze",
 	[PM_SUSPEND_STANDBY]	= "standby",
 	[PM_SUSPEND_MEM]	= "mem",
+=======
+struct pm_sleep_state pm_states[PM_SUSPEND_MAX] = {
+	[PM_SUSPEND_FREEZE] = { .label = "freeze", .state = PM_SUSPEND_FREEZE },
+	[PM_SUSPEND_STANDBY] = { .label = "standby", },
+	[PM_SUSPEND_MEM] = { .label = "mem", },
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 };
 
 static const struct platform_suspend_ops *suspend_ops;
@@ -63,18 +70,43 @@ void freeze_wake(void)
 }
 EXPORT_SYMBOL_GPL(freeze_wake);
 
+<<<<<<< HEAD
+=======
+static bool valid_state(suspend_state_t state)
+{
+	/*
+	 * PM_SUSPEND_STANDBY and PM_SUSPEND_MEM states need low level
+	 * support and need to be valid to the low level
+	 * implementation, no valid callback implies that none are valid.
+	 */
+	return suspend_ops && suspend_ops->valid && suspend_ops->valid(state);
+}
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 /**
  * suspend_set_ops - Set the global suspend method table.
  * @ops: Suspend operations to use.
  */
 void suspend_set_ops(const struct platform_suspend_ops *ops)
 {
+<<<<<<< HEAD
 	lock_system_sleep();
 	suspend_ops = ops;
+=======
+	suspend_state_t i;
+
+	lock_system_sleep();
+
+	suspend_ops = ops;
+	for (i = PM_SUSPEND_STANDBY; i <= PM_SUSPEND_MEM; i++)
+		pm_states[i].state = valid_state(i) ? i : 0;
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	unlock_system_sleep();
 }
 EXPORT_SYMBOL_GPL(suspend_set_ops);
 
+<<<<<<< HEAD
 bool valid_state(suspend_state_t state)
 {
 	if (state == PM_SUSPEND_FREEZE) {
@@ -99,6 +131,8 @@ bool valid_state(suspend_state_t state)
 	return suspend_ops && suspend_ops->valid && suspend_ops->valid(state);
 }
 
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 /**
  * suspend_valid_only_mem - Generic memory-only valid callback.
  *
@@ -112,6 +146,7 @@ int suspend_valid_only_mem(suspend_state_t state)
 }
 EXPORT_SYMBOL_GPL(suspend_valid_only_mem);
 
+<<<<<<< HEAD
 static bool platform_suspend_again(void)
 {
 	int count;
@@ -134,6 +169,8 @@ static bool platform_suspend_again(void)
 	return suspend;
 }
 
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 static int suspend_test(int level)
 {
 #ifdef CONFIG_PM_DEBUG
@@ -302,7 +339,11 @@ int suspend_devices_and_enter(suspend_state_t state)
 	do {
 		error = suspend_enter(state, &wakeup);
 	} while (!error && !wakeup && need_suspend_ops(state)
+<<<<<<< HEAD
 		&& platform_suspend_again());
+=======
+		&& suspend_ops->suspend_again && suspend_ops->suspend_again());
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
  Resume_devices:
 	suspend_test_start();
@@ -347,9 +388,23 @@ static int enter_state(suspend_state_t state)
 {
 	int error;
 
+<<<<<<< HEAD
 	if (!valid_state(state))
 		return -ENODEV;
 
+=======
+	if (state == PM_SUSPEND_FREEZE) {
+#ifdef CONFIG_PM_DEBUG
+		if (pm_test_level != TEST_NONE && pm_test_level <= TEST_CPUS) {
+			pr_warning("PM: Unsupported test mode for freeze state,"
+				   "please choose none/freezer/devices/platform.\n");
+			return -EAGAIN;
+		}
+#endif
+	} else if (!valid_state(state)) {
+		return -EINVAL;
+	}
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	if (!mutex_trylock(&pm_mutex))
 		return -EBUSY;
 
@@ -360,7 +415,11 @@ static int enter_state(suspend_state_t state)
 	sys_sync();
 	printk("done.\n");
 
+<<<<<<< HEAD
 	pr_debug("PM: Preparing system for %s sleep\n", pm_states[state]);
+=======
+	pr_debug("PM: Preparing system for %s sleep\n", pm_states[state].label);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	error = suspend_prepare(state);
 	if (error)
 		goto Unlock;
@@ -368,7 +427,11 @@ static int enter_state(suspend_state_t state)
 	if (suspend_test(TEST_FREEZER))
 		goto Finish;
 
+<<<<<<< HEAD
 	pr_debug("PM: Entering %s sleep\n", pm_states[state]);
+=======
+	pr_debug("PM: Entering %s sleep\n", pm_states[state].label);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	pm_restrict_gfp_mask();
 	error = suspend_devices_and_enter(state);
 	pm_restore_gfp_mask();

@@ -57,7 +57,11 @@
 
 #define MAX_BUF_SIZE  512
 
+<<<<<<< HEAD
 static int msm_pm_debug_mask = 0;
+=======
+static int msm_pm_debug_mask __refdata = 1;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 module_param_named(
 	debug_mask, msm_pm_debug_mask, int, S_IRUGO | S_IWUSR | S_IWGRP
 );
@@ -81,14 +85,22 @@ enum msm_pc_count_offsets {
 	MSM_PC_NUM_COUNTERS,
 };
 
+<<<<<<< HEAD
 static bool msm_pm_ldo_retention_enabled = true;
+=======
+static bool msm_pm_ldo_retention_enabled __refdata = true;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 static bool msm_no_ramp_down_pc;
 static struct msm_pm_sleep_status_data *msm_pm_slp_sts;
 DEFINE_PER_CPU(struct clk *, cpu_clks);
 static struct clk *l2_clk;
 
 static int cpu_count;
+<<<<<<< HEAD
 static DEFINE_SPINLOCK(cpu_cnt_lock);
+=======
+static __refdata DEFINE_SPINLOCK(cpu_cnt_lock);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 #define SCM_HANDOFF_LOCK_ID "S:7"
 static remote_spinlock_t scm_handoff_lock;
 
@@ -101,7 +113,11 @@ static void __iomem *msm_pc_debug_counters;
  * Default the l2 flush flag to OFF so the caches are flushed during power
  * collapse unless the explicitly voted by lpm driver.
  */
+<<<<<<< HEAD
 static enum msm_pm_l2_scm_flag msm_pm_flush_l2_flag = MSM_SCM_L2_OFF;
+=======
+static enum msm_pm_l2_scm_flag msm_pm_flush_l2_flag __refdata = MSM_SCM_L2_OFF;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 void msm_pm_set_l2_flush_flag(enum msm_pm_l2_scm_flag flag)
 {
@@ -115,7 +131,11 @@ static enum msm_pm_l2_scm_flag msm_pm_get_l2_flush_flag(void)
 }
 
 static cpumask_t retention_cpus;
+<<<<<<< HEAD
 static DEFINE_SPINLOCK(retention_lock);
+=======
+static __refdata DEFINE_SPINLOCK(retention_lock);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 static int msm_pm_get_pc_mode(struct device_node *node,
 		const char *key, uint32_t *pc_mode_val)
@@ -866,7 +886,11 @@ static int msm_pc_debug_counters_copy(
 				sizeof(data->buf)-data->len,
 				"CPU%d\n", cpu);
 
+<<<<<<< HEAD
 		for (j = 0; j < MSM_PC_NUM_COUNTERS; j++) {
+=======
+		for (j = 0; j < MSM_PC_NUM_COUNTERS - 1; j++) {
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 			stat = msm_pc_debug_counters_read_register(
 					data->reg, cpu, j);
 			data->len += scnprintf(data->buf + data->len,
@@ -874,7 +898,13 @@ static int msm_pc_debug_counters_copy(
 					"\t%s : %d\n", counter_name[j],
 					stat);
 		}
+<<<<<<< HEAD
 
+=======
+		data->len += scnprintf(data->buf + data->len,
+			 sizeof(data->buf) - data->len,
+			"\n");
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	}
 
 	return data->len;

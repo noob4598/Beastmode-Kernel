@@ -951,8 +951,13 @@ static void extract_buf(struct entropy_store *r, __u8 *out)
 	 * pool while mixing, and hash one final time.
 	 */
 	sha_transform(hash.w, extract, workspace);
+<<<<<<< HEAD
 	memset(extract, 0, sizeof(extract));
 	memset(workspace, 0, sizeof(workspace));
+=======
+	memzero_explicit(extract, sizeof(extract));
+	memzero_explicit(workspace, sizeof(workspace));
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	/*
 	 * In case the hash function has some recognizable output
@@ -975,7 +980,11 @@ static void extract_buf(struct entropy_store *r, __u8 *out)
 	}
 
 	memcpy(out, &hash, EXTRACT_SIZE);
+<<<<<<< HEAD
 	memset(&hash, 0, sizeof(hash));
+=======
+	memzero_explicit(&hash, sizeof(hash));
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 }
 
 static ssize_t extract_entropy(struct entropy_store *r, void *buf,
@@ -1023,7 +1032,11 @@ static ssize_t extract_entropy(struct entropy_store *r, void *buf,
 	}
 
 	/* Wipe data just returned from memory */
+<<<<<<< HEAD
 	memset(tmp, 0, sizeof(tmp));
+=======
+	memzero_explicit(tmp, sizeof(tmp));
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	return ret;
 }
@@ -1061,7 +1074,11 @@ static ssize_t extract_entropy_user(struct entropy_store *r, void __user *buf,
 	}
 
 	/* Wipe data just returned from memory */
+<<<<<<< HEAD
 	memset(tmp, 0, sizeof(tmp));
+=======
+	memzero_explicit(tmp, sizeof(tmp));
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	return ret;
 }
@@ -1513,6 +1530,31 @@ unsigned int get_random_int(void)
 EXPORT_SYMBOL(get_random_int);
 
 /*
+<<<<<<< HEAD
+=======
+ * Same as get_random_int(), but returns unsigned long.
+ */
+unsigned long get_random_long(void)
+{
+	__u32 *hash;
+	unsigned long ret;
+
+	if (arch_get_random_long(&ret))
+		return ret;
+
+	hash = get_cpu_var(get_random_int_hash);
+
+	hash[0] += current->pid + jiffies + get_cycles();
+	md5_transform(hash, random_int_secret);
+	ret = *(unsigned long *)hash;
+	put_cpu_var(get_random_int_hash);
+
+	return ret;
+}
+EXPORT_SYMBOL(get_random_long);
+
+/*
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
  * randomize_range() returns a start address such that
  *
  *    [...... <range> .....]

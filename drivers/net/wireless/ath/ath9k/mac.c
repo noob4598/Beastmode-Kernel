@@ -311,6 +311,7 @@ int ath9k_hw_setuptxqueue(struct ath_hw *ah, enum ath9k_tx_queue type,
 		q = ATH9K_NUM_TX_QUEUES - 3;
 		break;
 	case ATH9K_TX_QUEUE_DATA:
+<<<<<<< HEAD
 		for (q = 0; q < ATH9K_NUM_TX_QUEUES; q++)
 			if (ah->txq[q].tqi_type ==
 			    ATH9K_TX_QUEUE_INACTIVE)
@@ -319,6 +320,9 @@ int ath9k_hw_setuptxqueue(struct ath_hw *ah, enum ath9k_tx_queue type,
 			ath_err(common, "No available TX queue\n");
 			return -1;
 		}
+=======
+		q = qinfo->tqi_subtype;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		break;
 	default:
 		ath_err(common, "Invalid TX queue type: %u\n", type);

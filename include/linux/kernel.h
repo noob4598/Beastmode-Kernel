@@ -554,7 +554,11 @@ do {							\
 
 #define do_trace_printk(fmt, args...)					\
 do {									\
+<<<<<<< HEAD
 	static const char *trace_printk_fmt				\
+=======
+	static const char *trace_printk_fmt __used			\
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		__attribute__((section("__trace_printk_fmt"))) =	\
 		__builtin_constant_p(fmt) ? fmt : NULL;			\
 									\
@@ -601,7 +605,11 @@ extern int __trace_puts(unsigned long ip, const char *str, int size);
  */
 
 #define trace_puts(str) ({						\
+<<<<<<< HEAD
 	static const char *trace_printk_fmt				\
+=======
+	static const char *trace_printk_fmt __used			\
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		__attribute__((section("__trace_printk_fmt"))) =	\
 		__builtin_constant_p(str) ? str : NULL;			\
 									\
@@ -621,7 +629,11 @@ extern void trace_dump_stack(int skip);
 #define ftrace_vprintk(fmt, vargs)					\
 do {									\
 	if (__builtin_constant_p(fmt)) {				\
+<<<<<<< HEAD
 		static const char *trace_printk_fmt			\
+=======
+		static const char *trace_printk_fmt __used		\
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		  __attribute__((section("__trace_printk_fmt"))) =	\
 			__builtin_constant_p(fmt) ? fmt : NULL;		\
 									\

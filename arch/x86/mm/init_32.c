@@ -137,6 +137,10 @@ page_table_range_init_count(unsigned long start, unsigned long end)
 
 	vaddr = start;
 	pgd_idx = pgd_index(vaddr);
+<<<<<<< HEAD
+=======
+	pmd_idx = pmd_index(vaddr);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	for ( ; (pgd_idx < PTRS_PER_PGD) && (vaddr != end); pgd_idx++) {
 		for (; (pmd_idx < PTRS_PER_PMD) && (vaddr != end);

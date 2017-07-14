@@ -6,8 +6,11 @@
  *	Distribute under GPLv2.
  *
  *	Rewritten. Old one was good in 2.2, but in 2.3 it was immoral. --ANK (990903)
+<<<<<<< HEAD
  *
  *	Remote softirq infrastructure is by Jens Axboe.
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
  */
 
 #include <linux/export.h>
@@ -642,6 +645,7 @@ void tasklet_hrtimer_init(struct tasklet_hrtimer *ttimer,
 }
 EXPORT_SYMBOL_GPL(tasklet_hrtimer_init);
 
+<<<<<<< HEAD
 /*
  * Remote softirq bits
  */
@@ -765,23 +769,33 @@ static struct notifier_block __cpuinitdata remote_softirq_cpu_notifier = {
 	.notifier_call	= remote_softirq_cpu_notify,
 };
 
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 void __init softirq_init(void)
 {
 	int cpu;
 
 	for_each_possible_cpu(cpu) {
+<<<<<<< HEAD
 		int i;
 
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		per_cpu(tasklet_vec, cpu).tail =
 			&per_cpu(tasklet_vec, cpu).head;
 		per_cpu(tasklet_hi_vec, cpu).tail =
 			&per_cpu(tasklet_hi_vec, cpu).head;
+<<<<<<< HEAD
 		for (i = 0; i < NR_SOFTIRQS; i++)
 			INIT_LIST_HEAD(&per_cpu(softirq_work_list[i], cpu));
 	}
 
 	register_hotcpu_notifier(&remote_softirq_cpu_notifier);
 
+=======
+	}
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	open_softirq(TASKLET_SOFTIRQ, tasklet_action);
 	open_softirq(HI_SOFTIRQ, tasklet_hi_action);
 }
@@ -796,9 +810,19 @@ static void run_ksoftirqd(unsigned int cpu)
 	local_irq_disable();
 	if (local_softirq_pending()) {
 		__do_softirq();
+<<<<<<< HEAD
 		rcu_note_context_switch(cpu);
 		local_irq_enable();
 		cond_resched();
+=======
+		local_irq_enable();
+		cond_resched();
+
+		preempt_disable();
+		rcu_note_context_switch(cpu);
+		preempt_enable();
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		return;
 	}
 	local_irq_enable();

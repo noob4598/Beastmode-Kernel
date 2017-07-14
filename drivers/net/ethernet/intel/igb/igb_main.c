@@ -1584,6 +1584,11 @@ void igb_power_up_link(struct igb_adapter *adapter)
 		igb_power_up_phy_copper(&adapter->hw);
 	else
 		igb_power_up_serdes_link_82575(&adapter->hw);
+<<<<<<< HEAD
+=======
+
+	igb_setup_link(&adapter->hw);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 }
 
 /**
@@ -7229,6 +7234,11 @@ static int igb_sriov_reinit(struct pci_dev *dev)
 
 	if (netif_running(netdev))
 		igb_close(netdev);
+<<<<<<< HEAD
+=======
+	else
+		igb_reset(adapter);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	igb_clear_interrupt_scheme(adapter);
 

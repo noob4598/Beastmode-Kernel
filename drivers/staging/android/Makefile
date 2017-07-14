@@ -5,7 +5,11 @@ obj-$(CONFIG_FIQ_DEBUGGER)		+= fiq_debugger/
 
 obj-$(CONFIG_ANDROID_BINDER_IPC)	+= binder.o
 obj-$(CONFIG_ASHMEM)			+= ashmem.o
+<<<<<<< HEAD
 obj-$(CONFIG_ANDROID_LOGGER)		+= logger.o logger_interface.o
+=======
+obj-$(CONFIG_ANDROID_LOGGER)		+= logger.o
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 obj-$(CONFIG_ANDROID_TIMED_OUTPUT)	+= timed_output.o
 obj-$(CONFIG_ANDROID_TIMED_GPIO)	+= timed_gpio.o
 obj-$(CONFIG_ANDROID_LOW_MEMORY_KILLER)	+= lowmemorykiller.o

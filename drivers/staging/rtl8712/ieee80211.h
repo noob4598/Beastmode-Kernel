@@ -734,7 +734,11 @@ enum ieee80211_state {
 #define IEEE_G            (1<<2)
 #define IEEE_MODE_MASK    (IEEE_A|IEEE_B|IEEE_G)
 
+<<<<<<< HEAD
 extern inline int ieee80211_is_empty_essid(const char *essid, int essid_len)
+=======
+static inline int ieee80211_is_empty_essid(const char *essid, int essid_len)
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 {
 	/* Single white space is for Linksys APs */
 	if (essid_len == 1 && essid[0] == ' ')
@@ -748,7 +752,11 @@ extern inline int ieee80211_is_empty_essid(const char *essid, int essid_len)
 	return 1;
 }
 
+<<<<<<< HEAD
 extern inline int ieee80211_get_hdrlen(u16 fc)
+=======
+static inline int ieee80211_get_hdrlen(u16 fc)
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 {
 	int hdrlen = 24;
 

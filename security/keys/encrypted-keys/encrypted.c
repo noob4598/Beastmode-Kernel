@@ -845,6 +845,11 @@ static int encrypted_update(struct key *key, struct key_preparsed_payload *prep)
 	size_t datalen = prep->datalen;
 	int ret = 0;
 
+<<<<<<< HEAD
+=======
+	if (test_bit(KEY_FLAG_NEGATIVE, &key->flags))
+		return -ENOKEY;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	if (datalen <= 0 || datalen > 32767 || !prep->data)
 		return -EINVAL;
 
@@ -1018,10 +1023,20 @@ static int __init init_encrypted(void)
 	ret = encrypted_shash_alloc();
 	if (ret < 0)
 		return ret;
+<<<<<<< HEAD
 	ret = register_key_type(&key_type_encrypted);
 	if (ret < 0)
 		goto out;
 	return aes_get_sizes();
+=======
+	ret = aes_get_sizes();
+	if (ret < 0)
+		goto out;
+	ret = register_key_type(&key_type_encrypted);
+	if (ret < 0)
+		goto out;
+	return 0;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 out:
 	encrypted_shash_release();
 	return ret;

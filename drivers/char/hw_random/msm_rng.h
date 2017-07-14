@@ -1,5 +1,9 @@
 /*
+<<<<<<< HEAD
  * Copyright (c) 2014, The Linux Foundation. All rights reserved.
+=======
+ * Copyright (c) 2014-2015, The Linux Foundation. All rights reserved.
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -42,6 +46,11 @@ struct msm_rng_device {
  *  directory and retuns it back to caller.
  *
  */
+<<<<<<< HEAD
 int msm_rng_direct_read(struct msm_rng_device *msm_rng_dev, void *data);
 
+=======
+int msm_rng_direct_read(struct msm_rng_device *msm_rng_dev,
+				void *data, size_t max);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 #endif

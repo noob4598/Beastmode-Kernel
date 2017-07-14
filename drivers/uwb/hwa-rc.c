@@ -811,6 +811,12 @@ static int hwarc_probe(struct usb_interface *iface,
 	struct hwarc *hwarc;
 	struct device *dev = &iface->dev;
 
+<<<<<<< HEAD
+=======
+	if (iface->cur_altsetting->desc.bNumEndpoints < 1)
+		return -ENODEV;
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	result = -ENOMEM;
 	uwb_rc = uwb_rc_alloc();
 	if (uwb_rc == NULL) {

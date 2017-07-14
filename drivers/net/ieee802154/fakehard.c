@@ -376,17 +376,33 @@ static int ieee802154fake_probe(struct platform_device *pdev)
 
 	err = wpan_phy_register(phy);
 	if (err)
+<<<<<<< HEAD
 		goto out;
 
 	err = register_netdev(dev);
 	if (err < 0)
 		goto out;
+=======
+		goto err_phy_reg;
+
+	err = register_netdev(dev);
+	if (err)
+		goto err_netdev_reg;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	dev_info(&pdev->dev, "Added ieee802154 HardMAC hardware\n");
 	return 0;
 
+<<<<<<< HEAD
 out:
 	unregister_netdev(dev);
+=======
+err_netdev_reg:
+	wpan_phy_unregister(phy);
+err_phy_reg:
+	free_netdev(dev);
+	wpan_phy_free(phy);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	return err;
 }
 

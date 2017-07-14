@@ -2103,6 +2103,7 @@ unsigned int snd_soc_read(struct snd_soc_codec *codec, unsigned int reg)
 {
 	unsigned int ret;
 
+<<<<<<< HEAD
 	if (unlikely(!snd_card_is_online_state(codec->card->snd_card))) {
 		dev_err(codec->dev, "read 0x%02x while offline\n", reg);
 		return -ENODEV;
@@ -2110,6 +2111,19 @@ unsigned int snd_soc_read(struct snd_soc_codec *codec, unsigned int reg)
 	ret = codec->read(codec, reg);
 	dev_dbg(codec->dev, "read %x => %x\n", reg, ret);
 	trace_snd_soc_reg_read(codec, reg, ret);
+=======
+        if (codec->read) {
+		if (unlikely(!snd_card_is_online_state(codec->card->snd_card))) {
+			dev_err(codec->dev, "read 0x%02x while offline\n", reg);
+			return -ENODEV;
+		}
+		ret = codec->read(codec, reg);
+		dev_dbg(codec->dev, "read %x => %x\n", reg, ret);
+		trace_snd_soc_reg_read(codec, reg, ret);
+        }
+        else
+		ret = -1;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	return ret;
 }
@@ -2118,6 +2132,7 @@ EXPORT_SYMBOL_GPL(snd_soc_read);
 unsigned int snd_soc_write(struct snd_soc_codec *codec,
 			   unsigned int reg, unsigned int val)
 {
+<<<<<<< HEAD
 	if (unlikely(!snd_card_is_online_state(codec->card->snd_card))) {
 		dev_err(codec->dev, "write 0x%02x while offline\n", reg);
 		return -ENODEV;
@@ -2125,6 +2140,19 @@ unsigned int snd_soc_write(struct snd_soc_codec *codec,
 	dev_dbg(codec->dev, "write %x = %x\n", reg, val);
 	trace_snd_soc_reg_write(codec, reg, val);
 	return codec->write(codec, reg, val);
+=======
+	if (codec->write) {
+		if (unlikely(!snd_card_is_online_state(codec->card->snd_card))) {
+			dev_err(codec->dev, "write 0x%02x while offline\n", reg);
+			return -ENODEV;
+		}
+		dev_dbg(codec->dev, "write %x = %x\n", reg, val);
+		trace_snd_soc_reg_write(codec, reg, val);
+		return codec->write(codec, reg, val);
+        }
+	else
+		return -1;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 }
 EXPORT_SYMBOL_GPL(snd_soc_write);
 

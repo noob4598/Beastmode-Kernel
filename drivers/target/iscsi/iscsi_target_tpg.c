@@ -175,13 +175,23 @@ void iscsit_put_tpg(struct iscsi_portal_group *tpg)
 
 static void iscsit_clear_tpg_np_login_thread(
 	struct iscsi_tpg_np *tpg_np,
+<<<<<<< HEAD
 	struct iscsi_portal_group *tpg)
+=======
+	struct iscsi_portal_group *tpg,
+	bool shutdown)
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 {
 	if (!tpg_np->tpg_np) {
 		pr_err("struct iscsi_tpg_np->tpg_np is NULL!\n");
 		return;
 	}
 
+<<<<<<< HEAD
+=======
+	if (shutdown)
+		tpg_np->tpg_np->enabled = false;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	iscsit_reset_np_thread(tpg_np->tpg_np, tpg_np, tpg);
 }
 
@@ -197,7 +207,11 @@ void iscsit_clear_tpg_np_login_threads(
 			continue;
 		}
 		spin_unlock(&tpg->tpg_np_lock);
+<<<<<<< HEAD
 		iscsit_clear_tpg_np_login_thread(tpg_np, tpg);
+=======
+		iscsit_clear_tpg_np_login_thread(tpg_np, tpg, false);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		spin_lock(&tpg->tpg_np_lock);
 	}
 	spin_unlock(&tpg->tpg_np_lock);
@@ -253,7 +267,10 @@ err_out:
 		iscsi_release_param_list(tpg->param_list);
 		tpg->param_list = NULL;
 	}
+<<<<<<< HEAD
 	kfree(tpg);
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	return -ENOMEM;
 }
 
@@ -520,7 +537,11 @@ static int iscsit_tpg_release_np(
 	struct iscsi_portal_group *tpg,
 	struct iscsi_np *np)
 {
+<<<<<<< HEAD
 	iscsit_clear_tpg_np_login_thread(tpg_np, tpg);
+=======
+	iscsit_clear_tpg_np_login_thread(tpg_np, tpg, true);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	pr_debug("CORE[%s] - Removed Network Portal: %s:%hu,%hu on %s\n",
 		tpg->tpg_tiqn->tiqn, np->np_ip, np->np_port, tpg->tpgt,

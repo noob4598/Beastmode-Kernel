@@ -89,7 +89,17 @@ err_exit:
 
 static void mid_spi_dma_exit(struct dw_spi *dws)
 {
+<<<<<<< HEAD
 	dma_release_channel(dws->txchan);
+=======
+	if (!dws->dma_inited)
+		return;
+
+	dmaengine_terminate_all(dws->txchan);
+	dma_release_channel(dws->txchan);
+
+	dmaengine_terminate_all(dws->rxchan);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	dma_release_channel(dws->rxchan);
 }
 
@@ -136,7 +146,11 @@ static int mid_spi_dma_transfer(struct dw_spi *dws, int cs_change)
 	txconf.dst_addr = dws->dma_addr;
 	txconf.dst_maxburst = LNW_DMA_MSIZE_16;
 	txconf.src_addr_width = DMA_SLAVE_BUSWIDTH_4_BYTES;
+<<<<<<< HEAD
 	txconf.dst_addr_width = DMA_SLAVE_BUSWIDTH_2_BYTES;
+=======
+	txconf.dst_addr_width = dws->dma_width;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	txconf.device_fc = false;
 
 	txchan->device->device_control(txchan, DMA_SLAVE_CONFIG,
@@ -159,7 +173,11 @@ static int mid_spi_dma_transfer(struct dw_spi *dws, int cs_change)
 	rxconf.src_addr = dws->dma_addr;
 	rxconf.src_maxburst = LNW_DMA_MSIZE_16;
 	rxconf.dst_addr_width = DMA_SLAVE_BUSWIDTH_4_BYTES;
+<<<<<<< HEAD
 	rxconf.src_addr_width = DMA_SLAVE_BUSWIDTH_2_BYTES;
+=======
+	rxconf.src_addr_width = dws->dma_width;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	rxconf.device_fc = false;
 
 	rxchan->device->device_control(rxchan, DMA_SLAVE_CONFIG,
@@ -216,7 +234,10 @@ int dw_spi_mid_init(struct dw_spi *dws)
 	iounmap(clk_reg);
 
 	dws->num_cs = 16;
+<<<<<<< HEAD
 	dws->fifo_len = 40;	/* FIFO has 40 words buffer */
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 #ifdef CONFIG_SPI_DW_MID_DMA
 	dws->dma_priv = kzalloc(sizeof(struct mid_dma), GFP_KERNEL);

@@ -136,6 +136,11 @@ static const int required_gpios[] = {
 	AP2MDM_SOFT_RESET
 };
 
+<<<<<<< HEAD
+=======
+struct mdm_ctrl *g_mdm = NULL;
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 static void mdm_debug_gpio_show(struct mdm_ctrl *mdm)
 {
 	struct device *dev = mdm->dev;
@@ -658,6 +663,21 @@ static int mdm_get_status(u32 *status, struct esoc_clink *esoc)
 	return 0;
 }
 
+<<<<<<< HEAD
+=======
+int mdm_get_modem_status(void)
+{
+	if(!g_mdm) {
+		pr_err("[MIF] %s, esoc driver is not initialized\n", __func__);
+		return 1;
+	}
+
+	return gpio_get_value(MDM_GPIO(g_mdm, MDM2AP_STATUS));
+}
+
+EXPORT_SYMBOL(mdm_get_modem_status);
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 /* Fail if any of the required gpios is absent. */
 static int mdm_dt_parse_gpios(struct mdm_ctrl *mdm)
 {
@@ -882,6 +902,10 @@ static int mdm9x25_setup_hw(struct mdm_ctrl *mdm,
 	mdm->debug_fail = false;
 	mdm->esoc = esoc;
 	mdm->init = 0;
+<<<<<<< HEAD
+=======
+	g_mdm = mdm;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	return 0;
 }
 
@@ -955,6 +979,10 @@ static int mdm9x35_setup_hw(struct mdm_ctrl *mdm,
 	mdm->debug_fail = false;
 	mdm->esoc = esoc;
 	mdm->init = 0;
+<<<<<<< HEAD
+=======
+	g_mdm = mdm;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	return 0;
 }
 

@@ -55,6 +55,12 @@ extern int migrate_vmas(struct mm_struct *mm,
 extern void migrate_page_copy(struct page *newpage, struct page *page);
 extern int migrate_huge_page_move_mapping(struct address_space *mapping,
 				  struct page *newpage, struct page *page);
+<<<<<<< HEAD
+=======
+extern int migrate_page_move_mapping(struct address_space *mapping,
+               struct page *newpage, struct page *page,
+               struct buffer_head *head, enum migrate_mode mode);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 #else
 
 static inline void putback_lru_pages(struct list_head *l) {}

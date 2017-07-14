@@ -531,6 +531,10 @@ receive:
 
 		buf = node->bclink.deferred_head;
 		node->bclink.deferred_head = buf->next;
+<<<<<<< HEAD
+=======
+		buf->next = NULL;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		node->bclink.deferred_size--;
 		goto receive;
 	}

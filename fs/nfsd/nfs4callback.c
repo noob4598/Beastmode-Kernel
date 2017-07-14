@@ -672,7 +672,12 @@ static int setup_callback_client(struct nfs4_client *clp, struct nfs4_cb_conn *c
 		clp->cl_cb_session = ses;
 		args.bc_xprt = conn->cb_xprt;
 		args.prognumber = clp->cl_cb_session->se_cb_prog;
+<<<<<<< HEAD
 		args.protocol = XPRT_TRANSPORT_BC_TCP;
+=======
+		args.protocol = conn->cb_xprt->xpt_class->xcl_ident |
+				XPRT_TRANSPORT_BC;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		args.authflavor = ses->se_cb_sec.flavor;
 	}
 	/* Create RPC client */
@@ -783,8 +788,17 @@ static bool nfsd41_cb_get_slot(struct nfs4_client *clp, struct rpc_task *task)
 {
 	if (test_and_set_bit(0, &clp->cl_cb_slot_busy) != 0) {
 		rpc_sleep_on(&clp->cl_cb_waitq, task, NULL);
+<<<<<<< HEAD
 		dprintk("%s slot is busy\n", __func__);
 		return false;
+=======
+		/* Race breaker */
+		if (test_and_set_bit(0, &clp->cl_cb_slot_busy) != 0) {
+			dprintk("%s slot is busy\n", __func__);
+			return false;
+		}
+		rpc_wake_up_queued_task(&clp->cl_cb_waitq, task);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	}
 	return true;
 }

@@ -340,9 +340,19 @@ ssize_t fps_write(struct device *dev, struct device_attribute *attr, const char 
 { 
 	pr_info("SRUK ----------- %s -- %d", __FUNCTION__, __LINE__);
     if (buf != NULL)
+<<<<<<< HEAD
         sprintf(global_fps_string,"%s", buf);
     else
         sprintf(global_fps_string,"0"); 
+=======
+    {
+        snprintf(global_fps_string,sizeof(global_fps_string),"%s", buf);
+    }
+    else
+    {
+        sprintf(global_fps_string,"0"); 
+    }
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	/* Return success status. */		
 	return count;

@@ -55,6 +55,10 @@ struct serial_private {
 	unsigned int		nr;
 	void __iomem		*remapped_bar[PCI_NUM_BAR_RESOURCES];
 	struct pci_serial_quirk	*quirk;
+<<<<<<< HEAD
+=======
+	const struct pciserial_board *board;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	int			line[0];
 };
 
@@ -68,7 +72,11 @@ static void moan_device(const char *str, struct pci_dev *dev)
 	       "Please send the output of lspci -vv, this\n"
 	       "message (0x%04x,0x%04x,0x%04x,0x%04x), the\n"
 	       "manufacturer and name of serial board or\n"
+<<<<<<< HEAD
 	       "modem board to rmk+serial@arm.linux.org.uk.\n",
+=======
+	       "modem board to <linux-serial@vger.kernel.org>.\n",
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	       pci_name(dev), str, dev->vendor, dev->device,
 	       dev->subsystem_vendor, dev->subsystem_device);
 }
@@ -3374,6 +3382,10 @@ pciserial_init_ports(struct pci_dev *dev, const struct pciserial_board *board)
 		}
 	}
 	priv->nr = i;
+<<<<<<< HEAD
+=======
+	priv->board = board;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	return priv;
 
 err_deinit:
@@ -3384,7 +3396,11 @@ err_out:
 }
 EXPORT_SYMBOL_GPL(pciserial_init_ports);
 
+<<<<<<< HEAD
 void pciserial_remove_ports(struct serial_private *priv)
+=======
+void pciserial_detach_ports(struct serial_private *priv)
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 {
 	struct pci_serial_quirk *quirk;
 	int i;
@@ -3404,7 +3420,15 @@ void pciserial_remove_ports(struct serial_private *priv)
 	quirk = find_quirk(priv->dev);
 	if (quirk->exit)
 		quirk->exit(priv->dev);
+<<<<<<< HEAD
 
+=======
+}
+
+void pciserial_remove_ports(struct serial_private *priv)
+{
+	pciserial_detach_ports(priv);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	kfree(priv);
 }
 EXPORT_SYMBOL_GPL(pciserial_remove_ports);
@@ -4943,7 +4967,11 @@ static pci_ers_result_t serial8250_io_error_detected(struct pci_dev *dev,
 		return PCI_ERS_RESULT_DISCONNECT;
 
 	if (priv)
+<<<<<<< HEAD
 		pciserial_suspend_ports(priv);
+=======
+		pciserial_detach_ports(priv);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	pci_disable_device(dev);
 
@@ -4968,9 +4996,24 @@ static pci_ers_result_t serial8250_io_slot_reset(struct pci_dev *dev)
 static void serial8250_io_resume(struct pci_dev *dev)
 {
 	struct serial_private *priv = pci_get_drvdata(dev);
+<<<<<<< HEAD
 
 	if (priv)
 		pciserial_resume_ports(priv);
+=======
+	const struct pciserial_board *board;
+
+	if (!priv)
+		return;
+
+	board = priv->board;
+	kfree(priv);
+	priv = pciserial_init_ports(dev, board);
+
+	if (!IS_ERR(priv)) {
+		pci_set_drvdata(dev, priv);
+	}
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 }
 
 static const struct pci_error_handlers serial8250_err_handler = {

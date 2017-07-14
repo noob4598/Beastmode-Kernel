@@ -153,6 +153,10 @@ extern int console_trylock(void);
 extern void console_unlock(void);
 extern void console_conditional_schedule(void);
 extern void console_unblank(void);
+<<<<<<< HEAD
+=======
+extern void console_flush_on_panic(void);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 extern struct tty_driver *console_device(int *);
 extern void console_stop(struct console *);
 extern void console_start(struct console *);

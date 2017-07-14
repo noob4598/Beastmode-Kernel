@@ -84,6 +84,11 @@ static inline u32 __attribute_const__ read_cpuid_cachetype(void)
 	return read_cpuid(ID_CTR_EL0);
 }
 
+<<<<<<< HEAD
+=======
+void cpuinfo_store_cpu(void);
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 #endif /* __ASSEMBLY__ */
 
 #endif

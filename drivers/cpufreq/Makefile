@@ -51,7 +51,11 @@ obj-$(CONFIG_ARM_BIG_LITTLE_CPUFREQ)	+= arm_big_little.o
 # LITTLE drivers, so that it is probed last.
 obj-$(CONFIG_ARM_DT_BL_CPUFREQ)		+= arm_big_little_dt.o
 
+<<<<<<< HEAD
 obj-$(CONFIG_ARCH_DAVINCI_DA850)	+= davinci-cpufreq.o
+=======
+obj-$(CONFIG_ARCH_DAVINCI)		+= davinci-cpufreq.o
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 obj-$(CONFIG_UX500_SOC_DB8500)		+= dbx500-cpufreq.o
 obj-$(CONFIG_ARM_EXYNOS_CPUFREQ)	+= exynos-cpufreq.o
 obj-$(CONFIG_ARM_EXYNOS4210_CPUFREQ)	+= exynos4210-cpufreq.o

@@ -141,7 +141,10 @@ enum {
  * @ti_save: Backup of journal_info field of task_struct
  * @ti_flags: Flags
  * @ti_count: Nest level
+<<<<<<< HEAD
  * @ti_garbage:	List of inode to be put when releasing semaphore
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
  */
 struct nilfs_transaction_info {
 	u32			ti_magic;
@@ -150,7 +153,10 @@ struct nilfs_transaction_info {
 				   one of other filesystems has a bug. */
 	unsigned short		ti_flags;
 	unsigned short		ti_count;
+<<<<<<< HEAD
 	struct list_head	ti_garbage;
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 };
 
 /* ti_magic */

@@ -963,6 +963,7 @@ int of_property_read_string(struct device_node *np, const char *propname,
 EXPORT_SYMBOL_GPL(of_property_read_string);
 
 /**
+<<<<<<< HEAD
  * of_property_read_string_index - Find and read a string from a multiple
  * strings property.
  * @np:		device node from which the property value is to be read.
@@ -1009,6 +1010,8 @@ int of_property_read_string_index(struct device_node *np, const char *propname,
 EXPORT_SYMBOL_GPL(of_property_read_string_index);
 
 /**
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
  * of_property_match_string() - Find string in a list and return index
  * @np: pointer to node containing string list property
  * @propname: string list property name
@@ -1034,7 +1037,11 @@ int of_property_match_string(struct device_node *np, const char *propname,
 	end = p + prop->length;
 
 	for (i = 0; p < end; i++, p += l) {
+<<<<<<< HEAD
 		l = strlen(p) + 1;
+=======
+		l = strnlen(p, end - p) + 1;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		if (p + l > end)
 			return -EILSEQ;
 		pr_debug("comparing %s with %s\n", string, p);
@@ -1046,6 +1053,7 @@ int of_property_match_string(struct device_node *np, const char *propname,
 EXPORT_SYMBOL_GPL(of_property_match_string);
 
 /**
+<<<<<<< HEAD
  * of_property_count_strings - Find and return the number of strings from a
  * multiple strings property.
  * @np:		device node from which the property value is to be read.
@@ -1063,11 +1071,30 @@ int of_property_count_strings(struct device_node *np, const char *propname)
 	int i = 0;
 	size_t l = 0, total = 0;
 	const char *p;
+=======
+ * of_property_read_string_util() - Utility helper for parsing string properties
+ * @np:		device node from which the property value is to be read.
+ * @propname:	name of the property to be searched.
+ * @out_strs:	output array of string pointers.
+ * @sz:		number of array elements to read.
+ * @skip:	Number of strings to skip over at beginning of list.
+ *
+ * Don't call this function directly. It is a utility helper for the
+ * of_property_read_string*() family of functions.
+ */
+int of_property_read_string_helper(struct device_node *np, const char *propname,
+				   const char **out_strs, size_t sz, int skip)
+{
+	struct property *prop = of_find_property(np, propname, NULL);
+	int l = 0, i = 0;
+	const char *p, *end;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	if (!prop)
 		return -EINVAL;
 	if (!prop->value)
 		return -ENODATA;
+<<<<<<< HEAD
 	if (strnlen(prop->value, prop->length) >= prop->length)
 		return -EILSEQ;
 
@@ -1079,6 +1106,22 @@ int of_property_count_strings(struct device_node *np, const char *propname)
 	return i;
 }
 EXPORT_SYMBOL_GPL(of_property_count_strings);
+=======
+	p = prop->value;
+	end = p + prop->length;
+
+	for (i = 0; p < end && (!out_strs || i < skip + sz); i++, p += l) {
+		l = strnlen(p, end - p) + 1;
+		if (p + l > end)
+			return -EILSEQ;
+		if (out_strs && i >= skip)
+			*out_strs++ = p;
+	}
+	i -= skip;
+	return i <= 0 ? -ENODATA : i;
+}
+EXPORT_SYMBOL_GPL(of_property_read_string_helper);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 /**
  * of_parse_phandle - Resolve a phandle property to a device_node pointer

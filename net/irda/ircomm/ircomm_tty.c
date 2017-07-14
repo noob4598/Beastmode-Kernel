@@ -820,7 +820,13 @@ static void ircomm_tty_wait_until_sent(struct tty_struct *tty, int timeout)
 	orig_jiffies = jiffies;
 
 	/* Set poll time to 200 ms */
+<<<<<<< HEAD
 	poll_time = IRDA_MIN(timeout, msecs_to_jiffies(200));
+=======
+	poll_time = msecs_to_jiffies(200);
+	if (timeout)
+		poll_time = min_t(unsigned long, timeout, poll_time);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	spin_lock_irqsave(&self->spinlock, flags);
 	while (self->tx_skb && self->tx_skb->len) {

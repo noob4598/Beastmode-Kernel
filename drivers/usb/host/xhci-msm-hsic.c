@@ -23,14 +23,20 @@
 #include <linux/bitops.h>
 #include <linux/workqueue.h>
 #include <linux/clk/msm-clk.h>
+<<<<<<< HEAD
 #include <linux/reboot.h>
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 #include <mach/msm_bus.h>
 #include <mach/rpm-regulator.h>
 #include <mach/msm_iomap.h>
 #include <linux/debugfs.h>
 #include <asm/unaligned.h>
+<<<<<<< HEAD
 #include <linux/moduleparam.h>
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 #include "xhci.h"
 
@@ -90,10 +96,13 @@
  */
 #define MSM_HSIC_INT_MODERATION 12000
 
+<<<<<<< HEAD
 #define WL_TIMEOUT 2000
 static int wl_divide = 1;
 module_param(wl_divide, int, 0644);
 
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 static u64 dma_mask = DMA_BIT_MASK(64);
 
 struct mxhci_hsic_hcd {
@@ -137,7 +146,10 @@ struct mxhci_hsic_hcd {
 
 	uint32_t		wakeup_int_cnt;
 	uint32_t		pwr_evt_irq_inlpm;
+<<<<<<< HEAD
 	struct notifier_block   hsic_reboot;
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	int			hsic_connected;
 
 	struct tasklet_struct	bh;
@@ -150,10 +162,17 @@ struct dbg_data dbg_hsic = {
 	.ctrl_lck = __RW_LOCK_UNLOCKED(clck),
 	.data_idx = 0,
 	.data_lck = __RW_LOCK_UNLOCKED(dlck),
+<<<<<<< HEAD
 	.log_payload = 1,
 	.log_events = 1,
 	.inep_log_mask = 1,
 	.outep_log_mask = 1
+=======
+	.log_payload = 0,
+	.log_events = 0,
+	.inep_log_mask = 0xffff,
+	.outep_log_mask = 0xffff
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 };
 
 static inline void dbg_inc(unsigned *idx)
@@ -303,6 +322,7 @@ static void mxhci_hsic_bus_vote_w(struct work_struct *w)
 				__func__, ret);
 }
 
+<<<<<<< HEAD
 static int mxhci_hsic_reboot(struct notifier_block *nb,
 			unsigned long event, void *unused)
 {
@@ -332,6 +352,8 @@ static int mxhci_hsic_reboot(struct notifier_block *nb,
 	return NOTIFY_DONE;
 }
 
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 static int mxhci_hsic_init_clocks(struct mxhci_hsic_hcd *mxhci, u32 init)
 {
 	int ret = 0;
@@ -688,9 +710,13 @@ static irqreturn_t mxhci_hsic_wakeup_irq(int irq, void *data)
 	xhci_dbg_log_event(&dbg_hsic, NULL, "Remote Wakeup IRQ",
 			mxhci->wakeup_int_cnt);
 
+<<<<<<< HEAD
  	if (wl_divide == 1) pm_stay_awake(mxhci->dev);
 	else if (wl_divide > 1) pm_wakeup_event(mxhci->dev, 
 		WL_TIMEOUT/wl_divide);
+=======
+	pm_stay_awake(mxhci->dev);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	spin_lock(&mxhci->wakeup_lock);
 	if (mxhci->wakeup_irq_enabled) {
@@ -950,9 +976,13 @@ static int mxhci_hsic_resume(struct mxhci_hsic_hcd *mxhci)
 		return 0;
 	}
 
+<<<<<<< HEAD
  	if (wl_divide == 1) pm_stay_awake(mxhci->dev);
 	else if (wl_divide > 1) pm_wakeup_event(mxhci->dev, 
 		WL_TIMEOUT/wl_divide);
+=======
+	pm_stay_awake(mxhci->dev);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	/* enable force-on mode for periph_on */
 	clk_set_flags(mxhci->system_clk, CLKFLAG_RETAIN_PERIPH);
@@ -1655,9 +1685,13 @@ static int mxhci_hsic_probe(struct platform_device *pdev)
 	init_waitqueue_head(&mxhci->phy_in_lpm_wq);
 
 	device_init_wakeup(&pdev->dev, 1);
+<<<<<<< HEAD
  	if (wl_divide == 1) pm_stay_awake(mxhci->dev);
 	else if (wl_divide > 1) pm_wakeup_event(mxhci->dev, 
 		WL_TIMEOUT/wl_divide);
+=======
+	pm_stay_awake(mxhci->dev);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	pm_runtime_set_active(&pdev->dev);
 	pm_runtime_enable(&pdev->dev);
@@ -1666,6 +1700,7 @@ static int mxhci_hsic_probe(struct platform_device *pdev)
 	if (ret)
 		pr_err("err creating sysfs node\n");
 
+<<<<<<< HEAD
 mxhci->hsic_reboot.notifier_call = mxhci_hsic_reboot;
 	mxhci->hsic_reboot.next = NULL;
 	mxhci->hsic_reboot.priority = 0;
@@ -1674,6 +1709,8 @@ mxhci->hsic_reboot.notifier_call = mxhci_hsic_reboot;
 		dev_err(&pdev->dev, "%s: register for reboot failed\n",
 					__func__);
 
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	dev_dbg(&pdev->dev, "%s: Probe complete\n", __func__);
 
 	ret = mxhci_hsic_debugfs_init();
@@ -1761,7 +1798,10 @@ static int mxhci_hsic_remove(struct platform_device *pdev)
 	kfree(xhci);
 	usb_put_hcd(hcd);
 
+<<<<<<< HEAD
 	unregister_reboot_notifier(&mxhci->hsic_reboot);
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	return 0;
 }
 

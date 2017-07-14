@@ -94,6 +94,40 @@
 #include <mach/sec_debug.h>
 #endif
 
+<<<<<<< HEAD
+=======
+static atomic_t __su_instances;
+
+int su_instances(void)
+{
+	return atomic_read(&__su_instances);
+}
+
+bool su_running(void)
+{
+	return su_instances() > 0;
+}
+
+bool su_visible(void)
+{
+	kuid_t uid = current_uid();
+	if (su_running())
+		return true;
+	if (uid_eq(uid, GLOBAL_ROOT_UID) || uid_eq(uid, GLOBAL_SYSTEM_UID))
+		return true;
+	return false;
+}
+
+void su_exec(void)
+{
+	atomic_inc(&__su_instances);
+}
+
+void su_exit(void)
+{
+	atomic_dec(&__su_instances);
+}
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 ATOMIC_NOTIFIER_HEAD(migration_notifier_head);
 
@@ -187,14 +221,22 @@ struct static_key sched_feat_keys[__SCHED_FEAT_NR] = {
 
 static void sched_feat_disable(int i)
 {
+<<<<<<< HEAD
 	if (static_key_enabled(&sched_feat_keys[i]))
 		static_key_slow_dec(&sched_feat_keys[i]);
+=======
+	static_key_disable(&sched_feat_keys[i]);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 }
 
 static void sched_feat_enable(int i)
 {
+<<<<<<< HEAD
 	if (!static_key_enabled(&sched_feat_keys[i]))
 		static_key_slow_inc(&sched_feat_keys[i]);
+=======
+	static_key_enable(&sched_feat_keys[i]);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 }
 #else
 static void sched_feat_disable(int i) { };
@@ -1260,7 +1302,11 @@ out:
 		 * leave kernel.
 		 */
 		if (p->mm && printk_ratelimit()) {
+<<<<<<< HEAD
 			printk_sched("process %d (%s) no longer affine to cpu%d\n",
+=======
+			printk_deferred("process %d (%s) no longer affine to cpu%d\n",
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 					task_pid_nr(p), p->comm, cpu);
 		}
 	}
@@ -1656,11 +1702,58 @@ try_to_wake_up(struct task_struct *p, unsigned int state, int wake_flags)
 
 	success = 1; /* we're going to change ->state */
 
+<<<<<<< HEAD
+=======
+	/*
+	 * Ensure we load p->on_rq _after_ p->state, otherwise it would
+	 * be possible to, falsely, observe p->on_rq == 0 and get stuck
+	 * in smp_cond_load_acquire() below.
+	 *
+	 * sched_ttwu_pending()                 try_to_wake_up()
+	 *   [S] p->on_rq = 1;                  [L] P->state
+	 *       UNLOCK rq->lock  -----.
+	 *                              \
+	 *				 +---   RMB
+	 * schedule()                   /
+	 *       LOCK rq->lock    -----'
+	 *       UNLOCK rq->lock
+	 *
+	 * [task p]
+	 *   [S] p->state = UNINTERRUPTIBLE     [L] p->on_rq
+	 *
+	 * Pairs with the UNLOCK+LOCK on rq->lock from the
+	 * last wakeup of our task and the schedule that got our task
+	 * current.
+	 */
+	smp_rmb();
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	if (p->on_rq && ttwu_remote(p, wake_flags))
 		goto stat;
 
 #ifdef CONFIG_SMP
 	/*
+<<<<<<< HEAD
+=======
+	 * Ensure we load p->on_cpu _after_ p->on_rq, otherwise it would be
+	 * possible to, falsely, observe p->on_cpu == 0.
+	 *
+	 * One must be running (->on_cpu == 1) in order to remove oneself
+	 * from the runqueue.
+	 *
+	 *  [S] ->on_cpu = 1;	[L] ->on_rq
+	 *      UNLOCK rq->lock
+	 *			RMB
+	 *      LOCK   rq->lock
+	 *  [S] ->on_rq = 0;    [L] ->on_cpu
+	 *
+	 * Pairs with the full barrier implied in the UNLOCK+LOCK on rq->lock
+	 * from the consecutive calls to schedule(); the first switching to our
+	 * task, the second putting it to sleep.
+	 */
+	smp_rmb();
+
+	/*
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	 * If the owning (remote) cpu is still in the middle of schedule() with
 	 * this task as prev, wait until its done referencing the task.
 	 */
@@ -1731,7 +1824,11 @@ static void try_to_wake_up_local(struct task_struct *p)
 	struct rq *rq = task_rq(p);
 
 	if (rq != this_rq() || p == current) {
+<<<<<<< HEAD
 		printk_sched("%s: Failed to wakeup task %d (%s), rq = %p, this_rq = %p, p = %p, current = %p\n",
+=======
+		printk_deferred("%s: Failed to wakeup task %d (%s), rq = %p, this_rq = %p, p = %p, current = %p\n",
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 			__func__, task_pid_nr(p), p->comm, rq,
 			this_rq(), p, current);
 		return;
@@ -1770,7 +1867,10 @@ out:
  */
 int wake_up_process(struct task_struct *p)
 {
+<<<<<<< HEAD
 	WARN_ON(task_is_stopped_or_traced(p));
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	return try_to_wake_up(p, TASK_NORMAL, 0);
 }
 EXPORT_SYMBOL(wake_up_process);
@@ -4354,13 +4454,19 @@ long sched_setaffinity(pid_t pid, const struct cpumask *in_mask)
 	struct task_struct *p;
 	int retval;
 
+<<<<<<< HEAD
 	get_online_cpus();
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	rcu_read_lock();
 
 	p = find_process_by_pid(pid);
 	if (!p) {
 		rcu_read_unlock();
+<<<<<<< HEAD
 		put_online_cpus();
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		return -ESRCH;
 	}
 
@@ -4417,7 +4523,10 @@ out_free_cpus_allowed:
 	free_cpumask_var(cpus_allowed);
 out_put_task:
 	put_task_struct(p);
+<<<<<<< HEAD
 	put_online_cpus();
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	return retval;
 }
 
@@ -4460,7 +4569,10 @@ long sched_getaffinity(pid_t pid, struct cpumask *mask)
 	unsigned long flags;
 	int retval;
 
+<<<<<<< HEAD
 	get_online_cpus();
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	rcu_read_lock();
 
 	retval = -ESRCH;
@@ -4473,12 +4585,19 @@ long sched_getaffinity(pid_t pid, struct cpumask *mask)
 		goto out_unlock;
 
 	raw_spin_lock_irqsave(&p->pi_lock, flags);
+<<<<<<< HEAD
 	cpumask_and(mask, &p->cpus_allowed, cpu_online_mask);
+=======
+	cpumask_and(mask, &p->cpus_allowed, cpu_active_mask);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	raw_spin_unlock_irqrestore(&p->pi_lock, flags);
 
 out_unlock:
 	rcu_read_unlock();
+<<<<<<< HEAD
 	put_online_cpus();
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	return retval;
 }
@@ -4902,7 +5021,12 @@ void show_state_filter(unsigned long state_filter)
 	touch_all_softlockup_watchdogs();
 
 #ifdef CONFIG_SYSRQ_SCHED_DEBUG
+<<<<<<< HEAD
 	sysrq_sched_debug_show();
+=======
+	if (!state_filter)
+		sysrq_sched_debug_show();
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 #endif
 	rcu_read_unlock();
 	/*
@@ -5424,6 +5548,10 @@ migration_call(struct notifier_block *nfb, unsigned long action, void *hcpu)
 
 	case CPU_UP_PREPARE:
 		rq->calc_load_update = calc_load_update;
+<<<<<<< HEAD
+=======
+		account_reset_rq(rq);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		break;
 
 	case CPU_ONLINE:
@@ -7083,14 +7211,20 @@ void __init sched_init_smp(void)
 
 	sched_init_numa();
 
+<<<<<<< HEAD
 	get_online_cpus();
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	mutex_lock(&sched_domains_mutex);
 	init_sched_domains(cpu_active_mask);
 	cpumask_andnot(non_isolated_cpus, cpu_possible_mask, cpu_isolated_map);
 	if (cpumask_empty(non_isolated_cpus))
 		cpumask_set_cpu(smp_processor_id(), non_isolated_cpus);
 	mutex_unlock(&sched_domains_mutex);
+<<<<<<< HEAD
 	put_online_cpus();
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	hotcpu_notifier(sched_domains_numa_masks_update, CPU_PRI_SCHED_ACTIVE);
 	hotcpu_notifier(cpuset_cpu_active, CPU_PRI_CPUSET_ACTIVE);
@@ -7196,10 +7330,15 @@ void __init sched_init(void)
 	int i, j;
 	unsigned long alloc_size = 0, ptr;
 
+<<<<<<< HEAD
 #ifdef CONFIG_SEC_DEBUG
 	sec_gaf_supply_rqinfo(offsetof(struct rq, curr),
 					offsetof(struct cfs_rq, rq));
 #endif
+=======
+	sec_gaf_supply_rqinfo(offsetof(struct rq, curr),
+					offsetof(struct cfs_rq, rq));
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 #ifdef CONFIG_FAIR_GROUP_SCHED
 	alloc_size += 2 * nr_cpu_ids * sizeof(void **);
@@ -8009,6 +8148,7 @@ static void cpu_cgroup_css_offline(struct cgroup *cgrp)
 	sched_offline_group(tg);
 }
 
+<<<<<<< HEAD
 static int
 cpu_cgroup_allow_attach(struct cgroup *cgrp, struct cgroup_taskset *tset)
 {
@@ -8026,6 +8166,8 @@ cpu_cgroup_allow_attach(struct cgroup *cgrp, struct cgroup_taskset *tset)
 	return 0;
 }
 
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 static int cpu_cgroup_can_attach(struct cgroup *cgrp,
 				 struct cgroup_taskset *tset)
 {
@@ -8415,7 +8557,11 @@ struct cgroup_subsys cpu_cgroup_subsys = {
 	.css_offline	= cpu_cgroup_css_offline,
 	.can_attach	= cpu_cgroup_can_attach,
 	.attach		= cpu_cgroup_attach,
+<<<<<<< HEAD
 	.allow_attach	= cpu_cgroup_allow_attach,
+=======
+	.allow_attach	= subsys_cgroup_allow_attach,
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	.exit		= cpu_cgroup_exit,
 	.subsys_id	= cpu_cgroup_subsys_id,
 	.base_cftypes	= cpu_files,

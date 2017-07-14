@@ -111,7 +111,11 @@ enum mpm_reg_offsets {
 	MSM_MPM_REG_STATUS,
 };
 
+<<<<<<< HEAD
 static DEFINE_SPINLOCK(msm_mpm_lock);
+=======
+static __refdata DEFINE_SPINLOCK(msm_mpm_lock);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 static uint32_t msm_mpm_enabled_irq[MSM_MPM_REG_WIDTH];
 static uint32_t msm_mpm_wake_irq[MSM_MPM_REG_WIDTH];
@@ -126,7 +130,11 @@ enum {
 	MSM_MPM_DEBUG_NON_DETECTABLE_IRQ_IDLE = BIT(3),
 };
 
+<<<<<<< HEAD
 static int msm_mpm_debug_mask = 1;
+=======
+static int msm_mpm_debug_mask __refdata = 0;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 module_param_named(
 	debug_mask, msm_mpm_debug_mask, int, S_IRUGO | S_IWUSR | S_IWGRP
 );
@@ -640,7 +648,11 @@ static void msm_mpm_work_fn(struct work_struct *work)
 	unsigned long flags;
 	while (1) {
 		bool allow;
+<<<<<<< HEAD
 		wait_for_completion(&wake_wq);
+=======
+		wait_for_completion_interruptible(&wake_wq);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		spin_lock_irqsave(&msm_mpm_lock, flags);
 		allow = msm_mpm_irqs_detectable(true) &&
 				msm_mpm_gpio_irqs_detectable(true);
@@ -760,6 +772,7 @@ static inline int mpm_irq_domain_legacy_size(struct irq_domain *d)
 	return d->revmap_data.legacy.size;
 }
 
+<<<<<<< HEAD
 static void __init __of_mpm_init(struct device_node *node)
 {
 	const __be32 *list;
@@ -794,6 +807,42 @@ static void __init __of_mpm_init(struct device_node *node)
 		},
 	};
 
+=======
+struct mpm_of {
+	char *pkey;
+	char *map;
+	char name[MAX_DOMAIN_NAME];
+	struct irq_chip *chip;
+	int (*get_max_irqs)(struct irq_domain *d);
+};
+
+static __initdata struct mpm_of mpm_of_map[MSM_MPM_NR_IRQ_DOMAINS] = {
+	{
+		"qcom,gic-parent",
+		"qcom,gic-map",
+		"gic",
+		&gic_arch_extn,
+		mpm_irq_domain_linear_size,
+	},
+	{
+		"qcom,gpio-parent",
+		"qcom,gpio-map",
+		"gpio",
+#ifdef CONFIG_USE_PINCTRL_IRQ
+		&mpm_tlmm_irq_extn,
+#else
+		&msm_gpio_irq_extn,
+#endif
+		mpm_irq_domain_legacy_size,
+	},
+};
+
+static void __init __of_mpm_init(struct device_node *node)
+{
+	const __be32 *list;
+	int i;
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	if (msm_mpm_initialized & MSM_MPM_IRQ_MAPPING_DONE) {
 		pr_warn("%s(): MPM driver mapping exists\n", __func__);
 		return;

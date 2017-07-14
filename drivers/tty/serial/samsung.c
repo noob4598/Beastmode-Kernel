@@ -534,11 +534,21 @@ static void s3c24xx_serial_pm(struct uart_port *port, unsigned int level,
 			      unsigned int old)
 {
 	struct s3c24xx_uart_port *ourport = to_ourport(port);
+<<<<<<< HEAD
+=======
+	int timeout = 10000;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	ourport->pm_level = level;
 
 	switch (level) {
 	case 3:
+<<<<<<< HEAD
+=======
+		while (--timeout && !s3c24xx_serial_txempty_nofifo(port))
+			udelay(100);
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		if (!IS_ERR(ourport->baudclk))
 			clk_disable_unprepare(ourport->baudclk);
 
@@ -720,6 +730,11 @@ static void s3c24xx_serial_set_termios(struct uart_port *port,
 	/* check to see if we need  to change clock source */
 
 	if (ourport->baudclk != clk) {
+<<<<<<< HEAD
+=======
+		clk_prepare_enable(clk);
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		s3c24xx_serial_setsource(port, clk_sel);
 
 		if (!IS_ERR(ourport->baudclk)) {
@@ -727,8 +742,11 @@ static void s3c24xx_serial_set_termios(struct uart_port *port,
 			ourport->baudclk = ERR_PTR(-EINVAL);
 		}
 
+<<<<<<< HEAD
 		clk_prepare_enable(clk);
 
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		ourport->baudclk = clk;
 		ourport->baudclk_rate = clk ? clk_get_rate(clk) : 0;
 	}

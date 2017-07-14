@@ -872,8 +872,13 @@ static ssize_t _debug_stats_read(struct file *file, char __user *buf,
 	int len;
 
 	len = _disp_stats();
+<<<<<<< HEAD
 
 	rc = simple_read_from_buffer((void __user *) buf, len,
+=======
+	if (len <= count)
+		rc = simple_read_from_buffer((void __user *) buf, len,
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 			ppos, (void *) _debug_read_buf, len);
 
 	return rc;

@@ -658,7 +658,11 @@ void on_each_cpu_cond(bool (*cond_func)(int cpu, void *info),
 			if (cond_func(cpu, info)) {
 				ret = smp_call_function_single(cpu, func,
 								info, wait);
+<<<<<<< HEAD
 				WARN_ON_ONCE(!ret);
+=======
+				WARN_ON_ONCE(ret);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 			}
 		preempt_enable();
 	}

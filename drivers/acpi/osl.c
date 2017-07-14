@@ -205,7 +205,11 @@ static int __init acpi_reserve_resources(void)
 
 	return 0;
 }
+<<<<<<< HEAD
 device_initcall(acpi_reserve_resources);
+=======
+fs_initcall_sync(acpi_reserve_resources);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 void acpi_os_printf(const char *fmt, ...)
 {

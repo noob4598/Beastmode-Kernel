@@ -365,7 +365,11 @@ static int osst_execute(struct osst_request *SRpnt, const unsigned char *cmd,
 	if (!req)
 		return DRIVER_ERROR << 24;
 
+<<<<<<< HEAD
 	req->cmd_type = REQ_TYPE_BLOCK_PC;
+=======
+	blk_rq_set_block_pc(req);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	req->cmd_flags |= REQ_QUIET;
 
 	SRpnt->bio = NULL;

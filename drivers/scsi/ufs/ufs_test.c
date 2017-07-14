@@ -22,7 +22,11 @@
 #include <scsi/scsi_device.h>
 #include <scsi/scsi_cmnd.h>
 #include <scsi/scsi_host.h>
+<<<<<<< HEAD
 #include "../sd.h"
+=======
+#include <../sd.h>
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 #include "ufshcd.h"
 #include "ufs.h"
 

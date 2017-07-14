@@ -110,6 +110,11 @@ void kgsl_pwrscale_update_stats(struct kgsl_device *device)
 		struct kgsl_power_stats stats;
 		device->ftbl->power_stats(device, &stats);
 		device->pwrscale.accum_stats.busy_time += stats.busy_time;
+<<<<<<< HEAD
+=======
+		device->pwrscale.accum_stats.ram_time += stats.ram_time;
+		device->pwrscale.accum_stats.ram_wait += stats.ram_wait;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	}
 }
 EXPORT_SYMBOL(kgsl_pwrscale_update_stats);
@@ -297,7 +302,10 @@ int kgsl_devfreq_get_dev_status(struct device *dev,
 		return -EINVAL;
 
 	pwrscale = &device->pwrscale;
+<<<<<<< HEAD
 	memset(stat, 0, sizeof(*stat));
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	kgsl_mutex_lock(&device->mutex, &device->mutex_owner);
 	/*

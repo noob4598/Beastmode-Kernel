@@ -678,6 +678,12 @@ static int deliver_to_subscribers(struct snd_seq_client *client,
 	else
 		down_read(&grp->list_mutex);
 	list_for_each_entry(subs, &grp->list_head, src_list) {
+<<<<<<< HEAD
+=======
+		/* both ports ready? */
+		if (atomic_read(&subs->ref_count) != 2)
+			continue;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		event->dest = subs->info.dest;
 		if (subs->info.flags & SNDRV_SEQ_PORT_SUBS_TIMESTAMP)
 			/* convert time according to flag with subscription */
@@ -1906,6 +1912,10 @@ static int snd_seq_ioctl_set_client_pool(struct snd_seq_client *client,
 	     info.output_pool != client->pool->size)) {
 		if (snd_seq_write_pool_allocated(client)) {
 			/* remove all existing cells */
+<<<<<<< HEAD
+=======
+			snd_seq_pool_mark_closing(client->pool);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 			snd_seq_queue_client_leave_cells(client->number);
 			snd_seq_pool_done(client->pool);
 		}
@@ -1950,7 +1960,11 @@ static int snd_seq_ioctl_remove_events(struct snd_seq_client *client,
 		 * No restrictions so for a user client we can clear
 		 * the whole fifo
 		 */
+<<<<<<< HEAD
 		if (client->type == USER_CLIENT)
+=======
+		if (client->type == USER_CLIENT && client->data.user.fifo)
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 			snd_seq_fifo_clear(client->data.user.fifo);
 	}
 

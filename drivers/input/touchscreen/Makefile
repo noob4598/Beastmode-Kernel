@@ -82,4 +82,8 @@ obj-$(CONFIG_TOUCHSCREEN_GT9XX)		+= gt9xx/
 obj-$(CONFIG_TOUCHSCREEN_SYNAPTICS_I2C_RMI)		+= synaptics/
 obj-$(CONFIG_TOUCHSCREEN_SYNAPTICS_I2C_RMI_G)		+= synaptics/
 obj-$(CONFIG_INPUT_WACOM) += wacom/
+<<<<<<< HEAD
 obj-$(CONFIG_TOUCHSCREEN_STM)		+= stm/
+=======
+obj-$(CONFIG_TOUCHSCREEN_STM)		+= stm/
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03

@@ -103,7 +103,11 @@ static unsigned fpos_off(loff_t p)
 /*
  * When possible, we try to satisfy a readdir by peeking at the
  * dcache.  We make this work by carefully ordering dentries on
+<<<<<<< HEAD
  * d_u.d_child when we initially get results back from the MDS, and
+=======
+ * d_child when we initially get results back from the MDS, and
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
  * falling back to a "normal" sync readdir if any dentries in the dir
  * are dropped.
  *
@@ -139,11 +143,19 @@ static int __dcache_readdir(struct file *filp,
 		p = parent->d_subdirs.prev;
 		dout(" initial p %p/%p\n", p->prev, p->next);
 	} else {
+<<<<<<< HEAD
 		p = last->d_u.d_child.prev;
 	}
 
 more:
 	dentry = list_entry(p, struct dentry, d_u.d_child);
+=======
+		p = last->d_child.prev;
+	}
+
+more:
+	dentry = list_entry(p, struct dentry, d_child);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	di = ceph_dentry(dentry);
 	while (1) {
 		dout(" p %p/%p %s d_subdirs %p/%p\n", p->prev, p->next,
@@ -165,7 +177,11 @@ more:
 		     !dentry->d_inode ? " null" : "");
 		spin_unlock(&dentry->d_lock);
 		p = p->prev;
+<<<<<<< HEAD
 		dentry = list_entry(p, struct dentry, d_u.d_child);
+=======
+		dentry = list_entry(p, struct dentry, d_child);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		di = ceph_dentry(dentry);
 	}
 

@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 /* Copyright (c) 2010-2013, The Linux Foundation. All rights reserved.
+=======
+/* Copyright (c) 2010-2016, The Linux Foundation. All rights reserved.
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -442,7 +446,11 @@ void apr_cb_func(void *buf, int len, void *priv)
 	pr_debug("\n*****************\n");
 
 	if (!buf || len <= APR_HDR_SIZE) {
+<<<<<<< HEAD
 		pr_err("APR: Improper apr pkt received:%p %d\n", buf, len);
+=======
+		pr_err("APR: Improper apr pkt received:%pK %d\n", buf, len);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		return;
 	}
 	hdr = buf;
@@ -528,7 +536,11 @@ void apr_cb_func(void *buf, int len, void *priv)
 		return;
 	}
 	pr_debug("svc_idx = %d\n", i);
+<<<<<<< HEAD
 	pr_debug("%x %x %x %p %p\n", c_svc->id, c_svc->dest_id,
+=======
+	pr_debug("%x %x %x %pK %pK\n", c_svc->id, c_svc->dest_id,
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		 c_svc->client_id, c_svc->fn, c_svc->priv);
 	data.payload_size = hdr->pkt_size - hdr_size;
 	data.opcode = hdr->opcode;
@@ -592,7 +604,11 @@ static void apr_reset_deregister(struct work_struct *work)
 			container_of(work, struct apr_reset_work, work);
 
 	handle = apr_reset->handle;
+<<<<<<< HEAD
 	pr_debug("%s:handle[%p]\n", __func__, handle);
+=======
+	pr_debug("%s:handle[%pK]\n", __func__, handle);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	apr_deregister(handle);
 	kfree(apr_reset);
 }
@@ -625,7 +641,11 @@ int apr_deregister(void *handle)
 		client[dest_id][client_id].svc_cnt--;
 		if (!client[dest_id][client_id].svc_cnt) {
 			svc->need_reset = 0x0;
+<<<<<<< HEAD
 			pr_debug("%s: service is reset %p\n", __func__, svc);
+=======
+			pr_debug("%s: service is reset %pK\n", __func__, svc);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		}
 	}
 
@@ -653,7 +673,11 @@ void apr_reset(void *handle)
 
 	if (!handle)
 		return;
+<<<<<<< HEAD
 	pr_debug("%s: handle[%p]\n", __func__, handle);
+=======
+	pr_debug("%s: handle[%pK]\n", __func__, handle);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	if (apr_reset_workqueue == NULL) {
 		pr_err("%s: apr_reset_workqueue is NULL\n", __func__);

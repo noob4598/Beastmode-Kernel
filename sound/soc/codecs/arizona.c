@@ -1057,7 +1057,11 @@ static int arizona_hw_params(struct snd_pcm_substream *substream,
 	int chan_limit = arizona->pdata.max_channels_clocked[dai->id - 1];
 	int bclk, lrclk, wl, frame, bclk_target;
 
+<<<<<<< HEAD
 	if (params_rate(params) % 8000)
+=======
+	if (params_rate(params) % 4000)
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		rates = &arizona_44k1_bclk_rates[0];
 	else
 		rates = &arizona_48k_bclk_rates[0];

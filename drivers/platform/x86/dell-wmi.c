@@ -163,18 +163,36 @@ static void dell_wmi_notify(u32 value, void *context)
 		const struct key_entry *key;
 		int reported_key;
 		u16 *buffer_entry = (u16 *)obj->buffer.pointer;
+<<<<<<< HEAD
 
 		if (dell_new_hk_type && (buffer_entry[1] != 0x10)) {
+=======
+		int buffer_size = obj->buffer.length/2;
+
+		if (buffer_size >= 2 && dell_new_hk_type && buffer_entry[1] != 0x10) {
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 			pr_info("Received unknown WMI event (0x%x)\n",
 				buffer_entry[1]);
 			kfree(obj);
 			return;
 		}
 
+<<<<<<< HEAD
 		if (dell_new_hk_type || buffer_entry[1] == 0x0)
 			reported_key = (int)buffer_entry[2];
 		else
 			reported_key = (int)buffer_entry[1] & 0xffff;
+=======
+		if (buffer_size >= 3 && (dell_new_hk_type || buffer_entry[1] == 0x0))
+			reported_key = (int)buffer_entry[2];
+		else if (buffer_size >= 2)
+			reported_key = (int)buffer_entry[1] & 0xffff;
+		else {
+			pr_info("Received unknown WMI event\n");
+			kfree(obj);
+			return;
+		}
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 		key = sparse_keymap_entry_from_scancode(dell_wmi_input_dev,
 							reported_key);

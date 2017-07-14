@@ -495,8 +495,15 @@ static void skip_emulated_instruction(struct kvm_vcpu *vcpu)
 {
 	struct vcpu_svm *svm = to_svm(vcpu);
 
+<<<<<<< HEAD
 	if (svm->vmcb->control.next_rip != 0)
 		svm->next_rip = svm->vmcb->control.next_rip;
+=======
+	if (svm->vmcb->control.next_rip != 0) {
+		WARN_ON_ONCE(!static_cpu_has(X86_FEATURE_NRIPS));
+		svm->next_rip = svm->vmcb->control.next_rip;
+	}
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	if (!svm->next_rip) {
 		if (emulate_instruction(vcpu, EMULTYPE_SKIP) !=
@@ -3196,7 +3203,11 @@ static int wrmsr_interception(struct vcpu_svm *svm)
 	msr.host_initiated = false;
 
 	svm->next_rip = kvm_rip_read(&svm->vcpu) + 2;
+<<<<<<< HEAD
 	if (svm_set_msr(&svm->vcpu, &msr)) {
+=======
+	if (kvm_set_msr(&svm->vcpu, &msr)) {
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		trace_kvm_msr_write_ex(ecx, data);
 		kvm_inject_gp(&svm->vcpu, 0);
 	} else {
@@ -3478,9 +3489,15 @@ static int handle_exit(struct kvm_vcpu *vcpu)
 
 	if (exit_code >= ARRAY_SIZE(svm_exit_handlers)
 	    || !svm_exit_handlers[exit_code]) {
+<<<<<<< HEAD
 		kvm_run->exit_reason = KVM_EXIT_UNKNOWN;
 		kvm_run->hw.hardware_exit_reason = exit_code;
 		return 0;
+=======
+		WARN_ONCE(1, "vmx: unexpected exit reason 0x%x\n", exit_code);
+		kvm_queue_exception(vcpu, UD_VECTOR);
+		return 1;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	}
 
 	return svm_exit_handlers[exit_code](svm);
@@ -4229,7 +4246,13 @@ static int svm_check_intercept(struct kvm_vcpu *vcpu,
 		break;
 	}
 
+<<<<<<< HEAD
 	vmcb->control.next_rip  = info->next_rip;
+=======
+	/* TODO: Advertise NRIPS to guest hypervisor unconditionally */
+	if (static_cpu_has(X86_FEATURE_NRIPS))
+		vmcb->control.next_rip  = info->next_rip;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	vmcb->control.exit_code = icpt_info.exit_code;
 	vmexit = nested_svm_exit_handled(svm);
 

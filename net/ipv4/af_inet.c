@@ -133,6 +133,11 @@ static inline int current_has_network(void)
 }
 #endif
 
+<<<<<<< HEAD
+=======
+int sysctl_reserved_port_bind __read_mostly = 1;
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 /* The inetsw table contains everything that inet_create needs to
  * build a new socket.
  */

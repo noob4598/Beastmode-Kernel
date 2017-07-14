@@ -491,8 +491,19 @@ int hibernation_restore(int platform_mode)
 	error = dpm_suspend_start(PMSG_QUIESCE);
 	if (!error) {
 		error = resume_target_kernel(platform_mode);
+<<<<<<< HEAD
 		dpm_resume_end(PMSG_RECOVER);
 	}
+=======
+		/*
+		 * The above should either succeed and jump to the new kernel,
+		 * or return with an error. Otherwise things are just
+		 * undefined, so let's be paranoid.
+		 */
+		BUG_ON(!error);
+	}
+	dpm_resume_end(PMSG_RECOVER);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	pm_restore_gfp_mask();
 	ftrace_start();
 	resume_console();

@@ -625,6 +625,7 @@ static void sync_pt_log(struct sync_pt *pt)
 }
 
 
+<<<<<<< HEAD
 #if defined(CONFIG_FB_MSM_MDSS_FENCE_DBG)
 #define FENCE_DEBUG_TIMEOUT 3000
 void kmsg_sync_print_pt(struct sync_pt *pt, bool fence)
@@ -742,6 +743,8 @@ int kmsg_sync_debugfs_show(void)
 }
 #endif
 
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 void sync_fence_log(struct sync_fence *fence)
 {
 	struct list_head *pos;
@@ -795,6 +798,7 @@ int sync_fence_wait(struct sync_fence *fence, long timeout)
 		return err;
 
 	if (fence->status < 0) {
+<<<<<<< HEAD
 		pr_info("fence error %d on [%p]\n", fence->status, fence);
 		sync_fence_log(fence);
 #if defined(CONFIG_FB_MSM_MDSS_FENCE_DBG)
@@ -804,11 +808,16 @@ int sync_fence_wait(struct sync_fence *fence, long timeout)
 			pr_info("<<<<<<<<<<<<<<<<<<<<<<<<<<< END : dump whole sync_pt for debug purpose");
 		}
 #endif
+=======
+		pr_info("fence error %d on [%pK]\n", fence->status, fence);
+		sync_fence_log(fence);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		return fence->status;
 	}
 
 	if (fence->status == 0) {
 		if (timeout > 0) {
+<<<<<<< HEAD
 			pr_info("fence timeout on [%p] after %dms\n", fence,
 				jiffies_to_msecs(timeout));
 			sync_fence_log(fence);
@@ -819,6 +828,11 @@ int sync_fence_wait(struct sync_fence *fence, long timeout)
 				pr_info("<<<<<<<<<<<<<<<<<<<<<<<<<<< END : dump whole sync_pt for debug purpose");
 			}
 #endif
+=======
+			pr_info("fence timeout on [%pK] after %dms\n", fence,
+				jiffies_to_msecs(timeout));
+			sync_fence_log(fence);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		}
 		return -ETIME;
 	}
@@ -1102,7 +1116,11 @@ static void sync_print_fence(struct seq_file *s, struct sync_fence *fence)
 	struct list_head *pos;
 	unsigned long flags;
 
+<<<<<<< HEAD
 	seq_printf(s, "[%p] %s: %s\n", fence, fence->name,
+=======
+	seq_printf(s, "[%pK] %s: %s\n", fence, fence->name,
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		   sync_status_str(fence->status));
 
 	list_for_each(pos, &fence->pt_list_head) {

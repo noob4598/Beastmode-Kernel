@@ -51,7 +51,10 @@
 struct rfkill {
 	spinlock_t		lock;
 
+<<<<<<< HEAD
 	const char		*name;
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	enum rfkill_type	type;
 
 	unsigned long		state;
@@ -75,6 +78,10 @@ struct rfkill {
 	struct delayed_work	poll_work;
 	struct work_struct	uevent_work;
 	struct work_struct	sync_work;
+<<<<<<< HEAD
+=======
+	char			name[];
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 };
 #define to_rfkill(d)	container_of(d, struct rfkill, dev)
 
@@ -875,14 +882,22 @@ struct rfkill * __must_check rfkill_alloc(const char *name,
 	if (WARN_ON(type == RFKILL_TYPE_ALL || type >= NUM_RFKILL_TYPES))
 		return NULL;
 
+<<<<<<< HEAD
 	rfkill = kzalloc(sizeof(*rfkill), GFP_KERNEL);
+=======
+	rfkill = kzalloc(sizeof(*rfkill) + strlen(name) + 1, GFP_KERNEL);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	if (!rfkill)
 		return NULL;
 
 	spin_lock_init(&rfkill->lock);
 	INIT_LIST_HEAD(&rfkill->node);
 	rfkill->type = type;
+<<<<<<< HEAD
 	rfkill->name = name;
+=======
+	strcpy(rfkill->name, name);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	rfkill->ops = ops;
 	rfkill->data = ops_data;
 
@@ -1092,6 +1107,7 @@ static unsigned int rfkill_fop_poll(struct file *file, poll_table *wait)
 	return res;
 }
 
+<<<<<<< HEAD
 static bool rfkill_readable(struct rfkill_data *data)
 {
 	bool r;
@@ -1103,6 +1119,8 @@ static bool rfkill_readable(struct rfkill_data *data)
 	return r;
 }
 
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 static ssize_t rfkill_fop_read(struct file *file, char __user *buf,
 			       size_t count, loff_t *pos)
 {
@@ -1119,8 +1137,16 @@ static ssize_t rfkill_fop_read(struct file *file, char __user *buf,
 			goto out;
 		}
 		mutex_unlock(&data->mtx);
+<<<<<<< HEAD
 		ret = wait_event_interruptible(data->read_wait,
 					       rfkill_readable(data));
+=======
+		/* since we re-check and it just compares pointers,
+		 * using !list_empty() without locking isn't a problem
+		 */
+		ret = wait_event_interruptible(data->read_wait,
+					       !list_empty(&data->events));
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		mutex_lock(&data->mtx);
 
 		if (ret)

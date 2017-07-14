@@ -20,10 +20,17 @@
 #endif
 
 #if defined(CONFIG_SEC_TRLTE_PROJECT) || defined(CONFIG_SEC_TBLTE_PROJECT)
+<<<<<<< HEAD
 #define SSP_FIRMWARE_REVISION		16030700
 #define BL_FW_NAME			"ssp_at_tr.fw"
 #else
 #define SSP_FIRMWARE_REVISION		15120300
+=======
+#define SSP_FIRMWARE_REVISION		15102300
+#define BL_FW_NAME			"ssp_at_tr.fw"
+#else
+#define SSP_FIRMWARE_REVISION		16031400
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 #define BL_FW_NAME			"ssp_at.fw"
 #endif
 

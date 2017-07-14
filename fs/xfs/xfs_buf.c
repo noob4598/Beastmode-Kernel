@@ -428,6 +428,10 @@ retry:
 out_free_pages:
 	for (i = 0; i < bp->b_page_count; i++)
 		__free_page(bp->b_pages[i]);
+<<<<<<< HEAD
+=======
+	bp->b_flags &= ~_XBF_PAGES;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	return error;
 }
 

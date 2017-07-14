@@ -240,6 +240,10 @@ armpmu_add(struct perf_event *event, int flags)
 			pr_err("Event: %llx failed constraint check.\n",
 					event->attr.config);
 			event->state = PERF_EVENT_STATE_OFF;
+<<<<<<< HEAD
+=======
+			err = -EPERM;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 			goto out;
 		}
 
@@ -271,21 +275,44 @@ out:
 }
 
 static int
+<<<<<<< HEAD
 validate_event(struct pmu_hw_events *hw_events,
 	       struct perf_event *event)
 {
 	struct arm_pmu *armpmu = to_arm_pmu(event->pmu);
+=======
+validate_event(struct pmu *pmu, struct pmu_hw_events *hw_events,
+			       struct perf_event *event)
+{
+	struct arm_pmu *armpmu;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	struct pmu *leader_pmu = event->group_leader->pmu;
 
 	if (is_software_event(event))
 		return 1;
 
+<<<<<<< HEAD
 	if (event->pmu != leader_pmu || event->state < PERF_EVENT_STATE_OFF)
+=======
+	/*
+	 * Reject groups spanning multiple HW PMUs (e.g. CPU + CCI). The
+	 * core perf code won't check that the pmu->ctx == leader->ctx
+	 * until after pmu->event_init(event).
+	 */
+	if (event->pmu != pmu)
+		return 0;
+
+        if (event->pmu != leader_pmu || event->state < PERF_EVENT_STATE_OFF)
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		return 1;
 
 	if (event->state == PERF_EVENT_STATE_OFF && !event->attr.enable_on_exec)
 		return 1;
 
+<<<<<<< HEAD
+=======
+	armpmu = to_arm_pmu(event->pmu);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	return armpmu->get_event_idx(hw_events, event) >= 0;
 }
 
@@ -303,6 +330,7 @@ validate_group(struct perf_event *event)
 	memset(fake_used_mask, 0, sizeof(fake_used_mask));
 	fake_pmu.used_mask = fake_used_mask;
 
+<<<<<<< HEAD
 	if (!validate_event(&fake_pmu, leader))
 		return -EINVAL;
 
@@ -312,6 +340,17 @@ validate_group(struct perf_event *event)
 	}
 
 	if (!validate_event(&fake_pmu, event))
+=======
+	if (!validate_event(event->pmu, &fake_pmu, leader))
+		return -EINVAL;
+
+	list_for_each_entry(sibling, &leader->sibling_list, group_entry) {
+		if (!validate_event(event->pmu, &fake_pmu, sibling))
+			return -EINVAL;
+	}
+
+	if (!validate_event(event->pmu, &fake_pmu, event))
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		return -EINVAL;
 
 	return 0;
@@ -322,11 +361,26 @@ static irqreturn_t armpmu_dispatch_irq(int irq, void *dev)
 	struct arm_pmu *armpmu = *(struct arm_pmu **) dev;
 	struct platform_device *plat_device = armpmu->plat_device;
 	struct arm_pmu_platdata *plat = dev_get_platdata(&plat_device->dev);
+<<<<<<< HEAD
 
 	if (plat && plat->handle_irq)
 		return plat->handle_irq(irq, armpmu, armpmu->handle_irq);
 	else
 		return armpmu->handle_irq(irq, armpmu);
+=======
+	int ret;
+	u64 start_clock, finish_clock;
+
+	start_clock = sched_clock();
+	if (plat && plat->handle_irq)
+		ret = plat->handle_irq(irq, armpmu, armpmu->handle_irq);
+	else
+		ret = armpmu->handle_irq(irq, armpmu);
+	finish_clock = sched_clock();
+
+	perf_sample_event_took(finish_clock - start_clock);
+	return ret;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 }
 
 static int

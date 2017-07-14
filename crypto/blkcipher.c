@@ -243,6 +243,11 @@ static int blkcipher_walk_next(struct blkcipher_desc *desc,
 		return blkcipher_walk_done(desc, walk, -EINVAL);
 	}
 
+<<<<<<< HEAD
+=======
+	bsize = min(walk->blocksize, n);
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	walk->flags &= ~(BLKCIPHER_WALK_SLOW | BLKCIPHER_WALK_COPY |
 			 BLKCIPHER_WALK_DIFF);
 	if (!scatterwalk_aligned(&walk->in, alignmask) ||
@@ -255,7 +260,10 @@ static int blkcipher_walk_next(struct blkcipher_desc *desc,
 		}
 	}
 
+<<<<<<< HEAD
 	bsize = min(walk->blocksize, n);
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	n = scatterwalk_clamp(&walk->in, n);
 	n = scatterwalk_clamp(&walk->out, n);
 
@@ -477,6 +485,10 @@ static int crypto_init_blkcipher_ops_async(struct crypto_tfm *tfm)
 	}
 	crt->base = __crypto_ablkcipher_cast(tfm);
 	crt->ivsize = alg->ivsize;
+<<<<<<< HEAD
+=======
+	crt->has_setkey = alg->max_keysize;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	return 0;
 }

@@ -1049,6 +1049,11 @@ int vmw_event_fence_action_create(struct drm_file *file_priv,
 	if (ret != 0)
 		goto out_no_queue;
 
+<<<<<<< HEAD
+=======
+	return 0;
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 out_no_queue:
 	event->base.destroy(&event->base);
 out_no_event:
@@ -1123,6 +1128,7 @@ int vmw_fence_event_ioctl(struct drm_device *dev, void *data,
 
 	BUG_ON(fence == NULL);
 
+<<<<<<< HEAD
 	if (arg->flags & DRM_VMW_FE_FLAG_REQ_TIME)
 		ret = vmw_event_fence_action_create(file_priv, fence,
 						    arg->flags,
@@ -1134,6 +1140,12 @@ int vmw_fence_event_ioctl(struct drm_device *dev, void *data,
 						    arg->user_data,
 						    true);
 
+=======
+	ret = vmw_event_fence_action_create(file_priv, fence,
+					    arg->flags,
+					    arg->user_data,
+					    true);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	if (unlikely(ret != 0)) {
 		if (ret != -ERESTARTSYS)
 			DRM_ERROR("Failed to attach event to fence.\n");

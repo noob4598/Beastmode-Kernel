@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 /*  Copyright (c) 2012-2014, The Linux Foundation. All rights reserved.
+=======
+/*  Copyright (c) 2012-2016, The Linux Foundation. All rights reserved.
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -335,7 +339,11 @@ static struct voice_data *voice_get_session(u32 session_id)
 		break;
 	}
 
+<<<<<<< HEAD
 	pr_debug("%s:session_id 0x%x session handle %p\n",
+=======
+	pr_debug("%s:session_id 0x%x session handle %pK\n",
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		__func__, session_id, v);
 
 	return v;
@@ -2998,8 +3006,14 @@ int voc_map_rtac_block(struct rtac_cal_block_data *cal_block)
 	if (!is_rtac_memory_allocated()) {
 		result = voice_alloc_rtac_mem_map_table();
 		if (result < 0) {
+<<<<<<< HEAD
 			pr_err("%s: RTAC alloc mem map table did not work! addr = 0x%pa, size = %d\n",
 				__func__, &cal_block->cal_data.paddr,
+=======
+			pr_err("%s: RTAC alloc mem map table did not work! addr = 0x%pK, size = %d\n",
+				__func__,
+				&cal_block->cal_data.paddr,
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 				cal_block->map_data.map_size);
 
 			goto done_unlock;
@@ -3012,10 +3026,17 @@ int voc_map_rtac_block(struct rtac_cal_block_data *cal_block)
 		cal_block->map_data.map_size,
 		VOC_RTAC_MEM_MAP_TOKEN);
 	if (result < 0) {
+<<<<<<< HEAD
 		pr_debug("%s: mmap failed for %pa\n", __func__,
 			&cal_block->cal_data.paddr);
 		pr_err("%s: RTAC mmap did not work! size = %d\n",
 			__func__, cal_block->map_data.map_size);
+=======
+		pr_err("%s: RTAC mmap did not work! addr = 0x%pK, size = %d\n",
+			__func__,
+			&cal_block->cal_data.paddr,
+			cal_block->map_data.map_size);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 		free_rtac_map_table();
 		goto done_unlock;
@@ -4030,7 +4051,10 @@ static int voice_cvs_start_record(struct voice_data *v, uint32_t rec_mode)
 		// INCALL_RECORD_RX => 0x8004
 		/*cvs_start_record.rec_mode.port_id =
 					VSS_IRECORD_PORT_ID_DEFAULT; */
+<<<<<<< HEAD
 
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		cvs_start_record.rec_mode.port_id =
 					VSS_IRECORD_PORT_ID_TX_RX;
 		if (rec_mode == VOC_REC_UPLINK) {
@@ -4176,7 +4200,11 @@ int voc_start_record(uint32_t port_id, uint32_t set, uint32_t session_id)
 
 			break;
 		}
+<<<<<<< HEAD
 		pr_debug("%s: port_id: %d, set: %d, v: %p\n",
+=======
+		pr_debug("%s: port_id: %d, set: %d, v: %pK\n",
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 			 __func__, port_id, set, v);
 
 		mutex_lock(&v->lock);
@@ -6111,12 +6139,20 @@ static int voice_alloc_oob_shared_mem(void)
 		cnt++;
 	}
 
+<<<<<<< HEAD
 	pr_debug("%s buf[0].data:[%p], buf[0].phys:[%pa], &buf[0].phys:[%p],\n",
+=======
+	pr_debug("%s buf[0].data:[%pK], buf[0].phys:[%pK], &buf[0].phys:[%pK],\n",
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		 __func__,
 		(void *)v->shmem_info.sh_buf.buf[0].data,
 		&v->shmem_info.sh_buf.buf[0].phys,
 		(void *)&v->shmem_info.sh_buf.buf[0].phys);
+<<<<<<< HEAD
 	pr_debug("%s: buf[1].data:[%p], buf[1].phys[%pa], &buf[1].phys[%p]\n",
+=======
+	pr_debug("%s: buf[1].data:[%pK], buf[1].phys[%pK], &buf[1].phys[%pK]\n",
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		__func__,
 		(void *)v->shmem_info.sh_buf.buf[1].data,
 		&v->shmem_info.sh_buf.buf[1].phys,
@@ -6158,7 +6194,11 @@ static int voice_alloc_oob_mem_table(void)
 	}
 
 	v->shmem_info.memtbl.size = sizeof(struct vss_imemory_table_t);
+<<<<<<< HEAD
 	pr_debug("%s data[%p]phys[%pa][%p]\n", __func__,
+=======
+	pr_debug("%s data[%pK]phys[%pK][%pK]\n", __func__,
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		 (void *)v->shmem_info.memtbl.data,
 		 &v->shmem_info.memtbl.phys,
 		 (void *)&v->shmem_info.memtbl.phys);
@@ -6408,7 +6448,11 @@ static int voice_alloc_cal_mem_map_table(void)
 	}
 
 	common.cal_mem_map_table.size = sizeof(struct vss_imemory_table_t);
+<<<<<<< HEAD
 	pr_debug("%s: data %p phys %pa\n", __func__,
+=======
+	pr_debug("%s: data %pK phys %pK\n", __func__,
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		 common.cal_mem_map_table.data,
 		 &common.cal_mem_map_table.phys);
 
@@ -6435,7 +6479,11 @@ static int voice_alloc_rtac_mem_map_table(void)
 	}
 
 	common.rtac_mem_map_table.size = sizeof(struct vss_imemory_table_t);
+<<<<<<< HEAD
 	pr_debug("%s: data %p phys %pa\n", __func__,
+=======
+	pr_debug("%s: data %pK phys %pK\n", __func__,
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		 common.rtac_mem_map_table.data,
 		 &common.rtac_mem_map_table.phys);
 

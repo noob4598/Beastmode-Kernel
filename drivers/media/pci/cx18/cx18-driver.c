@@ -1092,6 +1092,10 @@ static int cx18_probe(struct pci_dev *pci_dev,
 		setup.addr = ADDR_UNSET;
 		setup.type = cx->options.tuner;
 		setup.mode_mask = T_ANALOG_TV;  /* matches TV tuners */
+<<<<<<< HEAD
+=======
+		setup.config = NULL;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		if (cx->options.radio > 0)
 			setup.mode_mask |= T_RADIO;
 		setup.tuner_callback = (setup.type == TUNER_XC2028) ?

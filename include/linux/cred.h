@@ -68,6 +68,10 @@ extern void groups_free(struct group_info *);
 extern int set_current_groups(struct group_info *);
 extern int set_groups(struct cred *, struct group_info *);
 extern int groups_search(const struct group_info *, kgid_t);
+<<<<<<< HEAD
+=======
+extern bool may_setgroups(void);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 /* access the groups "array" with this macro */
 #define GROUP_AT(gi, i) \
@@ -365,7 +369,14 @@ extern struct user_namespace init_user_ns;
 #ifdef CONFIG_USER_NS
 #define current_user_ns()	(current_cred_xxx(user_ns))
 #else
+<<<<<<< HEAD
 #define current_user_ns()	(&init_user_ns)
+=======
+static inline struct user_namespace *current_user_ns(void)
+{
+	return &init_user_ns;
+}
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 #endif
 
 

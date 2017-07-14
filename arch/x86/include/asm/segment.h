@@ -212,8 +212,24 @@
 #define TLS_SIZE (GDT_ENTRY_TLS_ENTRIES * 8)
 
 #ifdef __KERNEL__
+<<<<<<< HEAD
 #ifndef __ASSEMBLY__
 extern const char early_idt_handlers[NUM_EXCEPTION_VECTORS][2+2+5];
+=======
+
+/*
+ * early_idt_handler_array is an array of entry points referenced in the
+ * early IDT.  For simplicity, it's a real array with one entry point
+ * every nine bytes.  That leaves room for an optional 'push $0' if the
+ * vector has no error code (two bytes), a 'push $vector_number' (two
+ * bytes), and a jump to the common entry code (up to five bytes).
+ */
+#define EARLY_IDT_HANDLER_SIZE 9
+
+#ifndef __ASSEMBLY__
+
+extern const char early_idt_handler_array[NUM_EXCEPTION_VECTORS][EARLY_IDT_HANDLER_SIZE];
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 /*
  * Load a segment. Fall back on loading the zero

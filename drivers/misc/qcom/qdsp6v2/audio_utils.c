@@ -23,6 +23,18 @@
 #include <asm/ioctls.h>
 #include "audio_utils.h"
 
+<<<<<<< HEAD
+=======
+/*
+ * Define maximum buffer size. Below values are chosen considering the higher
+ * values used among all native drivers.
+ */
+#define MAX_FRAME_SIZE	1536
+#define MAX_FRAMES	5
+#define META_SIZE	(sizeof(struct meta_out_dsp))
+#define MAX_BUFFER_SIZE	(1 + ((MAX_FRAME_SIZE + META_SIZE) * MAX_FRAMES))
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 static int audio_in_pause(struct q6audio_in  *audio)
 {
 	int rc;
@@ -258,6 +270,13 @@ long audio_in_ioctl(struct file *file,
 			rc = -EINVAL;
 			break;
 		}
+<<<<<<< HEAD
+=======
+		if (cfg.buffer_size > MAX_BUFFER_SIZE) {
+			rc = -EINVAL;
+			break;
+		}
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		audio->str_cfg.buffer_size = cfg.buffer_size;
 		audio->str_cfg.buffer_count = cfg.buffer_count;
 		if (audio->opened) {

@@ -138,9 +138,12 @@ irqreturn_t mdss_mdp_isr(int irq, void *ptr)
 
 
 	mask = readl_relaxed(mdata->mdp_base + MDSS_MDP_REG_INTR_EN);
+<<<<<<< HEAD
 #if 0 //defined (CONFIG_FB_MSM_MDSS_DSI_DBG)
 	xlog(__func__, isr , mask, 0, 0, 0, 0);
 #endif
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	writel_relaxed(isr, mdata->mdp_base + MDSS_MDP_REG_INTR_CLEAR);
 
 	pr_debug("%s: isr=%x mask=%x\n", __func__, isr, mask);
@@ -497,7 +500,11 @@ static int mdss_mdp_put_img(struct mdss_mdp_img_data *data)
 		pr_debug("pmem buf=0x%pa\n", &data->addr);
 		data->srcp_file = NULL;
 	} else if (!IS_ERR_OR_NULL(data->srcp_ihdl)) {
+<<<<<<< HEAD
 		pr_debug("ion hdl=%p buf=0x%pa\n", data->srcp_ihdl,
+=======
+		pr_debug("ion hdl=%pK buf=0x%pa\n", data->srcp_ihdl,
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 							&data->addr);
 		if (!iclient) {
 			pr_err("invalid ion client\n");
@@ -593,8 +600,14 @@ static int mdss_mdp_get_img(struct msmfb_data *img,
 		data->addr += data->offset;
 		data->len -= data->offset;
 
+<<<<<<< HEAD
 		pr_debug("mem=%d ihdl=%p buf=0x%pa len=0x%lu\n", img->memory_id,
 			 data->srcp_ihdl, &data->addr, data->len);
+=======
+		pr_debug("mem=%d ihdl=%pK buf=0x%pa len=0x%lx\n",
+			 img->memory_id, data->srcp_ihdl, &data->addr,
+			 data->len);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	} else {
 		mdss_mdp_put_img(data);
 		return ret ? : -EOVERFLOW;
@@ -659,7 +672,11 @@ static int mdss_mdp_map_buffer(struct mdss_mdp_img_data *data)
 		data->addr += data->offset;
 		data->len -= data->offset;
 
+<<<<<<< HEAD
 		pr_debug("ihdl=%p buf=0x%pa len=0x%lu\n",
+=======
+		pr_debug("ihdl=%pK buf=0x%pa len=0x%lx\n",
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 			 data->srcp_ihdl, &data->addr, data->len);
 	} else {
 		mdss_mdp_put_img(data);

@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 /* Copyright (c) 2012-2013, The Linux Foundation. All rights reserved.
+=======
+/* Copyright (c) 2012-2014, 2016 The Linux Foundation. All rights reserved.
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -120,6 +124,12 @@ struct spmi_resource {
  *  @dev_node: array of SPMI resources when used with spmi-dev-container.
  *  @num_dev_node: number of device_node structures.
  *  @sid: Slave Identifier.
+<<<<<<< HEAD
+=======
+ *  @id: Unique identifier to differentiate from other spmi devices with
+ *       possibly same name.
+ *
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
  */
 struct spmi_device {
 	struct device		dev;
@@ -129,6 +139,10 @@ struct spmi_device {
 	struct spmi_resource	*dev_node;
 	u32			num_dev_node;
 	u8			sid;
+<<<<<<< HEAD
+=======
+	int			id;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 };
 #define to_spmi_device(d) container_of(d, struct spmi_device, dev)
 

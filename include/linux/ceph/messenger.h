@@ -157,7 +157,11 @@ struct ceph_msg {
 	bool front_is_vmalloc;
 	bool more_to_follow;
 	bool needs_out_seq;
+<<<<<<< HEAD
 	int front_max;
+=======
+	int front_alloc_len;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	unsigned long ack_stamp;        /* tx: when we were acked */
 
 	struct ceph_msgpool *pool;

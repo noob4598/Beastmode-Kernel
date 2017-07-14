@@ -173,7 +173,10 @@ int kgsl_add_fence_event(struct kgsl_device *device,
 		ret = priv.fence_fd;
 		goto unlock;
 	}
+<<<<<<< HEAD
 	sync_fence_install(fence, priv.fence_fd);
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	/* Unlock the mutex before copying to user */
 	kgsl_mutex_unlock(&device->mutex, &device->mutex_owner);
@@ -193,6 +196,11 @@ int kgsl_add_fence_event(struct kgsl_device *device,
 	if (ret)
 		goto out;
 
+<<<<<<< HEAD
+=======
+	sync_fence_install(fence, priv.fence_fd);
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	return 0;
 
 unlock:

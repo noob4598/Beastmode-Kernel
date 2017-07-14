@@ -120,6 +120,10 @@ static struct request *get_alua_req(struct scsi_device *sdev,
 			    "%s: blk_get_request failed\n", __func__);
 		return NULL;
 	}
+<<<<<<< HEAD
+=======
+	blk_rq_set_block_pc(rq);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	if (buflen && blk_rq_map_kern(q, rq, buffer, buflen, GFP_NOIO)) {
 		blk_put_request(rq);
@@ -128,7 +132,10 @@ static struct request *get_alua_req(struct scsi_device *sdev,
 		return NULL;
 	}
 
+<<<<<<< HEAD
 	rq->cmd_type = REQ_TYPE_BLOCK_PC;
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	rq->cmd_flags |= REQ_FAILFAST_DEV | REQ_FAILFAST_TRANSPORT |
 			 REQ_FAILFAST_DRIVER;
 	rq->retries = ALUA_FAILOVER_RETRIES;

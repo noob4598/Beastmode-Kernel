@@ -21,6 +21,10 @@
 #include "msm_sd.h"
 
 #define MAX_CSIPHY 3
+<<<<<<< HEAD
+=======
+#define CSIPHY_NUM_CLK_MAX  16
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 enum msm_csiphy_state_t {
 	CSIPHY_POWER_UP,
@@ -42,10 +46,19 @@ struct csiphy_device {
 	uint32_t hw_version;
 	enum msm_csiphy_state_t csiphy_state;
 
+<<<<<<< HEAD
 	struct clk *csiphy_clk[8];
 
 	int32_t ref_count;
 	uint16_t lane_mask[MAX_CSIPHY];
+=======
+	struct clk *csiphy_clk[CSIPHY_NUM_CLK_MAX];
+
+	int32_t ref_count;
+	uint16_t lane_mask[MAX_CSIPHY];
+	struct regulator *csi_vdd;
+	struct regulator *reg_ptr;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 };
 
 #define VIDIOC_MSM_CSIPHY_RELEASE \

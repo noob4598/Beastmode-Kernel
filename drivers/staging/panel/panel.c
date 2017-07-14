@@ -275,11 +275,19 @@ static unsigned char lcd_bits[LCD_PORTS][LCD_BITS][BIT_STATES];
  * LCD types
  */
 #define LCD_TYPE_NONE		0
+<<<<<<< HEAD
 #define LCD_TYPE_OLD		1
 #define LCD_TYPE_KS0074		2
 #define LCD_TYPE_HANTRONIX	3
 #define LCD_TYPE_NEXCOM		4
 #define LCD_TYPE_CUSTOM		5
+=======
+#define LCD_TYPE_CUSTOM		1
+#define LCD_TYPE_OLD		2
+#define LCD_TYPE_KS0074		3
+#define LCD_TYPE_HANTRONIX	4
+#define LCD_TYPE_NEXCOM		5
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 /*
  * keypad types
@@ -457,8 +465,12 @@ MODULE_PARM_DESC(keypad_enabled, "Deprecated option, use keypad_type instead");
 static int lcd_type = -1;
 module_param(lcd_type, int, 0000);
 MODULE_PARM_DESC(lcd_type,
+<<<<<<< HEAD
 		 "LCD type: 0=none, 1=old //, 2=serial ks0074, "
 		 "3=hantronix //, 4=nexcom //, 5=compiled-in");
+=======
+		"LCD type: 0=none, 1=compiled-in, 2=old, 3=serial ks0074, 4=hantronix, 5=nexcom");
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 static int lcd_proto = -1;
 module_param(lcd_proto, int, 0000);

@@ -973,12 +973,17 @@ nomem:
  */
 int edac_create_sysfs_mci_device(struct mem_ctl_info *mci)
 {
+<<<<<<< HEAD
+=======
+	char *name;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	int i, err;
 
 	/*
 	 * The memory controller needs its own bus, in order to avoid
 	 * namespace conflicts at /sys/bus/edac.
 	 */
+<<<<<<< HEAD
 	mci->bus->name = kasprintf(GFP_KERNEL, "mc%d", mci->mc_idx);
 	if (!mci->bus->name)
 		return -ENOMEM;
@@ -988,6 +993,21 @@ int edac_create_sysfs_mci_device(struct mem_ctl_info *mci)
 	err = bus_register(mci->bus);
 	if (err < 0)
 		return err;
+=======
+	name = kasprintf(GFP_KERNEL, "mc%d", mci->mc_idx);
+	if (!name)
+		return -ENOMEM;
+
+	mci->bus->name = name;
+
+	edac_dbg(0, "creating bus %s\n", mci->bus->name);
+
+	err = bus_register(mci->bus);
+	if (err < 0) {
+		kfree(name);
+		return err;
+	}
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	/* get the /sys/devices/system/edac subsys reference */
 	mci->dev.type = &mci_attr_type;
@@ -1071,7 +1091,12 @@ fail:
 fail2:
 	device_unregister(&mci->dev);
 	bus_unregister(mci->bus);
+<<<<<<< HEAD
 	kfree(mci->bus->name);
+=======
+	kfree(name);
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	return err;
 }
 
@@ -1102,10 +1127,19 @@ void edac_remove_sysfs_mci_device(struct mem_ctl_info *mci)
 
 void edac_unregister_sysfs(struct mem_ctl_info *mci)
 {
+<<<<<<< HEAD
 	edac_dbg(1, "Unregistering device %s\n", dev_name(&mci->dev));
 	device_unregister(&mci->dev);
 	bus_unregister(mci->bus);
 	kfree(mci->bus->name);
+=======
+	const char *name = mci->bus->name;
+
+	edac_dbg(1, "Unregistering device %s\n", dev_name(&mci->dev));
+	device_unregister(&mci->dev);
+	bus_unregister(mci->bus);
+	kfree(name);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 }
 
 static void mc_attr_release(struct device *dev)

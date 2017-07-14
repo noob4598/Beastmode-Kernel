@@ -84,6 +84,20 @@ static const struct dmi_system_id pci_crs_quirks[] __initconst = {
 			DMI_MATCH(DMI_BIOS_VENDOR, "Phoenix Technologies, LTD"),
 		},
 	},
+<<<<<<< HEAD
+=======
+	/* https://bugs.launchpad.net/ubuntu/+source/alsa-driver/+bug/931368 */
+	/* https://bugs.launchpad.net/ubuntu/+source/alsa-driver/+bug/1033299 */
+	{
+		.callback = set_use_crs,
+		.ident = "Foxconn K8M890-8237A",
+		.matches = {
+			DMI_MATCH(DMI_BOARD_VENDOR, "Foxconn"),
+			DMI_MATCH(DMI_BOARD_NAME, "K8M890-8237A"),
+			DMI_MATCH(DMI_BIOS_VENDOR, "Phoenix Technologies, LTD"),
+		},
+	},
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	/* Now for the blacklist.. */
 
@@ -107,6 +121,19 @@ static const struct dmi_system_id pci_crs_quirks[] __initconst = {
 			DMI_MATCH(DMI_BIOS_VERSION, "6JET85WW (1.43 )"),
 		},
 	},
+<<<<<<< HEAD
+=======
+	/* https://bugzilla.kernel.org/show_bug.cgi?id=42606 */
+	{
+		.callback = set_nouse_crs,
+		.ident = "Supermicro X8DTH",
+		.matches = {
+			DMI_MATCH(DMI_SYS_VENDOR, "Supermicro"),
+			DMI_MATCH(DMI_PRODUCT_NAME, "X8DTH-i/6/iF/6F"),
+			DMI_MATCH(DMI_BIOS_VERSION, "2.0a"),
+		},
+	},
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	/* https://bugzilla.kernel.org/show_bug.cgi?id=15362 */
 	{

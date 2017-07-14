@@ -30,13 +30,25 @@
 #include <media/videobuf2-msm-mem.h>
 #include <media/msmb_camera.h>
 
+<<<<<<< HEAD
 #define MSM_POST_EVT_TIMEOUT 5000
+=======
+/* Setting MAX timeout to 6.5seconds considering
+ * backend will operate @ .6fps in certain usecases
+ * like Long exposure usecase and isp needs max of 2 frames
+ * to stop the hardware which will be around 3 seconds*/
+#define MSM_POST_EVT_TIMEOUT 6500
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 #define MSM_POST_STREAMOFF_EVT_TIMEOUT 9000
 #define MSM_POST_EVT_NOTIMEOUT 0xFFFFFFFF
 
 struct msm_video_device {
 	struct video_device *vdev;
 	atomic_t opened;
+<<<<<<< HEAD
+=======
+	atomic_t stream_cnt;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 };
 
 struct msm_queue_head {

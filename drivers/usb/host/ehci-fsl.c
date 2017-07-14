@@ -261,7 +261,12 @@ static int ehci_fsl_setup_phy(struct usb_hcd *hcd,
 		break;
 	}
 
+<<<<<<< HEAD
 	if (pdata->have_sysif_regs && pdata->controller_ver &&
+=======
+	if (pdata->have_sysif_regs &&
+	    pdata->controller_ver > FSL_USB_VER_1_6 &&
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	    (phy_mode == FSL_USB2_PHY_ULPI)) {
 		/* check PHY_CLK_VALID to get phy clk valid */
 		if (!spin_event_timeout(in_be32(non_ehci + FSL_SOC_USB_CTRL) &

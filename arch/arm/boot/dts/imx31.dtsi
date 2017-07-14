@@ -20,11 +20,19 @@
 		serial4 = &uart5;
 	};
 
+<<<<<<< HEAD
 	avic: avic-interrupt-controller@60000000 {
 		compatible = "fsl,imx31-avic", "fsl,avic";
 		interrupt-controller;
 		#interrupt-cells = <1>;
 		reg = <0x60000000 0x100000>;
+=======
+	avic: interrupt-controller@68000000 {
+		compatible = "fsl,imx31-avic", "fsl,avic";
+		interrupt-controller;
+		#interrupt-cells = <1>;
+		reg = <0x68000000 0x100000>;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	};
 
 	soc {
@@ -93,6 +101,7 @@
 				clock-names = "ipg", "per";
 				status = "disabled";
 			};
+<<<<<<< HEAD
 
 			clks: ccm@53f80000{
 				compatible = "fsl,imx31-ccm";
@@ -100,6 +109,8 @@
 				interrupts = <0 31 0x04 0 53 0x04>;
 				#clock-cells = <1>;
 			};
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		};
 
 		aips@53f00000 { /* AIPS2 */
@@ -109,6 +120,16 @@
 			reg = <0x53f00000 0x100000>;
 			ranges;
 
+<<<<<<< HEAD
+=======
+			clks: ccm@53f80000{
+				compatible = "fsl,imx31-ccm";
+				reg = <0x53f80000 0x4000>;
+				interrupts = <31>, <53>;
+				#clock-cells = <1>;
+			};
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 			gpt: timer@53f90000 {
 				compatible = "fsl,imx31-gpt";
 				reg = <0x53f90000 0x4000>;

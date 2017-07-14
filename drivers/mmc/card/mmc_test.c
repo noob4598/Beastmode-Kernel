@@ -795,7 +795,11 @@ static int mmc_test_nonblock_transfer(struct mmc_test_card *test,
 	struct mmc_async_req *cur_areq = &test_areq[0].areq;
 	struct mmc_async_req *other_areq = &test_areq[1].areq;
 	int i;
+<<<<<<< HEAD
 	int ret;
+=======
+	int ret = RESULT_OK;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	test_areq[0].test = test;
 	test_areq[1].test = test;

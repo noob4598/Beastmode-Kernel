@@ -404,6 +404,10 @@ int tima_is_pg_protected(unsigned long va)
 	return 0;
 }
 #endif	/* CONFIG_TIMA_RKP_30 */
+<<<<<<< HEAD
+=======
+EXPORT_SYMBOL(tima_is_pg_protected);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 #endif
 
 #ifdef	CONFIG_TIMA_RKP_30
@@ -627,9 +631,13 @@ do_page_fault(unsigned long addr, unsigned int fsr, struct pt_regs *regs)
 	struct task_struct *tsk;
 	struct mm_struct *mm;
 	int fault, sig, code;
+<<<<<<< HEAD
 	int write = fsr & FSR_WRITE;
 	unsigned int flags = FAULT_FLAG_ALLOW_RETRY | FAULT_FLAG_KILLABLE |
 				(write ? FAULT_FLAG_WRITE : 0);
+=======
+	unsigned int flags = FAULT_FLAG_ALLOW_RETRY | FAULT_FLAG_KILLABLE;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 
 	if (notify_page_fault(regs, fsr))
 		return 0;
@@ -648,6 +656,14 @@ do_page_fault(unsigned long addr, unsigned int fsr, struct pt_regs *regs)
 	if (in_atomic() || irqs_disabled() || !mm)
 		goto no_context;
 
+<<<<<<< HEAD
+=======
+	if (user_mode(regs))
+		flags |= FAULT_FLAG_USER;
+	if (fsr & FSR_WRITE)
+		flags |= FAULT_FLAG_WRITE;
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	/*
 	 * As per x86, we may deadlock here.  However, since the kernel only
 	 * validly references user space from well defined areas of the code,
@@ -715,6 +731,16 @@ retry:
 	if (likely(!(fault & (VM_FAULT_ERROR | VM_FAULT_BADMAP | VM_FAULT_BADACCESS))))
 		return 0;
 
+<<<<<<< HEAD
+=======
+	/*
+	 * If we are in kernel mode at this point, we
+	 * have no context to handle this fault with.
+	 */
+	if (!user_mode(regs))
+		goto no_context;
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	if (fault & VM_FAULT_OOM) {
 		/*
 		 * We ran out of memory, call the OOM killer, and return to
@@ -725,6 +751,7 @@ retry:
 		return 0;
 	}
 
+<<<<<<< HEAD
 	/*
 	 * If we are in kernel mode at this point, we
 	 * have no context to handle this fault with.
@@ -732,6 +759,8 @@ retry:
 	if (!user_mode(regs))
 		goto no_context;
 
+=======
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	if (fault & VM_FAULT_SIGBUS) {
 		/*
 		 * We had some memory, but were unable to

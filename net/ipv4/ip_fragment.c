@@ -356,7 +356,11 @@ static int ip_frag_queue(struct ipq *qp, struct sk_buff *skb)
 	ihl = ip_hdrlen(skb);
 
 	/* Determine the position of this fragment. */
+<<<<<<< HEAD
 	end = offset + skb->len - ihl;
+=======
+	end = offset + skb->len - skb_network_offset(skb) - ihl;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	err = -EINVAL;
 
 	/* Is this the final fragment? */
@@ -386,7 +390,11 @@ static int ip_frag_queue(struct ipq *qp, struct sk_buff *skb)
 		goto err;
 
 	err = -ENOMEM;
+<<<<<<< HEAD
 	if (pskb_pull(skb, ihl) == NULL)
+=======
+	if (!pskb_pull(skb, skb_network_offset(skb) + ihl))
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		goto err;
 
 	err = pskb_trim_rcsum(skb, end - offset);
@@ -627,6 +635,12 @@ static int ip_frag_reasm(struct ipq *qp, struct sk_buff *prev,
 	iph->frag_off = qp->q.max_size ? htons(IP_DF) : 0;
 	iph->tot_len = htons(len);
 	iph->tos |= ecn;
+<<<<<<< HEAD
+=======
+
+	ip_send_check(iph);
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	IP_INC_STATS_BH(net, IPSTATS_MIB_REASMOKS);
 	qp->q.fragments = NULL;
 	qp->q.fragments_tail = NULL;
@@ -653,6 +667,12 @@ int ip_defrag(struct sk_buff *skb, u32 user)
 	net = skb->dev ? dev_net(skb->dev) : dev_net(skb_dst(skb)->dev);
 	IP_INC_STATS_BH(net, IPSTATS_MIB_REASMREQDS);
 
+<<<<<<< HEAD
+=======
+	if (!net->ipv4.frags.high_thresh)
+		goto fail;
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	/* Start by cleaning up the memory. */
 	ip_evictor(net);
 
@@ -669,6 +689,10 @@ int ip_defrag(struct sk_buff *skb, u32 user)
 		return ret;
 	}
 
+<<<<<<< HEAD
+=======
+fail:
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	IP_INC_STATS_BH(net, IPSTATS_MIB_REASMFAILS);
 	kfree_skb(skb);
 	return -ENOMEM;
@@ -678,27 +702,47 @@ EXPORT_SYMBOL(ip_defrag);
 struct sk_buff *ip_check_defrag(struct sk_buff *skb, u32 user)
 {
 	struct iphdr iph;
+<<<<<<< HEAD
+=======
+	int netoff;
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	u32 len;
 
 	if (skb->protocol != htons(ETH_P_IP))
 		return skb;
 
+<<<<<<< HEAD
 	if (!skb_copy_bits(skb, 0, &iph, sizeof(iph)))
+=======
+	netoff = skb_network_offset(skb);
+
+	if (skb_copy_bits(skb, netoff, &iph, sizeof(iph)) < 0)
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		return skb;
 
 	if (iph.ihl < 5 || iph.version != 4)
 		return skb;
 
 	len = ntohs(iph.tot_len);
+<<<<<<< HEAD
 	if (skb->len < len || len < (iph.ihl * 4))
+=======
+	if (skb->len < netoff + len || len < (iph.ihl * 4))
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 		return skb;
 
 	if (ip_is_fragment(&iph)) {
 		skb = skb_share_check(skb, GFP_ATOMIC);
 		if (skb) {
+<<<<<<< HEAD
 			if (!pskb_may_pull(skb, iph.ihl*4))
 				return skb;
 			if (pskb_trim_rcsum(skb, len))
+=======
+			if (!pskb_may_pull(skb, netoff + iph.ihl * 4))
+				return skb;
+			if (pskb_trim_rcsum(skb, netoff + len))
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 				return skb;
 			memset(IPCB(skb), 0, sizeof(struct inet_skb_parm));
 			if (ip_defrag(skb, user))

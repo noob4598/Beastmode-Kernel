@@ -384,6 +384,22 @@ static int dp_get_max_dp_pix_clock(int link_rate,
 
 /***** radeon specific DP functions *****/
 
+<<<<<<< HEAD
+=======
+static int radeon_dp_get_max_link_rate(struct drm_connector *connector,
+				       u8 dpcd[DP_DPCD_SIZE])
+{
+	int max_link_rate;
+
+	if (radeon_connector_is_dp12_capable(connector))
+		max_link_rate = min(drm_dp_max_link_rate(dpcd), 540000);
+	else
+		max_link_rate = min(drm_dp_max_link_rate(dpcd), 270000);
+
+	return max_link_rate;
+}
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 /* First get the min lane# when low rate is used according to pixel clock
  * (prefer low rate), second check max lane# supported by DP panel,
  * if the max lane# < low rate lane# then use max lane# instead.
@@ -393,7 +409,11 @@ static int radeon_dp_get_dp_lane_number(struct drm_connector *connector,
 					int pix_clock)
 {
 	int bpp = convert_bpc_to_bpp(radeon_get_monitor_bpc(connector));
+<<<<<<< HEAD
 	int max_link_rate = drm_dp_max_link_rate(dpcd);
+=======
+	int max_link_rate = radeon_dp_get_max_link_rate(connector, dpcd);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	int max_lane_num = drm_dp_max_lane_count(dpcd);
 	int lane_num;
 	int max_dp_pix_clock;
@@ -431,7 +451,11 @@ static int radeon_dp_get_dp_link_clock(struct drm_connector *connector,
 			return 540000;
 	}
 
+<<<<<<< HEAD
 	return drm_dp_max_link_rate(dpcd);
+=======
+	return radeon_dp_get_max_link_rate(connector, dpcd);
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 }
 
 static u8 radeon_dp_encoder_service(struct radeon_device *rdev,
@@ -561,6 +585,13 @@ int radeon_dp_mode_valid_helper(struct drm_connector *connector,
 	struct radeon_connector_atom_dig *dig_connector;
 	int dp_clock;
 
+<<<<<<< HEAD
+=======
+	if ((mode->clock > 340000) &&
+	    (!radeon_connector_is_dp12_capable(connector)))
+		return MODE_CLOCK_HIGH;
+
+>>>>>>> f1f997bb2aa14231c38c2cd423ac6da380356b03
 	if (!radeon_connector->con_priv)
 		return MODE_CLOCK_HIGH;
 	dig_connector = radeon_connector->con_priv;
